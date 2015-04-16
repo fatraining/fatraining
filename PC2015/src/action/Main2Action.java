@@ -4,7 +4,7 @@ public class Main2Action {
 
 	public String execute() throws Exception {
 
-//1031
+//1031sss
 		return "suscess";
 	}
 }
