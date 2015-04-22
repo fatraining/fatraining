@@ -42,6 +42,12 @@
 		<mapping class="model.LiofTa" />
 		<mapping class="model.CoofTa" />
 		<mapping class="model.Result9Table" />
+		<mapping class="model.Movie" />
+		<mapping class="model.MovieGenre" />
+		<mapping class="model.ResultTableMovie" />
+		<mapping class="model.Movie" />
+		<mapping class="model.MovieGenre" />
+		<mapping class="model.ResultTableMovie" />
 
 	</session-factory>
 
