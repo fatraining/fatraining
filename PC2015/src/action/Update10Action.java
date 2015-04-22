@@ -1,0 +1,130 @@
+package action;
+
+import java.io.UnsupportedEncodingException;
+
+import model.DetailEat;
+import model.IDofEat;
+
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
+import org.hibernate.HibernateException;
+import org.hibernate.classic.Session;
+
+import controller.TaskUtil;
+
+@Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
+public class Update10Action extends AbstractAction {
+	private static final long serialVersionUID = 1L;
+	public String update_id;
+
+	public String eatFood;
+	public String eatCalory;
+	public String eat_year ;
+	public String eat_month ;
+	public String eat_day;
+	public String eat_hour;
+	public String entry_day;
+	public String renew_day;
+	public String entry_userid;
+	public String renew_userid;
+	public int renew_flg;
+	public int delete_flg;
+	public String errormsg;
+
+	public String execute() throws Exception {
+		this.update_id = (String)this.sessionMap.get("update_id");
+
+
+
+		return "success";
+	}
+
+	public String insert(){
+		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		IDofEat insert_id_table = new IDofEat();
+		DetailEat insert_detail_table = new DetailEat();
+
+//		insert_detail_table.setEat_year(checkcode(this.eat_year));
+//		insert_detail_table.setEat_month(checkcode(this.eat_month));
+//		insert_detail_table.setEat_day(checkcode(this.eat_day));
+//		insert_detail_table.setEat_hour(checkcode(this.eat_hour));
+//		insert_id_table.setEatFood(checkcode(this.eatFood));
+//		insert_id_table.setEatCalory(checkcode(this.eatCalory));
+//		insert_detail_table.setEntry_day(checkcode(this.entry_day));
+//		insert_detail_table.setRenew_day(checkcode(this.renew_day));
+//		insert_detail_table.setEntry_day(checkcode(this.entry_userid));
+//		insert_detail_table.setRenew_day(checkcode(this.renew_userid));
+//		insert_detail_table.setRenew_flg(checkcode(this.renew_flg));
+//		insert_detail_table.setDeleteflg(checkcode(this.delete_flg));
+		
+		String[] data = {this.eat_year,this.eat_month,this.eat_day,this.eat_hour,this.eatFood, this.eatCalory};
+		int i=0;
+		for(String temp : data){
+			if(temp.length()>50){
+				this.errormsg = "50文字以下で入力してください";
+				return "error";
+			}
+			if(temp.length()<1)i++;
+			if(i>14){
+				this.errormsg = "未入力は登録できません";
+				return "error";
+			}
+
+			try{
+				session.save(insert_detail_table);
+				session.save(insert_id_table);
+			}catch(HibernateException e){
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			
+		}
+		
+		session.getTransaction().commit();
+		return "main10";
+
+	}
+	
+	public String delete() {
+		this.update_id = (String)this.sessionMap.get("update_id");
+		if(this.update_id.isEmpty()){
+			return "main10";
+		}
+		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			DetailEat detaileat = (DetailEat)session.load(DetailEat.class, Integer.valueOf(update_id));
+			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,  Integer.valueOf(update_id));
+			session.delete(detaileat);
+			session.delete(idofeat);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		return "main10";
+	}
+//	public String checkcode(String code) {
+//
+//
+//		//code = code.replaceAll("[^a-zA-Z_0-9]","_");
+//		if(!code.matches("[a-zA-Z_0-9]{0,50}")){
+//			//return "";
+//		}
+//		return code;
+//	}
+//	private static boolean checkCharacterCode(String str, String encoding) {
+//		if (str == null) {
+//			return true;
+//		}
+//
+//		try {
+//			byte[] bytes = str.getBytes(encoding);
+//			return str.equals(new String(bytes, encoding));
+//		} catch (UnsupportedEncodingException ex) {
+//			throw new RuntimeException("エンコード名称が正しくありません。", ex);
+//		}
+//	}
+}
