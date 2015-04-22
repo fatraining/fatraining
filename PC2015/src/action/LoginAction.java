@@ -16,15 +16,15 @@ public class LoginAction extends AbstractAction {
 //	public String age;
 //	public String tel;
 //
-//	public String execute() throws Exception {
-//		this.sessionMap.put("userId", null);
-//		this.userId = "Struts2";
+	public String execute() throws Exception {
+		this.sessionMap.put("userId", null);
+		this.userId = "Struts2";
 //
 //		this.sessionMap.put("sex", null);
 //		this.sessionMap.put("age", null);
 //		this.sessionMap.put("tel", null);
-//		return "success";
-//	}
+		return "success";
+	}
 
 	public String login() throws Exception {
 		if (this.password == null || !this.password.equals("pass")) {
