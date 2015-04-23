@@ -39,6 +39,7 @@ public class Update10Action extends AbstractAction {
 
 		return "success";
 	}
+	
 
 	public String insert() {
 			//日付の設定
@@ -47,6 +48,8 @@ public class Update10Action extends AbstractAction {
 		entry_day = String.valueOf(sdf.format(date));
 		renew_day = String.valueOf(sdf.format(date));
 			
+		System.out.println(sdf.format(date.getTime()));
+		
 		Session session = TaskUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
