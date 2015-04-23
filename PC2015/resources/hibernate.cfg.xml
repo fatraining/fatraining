@@ -45,6 +45,9 @@
 		<mapping class="model.Movie" />
 		<mapping class="model.MovieGenre" />
 		<mapping class="model.ResultTableMovie" />
+		<mapping class="model.Yasai" />
+		<mapping class="model.Ryouri" />
+		<mapping class="model.Result8Table" />
 
 	</session-factory>
 
