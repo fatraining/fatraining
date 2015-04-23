@@ -35,8 +35,6 @@ public class AddyasaiAction extends AbstractAction {
 
 	public ArrayList<Result8Table> outputTable;
 	public List<?> resultTable;
-	
-	
 
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
@@ -61,7 +59,8 @@ public class AddyasaiAction extends AbstractAction {
 
 		// 料理のデータ作成
 		Ryouri insert_ryouri_table = new Ryouri();
-		insert_ryouri_table.setId(this.id);
+		// idはnullなので記述しなくていい（オートインクルメント）
+		// insert_ryouri_table.setId(Integer.valueOf(this.id));
 		insert_ryouri_table.setRyouri(this.ryouri);
 		insert_ryouri_table.setTyouri(this.tyouri);
 		insert_ryouri_table.setDate_Entry(this.date_entry);
@@ -81,14 +80,14 @@ public class AddyasaiAction extends AbstractAction {
 		// 料理テーブルのデータ検索
 		YasaiManager yasaimanager = new YasaiManager();
 		insert_ryouri_table = yasaimanager.ryouriList();
-		//料理テーブルのid取得
-
 
 		// 野菜データの作成
 		Yasai insert_yasai_table = new Yasai();
 		insert_yasai_table.setId(this.id);
 		insert_yasai_table.setYasai(this.yasai);
-		insert_yasai_table.setTyouriId(0);
+
+		// 料理テーブルのid取得し、野菜テーブルの調理idにいれる
+		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
 		insert_yasai_table.setDate_Entry(this.date_entry);
 		insert_yasai_table.setDate_Up(this.date_up);
 		insert_yasai_table.setUserId(this.userId);
