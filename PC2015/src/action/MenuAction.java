@@ -9,7 +9,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "main1", value = "main1.action", type = ServletRedirectResult.class),
 	@Result(name = "main2", value = "main2.action", type = ServletRedirectResult.class),
 	@Result(name = "main3", value = "main3.action", type = ServletRedirectResult.class),
-	@Result(name = "main4", value = "main4.action", type = ServletRedirectResult.class),
+	@Result(name = "main4", value = "bandSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "main5", value = "main5.action", type = ServletRedirectResult.class),
 	@Result(name = "main6", value = "main6.action", type = ServletRedirectResult.class),
 	@Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class),
