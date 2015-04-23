@@ -1,92 +1,87 @@
 package model;
 
-	import java.io.Serializable;
+import java.io.Serializable;
 
-	import javax.persistence.Column;
-	import javax.persistence.Entity;
-	import javax.persistence.GeneratedValue;
-	import javax.persistence.Id;
-	import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	@Entity
-	@Table(name="tb_genre")
-	public class Genre implements Serializable{
+@Entity
+@Table(name="Genre")
+public class Genre implements Serializable{
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-		private int id;
-		private String genre ;
-//		private String signup;
-//		private String update;
-//		private String signupUSERID;
-//		private String updateUSERID;
-//		private String exclusiveFLG ;
-//		private String deleteFLG ;
-		
-		/*--------------------------------------------------*/
-		@Id
-		@GeneratedValue
-		@Column(name="id")
-		public int getId() {
-			return id;
-		}
-		
-		@Column(name="genre")
-		public String getGenre() {
-			return genre;
-		}
-//		@Column(name="signup")
-//		public String getSignup() {
-//			return signup;
-//		}
-//		@Column(name="update")
-//		public String getUpdate() {
-//			return update;
-//		}
-//		@Column(name="signupUSERID")
-//		public String getSignupUSERID() {
-//			return signupUSERID;
-//		}
-//		@Column(name="updateUSERID")
-//		public String getUpdateUSERID() {
-//			return updateUSERID;
-//		}
-//		@Column(name="exclusiveFLG")
-//		public String getExclusiveFLG() {
-//			return exclusiveFLG;
-//		}	@Column(name="deleteFLG")
-//		public String getDeleteFLG() {
-//			return deleteFLG;
-//		}
-		
+	private String id;
+	private String genreNm;
+	private String record_date;
+	private String reset_date;
+	private String entry_userId;
+	private String record_userId;
+	private String exclusive_FLG;
+	private String delete_FLG;
+	
 	/*--------------------------------------------------*/
-
-		public void setId(int id) {
-			this.id = id;
-		}
-		public void setGenre(String genre) {
-			this.genre = genre;
-		}
-//		public void setSignup(String signup) {
-//			this.signup = signup;
-//		}
-//		public void setUpdate(String update) {
-//			this.update = update;
-//		}
-//		public void setSignupUSERID(String signupUSERID) {
-//			this.signupUSERID = signupUSERID;
-//		}
-//		public void setUpdateUSERID(String updateUSERID) {
-//			this.updateUSERID = updateUSERID;
-//		}
-//		public void setExclusiveFLG(String exclusiveFLG) {
-//			this.exclusiveFLG = exclusiveFLG;
-//		}
-//		public void setdeleteFLG(String deleteFLG) {
-//			this.deleteFLG = deleteFLG;
-//		}
-		
+	@Id
+	@GeneratedValue
+	@Column(name="id")
+	public String getId() {
+		return id;
 	}
-
-
-
+	@Column(name="genreNm")
+	public String getGenreNm() {
+		return genreNm;
+	}
+	@Column(name="record_date")
+	public String getRecord_date() {
+		return record_date;
+	}
+	@Column(name="reset_date")
+	public String getReset_date() {
+		return reset_date;
+	}
+	@Column(name="entry_userId")
+	public String getEntry_userId() {
+		return entry_userId;
+	}
+	@Column(name="record_userId")
+	public String getRecord_userId() {
+		return record_userId;
+	}
+	@Column(name="exclusive_FLG")
+	public String getExclusive_FLG() {
+		return exclusive_FLG;
+	}
+	@Column(name="delete_FLG")
+	public String getDelete_FLG() {
+		return delete_FLG;
+	}
+	
+/*--------------------------------------------------*/
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setGenreNm(String genreNm) {
+		this.genreNm = genreNm;
+	}
+	public void setRecord_date(String record_date) {
+		this.record_date = record_date;
+	}
+	public void setReset_date(String reset_date) {
+		this.reset_date = reset_date;
+	}
+	public void setEntry_userId(String entry_userId) {
+		this.entry_userId = entry_userId;
+	}
+	public void setRecord_userId(String record_userId) {
+		this.record_userId = record_userId;
+	}
+	public void setExclusive_FLG(String exclusive_FLG) {
+		this.exclusive_FLG = exclusive_FLG;
+	}
+	public void setDelete_FLG(String delete_FLG) {
+		this.delete_FLG = delete_FLG;
+	}
+}

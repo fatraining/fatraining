@@ -1,7 +1,7 @@
 package action;
 
 import model.Story;
-import model.Genre;
+import model.Tb_Genre;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
@@ -39,7 +39,7 @@ public class Update3Action extends AbstractAction {
 		Session session = TaskUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		Genre insert_genre_table = new Genre();
+		Tb_Genre insert_genre_table = new Tb_Genre();
 		Story insert_story_table = new Story();
 		insert_genre_table.setGenre(this.genre);
 		insert_story_table.setTitle(this.title);
@@ -55,12 +55,12 @@ public class Update3Action extends AbstractAction {
 //		int i=0;
 //		for(String temp : data){
 //			if(temp.length()>50){
-//				this.errormsg = "50•¶šˆÈ‰º‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢";
+//				this.errormsg = "50ï¿½ï¿½ï¿½ï¿½ï¿½È‰ï¿½ï¿½Å“ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 //				return "error";
 //			}
 //			if(temp.length()<1)i++;
 //			if(i>14){
-//				this.errormsg = "–¢“ü—Í‚Í“o˜^‚Å‚«‚Ü‚¹‚ñ";
+//				this.errormsg = "ï¿½ï¿½ï¿½ï¿½ï¿½Í‚Í“oï¿½^ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½";
 //				return "error";
 //			}
 
@@ -87,7 +87,7 @@ public class Update3Action extends AbstractAction {
 		session.beginTransaction();
 		try {
 			Story detailpc = (Story)session.load(Story.class, update_id);
-			Genre idpc = (Genre) session.load(Genre.class, update_id);
+			Tb_Genre idpc = (Tb_Genre) session.load(Tb_Genre.class, update_id);
 			session.delete(detailpc);
 			session.delete(idpc);
 		} catch (HibernateException e) {
@@ -108,6 +108,6 @@ public class Update3Action extends AbstractAction {
 //			byte[] bytes = str.getBytes(encoding);
 //			return str.equals(new String(bytes, encoding));
 //		} catch (UnsupportedEncodingException ex) {
-//			throw new RuntimeException("ƒGƒ“ƒR[ƒh–¼Ì‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", ex);
+//			throw new RuntimeException("ï¿½Gï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B", ex);
 //		}
 	}

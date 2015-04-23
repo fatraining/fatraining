@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import model.Result3Table;
 import controller.StoryManager;
-import controller.ResultManager;
+import controller.Result3Manager;
 
 public class Main3Action extends AbstractAction {
 
@@ -24,7 +24,7 @@ public class Main3Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
-    private ResultManager linkController;
+    private Result3Manager linkController;
 	private StoryManager allController;
 	public  ArrayList<Result3Table> outputTable;
 
@@ -64,7 +64,7 @@ public class Main3Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		}else{
-			linkController  = new ResultManager();
+			linkController  = new Result3Manager();
        this.outputTable = linkController.resultList(this.title,this.genre);
 		}
 		this.do_print="true";

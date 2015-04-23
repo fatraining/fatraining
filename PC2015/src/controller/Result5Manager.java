@@ -9,7 +9,7 @@ import model.Result5Table;
 
 import org.hibernate.classic.Session;
 
-public class ResultManager extends HibernateUtil {
+public class Result5Manager extends HibernateUtil {
 
 	public List<?> resultTable;
 	public ArrayList<Result5Table> outputTable;
