@@ -5,14 +5,14 @@ import java.util.List;
 
 import model.User_Profile;
 import model.User_Character;
-import model.ResultTable;
+import model.Result5Table;
 
 import org.hibernate.classic.Session;
 
 public class ResultManager extends HibernateUtil {
 
 	public List<?> resultTable;
-	public ArrayList<ResultTable> outputTable;
+	public ArrayList<Result5Table> outputTable;
 
 	public ArrayList<ResultTable> resultList(String dwelling, String name) {
 
