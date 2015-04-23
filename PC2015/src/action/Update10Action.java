@@ -43,6 +43,8 @@ public class Update10Action extends AbstractAction {
 
 	public String insert() {
 			//日付の設定
+		
+		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		entry_day = String.valueOf(sdf.format(date));
