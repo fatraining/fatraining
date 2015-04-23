@@ -15,25 +15,25 @@
 			</div>
 
 			<label class="col-sm-2 control-label"> 年:</label>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<s:textfield name="eat_year" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 			<label class="col-sm-2 control-label"> 月:</label>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<s:textfield name="eat_month" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 			<br /> <br /> <br /> 
 			<label class="col-sm-2 control-label"> 日:</label>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<s:textfield name="eat_day" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 			<label class="col-sm-2 control-label">AM/PM:</label>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<s:textfield name="eat_hour" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 			<br /> <br /> <br /> <hr /> <br />
 			<label class="col-sm-2 control-label"> 食べ物:</label>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<s:textfield name="eatFood" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 			<label class="col-sm-2 control-label"> カロリー:</label>
