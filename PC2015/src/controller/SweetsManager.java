@@ -5,16 +5,16 @@ import java.util.List;
 
 import model.Sweets;
 import model.Genre;
-import model.ResultTable;
+import model.Result2Table;
 
 import org.hibernate.classic.Session;
 
 public class SweetsManager extends TaskUtil {
 
 	public  List<?> resultTable;
-	public  ArrayList<ResultTable> outputTable;
+	public  ArrayList<Result2Table> outputTable;
 
-	public ArrayList<ResultTable> resultList(String genreNm, String name) {
+	public ArrayList<Result2Table> resultList(String genreNm, String name) {
 		Session session = TaskUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -36,12 +36,12 @@ public class SweetsManager extends TaskUtil {
 
 		return outputTable;
 	}
-	public ArrayList<ResultTable> tableTrans(List<?> resultTable){
-		ArrayList<ResultTable> tempTable = new ArrayList<ResultTable>();
+	public ArrayList<Result2Table> tableTrans(List<?> resultTable){
+		ArrayList<Result2Table> tempTable = new ArrayList<Result2Table>();
 		Object[] obj;
 		try {
 			for(int i = 0 ; i < resultTable.size() ; i++){
-				ResultTable temp = new ResultTable();
+				Result2Table temp = new Result2Table();
 				obj = (Object[]) resultTable.get(i);
 				Sweets sweets =  (Sweets)obj[0];
 				Genre genreNm     = (Genre)obj[1];
