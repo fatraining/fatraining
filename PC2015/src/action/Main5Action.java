@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import model.Result5Table;
 import controller.User_ProfileManager;
-import controller.Result5Manager;
+import controller.ResultManager;
 
 public class Main5Action extends AbstractAction {
 
@@ -19,7 +19,7 @@ public class Main5Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
-	private Result5Manager linkController;
+	private ResultManager linkController;
 	private User_ProfileManager allController;
 	public ArrayList<Result5Table> outputTable;
 
