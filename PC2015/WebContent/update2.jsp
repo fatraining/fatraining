@@ -1,0 +1,48 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<jsp:include page="header.jsp" />
+
+<s:if test="%{update_id==null}">
+	<h3>新しくお菓子を登録します</h3>
+	<p class="err">
+		<s:property value="errormsg" />
+	</p>
+	<s:form cssClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-md-2 control-label" > 名前:</label>
+			<div class="col-md-5">
+				<input name="Name" class="form-control valid" type="text" >
+			</div>
+			<br><br><br>
+			<label class="col-md-2 control-label" > ジャンル:</label>
+			<div class="col-md-5">
+				<input name="Genre" class="form-control valid" type="text" >
+			</div>
+			<br><br><br>
+			<label class="col-md-2 control-label" > 登録USERID:</label>
+			<div class="col-md-5">
+				<input name="Entry_userId" class="form-control valid" type="text" >
+			</div>
+			<br><br><br>
+			<label class="col-md-2 control-label" > 更新USERID:</label>
+			<div class="col-md-5">
+				<input name="Record_userId" class="form-control valid" type="text" >
+			</div>
+			<br><br><br>
+			<label class="col-md-2 control-label" > 排他:</label>
+			<div class="col-md-5">
+				<input name="Exclusive_FLG" class="form-control valid" type="text" >
+			</div>
+			<br><br>
+		</div>
+		<div align=right>
+			<div class="col-sm-offset-2 col-sm-10">
+				<s:submit method="insert" value="追加" cssClass="btn btn-primary" />
+				<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
+				<a href="main2.action">Back</a>
+			</div>
+		</div>
+	</s:form>
+</s:if>
+<jsp:include page="footer.jsp" />
