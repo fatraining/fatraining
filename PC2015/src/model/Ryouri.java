@@ -14,7 +14,7 @@ public class Ryouri implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private int id;
 	private String tyouri;
 	private String ryouri;
 	private String date_entry;
@@ -28,7 +28,7 @@ public class Ryouri implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -74,7 +74,7 @@ public class Ryouri implements Serializable {
 
 	/*--------------------------------------------------*/
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
