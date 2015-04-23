@@ -3,9 +3,9 @@ package action;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import model.ResultTable;
+import model.Result5Table;
 import controller.User_ProfileManager;
-import controller.ResultManager;
+import controller.Result5Manager;
 
 public class Main5Action extends AbstractAction {
 
@@ -19,9 +19,9 @@ public class Main5Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
-	private ResultManager linkController;
+	private Result5Manager linkController;
 	private User_ProfileManager allController;
-	public ArrayList<ResultTable> outputTable;
+	public ArrayList<Result5Table> outputTable;
 
 	private String getDefaultDwelling() {
 		this.dwelling = "千葉";
@@ -64,7 +64,7 @@ public class Main5Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		} else {
-			linkController = new ResultManager();
+			linkController = new Result5Manager();
 			this.outputTable = linkController.resultList(this.dwelling,
 					this.name);
 		}
