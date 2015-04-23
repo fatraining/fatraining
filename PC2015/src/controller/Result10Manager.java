@@ -27,7 +27,7 @@ public class Result10Manager extends TaskUtil {
 			if (eat_hour.isEmpty())
 				eat_hour = "%";
 			String select = "SELECT * FROM eat_detail d, eat_id i";
-			String where1 = "WHERE d.id=i.id";
+			String where1 = "WHERE d.id = i.id";
 			String where2 = "AND (d.eat_year LIKE '" + eat_year + "' AND d.eat_month LIKE '"
 					+ eat_month + "' AND d.eat_day LIKE '" + eat_day + "' AND d.eat_hour LIKE '" + eat_hour + "')";
 			String sql = select + " " + where1+ " " + where2;
@@ -43,7 +43,7 @@ public class Result10Manager extends TaskUtil {
 		return outputTable;
 	}
 
-	public ArrayList<Result10Table> tableTrans(List<?> resultTable) {
+	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
 		Object[] obj;
 		try {
