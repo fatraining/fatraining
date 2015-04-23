@@ -20,42 +20,42 @@
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー3" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain3" value="メニュー3" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー4" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain4" value="メニュー4" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー5" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain5" value="メニュー5" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー6" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain6" value="メニュー6" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー7" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain7" value="メニュー７" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー8" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain8" value="メニュー8" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー9" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain9" value="メニュー9" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="send" value="メニュー10" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain10" value="メニュー10" cssClass="btn btn-primary" />
 		</div>
 	</div>
 	
