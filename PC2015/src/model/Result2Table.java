@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class ResultTable implements Serializable{
+public class Result2Table implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class ResultTable implements Serializable{
 	private String exclusive_FLG;
 	private String delete_FLG;
 
-	public ResultTable() { }
+	public Result2Table() { }
 
 	public String getId() {
 		return id;
