@@ -9,13 +9,13 @@ import model.Result2Table;
 
 import org.hibernate.classic.Session;
 
-public class SweetsManager extends TaskUtil {
+public class SweetsManager extends HibernateUtil {
 
 	public  List<?> resultTable;
 	public  ArrayList<Result2Table> outputTable;
 
 	public ArrayList<Result2Table> resultList(String genreNm, String name) {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT * FROM sweets d,genre i";

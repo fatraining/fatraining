@@ -9,13 +9,13 @@ import model.Tb_Genre;
 
 import org.hibernate.classic.Session;
 
-public class StoryManager extends TaskUtil {
+public class StoryManager extends HibernateUtil {
 
 	public  List<?> resultTable;
 	public  ArrayList<Result3Table> outputTable;
 
 	public ArrayList<Result3Table> resultList() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT * FROM story d,tb_genre i";

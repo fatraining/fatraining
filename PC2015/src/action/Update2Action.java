@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.Sweets;
 import model.Genre;
 import model.Result2Table;
-import controller.TaskUtil;
+import controller.HibernateUtil;
 import controller.SweetsManager;
 import controller.Result2Manager;
 
@@ -66,7 +66,7 @@ public class Update2Action extends AbstractAction {
 	}
 
 	public String insert() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 //		Sweets insert_genre_table = new Sweets();

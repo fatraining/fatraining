@@ -9,13 +9,13 @@ import model.DetailEat;
 import model.IDofEat;
 import model.Result10Table;
 
-public class Result10Manager extends TaskUtil {
+public class Result10Manager extends HibernateUtil {
 	public List<?> result10Table;
 	public ArrayList<Result10Table> outputTable;
 
 	public ArrayList<Result10Table> resultList(String eat_year, String eat_month,
 			String eat_day, String eat_hour) {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			if (eat_year.isEmpty())

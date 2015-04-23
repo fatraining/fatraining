@@ -11,7 +11,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-import controller.TaskUtil;
+import controller.HibernateUtil;
 
 @Result(name = "main1", value = "main1.action", type = ServletRedirectResult.class)
 public class Update1Action extends AbstractAction {
@@ -39,7 +39,7 @@ public class Update1Action extends AbstractAction {
 		 day = String.valueOf(sdf.format(date));
 		 new_day= String.valueOf(sdf.format(date));
 		
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		My_hobby insert_my_hobby_table = new My_hobby();
@@ -85,7 +85,7 @@ public class Update1Action extends AbstractAction {
 		if (this.update_id.isEmpty()) {
 			return "main1";
 		}
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,

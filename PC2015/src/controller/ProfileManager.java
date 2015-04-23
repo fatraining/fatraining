@@ -9,13 +9,13 @@ import model.Result1Table;
 
 import org.hibernate.classic.Session;
 
-public class ProfileManager extends TaskUtil {
+public class ProfileManager extends HibernateUtil {
 
 	public List<?> resultTable;
 	public ArrayList<Result1Table> outputTable;
 
 	public ArrayList<Result1Table> resultList() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT * FROM table_profile i, table_hobby d";

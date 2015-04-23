@@ -9,13 +9,13 @@ import model.My_hobby;
 import model.Profile;
 import model.Result1Table;
 
-public class Result1Manager extends TaskUtil {
+public class Result1Manager extends HibernateUtil {
 	public List<?> resultTable;
 	public ArrayList<Result1Table> outputTable;
 
 	public ArrayList<Result1Table> resultList(String name, String home,
 			String hobby) {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			if (name.isEmpty())

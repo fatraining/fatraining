@@ -8,7 +8,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-import controller.TaskUtil;
+import controller.HibernateUtil;
 
 @Result(name = "main", value = "main.action", type = ServletRedirectResult.class)
 public class Update3Action extends AbstractAction {
@@ -36,7 +36,7 @@ public class Update3Action extends AbstractAction {
 	}
 
 	public String insert(){
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		Tb_Genre insert_genre_table = new Tb_Genre();
@@ -83,7 +83,7 @@ public class Update3Action extends AbstractAction {
 		if(this.update_id.isEmpty()){
 			return "main";
 		}
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			Story detailpc = (Story)session.load(Story.class, update_id);

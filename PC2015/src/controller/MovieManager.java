@@ -9,13 +9,13 @@ import model.ResultTableMovie;
 
 import org.hibernate.classic.Session;
 
-public class MovieManager extends TaskUtil {
+public class MovieManager extends HibernateUtil {
 
 	public  List<?> resultTableMovie;
 	public  ArrayList<ResultTableMovie> outputTableMovie;
 
 	public ArrayList<ResultTableMovie> resultList(String genreId, String exhibition_year) {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT * FROM movie m,movie_genre g";

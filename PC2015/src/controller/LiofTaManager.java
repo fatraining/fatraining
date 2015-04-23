@@ -9,12 +9,12 @@ import model.Result9Table;
 
 import org.hibernate.classic.Session;
 
-public class LiofTaManager extends TaskUtil {
+public class LiofTaManager extends HibernateUtil {
 	public List<?> result9Table;
 	public ArrayList<Result9Table> outputTable;
 
 	public ArrayList<Result9Table> resultList() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT * FROM table_like d,table_color i";

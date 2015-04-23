@@ -10,7 +10,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-import controller.TaskUtil;
+import controller.HibernateUtil;
 
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 public class Update7Action extends AbstractAction {
@@ -36,7 +36,7 @@ public class Update7Action extends AbstractAction {
 	}
 
 	public String insert(){
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		Movie insert_movie_table = new Movie();
@@ -81,7 +81,7 @@ public class Update7Action extends AbstractAction {
 		if(this.update_id.isEmpty()){
 			return "main7";
 		}
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			Movie movie = (Movie)session.load(Movie.class,update_id);
