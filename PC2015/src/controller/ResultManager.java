@@ -14,7 +14,7 @@ public class ResultManager extends HibernateUtil {
 	public List<?> resultTable;
 	public ArrayList<Result5Table> outputTable;
 
-	public ArrayList<ResultTable> resultList(String dwelling, String name) {
+	public ArrayList<Result5Table> resultList(String dwelling, String name) {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -42,12 +42,12 @@ public class ResultManager extends HibernateUtil {
 		return outputTable;
 	}
 
-	public ArrayList<ResultTable> tableTrans(List<?> resultTable) {
-		ArrayList<ResultTable> tempTable = new ArrayList<ResultTable>();
+	public ArrayList<Result5Table> tableTrans(List<?> resultTable) {
+		ArrayList<Result5Table> tempTable = new ArrayList<Result5Table>();
 		Object[] obj;
 		try {
 			for (int i = 0; i < resultTable.size(); i++) {
-				ResultTable temp = new ResultTable();
+				Result5Table temp = new Result5Table();
 				obj = (Object[]) resultTable.get(i);
 
 				User_Character user_caharacter = (User_Character) obj[0];
