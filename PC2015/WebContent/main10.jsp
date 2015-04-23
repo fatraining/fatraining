@@ -6,7 +6,7 @@
 <s:form cssClass="form-horizontal">
 
 	<div align=right>
-		<s:property value="user_name" />
+		<s:property value="userId" />
 		さん
 	</div>
 
