@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Result5Table;
+import controller.Result5Manager;
 import controller.User_ProfileManager;
-import controller.ResultManager;
 
 public class Main5Action extends AbstractAction {
 
@@ -19,7 +19,7 @@ public class Main5Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
-	private ResultManager linkController;
+	private Result5Manager linkController;
 	private User_ProfileManager allController;
 	public ArrayList<Result5Table> outputTable;
 
