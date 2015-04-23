@@ -114,7 +114,8 @@ public class Main8Action extends AbstractAction {
 				temp.setControl(yasai.getControl());
 				temp.setDeleteFlg(yasai.getDeleteFlg());
 
-				temp.setId(ryouri.getId());
+				//int型をString型に変換
+				temp.setId(String.valueOf(ryouri.getId()));
 				temp.setTyouri(ryouri.getTyouri());
 				temp.setRyouri(ryouri.getRyouri());
 				temp.setDate_Entry(ryouri.getDate_Entry());
