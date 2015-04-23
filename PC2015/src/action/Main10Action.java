@@ -18,10 +18,15 @@ public class Main10Action extends AbstractAction {
 	public String eat_hour;
 	public String eatFood;
 	public String eatCalory;
+//	public String entry_day;
+//	public String renew_day;
+//	public String entry_userrid;
+	public String renew_userid;
 	public String result;
 	public String do_search;
 	public String update_id;
 	public String delete;
+	public String userId;
 
 	private Result10Manager linkController;
 	private All10Manager allController;
@@ -46,6 +51,7 @@ public class Main10Action extends AbstractAction {
 
 	@Override
 	public String execute() {
+		this.userId = (String)this.sessionMap.get("userId");
 		this.eat_year = getDefaultEat_year();
 		this.eat_month   = getDefaultEat_month();
 		this.eat_day = getDefaultEat_day();
@@ -54,6 +60,7 @@ public class Main10Action extends AbstractAction {
 		return "success";
 	}
 	public String reset(){
+		this.userId = (String)this.sessionMap.get("userId");
 		this.eat_year = getDefaultEat_year();
 		this.eat_month   = getDefaultEat_month();
 		this.eat_day = getDefaultEat_day();
@@ -61,11 +68,9 @@ public class Main10Action extends AbstractAction {
 		return "success";
 	}
 	public String search(){
-		this.eat_year = checkcode(this.eat_year);
-		this.eat_month = checkcode(this.eat_month);
-		this.eat_day = checkcode(this.eat_day);
-		this.eat_hour = checkcode(this.eat_hour);
+
 		this.do_search = "true";
+		this.userId = (String)this.sessionMap.get("userId");
 		if(this.eat_year.isEmpty() && this.eat_month.isEmpty() && this.eat_day.isEmpty() && this.eat_hour.isEmpty()){
 			try {
 				searchall();
@@ -81,11 +86,13 @@ public class Main10Action extends AbstractAction {
 	}
 	public String searchall(){
 		this.do_search = "true";
+		this.userId = (String)this.sessionMap.get("userId");
 		allController  = new All10Manager();
 		this.outputTable = allController.resultList();
 		this.delete="true";
 		return "success";
 	}
+	
 	public String update(){
 		this.sessionMap.put("update_id",this.update_id);
 
@@ -97,11 +104,11 @@ public class Main10Action extends AbstractAction {
 
 		return "success";
 	}
-	public String checkcode(String code) {
-		String r = "[a-zA-Z0-9]{0,50}";
-		if(code.matches(r)){
-			return code;
-		}
-		return "";
-	}
+//	public String checkcode(String code) {
+//		String r = "[a-zA-Z0-9]{0,50}";
+//		if(code.matches(r)){
+//			return code;
+//		}
+//		return "";
+//	}
 }
