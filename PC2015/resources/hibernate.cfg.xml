@@ -48,7 +48,10 @@
 		<mapping class="model.Yasai" />
 		<mapping class="model.Ryouri" />
 		<mapping class="model.Result8Table" />
-
+		<mapping class="model.BandAccount" />
+		<mapping class="model.BandTable" />
+		<mapping class="model.BandResultTable" />
+		
 	</session-factory>
 
 </hibernate-configuration>
