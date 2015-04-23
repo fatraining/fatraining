@@ -52,8 +52,23 @@
 		<mapping class="model.BandTable" />
 		<mapping class="model.BandResultTable" />
 		<mapping class="model.DetailEat" />
+		<mapping class="model.Genre" />
 		<mapping class="model.IDofEat" />
+		<mapping class="model.LikeGame" />
+		<mapping class="model.LikeSeries" />
+		<mapping class="model.My_hobby" />
+		<mapping class="model.Profile" />
 		<mapping class="model.Result10Table" />
+		<mapping class="model.Result1Table" />
+		<mapping class="model.Result2Table" />
+		<mapping class="model.Result3Table" />
+		<mapping class="model.Result5Table" />
+		<mapping class="model.ResultTable6" />
+		<mapping class="model.Story" />
+		<mapping class="model.Sweets" />
+		<mapping class="model.Tb_Genre" />
+		<mapping class="model.User_Character" />
+		<mapping class="model.User_Profile" />
 		
 		
 	</session-factory>
