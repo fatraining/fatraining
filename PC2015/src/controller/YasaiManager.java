@@ -76,8 +76,6 @@ public class YasaiManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		session.getTransaction().commit();
-
 		
 		return (Ryouri)resultTable.get(resultTable.size()-1);
 	}
