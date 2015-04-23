@@ -5,16 +5,16 @@ import java.util.List;
 
 import model.User_Profile;
 import model.User_Character;
-import model.ResultTable;
+import model.Result5Table;
 
 import org.hibernate.classic.Session;
 
 public class User_ProfileManager extends HibernateUtil {
 
 	public  List<?> resultTable;
-	public  ArrayList<ResultTable> outputTable;
+	public  ArrayList<Result5Table> outputTable;
 
-	public ArrayList<ResultTable> resultList() {
+	public ArrayList<Result5Table> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -36,12 +36,12 @@ public class User_ProfileManager extends HibernateUtil {
 
 		return outputTable;
 	}
-	public ArrayList<ResultTable> tableTrans(List<?> resultTable){
-		ArrayList<ResultTable> tempTable = new ArrayList<ResultTable>();
+	public ArrayList<Result5Table> tableTrans(List<?> resultTable){
+		ArrayList<Result5Table> tempTable = new ArrayList<Result5Table>();
 		Object[] obj;
 		try {
 			for(int i = 0 ; i < resultTable.size() ; i++){
-				ResultTable temp = new ResultTable();
+				Result5Table temp = new Result5Table();
 				obj = (Object[]) resultTable.get(i);
 				User_Character user_character =  (User_Character)obj[0];
 				User_Profile user_profile     = (User_Profile)obj[1];
