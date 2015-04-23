@@ -1,12 +1,14 @@
-
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="header.jsp" />
+
 <h3>条件に一致する食事についてを検索します。</h3>
 <s:form cssClass="form-horizontal">
 
-
+	<div align=right>
+		<s:property value="user_name" />
+		さん
+	</div>
 
 	<div class="form-group">
 		<label class="col-sm-1 control-label">年:<br />
@@ -55,6 +57,10 @@
 				<th>AM/PM</th>
 				<th>食べ物</th>
 				<th>カロリー</th>
+				<th>登録日付</th>
+				<th>更新日付</th>
+				<th>登録ユーザー</th>
+				<th>更新ユーザー</th>
 					<th>削除</th>
 
 			</tr>
@@ -67,7 +73,11 @@
 					<td class="data"><s:property value="eat_hour" /></td>
 					<td class="data"><s:property value="eatFood" /></td>
 					<td class="data"><s:property value="eatCalory" /></td>
-						<td class="data"><input type="checkbox" name="update_id"
+					<td class="data"><s:property value="entry_day" /></td>
+					<td class="data"><s:property value="renew_day" /></td>
+					<td class="data"><s:property value="entry_userid" /></td>
+					<td class="data"><s:property value="renew_userid" /></td>
+					<td class="data"><input type="checkbox" name="update_id"
 							value=<s:property value="id" /> /></td>
 
 				</tr>
