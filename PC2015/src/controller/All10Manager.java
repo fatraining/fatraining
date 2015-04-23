@@ -52,6 +52,10 @@ public class All10Manager extends TaskUtil{
 				temp.setEat_hour(detaileat.getEat_hour());
 				temp.setEatFood(idofeat.getEatFood());
 				temp.setEatCalory(idofeat.getEatCalory());
+				temp.setEntry_day(detaileat.getEntry_day());
+				temp.setRenew_day(detaileat.getRenew_day());
+				temp.setEntry_day(detaileat.getEntry_userid());
+				temp.setRenew_day(detaileat.getRenew_userid());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
