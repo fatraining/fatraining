@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import controller.LiofTaManager;
 import controller.Result9Manager;
-import action.AbstractAction;
 import model.Result9Table;
 
 public class Main9Action extends AbstractAction {
@@ -58,7 +57,7 @@ public class Main9Action extends AbstractAction {
 	}
 
 	public String search() {
-		this.search = "true";
+		this.do_print = "true";
 		if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
 			try {
 				printall();
@@ -77,8 +76,7 @@ public class Main9Action extends AbstractAction {
 	public String printall() {
 		this.do_print = "true";
 		allController = new LiofTaManager();
-		this.outputTable = allController.resultList(this.name, this.food,
-				this.drink);
+		this.outputTable = allController.resultList();
 		this.delete = "true";
 		return "success";
 	}
@@ -87,7 +85,7 @@ public class Main9Action extends AbstractAction {
 		this.sessionMap.put("update_id", this.update_id);
 		try {
 			this.response.sendRedirect("/PC2015/update9.action");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
