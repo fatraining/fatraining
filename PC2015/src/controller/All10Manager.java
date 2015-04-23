@@ -9,12 +9,12 @@ import model.Result10Table;
 
 import org.hibernate.classic.Session;
 
-public class All10Manager extends TaskUtil{
+public class All10Manager extends HibernateUtil{
 	public List<?> result10Table;
 	public ArrayList<Result10Table> outputTable;
 
 	public ArrayList<Result10Table> resultList() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = " SELECT * FROM eat_detail d,eat_id i";

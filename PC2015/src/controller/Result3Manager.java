@@ -9,14 +9,14 @@ import model.Result3Table;
 
 import org.hibernate.classic.Session;
 
-public class Result3Manager extends TaskUtil {
+public class Result3Manager extends HibernateUtil {
 
 	public  List<?> resultTable;
 	public  ArrayList<Result3Table> outputTable;
 
 	public ArrayList<Result3Table> resultList(String title,String genre){
 
-		Session session = TaskUtil.getSessionFactory()
+		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
 		session.beginTransaction();
 		try {

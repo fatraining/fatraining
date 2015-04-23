@@ -8,7 +8,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-import controller.TaskUtil;
+import controller.HibernateUtil;
 
 @Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class Update9Action extends AbstractAction {
@@ -33,7 +33,7 @@ public class Update9Action extends AbstractAction {
 	}
 
 	public String insert() {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		LiofTa insert_like_table = new LiofTa();
@@ -83,7 +83,7 @@ public class Update9Action extends AbstractAction {
 			return "main9";
 		}
 
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			CoofTa coofta = (CoofTa) session.load(CoofTa.class, Integer.valueOf(update_id));

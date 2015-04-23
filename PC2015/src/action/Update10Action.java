@@ -13,7 +13,7 @@ import org.hibernate.classic.Session;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import controller.TaskUtil;
+import controller.HibernateUtil;
 
 @Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
 public class Update10Action extends AbstractAction {
@@ -50,7 +50,7 @@ public class Update10Action extends AbstractAction {
 			
 		System.out.println(sdf.format(date.getTime()));
 		
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		IDofEat insert_id_table = new IDofEat();
@@ -103,7 +103,7 @@ public class Update10Action extends AbstractAction {
 		if (this.update_id.isEmpty()) {
 			return "main10";
 		}
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,

@@ -9,14 +9,14 @@ import model.ResultTableMovie;
 
 import org.hibernate.classic.Session;
 
-public class Result7Manager extends TaskUtil {
+public class Result7Manager extends HibernateUtil {
 
 	public  List<?> resultTableMovie;
 	public  ArrayList<ResultTableMovie> outputTableMovie;
 
 	public ArrayList<ResultTableMovie> resultList(String genreId,String exhibition_year){
 
-		Session session = TaskUtil.getSessionFactory()
+		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
 		session.beginTransaction();
 		try {

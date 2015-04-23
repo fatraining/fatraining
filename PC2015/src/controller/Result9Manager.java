@@ -9,13 +9,13 @@ import model.LiofTa;
 import model.CoofTa;
 import model.Result9Table;
 
-public class Result9Manager extends TaskUtil {
+public class Result9Manager extends HibernateUtil {
 	public List<?> result9Table;
 	public ArrayList<Result9Table> outputTable;
 
 	public ArrayList<Result9Table> resultList(String name, String food,
 			String drink) {
-		Session session = TaskUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			if (name.isEmpty())
