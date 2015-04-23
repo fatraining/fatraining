@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class ResultTable implements Serializable {
+public class Result5Table implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class ResultTable implements Serializable {
 	
 	
 	
-	public ResultTable() {
+	public Result5Table() {
 	}
 
 	public int getId() {
