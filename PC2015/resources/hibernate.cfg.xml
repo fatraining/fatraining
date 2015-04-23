@@ -51,6 +51,10 @@
 		<mapping class="model.BandAccount" />
 		<mapping class="model.BandTable" />
 		<mapping class="model.BandResultTable" />
+		<mapping class="model.DetailEat" />
+		<mapping class="model.IDofEat" />
+		<mapping class="model.Result10Table" />
+		
 		
 	</session-factory>
 
