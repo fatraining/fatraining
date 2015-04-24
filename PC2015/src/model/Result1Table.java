@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Result1Table implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+//画面に表示させたいカラム名
 	private int id;
 	private String name;
 	private String personality;
@@ -14,8 +14,8 @@ public class Result1Table implements Serializable {
 	private String hobby;
 	private String day;
 	private String new_day;
-//	private String userid;
-//	private String new_userid;
+	private String userid;
+	private String new_userid;
 //	private int time_stamp;
 //	private int delete;
 
@@ -85,23 +85,23 @@ public class Result1Table implements Serializable {
 	public void setNew_day(String new_day) {
 		this.new_day = new_day;
 	}
-//
-//	public String getUserid() {
-//		return userid;
-//	}
-//
-//	public void setgetUserid(String userid) {
-//		this.userid = userid;
-//	}
-//
-//	public String getNew_userid() {
-//		return new_userid;
-//	}
-//
-//	public void setgetNew_userid(String new_userid) {
-//		this.new_userid = new_userid;
-//	}
-//
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getNew_userid() {
+		return new_userid;
+	}
+
+	public void setNew_userid(String new_userid) {
+		this.new_userid = new_userid;
+	}
+
 //	public int getTime_stamp() {
 //		return time_stamp;
 //	}
