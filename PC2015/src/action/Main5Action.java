@@ -15,7 +15,7 @@ public class Main5Action extends AbstractAction {
 	public String dwelling;
 	public String name;
 	public String result;
-	public String do_print;
+	public String do_search;
 	public String update_id;
 	public String delete;
 
@@ -55,7 +55,7 @@ public class Main5Action extends AbstractAction {
 		// this.dwelling = checkcode(this.dwelling);
 		// this.name = checkcode(this.name);
 
-		this.do_print = "true";
+		this.do_search = "true";
 //		this.user_name = (String) this.sessionMap.get("user_name");
 		if (this.dwelling.isEmpty() && this.name.isEmpty()) {
 			try {
@@ -73,7 +73,7 @@ public class Main5Action extends AbstractAction {
 	}
 
 	public String printall() {
-		this.do_print = "true";
+		this.do_search = "true";
 		allController = new User_ProfileManager();
 		this.outputTable = allController.resultList();
 		this.delete = "true";
