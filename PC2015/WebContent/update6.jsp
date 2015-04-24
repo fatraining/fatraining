@@ -28,9 +28,15 @@
 			</div>
 			<br /> <br /> <br />
 			<hr />
-			<label class="col-sm-2 control-label"> シリーズ:</label>
+			<label class="col-sm-2 control-label"> シリーズID:</label>
 			<div class="col-md-3">
 				<s:textfield name="series" cssClass="form-control" rows="10"
+					maxlength="50" />
+			</div>
+			<br /> <br /> <br /> 
+			<label class="col-sm-2 control-label"> シリーズ名:</label>
+			<div class="col-md-3">
+				<s:textfield name="se" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
 			<br /> <br /> <br /> 
