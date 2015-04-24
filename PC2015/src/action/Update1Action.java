@@ -18,27 +18,34 @@ public class Update1Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	public String update_id;
+	//テーブルで作ったカラム　追加画面にて検索をかけたいカラム名
 	public String name;
 	public String personality;
 	public String home;
 	public int birthday;
 	public String hobby;
+//メソッドを起こすための変数？	
 	public String day;
 	public String new_day;
+	public String userid;
+	public String new_userid;
 	public String errormsg;
-
+//executeメソッド
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		return "success";
 	}
-
+//insertメソッド
 	public String insert() {
-		
+//登録、更新日時表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		 day = String.valueOf(sdf.format(date));
-		 new_day= String.valueOf(sdf.format(date));
-		
+		day = String.valueOf(sdf.format(date));
+		new_day = String.valueOf(sdf.format(date));
+//登録、更新UAER表示
+		this.userid = (String) this.sessionMap.get("userId");
+		this.new_userid = (String) this.sessionMap.get("userId");
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -51,7 +58,10 @@ public class Update1Action extends AbstractAction {
 		insert_profile_table.setBirthday(this.birthday);
 		insert_profile_table.setDay(this.day);
 		insert_profile_table.setNew_day(this.new_day);
-		String[] data = { this.hobby, this.name, this.personality, this.home, this.day, this.new_day };
+		insert_profile_table.setUserid(this.userid);
+		insert_profile_table.setNew_userid(this.new_userid);
+		String[] data = { this.hobby, this.name, this.personality, this.home,
+				this.day, this.new_day,this.userid,this.new_userid };
 		int i = 0;
 		for (String temp : data) {
 			// if (temp.length() > 50) {
@@ -79,7 +89,7 @@ public class Update1Action extends AbstractAction {
 		return "main1";
 
 	}
-
+//deleteメソッド
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
