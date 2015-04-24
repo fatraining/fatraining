@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import model.ResultTable6;
 import controller.LikeManager;
-import controller.ResultManager6;
+import controller.Result6Manager;
 import action.AbstractAction;
 
 public class Main6Action extends AbstractAction {
@@ -19,7 +19,7 @@ public class Main6Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
-	private ResultManager6 linkController;
+	private Result6Manager linkController;
 	private LikeManager allController;
 	public ArrayList<ResultTable6> outputTable;
 
@@ -56,7 +56,7 @@ public class Main6Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		} else {
-			linkController = new ResultManager6();
+			linkController = new Result6Manager();
 			this.outputTable = linkController.resultList(this.title,this.series);
 		}
 		this.delete = "true";
