@@ -1,6 +1,6 @@
 package action;
 
-import java.io.UnsupportedEncodingException;
+//import java.io.UnsupportedEncodingException;
 
 import model.LikeGame;
 import model.LikeSeries;
@@ -18,6 +18,7 @@ public class Update6Action extends AbstractAction {
 	public String update_id;
 	public int id;
 	public int series;
+	public String se;
 	public String title;
 	public String u;
 	public String upDay;
@@ -43,6 +44,7 @@ public class Update6Action extends AbstractAction {
 		insert_game_table.setId(this.id);
 		insert_game_table.setTitle(this.title);
 		insert_game_table.setSeries(this.series);
+		insert_series_table.setSe(this.se);
 		insert_series_table.setU(this.u);
 		insert_game_table.setUpDay(this.upDay);
 		insert_game_table.setUserId(this.userId);
