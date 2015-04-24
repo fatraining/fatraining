@@ -48,7 +48,7 @@ public class LikeManager extends HibernateUtil {
 				temp.setId(likegame.getId());
 				temp.setTitle(likegame.getTitle());
 				temp.setSe(likeseries.getSe());
-				temp.setUser(likegame.getUser());
+				temp.setU(likeseries.getU());
 				temp.setUpDay(likegame.getUpDay());
 				temp.setUserId(likegame.getUserId());
 				temp.setUpUser(likegame.getUpUser());
