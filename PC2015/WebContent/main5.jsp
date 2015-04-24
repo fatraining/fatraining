@@ -33,13 +33,16 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-info" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-info" />
 		<s:submit method="update" value="追加" cssClass="btn btn-info" />
+		<br />
+		<br />
+		<br /> <a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
 </s:form>
 
 
-<s:if test="%{do_print=='true'}">
+<s:if test="%{do_search=='true'}">
 	<h3>結果↓</h3>
 	<s:form>
 		<table class="brwsr2">
@@ -66,8 +69,6 @@
 
 					<th>削除</th>
 
-					<th>排他FLG</th>
-
 				</tr>
 				<td class="bar" colspan="16"></td>
 				<s:iterator value="outputTable">
@@ -82,8 +83,6 @@
 						<td class="data"><s:property value="newday" /></td>
 						<td class="data"><s:property value="userid" /></td>
 						<td class="data"><s:property value="newuserid" /></td>
-						<td class="data"><s:property value="delete" /></td>
-						<td class="data"><s:property value="flg" /></td>
 						<td class="data"><input type="checkbox" name="update_id"
 							value=<s:property value="id" /> /></td>
 
