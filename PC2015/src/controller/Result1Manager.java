@@ -57,6 +57,10 @@ public class Result1Manager extends HibernateUtil {
 				temp.setBirthday(profile.getBirthday());
 				temp.setDay(profile.getDay());
 				temp.setNew_day(profile.getNew_day());
+				temp.setUserid(profile.getUserid());
+				temp.setNew_userid(profile.getNew_userid());
+//				temp.setTime_stamp(profile.getTime_stamp());
+//				temp.setDelete(profile.getDelete());
 				temp.setHobby(my_hobby.getHobby());
 				tempTable.add(temp);
 			}
