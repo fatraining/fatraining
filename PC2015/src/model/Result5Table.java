@@ -15,8 +15,8 @@ public class Result5Table implements Serializable {
 	private String newday;
 	private String userid;
 	private String newuserid;
-	private int delete;
-	private int flg;
+	//private int delete;
+	//private int flg;
 	private String interest;
 	private String personality;
 
@@ -106,21 +106,21 @@ public class Result5Table implements Serializable {
 		this.newuserid = newuserid;
 	}
 
-	public int getDelete() {
-		return delete;
-	}
-
-	public void setDelete(int delete) {
-		this.delete = delete;
-	}
-
-	public int getFlg() {
-		return flg;
-	}
-
-	public void setFlg(int flg) {
-		this.flg = flg;
-	}
+//	public int getDelete() {
+//		return delete;
+//	}
+//
+//	public void setDelete(int delete) {
+//		this.delete = delete;
+//	}
+//
+//	public int getFlg() {
+//		return flg;
+//	}
+//
+//	public void setFlg(int flg) {
+//		this.flg = flg;
+//	}
 	
 	public String getInterest() {
 		return interest;
