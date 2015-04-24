@@ -19,7 +19,7 @@ public class User_ProfileManager extends HibernateUtil {
 		session.beginTransaction();
 
 		String select = "SELECT *  FROM User_Character i,User_Profile d";
-		String where1 = "WHERE i.id = d.personality2";
+		String where1 = "WHERE i.id = d.id";
 		String sql    = select + " " + where1;
 
 		try {
@@ -58,8 +58,8 @@ public class User_ProfileManager extends HibernateUtil {
 				temp.setNewday(user_profile.getNewday());
 				temp.setUserid(user_profile.getUserid());
 				temp.setNewuserid(user_profile.getNewuserid());
-				temp.setDelete(user_profile.getDelete());
-				temp.setFlg(user_profile.getFlg());
+//				temp.setDelete(user_profile.getDelete());
+//				temp.setFlg(user_profile.getFlg());
 				
 				tempTable.add(temp);
 			}
