@@ -34,6 +34,8 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
 		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		
+		<a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
@@ -53,6 +55,9 @@
 					<th>趣味</th>
 					<th>登録日時</th>
 					<th>更新日時</th>
+					<th>登録USER</th>
+					<th>更新USER</th>
+						<th>削除</th>
 
 				</tr>
 				<td class="bar" colspan="16"></td>
@@ -65,6 +70,8 @@
 						<td class="data"><s:property value="hobby" /></td>
 						<td class="data"><s:property value="day" /></td>
 						<td class="data"><s:property value="new_day" /></td>
+						<td class="data"><s:property value="userid" /></td>
+						<td class="data"><s:property value="new_userid" /></td>
 						<td class="data"><input type="checkbox" name="update_id"
 							value=<s:property value="id" /> /></td>
 
