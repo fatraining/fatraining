@@ -6,16 +6,16 @@ public class ResultTable6 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private String id;
 	private String title;
-	private int series;
+	private String series;
 	private String user;
 	private String upDay;
 	private String userId;
 	private String upUser;
 	private String nonStyle;
 	private String del;
-	private int i;
+	private String i;
 	private String se;
 	private String u;
 	private String upD;
@@ -27,11 +27,11 @@ public class ResultTable6 implements Serializable {
 	public ResultTable6() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -43,11 +43,11 @@ public class ResultTable6 implements Serializable {
 		this.title = title;
 	}
 
-	public int getSeries() {
+	public String getSeries() {
 		return series;
 	}
 
-	public void setSeries(int series) {
+	public void setSeries(String series) {
 		this.series = series;
 	}
 
@@ -99,11 +99,11 @@ public class ResultTable6 implements Serializable {
 		this.del = del;
 	}
 
-	public int getI() {
+	public String getI() {
 		return i;
 	}
 
-	public void setI(int i) {
+	public void setI(String i) {
 		this.i = i;
 	}
 	
