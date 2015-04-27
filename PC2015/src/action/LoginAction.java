@@ -12,17 +12,9 @@ public class LoginAction extends AbstractAction {
 	public String userId;
 	public String password;
 
-//	public String sex;
-//	public String age;
-//	public String tel;
-//
 	public String execute() throws Exception {
 		this.sessionMap.put("userId", null);
 		this.userId = "Struts2";
-//
-//		this.sessionMap.put("sex", null);
-//		this.sessionMap.put("age", null);
-//		this.sessionMap.put("tel", null);
 		return "success";
 	}
 
