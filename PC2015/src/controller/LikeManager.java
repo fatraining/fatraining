@@ -18,6 +18,7 @@ public class LikeManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		//表示条件
 		String select = "SELECT * FROM like_game g,like_series s ";
 		String where1 = "WHERE g.series=s.i";
 		String sql    = select + " " +where1;
@@ -36,6 +37,8 @@ public class LikeManager extends HibernateUtil {
 
 		return outputTable;
 	}
+	
+	//検索結果
 	public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
 		ArrayList<ResultTable6> tempTable = new ArrayList<ResultTable6>();
 		Object[] obj;
