@@ -18,6 +18,7 @@ import controller.HibernateUtil;
 @Result(name = "bandsearch", value = "bandSearch.action", type = ServletRedirectResult.class)
 public class BandAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
+	//フィールドの宣言
 	public String update_id; //int型に変更→再びString型に戻す
 	public String name;
 	public String sex;
@@ -35,12 +36,12 @@ public class BandAddAction extends AbstractAction {
 	public String band_name;
 	public String errormsg;
 	
-
+	//executeメソッド。update_idの値を受け取っている。
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		return "success";
 	}
-
+	//insertメソッド。データベースに値を入れる。
 	public String insert() {
 		//日付の設定
 		Date date = new Date();
@@ -59,6 +60,7 @@ public class BandAddAction extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		//インスタンス化
 		BandAccount insert_band_account = new BandAccount();
 		BandTable insert_band_table = new BandTable();
 		insert_band_account.setName(this.name);
@@ -92,6 +94,7 @@ public class BandAddAction extends AbstractAction {
 				return "error";
 			}*/
 
+			//ToDo
 			try {
 				session.save(insert_band_account);
 				session.save(insert_band_table);
@@ -100,14 +103,15 @@ public class BandAddAction extends AbstractAction {
 				session.getTransaction().rollback();
 			}
 
-		//}
+		//}//ToDo
 		session.getTransaction().commit();
 		return "bandsearch";
 
 	}
 
+	
+	//deleteメソッド。削除するときの処理
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
 			return "bandsearch";
 		}
@@ -124,6 +128,7 @@ public class BandAddAction extends AbstractAction {
 		}
 		session.getTransaction().commit();//
 		return "bandsearch";
+		
 	}
 
 	/*public String checkcode(String code) {

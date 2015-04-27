@@ -29,9 +29,11 @@
 	</div>
 	
 	<div class="col-sm-offset-2 col-sm-10">
-		<s:submit method="print" value="検索" cssClass="btn btn-primary" />
-		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="print" value="検索" cssClass="btn btn-success" />
+		<s:submit method="reset" value="リセット" cssClass="btn btn-inverse" />
+		<s:submit method="update" value="追加" cssClass="btn btn-danger" />
+		<br/><br/>
+			<a href="menu.action">Back</a>
 		
 		<!-- <s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
