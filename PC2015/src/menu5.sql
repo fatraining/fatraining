@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `zipcode` int(11) NOT NULL,
   `dwelling` char(50) NOT NULL,
   `name` char(50) NOT NULL,
-  `personality2` int(11) NOT NULL,
   `day` char(50) NOT NULL,
   `newday` char(50) NOT NULL,
   `userid` char(50) NOT NULL,
@@ -72,10 +71,10 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
 -- テーブルのデータのダンプ `user_profile`
 --
 
-INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, `personality2`, `day`, `newday`, `userid`, `newuserid`, `delete`, `flg`) VALUES
-(1, 2, 3, '千葉', '田中', 1, NULL, NULL, NULL, NULL, 0, 0),
-(2, 1, 2, '東京', '佐藤', 3, NULL, NULL, NULL, NULL, 0, 0),
-(3, 3, 1, '埼玉', '大木', 2, NULL, NULL, NULL, NULL, 0, 0);
+INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, `day`, `newday`, `userid`, `newuserid`, `delete`, `flg`) VALUES
+(1, 2, 3, '千葉', '田中', NULL, NULL, NULL, NULL, 0, 0),
+(2, 1, 2, '東京', '佐藤', NULL, NULL, NULL, NULL, 0, 0),
+(3, 3, 1, '埼玉', '大木', NULL, NULL, NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
