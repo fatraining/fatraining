@@ -10,9 +10,9 @@ import model.Profile;
 import model.Result1Table;
 
 public class Result1Manager extends HibernateUtil {
-	public List<?> resultTable;
-	public ArrayList<Result1Table> outputTable;
 
+	public ArrayList<Result1Table> outputTable;
+	public List<?> resultTable;
 	public ArrayList<Result1Table> resultList(String name, String home,
 			String hobby) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -24,6 +24,7 @@ public class Result1Manager extends HibernateUtil {
 				home = "%";
 			if (hobby.isEmpty())
 				hobby = "%";
+//SQL文　二つのテーブルを結合
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.id = d.id";
 			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
@@ -59,8 +60,8 @@ public class Result1Manager extends HibernateUtil {
 				temp.setNew_day(profile.getNew_day());
 				temp.setUserid(profile.getUserid());
 				temp.setNew_userid(profile.getNew_userid());
-//				temp.setTime_stamp(profile.getTime_stamp());
-//				temp.setDelete(profile.getDelete());
+				// temp.setTime_stamp(profile.getTime_stamp());
+				// temp.setDelete(profile.getDelete());
 				temp.setHobby(my_hobby.getHobby());
 				tempTable.add(temp);
 			}
