@@ -66,8 +66,8 @@ public class Update5Action extends AbstractAction {
 		// insert_user_profile_table.setDelete(this.delete);
 		// insert_user_profile_table.setFlg((his.flg);
 		insert_user_character_table.setInterest(this.interest);
-		String[] data = { this.dwelling, this.name, this.day, this.newday,
-				this.userid, this.newuserid, this.interest, this.personality };
+		String[] data = { this.dwelling, this.name, this.personality, this.day, this.newday,
+				this.userid, this.newuserid, this.interest };
 		int i = 0;
 		for (String temp : data) {
 			// if (temp.length() > 50) {
@@ -104,12 +104,12 @@ public class Update5Action extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			User_Profile profile = (User_Profile) session.load(
+			User_Profile user_profile = (User_Profile) session.load(
 					User_Profile.class, Integer.valueOf(update_id));
-			User_Character character = (User_Character) session.load(
+			User_Character user_character = (User_Character) session.load(
 					User_Character.class, Integer.valueOf(update_id));
-			session.delete(profile);
-			session.delete(character);
+			session.delete(user_profile);
+			session.delete(user_character);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
