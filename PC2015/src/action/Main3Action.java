@@ -19,11 +19,10 @@ public class Main3Action extends AbstractAction {
 //	public String signupUSERID;
 //	public String updateUSERID;
 //	public String exclusiveFLG;
-//    public String deleteFLG;
+    public String deleteFLG;
     public String do_print;
 	public String update_id;
-	public String delete;
-
+	
     private Result3Manager linkController;
 	private StoryManager allController;
 	public  ArrayList<Result3Table> outputTable;
@@ -44,7 +43,7 @@ public class Main3Action extends AbstractAction {
 		this.user_name = (String)this.sessionMap.get("user_name");
 		this.title = getDefaultTitle();
 		this.genre = getDefaultGenre();
-		this.delete="faluse";
+		this.deleteFLG="faluse";
 
 		return "success";
 	}
@@ -67,14 +66,14 @@ public class Main3Action extends AbstractAction {
 			linkController  = new Result3Manager();
        this.outputTable = linkController.resultList(this.title,this.genre);
 		}
-		this.do_print="true";
+		this.deleteFLG="true";
 		return "success";
 	}
 	public String printall(){
 		this.do_print = "true";
         allController  = new StoryManager();
         this.outputTable = allController.resultList();
-		this.do_print="true";
+		this.deleteFLG="true";
 		return "success";
 	}
 	public String update(){
