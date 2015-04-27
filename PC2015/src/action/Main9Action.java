@@ -22,7 +22,7 @@ public class Main9Action extends AbstractAction {
 	public String do_print;
 
 	public Result9Manager linkController;
-	private LiofTaManager allController;
+	public LiofTaManager allController;
 	public ArrayList<Result9Table> outputTable;
 
 	// 変数に値を代入する（この場合空白）
