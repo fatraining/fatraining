@@ -18,7 +18,7 @@ import controller.HibernateUtil;
 @Result(name = "bandsearch", value = "bandSearch.action", type = ServletRedirectResult.class)
 public class BandAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
-	public String update_id;
+	public String update_id; //int型に変更→再びString型に戻す
 	public String name;
 	public String sex;
 	public String age;
@@ -49,8 +49,8 @@ public class BandAddAction extends AbstractAction {
 		renewal_date = String.valueOf(sdf.format(date));
 		
 		//exclusion_flg,delete_flgの値を0にする。キャスト
-		exclusion_flg = 0;//String.valueOf(0);
-		delete_flg = 0;//String.valueOf(0);
+		//exclusion_flg = 0;//String.valueOf(0);
+		//delete_flg = 0;//String.valueOf(0);
 		
 		//登録useridにuserIdの値を入れる。
 		this.entry_userid = (String)this.sessionMap.get("userId");
@@ -81,7 +81,7 @@ public class BandAddAction extends AbstractAction {
 				this.exclusion_flg, this.delete_flg };
 		int i = 0;
 		for (String temp : data) {
-			if (temp.length() > 50) {
+			/*if (temp.length() > 50) {
 				this.errormsg = "50文字以下で入力してください";
 				return "error";
 			}
@@ -134,7 +134,7 @@ public class BandAddAction extends AbstractAction {
 		return code;
 	}*/
 
-	private static boolean checkCharacterCode(String str, String encoding) {
+	/*private static boolean checkCharacterCode(String str, String encoding) {
 		if (str == null) {
 			return true;
 		}
@@ -146,6 +146,6 @@ public class BandAddAction extends AbstractAction {
 			throw new RuntimeException("エンコード名称が正しくありません。", ex);
 
 		}
-	}
+	}*/
 
 }

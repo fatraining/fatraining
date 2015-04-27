@@ -14,7 +14,7 @@ public class BandAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;//カラム名IDの変数、データ型int(String型からint型へ変更)
+	private String id;//カラム名IDの変数、データ型int(String型からint型へ変更)→String型に戻す
 	private String name;
 	private String sex;
 	private String age;
@@ -33,7 +33,7 @@ public class BandAccount implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	@Column(name="NAME")
@@ -89,7 +89,7 @@ public class BandAccount implements Serializable{
 	}
 /*--------------------------------------------------*/
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setName(String name) {

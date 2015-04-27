@@ -17,7 +17,7 @@ public class BandSearchAction extends AbstractAction{
 	public String part;
 	public String result;
 	public String do_print;
-	public String update_id;
+	public String update_id; //String型からint型に修正→再びString型に戻す。
 	public String delete;
 	public String userId;
 
@@ -41,7 +41,7 @@ public class BandSearchAction extends AbstractAction{
 	@Override
 	public String execute() {
 		this.userId = (String)this.sessionMap.get("userId");
-		this.user_name = (String)this.sessionMap.get("user_name");
+		//this.user_name = (String)this.sessionMap.get("user_name");
 		this.band_name = getDefaultBand_name();
 		this.name = getDefaultName();
 		this.part = getDefaultPart();
@@ -50,7 +50,7 @@ public class BandSearchAction extends AbstractAction{
 	}
 	public String reset(){
 		this.userId = (String)this.sessionMap.get("userId");
-		this.user_name = (String)this.sessionMap.get("user_name");
+		//this.user_name = (String)this.sessionMap.get("user_name");
 		this.band_name = getDefaultBand_name();
 		this.name = getDefaultName();
 		this.part = getDefaultPart();
@@ -82,7 +82,7 @@ public class BandSearchAction extends AbstractAction{
 	public String printall(){
 		this.do_print = "true";
 		this.userId = (String)this.sessionMap.get("userId");
-		this.user_name = (String)this.sessionMap.get("user_name");
+		//this.user_name = (String)this.sessionMap.get("user_name");
 		allController  = new BandAllManager();
 		this.outputTable = allController.resultList(this.band_name,this.name,this.part);
 		this.delete="true";

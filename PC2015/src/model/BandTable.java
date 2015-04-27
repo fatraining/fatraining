@@ -14,8 +14,7 @@ public class BandTable implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	
-	private String id;
+	private String id; //String型からint型に変更→String型に戻す
 	private String band_name;
 	private String entry_date;
 	private String renewal_date;
