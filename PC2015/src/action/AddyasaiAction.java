@@ -1,6 +1,5 @@
 package action;
 
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.text.*;
 
@@ -16,32 +15,38 @@ import org.hibernate.classic.Session;
 import controller.HibernateUtil;
 import controller.YasaiManager;
 
+/**
+ * @author a_yoshida
+ *
+ */
 @Result(name = "main8", value = "main8.action", type = ServletRedirectResult.class)
 public class AddyasaiAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
+
+	// update_idを宣言（削除時に必要）
 	public String update_id;
-	public String id;
+	// 野菜テーブルのyasaiを宣言
 	public String yasai;
-	public int tyouriId;
+	// 料理テーブルのryouriを宣言
 	public String ryouri;
+	// 登録日時のdate_entryを宣言
 	public String date_entry;
+	// 更新日時のdate_upを宣言
 	public String date_up;
+	// 料理テーブルのryouriを宣言
 	public String tyouri;
+	// ユーザーIDを表示させるため、userIdを宣言
 	public String userId;
-	public String userId_up;
-	public int control;
-	public int sakuzyo;
+
 	public String errormsg;
 
-	public ArrayList<Result8Table> outputTable;
-	public List<?> resultTable;
-
+	
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
 
 		return "success";
 	}
-
+	//追加登録用メソッド
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -67,7 +72,7 @@ public class AddyasaiAction extends AbstractAction {
 		insert_ryouri_table.setDate_Up(this.date_up);
 		insert_ryouri_table.setUserId(this.userId);
 		insert_ryouri_table.setControl(0);
-		insert_ryouri_table.setDeleteFlg(0);
+		// insert_ryouri_table.setDeleteFlg(0);
 
 		// 料理テーブルに追加
 		try {
@@ -83,7 +88,7 @@ public class AddyasaiAction extends AbstractAction {
 
 		// 野菜データの作成
 		Yasai insert_yasai_table = new Yasai();
-		insert_yasai_table.setId(this.id);
+		// insert_yasai_table.setId(this.id);
 		insert_yasai_table.setYasai(this.yasai);
 
 		// 料理テーブルのid取得し、野菜テーブルの調理idにいれる
@@ -106,6 +111,7 @@ public class AddyasaiAction extends AbstractAction {
 		return "main8";
 	}
 
+	// TODO
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
@@ -126,46 +132,47 @@ public class AddyasaiAction extends AbstractAction {
 		return "success";
 	}
 
-	// public ArrayList<ResultTable> tableTrans(List<?> resultTable) {
-	// ArrayList<ResultTable> tempTable = new ArrayList<ResultTable>();
-	//
-	// Object[] obj;
-	// try {
-	// for (int i = 0; i < resultTable.size(); i++) {
-	// ResultTable temp = new ResultTable();
-	//
-	// obj = (Object[]) resultTable.get(i);
-	// Yasai yasai = (Yasai) obj[0];
-	// Ryouri ryouri = (Ryouri) obj[1];
-	//
-	// temp.setId(yasai.getId());
-	// temp.setYasai(yasai.getYasai());
-	// temp.setTyouriId(yasai.getTyouriId());
-	// temp.setDate(yasai.getDate());
-	// temp.setDate_up(yasai.getDate_up());
-	// temp.setUserId(yasai.getUserId());
-	// temp.setUserId_up(yasai.getUserId_up());
-	// temp.setControl(yasai.getControl());
-	// temp.setDelete(yasai.getDelete());
-	//
-	// temp.setId(ryouri.getId());
-	// temp.setTyouri(ryouri.getTyouri());
-	// temp.setRyouri(ryouri.getRyouri());
-	// temp.setDate(ryouri.getDate());
-	// temp.setDate_up(ryouri.getDate_up());
-	// temp.setUserId(ryouri.getUserId());
-	// temp.setUserId_up(ryouri.getUserId_up());
-	// temp.setControl(ryouri.getControl());
-	// temp.setDelete(ryouri.getDelete());
-	//
-	// tempTable.add(temp);
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	//
-	// }
-	//
-	// return tempTable;
-	// }
-
 }
+
+// public ArrayList<ResultTable> tableTrans(List<?> resultTable) {
+// ArrayList<ResultTable> tempTable = new ArrayList<ResultTable>();
+//
+// Object[] obj;
+// try {
+// for (int i = 0; i < resultTable.size(); i++) {
+// ResultTable temp = new ResultTable();
+//
+// obj = (Object[]) resultTable.get(i);
+// Yasai yasai = (Yasai) obj[0];
+// Ryouri ryouri = (Ryouri) obj[1];
+//
+// temp.setId(yasai.getId());
+// temp.setYasai(yasai.getYasai());
+// temp.setTyouriId(yasai.getTyouriId());
+// temp.setDate(yasai.getDate());
+// temp.setDate_up(yasai.getDate_up());
+// temp.setUserId(yasai.getUserId());
+// temp.setUserId_up(yasai.getUserId_up());
+// temp.setControl(yasai.getControl());
+// temp.setDelete(yasai.getDelete());
+//
+// temp.setId(ryouri.getId());
+// temp.setTyouri(ryouri.getTyouri());
+// temp.setRyouri(ryouri.getRyouri());
+// temp.setDate(ryouri.getDate());
+// temp.setDate_up(ryouri.getDate_up());
+// temp.setUserId(ryouri.getUserId());
+// temp.setUserId_up(ryouri.getUserId_up());
+// temp.setControl(ryouri.getControl());
+// temp.setDelete(ryouri.getDelete());
+//
+// tempTable.add(temp);
+// }
+// } catch (Exception e) {
+// e.printStackTrace();
+//
+// }
+//
+// return tempTable;
+// }
+
