@@ -17,40 +17,48 @@ import controller.HibernateUtil;
 public class Update1Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	public String update_id;
-	//テーブルで作ったカラム　追加画面にて検索をかけたいカラム名
+	
+	// テーブルで作ったカラム　追加画面にて検索をかけたいカラム名
 	public String name;
 	public String personality;
 	public String home;
 	public int birthday;
 	public String hobby;
-//メソッドを起こすための変数？	
+	// メソッドを起こすための変数
+	public String update_id;
 	public String day;
 	public String new_day;
 	public String userid;
 	public String new_userid;
+	// public int time_stamp;
+	// public int delete;
 	public String errormsg;
-//executeメソッド
+
+	// executeメソッド
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		return "success";
 	}
-//insertメソッド
+
+	// insertメソッド
 	public String insert() {
-//登録、更新日時表示
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		day = String.valueOf(sdf.format(date));
-		new_day = String.valueOf(sdf.format(date));
-//登録、更新UAER表示
+		// 登録、更新日時表示
+		Date date = new Date();// インスタンス化
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");// インスタンス化
+		day = String.valueOf(sdf.format(date));// キャスト　文字列から数値への変換
+		new_day = String.valueOf(sdf.format(date));// キャスト　文字列から数値への変換
+		// 登録、更新UAER表示
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
+		// 削除フラグ
+		// time_stamp = 0;
+		// delete = 0;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
-		My_hobby insert_my_hobby_table = new My_hobby();
-		Profile insert_profile_table = new Profile();
+//サーバーのテーブルに値をインサート
+		My_hobby insert_my_hobby_table = new My_hobby();// インスタンス化
+		Profile insert_profile_table = new Profile();// インスタンス化
 		insert_my_hobby_table.setHobby(this.hobby);
 		insert_profile_table.setName(this.name);
 		insert_profile_table.setPersonality(this.personality);
@@ -61,19 +69,9 @@ public class Update1Action extends AbstractAction {
 		insert_profile_table.setUserid(this.userid);
 		insert_profile_table.setNew_userid(this.new_userid);
 		String[] data = { this.hobby, this.name, this.personality, this.home,
-				this.day, this.new_day,this.userid,this.new_userid };
+				this.day, this.new_day, this.userid, this.new_userid };
 		int i = 0;
 		for (String temp : data) {
-			// if (temp.length() > 50) {
-			// this.errormsg = "50文字以下で入力してください";
-			// return "error";
-			// }
-			// if (temp.length() < 1)
-			// i++;
-			// if (i > 14) {
-			// this.errormsg = "未入力は登録できません";
-			// return "error";
-			// }
 
 			try {
 				session.save(insert_my_hobby_table);
@@ -89,21 +87,22 @@ public class Update1Action extends AbstractAction {
 		return "main1";
 
 	}
-//deleteメソッド
-	public String delete() {
+
+	// deleteメソッド
+	public String delete() {//検索結果の内容を削除のため
 		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
 			return "main1";
-		}
+		}//削除の際サーバーのテーブルにも反映させる
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,
-					Integer.valueOf(update_id));
+					Integer.valueOf(update_id));// キャスト　文字列から数値への変換
 			Profile profile = (Profile) session.load(Profile.class,
-					Integer.valueOf(update_id));
-			session.delete(my_hobby);
-			session.delete(profile);
+					Integer.valueOf(update_id));// キャスト　文字列から数値への変換
+			session.delete(my_hobby);// 使用する場所が違うソース　削除に必要
+			session.delete(profile);// 使用する場所が違うソース　削除に必要
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
