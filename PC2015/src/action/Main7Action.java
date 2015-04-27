@@ -13,7 +13,7 @@ public class Main7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	public String userId;
-	public String title;
+//	public String title;
 	public String genreId;
 	public String exhibition_year;
 	public String registration_date;
