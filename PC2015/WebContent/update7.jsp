@@ -15,7 +15,7 @@
 			</div>
 
 			<label class="col-sm-2 control-label"> タイトル:</label>
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<s:textfield name="title" cssClass="form-control" rows="10" maxlength="50" />
 			</div>
 		<br/><br/><br/>
