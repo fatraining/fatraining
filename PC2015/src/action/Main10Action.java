@@ -78,7 +78,7 @@ public class Main10Action extends AbstractAction {
 			this.outputTable = linkController.resultList(this.eat_year,this.eat_month,this.eat_day,this.eat_hour);
 		}
 		this.delete="true"; //deleteボタンができる
-		return "success";
+		return "success"; //searchが成功する
 	}
 	
 	public String searchall(){ //searchallメソッド
@@ -86,17 +86,17 @@ public class Main10Action extends AbstractAction {
 		allController  = new All10Manager(); //todo
 		this.outputTable = allController.resultList(); //searchよりsearchallは値が空のときについてなので引数なし
 		this.delete="true"; //deleteボタンができる
-		return "success";
+		return "success"; //空欄での全検索ができるようになる
 	}
 	
-	public String update(){
+	public String update(){ //updateメソッド
 		this.sessionMap.put("update_id",this.update_id);//update_idを取得する
 		try {//IOE例外が発生するかもしれない処理
 			this.response.sendRedirect("/PC2015/update10.action"); //UpdateActionに接続する
-		} catch (IOException e) {
+		} catch (IOException e) { //例外をキャッチ
 			e.printStackTrace();
 		}
 
-		return "success";
+		return "success"; //updateができる
 	}
 }

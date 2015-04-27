@@ -23,8 +23,10 @@ public class All10Manager extends HibernateUtil{
 
 		try {
 			result10Table = session.createSQLQuery(sql)
-					.addEntity("eat_detail", DetailEat.class)
-					.addEntity("eat_id", IDofEat.class).list();
+					.addEntity("eat_detail", DetailEat.class)//SQLQuery.addEntityメソッドで戻り値eat_detailの型設定
+
+					.addEntity("eat_id", IDofEat.class).list(); //SQLQuery.addEntityメソッドで戻り値eat_idの型設定
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -36,7 +38,7 @@ public class All10Manager extends HibernateUtil{
 		return outputTable;
 	}
 
-	public ArrayList<Result10Table> tableTrans(List<?> resultTable) {
+	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
 		Object[] obj;
 		try {
