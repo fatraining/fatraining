@@ -34,13 +34,12 @@ public class Update10Action extends AbstractAction {
 
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
-
 		return "success";
 	}
 	
 
-	public String insert() {
-			//日付の設定
+	public String insert() {//追加の処理
+		//日付の設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		entry_day = String.valueOf(sdf.format(date));
@@ -70,20 +69,6 @@ public class Update10Action extends AbstractAction {
 		insert_id_table.setRenew_day(this.renew_day);
 		insert_id_table.setEntry_userid(this.entry_userid);
 		insert_id_table.setRenew_userid(this.renew_userid);
-		
-		// String[] data = {this.eat_year, this.eat_month, this.eat_day,
-		// this.eat_hour, this.eatFood, this.eatCalory};
-		// int i=0;
-		// for(String temp : data){
-		// if(temp.length()>50){
-		// this.errormsg = "50文字以下で入力してください";
-		// return "error";s
-		// }
-		// if(temp.length()<1)i++;
-		// if(i>14){
-		// this.errormsg = "未入力は登録できません";
-		// return "error";
-		// }
 
 		try {
 			session.save(insert_detail_table);
@@ -99,19 +84,19 @@ public class Update10Action extends AbstractAction {
 	}
 
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.update_id = (String) this.sessionMap.get("update_id");//update_idを使う
 		if (this.update_id.isEmpty()) {
 			return "main10";
-		}
+		} //update_idが空である場合main10へ
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 					Integer.valueOf(update_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(update_id));
-			session.delete(detaileat);
-			session.delete(idofeat);
+					Integer.valueOf(update_id)); //指定した各テーブル（クラス）のレコードに相当するupdate_idを取得
+			session.delete(detaileat); //取得されたupdate_id(detaileat)のレコードをdeleteする
+			session.delete(idofeat); //取得されたupdate_id(idofeat)のレコードをdeleteする
 			
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -121,14 +106,6 @@ public class Update10Action extends AbstractAction {
 		return "main10";
 	}
 
-	// public String checkcode(String code) {
-
-	// code = code.replaceAll("[^a-zA-Z_0-9]","_");
-	// if(!code.matches("[a-zA-Z_0-9]{0,50}")){
-	// return "";
-	// }
-	// return code;
-	// }
 	private static boolean checkCharacterCode(String str, String encoding) {
 		if (str == null) {
 			return true;

@@ -44,26 +44,26 @@ public class Main10Action extends AbstractAction {
 	}
 
 	@Override//スーパークラスのメソッドをサブクラスで書きなおすこと（これにより検索画面でデフォルト値が出力される）
-	public String execute() {
-		this.userId = (String)this.sessionMap.get("userId");
-		this.eat_year = getDefaultEat_year(); //検索の入力欄でのデフォルト値表示
-		this.eat_month   = getDefaultEat_month();
-		this.eat_day = getDefaultEat_day();
-		this.eat_hour = getDefaultEat_hour();
-		this.delete="faluse";
+	public String execute() { //executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくという記述をする）
+		this.userId = (String)this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
+		this.eat_year = getDefaultEat_year(); //デフォルト値の取得
+		this.eat_month   = getDefaultEat_month(); //デフォルト値の取得
+		this.eat_day = getDefaultEat_day(); //デフォルト値の取得
+		this.eat_hour = getDefaultEat_hour(); //デフォルト値の取得
+		this.delete="faluse"; //deleteボタンの生成はない
 		return "success";
 	}
 	
-	public String reset(){ //リセットによりデフォルト値にする
-		this.userId = (String)this.sessionMap.get("userId");
-		this.eat_year = getDefaultEat_year();
-		this.eat_month   = getDefaultEat_month();
-		this.eat_day = getDefaultEat_day();
-		this.eat_hour = getDefaultEat_hour();
+	public String reset(){ //resetメソッドを作る
+		this.userId = (String)this.sessionMap.get("userId"); //userIdの取得
+		this.eat_year = getDefaultEat_year(); //デフォルト値の取得
+		this.eat_month   = getDefaultEat_month(); //デフォルト値の取得
+		this.eat_day = getDefaultEat_day(); //デフォルト値の取得
+		this.eat_hour = getDefaultEat_hour(); //デフォルト値の取得
 		return "success";
 	}
 	
-	public String search(){ //検索について
+	public String search(){ //searchメソッド
 		this.do_search = "true"; //ボタン表示
 		this.userId = (String)this.sessionMap.get("userId");
 		if(this.eat_year.isEmpty() && this.eat_month.isEmpty() && this.eat_day.isEmpty() && this.eat_hour.isEmpty()){
@@ -77,15 +77,15 @@ public class Main10Action extends AbstractAction {
 			linkController  = new Result10Manager();
 			this.outputTable = linkController.resultList(this.eat_year,this.eat_month,this.eat_day,this.eat_hour);
 		}
-		this.delete="true";
+		this.delete="true"; //deleteボタンができる
 		return "success";
 	}
 	
-	public String searchall(){ //searchallについて
+	public String searchall(){ //searchallメソッド
 		this.do_search = "true"; //ボタン表示（searchとは同じボタンでsearchallする）
 		allController  = new All10Manager(); //todo
 		this.outputTable = allController.resultList(); //searchよりsearchallは値が空のときについてなので引数なし
-		this.delete="true";
+		this.delete="true"; //deleteボタンができる
 		return "success";
 	}
 	
@@ -99,11 +99,4 @@ public class Main10Action extends AbstractAction {
 
 		return "success";
 	}
-//	public String checkcode(String code) {
-//		String r = "[a-zA-Z0-9]{0,50}";
-//		if(code.matches(r)){
-//			return code;
-//		}
-//		return "";
-//	}
 }
