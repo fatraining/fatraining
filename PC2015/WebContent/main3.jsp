@@ -47,7 +47,7 @@
 			<tr>
 				<th>タイトル</th>
 				<th>ジャンル</th>
-				
+				<th>削除</th>
 
 			</tr>
 			<td class="bar" colspan="16"></td>
@@ -55,6 +55,9 @@
 				<tr>
 					<td class="data"><s:property value="title" /></td>
 					<td class="data"><s:property value="genre" /></td>
+				　　　	<td class="data"><s:property value="delete" /></td>
+					<td class="data"><input type="checkbox" name="update_id"
+							value=<s:property value="id" /> /></td>	
 				
 				</tr>
 			</s:iterator>
