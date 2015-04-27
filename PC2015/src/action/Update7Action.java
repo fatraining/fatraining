@@ -102,7 +102,7 @@ public class Update7Action extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Movie movie = (Movie)session.load(Movie.class,update_id);
+			Movie movie = (Movie)session.load(Movie.class,Integer.valueOf(update_id));
 //			MovieGenre moviegenre = (MovieGenre) session.load(MovieGenre.class,update_id);
 			session.delete(movie);
 //			session.delete(moviegenre);
