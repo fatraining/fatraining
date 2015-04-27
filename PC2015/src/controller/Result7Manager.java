@@ -48,7 +48,7 @@ public class Result7Manager extends HibernateUtil {
 				Movie movie =  (Movie)obj[0];
 				MovieGenre movie_genre  = (MovieGenre)obj[1];
 				temp.setGenre(movie_genre.getGenre());
-//				temp.setId(movie.getId());
+				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
 				temp.setExhibition_year(movie.getExhibition_year());
 //				temp.setRegistration_date(movie.getRegistration_date());
