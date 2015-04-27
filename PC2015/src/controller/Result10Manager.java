@@ -59,6 +59,10 @@ public class Result10Manager extends HibernateUtil {
 				temp.setEat_hour(detaileat.getEat_hour());
 				temp.setEatFood(idofeat.getEatFood());
 				temp.setEatCalory(idofeat.getEatCalory());
+				temp.setEntry_day(idofeat.getEntry_day());
+				temp.setRenew_day(idofeat.getRenew_day());
+				temp.setEntry_userid(idofeat.getEntry_userid());
+				temp.setRenew_userid(idofeat.getRenew_userid());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
