@@ -35,7 +35,7 @@ public class Result3Table implements Serializable{
 		return genre;
 	}
 	public void setGenre(String genre) {
-		this.title = genre;
+		this.genre = genre;
 	
 	}
 //	public String getSignup() {
