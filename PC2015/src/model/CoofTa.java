@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "table_color")
 public class CoofTa implements Serializable {
 	private static final long serialVersionUID = 1L;
+	// カラム
 	private int id;
 	private String colorNm;
 	private String taste;

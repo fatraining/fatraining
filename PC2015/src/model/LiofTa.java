@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "table_like")
 public class LiofTa implements Serializable {
 	private static final long serialVersionUID = 1L;
+	// カラム
 	private int id;
 	private String name;
 	private String food;
