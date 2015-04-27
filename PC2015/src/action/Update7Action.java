@@ -21,8 +21,8 @@ public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	public String update_id;
 	public String title;
-	public String genreId;
-	public String exhibition_year;
+	public int genreId;
+	public int exhibition_year;
 	public String registration_date ;
 	public String renewal_date ;
 	public String registration_userid;
@@ -34,12 +34,18 @@ public class Update7Action extends AbstractAction {
 	public String execute() throws Exception {
 		this.update_id = (String)this.sessionMap.get("update_id");
 
-
+		this.title = "ここにタイトルを入力してください";
 
 		return "success";
 	}
 
 	public String insert(){
+
+		if (this.title == null || this.genreId == 0 || this.exhibition_year == 0) {
+			this.errormsg = "全ての項目に入力してください";
+			return "errormsg";
+		}else{
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -83,8 +89,8 @@ public class Update7Action extends AbstractAction {
 				session.getTransaction().rollback();
 			}
 
-//		}
 		session.getTransaction().commit();
+		}
 		return "main7";
 
 	}
