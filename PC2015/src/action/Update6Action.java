@@ -16,8 +16,8 @@ import controller.HibernateUtil;
 public class Update6Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	public String update_id;
-	public int id;
-	public int series;
+	public String id;
+	public String series;
 	public String se;
 	public String title;
 	public String u;
@@ -35,6 +35,8 @@ public class Update6Action extends AbstractAction {
 		return "success";
 	}
 
+	//追加画面
+	//追加入力
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -51,7 +53,7 @@ public class Update6Action extends AbstractAction {
 		insert_game_table.setUpUser(this.upUser);
 		insert_game_table.setNonStyle(this.nonStyle);
 		insert_game_table.setDel(this.del);
-		String[] data = {this.title, this.u, this.upDay,
+		String[] data = {this.id, this.title, this.series, this.u, this.upDay,
 				this.userId, this.upUser, this.nonStyle, this.del,
 				 };
 		int i = 0;
@@ -70,6 +72,7 @@ public class Update6Action extends AbstractAction {
 
 	}
 	
+	//削除動作
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
