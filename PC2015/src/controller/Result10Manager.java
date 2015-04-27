@@ -49,11 +49,11 @@ public class Result10Manager extends HibernateUtil {
 		try {
 			for (int i = 0; i < result10Table.size(); i++) {
 				Result10Table temp = new Result10Table();
-				obj = (Object[]) result10Table.get(i);
-				DetailEat detaileat = (DetailEat) obj[0];
-				IDofEat idofeat = (IDofEat) obj[1];
-				temp.setId(detaileat.getId());
-				temp.setEat_year(detaileat.getEat_year());
+				obj = (Object[]) result10Table.get(i); //どのレコード（i）を表示させたいか
+				DetailEat detaileat = (DetailEat) obj[0];//DetailEatは0番目テーブル
+				IDofEat idofeat = (IDofEat) obj[1];//DetailEatは１番目テーブル
+				temp.setId(detaileat.getId()); //IDを表示する
+				temp.setEat_year(detaileat.getEat_year()); //eat_yearの表示
 				temp.setEat_month(detaileat.getEat_month());
 				temp.setEat_day(detaileat.getEat_day());
 				temp.setEat_hour(detaileat.getEat_hour());
