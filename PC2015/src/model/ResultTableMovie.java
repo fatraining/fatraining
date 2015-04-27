@@ -10,10 +10,10 @@ public class ResultTableMovie implements Serializable{
 	private String title ;
 	private String genre ;
 	private int exhibition_year ;
-//	private String registration_date;
-//	private String renewal_date;
-//	private String registration_userid;
-//	private String renewal_userid ;
+	private String registration_date;
+	private String renewal_date;
+	private String registration_userid;
+	private String renewal_userid ;
 //	private int control;
 //	private int delete ;
 
@@ -43,30 +43,30 @@ public class ResultTableMovie implements Serializable{
 	public void setExhibition_year(int exhibition_year) {
 		this.exhibition_year = exhibition_year;
 	}
-//	public String getRegistration_date() {
-//		return registration_date;
-//	}
-//	public void setRegistration_date(String registration_date) {
-//		this.registration_date = registration_date;
-//	}
-//	public String getRenewal_date() {
-//		return renewal_date;
-//	}
-//	public void setRenewal_date(String renewal_date) {
-//		this.renewal_date = renewal_date;
-//	}
-//	public String getRregistration_userid() {
-//		return registration_userid;
-//	}
-//	public void setRegistration_userid(String registration_userid) {
-//		this.registration_userid = registration_userid;
-//	}
-//	public String getRenewal_userid() {
-//		return renewal_userid;
-//	}
-//	public void setRenewal_userid(String renewal_userid) {
-//		this.renewal_userid = renewal_userid;
-//	}
+	public String getRegistration_date() {
+		return registration_date;
+	}
+	public void setRegistration_date(String registration_date) {
+		this.registration_date = registration_date;
+	}
+	public String getRenewal_date() {
+		return renewal_date;
+	}
+	public void setRenewal_date(String renewal_date) {
+		this.renewal_date = renewal_date;
+	}
+	public String getRregistration_userid() {
+		return registration_userid;
+	}
+	public void setRegistration_userid(String registration_userid) {
+		this.registration_userid = registration_userid;
+	}
+	public String getRenewal_userid() {
+		return renewal_userid;
+	}
+	public void setRenewal_userid(String renewal_userid) {
+		this.renewal_userid = renewal_userid;
+	}
 //	public int getControl() {
 //		return control;
 //	}
