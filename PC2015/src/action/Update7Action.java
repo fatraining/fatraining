@@ -1,9 +1,13 @@
 package action;
 
-import java.io.UnsupportedEncodingException;
+//import java.io.UnsupportedEncodingException;
 
 import model.Movie;
-import model.MovieGenre;
+//import model.MovieGenre;
+
+
+import java.util.*;
+import java.text.*;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
@@ -19,11 +23,11 @@ public class Update7Action extends AbstractAction {
 	public String title;
 	public String genreId;
 	public String exhibition_year;
-//	public String registration_date ;
-//	public String renewal_date ;
-//	public String registration_userid;
-//	public String renewal_userid;
-//	public int control;
+	public String registration_date ;
+	public String renewal_date ;
+	public String registration_userid;
+	public String renewal_userid;
+	public int control;
 //	public int delete;
 	public String errormsg;
 
@@ -39,17 +43,25 @@ public class Update7Action extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		registration_date = String.valueOf(sdf.format(date));
+		renewal_date = String.valueOf(sdf.format(date));
+		
+		this.registration_userid = (String)this.sessionMap.get("userId");
+		this.renewal_userid = (String)this.sessionMap.get("userId");
+		
 		Movie insert_movie_table = new Movie();
 //		MovieGenre insert_movie_genre_table = new MovieGenre();
 		insert_movie_table.setTitle(this.title);
 		insert_movie_table.setGenreId(this.genreId);
 		insert_movie_table.setExhibition_year(this.exhibition_year);
-//		insert_movie_table.setRegistration_date(this.registration_date);
-//		insert_movie_table.setRenewal_date(this.renewal_date);
-//		insert_movie_table.setRegistration_userid(this.registration_userid);
-//		insert_movie_table.setRenewal_userid(this.renewal_userid);
+		insert_movie_table.setRegistration_date(this.registration_date);
+		insert_movie_table.setRenewal_date(this.renewal_date);
+		insert_movie_table.setRegistration_userid(this.registration_userid);
+		insert_movie_table.setRenewal_userid(this.renewal_userid);
 //		insert_movie_table.setControl(this.control);
-//		String[] data = {this.title,this.genre,this.exhibition_year};
+//		String[] data = {this.title,this.genreId,this.exhibition_year};
 //		int i=0;
 //		for(String temp : data){
 //			if(temp.length()>50){
@@ -85,9 +97,9 @@ public class Update7Action extends AbstractAction {
 		session.beginTransaction();
 		try {
 			Movie movie = (Movie)session.load(Movie.class,update_id);
-			MovieGenre moviegenre = (MovieGenre) session.load(MovieGenre.class,update_id);
+//			MovieGenre moviegenre = (MovieGenre) session.load(MovieGenre.class,update_id);
 			session.delete(movie);
-			session.delete(moviegenre);
+//			session.delete(moviegenre);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
