@@ -43,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `user_character` (
 --
 
 INSERT INTO `user_character` (`id`, `personality`, `interest`, `day`, `newday`, `userid`, `newuserid`, `delete`, `flg`) VALUES
-(1, '優しい', '読書', '', '', '', '', 0, 0),
-(2, '明るい', 'カラオケ', '', '', '', '', 0, 0),
-(3, '穏やか', 'ゲーム', '', '', '', '', 0, 0);
+(1, '優しい', '読書', NULL, NULL, NULL, NULL, 0, 0),
+(2, '明るい', 'カラオケ', NULL, NULL, NULL, NULL, 0, 0),
+(3, '穏やか', 'ゲーム', NULL, NULL, NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
 --
 
 INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, `personality2`, `day`, `newday`, `userid`, `newuserid`, `delete`, `flg`) VALUES
-(1, 2, 3, '千葉', '田中', 1, '', '', '', '', 0, 0),
-(2, 1, 2, '東京', '佐藤', 3, '', '', '', '', 0, 0),
-(3, 3, 1, '埼玉', '大木', 2, '', '', '', '', 0, 0);
+(1, 2, 3, '千葉', '田中', 1, NULL, NULL, NULL, NULL, 0, 0),
+(2, 1, 2, '東京', '佐藤', 3, NULL, NULL, NULL, NULL, 0, 0),
+(3, 3, 1, '埼玉', '大木', 2, NULL, NULL, NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
