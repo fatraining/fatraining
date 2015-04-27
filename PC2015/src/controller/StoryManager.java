@@ -44,7 +44,7 @@ public class StoryManager extends HibernateUtil {
 				Result3Table temp = new Result3Table();
 				obj = (Object[]) resultTable.get(i);
 				Story story =  (Story)obj[0];
-				Tb_Genre genre     = (Tb_Genre)obj[1];
+				Tb_Genre genre = (Tb_Genre)obj[1];
 				temp.setGenre(genre.getGenre());
 				temp.setId(story.getId());
 				temp.setTitle(story.getTitle());
