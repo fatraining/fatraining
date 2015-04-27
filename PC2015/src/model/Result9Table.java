@@ -11,10 +11,10 @@ public class Result9Table implements Serializable {
 	private String drink;
 	private String colorNm;
 	private String taste;
-//	private String date_of_registration;
-//	private String update_date;
-//	private String registration_userid;
-//	private String update_userid;
+	private String day;
+	private String new_day;
+	private String userid;
+	private String new_userid;
 //	private int time_stamp;
 //	private int delete;
 
@@ -68,37 +68,37 @@ public class Result9Table implements Serializable {
 		this.taste = taste;
 	}
 
-//	public String getDate_of_registration() {
-//		return date_of_registration;
-//	}
-//
-//	public void setDate_of_registration(String date_of_registration) {
-//		this.date_of_registration = date_of_registration;
-//	}
-//
-//	public String getUpdate_date() {
-//		return update_date;
-//	}
-//
-//	public void setUpdate_date(String update_date) {
-//		this.update_date = update_date;
-//	}
-//
-//	public String getRegistration_userid() {
-//		return registration_userid;
-//	}
-//
-//	public void setRegistration_userid(String registration_userid) {
-//		this.registration_userid = registration_userid;
-//	}
-//
-//	public String getUpdate_userid() {
-//		return update_userid;
-//	}
-//
-//	public void setUpdate_userid(String update_userid) {
-//		this.update_userid = update_userid;
-//	}
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getNew_day() {
+		return new_day;
+	}
+
+	public void setNew_day(String new_day) {
+		this.new_day = new_day;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getNew_userid() {
+		return new_userid;
+	}
+
+	public void setNew_userid(String new_userid) {
+		this.new_userid = new_userid;
+	}
 //
 //	public int getTime_stamp() {
 //		return time_stamp;
