@@ -14,26 +14,26 @@ public class BandAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private int id;//カラム名IDの変数、データ型int(String型からint型へ変更)
 	private String name;
 	private String sex;
 	private String age;
 	private String school;
 	private String favorite_song;
 	private String part;
-	private String band_id;
+	private int band_id;//カラム名BAND_IDの変数、データ型int(String型からint型へ変更)
 	private String entry_date;
 	private String renewal_date;
 	private String entry_userid;
 	private String renewal_userid;
-	private String exclusion_flg;
-	private String delete_flg;
+	private int exclusion_flg; //カラム名EXCLUSION_FLGの変数、データ型int(String型からint型に修正)
+	private int delete_flg; //カラム名DELETE_FLGの変数、データ型int(String型からint型に修正)
 
 	/*--------------------------------------------------*/
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	@Column(name="NAME")
@@ -61,7 +61,7 @@ public class BandAccount implements Serializable{
 		return part;
 	}
 	@Column(name="BAND_ID")
-	public String getBand_id() {
+	public int getBand_id() {
 		return band_id;
 	}	@Column(name="ENTRY_DATE")
 	public String getEntry_date() {
@@ -80,16 +80,16 @@ public class BandAccount implements Serializable{
 		return renewal_userid;
 	}
 	@Column(name="EXCLUSION_FLG")
-	public String getExclusion_flg(){
+	public int getExclusion_flg(){
 		return exclusion_flg;
 	}
 	@Column(name="DELETE_FLG")
-	public String getDelete_flg(){
+	public int getDelete_flg(){
 		return delete_flg;
 	}
 /*--------------------------------------------------*/
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public void setName(String name) {
@@ -110,7 +110,7 @@ public class BandAccount implements Serializable{
 	public void setPart(String part) {
 		this.part = part;
 	}
-	public void setBand_id(String band_id) {
+	public void setBand_id(int band_id) {
 		this.band_id = band_id;
 	}
 	public void setEntry_date(String entry_date) {
@@ -126,10 +126,10 @@ public class BandAccount implements Serializable{
 	public void setRenewal_userid(String renewal_userid) {
 		this.renewal_userid = renewal_userid;
 	}
-	public void setExclusion_flg(String exclusion_flg){
+	public void setExclusion_flg(int exclusion_flg){
 		this.exclusion_flg = exclusion_flg;
 	}
-	public void setDelete_flg(String delete_flg){
+	public void setDelete_flg(int delete_flg){
 		this.delete_flg = delete_flg;
 	}
 }
