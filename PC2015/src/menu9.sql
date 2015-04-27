@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E24 日 08:18
+-- Generation Time: 2015 年 4 朁E27 日 07:37
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -28,21 +28,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `table_color` (
 `id` int(50) NOT NULL,
-  `colorNm` varchar(50) DEFAULT NULL,
-  `taste` varchar(50) DEFAULT NULL,
-  `date_of_registration` char(50) DEFAULT NULL,
-  `update_date` char(50) DEFAULT NULL,
-  `registration_userid` char(50) DEFAULT NULL,
-  `update_userid` char(50) DEFAULT NULL,
+  `colorNm` char(50) DEFAULT NULL,
+  `taste` char(50) DEFAULT NULL,
+  `day` char(50) DEFAULT NULL,
+  `new_day` char(50) DEFAULT NULL,
+  `userid` char(50) DEFAULT NULL,
+  `new_userid` char(50) DEFAULT NULL,
   `time_stamp` int(50) DEFAULT NULL,
-  `deleteflg` int(50) DEFAULT NULL
+  `delete` int(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `table_color`
 --
 
-INSERT INTO `table_color` (`id`, `colorNm`, `taste`, `date_of_registration`, `update_date`, `registration_userid`, `update_userid`, `time_stamp`, `deleteflg`) VALUES
+INSERT INTO `table_color` (`id`, `colorNm`, `taste`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
 (1, '赤', '映画鑑賞', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, '青', '読書', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, '黄色', '買い物', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -57,22 +57,22 @@ INSERT INTO `table_color` (`id`, `colorNm`, `taste`, `date_of_registration`, `up
 
 CREATE TABLE IF NOT EXISTS `table_like` (
 `id` int(50) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `food` varchar(50) DEFAULT NULL,
-  `drink` varchar(50) DEFAULT NULL,
-  `date_of_registration` char(50) DEFAULT NULL,
-  `update_date` char(50) DEFAULT NULL,
-  `registration_userid` char(50) DEFAULT NULL,
-  `update_userid` char(50) DEFAULT NULL,
+  `name` char(50) DEFAULT NULL,
+  `food` char(50) DEFAULT NULL,
+  `drink` char(50) DEFAULT NULL,
+  `day` char(50) DEFAULT NULL,
+  `new_day` char(50) DEFAULT NULL,
+  `userid` char(50) DEFAULT NULL,
+  `new_userid` char(50) DEFAULT NULL,
   `time_stamp` int(50) DEFAULT NULL,
-  `deleteflg` int(50) DEFAULT NULL
+  `delete` int(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `table_like`
 --
 
-INSERT INTO `table_like` (`id`, `name`, `food`, `drink`, `date_of_registration`, `update_date`, `registration_userid`, `update_userid`, `time_stamp`, `deleteflg`) VALUES
+INSERT INTO `table_like` (`id`, `name`, `food`, `drink`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
 (1, '林', 'ピザ', 'コーラ', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, '瀬守', 'カレー', '水', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, '田中', 'サンドイッチ', 'オレンジジュース', NULL, NULL, NULL, NULL, NULL, NULL),
