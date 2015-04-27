@@ -63,7 +63,7 @@
 				<s:textfield name="upUser" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br /> <br /> 
+			<br /> <br /> <br />
 			<label class="col-sm-2 control-label">切り札:</label>
 			<div class="col-md-2">
 				<s:textfield name="nonStyle" cssClass="form-control" rows="10"
