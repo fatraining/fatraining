@@ -20,7 +20,6 @@ public class User_Profile implements Serializable {
 	private String dwelling;
 
 	private String name;
-	private int personality2;
 	private String day;
 	private String newday;
 
@@ -55,11 +54,6 @@ public class User_Profile implements Serializable {
 	@Column(name = "name")
 	public String getName() {
 		return name;
-	}
-
-	@Column(name = "personality2")
-	public int getPersonality2() {
-		return personality2;
 	}
 
 	@Column(name = "day")
@@ -111,10 +105,6 @@ public class User_Profile implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setPersonality2(int personality2) {
-		this.personality2 = personality2;
 	}
 
 	public void setDay(String day) {
