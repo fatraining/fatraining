@@ -43,8 +43,8 @@
 					<th>更新日</th>
 					<th>登録USERID</th>
 					<th>更新USERID</th>
-					<th>他</th>
-					<th>排</th>
+					<th>切り札</th>
+					<th>起源</th>
 					<th>削除</th>
 				</tr>
 				<td class="bar" colspan="16"></td>
@@ -67,7 +67,7 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update6" name="update_id" value="削除"
+				<s:submit method="update" name="update_id" value="削除"
 					cssClass="btn btn-primary" />
 			</div>
 		</s:if>
