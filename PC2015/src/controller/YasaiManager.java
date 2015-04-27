@@ -2,16 +2,17 @@ package controller;
 
 import java.util.List;
 
-import model.Yasai;
 import model.Ryouri;
+import model.Yasai;
 
 import org.hibernate.classic.Session;
 
 public class YasaiManager extends HibernateUtil {
 
-	//三つのメソッドで使用するため、フィールドで宣言
+	// 三つのメソッドで使用するため、フィールドで宣言
 	private List<?> resultTable;
 
+	// 何も入力されなかったときのメソッド
 	public List<?> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -39,6 +40,7 @@ public class YasaiManager extends HibernateUtil {
 		return resultTable;
 	}
 
+	// yasaiが入力された場合のメソッド
 	public List<?> resultList(String yasai) {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -49,6 +51,7 @@ public class YasaiManager extends HibernateUtil {
 			String where1 = "WHERE y.tyouriId=r.id";
 			// 野菜の文字列を検索
 			String where2 = "AND y.yasai LIKE '" + yasai + "'";
+			// selectとwhere1,where2をつなげたものをsqlに代入
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("Yasai", Yasai.class)
@@ -62,7 +65,7 @@ public class YasaiManager extends HibernateUtil {
 		return resultTable;
 	}
 
-	//
+	// 料理テーブル検索用のメソッド
 	public Ryouri ryouriList() {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -77,6 +80,7 @@ public class YasaiManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 
+		//resultTableの最終行を取得
 		return (Ryouri) resultTable.get(resultTable.size() - 1);
 	}
 

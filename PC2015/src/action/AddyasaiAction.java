@@ -1,11 +1,10 @@
 package action;
 
-import java.util.*;
-import java.text.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import model.Result8Table;
-import model.Yasai;
 import model.Ryouri;
+import model.Yasai;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
@@ -115,7 +114,7 @@ public class AddyasaiAction extends AbstractAction {
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		if (this.update_id.isEmpty()) {
-			return "success";
+			return "main8";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -129,7 +128,7 @@ public class AddyasaiAction extends AbstractAction {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		return "success";
+		return "main8";
 	}
 
 }
