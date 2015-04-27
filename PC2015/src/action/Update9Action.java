@@ -24,11 +24,12 @@ public class Update9Action extends AbstractAction {
 	public String taste;
 	public String day;
 	public String new_day;
+	public String userid;
+	public String new_userid;
 	// public int time_stamp;
 	// public int delete;
 	public String errormsg;
-	public String userid;
-	public String new_userid;
+	
 
 	// executeメソッド
 	public String execute() throws Exception {
@@ -58,10 +59,10 @@ public class Update9Action extends AbstractAction {
 		insert_like_table.setDrink(this.drink);
 		insert_color_table.setColorNm(this.colorNm);
 		insert_color_table.setTaste(this.taste);
-		insert_color_table.setDay(this.day);
-		insert_color_table.setNew_day(this.new_day);
-		insert_color_table.setUserid(this.userid);
-		insert_color_table.setNew_userid(this.new_userid);
+		insert_like_table.setDay(this.day);
+		insert_like_table.setNew_day(this.new_day);
+		insert_like_table.setUserid(this.userid);
+		insert_like_table.setNew_userid(this.new_userid);
 		// insert_like_table.setDelete(this.delete);
 
 		// 例外処理
