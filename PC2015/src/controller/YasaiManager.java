@@ -1,32 +1,30 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import model.Result8Table;
 import model.Yasai;
 import model.Ryouri;
 
 import org.hibernate.classic.Session;
 
-import action.Main8Action;
-
 public class YasaiManager extends HibernateUtil {
 
-	// アクセス修飾子変える（public→private）
-	public List<?> resultTable;
-	public ArrayList<Result8Table> outputTable;
+	//三つのメソッドで使用するため、フィールドで宣言
+	private List<?> resultTable;
 
-	// 引数いらない
 	public List<?> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		// 野菜と料理テーブルを全件検索
 		String select = "SELECT * FROM yasai y,ryouri r";
+		// 野菜テーブルの調理idと料理テーブルのidが一緒という条件
 		String where1 = "WHERE y.tyouriId=r.id";
+		// select文とwhere文あわせたものをsqlに代入
 		String sql = select + " " + where1;
 
 		try {
+			// 条件の結果がresultTableに代入される
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("Yasai", Yasai.class)
 					.addEntity("Ryouri", Ryouri.class).list();
@@ -49,6 +47,7 @@ public class YasaiManager extends HibernateUtil {
 
 			String select = "SELECT * FROM yasai y,ryouri r";
 			String where1 = "WHERE y.tyouriId=r.id";
+			// 野菜の文字列を検索
 			String where2 = "AND y.yasai LIKE '" + yasai + "'";
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
@@ -63,6 +62,7 @@ public class YasaiManager extends HibernateUtil {
 		return resultTable;
 	}
 
+	//
 	public Ryouri ryouriList() {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -76,8 +76,8 @@ public class YasaiManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		
-		return (Ryouri)resultTable.get(resultTable.size()-1);
+
+		return (Ryouri) resultTable.get(resultTable.size() - 1);
 	}
 
 }
