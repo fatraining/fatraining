@@ -60,10 +60,10 @@ public class Update10Action extends AbstractAction {
 		insert_detail_table.setEat_month(this.eat_month);
 		insert_detail_table.setEat_day(this.eat_day);
 		insert_detail_table.setEat_hour(this.eat_hour);
-//		insert_detail_table.setEntry_day(this.entry_day);
-//		insert_detail_table.setRenew_day(this.renew_day);
-//		insert_detail_table.setEntry_userid(this.entry_userid);
-//		insert_detail_table.setRenew_userid(this.renew_userid);
+		insert_detail_table.setEntry_day(this.entry_day);
+		insert_detail_table.setRenew_day(this.renew_day);
+		insert_detail_table.setEntry_userid(this.entry_userid);
+		insert_detail_table.setRenew_userid(this.renew_userid);
 		insert_id_table.setEatFood(this.eatFood);
 		insert_id_table.setEatCalory(this.eatCalory);
 		insert_id_table.setEntry_day(this.entry_day);
