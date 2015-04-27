@@ -50,10 +50,10 @@ public class All10Manager extends HibernateUtil{
 				temp.setEat_month(detaileat.getEat_month());
 				temp.setEat_day(detaileat.getEat_day());
 				temp.setEat_hour(detaileat.getEat_hour());
-//				temp.setEntry_day(detaileat.getEntry_day());
-//				temp.setRenew_day(detaileat.getRenew_day());
-//				temp.setEntry_userid(detaileat.getEntry_userid());
-//				temp.setRenew_userid(detaileat.getRenew_userid());
+				temp.setEntry_day(detaileat.getEntry_day());
+				temp.setRenew_day(detaileat.getRenew_day());
+				temp.setEntry_userid(detaileat.getEntry_userid());
+				temp.setRenew_userid(detaileat.getRenew_userid());
 				temp.setEatFood(idofeat.getEatFood());
 				temp.setEatCalory(idofeat.getEatCalory());
 				temp.setEntry_day(idofeat.getEntry_day());
