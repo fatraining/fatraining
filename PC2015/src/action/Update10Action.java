@@ -30,8 +30,6 @@ public class Update10Action extends AbstractAction {
 	public String renew_day;
 	public String entry_userid;
 	public String renew_userid;
-	public int renew_flg;
-	public int delete_flg;
 	public String errormsg;
 
 	public String execute() throws Exception {
@@ -43,34 +41,36 @@ public class Update10Action extends AbstractAction {
 
 	public String insert() {
 			//日付の設定
-		
-		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		entry_day = String.valueOf(sdf.format(date));
 		renew_day = String.valueOf(sdf.format(date));
 			
-		System.out.println(sdf.format(date.getTime()));
+		//登録、更新UAER表示
+		this.entry_userid = (String) this.sessionMap.get("userId");
+		this.renew_userid = (String) this.sessionMap.get("userId");
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		IDofEat insert_id_table = new IDofEat();
 		DetailEat insert_detail_table = new DetailEat();
+		IDofEat insert_id_table = new IDofEat();
 
 		insert_detail_table.setEat_year(this.eat_year);
 		insert_detail_table.setEat_month(this.eat_month);
 		insert_detail_table.setEat_day(this.eat_day);
 		insert_detail_table.setEat_hour(this.eat_hour);
+//		insert_detail_table.setEntry_day(this.entry_day);
+//		insert_detail_table.setRenew_day(this.renew_day);
+//		insert_detail_table.setEntry_userid(this.entry_userid);
+//		insert_detail_table.setRenew_userid(this.renew_userid);
 		insert_id_table.setEatFood(this.eatFood);
 		insert_id_table.setEatCalory(this.eatCalory);
 		insert_id_table.setEntry_day(this.entry_day);
 		insert_id_table.setRenew_day(this.renew_day);
-		// insert_detail_table.setEntry_day(checkcode(this.entry_userid));
-		// insert_detail_table.setRenew_day(checkcode(this.renew_userid));
-		// insert_detail_table.setRenew_flg(checkcode(this.renew_flg));
-		// insert_detail_table.setDeleteflg(checkcode(this.delete_flg));
-
+		insert_id_table.setEntry_userid(this.entry_userid);
+		insert_id_table.setRenew_userid(this.renew_userid);
+		
 		// String[] data = {this.eat_year, this.eat_month, this.eat_day,
 		// this.eat_hour, this.eatFood, this.eatCalory};
 		// int i=0;
@@ -93,8 +93,6 @@ public class Update10Action extends AbstractAction {
 			session.getTransaction().rollback();
 		}
 
-		// }
-
 		session.getTransaction().commit();
 		return "main10";
 
@@ -114,6 +112,7 @@ public class Update10Action extends AbstractAction {
 					Integer.valueOf(update_id));
 			session.delete(detaileat);
 			session.delete(idofeat);
+			
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
