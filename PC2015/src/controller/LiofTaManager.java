@@ -16,22 +16,22 @@ public class LiofTaManager extends HibernateUtil {
 	public ArrayList<Result9Table> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
+		// sql文
 		String select = "SELECT * FROM table_like d,table_color i";
 		String where1 = "WHERE d.id=i.id";
 		String sql = select + " " + where1;
-
+		// 例外処理
 		try {
 			result9Table = session.createSQLQuery(sql)
 					.addEntity("table_like", LiofTa.class)
 					.addEntity("table_color", CoofTa.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			session.getTransaction().rollback(); // 障害が起こった時にその前の状態まで戻る
 		}
-		session.getTransaction().commit();
+		session.getTransaction().commit(); // Transaction処理が成功したとき結果を確立させる
 
-		this.outputTable = tableTrans(result9Table);
+		this.outputTable = tableTrans(result9Table); // テーブル取得
 
 		return outputTable;
 	}
@@ -51,10 +51,10 @@ public class LiofTaManager extends HibernateUtil {
 				temp.setDrink(liofta.getDrink());
 				temp.setColorNm(coofta.getColorNm());
 				temp.setTaste(coofta.getTaste());
-				// temp.setDate_of_registration(coofta.getDate_of_registration());
-				// temp.setUpdate_date(coofta.getUpdate_date());
-				// temp.setRegistration_userid(coofta.getRegistration_userid());
-				// temp.setUpdate_userid(coofta.getUpdate_userid());
+				temp.setDay(coofta.getDay());
+				temp.setNew_day(coofta.getNew_day());
+				temp.setUserid(coofta.getUserid());
+				temp.setNew_userid(coofta.getNew_userid());
 				// temp.setTime_stamp(coofta.getTime_stamp());
 				// temp.setDelete(coofta.getDelete());
 				tempTable.add(temp);
