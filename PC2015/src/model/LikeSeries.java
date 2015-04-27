@@ -13,7 +13,7 @@ public class LikeSeries implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int i;
+	private String i;
 	private String se ;
 	private String u;
 	private String upD;
@@ -26,7 +26,7 @@ public class LikeSeries implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="i")
-	public int getI() {
+	public String getI() {
 		return i;
 	}
 	@Column(name="se")
@@ -58,7 +58,7 @@ public class LikeSeries implements Serializable{
 		return d;
 	}
 /*--------------------------------------------------*/
-	public void setI(int i) {
+	public void setI(String i) {
 		this.i = i;
 	}
 	public void setSe(String se) {
