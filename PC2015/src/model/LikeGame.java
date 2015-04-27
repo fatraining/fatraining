@@ -14,9 +14,9 @@ public class LikeGame implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private String id;
 	private String title ;
-	private int series ;
+	private String series ;
 	private String user;
 	private String upDay;
 	private String userId;
@@ -28,7 +28,7 @@ public class LikeGame implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	@Column(name="title")
@@ -36,7 +36,7 @@ public class LikeGame implements Serializable{
 		return title;
 	}
 	@Column(name="series")
-	public int getSeries() {
+	public String getSeries() {
 		return series;
 	}
 	@Column(name="user")
@@ -65,13 +65,13 @@ public class LikeGame implements Serializable{
 	}
 /*--------------------------------------------------*/
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setSeries(int series) {
+	public void setSeries(String series) {
 		this.series = series;
 	}
 	public void setUser(String user) {
