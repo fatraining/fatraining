@@ -10,7 +10,7 @@ import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
 
-@Result(name = "main", value = "main.action", type = ServletRedirectResult.class)
+@Result(name = "main3", value = "main3.action", type = ServletRedirectResult.class)
 public class Update3Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	public String update_Id;
@@ -22,7 +22,7 @@ public class Update3Action extends AbstractAction {
 //	public String signupUSERID;
 //	public String updateUSERID;
 //	public String exclusiveFLG;
-//    public String deleteFLG;
+//  public String deleteFLG;
     public String do_print;
 	public String update_id;
 	public String errormsg;
@@ -55,12 +55,12 @@ public class Update3Action extends AbstractAction {
 //		int i=0;
 //		for(String temp : data){
 //			if(temp.length()>50){
-//				this.errormsg = "50�����ȉ��œ��͂��Ă�������";
+//				this.errormsg = "50�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾈ会ｿｽ�ｿｽﾅ難ｿｽ�ｿｽﾍゑｿｽ�ｿｽﾄゑｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ";
 //				return "error";
 //			}
 //			if(temp.length()<1)i++;
 //			if(i>14){
-//				this.errormsg = "�����͓͂o�^�ł��܂���";
+//				this.errormsg = "�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾍは登�ｿｽ^�ｿｽﾅゑｿｽ�ｿｽﾜゑｿｽ�ｿｽ�ｿｽ";
 //				return "error";
 //			}
 
@@ -75,13 +75,13 @@ public class Update3Action extends AbstractAction {
 
 //		}
 		session.getTransaction().commit();
-		return "main";
+		return "main3";
 
 	}
 	public String delete() {
 		this.update_id = (String)this.sessionMap.get("update_id");
 		if(this.update_id.isEmpty()){
-			return "main";
+			return "main3";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -95,7 +95,7 @@ public class Update3Action extends AbstractAction {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		return "main";
+		return "main3";
 	}
 //	
 //	
@@ -108,6 +108,6 @@ public class Update3Action extends AbstractAction {
 //			byte[] bytes = str.getBytes(encoding);
 //			return str.equals(new String(bytes, encoding));
 //		} catch (UnsupportedEncodingException ex) {
-//			throw new RuntimeException("�G���R�[�h���̂�����������܂���B", ex);
+//			throw new RuntimeException("�ｿｽG�ｿｽ�ｿｽ�ｿｽR�ｿｽ[�ｿｽh�ｿｽ�ｿｽ�ｿｽﾌゑｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾜゑｿｽ�ｿｽ�ｿｽB", ex);
 //		}
 	}
