@@ -33,7 +33,6 @@
 				<s:textfield name="series" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br /> <br /> <br /> 
 			<label class="col-sm-2 control-label"> シリーズ名:</label>
 			<div class="col-md-3">
 				<s:textfield name="se" cssClass="form-control" rows="10"
@@ -65,12 +64,12 @@
 					maxlength="50" />
 			</div>
 			<br /> <br /> 
-			<label class="col-sm-2 control-label">他:</label>
+			<label class="col-sm-2 control-label">切り札:</label>
 			<div class="col-md-2">
 				<s:textfield name="nonStyle" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<label class="col-sm-2 control-label">排:</label>
+			<label class="col-sm-2 control-label">起源:</label>
 			<div class="col-md-2">
 				<s:textfield name="del" cssClass="form-control" rows="10"
 					maxlength="50" />
@@ -89,6 +88,5 @@
 		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
 		<a href="main6.action">Back</a>
 	</s:form>
-
 </s:if>
 <jsp:include page="footer.jsp" />
