@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E23 日 19:12
+-- Generation Time: 2015 年 4 朁E27 日 15:22
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `movie` (
   `renewal_userid` char(50) COLLATE utf8_bin DEFAULT NULL,
   `control` int(50) DEFAULT NULL,
   `delete` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `movie`
@@ -77,7 +77,7 @@ INSERT INTO `movie` (`id`, `title`, `genreId`, `exhibition_year`, `registration_
 --
 
 CREATE TABLE IF NOT EXISTS `movie_genre` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `genre` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `registration_date` char(50) COLLATE utf8_bin DEFAULT NULL,
   `renewal_date` char(50) COLLATE utf8_bin DEFAULT NULL,
@@ -85,13 +85,14 @@ CREATE TABLE IF NOT EXISTS `movie_genre` (
   `renewal_userid` char(50) COLLATE utf8_bin DEFAULT NULL,
   `control` int(50) DEFAULT NULL,
   `delete` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `movie_genre`
 --
 
 INSERT INTO `movie_genre` (`id`, `genre`, `registration_date`, `renewal_date`, `registration_userid`, `renewal_userid`, `control`, `delete`) VALUES
+(0, '不明', NULL, NULL, NULL, NULL, NULL, NULL),
 (1, 'アクション', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'アニメ', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'SF・ファンタジー', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -125,12 +126,7 @@ ALTER TABLE `movie_genre`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
---
--- AUTO_INCREMENT for table `movie_genre`
---
-ALTER TABLE `movie_genre`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
