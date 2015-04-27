@@ -16,8 +16,8 @@ public class Movie implements Serializable{
 
 	private int id;
 	private String title ;
-	private String genreId ;
-	private String exhibition_year ;
+	private int genreId ;
+	private int exhibition_year ;
 	private String registration_date;
 	private String renewal_date;
 	private String registration_userid;
@@ -36,11 +36,11 @@ public class Movie implements Serializable{
 		return title;
 	}
 	@Column(name="genreId")
-	public String getGenreId() {
+	public int getGenreId() {
 		return genreId;
 	}
 	@Column(name="exhibition_year")
-	public String getExhibition_year() {
+	public int getExhibition_year() {
 		return exhibition_year;
 	}
 	@Column(name="registration_date")
@@ -75,10 +75,10 @@ public class Movie implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setGenreId(String genreId) {
+	public void setGenreId(int genreId) {
 		this.genreId = genreId;
 	}
-	public void setExhibition_year(String exhibition_year) {
+	public void setExhibition_year(int exhibition_year) {
 		this.exhibition_year = exhibition_year;
 	}
 	public void setRegistration_date(String registration_date) {
