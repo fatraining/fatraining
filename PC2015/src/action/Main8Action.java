@@ -2,17 +2,16 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.Result8Table;
 import model.Ryouri;
 import model.Yasai;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import java.util.List;
-
 import controller.YasaiManager;
-import model.Result8Table;
 
 @Result(name = "addyasai", value = "addyasai.action", type = ServletRedirectResult.class)
 public class Main8Action extends AbstractAction {
