@@ -14,6 +14,7 @@ public class Result6Manager extends HibernateUtil {
 	public  List<?> resultTable;
 	public  ArrayList<ResultTable6> outputTable;
 
+	//検索絞込み条件
 	public ArrayList<ResultTable6> resultList(String title, String series){
 
 		Session session = HibernateUtil.getSessionFactory()
@@ -38,6 +39,8 @@ public class Result6Manager extends HibernateUtil {
 		this.outputTable = tableTrans(resultTable);
 		return outputTable;
 	}
+	
+	//検索結果
 	public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
 		ArrayList<ResultTable6> tempTable = new ArrayList<ResultTable6>();
 		Object[] obj;
