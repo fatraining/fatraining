@@ -23,11 +23,14 @@ public class Main6Action extends AbstractAction {
 	private LikeManager allController;
 	public ArrayList<ResultTable6> outputTable;
 
+	//検索画面
+	//シリーズID
 	private String getDefaultSeries() {
 		this.series = "1";
 		return this.series;
 	}
 
+	//タイトル
 	private String getDefaultTitle() {
 		this.title = "Fate/stay night";
 		return this.title;
@@ -46,8 +49,9 @@ public class Main6Action extends AbstractAction {
 		this.title = getDefaultTitle();
 		return "success";
 	}
+	
+	//検索結果
 	public String search() {
-
 		this.do_search = "true";
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
@@ -63,6 +67,7 @@ public class Main6Action extends AbstractAction {
 		return "success";
 	}
 
+	//検索結果・表
 	public String printall() {
 		this.do_search = "true";
 		allController = new LikeManager();
@@ -70,7 +75,8 @@ public class Main6Action extends AbstractAction {
 		this.delete = "true";
 		return "success";
 	}
-
+	
+    //削除
 	public String update() {
 		this.sessionMap.put("update_id", this.update_id);
 
