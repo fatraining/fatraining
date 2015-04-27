@@ -79,6 +79,7 @@
 				</s:iterator>
 			</tbody>
 		</table>
+		<th>※複数削除はできません。</th>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
 				<s:submit method="update" name="update_id" value="削除"
