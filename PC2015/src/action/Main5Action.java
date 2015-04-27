@@ -11,7 +11,6 @@ public class Main5Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-//	public String user_name;
 	public String dwelling;
 	public String name;
 	public String result;
@@ -24,19 +23,17 @@ public class Main5Action extends AbstractAction {
 	public ArrayList<Result5Table> outputTable;
 
 	private String getDefaultDwelling() {
-		this.dwelling = "千葉";
+		this.dwelling = "";
 		return this.dwelling;
 	}
 
 	private String getDefaultName() {
-		this.name = "田中";
+		this.name = "";
 		return this.name;
 	}
 
 	@Override
 	public String execute() {
-//		this.user_name = (String) this.sessionMap.get("user_name");
-
 		this.dwelling = getDefaultDwelling();
 		this.name = getDefaultName();
 		this.delete = "faluse";
@@ -44,7 +41,6 @@ public class Main5Action extends AbstractAction {
 	}
 
 	public String reset() {
-//		this.user_name = (String) this.sessionMap.get("user_name");
 		this.dwelling = getDefaultDwelling();
 		this.name = getDefaultName();
 		return "success";
@@ -52,11 +48,7 @@ public class Main5Action extends AbstractAction {
 
 	public String search() {
 
-		// this.dwelling = checkcode(this.dwelling);
-		// this.name = checkcode(this.name);
-
 		this.do_search = "true";
-//		this.user_name = (String) this.sessionMap.get("user_name");
 		if (this.dwelling.isEmpty() && this.name.isEmpty()) {
 			try {
 				printall();
@@ -91,12 +83,4 @@ public class Main5Action extends AbstractAction {
 
 		return "success";
 	}
-
-	// public String checkcode(String code) {
-	// String r = "[a-zA-Z0-9]{0,50}";
-	// if (code.matches(r)) {
-	// return code;
-	// }
-	// return "";
-	// }
 }
