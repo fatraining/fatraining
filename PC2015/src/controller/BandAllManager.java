@@ -18,6 +18,7 @@ public class BandAllManager extends HibernateUtil{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
+		//検索した結果を表示させるためのsql文
 		String select = "SELECT * FROM band_account a,band_table t ";
 		String where1 = "WHERE a.id = t.id ";
 		String sql = select + " " + where1;
