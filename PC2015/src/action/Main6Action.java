@@ -76,7 +76,7 @@ public class Main6Action extends AbstractAction {
 		return "success";
 	}
 	
-    //削除
+    //追加
 	public String update() {
 		this.sessionMap.put("update_id", this.update_id);
 
