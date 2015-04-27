@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E27 日 14:32
+-- Generation Time: 2015 年 4 朁E27 日 18:15
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -22,7 +22,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
 --
 -- テーブルの構造 `like_game`
 --
@@ -49,7 +48,7 @@ INSERT INTO `like_game` (`id`, `title`, `series`, `user`, `upDay`, `userId`, `up
 (3, 'FAINALFANTASY7', 3, '4/22', '4/22', 'Cloud', '3', 'MeteorStrike', 'Soldier'),
 (4, 'Fate/hollow', 1, NULL, '4/23', 'RinTosaka', '4', 'JewelrySword', 'Money'),
 (5, 'LORD of VERMILION', 5, NULL, '4/24', 'Alma=Calma', '5', 'Bahamut', 'Arcana'),
-(6, 'Fate/EXTRA', 1, NULL, '4/27', 'HakunoKishinami', '6', 'Amaterasu', 'Nobody');
+(6, 'Perusona4', 2, NULL, '4/27', 'YuNarukami', '6', 'Izanagi', 'Wild');
 
 -- --------------------------------------------------------
 
@@ -78,16 +77,9 @@ INSERT INTO `like_series` (`i`, `se`, `u`, `upD`, `userI`, `upU`, `nonS`, `d`) V
 (3, 'FAINALFANTASY', '4/22', '4/22', 'Cloud', '3', 'MeteorStrike', 'Soldier'),
 (4, NULL, '4/23', NULL, NULL, NULL, NULL, NULL),
 (5, 'LORD of VERMILION', '4/24', NULL, NULL, NULL, NULL, NULL),
-(6, 'Fate', NULL, NULL, NULL, NULL, NULL, NULL);
+(6, 'Perusona', '4/27', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
-
--- Indexes for dumped tables
---
-
---
--- Indexes for table `band_account`
---
 
 --
 -- Indexes for table `like_game`
@@ -101,12 +93,7 @@ ALTER TABLE `like_game`
 ALTER TABLE `like_series`
  ADD PRIMARY KEY (`i`);
 
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
+ 
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
