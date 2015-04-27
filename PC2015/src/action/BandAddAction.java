@@ -25,13 +25,13 @@ public class BandAddAction extends AbstractAction {
 	public String school;
 	public String favorite_song;
 	public String part;
-	public String band_id;
+	public int band_id;//band_accountテーブルのカラム名BAND_IDの変数、データ型int(String型からint型へ変更)
 	public String entry_date;
 	public String renewal_date;
 	public String entry_userid;
 	public String renewal_userid;
-	public String exclusion_flg;
-	public String delete_flg;
+	public int exclusion_flg; //band_accountテーブルのカラム名EXCLUSION_FLGの変数、データ型int(String型からint型に修正)
+	public int delete_flg; //band_accountテーブルのカラム名DELETE_FLGの変数、データ型int(String型からint型に修正)
 	public String band_name;
 	public String errormsg;
 	
@@ -49,8 +49,8 @@ public class BandAddAction extends AbstractAction {
 		renewal_date = String.valueOf(sdf.format(date));
 		
 		//exclusion_flg,delete_flgの値を0にする。キャスト
-		exclusion_flg = String.valueOf(0);
-		delete_flg = String.valueOf(0);
+		exclusion_flg = 0;//String.valueOf(0);
+		delete_flg = 0;//String.valueOf(0);
 		
 		//登録useridにuserIdの値を入れる。
 		this.entry_userid = (String)this.sessionMap.get("userId");
