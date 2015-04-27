@@ -62,8 +62,6 @@ public class Result5Manager extends HibernateUtil {
 				temp.setUserid(user_profile.getUserid());
 				temp.setNewuserid(user_profile.getNewuserid());
 
-//				temp.setDelete(user_profile.getDelete());
-//				temp.setFlg(user_profile.getFlg());
 
 				temp.setPersonality(user_caharacter.getPersonality());
 
