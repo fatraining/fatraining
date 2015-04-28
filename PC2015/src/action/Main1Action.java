@@ -46,7 +46,7 @@ public class Main1Action extends AbstractAction {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
 		this.hobby = getDefaultHobby();
-		this.delete = "faluse";//ボタンの役割
+		this.delete = "faluse";//ボタンの役割　表示はされない
 		return "success";
 	}
 //resetメソッド　メソッドが呼ばれたとき最初の状態にする。(executeメソッドが呼ばれた時の状態)
@@ -80,7 +80,7 @@ public class Main1Action extends AbstractAction {
 		this.do_search = "true";//ボタンの役割
 		allController = new ProfileManager();//インスタンス化
 		this.outputTable = allController.resultList();
-		this.delete = "true";//ボタンの役割
+		this.delete = "true";//ボタンの役割　表示される
 		return "success";
 	}
 //updateメソッド
