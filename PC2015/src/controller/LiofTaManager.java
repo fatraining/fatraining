@@ -16,11 +16,9 @@ public class LiofTaManager extends HibernateUtil {
 	public ArrayList<Result9Table> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		// sql文
 		String select = "SELECT * FROM table_like d,table_color i";
 		String where1 = "WHERE d.id=i.id";
 		String sql = select + " " + where1;
-		// 例外処理
 		try {
 			result9Table = session.createSQLQuery(sql)
 					.addEntity("table_like", LiofTa.class)
@@ -33,6 +31,36 @@ public class LiofTaManager extends HibernateUtil {
 
 		this.outputTable = tableTrans(result9Table); // テーブル取得
 
+		return outputTable;
+	}
+
+	public ArrayList<Result9Table> resultList(String name, String food,
+			String drink) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		try {
+			if (name.isEmpty())
+				name = "%";
+			if (food.isEmpty())
+				food = "%";
+			if (drink.isEmpty())
+				drink = "%";
+
+			String select = "SELECT * FROM table_like d, table_color i";
+			String where1 = "WHERE d.id=i.id";
+			String where2 = "AND (d.name LIKE '" + name + "' AND d.food LIKE '"
+					+ food + "' AND d.drink LIKE '" + drink + "')";
+			String sql = select + " " + where1 + " " + where2;
+			result9Table = session.createSQLQuery(sql)
+					.addEntity("LiofTa", LiofTa.class)
+					.addEntity("CoofTa", CoofTa.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(result9Table);
 		return outputTable;
 	}
 
@@ -51,12 +79,6 @@ public class LiofTaManager extends HibernateUtil {
 				temp.setDrink(liofta.getDrink());
 				temp.setColorNm(coofta.getColorNm());
 				temp.setTaste(coofta.getTaste());
-				temp.setDay(liofta.getDay());
-				temp.setNew_day(liofta.getNew_day());
-				temp.setUserid(liofta.getUserid());
-				temp.setNew_userid(liofta.getNew_userid());
-				// temp.setTime_stamp(coofta.getTime_stamp());
-				// temp.setDelete(coofta.getDelete());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
