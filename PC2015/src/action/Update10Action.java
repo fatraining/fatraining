@@ -49,12 +49,14 @@ public class Update10Action extends AbstractAction {
 		this.entry_userid = (String) this.sessionMap.get("userId");
 		this.renew_userid = (String) this.sessionMap.get("userId");
 		
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
 
+		//インスタンス化
 		DetailEat insert_detail_table = new DetailEat();
 		IDofEat insert_id_table = new IDofEat();
-
 		insert_detail_table.setEat_year(this.eat_year);
 		insert_detail_table.setEat_month(this.eat_month);
 		insert_detail_table.setEat_day(this.eat_day);
@@ -70,17 +72,17 @@ public class Update10Action extends AbstractAction {
 		insert_id_table.setEntry_userid(this.entry_userid);
 		insert_id_table.setRenew_userid(this.renew_userid);
 
+		
 		try {
 			session.save(insert_detail_table);
 			session.save(insert_id_table);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-		}
+		}//todo
 
-		session.getTransaction().commit();
-		return "main10";
-
+		session.getTransaction().commit();  //todo(データベースに処理結果を反映させる？)
+		return "main10";  
 	}
 
 	public String delete() {
@@ -88,25 +90,28 @@ public class Update10Action extends AbstractAction {
 		if (this.update_id.isEmpty()) {
 			return "main10";
 		} //update_idが空である場合main10へ
+		
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
 		try {	
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 					Integer.valueOf(update_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(update_id)); //指定した各テーブル（クラス）のレコードに相当するupdate_idを取得
+					Integer.valueOf(update_id)); //todo(update_idがStringでは処理できないのでキャストする)
 
 //			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, update_id);
-//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, update_id);
+//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, update_id);（キャストしていないもの）
 			
-			session.delete(detaileat); //取得されたupdate_id(detaileat)のレコードをdeleteする
-			session.delete(idofeat); //取得されたupdate_id(idofeat)のレコードをdeleteする
+			session.delete(detaileat); //引き数を入れ、指定した行を削除する
+			session.delete(idofeat); //引き数を入れ、指定した行を削除する
 			
-		} catch (HibernateException e) {
+		} catch (HibernateException e) { //例外処理
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			session.getTransaction().rollback(); //障害が起きたら障害が起きる前に戻る
 		}
-		session.getTransaction().commit();
+		session.getTransaction().commit();  //todo(削除してデータベースに処理結果を反映させる？)
 		return "main10";
 	}
 

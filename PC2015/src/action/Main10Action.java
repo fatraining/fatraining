@@ -43,14 +43,14 @@ public class Main10Action extends AbstractAction {
 		return this.eat_hour;
 	}
 
-	@Override//スーパークラスのメソッドをサブクラスで書きなおすこと（これにより検索画面でデフォルト値が出力される）
-	public String execute() { //executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくという記述をする）
+	@Override//スーパークラスのメソッドをサブクラスで書きなおすこと
+	public String execute() { //executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくため）
 		this.userId = (String)this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
 		this.eat_year = getDefaultEat_year(); //デフォルト値の取得
 		this.eat_month   = getDefaultEat_month(); //デフォルト値の取得
 		this.eat_day = getDefaultEat_day(); //デフォルト値の取得
 		this.eat_hour = getDefaultEat_hour(); //デフォルト値の取得
-		this.delete="faluse"; //deleteボタンの生成はない
+		this.delete="faluse"; //todo
 		return "success";
 	}
 	
@@ -64,17 +64,17 @@ public class Main10Action extends AbstractAction {
 	}
 	
 	public String search(){ //searchメソッド
-		this.do_search = "true"; //ボタン表示
+		this.do_search = "true"; //ボタンで処理する
 		this.userId = (String)this.sessionMap.get("userId");
 		if(this.eat_year.isEmpty() && this.eat_month.isEmpty() && this.eat_day.isEmpty() && this.eat_hour.isEmpty()){
 			//もしすべて空だった場合は
-			try {/*IOE例外が発生するかもしれない処理*/
-				searchall(); //searchallすること
-			} catch (Exception e) { //IOE例外キャッチ
-				e.printStackTrace();
+			try {
+				searchall(); //searchallメソッドを呼び出す
+			} catch (Exception e) { //例外キャッチ
+				e.printStackTrace(); //todo
 			}
 		}else{ //空でなかったら 検索結果の表示をする
-			linkController  = new Result10Manager();
+			linkController  = new Result10Manager(); //インスタンスの生成
 			this.outputTable = linkController.resultList(this.eat_year,this.eat_month,this.eat_day,this.eat_hour);
 		}
 		this.delete="true"; //deleteボタンができる
@@ -82,7 +82,7 @@ public class Main10Action extends AbstractAction {
 	}
 	
 	public String searchall(){ //searchallメソッド
-		this.do_search = "true"; //ボタン表示（searchとは同じボタンでsearchallする）
+		this.do_search = "true"; //do_searchのボタン機能（searchとは同じボタンでsearchallする）
 		allController  = new All10Manager(); //todo
 		this.outputTable = allController.resultList(); //searchよりsearchallは値が空のときについてなので引数なし
 		this.delete="true"; //deleteボタンができる
@@ -91,7 +91,7 @@ public class Main10Action extends AbstractAction {
 	
 	public String update(){ //updateメソッド
 		this.sessionMap.put("update_id",this.update_id);//update_idを取得する
-		try {//IOE例外が発生するかもしれない処理
+		try {//例外が発生するかもしれない処理
 			this.response.sendRedirect("/PC2015/update10.action"); //UpdateActionに接続する
 		} catch (IOException e) { //例外をキャッチ
 			e.printStackTrace();
