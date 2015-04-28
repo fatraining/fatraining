@@ -12,6 +12,7 @@ public class Main7Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
+	//
 	public String userId;
 //	public String title;
 	public String genreId;
@@ -61,8 +62,8 @@ public class Main7Action extends AbstractAction {
 	public String print(){
 
 //		this.title = checkcode(this.title);
-		this.genreId = checkcode(this.genreId);
-		this.exhibition_year = checkcode(this.exhibition_year);
+//		this.genreId = checkcode(this.genreId);
+//		this.exhibition_year = checkcode(this.exhibition_year);
 
 		this.do_print = "true";
 		this.userId = (String)this.sessionMap.get("userId");
@@ -99,11 +100,11 @@ public class Main7Action extends AbstractAction {
 
 		return "success";
 	}
-	public String checkcode(String code) {
-		String r = "[a-zA-Z0-9]{0,50}";
-		if(code.matches(r)){
-			return code;
-		}
-		return "";
-	}
+//	public String checkcode(String code) {
+//		String r = "[a-zA-Z0-9]{0,50}";
+//		if(code.matches(r)){
+//			return code;
+//		}
+//		return "";
+//	}
 }
