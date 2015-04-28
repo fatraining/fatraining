@@ -7,7 +7,7 @@ public class ResultTableMovie implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//検索結果を表示させるための変数とメソッド
-	private int id;
+	private String id;
 	private String title ;
 	private String genre ;
 	private int exhibition_year ;
@@ -20,10 +20,10 @@ public class ResultTableMovie implements Serializable{
 
 	public ResultTableMovie() { }
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTitle() {
