@@ -19,9 +19,9 @@ import controller.HibernateUtil;
 public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	//デリートに必要な変数
+	// デリートに必要な変数
 	public String update_id;
-	//テーブルにインサートするための変数
+	// テーブルにインサートするための変数
 	public String title;
 	public int genreId;
 	public int exhibition_year;
@@ -43,7 +43,8 @@ public class Update7Action extends AbstractAction {
 	// 追加するメソッド
 	public String insert() {
 		// 未入力の項目があるときにエラーを返す
-		if (this.title.isEmpty() || this.genreId == 0 || this.exhibition_year == 0) {
+		if (this.title.isEmpty() || this.genreId == 0
+				|| this.exhibition_year == 0) {
 			this.errormsg = "全ての項目に入力してください";
 			return "errormsg";
 		}
@@ -75,18 +76,6 @@ public class Update7Action extends AbstractAction {
 			insert_movie_table.setRegistration_userid(this.registration_userid);
 			insert_movie_table.setRenewal_userid(this.renewal_userid);
 			// insert_movie_table.setControl(this.control);
-			// String[] data = {this.title,this.genreId,this.exhibition_year};
-			// int i=0;
-			// for(String temp : data){
-			// if(temp.length()>50){
-			// this.errormsg = "50文字以下で入力してください";
-			// return "error";
-			// }
-			// if(temp.length()<1)i++;
-			// if(i>3){
-			// this.errormsg = "未入力は登録できません";
-			// return "error";
-			// }
 
 			// テーブルにインサートする
 			try {
@@ -108,45 +97,27 @@ public class Update7Action extends AbstractAction {
 	public String delete() {
 		// update_id=movieテーブルのidを取得
 		this.update_id = (String) this.sessionMap.get("update_id");
+		String str = new String(this.update_id);
+		String[] strAry = str.split(",");
+
 		if (this.update_id.isEmpty()) {
 			return "main7";
 		}
-		// TODO
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		try {
-			Movie movie = (Movie) session.load(Movie.class,
-					Integer.valueOf(update_id));
-			// MovieGenre moviegenre = (MovieGenre)
-			// session.load(MovieGenre.class,update_id);
-			session.delete(movie);
-			// session.delete(moviegenre);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			try {
+				Movie movie = (Movie) session.load(Movie.class, strAry[i]);
+				session.delete(movie);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
 		}
+
 		session.getTransaction().commit();
 		return "main7";
 	}
-	// public String checkcode(String code) {
-	//
-	//
-	// //code = code.replaceAll("[^a-zA-Z_0-9]","_");
-	// if(!code.matches("[a-zA-Z_0-9]{0,50}")){
-	// //return "";
-	// }
-	// return code;
-	// }
-	// private static boolean checkCharacterCode(String str, String encoding) {
-	// if (str == null) {
-	// return true;
-	// }
-	//
-	// try {
-	// byte[] bytes = str.getBytes(encoding);
-	// return str.equals(new String(bytes, encoding));
-	// } catch (UnsupportedEncodingException ex) {
-	// throw new RuntimeException("エンコード名称が正しくありません。", ex);
-	// }
-	// }
 }
