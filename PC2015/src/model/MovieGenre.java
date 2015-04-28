@@ -14,6 +14,7 @@ public class MovieGenre implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	//検索結果を表示させるためにデータを取り出すための変数とメソッド
 	private int id;
 	private String genre ;
 //	private String registration_date;
