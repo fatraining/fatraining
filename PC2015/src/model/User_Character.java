@@ -14,6 +14,7 @@ public class User_Character implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	//表示させるカラム名
 	private int id;
 	private String personality;
 	private String interest;
