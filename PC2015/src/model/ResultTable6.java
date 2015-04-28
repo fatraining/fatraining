@@ -6,6 +6,7 @@ public class ResultTable6 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	//カラム
 	private String id;
 	private String title;
 	private String series;
