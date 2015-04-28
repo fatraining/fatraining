@@ -8,7 +8,8 @@ import model.Genre;
 import model.Result2Table;
 import controller.HibernateUtil;
 import controller.SweetsManager;
-import controller.Result2Manager;
+//import controller.Result2Manager;
+
 
 
 import org.apache.struts2.dispatcher.ServletRedirectResult;
@@ -41,7 +42,7 @@ public class Update2Action extends AbstractAction {
 	public String errormsg;
 	public String delete;
 
-	private Result2Manager linkController;
+//	private Result2Manager linkController;
 	private SweetsManager allController;
 	public ArrayList<Result2Table> outputTable;
 
@@ -134,6 +135,7 @@ public class Update2Action extends AbstractAction {
 	//executeメソッド
 	@Override
 	public String execute() {
+		this.update_id = (String) this.sessionMap.get("delete_id");
 		this.id = (String) this.sessionMap.get("id");
 		this.name = getDefaultName();
 		this.genreNm = getDefaultGenreNm();
@@ -163,9 +165,9 @@ public class Update2Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		} else {
-			linkController = new Result2Manager();
-			this.outputTable = linkController.resultList(this.genreNm,
-					this.name);
+//			linkController = new Result2Manager();
+//			this.outputTable = linkController.resultList(this.genreNm,
+//					this.name);
 		}
 		this.delete = "true";
 		return "success";

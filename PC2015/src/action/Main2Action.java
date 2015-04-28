@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Result2Table;
-import controller.Result2Manager;
 import controller.SweetsManager;
 import action.AbstractAction;
 
@@ -12,85 +11,54 @@ public class Main2Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	//カラム名
-	public String id;
-	public String name;
-	public String genreNm;
-	//変数
-	public String update_id;
-	public String do_search;
-	public String delete;
-
-	private Result2Manager linkController;
-	private SweetsManager allController;
+	//入力項目
+	public String name; //お菓子の名前:
+	public String genreNm; //ジャンル:
+	public String delete_id; //削除チェックボックス
+	
+	//検索結果の表示(データ)
 	public ArrayList<Result2Table> outputTable;
 	
-	//値を入れる
-	private String getDefaultName() {
-		this.name = "";
-		return this.name;
-	}
-
-	private String getDefaultGenreNm() {
-		this.genreNm = "";
-		return this.genreNm;
-	}
+	//検索結果の表示フラグ
+	public String do_search;
 	
-	//executeメソッド
+    //削除の表示フラグ
+	public String delete;
+	
+	//画面が表示時に実行
 	@Override
 	public String execute() {
-		this.id = (String) this.sessionMap.get("id");
-		this.name = getDefaultName();
-		this.genreNm = getDefaultGenreNm();
-		this.delete = "faluse";
-		return "success";
-	}
-	
-	//resetメソッド
-	//初期値に戻す
-	public String reset() {
-		this.id = (String) this.sessionMap.get("id");
-		this.name = getDefaultName();
-		this.genreNm = getDefaultGenreNm();
-		return "success";
-	}
-	
-	//searchメソッド
-	public String search() {
 
-		this.do_search = "true";
+		//初期値の設定
+		this.name = getDefaultName();
+		this.genreNm = getDefaultGenreNm();
 		
-		this.id = (String) this.sessionMap.get("id");
-		if (this.genreNm.isEmpty() && this.name.isEmpty()) {
-			try {
-				printall();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			linkController = new Result2Manager();
-//			Result2Manager linkController = new Result2Manager();
-			this.outputTable = linkController.resultList(this.name, this.genreNm);
-		}
-		this.delete = "true";
 		return "success";
 	}
 	
-	//printallメソッド
-	public String printall() {
-		this.do_search = "true";
-//		this.id = (String)this.sessionMap.get("id");
-		allController = new SweetsManager();
-		this.outputTable = allController.resultList(this.name, this.genreNm);
-		this.delete = "true";
+	//初期値の設定（お菓子の名前）
+	private String getDefaultName() {
+		return "";
+	}
+
+	//初期値の設定（ジャンル）
+	private String getDefaultGenreNm() {
+		return "";
+	}
+	
+	//リセットボタンを押下時
+	public String reset() {
+		//初期値に戻す
+		this.name = getDefaultName();
+		this.genreNm = getDefaultGenreNm();
 		return "success";
 	}
 	
-	//updateメソッド
-	public String update() {
-		this.sessionMap.put("update_id", this.update_id);
+	// 追加ボタンを押下時
+	public String add() {
 
 		try {
+			//追加画面に遷移
 			this.response.sendRedirect("/PC2015/update2.action");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,4 +66,43 @@ public class Main2Action extends AbstractAction {
 
 		return "success";
 	}
+
+	//検索ボタンを押下時
+	public String search() {
+
+		//SQLの実行
+		if (this.genreNm.isEmpty() && this.name.isEmpty()) {
+			//入力がない場合
+			SweetsManager allController = new SweetsManager();
+			this.outputTable = allController.resultList();
+		}else{
+			//入力された場合
+			SweetsManager linkController = new SweetsManager();
+			this.outputTable = linkController.resultList(this.genreNm, this.name);
+		}
+
+		//検索結果の表示
+		this.do_search = "true";
+		//削除ボタンの表示
+		this.delete = "true";
+		
+		return "success";
+	}
+	
+	//削除ボタンを押下時
+	public String delete() {
+		
+		//削除チェックボックスの値を取得しセッション（delete_id）に設定
+		this.sessionMap.put("delete_id",this.delete_id);
+		
+		//削除画面に遷移
+		try {
+			this.response.sendRedirect("/PC2015/update2.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "success";		
+	}
+
 }
