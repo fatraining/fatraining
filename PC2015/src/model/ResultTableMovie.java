@@ -6,6 +6,7 @@ public class ResultTableMovie implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	//検索結果を表示させるための変数とメソッド
 	private int id;
 	private String title ;
 	private String genre ;
