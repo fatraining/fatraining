@@ -111,9 +111,11 @@ public class AddyasaiAction extends AbstractAction {
 	// TODO
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
+		//update_idが空だとそのままmain8にもどる
 		if (this.update_id.isEmpty()) {
 			return "main8";
 		}
+		//DBと接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
