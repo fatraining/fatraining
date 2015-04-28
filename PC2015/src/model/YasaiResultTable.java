@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Result8Table implements Serializable{
+public class YasaiResultTable implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class Result8Table implements Serializable{
 	private String userId;
 
 
-	public Result8Table() { }
+	public YasaiResultTable() { }
 
 	public String getId() {
 		return id;
