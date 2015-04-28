@@ -51,12 +51,9 @@
 						<td class="data"><s:property value="yasai" /></td>
 						<td class="data"><s:property value="tyouri" /></td>
 						<td class="data"><s:property value="ryouri" /></td>
-						<td class="data"><s:property value="date" /></td>
+						<td class="data"><s:property value="date_entry" /></td>
 						<td class="data"><s:property value="date_up" /></td>
 						<td class="data"><s:property value="userId" /></td>
-						<td class="data"><s:property value="userId_up" /></td>
-
-
 						<td class="data"><input type="checkbox" name="update_id"
 							value=<s:property value="id" /> /></td>
 

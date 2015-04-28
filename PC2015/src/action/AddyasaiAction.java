@@ -37,15 +37,13 @@ public class AddyasaiAction extends AbstractAction {
 	// ユーザーIDを表示させるため、userIdを宣言
 	public String userId;
 
-	public String errormsg;
-
-	
 	public String execute() throws Exception {
 		this.update_id = (String) this.sessionMap.get("update_id");
 
 		return "success";
 	}
-	//追加登録用メソッド
+
+	// 追加登録用メソッド
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -119,10 +117,10 @@ public class AddyasaiAction extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Ryouri ryouri = (Ryouri) session.load(Ryouri.class, update_id);
 			Yasai yasai = (Yasai) session.load(Yasai.class, update_id);
-			session.delete(ryouri);
+			Ryouri ryouri = (Ryouri) session.load(Ryouri.class, yasai.getTyouriId());
 			session.delete(yasai);
+			session.delete(ryouri);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();

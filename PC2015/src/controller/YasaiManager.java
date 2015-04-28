@@ -10,7 +10,7 @@ import org.hibernate.classic.Session;
 public class YasaiManager extends HibernateUtil {
 
 	// 三つのメソッドで使用するため、フィールドで宣言
-	private List<?> resultTable;
+	public List<?> resultTable;
 
 	// 何も入力されなかったときのメソッド
 	public List<?> resultList() {
