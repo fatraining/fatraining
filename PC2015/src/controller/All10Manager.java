@@ -36,6 +36,41 @@ public class All10Manager extends HibernateUtil{
 		//todo(outputTableに2つのテーブルが結合したものを検索処理したものを代入する？)
 		return outputTable;
 	}
+	
+	
+	public ArrayList<Result10Table> resultList(String eat_year, String eat_month,
+			String eat_day, String eat_hour) {
+		//データベースに接続する
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
+		session.beginTransaction();
+		try {
+			if (eat_year.isEmpty())
+				eat_year = "%"; //eat_yearが入力されたものである
+			if (eat_month.isEmpty())
+				eat_month = "%";
+			if (eat_day.isEmpty())
+				eat_day = "%";
+			if (eat_hour.isEmpty())
+				eat_hour = "%";
+			String select = "SELECT * FROM eat_detail d, eat_id i";
+			String where1 = "WHERE d.id = i.id";
+			String where2 = "AND (d.eat_year LIKE '" + eat_year + "' AND d.eat_month LIKE '"
+					+ eat_month + "' AND d.eat_day LIKE '" + eat_day + "' AND d.eat_hour LIKE '" + eat_hour + "')";
+			String sql = select + " " + where1+ " " + where2;
+			result10Table = session.createSQLQuery(sql)
+					.addEntity("DetailEat", DetailEat.class)
+					.addEntity("IDofEat", IDofEat.class).list(); //todo(2つのテーブルを一つのものにする？)
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback(); //例外がキャッチされたらその前に戻る
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(result10Table); //todo(outputTableに2つが結合したものを検索処理したものを代入する？)
+		
+		return outputTable; //テーブルを表示させる
+	}
+	
 
 	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();

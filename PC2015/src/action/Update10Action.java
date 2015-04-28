@@ -116,16 +116,4 @@ public class Update10Action extends AbstractAction {
 		return "main10";
 	}
 
-//	private static boolean checkCharacterCode(String str, String encoding) {
-//		if (str == null) {
-//			return true;
-//		}
-//
-//		try {
-//			byte[] bytes = str.getBytes(encoding);
-//			return str.equals(new String(bytes, encoding));
-//		} catch (UnsupportedEncodingException ex) {
-//			throw new RuntimeException("エンコード名称が正しくありません。", ex);
-//		}
-//	}
 }
