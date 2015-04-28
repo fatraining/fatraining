@@ -20,9 +20,9 @@ public class BandResultManager extends HibernateUtil{
 				.getCurrentSession();
 		session.beginTransaction();
 		try{
-			if(band_name.isEmpty())band_name="%";
-			if(name.isEmpty())name="%";
-			if(part.isEmpty())part="%";
+			if(band_name.isEmpty())band_name="%"; //band_nameが空の時はワイルドカード「%」を代入
+			if(name.isEmpty())name="%"; //nameが空の時はワイルドカード「%」を代入
+			if(part.isEmpty())part="%"; //partが空の時はワイルドカード「%」を代入
 			String select = "SELECT * FROM band_account a,band_table t ";
 			String where1 = "WHERE a.id = t.id ";
 			String where2 = "AND (t.BAND_NAME LIKE '"+ band_name +"' AND a.NAME LIKE '"+ name +"' AND a.PART LIKE '"+ part + "')";
@@ -37,6 +37,7 @@ public class BandResultManager extends HibernateUtil{
 		this.outputTable = tableTrans(bandResultTable);
 		return outputTable;
 	}
+	//bandSearch.jspのiteratorを回すための処理。
 	public ArrayList<BandResultTable> tableTrans(List<?> bandResultTable){
 		ArrayList<BandResultTable> tempTable = new ArrayList<BandResultTable>();
 		Object[] obj;

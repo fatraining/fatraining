@@ -108,29 +108,44 @@ public class BandAddAction extends AbstractAction {
 		return "bandsearch";
 
 	}
-
+	
+	/**********************複数選択の削除の処理ここから**************************************/
+	
 	
 	//deleteメソッド。削除するときの処理
 	public String delete() {
+		this.update_id = (String)this.sessionMap.get("update_id");
+		
+		//複数選択の削除のために文字列の分割
+		String str = new String(this.update_id);
+		String[] strAry = str.split(",");
+		
 		if (this.update_id.isEmpty()) {
 			return "bandsearch";
 		}
+		//for文で処理を繰り返す
+		for(int i = 0; i < strAry.length; i++){
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションを開始
 		session.beginTransaction();
 		try {
-			BandAccount bandaccount = (BandAccount) session.load(BandAccount.class, update_id);
-			BandTable bandtable = (BandTable) session.load(BandTable.class,update_id);
-			session.delete(bandaccount);
-			session.delete(bandtable);
+			BandAccount bandaccount = (BandAccount) session.load(BandAccount.class, strAry[i]);
+			BandTable bandtable = (BandTable) session.load(BandTable.class,strAry[i]);
+			session.delete(bandaccount); //band_accountテーブルの選択された行を削除
+			session.delete(bandtable); //band_tableテーブルの選択された行を削除
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();//
+		}
 		return "bandsearch";
 		
 	}
 
+	
+	/**************************複数選択の削除の処理ここまで*******************************/
 	/*public String checkcode(String code) {
 
 		// code = code.replaceAll("[^a-zA-Z_0-9]","_");
