@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.LiofTaManager;
-import controller.Result9Manager;
 import model.Result9Table;
 
 public class Main9Action extends AbstractAction {
@@ -14,33 +13,26 @@ public class Main9Action extends AbstractAction {
 	public String name;
 	public String food;
 	public String drink;
-	public String search;
 	// 変数
-	public String result;
 	public String update_id;
 	public String delete;
 	public String do_print;
 
-	public Result9Manager linkController;
-	public LiofTaManager allController;
 	public ArrayList<Result9Table> outputTable;
 
 	// 変数に値を代入する（この場合空白）
 	private String getDefaultName() {
-		this.name = "";
-		return this.name;
+		return "";
 	}
 
 	// 変数に値を代入する（この場合空白）
 	private String getDefaultFood() {
-		this.food = "";
-		return this.food;
+		return "";
 	}
 
 	// 変数に値を代入する（この場合空白）
 	private String getDefaultDrink() {
-		this.drink = "";
-		return this.drink;
+		return "";
 	}
 
 	// executeメソッド
@@ -63,28 +55,20 @@ public class Main9Action extends AbstractAction {
 
 	// searchメソッド
 	public String search() {
-		this.do_print = "true";
 		if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
 			try {
-				printall();
+				LiofTaManager allController = new LiofTaManager();
+				this.outputTable = allController.resultList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			linkController = new Result9Manager();
+			LiofTaManager linkController = new LiofTaManager();
 			this.outputTable = linkController.resultList(this.name, this.food,
 					this.drink);
 		}
-		this.delete = "true";
-		return "success";
-	}
-
-	// printallメソッド
-	public String printall() {
 		this.do_print = "true";
-		allController = new LiofTaManager();
-		this.outputTable = allController.resultList(); // テーブル取得
-		this.delete = "true"; // trueの場合削除ボタンを表示する
+		this.delete = "true";
 		return "success";
 	}
 
