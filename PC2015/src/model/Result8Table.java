@@ -14,9 +14,7 @@ public class Result8Table implements Serializable{
 	private String date_entry;
 	private String date_up;
 	private String userId;
-	private String userId_up ;
-	private int control ;
-	private int deleteflg;
+
 
 	public Result8Table() { }
 
@@ -68,23 +66,6 @@ public class Result8Table implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserId_Up() {
-		return userId_up;
-	}
-	public void setUserId_Up(String userId_up) {
-		this.userId_up = userId_up;
-	}
-	public int getControl() {
-		return control;
-	}
-	public void setControl(int control) {
-		this.control = control;
-	}
-	public int getDeleteFlg() {
-		return deleteflg;
-	}
-	public void setDeleteFlg(int deleteflg) {
-		this.deleteflg = deleteflg;
-	}
+
 	
 	}
