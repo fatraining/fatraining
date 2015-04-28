@@ -15,7 +15,7 @@ public class Movie implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//｛入力した値をテーブルに挿入するため、検索結果を表示させるためにデータを取り出すため｝の変数とメソッド
-	private int id;
+	private String id;
 	private String title ;
 	private int genreId ;
 	private int exhibition_year ;
@@ -29,7 +29,7 @@ public class Movie implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	@Column(name="title")
@@ -70,7 +70,7 @@ public class Movie implements Serializable{
 //	}	
 /*--------------------------------------------------*/
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setTitle(String title) {
