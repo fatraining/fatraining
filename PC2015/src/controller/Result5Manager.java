@@ -25,7 +25,7 @@ public class Result5Manager extends HibernateUtil {
 				name = "%";
 
 			String select = "SELECT * FROM user_character i, user_profile d";
-			String where1 = "WHERE i.id = d.id";
+			String where1 = "WHERE i.id = d.personality2";
 			String where2 = "AND (d.dwelling LIKE '" + dwelling
 					+ "' AND d.name LIKE '" + name + "')";
 			String sql = select + " " + where1 + " " + where2;
@@ -62,6 +62,8 @@ public class Result5Manager extends HibernateUtil {
 				temp.setUserid(user_profile.getUserid());
 				temp.setNewuserid(user_profile.getNewuserid());
 
+//				temp.setDelete(user_profile.getDelete());
+//				temp.setFlg(user_profile.getFlg());
 
 				temp.setPersonality(user_caharacter.getPersonality());
 
