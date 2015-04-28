@@ -20,22 +20,8 @@
 				<input name="Genre" class="form-control valid" type="text" >
 			</div>
 			<br><br><br>
-			<label class="col-md-2 control-label" > 登録USERID:</label>
-			<div class="col-md-5">
-				<input name="Entry_userId" class="form-control valid" type="text" >
-			</div>
-			<br><br><br>
-			<label class="col-md-2 control-label" > 更新USERID:</label>
-			<div class="col-md-5">
-				<input name="Record_userId" class="form-control valid" type="text" >
-			</div>
-			<br><br><br>
-			<label class="col-md-2 control-label" > 排他:</label>
-			<div class="col-md-5">
-				<input name="Exclusive_FLG" class="form-control valid" type="text" >
-			</div>
-			<br><br>
 		</div>
+		<br><br><br>
 		<div align=right>
 			<div class="col-sm-offset-2 col-sm-10">
 				<s:submit method="insert" value="追加" cssClass="btn btn-primary" />
