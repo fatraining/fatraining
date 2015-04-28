@@ -18,8 +18,8 @@ import controller.YasaiManager;
  * @author a_yoshida
  *
  */
-@Result(name = "main8", value = "main8.action", type = ServletRedirectResult.class)
-public class AddyasaiAction extends AbstractAction {
+@Result(name = "yasaiSearch", value = "yasaiSearch.action", type = ServletRedirectResult.class)
+public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// update_idを宣言（削除時に必要）
@@ -48,11 +48,11 @@ public class AddyasaiAction extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		// 日付の設定
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		date_entry = String.valueOf(sdf.format(date));
-		date_up = String.valueOf(sdf.format(date));
+//		// 日付の設定
+//		Date date = new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+//		date_entry = String.valueOf(sdf.format(date));
+//		date_up = String.valueOf(sdf.format(date));
 
 		// ユーザーIDをゲット
 		this.userId = (String) this.sessionMap.get("userId");
@@ -105,7 +105,7 @@ public class AddyasaiAction extends AbstractAction {
 		}
 
 		session.getTransaction().commit();
-		return "main8";
+		return "yasaiSearch";
 	}
 
 	// TODO
@@ -113,7 +113,7 @@ public class AddyasaiAction extends AbstractAction {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		//update_idが空だとそのままmain8にもどる
 		if (this.update_id.isEmpty()) {
-			return "main8";
+			return "yasaiSearch";
 		}
 		//DBと接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -128,7 +128,7 @@ public class AddyasaiAction extends AbstractAction {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		return "main8";
+		return "yasaiSearch";
 	}
 
 }
