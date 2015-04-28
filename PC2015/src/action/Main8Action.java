@@ -88,7 +88,6 @@ public class Main8Action extends AbstractAction {
 
 		try {
 			// 指定したURL先にとぶ
-			//update_idが空だと追加登録画面にいく（入っていると削除画面にいく）
 			this.response.sendRedirect("/PC2015/addyasai.action");
 		} catch (IOException e) {
 			e.printStackTrace();
