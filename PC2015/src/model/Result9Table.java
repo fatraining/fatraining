@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Result9Table implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// 表示させたいカラム
-	private int id;
+	private String id;
 	private String name;
 	private String food;
 	private String drink;
@@ -22,11 +22,11 @@ public class Result9Table implements Serializable {
 	public Result9Table() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
