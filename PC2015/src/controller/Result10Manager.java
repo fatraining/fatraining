@@ -15,11 +15,13 @@ public class Result10Manager extends HibernateUtil {
 
 	public ArrayList<Result10Table> resultList(String eat_year, String eat_month,
 			String eat_day, String eat_hour) {
+		//データベースに接続する
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
 		try {
 			if (eat_year.isEmpty())
-				eat_year = "%";
+				eat_year = "%"; //eat_yearが入力されたものである
 			if (eat_month.isEmpty())
 				eat_month = "%";
 			if (eat_day.isEmpty())
@@ -33,14 +35,15 @@ public class Result10Manager extends HibernateUtil {
 			String sql = select + " " + where1+ " " + where2;
 			result10Table = session.createSQLQuery(sql)
 					.addEntity("DetailEat", DetailEat.class)
-					.addEntity("IDofEat", IDofEat.class).list();
+					.addEntity("IDofEat", IDofEat.class).list(); //todo(2つのテーブルを一つのものにする？)
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			session.getTransaction().rollback(); //例外がキャッチされたらその前に戻る
 		}
 		session.getTransaction().commit();
-		this.outputTable = tableTrans(result10Table);
-		return outputTable;
+		this.outputTable = tableTrans(result10Table); //todo(outputTableに2つが結合したものを検索処理したものを代入する？)
+		
+		return outputTable; //テーブルを表示させる
 	}
 
 	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
@@ -49,7 +52,7 @@ public class Result10Manager extends HibernateUtil {
 		try {
 			for (int i = 0; i < result10Table.size(); i++) {
 				Result10Table temp = new Result10Table();
-				obj = (Object[]) result10Table.get(i); //どのレコード（i）を表示させたいか
+				obj = (Object[]) result10Table.get(i); //result10Tableの表示の為に情報を取得する
 				DetailEat detaileat = (DetailEat) obj[0];//DetailEatは0番目テーブル
 				IDofEat idofeat = (IDofEat) obj[1];//DetailEatは１番目テーブル
 				temp.setId(detaileat.getId()); //IDを表示する
