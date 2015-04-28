@@ -12,6 +12,7 @@ public class Main6Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
+	//表示したいカラムの呼び出し・検索、削除、追加を作成
 	public String series;
 	public String title;
 	public String result;
@@ -19,6 +20,7 @@ public class Main6Action extends AbstractAction {
 	public String update_id;
 	public String delete;
 
+	//検索結果の表示に必要なもの
 	private Result6Manager linkController;
 	private LikeManager allController;
 	public ArrayList<ResultTable6> outputTable;
@@ -37,6 +39,7 @@ public class Main6Action extends AbstractAction {
 	}
 
 	@Override
+	//代入した変数の値の表示
 	public String execute() {
 		this.series = getDefaultSeries();
 		this.title = getDefaultTitle();
@@ -44,6 +47,7 @@ public class Main6Action extends AbstractAction {
 		return "success";
 	}
 
+	//executeを初期状態に戻す。
 	public String reset() {
 		this.series = getDefaultSeries();
 		this.title = getDefaultTitle();
