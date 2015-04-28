@@ -16,20 +16,30 @@ public class Result5Manager extends HibernateUtil {
 
 	public ArrayList<Result5Table> resultList(String dwelling, String name) {
 
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
+		
+		
 		try {
+			//もしdwellingが空の場合、ワイルドガードを代入して何でも検索する
 			if (dwelling.isEmpty())
 				dwelling = "%";
 			if (name.isEmpty())
 				name = "%";
-
+			
+			//全てのテーブルの選択
 			String select = "SELECT * FROM user_character i, user_profile d";
+			//i(characterテーブル)とd(profileテーブル)が一緒の条件
 			String where1 = "WHERE i.id = d.personality2";
+			//2つのテーブルを結合
 			String where2 = "AND (d.dwelling LIKE '" + dwelling
 					+ "' AND d.name LIKE '" + name + "')";
+			//2つのテーブルをsql文に代入
 			String sql = select + " " + where1 + " " + where2;
 
+			//resultテーブルにsql文を代入
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("User_Character", User_Character.class)
 					.addEntity("User_Profile", User_Profile.class).list();

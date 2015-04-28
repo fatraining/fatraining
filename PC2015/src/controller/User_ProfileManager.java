@@ -18,11 +18,15 @@ public class User_ProfileManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		String select = "SELECT *  FROM User_Character i,User_Profile d";
+		//2つのテーブルの選択
+		String select = "SELECT * FROM User_Character i,User_Profile d";
+		//i(id)のカラム名とd(personality2)のカラム名を一致させる
 		String where1 = "WHERE i.id = d.personality2";
+		//sql文で2つのテーブルを結合させる
 		String sql    = select + " " + where1;
 
 		try {
+			//resultテーブルにsql文を代入
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("user_character", User_Character.class)
 					.addEntity("user_profile", User_Profile.class).list();
@@ -32,7 +36,7 @@ public class User_ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 
-		this.outputTable = tableTrans(resultTable);
+		//this.outputTable = tableTrans(resultTable);
 
 		return outputTable;
 	}
@@ -71,3 +75,4 @@ public class User_ProfileManager extends HibernateUtil {
 		return tempTable;
 	}
 }
+
