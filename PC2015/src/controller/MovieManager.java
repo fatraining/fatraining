@@ -18,6 +18,7 @@ public class MovieManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		//インサートするためのsql文
 		String select = "SELECT * FROM movie m,movie_genre g";
 		String where1 = "WHERE m.genreId=g.id";
 		String sql    = select + " "+where1;
@@ -36,23 +37,25 @@ public class MovieManager extends HibernateUtil {
 
 		return outputTableMovie;
 	}
-	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTableMovie){
+	
+	//表示結果の配列
+	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable){
 		ArrayList<ResultTableMovie> tempTable = new ArrayList<ResultTableMovie>();
 		Object[] obj;
 		try {
-			for(int i = 0 ; i < resultTableMovie.size() ; i++){
+			for(int i = 0 ; i < resultTable.size() ; i++){
 				ResultTableMovie temp = new ResultTableMovie();
-				obj = (Object[]) resultTableMovie.get(i);
+				obj = (Object[]) resultTable.get(i);
 				Movie movie =  (Movie)obj[0];
 				MovieGenre movie_genre  = (MovieGenre)obj[1];
 				temp.setGenre(movie_genre.getGenre());
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
 				temp.setExhibition_year(movie.getExhibition_year());
-				temp.setRegistration_date(movie.getRegistration_date());
-				temp.setRenewal_date(movie.getRenewal_date());
-				temp.setRegistration_userid(movie.getRegistration_userid());
-				temp.setRenewal_userid(movie.getRenewal_userid());
+//				temp.setRegistration_date(movie.getRegistration_date());
+//				temp.setRenewal_date(movie.getRenewal_date());
+//				temp.setRegistration_userid(movie.getRegistration_userid());
+//				temp.setRenewal_userid(movie.getRenewal_userid());
 //				temp.setControl(movie.getControl());
 //				temp.setDelete(movie.getDelete());
 				tempTable.add(temp);
