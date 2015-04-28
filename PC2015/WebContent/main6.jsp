@@ -23,7 +23,7 @@
 	<div class="col-sm-offset-2 col-sm-10">
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="delete" value="追加" cssClass="btn btn-primary" />
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
@@ -67,7 +67,7 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除"
+				<s:submit method="delete" name="update_id" value="削除"
 					cssClass="btn btn-primary" />
 			</div>
 		</s:if>
