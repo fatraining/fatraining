@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class CoofTa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// カラム
-	private int id;
+	private String id;
 	private String colorNm;
 	private String taste;
 	private String day;
@@ -27,7 +27,7 @@ public class CoofTa implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -71,7 +71,7 @@ public class CoofTa implements Serializable {
 	// return delete;
 	// }
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
