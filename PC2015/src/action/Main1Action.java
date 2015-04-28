@@ -84,7 +84,7 @@ public class Main1Action extends AbstractAction {
 		return "success";
 	}
 //updateメソッド
-	public String update() {//UpdataActionに進む
+	public String update() {
 		this.sessionMap.put("update_id", this.update_id);
 
 		try {
