@@ -84,19 +84,16 @@ public class Main8Action extends AbstractAction {
 	// TODO
 	public String update() {
 		this.sessionMap.put("update_id", this.update_id);
+		
 
 		try {
-			// 指定したURL先に飛ばしている
+			// 指定したURL先にとぶ
+			//update_idが空だと追加登録画面にいく（入っていると削除画面にいく）
 			this.response.sendRedirect("/PC2015/addyasai.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "success";
-	}
-
-	// AddyasaiAction移行するためのメソッド
-	public String gotoaddyasai() {
-		return "addyasai";
 	}
 
 	public ArrayList<Result8Table> tableTrans(List<?> resultTable) {
@@ -128,7 +125,7 @@ public class Main8Action extends AbstractAction {
 				temp.setDeleteFlg(yasai.getDeleteFlg());
 
 				// （料理ID）int型をString型に変換
-//				 temp.setId(String.valueOf(ryouri.getId()));
+				// temp.setId(String.valueOf(ryouri.getId()));
 
 				temp.setTyouri(ryouri.getTyouri());
 				temp.setRyouri(ryouri.getRyouri());
