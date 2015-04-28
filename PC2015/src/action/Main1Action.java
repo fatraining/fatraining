@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import action.AbstractAction;
+import controller.All10Manager;
 import controller.ProfileManager;
+import controller.Result10Manager;
 import controller.Result1Manager;
 import model.Result1Table;
 
@@ -17,28 +19,23 @@ public class Main1Action extends AbstractAction {
 	public String hobby;
 //メソッドを起こすための変数
 	public String update_id;
-	public String result;
 	public String do_search;
 	public String delete;
-	public String errormsg;
 //使用する場所が違うソース　検索結果(サーバーのテーブルの内容)表示に必要
-	public Result1Manager linkController;
-	public ProfileManager allController;
+	private Result1Manager linkController;
+	private ProfileManager allController;
 	public ArrayList<Result1Table> outputTable;
 //変数に値を代入
 	private String getDefaultName() {
-		this.name = "";
-		return this.name;
+		return "";
 	}
 
 	private String getDefaultHome() {
-		this.home = "";
-		return this.home;
+		return "";
 	}
 
 	private String getDefaultHobby() {
-		this.hobby = "";
-		return this.hobby;
+		return "";
 	}
 //executeメソッド　メソッドが呼ばれたとき変数に代入した値が表示
 	@Override
