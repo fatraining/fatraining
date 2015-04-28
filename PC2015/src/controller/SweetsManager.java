@@ -11,10 +11,10 @@ import org.hibernate.classic.Session;
 
 public class SweetsManager extends HibernateUtil {
 
-	public  List<?> resultTable;
+	public  List<?> result2Table;
 	public  ArrayList<Result2Table> outputTable;
 
-	public ArrayList<Result2Table> resultList(String genreNm, String name) {
+	public ArrayList<Result2Table> resultList(String name, String genreNm) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -23,7 +23,7 @@ public class SweetsManager extends HibernateUtil {
 		String sql    = select + " "+where1;
 
 		try {
-			resultTable = session.createSQLQuery(sql)
+			result2Table = session.createSQLQuery(sql)
 					.addEntity("sweets", Sweets.class)
 					.addEntity("genre", Genre.class).list();
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class SweetsManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 
-		this.outputTable = tableTrans(resultTable);
+		this.outputTable = tableTrans(result2Table);
 
 		return outputTable;
 	}
@@ -44,12 +44,12 @@ public class SweetsManager extends HibernateUtil {
 				Result2Table temp = new Result2Table();
 				obj = (Object[]) resultTable.get(i);
 				Sweets sweets =  (Sweets)obj[0];
-				Genre genreNm     = (Genre)obj[1];
+				Genre genre    = (Genre)obj[1];
 				temp.setId(sweets.getId());
 				temp.setName(sweets.getName());
-				temp.setGenreNm(genreNm.getGenreNm());
-				temp.setRecord_date(sweets.getRecord_date());
-				temp.setReset_date(sweets.getReset_date());
+				temp.setGenreNm(genre.getGenreNm());
+//				temp.setRecord_date(sweets.getRecord_date());
+//				temp.setReset_date(sweets.getReset_date());
 				temp.setEntry_userId(sweets.getEntry_userId());
 				temp.setRecord_userId(sweets.getRecord_userId());
 				temp.setExclusive_FLG(sweets.getExclusive_FLG());
