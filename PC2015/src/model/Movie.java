@@ -14,6 +14,7 @@ public class Movie implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	//｛入力した値をテーブルに挿入するため、検索結果を表示させるためにデータを取り出すため｝の変数とメソッド
 	private int id;
 	private String title ;
 	private int genreId ;
