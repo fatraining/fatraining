@@ -13,7 +13,7 @@
 
 			<div align=right>
 				<s:submit method="insert" value="追加" cssClass="btn btn-success" />
-				<a href="main8.action">Back</a>
+				<a href="yasaiSearch.action">Back</a>
 			</div>
 			</div>
 
@@ -53,7 +53,7 @@
 	<td class="data">削除するレコード ID:<s:property value="update_id" /></td>
 	<s:form cssClass="form-horizontal">
 		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
-		<a href="main8.action">Back</a>
+		<a href="yasaiSearch.action">Back</a>
 	</s:form>
 
 </s:if>
