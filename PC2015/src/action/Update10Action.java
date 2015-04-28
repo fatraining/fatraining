@@ -1,6 +1,6 @@
 package action;
 
-import java.io.UnsupportedEncodingException;
+//import java.io.UnsupportedEncodingException;
 
 import model.DetailEat;
 import model.IDofEat;
@@ -18,8 +18,8 @@ import controller.HibernateUtil;
 @Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
 public class Update10Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
+	
 	public String update_id;
-
 	public String eatFood;
 	public String eatCalory;
 	public String eat_year;
@@ -90,11 +90,15 @@ public class Update10Action extends AbstractAction {
 		} //update_idが空である場合main10へ
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		try {
+		try {	
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 					Integer.valueOf(update_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
 					Integer.valueOf(update_id)); //指定した各テーブル（クラス）のレコードに相当するupdate_idを取得
+
+//			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, update_id);
+//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, update_id);
+			
 			session.delete(detaileat); //取得されたupdate_id(detaileat)のレコードをdeleteする
 			session.delete(idofeat); //取得されたupdate_id(idofeat)のレコードをdeleteする
 			
@@ -106,16 +110,16 @@ public class Update10Action extends AbstractAction {
 		return "main10";
 	}
 
-	private static boolean checkCharacterCode(String str, String encoding) {
-		if (str == null) {
-			return true;
-		}
-
-		try {
-			byte[] bytes = str.getBytes(encoding);
-			return str.equals(new String(bytes, encoding));
-		} catch (UnsupportedEncodingException ex) {
-			throw new RuntimeException("エンコード名称が正しくありません。", ex);
-		}
-	}
+//	private static boolean checkCharacterCode(String str, String encoding) {
+//		if (str == null) {
+//			return true;
+//		}
+//
+//		try {
+//			byte[] bytes = str.getBytes(encoding);
+//			return str.equals(new String(bytes, encoding));
+//		} catch (UnsupportedEncodingException ex) {
+//			throw new RuntimeException("エンコード名称が正しくありません。", ex);
+//		}
+//	}
 }
