@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import model.Result10Table;
 import controller.All10Manager;
-import controller.Result10Manager;
 
 public class Main10Action extends AbstractAction {
 
@@ -15,7 +14,6 @@ public class Main10Action extends AbstractAction {
 	public String eat_month;
 	public String eat_day;
 	public String eat_hour;
-	public String result;
 	public String do_search;
 	public String delete_id;
 	public String delete;
@@ -50,7 +48,18 @@ public class Main10Action extends AbstractAction {
 		this.delete = "false"; // todo
 		return "success";
 	}
-
+	
+	public String reset(){
+		this.userId = (String) this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
+		this.eat_year = getDefaultEat_year(); // デフォルト値の取得
+		this.eat_month = getDefaultEat_month(); // デフォルト値の取得
+		this.eat_day = getDefaultEat_day(); // デフォルト値の取得
+		this.eat_hour = getDefaultEat_hour(); // デフォルト値の取得
+		return "success";
+	}
+	
+	
+	
 	public String search() { // searchメソッド
 		this.do_search = "true"; // ボタンで処理する
 		this.userId = (String) this.sessionMap.get("userId");
@@ -63,8 +72,8 @@ public class Main10Action extends AbstractAction {
 				e.printStackTrace(); // todo
 			}
 		} else { // 空でなかったら 検索結果の表示をする
-			Result10Manager linkController = new Result10Manager(); // インスタンスの生成
-			this.outputTable = linkController.resultList(this.eat_year,
+			All10Manager allController = new All10Manager(); // インスタンスの生成
+			this.outputTable = allController.resultList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
 		}
 		this.delete = "true"; // deleteボタンができる
@@ -79,9 +88,11 @@ public class Main10Action extends AbstractAction {
 
 	public String update() { // updateメソッド
 		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
-		try {// 例外が発生するかもしれない処理
+		try {
+			// 例外が発生するかもしれない処理
 			this.response.sendRedirect("/PC2015/update10.action"); // UpdateActionに接続する
-		} catch (IOException e) { // 例外をキャッチ
+		} catch (IOException e) { 
+			// 例外をキャッチ
 			e.printStackTrace();
 		}
 
