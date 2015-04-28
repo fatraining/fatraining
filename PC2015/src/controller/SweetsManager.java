@@ -14,7 +14,7 @@ public class SweetsManager extends HibernateUtil {
 	public  List<?> result2Table;
 	public  ArrayList<Result2Table> outputTable;
 
-	public ArrayList<Result2Table> resultList(String name, String genreNm) {
+	public ArrayList<Result2Table> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -39,6 +39,34 @@ public class SweetsManager extends HibernateUtil {
 
 		return outputTable;
 	}
+	
+	public ArrayList<Result2Table> resultList(String genreNm, String name){
+
+		Session session = HibernateUtil.getSessionFactory()
+				.getCurrentSession();
+		session.beginTransaction();
+		try {
+			if(genreNm.isEmpty())genreNm="%";
+			if(name.isEmpty())name="%";
+			
+			//2つのテーブルを結合
+			String select = "SELECT * FROM sweets d,genre i";
+			String where1 = "WHERE d.genre_id=i.id";
+			String where2 = "AND (d.name LIKE'"+ name + "' AND i.genreNm LIKE '" + genreNm + "')";
+			String sql = select + " " + where1 + " " + where2;
+			result2Table = session.createSQLQuery(sql)
+					.addEntity("Sweets", Sweets.class)
+					.addEntity("Genre", Genre.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(result2Table);
+		return outputTable;
+	}
+	
+
 	//検索結果
 	public ArrayList<Result2Table> tableTrans(List<?> resultTable){
 		ArrayList<Result2Table> tempTable = new ArrayList<Result2Table>();

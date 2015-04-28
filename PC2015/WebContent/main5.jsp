@@ -32,7 +32,7 @@
 	<div class="col-sm-offset-2 col-sm-10">
 		<s:submit method="search" value="検索" cssClass="btn btn-info" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-info" />
-		<s:submit method="update" value="追加" cssClass="btn btn-info" />
+		<s:submit method="add" value="追加" cssClass="btn btn-info" />
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
@@ -80,7 +80,7 @@
 						<td class="data"><s:property value="newday" /></td>
 						<td class="data"><s:property value="userid" /></td>
 						<td class="data"><s:property value="newuserid" /></td>
-						<td class="data"><input type="checkbox" name="update_id"
+						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
 					</tr>
@@ -89,7 +89,7 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除"
+				<s:submit method="delete" name="update_id" value="削除"
 					cssClass="btn btn-info" />
 			</div>
 		</s:if>

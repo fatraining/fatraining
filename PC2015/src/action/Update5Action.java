@@ -36,7 +36,7 @@ public class Update5Action extends AbstractAction {
 
 	public String execute() throws Exception {
 		//Main5Actionのupdate_idを呼び出している
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.update_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
 	}

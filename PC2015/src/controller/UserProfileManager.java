@@ -9,7 +9,7 @@ import model.Result5Table;
 
 import org.hibernate.classic.Session;
 
-public class User_ProfileManager extends HibernateUtil {
+public class UserProfileManager extends HibernateUtil {
 
 	public  List<?> resultTable;
 	public  ArrayList<Result5Table> outputTable;
@@ -36,10 +36,48 @@ public class User_ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 
-		//this.outputTable = tableTrans(resultTable);
+		this.outputTable = tableTrans(resultTable);
 
 		return outputTable;
 	}
+	public ArrayList<Result5Table> resultList(String dwelling, String name) {
+
+		//データベースに接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
+		session.beginTransaction();
+		
+		
+		try {
+			//もしdwellingが空の場合、ワイルドガードを代入して何でも検索する
+			if (dwelling.isEmpty())
+				dwelling = "%";
+			if (name.isEmpty())
+				name = "%";
+			
+			//全てのテーブルの選択
+			String select = "SELECT * FROM user_character i, user_profile d";
+			//i(characterテーブル)とd(profileテーブル)が一緒の条件
+			String where1 = "WHERE i.id = d.personality2";
+			//2つのテーブルを結合
+			String where2 = "AND (d.dwelling LIKE '" + dwelling
+					+ "' AND d.name LIKE '" + name + "')";
+			//2つのテーブルをsql文に代入
+			String sql = select + " " + where1 + " " + where2;
+
+			//resultテーブルにsql文を代入
+			resultTable = session.createSQLQuery(sql)
+					.addEntity("User_Character", User_Character.class)
+					.addEntity("User_Profile", User_Profile.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(resultTable);
+		return outputTable;
+	}
+	
 	public ArrayList<Result5Table> tableTrans(List<?> resultTable){
 		ArrayList<Result5Table> tempTable = new ArrayList<Result5Table>();
 		Object[] obj;

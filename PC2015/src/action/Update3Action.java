@@ -28,7 +28,7 @@ public class Update3Action extends AbstractAction {
 	public String errormsg;
 
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.update_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
 	}

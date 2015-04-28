@@ -31,4 +31,13 @@
 		</div>
 	</s:form>
 </s:if>
+<s:if test="%{update_id!=null}">
+	<h3>さっきクリックしたデータを削除済ます</h3>
+	<td class="data">削除する ID:<s:property value="update_id" /></td>
+	<s:form cssClass="form-horizontal">
+		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
+		<a href="main3.action">Back</a>
+	</s:form>
+
+</s:if>
 <jsp:include page="footer.jsp" />
