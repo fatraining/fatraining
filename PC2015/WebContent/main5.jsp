@@ -33,7 +33,6 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-info" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-info" />
 		<s:submit method="update" value="追加" cssClass="btn btn-info" />
-		<br /> <br /> <br /> <a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
@@ -48,14 +47,23 @@
 				<tr>
 					<th>Id</th>
 					<th>電話番号</th>
+
 					<th>郵便番号</th>
+
 					<th>住所</th>
+
 					<th>名前</th>
+
 					<th>性格</th>
+
 					<th>登録日時</th>
+
 					<th>更新日時</th>
+
 					<th>登録USERID</th>
+
 					<th>更新USERID</th>
+
 					<th>削除</th>
 
 				</tr>
@@ -81,10 +89,14 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除"
+				<s:submit method="update5" name="update_id" value="削除"
 					cssClass="btn btn-info" />
 			</div>
 		</s:if>
 	</s:form>
 </s:if>
 <jsp:include page="footer.jsp" />
+
+
+
+
