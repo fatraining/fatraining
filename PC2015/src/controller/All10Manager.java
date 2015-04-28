@@ -23,18 +23,17 @@ public class All10Manager extends HibernateUtil{
 
 		try {
 			result10Table = session.createSQLQuery(sql)
-					.addEntity("eat_detail", DetailEat.class)//SQLQuery.addEntityメソッドで戻り値eat_detailの型設定
-
-					.addEntity("eat_id", IDofEat.class).list(); //SQLQuery.addEntityメソッドで戻り値eat_idの型設定
+					.addEntity("eat_detail", DetailEat.class)
+					.addEntity("eat_id", IDofEat.class).list();  //テーブルを結合し、result10Tableにする。
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			session.getTransaction().rollback(); //例外を検出したらその前に戻る
 		}
 		session.getTransaction().commit();
 
 		this.outputTable = tableTrans(result10Table);
-
+		//todo(outputTableに2つのテーブルが結合したものを検索処理したものを代入する？)
 		return outputTable;
 	}
 
@@ -44,7 +43,9 @@ public class All10Manager extends HibernateUtil{
 		try {
 			for (int i = 0; i < result10Table.size(); i++) {
 				Result10Table temp = new Result10Table();
+				//インスタンスの生成
 				obj = (Object[]) result10Table.get(i);
+				//結合したテーブルを表示させる
 				DetailEat detaileat = (DetailEat) obj[0];
 				IDofEat idofeat = (IDofEat) obj[1];
 				temp.setId(detaileat.getId());
@@ -65,10 +66,10 @@ public class All10Manager extends HibernateUtil{
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); //todo（例外をキャッチする）
 
 		}
 
-		return tempTable;
+		return tempTable; //todo
 	}
 }
