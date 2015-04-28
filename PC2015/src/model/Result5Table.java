@@ -6,6 +6,7 @@ public class Result5Table implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	//表示させるカラム名
 	private int id;
 	private int phonenumber;
 	private int zipcode;
@@ -25,15 +26,15 @@ public class Result5Table implements Serializable {
 	
 	public Result5Table() {
 	}
-
+	//idを表示
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	//phonenumberを表示
 	public int getPhonenumber() {
 		return phonenumber;
 	}
@@ -41,7 +42,7 @@ public class Result5Table implements Serializable {
 	public void setPhonenumber(int phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-
+	//zipcodeを表示
 	public int getZipcode() {
 		return zipcode;
 	}
@@ -49,7 +50,7 @@ public class Result5Table implements Serializable {
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
-
+	//dwellingを表示
 	public String getDwelling() {
 		return dwelling;
 	}
@@ -57,15 +58,15 @@ public class Result5Table implements Serializable {
 	public void setDwelling(String dwelling) {
 		this.dwelling = dwelling;
 	}
-	
+	//nameを表示
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	//personalityを表示
 	public String getPersonality() {
 		return personality;
 	}
@@ -73,7 +74,7 @@ public class Result5Table implements Serializable {
 	public void setPersonality(String personality) {
 		this.personality = personality;
 	}
-
+	//dayを表示
 	public String getDay() {
 		return day;
 	}
@@ -81,7 +82,7 @@ public class Result5Table implements Serializable {
 	public void setDay(String day) {
 		this.day = day;
 	}
-
+	//newdayを表示
 	public String getNewday() {
 		return newday;
 	}
@@ -89,7 +90,7 @@ public class Result5Table implements Serializable {
 	public void setNewday(String newday) {
 		this.newday = newday;
 	}
-
+	//useridを表示
 	public String getUserid() {
 		return userid;
 	}
@@ -97,7 +98,7 @@ public class Result5Table implements Serializable {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-
+	//newuseridを表示
 	public String getNewuserid() {
 		return newuserid;
 	}
@@ -122,6 +123,7 @@ public class Result5Table implements Serializable {
 //		this.flg = flg;
 //	}
 	
+	//interestを表示
 	public String getInterest() {
 		return interest;
 	}
