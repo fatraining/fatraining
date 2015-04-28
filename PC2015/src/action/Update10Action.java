@@ -31,9 +31,10 @@ public class Update10Action extends AbstractAction {
 	public String entry_userid;
 	public String renew_userid;
 	public String errormsg;
+	public String delete_id;
 
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		return "success";
 	}
 	
@@ -86,8 +87,8 @@ public class Update10Action extends AbstractAction {
 	}
 
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");//update_idを使う
-		if (this.update_id.isEmpty()) {
+		this.delete_id = (String) this.sessionMap.get("delete_id");//update_idを使う
+		if (this.delete_id.isEmpty()) {
 			return "main10";
 		} //update_idが空である場合main10へ
 		
@@ -97,9 +98,9 @@ public class Update10Action extends AbstractAction {
 		session.beginTransaction();
 		try {	
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
-					Integer.valueOf(update_id));
+					Integer.valueOf(delete_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(update_id)); //todo(update_idがStringでは処理できないのでキャストする)
+					Integer.valueOf(delete_id)); //todo(update_idがStringでは処理できないのでキャストする)
 
 //			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, update_id);
 //			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, update_id);（キャストしていないもの）

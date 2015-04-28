@@ -17,7 +17,7 @@ public class Main10Action extends AbstractAction {
 	public String eat_hour;
 	public String result;
 	public String do_search;
-	public String update_id;
+	public String delete_id;
 	public String delete;
 	public String userId;
 
@@ -72,15 +72,13 @@ public class Main10Action extends AbstractAction {
 	}
 
 	public String searchall() { // searchallメソッド
-		this.do_search = "true"; // do_searchのボタン機能（searchとは同じボタンでsearchallする）
 		All10Manager allController = new All10Manager(); // todo
 		this.outputTable = allController.resultList(); // searchよりsearchallは値が空のときについてなので引数なし
-		this.delete = "true"; // deleteボタンができる
 		return "success"; // 空欄での全検索ができるようになる
 	}
 
 	public String update() { // updateメソッド
-		this.sessionMap.put("update_id", this.update_id);// update_idを取得する
+		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
 		try {// 例外が発生するかもしれない処理
 			this.response.sendRedirect("/PC2015/update10.action"); // UpdateActionに接続する
 		} catch (IOException e) { // 例外をキャッチ
