@@ -22,6 +22,8 @@ public class Result2Manager extends HibernateUtil {
 		try {
 			if(genreNm.isEmpty())genreNm="%";
 			if(name.isEmpty())name="%";
+			
+			//2つのテーブルを結合
 			String select = "SELECT * FROM sweets d,genre i";
 			String where1 = "WHERE d.genre_id=i.id";
 			String where2 = "AND (d.name LIKE'"+ name + "' AND i.genreNm LIKE '" + genreNm + "')";
