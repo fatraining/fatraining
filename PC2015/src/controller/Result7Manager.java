@@ -51,10 +51,10 @@ public class Result7Manager extends HibernateUtil {
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
 				temp.setExhibition_year(movie.getExhibition_year());
-				temp.setRegistration_date(movie.getRegistration_date());
-				temp.setRenewal_date(movie.getRenewal_date());
-				temp.setRegistration_userid(movie.getRegistration_userid());
-				temp.setRenewal_userid(movie.getRenewal_userid());
+//				temp.setRegistration_date(movie.getRegistration_date());
+//				temp.setRenewal_date(movie.getRenewal_date());
+//				temp.setRegistration_userid(movie.getRegistration_userid());
+//				temp.setRenewal_userid(movie.getRenewal_userid());
 //				temp.setControl(movie.getControl());
 //				temp.setDelete(movie.getDelete());
 				tempTable.add(temp);
