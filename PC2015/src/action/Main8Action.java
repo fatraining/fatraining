@@ -29,12 +29,10 @@ public class Main8Action extends AbstractAction {
 	public String update_id;
 
 	public ArrayList<Result8Table> outputTable;
-	public List<?> resultTable;
 
 	// yasai=野菜をデフォルトで表示させるメソッド
 	private String getDefaultYasai() {
-		this.yasai = "野菜";
-		return this.yasai;
+		return this.yasai = "野菜";
 	}
 
 	@Override
@@ -62,14 +60,10 @@ public class Main8Action extends AbstractAction {
 		YasaiManager yasaimanager = new YasaiManager();
 		this.userId = (String) this.sessionMap.get("userId");
 		// 検索結果を出したいので、このメソッドを呼び出したときに"true"を代入
-		this.do_print = "true";
+		List<?> resultTable;
 		if (this.yasai.isEmpty()) {
-			try {
-				// yasaiが空だったら、yasaimanagerのresultList()を呼び出す
-				resultTable = yasaimanager.resultList();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			// yasaiが空だったら、yasaimanagerのresultList()を呼び出す
+			resultTable = yasaimanager.resultList();
 		} else {
 			// yasaiが空でなかったら、yasaimanagerのresultList(yasai)を呼び出す
 			resultTable = yasaimanager.resultList(yasai);
@@ -77,6 +71,7 @@ public class Main8Action extends AbstractAction {
 		// resultTableを引数にtableTranseメソッドを呼び出し、outputTableに代入
 		this.outputTable = tableTrans(resultTable);
 		// 削除ボタンを出したいので、"true"を代入
+		this.do_print = "true";
 		this.delete = "true";
 		return "success";
 	}
@@ -84,7 +79,6 @@ public class Main8Action extends AbstractAction {
 	// TODO
 	public String update() {
 		this.sessionMap.put("update_id", this.update_id);
-		
 
 		try {
 			// 指定したURL先にとぶ
@@ -120,8 +114,7 @@ public class Main8Action extends AbstractAction {
 				temp.setDate_Up(yasai.getDate_Up());
 				temp.setUserId(yasai.getUserId());
 				temp.setDate_Up(yasai.getUserId_Up());
-				temp.setControl(yasai.getControl());
-				temp.setDeleteFlg(yasai.getDeleteFlg());
+
 
 				// （料理ID）int型をString型に変換
 				// temp.setId(String.valueOf(ryouri.getId()));
@@ -132,8 +125,7 @@ public class Main8Action extends AbstractAction {
 				temp.setDate_Up(ryouri.getDate_Up());
 				temp.setUserId(ryouri.getUserId());
 				temp.setDate_Up(ryouri.getUserId_Up());
-				temp.setControl(ryouri.getControl());
-				temp.setDeleteFlg(ryouri.getDeleteFlg());
+
 
 				// tempTableにtempを加える
 				tempTable.add(temp);
