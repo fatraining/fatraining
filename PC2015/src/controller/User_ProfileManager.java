@@ -18,14 +18,14 @@ public class User_ProfileManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		String select = "SELECT * FROM User_Character i,User_Profile d";
-		String where1 = "WHERE i.id = d.id";
+		String select = "SELECT *  FROM User_Character i,User_Profile d";
+		String where1 = "WHERE i.id = d.personality2";
 		String sql    = select + " " + where1;
 
 		try {
 			resultTable = session.createSQLQuery(sql)
-					.addEntity("User_Character", User_Character.class)
-					.addEntity("User_Profile", User_Profile.class).list();
+					.addEntity("user_character", User_Character.class)
+					.addEntity("user_profile", User_Profile.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
