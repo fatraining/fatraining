@@ -25,7 +25,7 @@
 		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 			<s:submit method="reset" value="リセット" cssClass="btn btn-warning" />
-			<s:submit method="gotoaddyasai" value="追加" cssClass="btn btn-success" />
+			<s:submit method="update" value="追加" cssClass="btn btn-success" />
 
 			<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 		</div>
