@@ -55,7 +55,7 @@
 				<tr>
 					<td class="data"><s:property value="title" /></td>
 					<td class="data"><s:property value="genre" /></td>
-				　　　	<td class="data"><s:property value="delete" /></td>
+				　　　	
 					<td class="data"><input type="checkbox" name="update_id"
 							value=<s:property value="id" /> /></td>	
 				
