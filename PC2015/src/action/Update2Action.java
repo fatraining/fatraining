@@ -30,9 +30,12 @@ import org.apache.struts2.config.Result;
 public class Update2Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
+	//カラム名
 	public String id;
 	public String name;
 	public String genreNm;
+	
+	//変数
 	public String update_id;
 	public String do_search;
 	public String errormsg;
@@ -42,6 +45,7 @@ public class Update2Action extends AbstractAction {
 	private SweetsManager allController;
 	public ArrayList<Result2Table> outputTable;
 
+	//初期値
 	private String getDefaultName() {
 		this.name = "";
 		return this.name;
