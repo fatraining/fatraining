@@ -45,10 +45,10 @@ public class Result2Manager extends HibernateUtil {
 				Result2Table temp = new Result2Table();
 				obj = (Object[]) resultTable.get(i);
 				Sweets sweets =  (Sweets)obj[0];
-				Genre genreNm     = (Genre)obj[1];
+				Genre genre     = (Genre)obj[1];
 				temp.setId(sweets.getId());
 				temp.setName(sweets.getName());
-				temp.setGenreNm(genreNm.getGenreNm());
+				temp.setGenreNm(genre.getGenreNm());
 				temp.setRecord_date(sweets.getRecord_date());
 				temp.setReset_date(sweets.getReset_date());
 				temp.setEntry_userId(sweets.getEntry_userId());
