@@ -15,6 +15,7 @@ import controller.HibernateUtil;
 @Result(name = "main6", value = "main6.action", type = ServletRedirectResult.class)
 public class Update6Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
+	//カラムの呼び出し
 	public String update_id;
 	public String id;
 	public String series;
@@ -38,7 +39,7 @@ public class Update6Action extends AbstractAction {
 	//追加画面
 	//追加入力
 	public String insert() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();//dbの接続
 		session.beginTransaction();
 
 		LikeGame insert_game_table = new LikeGame();
@@ -53,10 +54,10 @@ public class Update6Action extends AbstractAction {
 		insert_game_table.setUpUser(this.upUser);
 		insert_game_table.setNonStyle(this.nonStyle);
 		insert_game_table.setDel(this.del);
-		String[] data = {this.id, this.title, this.series, this.u, this.upDay,
-				this.userId, this.upUser, this.nonStyle, this.del,
-				 };
-		int i = 0;
+//		String[] data = {this.id, this.title, this.series, this.u, this.upDay,
+//				this.userId, this.upUser, this.nonStyle, this.del,
+//				 };
+//		int i = 0;
 
 			try {
 				session.save(insert_series_table);
@@ -75,17 +76,22 @@ public class Update6Action extends AbstractAction {
 	//削除動作
 	public String delete() {
 		this.update_id = (String) this.sessionMap.get("update_id");
+		
+		String str = new String(this.update_id);
+		String[] fate = str.split(",");
+		
 		if (this.update_id.isEmpty()) {
 			return "main6";
 		}
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
+		for(int i = 0; i < fate.length; i++){
+			//データベースに接続
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			//トランザクション
+			session.beginTransaction();
+			
 		try {
-			LikeGame likegame = (LikeGame) session.load(LikeGame.class,
-					update_id);
-			LikeSeries likeseries = (LikeSeries) session.load(LikeSeries.class,
-					update_id);
+			LikeGame likegame = (LikeGame) session.load(LikeGame.class, fate[i]);
+			LikeSeries likeseries = (LikeSeries) session.load(LikeSeries.class, fate[i]);
 			session.delete(likegame);
 			session.delete(likeseries);
 		} catch (HibernateException e) {
@@ -95,6 +101,8 @@ public class Update6Action extends AbstractAction {
 		session.getTransaction().commit();
 		return "main6";
 	}
+		return str;
+
 		
 //	private static boolean checkCharacterCode(String str, String encoding) {
 //		if (str == null) {
@@ -108,4 +116,5 @@ public class Update6Action extends AbstractAction {
 //			throw new RuntimeException("エンコード名称が正しくありません。", ex);
 //		}
 //	}
+  }
 }
