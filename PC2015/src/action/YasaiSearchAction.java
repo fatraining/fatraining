@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Result8Table;
+import model.YasaiResultTable;
 import model.Ryouri;
 import model.Yasai;
 
@@ -13,8 +13,8 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 import controller.YasaiManager;
 
-@Result(name = "addyasai", value = "addyasai.action", type = ServletRedirectResult.class)
-public class Main8Action extends AbstractAction {
+@Result(name = "yasaiAdd", value = "yasaiAdd.action", type = ServletRedirectResult.class)
+public class YasaiSearchAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class Main8Action extends AbstractAction {
 	//
 	public String update_id;
 
-	public ArrayList<Result8Table> outputTable;
+	public ArrayList<YasaiResultTable> outputTable;
 
 	// yasai=野菜をデフォルトで表示させるメソッド
 	private String getDefaultYasai() {
@@ -82,15 +82,15 @@ public class Main8Action extends AbstractAction {
 
 		try {
 			// 指定したURL先にとぶ
-			this.response.sendRedirect("/PC2015/addyasai.action");
+			this.response.sendRedirect("/PC2015/yasaiAdd.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "success";
 	}
 
-	public ArrayList<Result8Table> tableTrans(List<?> resultTable) {
-		ArrayList<Result8Table> tempTable = new ArrayList<Result8Table>();
+	public ArrayList<YasaiResultTable> tableTrans(List<?> resultTable) {
+		ArrayList<YasaiResultTable> tempTable = new ArrayList<YasaiResultTable>();
 
 		// objectの配列を宣言
 		Object[] obj;
@@ -98,7 +98,7 @@ public class Main8Action extends AbstractAction {
 			// resultTableのサイズ分まわす
 			for (int i = 0; i < resultTable.size(); i++) {
 				// Result8Tableをインスタンス化
-				Result8Table temp = new Result8Table();
+				YasaiResultTable temp = new YasaiResultTable();
 
 				// resultTableのインデックスを全て取得して、objectに代入
 				// リスト型を配列に変換（キャスト）
