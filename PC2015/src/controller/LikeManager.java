@@ -39,6 +39,7 @@ public class LikeManager extends HibernateUtil {
 	}
 	
 	//検索結果
+	//リスト内のどこに各要素が挿入されるかを精密に制御できます
 	public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
 		ArrayList<ResultTable6> tempTable = new ArrayList<ResultTable6>();
 		Object[] obj;
