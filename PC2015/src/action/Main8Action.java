@@ -29,7 +29,7 @@ public class Main8Action extends AbstractAction {
 	public String update_id;
 
 	public ArrayList<Result8Table> outputTable;
-	private List<?> resultTable;
+	public List<?> resultTable;
 
 	// yasai=野菜をデフォルトで表示させるメソッド
 	private String getDefaultYasai() {
@@ -43,8 +43,8 @@ public class Main8Action extends AbstractAction {
 		this.userId = (String) this.sessionMap.get("userId");
 		this.yasai = getDefaultYasai();
 
-		// 最初の検索画面では削除ボタンは出さないので、"faluse"
-		this.delete = "faluse";
+		// 最初の検索画面では削除ボタンは出さないので、"false"
+		this.delete = "false";
 		return "success";
 	}
 
@@ -128,7 +128,7 @@ public class Main8Action extends AbstractAction {
 				temp.setDeleteFlg(yasai.getDeleteFlg());
 
 				// （料理ID）int型をString型に変換
-				temp.setId(String.valueOf(ryouri.getId()));
+//				 temp.setId(String.valueOf(ryouri.getId()));
 
 				temp.setTyouri(ryouri.getTyouri());
 				temp.setRyouri(ryouri.getRyouri());
@@ -139,7 +139,7 @@ public class Main8Action extends AbstractAction {
 				temp.setControl(ryouri.getControl());
 				temp.setDeleteFlg(ryouri.getDeleteFlg());
 
-				//tempTableにtempを加える
+				// tempTableにtempを加える
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
