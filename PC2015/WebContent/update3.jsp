@@ -26,8 +26,10 @@
 				<s:textfield name="genre" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br /> <br /> <br />
-
+			<br /> 
+			<br /> 
+			<br />
+			<hr />
 
 		</div>
 
