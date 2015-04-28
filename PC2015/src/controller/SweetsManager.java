@@ -18,7 +18,10 @@ public class SweetsManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		
 		String select = "SELECT * FROM sweets d,genre i";
+		
+		//d（sweets）テーブルのgenre_idは、i(genre)テーブルのidです　という意味
 		String where1 = "WHERE d.genre_id=i.id";
 		String sql    = select + " "+where1;
 
@@ -36,6 +39,7 @@ public class SweetsManager extends HibernateUtil {
 
 		return outputTable;
 	}
+	//検索結果
 	public ArrayList<Result2Table> tableTrans(List<?> resultTable){
 		ArrayList<Result2Table> tempTable = new ArrayList<Result2Table>();
 		Object[] obj;
