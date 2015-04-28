@@ -13,6 +13,7 @@ public class LikeSeries implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	//カラム
 	private String i;
 	private String se ;
 	private String u;
