@@ -3,29 +3,24 @@ package action;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import action.AbstractAction;
-import controller.All10Manager;
 import controller.ProfileManager;
-import controller.Result10Manager;
-import controller.Result1Manager;
 import model.Result1Table;
 
 public class Main1Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-//テーブルで作ったカラム　検索画面にて検索をかけたいカラム名
+	// テーブルで作ったカラム　検索画面にて検索をかけたいカラム名
 	public String name;
 	public String home;
 	public String hobby;
-//メソッドを起こすための変数
-	public String update_id;
+	// メソッドを起こすための変数
+	public String delete_id;
 	public String do_search;
 	public String delete;
-//使用する場所が違うソース　検索結果(サーバーのテーブルの内容)表示に必要
-	private Result1Manager linkController;
-	private ProfileManager allController;
+	// 使用する場所が違うソース　検索結果(サーバーのテーブルの内容)表示に必要
 	public ArrayList<Result1Table> outputTable;
-//変数に値を代入
+
+	// 変数に値を代入
 	private String getDefaultName() {
 		return "";
 	}
@@ -37,52 +32,47 @@ public class Main1Action extends AbstractAction {
 	private String getDefaultHobby() {
 		return "";
 	}
-//executeメソッド　メソッドが呼ばれたとき変数に代入した値が表示
+
+	// executeメソッド　メソッドが呼ばれたとき変数に代入した値が表示
 	@Override
 	public String execute() {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
 		this.hobby = getDefaultHobby();
-		this.delete = "faluse";//ボタンの役割　表示はされない
+		this.delete = "faluse";// ボタンの役割　表示はされない
 		return "success";
 	}
-//resetメソッド　メソッドが呼ばれたとき最初の状態にする。(executeメソッドが呼ばれた時の状態)
+
+	// resetメソッド　メソッドが呼ばれたとき最初の状態にする。(executeメソッドが呼ばれた時の状態)
 	public String reset() {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
 		this.hobby = getDefaultHobby();
 		return "success";
 	}
-//searchメソッド
-	public String search() {//検索をするための
 
-		this.do_search = "true";//ボタンの役割
+	// searchメソッド
+	private String search() {
 		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
 			try {
-				printall();
+				ProfileManager allController = new ProfileManager();
+				this.outputTable = allController.resultList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-//linkController前にResult1Managerを追加
-			Result1Manager linkController = new Result1Manager();//インスタンス化
+			ProfileManager linkController = new ProfileManager();// インスタンス化
 			this.outputTable = linkController.resultList(this.name, this.home,
 					this.hobby);
 		}
-		this.delete = "true";//ボタンの役割
+		this.do_search = "true";
+		this.delete = "true";
 		return "success";
 	}
-//printallメソッド
-	public String printall() {//サーバーのテーブル内容を表示
-		this.do_search = "true";//ボタンの役割
-		allController = new ProfileManager();//インスタンス化
-		this.outputTable = allController.resultList();
-		this.delete = "true";//ボタンの役割　表示される
-		return "success";
-	}
-//updateメソッド
+
+	// delete_idメソッド
 	public String update() {
-		this.sessionMap.put("update_id", this.update_id);
+		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
 			this.response.sendRedirect("/PC2015/update1.action");
