@@ -79,7 +79,7 @@ public class Main6Action extends AbstractAction {
 //		this.delete = "true";
 //		return "success";
 //	}
-//	
+	
     //追加
 	public String delete() {
 		this.sessionMap.put("update_id", this.update_id);
