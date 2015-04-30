@@ -18,74 +18,114 @@ public class YasaiSearchAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	// デフォルト値表示のためと、resultListの引数に使用するため
-	public String yasai;
-	public String userId;
-	// 削除ボタンを表示させるための変数
-	public String delete;
-	// 検索結果を表示させるための変数
-	public String do_print;
-	//
-	public String update_id;
+	// 入力項目
+	public String yasai;// 野菜
+	public String delete_id;// 削除ボックス
 
+	// 表示
+	public String userId;// ユーザーID
+
+	// 削除ボタンフラグ
+	public String delete;
+
+	// 検索結果表示フラグ
+	public String do_search;
+
+	// 検索結果の表示(データ)
 	public ArrayList<YasaiResultTable> outputTable;
 
-	// yasai=野菜をデフォルトで表示させるメソッド
+	@Override
+	public String execute() {
+
+		// ユーザーIDの表示
+		this.userId = (String) this.sessionMap.get("userId");
+
+		// 初期値の設定
+		this.yasai = getDefaultYasai();
+
+		 // 最初の検索画面では削除ボタンは出さないので、"false"
+//		 this.delete = "false";
+
+		return "success";
+	}
+
+	// 野菜の変数に値を代入(野菜)
 	private String getDefaultYasai() {
 		return this.yasai = "野菜";
 	}
 
-	@Override
-	public String execute() {
-		// userIdを表示させるため、sessionMapから取得している
-		this.userId = (String) this.sessionMap.get("userId");
-		this.yasai = getDefaultYasai();
-
-		// 最初の検索画面では削除ボタンは出さないので、"false"
-		this.delete = "false";
-		return "success";
-	}
-
-	// リセット時のメソッド
+	// リセットボタン押下時
 	public String reset() {
+		// ユーザーIDの表示
 		this.userId = (String) this.sessionMap.get("userId");
-		// リセットしたときに"野菜"を表示させたいため、getDefaultYasaiをyasaiに代入
+
+		// 初期値の設定
 		this.yasai = getDefaultYasai();
 
 		return "success";
 	}
 
-	// 検索時のメソッド
+	// 検索ボタン押下時
 	public String search() {
+
+		// yasaimanagerをインスタンス化
 		YasaiManager yasaimanager = new YasaiManager();
+
+		// ユーザーIDの表示
 		this.userId = (String) this.sessionMap.get("userId");
-		// 検索結果を出したいので、このメソッドを呼び出したときに"true"を代入
+
+		// list<?>型のresultTableを宣言
 		List<?> resultTable;
+
+		// 入力されなかった場合、yasaimanagerのresultList()を呼び出す
 		if (this.yasai.isEmpty()) {
-			// yasaiが空だったら、yasaimanagerのresultList()を呼び出す
 			resultTable = yasaimanager.resultList();
+
+			// 入力された場合、yasaimanagerのresultList(yasai)を呼び出す
 		} else {
-			// yasaiが空でなかったら、yasaimanagerのresultList(yasai)を呼び出す
 			resultTable = yasaimanager.resultList(yasai);
+
 		}
+
 		// resultTableを引数にtableTranseメソッドを呼び出し、outputTableに代入
 		this.outputTable = tableTrans(resultTable);
-		// 削除ボタンを出したいので、"true"を代入
-		this.do_print = "true";
+
+		// 検索結果の表示
+		this.do_search = "true";
+		// 削除ボタンの表示
 		this.delete = "true";
+
 		return "success";
 	}
 
-	// TODO
-	public String update() {
-		this.sessionMap.put("update_id", this.update_id);
-
+	// 追加ボタンを押下時
+	public String add() {
+		
+		//削除チェックボックスの値をnullに設定
+		this.sessionMap.put("delete_id", null);
 		try {
-			// 指定したURL先にとぶ
+			// 追加画面に遷移
 			this.response.sendRedirect("/PC2015/yasaiAdd.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return "success";
+	}
+
+	// 削除ボタン押下時
+	public String delete() {
+		
+		//削除チェックボックスの値を取得しセッション（delete_id）に設定
+		this.sessionMap.put("delete_id", this.delete_id);
+
+		try {
+			// 削除画面に遷移
+			this.response.sendRedirect("/PC2015/yasaiAdd.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return "success";
 	}
 
@@ -115,7 +155,6 @@ public class YasaiSearchAction extends AbstractAction {
 				temp.setUserId(yasai.getUserId());
 				temp.setDate_Up(yasai.getUserId_Up());
 
-
 				// （料理ID）int型をString型に変換
 				// temp.setId(String.valueOf(ryouri.getId()));
 
@@ -125,7 +164,6 @@ public class YasaiSearchAction extends AbstractAction {
 				temp.setDate_Up(ryouri.getDate_Up());
 				temp.setUserId(ryouri.getUserId());
 				temp.setDate_Up(ryouri.getUserId_Up());
-
 
 				// tempTableにtempを加える
 				tempTable.add(temp);

@@ -22,39 +22,36 @@ import controller.YasaiManager;
 public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	// update_idを宣言（削除時に必要）
-	public String update_id;
-	// 野菜テーブルのyasaiを宣言
+	// テーブル内のカラム名の宣言
+	public String delete_id;
 	public String yasai;
-	// 料理テーブルのryouriを宣言
 	public String ryouri;
-	// 登録日時のdate_entryを宣言
 	public String date_entry;
-	// 更新日時のdate_upを宣言
 	public String date_up;
-	// 料理テーブルのryouriを宣言
 	public String tyouri;
-	// ユーザーIDを表示させるため、userIdを宣言
+	
+	// ユーザーID
 	public String userId;
 
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		//YasaiSearchActionのdelete_idを呼び出し
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
 	}
 
-	// 追加登録用メソッド
+	// 追加ボタン押下時
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-//		// 日付の設定
-//		Date date = new Date();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-//		date_entry = String.valueOf(sdf.format(date));
-//		date_up = String.valueOf(sdf.format(date));
+		// 日付の設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		date_entry = String.valueOf(sdf.format(date));
+		date_up = String.valueOf(sdf.format(date));
 
-		// ユーザーIDをゲット
+		// ユーザーID設定
 		this.userId = (String) this.sessionMap.get("userId");
 
 		// 入力チェック
@@ -108,19 +105,20 @@ public class YasaiAddAction extends AbstractAction {
 		return "yasaiSearch";
 	}
 
-	// TODO
+	// 検索結果内の値を削除
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");
-		//update_idが空だとそのままmain8にもどる
-		if (this.update_id.isEmpty()) {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
+		// update_idが空だとそのままmain8にもどる
+		if (this.delete_id.isEmpty()) {
 			return "yasaiSearch";
 		}
-		//DBと接続
+		// DBと接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Yasai yasai = (Yasai) session.load(Yasai.class, update_id);
-			Ryouri ryouri = (Ryouri) session.load(Ryouri.class, yasai.getTyouriId());
+			Yasai yasai = (Yasai) session.load(Yasai.class, delete_id);
+			Ryouri ryouri = (Ryouri) session.load(Ryouri.class,
+					yasai.getTyouriId());
 			session.delete(yasai);
 			session.delete(ryouri);
 		} catch (HibernateException e) {
