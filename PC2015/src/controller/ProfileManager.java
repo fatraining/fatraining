@@ -1,20 +1,17 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.My_hobby;
 import model.Profile;
-import model.Result1Table;
 
 import org.hibernate.classic.Session;
 
 public class ProfileManager extends HibernateUtil {
 
 	public List<?> resultTable;
-	public ArrayList<Result1Table> outputTable;
 
-	public ArrayList<Result1Table> resultList() {
+	public List<?> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -32,11 +29,9 @@ public class ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 
-		this.outputTable = tableTrans(resultTable);
-
-		return outputTable;
+		return resultTable;
 	}
-	public ArrayList<Result1Table> resultList(String name, String home,
+	public List<?> resultList(String name, String home,
 			String hobby) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -61,38 +56,6 @@ public class ProfileManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		this.outputTable = tableTrans(resultTable);
-		return outputTable;
-	}
-
-	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
-		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
-		Object[] obj;
-		try {
-			for (int i = 0; i < resultTable.size(); i++) {
-				Result1Table temp = new Result1Table();
-				obj = (Object[]) resultTable.get(i);
-				My_hobby my_hobby = (My_hobby) obj[0];
-				Profile profile = (Profile) obj[1];
-				temp.setId(profile.getId());
-				temp.setName(profile.getName());
-				temp.setPersonality(profile.getPersonality());
-				temp.setHome(profile.getHome());
-				temp.setBirthday(profile.getBirthday());
-				temp.setDay(profile.getDay());
-				temp.setNew_day(profile.getNew_day());
-				temp.setUserid(profile.getUserid());
-				temp.setNew_userid(profile.getNew_userid());
-//				temp.setTime_stamp(profile.getTime_stamp());
-//				temp.setDelete(profile.getDelete());
-				temp.setHobby(my_hobby.getHobby());
-				tempTable.add(temp);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		return tempTable;
+		return resultTable;
 	}
 }
