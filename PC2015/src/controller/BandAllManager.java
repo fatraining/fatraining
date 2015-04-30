@@ -9,13 +9,18 @@ import model.BandResultTable;
 
 import org.hibernate.classic.Session;
 
+//HibernateUtilクラスを継承したクラス
 public class BandAllManager extends HibernateUtil{
 	
+	//三つのメソッドで使用するため、フィールドで宣言
 	public List<?> bandResultTable;
 	public ArrayList<BandResultTable> outputTable;
 	
+	//bandResultListメソッド(引数なし)。検索時入力がなかったとき実行
 	public ArrayList<BandResultTable> bandResultList(){
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションを開始
 		session.beginTransaction();
 		
 		//検索した結果を表示させるためのsql文
@@ -24,8 +29,10 @@ public class BandAllManager extends HibernateUtil{
 		String sql = select + " " + where1;
 		
 		try{
-			bandResultTable = session.createSQLQuery(sql)
+			bandResultTable = session.createSQLQuery(sql) //インスタンス生成
+					//SQLQuery.addEntityメソッドで戻り値BandAccountの型設定
 					.addEntity("BandAccount",BandAccount.class)
+					//SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
 					.addEntity("BandTable",BandTable.class).list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -38,10 +45,13 @@ public class BandAllManager extends HibernateUtil{
 		return outputTable;
 	}
 	public ArrayList<BandResultTable> bandTableTrans(List<?> bandResultTable){
+		//ArrayList<BandResultTable>のインスタンス生成
 		ArrayList<BandResultTable> tempTable = new ArrayList<BandResultTable>();
 		Object[] obj;
 		try{
+			//for文で処理を繰り返す
 			for(int i = 0;i < bandResultTable.size();i++){
+				//BandResultTableのインスタンス生成
 				BandResultTable temp = new BandResultTable();
 				obj = (Object[]) bandResultTable.get(i);
 				BandAccount bandaccount = (BandAccount)obj[0];
