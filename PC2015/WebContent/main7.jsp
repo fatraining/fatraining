@@ -80,7 +80,7 @@
 	</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除"
+				<s:submit method="delete2" name="update_id" value="削除"
 					cssClass="btn btn-primary" />
 			</div>
 		</s:if>
