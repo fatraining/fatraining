@@ -2,10 +2,18 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import controller.LiofTaManager;
 import controller.ProfileManager;
+import model.My_hobby;
+import model.Profile;
 import model.Result1Table;
 
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
+
+@Result(name = "update", value = "update.action", type = ServletRedirectResult.class)
 public class Main1Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +25,7 @@ public class Main1Action extends AbstractAction {
 	public String delete_id;
 	public String do_search;
 	public String delete;
-	// 使用する場所が違うソース　検索結果(サーバーのテーブルの内容)表示に必要
+
 	public ArrayList<Result1Table> outputTable;
 
 	// 変数に値を代入
@@ -39,7 +47,7 @@ public class Main1Action extends AbstractAction {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
 		this.hobby = getDefaultHobby();
-		this.delete = "faluse";// ボタンの役割　表示はされない
+		this.delete = "faluse";
 		return "success";
 	}
 
@@ -53,20 +61,32 @@ public class Main1Action extends AbstractAction {
 
 	// searchメソッド
 	public String search() {
+		ProfileManager profileManager = new ProfileManager();
+		List<?> resultTable;
+		
 		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
-			try {
-				ProfileManager allController = new ProfileManager();
-				this.outputTable = allController.resultList();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				resultTable = profileManager.resultList();
+
 		} else {
-			ProfileManager linkController = new ProfileManager();// インスタンス化
-			this.outputTable = linkController.resultList(this.name, this.home,
+			resultTable = profileManager.resultList(this.name, this.home,
 					this.hobby);
 		}
+		this.outputTable = tableTrans(resultTable);
+		
 		this.do_search = "true";
 		this.delete = "true";
+		return "success";
+	}
+	//updateメソッド
+	public String update() {
+		this.sessionMap.put("delete_id", null);
+
+		try {
+			this.response.sendRedirect("/PC2015/update1.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		return "success";
 	}
 
@@ -81,5 +101,35 @@ public class Main1Action extends AbstractAction {
 		}
 
 		return "success";
+	}
+	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
+		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
+		Object[] obj;
+		try {
+			for (int i = 0; i < resultTable.size(); i++) {
+				Result1Table temp = new Result1Table();
+				obj = (Object[]) resultTable.get(i);
+				My_hobby my_hobby = (My_hobby) obj[0];
+				Profile profile = (Profile) obj[1];
+				temp.setId(profile.getId());
+				temp.setName(profile.getName());
+				temp.setPersonality(profile.getPersonality());
+				temp.setHome(profile.getHome());
+				temp.setBirthday(profile.getBirthday());
+				temp.setDay(profile.getDay());
+				temp.setNew_day(profile.getNew_day());
+				temp.setUserid(profile.getUserid());
+				temp.setNew_userid(profile.getNew_userid());
+//				temp.setTime_stamp(profile.getTime_stamp());
+//				temp.setDelete(profile.getDelete());
+				temp.setHobby(my_hobby.getHobby());
+				tempTable.add(temp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return tempTable;
 	}
 }
