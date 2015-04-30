@@ -53,7 +53,7 @@ public class Main1Action extends AbstractAction {
 	}
 
 	// searchメソッド
-	private String search() {
+	public String search() {
 		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
 			try {
 				ProfileManager allController = new ProfileManager();
@@ -72,7 +72,7 @@ public class Main1Action extends AbstractAction {
 	}
 
 	// delete_idメソッド
-	public String update() {
+	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
