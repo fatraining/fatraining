@@ -36,6 +36,34 @@ public class ProfileManager extends HibernateUtil {
 
 		return outputTable;
 	}
+	public ArrayList<Result1Table> resultList(String name, String home,
+			String hobby) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			if (name.isEmpty())
+				name = "%";
+			if (home.isEmpty())
+				home = "%";
+			if (hobby.isEmpty())
+				hobby = "%";
+
+			String select = "SELECT * FROM table_profile i, table_hobby d";
+			String where1 = "WHERE i.id = d.id";
+			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
+					+ home + "' AND i.id LIKE '" + hobby + "')";
+			String sql = select + " " + where1 + " " + where2;
+			resultTable = session.createSQLQuery(sql)
+					.addEntity("My_hobby", My_hobby.class)
+					.addEntity("Profile", Profile.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(resultTable);
+		return outputTable;
+	}
 
 	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
