@@ -81,17 +81,16 @@ public class Update10Action extends AbstractAction {
 		}//todo
 
 		session.getTransaction().commit();  //todo(データベースに処理結果を反映させる？)
-		return "main10";  
+		return "main10"; //Main10Actionへ
 	}
 	
 	//検索結果内の値の削除
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");//セッションマップからdelete_idを取得
-		//update_idが空である場合main10へ
+		//update_idが空である場合
 		if (this.delete_id.isEmpty()) {
-			return "main10";
+			return "main10"; //Main10Actionへ
 		}
-		
 		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		//トランザクションの開始
@@ -100,10 +99,7 @@ public class Update10Action extends AbstractAction {
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 					Integer.valueOf(delete_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(delete_id)); //todo(delete_idがStringでは処理できないのでキャストする)
-
-//			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, delete_id);
-//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, delete_id);（キャストしていないもの）
+					Integer.valueOf(delete_id)); //todo(delete_idがStringでは処理できないのでキャストする)			
 			
 			session.delete(detaileat); //引数を入れ、指定した行を削除する
 			session.delete(idofeat); //引数を入れ、指定した行を削除する
@@ -113,7 +109,7 @@ public class Update10Action extends AbstractAction {
 			session.getTransaction().rollback(); //障害が起きたら障害が起きる前に戻る
 		}
 		session.getTransaction().commit();  //todo(削除してデータベースに処理結果を反映させる？)
-		return "main10";
+		return "main10"; //Main10Actionへ
 	}
 
 }
