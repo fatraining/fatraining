@@ -18,31 +18,31 @@ public class Main7Action extends AbstractAction {
 	public String exhibition_year;//公開年
 	public String delete;//削除ボタン
 	public String do_print;//結果表示
-	public String delete_id;
+	public String delete_id;//削除するID
 
 	public ArrayList<ResultTableMovie> outputTableMovie;
 
-	private String getDefaultGenre() {
-		return "";
-	}
-
-	private String getDefaultExhibition_year() {
-		return "";
-	}
+//	private String getDefaultGenre() {
+//		return "";
+//	}
+//
+//	private String getDefaultExhibition_year() {
+//		return "";
+//	}
 
 	@Override
 	public String execute() {
 		this.userId = (String) this.sessionMap.get("userId");
-		this.genreId = getDefaultGenre();
-		this.exhibition_year = getDefaultExhibition_year();
+//		this.genreId = getDefaultGenre();
+//		this.exhibition_year = getDefaultExhibition_year();
 		this.delete = "false";
 		return "success";
 	}
 
 	public String reset() {
 		this.userId = (String) this.sessionMap.get("userId");
-		this.genreId = getDefaultGenre();
-		this.exhibition_year = getDefaultExhibition_year();
+		this.genreId = "";
+		this.exhibition_year = "";
 		return "success";
 	}
 
