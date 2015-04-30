@@ -24,8 +24,11 @@ public class BandAllManager extends HibernateUtil{
 		session.beginTransaction();
 		
 		//検索した結果を表示させるためのsql文
+		//band_accountテーブルとband_tableテーブルの全件を検索
 		String select = "SELECT * FROM band_account a,band_table t ";
+		//band_accountテーブルのIDとband_tableテーブルのIDが等しい
 		String where1 = "WHERE a.id = t.id ";
+		//select文とwhere文を合わせたものをsqlに代入
 		String sql = select + " " + where1;
 		
 		try{
@@ -49,11 +52,14 @@ public class BandAllManager extends HibernateUtil{
 		ArrayList<BandResultTable> tempTable = new ArrayList<BandResultTable>();
 		Object[] obj;
 		try{
-			//for文で処理を繰り返す
+			//for文でbandResultTableのサイズ分処理を繰り返す
 			for(int i = 0;i < bandResultTable.size();i++){
 				//BandResultTableのインスタンス生成
 				BandResultTable temp = new BandResultTable();
+				//bandResultTableのインデックスをすべて取得して、objectに代入
+				//リスト型を配列に変換(キャスト)する
 				obj = (Object[]) bandResultTable.get(i);
+				
 				BandAccount bandaccount = (BandAccount)obj[0];
 				BandTable bandtable = (BandTable)obj[1];
 				temp.setId(bandaccount.getId());
@@ -80,21 +86,29 @@ public class BandAllManager extends HibernateUtil{
 		return tempTable;
 	}
 	
-	//BandResultManager.javaの処理をここに移す。
+	//BandResultManager.javaの処理をここに移す。bandResultListメソッド(引数あり)。検索時入力があったときに実行
 public ArrayList<BandResultTable> bandResultList(String band_name,String name,String part){
 		
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory()	
 				.getCurrentSession();
+		//トランザクション開始
 		session.beginTransaction();
 		try{
 			if(band_name.isEmpty())band_name="%"; //band_nameが空の時はワイルドカード「%」を代入
 			if(name.isEmpty())name="%"; //nameが空の時はワイルドカード「%」を代入
 			if(part.isEmpty())part="%"; //partが空の時はワイルドカード「%」を代入
+			//band_accountテーブルとband_tableテーブルの全件を検索
 			String select = "SELECT * FROM band_account a,band_table t ";
+			//band_accountテーブルのIDとband_tableテーブルのIDが等しいという条件
 			String where1 = "WHERE a.id = t.id ";
+			//入力された値とそれぞれのテーブルにあるカラムの値が等しいという条件
 			String where2 = "AND (t.BAND_NAME LIKE '"+ band_name +"' AND a.NAME LIKE '"+ name +"' AND a.PART LIKE '"+ part + "')";
+			//sqlにselect文、where文二つを代入
 			String sql = select + " " + where1 + " " + where2;bandResultTable = session.createSQLQuery(sql)
+					//SQLQuery.addEntityメソッドで戻り値BandAccountの型設定
 					.addEntity("BandAccount",BandAccount.class)
+					//SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
 					.addEntity("BandTable",BandTable.class).list();
 		}catch(Exception e){
 			e.printStackTrace();
