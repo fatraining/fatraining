@@ -2,7 +2,10 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.DetailEat;
+import model.IDofEat;
 import model.Result10Table;
 import controller.All10Manager;
 
@@ -64,17 +67,19 @@ public class Main10Action extends AbstractAction {
 	//searchメソッド（検索ボタンを押した時）	
 	public String search() {
 		this.userId = (String) this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
+		All10Manager allController = new All10Manager(); // インスタンスの生成
+		List<?> result10Table;
 		// もしすべて空だった場合は
 		if (this.eat_year.isEmpty() && this.eat_month.isEmpty()
 				&& this.eat_day.isEmpty() && this.eat_hour.isEmpty()) {
-			All10Manager allController = new All10Manager(); // インスタンスの生成
-			this.outputTable = allController.resultList();
+			
+			result10Table = allController.resultList();
 		// 空でなかったら 検索結果の表示をする
 		} else {
-			All10Manager allController = new All10Manager(); // インスタンスの生成
-			this.outputTable = allController.resultList(this.eat_year,
+			result10Table = allController.resultList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
 		}
+		this.outputTable = tableTrans(result10Table);
 		//検索結果の表示
 		this.do_search = "true";
 		//削除ボタンの表示
@@ -105,5 +110,40 @@ public class Main10Action extends AbstractAction {
 		}
 
 		return "success";  //SuccessActionが見つからないのでMain10Actionへ戻る
+	}
+	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
+		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
+		Object[] obj;
+		try {
+			for (int i = 0; i < result10Table.size(); i++) {
+				Result10Table temp = new Result10Table();
+				//Result10Tableのインスタンスの生成
+				obj = (Object[]) result10Table.get(i);
+				//結合したテーブルを表示させる
+				DetailEat detaileat = (DetailEat) obj[0];
+				IDofEat idofeat = (IDofEat) obj[1];
+				temp.setId(detaileat.getId());
+				temp.setEat_year(detaileat.getEat_year());
+				temp.setEat_month(detaileat.getEat_month());
+				temp.setEat_day(detaileat.getEat_day());
+				temp.setEat_hour(detaileat.getEat_hour());
+				temp.setEntry_day(detaileat.getEntry_day());
+				temp.setRenew_day(detaileat.getRenew_day());
+				temp.setEntry_userid(detaileat.getEntry_userid());
+				temp.setRenew_userid(detaileat.getRenew_userid());
+				temp.setEatFood(idofeat.getEatFood());
+				temp.setEatCalory(idofeat.getEatCalory());
+				temp.setEntry_day(idofeat.getEntry_day());
+				temp.setRenew_day(idofeat.getRenew_day());
+				temp.setEntry_userid(idofeat.getEntry_userid());
+				temp.setRenew_userid(idofeat.getRenew_userid());
+				tempTable.add(temp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); //TODO（例外をキャッチする）
+
+		}
+
+		return tempTable; //TODO
 	}
 }
