@@ -9,6 +9,7 @@ import model.Result10Table;
 
 import org.hibernate.classic.Session;
 
+//HibernateUtilから継承されたAll10Managerクラス
 public class All10Manager extends HibernateUtil{
 	public List<?> result10Table;
 	public ArrayList<Result10Table> outputTable;
