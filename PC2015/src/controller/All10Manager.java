@@ -1,20 +1,17 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.DetailEat;
 import model.IDofEat;
-import model.Result10Table;
 
 import org.hibernate.classic.Session;
 
 //HibernateUtilから継承されたAll10Managerクラス
 public class All10Manager extends HibernateUtil{
 	public List<?> result10Table;
-	public ArrayList<Result10Table> outputTable;
 
-	public ArrayList<Result10Table> resultList() {
+	public List<?> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -33,13 +30,11 @@ public class All10Manager extends HibernateUtil{
 		}
 		session.getTransaction().commit();
 
-		this.outputTable = tableTrans(result10Table);
-		//TODO(outputTableに2つのテーブルが結合したものを検索処理したものを代入する？)
-		return outputTable;
+		return result10Table;
 	}
 	
 	
-	public ArrayList<Result10Table> resultList(String eat_year, String eat_month,
+	public List<?> resultList(String eat_year, String eat_month,
 			String eat_day, String eat_hour) {
 		//データベースに接続する
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -69,45 +64,10 @@ public class All10Manager extends HibernateUtil{
 			session.getTransaction().rollback(); //例外がキャッチされたらその前に戻る
 		}
 		session.getTransaction().commit();
-		this.outputTable = tableTrans(result10Table); //TODO(outputTableに2つが結合したものを検索処理したものを代入する？)
 		
-		return outputTable; //テーブルを表示させる
+		return result10Table; //テーブルを表示させる
 	}
 	
 
-	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
-		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
-		Object[] obj;
-		try {
-			for (int i = 0; i < result10Table.size(); i++) {
-				Result10Table temp = new Result10Table();
-				//Result10Tableのインスタンスの生成
-				obj = (Object[]) result10Table.get(i);
-				//結合したテーブルを表示させる
-				DetailEat detaileat = (DetailEat) obj[0];
-				IDofEat idofeat = (IDofEat) obj[1];
-				temp.setId(detaileat.getId());
-				temp.setEat_year(detaileat.getEat_year());
-				temp.setEat_month(detaileat.getEat_month());
-				temp.setEat_day(detaileat.getEat_day());
-				temp.setEat_hour(detaileat.getEat_hour());
-				temp.setEntry_day(detaileat.getEntry_day());
-				temp.setRenew_day(detaileat.getRenew_day());
-				temp.setEntry_userid(detaileat.getEntry_userid());
-				temp.setRenew_userid(detaileat.getRenew_userid());
-				temp.setEatFood(idofeat.getEatFood());
-				temp.setEatCalory(idofeat.getEatCalory());
-				temp.setEntry_day(idofeat.getEntry_day());
-				temp.setRenew_day(idofeat.getRenew_day());
-				temp.setEntry_userid(idofeat.getEntry_userid());
-				temp.setRenew_userid(idofeat.getRenew_userid());
-				tempTable.add(temp);
-			}
-		} catch (Exception e) {
-			e.printStackTrace(); //TODO（例外をキャッチする）
 
-		}
-
-		return tempTable; //TODO
-	}
 }
