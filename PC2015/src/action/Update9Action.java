@@ -26,14 +26,14 @@ public class Update9Action extends AbstractAction {
 	public String new_day;
 	public String userid;
 	public String new_userid;
+	public String delete_id;
 	// public int time_stamp;
 	// public int delete;
 	public String errormsg;
-	
 
 	// executeメソッド
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		return "success";
 	}
 
@@ -96,25 +96,31 @@ public class Update9Action extends AbstractAction {
 
 	// deleteメソッド
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");
-		if (this.update_id.isEmpty()) {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
+		String str = new String(this.delete_id);
+		String[] strAry = str.split(",");
+
+		if (this.delete_id.isEmpty()) {
 			return "main9";
 		}
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		try {
-			CoofTa coofta = (CoofTa) session.load(CoofTa.class,
-					update_id);
-			LiofTa liofta = (LiofTa) session.load(LiofTa.class,
-					update_id);
-			session.delete(coofta);
-			session.delete(liofta);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback(); // 障害が起こった時その前の状態まで戻る
+		for (int i = 0; i < strAry.length; i++) {
+
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+
+			session.beginTransaction();
+			try {
+				CoofTa coofta = (CoofTa) session.load(CoofTa.class, strAry[i]);
+				LiofTa liofta = (LiofTa) session.load(LiofTa.class, strAry[i]);
+				session.delete(coofta);
+				session.delete(liofta);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback(); // 障害が起こった時その前の状態まで戻る
+			}
+			session.getTransaction().commit(); // 処理が成功したときに結果を確立させる
 		}
-		session.getTransaction().commit(); // 処理が成功したときに結果を確立させる
 		return "main9";
 	}
 }
