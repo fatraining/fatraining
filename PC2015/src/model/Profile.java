@@ -14,7 +14,7 @@ public class Profile implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 //カラム名
-	private int id;
+	private String id;
 	private String name;
 	private String personality;
 	private String home;
@@ -30,7 +30,7 @@ public class Profile implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -86,7 +86,7 @@ public class Profile implements Serializable {
 
 	/*--------------------------------------------------*/
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
