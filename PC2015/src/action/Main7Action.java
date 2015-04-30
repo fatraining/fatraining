@@ -13,12 +13,12 @@ public class Main7Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public String userId;
-	public String genreId;
-	public String exhibition_year;
-	public String delete;
-	public String do_print;
-	public String update_id;
+	public String userId;//ユーザーID
+	public String genreId;//ジャンルID
+	public String exhibition_year;//公開年
+	public String delete;//削除ボタン
+	public String do_print;//結果表示
+	public String delete_id;
 
 	public ArrayList<ResultTableMovie> outputTableMovie;
 
@@ -66,7 +66,7 @@ public class Main7Action extends AbstractAction {
 	}
 
 	public String update() {
-		this.sessionMap.put("update_id", null);
+		this.sessionMap.put("delete_id", null);
 
 		try {
 			this.response.sendRedirect("/PC2015/update7.action");
@@ -78,7 +78,7 @@ public class Main7Action extends AbstractAction {
 	}
 
 	public String delete() {
-		this.sessionMap.put("update_id", this.update_id);
+		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
 			this.response.sendRedirect("/PC2015/update7.action");
