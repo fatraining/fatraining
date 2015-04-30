@@ -2,6 +2,9 @@ package action;
 
 //import java.io.UnsupportedEncodingException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import model.LikeGame;
 import model.LikeSeries;
 
@@ -39,6 +42,11 @@ public class Update6Action extends AbstractAction {
 	//追加画面
 	//追加入力
 	public String insert() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		u = String.valueOf(sdf.format(date));
+		upDay = String.valueOf(sdf.format(date));
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();//dbの接続
 		session.beginTransaction();
 
@@ -78,20 +86,20 @@ public class Update6Action extends AbstractAction {
 		this.update_id = (String) this.sessionMap.get("update_id");
 		
 		String str = new String(this.update_id);
-		String[] fate = str.split(",");
+		String[] strAry = str.split(",");
 		
 		if (this.update_id.isEmpty()) {
 			return "main6";
 		}
-		for(int i = 0; i < fate.length; i++){
+		for(int i = 0; i < strAry.length; i++){
 			//データベースに接続
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			//トランザクション
 			session.beginTransaction();
 			
 		try {
-			LikeGame likegame = (LikeGame) session.load(LikeGame.class, fate[i]);
-			LikeSeries likeseries = (LikeSeries) session.load(LikeSeries.class, fate[i]);
+			LikeGame likegame = (LikeGame) session.load(LikeGame.class, strAry[i]);
+			LikeSeries likeseries = (LikeSeries) session.load(LikeSeries.class, strAry[i]);
 			session.delete(likegame);
 			session.delete(likeseries);
 		} catch (HibernateException e) {
