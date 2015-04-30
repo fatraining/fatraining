@@ -101,10 +101,8 @@ public class Update1Action extends AbstractAction {
 
 			session.beginTransaction();
 			try {
-				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,
-						Integer.valueOf(strAry[i]));
-				Profile profile = (Profile) session.load(Profile.class,
-						Integer.valueOf(strAry[i]));
+				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,strAry[i]);
+				Profile profile = (Profile) session.load(Profile.class,strAry[i]);
 				session.delete(my_hobby);
 				session.delete(profile);
 			} catch (HibernateException e) {
