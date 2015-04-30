@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.LiofTaManager;
 import controller.ProfileManager;
 import model.My_hobby;
 import model.Profile;
@@ -47,7 +46,7 @@ public class Main1Action extends AbstractAction {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
 		this.hobby = getDefaultHobby();
-		this.delete = "faluse";
+		this.delete = "false";
 		return "success";
 	}
 
@@ -116,12 +115,6 @@ public class Main1Action extends AbstractAction {
 				temp.setPersonality(profile.getPersonality());
 				temp.setHome(profile.getHome());
 				temp.setBirthday(profile.getBirthday());
-				temp.setDay(profile.getDay());
-				temp.setNew_day(profile.getNew_day());
-				temp.setUserid(profile.getUserid());
-				temp.setNew_userid(profile.getNew_userid());
-//				temp.setTime_stamp(profile.getTime_stamp());
-//				temp.setDelete(profile.getDelete());
 				temp.setHobby(my_hobby.getHobby());
 				tempTable.add(temp);
 			}
