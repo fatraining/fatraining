@@ -10,6 +10,7 @@ public class Main10Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
+	//フィールドの宣言
 	public String eat_year;//年
 	public String eat_month;//月
 	public String eat_day;//日
@@ -17,7 +18,7 @@ public class Main10Action extends AbstractAction {
 	public String do_search;//検索結果の表示・非表示フラグ
 	public String delete_id;//削除のチェックボックス
 	public String delete;//削除の表示・非表示フラグ
-	public String userId;
+	public String userId;//ログインのuserID
 
 	public ArrayList<Result10Table> outputTable;
 
@@ -45,7 +46,7 @@ public class Main10Action extends AbstractAction {
 		this.eat_month = getDefaultEat_month(); // デフォルト値の取得
 		this.eat_day = getDefaultEat_day(); // デフォルト値の取得
 		this.eat_hour = getDefaultEat_hour(); // デフォルト値の取得
-		this.delete = "false"; // todo
+		this.delete = "false"; //
 		return "success";
 	}
 	
@@ -80,9 +81,20 @@ public class Main10Action extends AbstractAction {
 		this.delete = "true"; 
 		return "success"; //successが見つからないので戻る
 	}
+	
+	// updateメソッド。追加で使用
+	public String update() {
+		this.sessionMap.put("delete_id", null);
+		try {
+			this.response.sendRedirect("/PC2015/update10.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "success";
+	}
 
 
-	public String update() { // updateメソッド
+	public String delete() { // deleteメソッド
 		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
 		try {
 			// 例外が発生するかもしれない処理
@@ -92,6 +104,6 @@ public class Main10Action extends AbstractAction {
 			e.printStackTrace();
 		}
 
-		return "success"; // updateができる
+		return "success"; //successが見つからないので戻る
 	}
 }
