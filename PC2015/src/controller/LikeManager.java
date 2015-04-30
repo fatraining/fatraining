@@ -38,6 +38,31 @@ public class LikeManager extends HibernateUtil {
 		return outputTable;
 	}
 	
+	public ArrayList<ResultTable6> resultList(String title, String series){
+
+		Session session = HibernateUtil.getSessionFactory()
+				.getCurrentSession();
+		session.beginTransaction();
+		try {
+			if(title.isEmpty())title="%";
+			if(series.isEmpty())series="%";
+			String select = "SELECT * FROM like_game g,like_series s";
+			String where1 = "WHERE g.series=s.i";
+			String where2 = "AND (g.title LIKE '"+ title +"' AND g.series LIKE '"
+					+ series + "')";
+			String sql = select + " "  + where1 + " " + where2 ;
+			resultTable = session.createSQLQuery(sql)
+					.addEntity("LikeGame", LikeGame.class)
+					.addEntity("LikeSeries", LikeSeries.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTable = tableTrans(resultTable);
+		return outputTable;
+	}
+	
 	//検索結果
 	//リスト内のどこに各要素が挿入されるかを精密に制御できます
 	public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
