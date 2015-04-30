@@ -71,7 +71,7 @@ public class Main2Action extends AbstractAction {
 	public String search() {
 
 		//SQLの実行
-		if (this.genreNm.isEmpty() && this.name.isEmpty()) {
+		if (this.name.isEmpty() && this.genreNm.isEmpty()) {
 			//入力がない場合
 			SweetsManager allController = new SweetsManager();
 			this.outputTable = allController.resultList();
