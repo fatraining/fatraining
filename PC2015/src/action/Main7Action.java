@@ -79,4 +79,16 @@ public class Main7Action extends AbstractAction {
 
 		return "success";
 	}
+
+	public String delete2() {
+		this.sessionMap.put("update_id", this.update_id);
+
+		try {
+			this.response.sendRedirect("/PC2015/update7.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "success";
+	}
 }
