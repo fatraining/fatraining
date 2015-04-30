@@ -39,7 +39,6 @@
 					<th>野菜</th>
 					<th>調理方</th>
 					<th>料理名</th>
-					<th>登録ユーザー</th>
 					<th>削除</th>
 
 				</tr>
@@ -49,7 +48,6 @@
 						<td class="data"><s:property value="yasai" /></td>
 						<td class="data"><s:property value="tyouri" /></td>
 						<td class="data"><s:property value="ryouri" /></td>
-						<td class="data"><s:property value="userId" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 

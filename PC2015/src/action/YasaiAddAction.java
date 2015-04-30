@@ -31,11 +31,11 @@ public class YasaiAddAction extends AbstractAction {
 
 	// ユーザーID
 	public String userId;
-	
-	//削除チェックボックス
+
+	// 削除チェックボックス
 	public String delete_id;
 
-	//画面表示時に実行
+	// 画面表示時に実行
 	public String execute() throws Exception {
 		// YasaiSearchActionのdelete_idを呼び出し
 		this.delete_id = (String) this.sessionMap.get("delete_id");
@@ -61,15 +61,11 @@ public class YasaiAddAction extends AbstractAction {
 
 		// 料理のデータ作成
 		Ryouri insert_ryouri_table = new Ryouri();
-		// idはnullなので記述しなくていい（オートインクルメント）
-		// insert_ryouri_table.setId(Integer.valueOf(this.id));
 		insert_ryouri_table.setRyouri(this.ryouri);
 		insert_ryouri_table.setTyouri(this.tyouri);
 		insert_ryouri_table.setDate_Entry(this.date_entry);
 		insert_ryouri_table.setDate_Up(this.date_up);
 		insert_ryouri_table.setUserId(this.userId);
-		// insert_ryouri_table.setControl(0);
-		// insert_ryouri_table.setDeleteFlg(0);
 
 		// 料理テーブルに追加
 		try {
@@ -85,7 +81,6 @@ public class YasaiAddAction extends AbstractAction {
 
 		// 野菜データの作成
 		Yasai insert_yasai_table = new Yasai();
-		// insert_yasai_table.setId(this.id);
 		insert_yasai_table.setYasai(this.yasai);
 
 		// 料理テーブルのid取得し、野菜テーブルの調理idにいれる
@@ -93,8 +88,6 @@ public class YasaiAddAction extends AbstractAction {
 		insert_yasai_table.setDate_Entry(this.date_entry);
 		insert_yasai_table.setDate_Up(this.date_up);
 		insert_yasai_table.setUserId(this.userId);
-//		insert_yasai_table.setControl(0);
-//		insert_yasai_table.setDeleteFlg(0);
 
 		// 野菜テーブルに追加
 		try {

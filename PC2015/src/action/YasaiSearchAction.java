@@ -34,7 +34,7 @@ public class YasaiSearchAction extends AbstractAction {
 	// 検索結果の表示(データ)
 	public ArrayList<YasaiResultTable> outputTable;
 
-	//画面表示時に実行
+	// 画面表示時に実行
 	@Override
 	public String execute() {
 
@@ -44,15 +44,15 @@ public class YasaiSearchAction extends AbstractAction {
 		// 初期値の設定
 		this.yasai = getDefaultYasai();
 
-		 // 最初の検索画面では削除ボタンは出さないので、"false"
-//		 this.delete = "false";
+		// 最初の検索画面では削除ボタンは出さないので、"false"
+		// this.delete = "false";
 
 		return "success";
 	}
 
 	// 野菜の変数に値を代入(野菜)
 	private String getDefaultYasai() {
-		return this.yasai = "野菜";
+		return "野菜";
 	}
 
 	// リセットボタン押下時
@@ -101,8 +101,8 @@ public class YasaiSearchAction extends AbstractAction {
 
 	// 追加ボタンを押下時
 	public String add() {
-		
-		//削除チェックボックスの値をnullに設定
+
+		// 削除チェックボックスの値をnullに設定
 		this.sessionMap.put("delete_id", null);
 		try {
 			// 追加画面に遷移
@@ -116,8 +116,8 @@ public class YasaiSearchAction extends AbstractAction {
 
 	// 削除ボタン押下時
 	public String delete() {
-		
-		//削除チェックボックスの値を取得しセッション（delete_id）に設定
+
+		// 削除チェックボックスの値を取得しセッション（delete_id）に設定
 		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
@@ -126,7 +126,7 @@ public class YasaiSearchAction extends AbstractAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return "success";
 	}
 
@@ -151,20 +151,9 @@ public class YasaiSearchAction extends AbstractAction {
 				temp.setId(yasai.getId());
 				temp.setYasai(yasai.getYasai());
 				temp.setTyouriId(yasai.getTyouriId());
-				temp.setDate_Entry(yasai.getDate_Entry());
-				temp.setDate_Up(yasai.getDate_Up());
-				temp.setUserId(yasai.getUserId());
-				temp.setDate_Up(yasai.getUserId_Up());
-
-				// （料理ID）int型をString型に変換
-				// temp.setId(String.valueOf(ryouri.getId()));
 
 				temp.setTyouri(ryouri.getTyouri());
 				temp.setRyouri(ryouri.getRyouri());
-				temp.setDate_Entry(ryouri.getDate_Entry());
-				temp.setDate_Up(ryouri.getDate_Up());
-				temp.setUserId(ryouri.getUserId());
-				temp.setDate_Up(ryouri.getUserId_Up());
 
 				// tempTableにtempを加える
 				tempTable.add(temp);
