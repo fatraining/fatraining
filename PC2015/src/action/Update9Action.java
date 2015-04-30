@@ -12,13 +12,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
-import controller.LiofTaManager;
-
 
 @Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class Update9Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
-	public String update_id;
 	public String name;
 	public String food;
 	public String drink;
