@@ -17,7 +17,7 @@ public class ProfileManager extends HibernateUtil {
 	public ArrayList<Result1Table> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-//SQL文　二つのテーブルを結合
+
 		String select = "SELECT * FROM table_profile i, table_hobby d";
 		String where1 = "WHERE i.id = d.id";
 		String sql = select + " " + where1;
