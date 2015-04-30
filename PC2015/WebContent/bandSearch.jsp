@@ -72,14 +72,14 @@
 					<td class="data"><s:property value="renewal_date" /></td>
 					<td class="data"><s:property value="entry_userid" /></td>
 					<td class="data"><s:property value="renewal_userid" /></td>
-						<td class="data"><input type="checkbox" name="update_id"value=<s:property value="id" />/></td>
+						<td class="data"><input type="checkbox" name="delete_id"value=<s:property value="id" />/></td>
 				</tr>
 			</s:iterator>
 		</tbody>
 	</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除" cssClass="btn btn-primary" />
+				<s:submit method="delete" name="delete_id" value="削除" cssClass="btn btn-primary" />
 			</div>
 		</s:if>
 	</s:form>

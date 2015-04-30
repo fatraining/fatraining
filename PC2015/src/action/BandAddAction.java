@@ -19,7 +19,7 @@ import controller.HibernateUtil;
 public class BandAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	//フィールドの宣言
-	public String update_id; //int型に変更→再びString型に戻す
+	public String delete_id; //update_idからdelete_idに変更
 	public String name;
 	public String sex;
 	public String age;
@@ -38,7 +38,7 @@ public class BandAddAction extends AbstractAction {
 	
 	//executeメソッド。update_idの値を受け取っている。
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		return "success";
 	}
 	//insertメソッド。データベースに値を入れる。
@@ -48,10 +48,6 @@ public class BandAddAction extends AbstractAction {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		entry_date = String.valueOf(sdf.format(date));
 		renewal_date = String.valueOf(sdf.format(date));
-		
-		//exclusion_flg,delete_flgの値を0にする。キャスト
-		//exclusion_flg = 0;//String.valueOf(0);
-		//delete_flg = 0;//String.valueOf(0);
 		
 		//登録useridにuserIdの値を入れる。
 		this.entry_userid = (String)this.sessionMap.get("userId");
@@ -77,22 +73,7 @@ public class BandAddAction extends AbstractAction {
 		insert_band_account.setExclusion_flg(this.exclusion_flg);
 		insert_band_account.setDelete_flg(this.delete_flg);
 		insert_band_table.setBand_name(this.band_name);
-		/*String[] data = { this.name, this.sex, this.age, this.school,
-				this.favorite_song, this.part, this.band_id, this.entry_date,
-				this.renewal_date, this.entry_userid, this.renewal_userid,
-				this.exclusion_flg, this.delete_flg };
-		int i = 0;
-		for (String temp : data) {
-			/*if (temp.length() > 50) {
-				this.errormsg = "50文字以下で入力してください";
-				return "error";
-			}
-			if (temp.length() < 1)
-				i++;
-			if (i>7) {
-				this.errormsg = "未入力は登録できません";
-				return "error";
-			}*/
+		
 
 			//ToDo
 			try {
@@ -103,7 +84,7 @@ public class BandAddAction extends AbstractAction {
 				session.getTransaction().rollback();
 			}
 
-		//}//ToDo
+		//ToDo
 		session.getTransaction().commit();
 		return "bandsearch";
 
@@ -114,13 +95,13 @@ public class BandAddAction extends AbstractAction {
 	
 	//deleteメソッド。削除するときの処理
 	public String delete() {
-		this.update_id = (String)this.sessionMap.get("update_id");
+		this.delete_id = (String)this.sessionMap.get("delete_id");
 		
 		//複数選択の削除のために文字列の分割
-		String str = new String(this.update_id);
+		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 		
-		if (this.update_id.isEmpty()) {
+		if (this.delete_id.isEmpty()) {
 			return "bandsearch";
 		}
 		//for文で処理を繰り返す
@@ -146,26 +127,6 @@ public class BandAddAction extends AbstractAction {
 
 	
 	/**************************複数選択の削除の処理ここまで*******************************/
-	/*public String checkcode(String code) {
-
-		// code = code.replaceAll("[^a-zA-Z_0-9]","_");
-		if (!code.matches("[a-zA-Z_0-9]{0,50}")) {
-		}
-		return code;
-	}*/
-
-	/*private static boolean checkCharacterCode(String str, String encoding) {
-		if (str == null) {
-			return true;
-		}
-
-		try {
-			byte[] bytes = str.getBytes(encoding);
-			return str.equals(new String(bytes, encoding));
-		} catch (UnsupportedEncodingException ex) {
-			throw new RuntimeException("エンコード名称が正しくありません。", ex);
-
-		}
-	}*/
+	
 
 }
