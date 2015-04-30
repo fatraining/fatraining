@@ -34,6 +34,7 @@ public class YasaiSearchAction extends AbstractAction {
 	// 検索結果の表示(データ)
 	public ArrayList<YasaiResultTable> outputTable;
 
+	//画面表示時に実行
 	@Override
 	public String execute() {
 
