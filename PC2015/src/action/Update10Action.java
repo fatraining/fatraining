@@ -18,20 +18,18 @@ import controller.HibernateUtil;
 @Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
 public class Update10Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
-	
-	public String update_id;
-	public String eatFood;
-	public String eatCalory;
-	public String eat_year;
-	public String eat_month;
-	public String eat_day;
-	public String eat_hour;
-	public String entry_day;
-	public String renew_day;
-	public String entry_userid;
-	public String renew_userid;
-	public String errormsg;
-	public String delete_id;
+
+	public String eatFood; //食べ物名
+	public String eatCalory; //カロリー
+	public String eat_year; //年
+	public String eat_month; //月
+	public String eat_day; //日
+	public String eat_hour; //時間
+	public String entry_day; //登録日付
+	public String renew_day; //更新日付
+	public String entry_userid; //登録userID
+	public String renew_userid; //更新userID
+	public String delete_id; // 削除に使うレコードのID
 
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
