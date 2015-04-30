@@ -24,7 +24,7 @@ public class Result1Manager extends HibernateUtil {
 				home = "%";
 			if (hobby.isEmpty())
 				hobby = "%";
-//SQL文　二つのテーブルを結合
+
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.id = d.id";
 			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
