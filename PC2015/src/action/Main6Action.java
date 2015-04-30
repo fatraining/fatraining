@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import model.ResultTable6;
 import controller.LikeManager;
 import controller.Result6Manager;
-import action.AbstractAction;
 
 public class Main6Action extends AbstractAction {
 
@@ -20,8 +19,6 @@ public class Main6Action extends AbstractAction {
 	public String delete;
 
 	//検索結果の表示に必要なもの
-	private Result6Manager linkController;
-	private LikeManager allController;
 	public ArrayList<ResultTable6> outputTable;
 
 	//検索画面
@@ -57,28 +54,19 @@ public class Main6Action extends AbstractAction {
 	public String search() {
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
-				allController = new LikeManager();
+				LikeManager allController = new LikeManager();
 				this.outputTable = allController.resultList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			linkController = new Result6Manager();
+			Result6Manager linkController = new Result6Manager();
 			this.outputTable = linkController.resultList(this.title,this.series);
 		}
 		this.do_search = "true";
 		this.delete = "true";
 		return "success";
 	}
-
-	//検索結果・表
-//	public String printall() {
-//		this.do_search = "true";
-//		allController = new LikeManager();
-//		this.outputTable = allController.resultList();
-//		this.delete = "true";
-//		return "success";
-//	}
 	
     //追加
 	public String delete() {
