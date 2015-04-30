@@ -47,7 +47,7 @@ public class Main10Action extends AbstractAction {
 		this.eat_day = getDefaultEat_day(); // デフォルト値の取得
 		this.eat_hour = getDefaultEat_hour(); // デフォルト値の取得
 		this.delete = "false"; //
-		return "success";
+		return "success"; //SuccessActionが見つからないので戻る
 	}
 	
 	//resetメソッド（リセットボタンを押した時）
@@ -57,7 +57,7 @@ public class Main10Action extends AbstractAction {
 		this.eat_month = getDefaultEat_month(); // デフォルト値の取得
 		this.eat_day = getDefaultEat_day(); // デフォルト値の取得
 		this.eat_hour = getDefaultEat_hour(); // デフォルト値の取得
-		return "success";
+		return "success"; //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 	
 	
@@ -79,7 +79,7 @@ public class Main10Action extends AbstractAction {
 		this.do_search = "true";
 		//削除ボタンの表示
 		this.delete = "true"; 
-		return "success"; //successが見つからないので戻る
+		return "success"; //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 	
 	// updateメソッド。追加で使用
@@ -90,7 +90,7 @@ public class Main10Action extends AbstractAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "success";
+		return "success";  //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 
 
@@ -104,6 +104,6 @@ public class Main10Action extends AbstractAction {
 			e.printStackTrace();
 		}
 
-		return "success"; //successが見つからないので戻る
+		return "success";  //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 }
