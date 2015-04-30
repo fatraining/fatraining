@@ -6,7 +6,7 @@ public class Result1Table implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 //画面に表示させたいカラム名
-	private int id;
+	private String id;
 	private String name;
 	private String personality;
 	private String home;
@@ -22,11 +22,11 @@ public class Result1Table implements Serializable {
 	public Result1Table() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
