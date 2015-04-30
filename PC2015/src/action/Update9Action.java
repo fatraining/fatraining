@@ -12,6 +12,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
+import controller.LiofTaManager;
+
 
 @Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class Update9Action extends AbstractAction {
@@ -63,7 +65,6 @@ public class Update9Action extends AbstractAction {
 		insert_like_table.setNew_day(this.new_day);
 		insert_like_table.setUserid(this.userid);
 		insert_like_table.setNew_userid(this.new_userid);
-		// insert_like_table.setDelete(this.delete);
 
 		// 例外処理
 		try {
@@ -74,21 +75,7 @@ public class Update9Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		// String[] data = { this.name, this.food, this.drink, this.color,
-		// this.taste};
-		// int i = 0;
-		// for (String temp : data) {
-		// if (temp.length() > 50) {
-		// this.errormsg = "50文字以下で入力してください";
-		// return "error";
-		// }
-		// if (temp.length() < 1)
-		// i++;
-		// if (i > 14) {
-		// this.errormsg = "未入力は登録できません";
-		// return "error";
-		// }
-		//
+		
 		session.getTransaction().commit(); // 処理が成功したときに結果を確立させる
 		return "main9";
 
@@ -99,7 +86,7 @@ public class Update9Action extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
-
+		
 		if (this.delete_id.isEmpty()) {
 			return "main9";
 		}
