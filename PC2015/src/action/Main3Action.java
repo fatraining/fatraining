@@ -81,7 +81,7 @@ public class Main3Action extends AbstractAction {
 		if(this.title.isEmpty() && this.genre.isEmpty()){
 			//入力がない場合
 			StoryManager allController  = new StoryManager();
-	        this.outputTable = allController.resultList();
+	        this.outputTable = allController.searchAll();
 		}else{
 			//入力された場合
 			StoryManager linkController  = new StoryManager();
