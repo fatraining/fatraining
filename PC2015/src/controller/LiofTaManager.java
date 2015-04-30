@@ -10,7 +10,7 @@ import model.Result9Table;
 import org.hibernate.classic.Session;
 
 public class LiofTaManager extends HibernateUtil {
-	public List<?> result9Table;
+	public List<?> resultTable;
 	public ArrayList<Result9Table> outputTable;
 
 	public ArrayList<Result9Table> resultList() {
@@ -20,7 +20,7 @@ public class LiofTaManager extends HibernateUtil {
 		String where1 = "WHERE d.id=i.id";
 		String sql = select + " " + where1;
 		try {
-			result9Table = session.createSQLQuery(sql)
+			resultTable = session.createSQLQuery(sql)
 					.addEntity("table_like", LiofTa.class)
 					.addEntity("table_color", CoofTa.class).list();
 		} catch (Exception e) {
@@ -29,7 +29,7 @@ public class LiofTaManager extends HibernateUtil {
 		}
 		session.getTransaction().commit(); // Transaction処理が成功したとき結果を確立させる
 
-		this.outputTable = tableTrans(result9Table); // テーブル取得
+		this.outputTable = tableTrans(resultTable); // テーブル取得
 
 		return outputTable;
 	}
@@ -52,7 +52,7 @@ public class LiofTaManager extends HibernateUtil {
 			String where2 = "AND (d.name LIKE '" + name + "' AND d.food LIKE '"
 					+ food + "' AND d.drink LIKE '" + drink + "')";
 			String sql = select + " " + where1 + " " + where2;
-			result9Table = session.createSQLQuery(sql)
+			resultTable = session.createSQLQuery(sql)
 					.addEntity("LiofTa", LiofTa.class)
 					.addEntity("CoofTa", CoofTa.class).list();
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public class LiofTaManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		this.outputTable = tableTrans(result9Table);
+		this.outputTable = tableTrans(resultTable);
 		return outputTable;
 	}
 
