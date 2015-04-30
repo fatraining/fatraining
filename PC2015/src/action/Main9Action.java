@@ -9,10 +9,6 @@ import model.CoofTa;
 import model.LiofTa;
 import model.Result9Table;
 
-import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletRedirectResult;
-
-@Result(name = "update9", value = "update9.action", type = ServletRedirectResult.class)
 public class Main9Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -27,17 +23,14 @@ public class Main9Action extends AbstractAction {
 
 	public ArrayList<Result9Table> outputTable;
 
-	// 変数に値を代入する（この場合空白）
 	private String getDefaultName() {
 		return "";
 	}
 
-	// 変数に値を代入する（この場合空白）
 	private String getDefaultFood() {
 		return "";
 	}
 
-	// 変数に値を代入する（この場合空白）
 	private String getDefaultDrink() {
 		return "";
 	}
