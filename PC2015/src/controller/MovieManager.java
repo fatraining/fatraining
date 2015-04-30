@@ -14,7 +14,7 @@ public class MovieManager extends HibernateUtil {
 	public  List<?> resultTableMovie;
 	public  ArrayList<ResultTableMovie> outputTableMovie;
 
-	public ArrayList<ResultTableMovie> resultList(String genreId, String exhibition_year) {
+	public ArrayList<ResultTableMovie> resultList() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -37,6 +37,32 @@ public class MovieManager extends HibernateUtil {
 
 		return outputTableMovie;
 	}
+	
+	public ArrayList<ResultTableMovie> resultList(String genreId,String exhibition_year){
+
+		Session session = HibernateUtil.getSessionFactory()
+				.getCurrentSession();
+		session.beginTransaction();
+		try {
+			if(genreId.isEmpty())genreId="%";
+			if(exhibition_year.isEmpty())exhibition_year="%";
+			String select = "SELECT * FROM movie m,movie_genre g";
+			String where1 = "WHERE m.genreId=g.id";
+			String where2 = "AND (m.genreId LIKE '"+ genreId +"' AND m.exhibition_year LIKE '"
+					+ exhibition_year+ "')";
+			String sql = select + " " + where1 + " " + where2;
+			resultTableMovie = session.createSQLQuery(sql)
+					.addEntity("Movie", Movie.class)
+					.addEntity("MovieGenre", MovieGenre.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		this.outputTableMovie = tableTrans(resultTableMovie);
+		return outputTableMovie;
+	}
+
 	
 	//表示結果の配列
 	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable){
