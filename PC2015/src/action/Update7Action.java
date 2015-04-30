@@ -20,7 +20,7 @@ public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// デリートに必要な変数
-	public String update_id;
+	public String delete_id;
 	// テーブルにインサートするための変数
 	public String title;
 	public int genreId;
@@ -35,7 +35,7 @@ public class Update7Action extends AbstractAction {
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
 	}
@@ -95,12 +95,12 @@ public class Update7Action extends AbstractAction {
 
 	// デリートメソッド
 	public String delete() {
-		// update_id=movieテーブルのidを取得
-		this.update_id = (String) this.sessionMap.get("update_id");
-		String str = new String(this.update_id);
+		// delete_id=movieテーブルのidを取得
+		this.delete_id = (String) this.sessionMap.get("delete_id");
+		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 
-		if (this.update_id.isEmpty()) {
+		if (this.delete_id.isEmpty()) {
 			return "main7";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
