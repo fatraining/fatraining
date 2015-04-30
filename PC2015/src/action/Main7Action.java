@@ -48,8 +48,9 @@ public class Main7Action extends AbstractAction {
 
 	public String print() {
 		MovieManager allController = new MovieManager();
-		this.userId = (String) this.sessionMap.get("userId");
 		List<?> resultTableMovie;
+		this.userId = (String) this.sessionMap.get("userId");
+
 		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
 			resultTableMovie = allController.resultList();
 		} else {
@@ -88,17 +89,16 @@ public class Main7Action extends AbstractAction {
 		return "success";
 	}
 
-	
-	//表示結果の配列
-	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable){
+	// 表示結果の配列
+	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable) {
 		ArrayList<ResultTableMovie> tempTable = new ArrayList<ResultTableMovie>();
 		Object[] obj;
 		try {
-			for(int i = 0 ; i < resultTable.size() ; i++){
+			for (int i = 0; i < resultTable.size(); i++) {
 				ResultTableMovie temp = new ResultTableMovie();
 				obj = (Object[]) resultTable.get(i);
-				Movie movie =  (Movie)obj[0];
-				MovieGenre movie_genre  = (MovieGenre)obj[1];
+				Movie movie = (Movie) obj[0];
+				MovieGenre movie_genre = (MovieGenre) obj[1];
 				temp.setGenre(movie_genre.getGenre());
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
