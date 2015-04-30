@@ -20,21 +20,20 @@ public class BandAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	//フィールドの宣言
 	public String delete_id; //update_idからdelete_idに変更
-	public String name;
-	public String sex;
-	public String age;
-	public String school;
-	public String favorite_song;
-	public String part;
-	public int band_id;//band_accountテーブルのカラム名BAND_IDの変数、データ型int(String型からint型へ変更)
-	public String entry_date;
-	public String renewal_date;
-	public String entry_userid;
-	public String renewal_userid;
-	public int exclusion_flg; //band_accountテーブルのカラム名EXCLUSION_FLGの変数、データ型int(String型からint型に修正)
-	public int delete_flg; //band_accountテーブルのカラム名DELETE_FLGの変数、データ型int(String型からint型に修正)
-	public String band_name;
-	public String errormsg;
+	public String name; //名前に関する変数nameを宣言
+	public String sex; //性別に関する変数sexを宣言
+	public String age; //年齢に関する変数ageを宣言
+	public String school; //出身校に関する変数schoolを宣言
+	public String favorite_song; //好きな曲に関する変数favorite_songを宣言
+	public String part; //演奏楽器に関する変数partを宣言
+	public int band_id;//テーブル結合の時に必要なBAND_IDに関する変数band_idを宣言
+	public String entry_date; //登録日付に関する変数entry_dateを宣言
+	public String renewal_date; //更新日付に関する変数renewal_dateを宣言
+	public String entry_userid; //登録useridに関する変数entry_useridを宣言
+	public String renewal_userid; //更新useridに関する変数renewal_useridを宣言
+	public int exclusion_flg; //更新FLGに関する変数exclusion_flgを宣言
+	public int delete_flg; //削除FLGに関する変数delete_flgを宣言
+	public String band_name; //バンド名に関する変数band_nameを宣言
 	
 	//executeメソッド。update_idの値を受け取っている。
 	public String execute() throws Exception {
@@ -51,9 +50,12 @@ public class BandAddAction extends AbstractAction {
 		
 		//登録useridにuserIdの値を入れる。
 		this.entry_userid = (String)this.sessionMap.get("userId");
+		//更新useridにuserIdの値を入れる。
 		this.renewal_userid = (String)this.sessionMap.get("userId");
 		
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションを開始
 		session.beginTransaction();
 
 		//インスタンス化

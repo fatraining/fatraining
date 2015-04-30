@@ -32,44 +32,51 @@ public class BandSearchAction extends AbstractAction {
 	@Override
 	public String execute() {
 		this.userId = (String) this.sessionMap.get("userId"); //USER名をuserIdに代入する
-		this.band_name = getDefaultValue(); //
-		this.name = getDefaultValue();
-		this.part = getDefaultValue();
-		this.delete = "false";
+		this.band_name = getDefaultValue(); //band_nameに初期値を代入する
+		this.name = getDefaultValue(); //nameに初期値を代入する
+		this.part = getDefaultValue(); //partに初期値を代入する
+		this.delete = "false"; //deleteにfalseを代入し、削除ボタンを非表示に
 		return "success";
 	}
 
 	// resetメソッド。入力した値を初期値に戻す。
 	public String reset() {
-		this.userId = (String) this.sessionMap.get("userId");
-		this.band_name = getDefaultValue();
-		this.name = getDefaultValue();
-		this.part = getDefaultValue();
+		this.userId = (String) this.sessionMap.get("userId"); //USER名をuserIdに代入する
+		this.band_name = getDefaultValue(); //band_nameの値を初期値に戻す
+		this.name = getDefaultValue(); //nameの値を初期値に戻す
+		this.part = getDefaultValue(); //partの値を初期値に戻す
 		return "success";
 	}
 
-	// printメソッド。検索結果を表示させるための処理？
+	// printメソッド。検索結果を表示させるための処理
 	public String print() {
-
+		//userIdの取得
 		this.userId = (String) this.sessionMap.get("userId");
+		//band_nameとnameとpartの値が空だったらif文内の処理を実行
 		if (this.band_name.isEmpty() && this.name.isEmpty()
 				&& this.part.isEmpty()) {
+			//BandAllManagerクラスのインスタンス生成
 			BandAllManager allController = new BandAllManager();
+			//bandResultListメソッド(引数なし)をoutputTableに代入
 			this.outputTable = allController.bandResultList();
 		} else {
+			//BandAllManagerクラスのインスタンス生成
 			BandAllManager linkController = new BandAllManager();
+			//bandResultListメソッド(引数あり)をoutputTableに代入
 			this.outputTable = linkController.bandResultList(this.band_name,
 					this.name, this.part);
 		}
-		this.do_print = "true";
-		this.delete = "true";
+		this.do_print = "true"; //検索結果を表示させるためにtrueを代入している
+		this.delete = "true"; //削除ボタンを表示させるためにtrueを代入している
 		return "success";
 	}
 
 	// updateメソッド。追加で使用
 	public String update() {
+		//sessionMapのdelete_idの値をnullにする
 		this.sessionMap.put("delete_id", null);
 		try {
+			//bandAdd.actionページに飛ぶ
 			this.response.sendRedirect("/PC2015/bandAdd.action");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -80,10 +87,11 @@ public class BandSearchAction extends AbstractAction {
 
 	// deleteメソッド。行の削除に使用
 	public String delete() {
-
+		//sessionMapのdelete_idの値にdelete_idの値を代入
 		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
+			//bandAdd.actionページに飛ぶ
 			this.response.sendRedirect("/PC2015/bandAdd.action");
 		} catch (IOException e) {
 			e.printStackTrace();
