@@ -24,7 +24,7 @@ public class Update1Action extends AbstractAction {
 	public int birthday;
 	public String hobby;
 	// メソッドを起こすための変数
-	public String update_id;
+	public String delete_id;
 	public String day;
 	public String new_day;
 	public String userid;
@@ -35,29 +35,26 @@ public class Update1Action extends AbstractAction {
 
 	// executeメソッド
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		return "success";
 	}
 
 	// insertメソッド
 	public String insert() {
 		// 登録、更新日時表示
-		Date date = new Date();// インスタンス化
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");// インスタンス化
-		day = String.valueOf(sdf.format(date));// キャスト　文字列から数値への変換
-		new_day = String.valueOf(sdf.format(date));// キャスト　文字列から数値への変換
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		day = String.valueOf(sdf.format(date));
+		new_day = String.valueOf(sdf.format(date));
 		// 登録、更新UAER表示
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
-		// 削除フラグ
-		// time_stamp = 0;
-		// delete = 0;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		// サーバーのテーブルに値をインサート
-		My_hobby insert_my_hobby_table = new My_hobby();// インスタンス化
-		Profile insert_profile_table = new Profile();// インスタンス化
+		My_hobby insert_my_hobby_table = new My_hobby();
+		Profile insert_profile_table = new Profile();
 		insert_my_hobby_table.setHobby(this.hobby);
 		insert_profile_table.setName(this.name);
 		insert_profile_table.setPersonality(this.personality);
@@ -86,13 +83,14 @@ public class Update1Action extends AbstractAction {
 	}
 
 	// deleteメソッド
-	public String delete() {// 検索結果の内容を削除のため
-		this.update_id = (String) this.sessionMap.get("update_id");
+	// 検索結果の内容を削除のため
+	public String delete() {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 
-		String str = new String(this.update_id);
+		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 
-		if (this.update_id.isEmpty()) {
+		if (this.delete_id.isEmpty()) {
 			return "main1";
 		}
 
@@ -104,11 +102,11 @@ public class Update1Action extends AbstractAction {
 			session.beginTransaction();
 			try {
 				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,
-						Integer.valueOf(strAry[i]));// キャスト　文字列から数値への変換
+						Integer.valueOf(strAry[i]));
 				Profile profile = (Profile) session.load(Profile.class,
-						Integer.valueOf(strAry[i]));// キャスト　文字列から数値への変換
-				session.delete(my_hobby);// 使用する場所が違うソース　削除に必要
-				session.delete(profile);// 使用する場所が違うソース　削除に必要
+						Integer.valueOf(strAry[i]));
+				session.delete(my_hobby);
+				session.delete(profile);
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
