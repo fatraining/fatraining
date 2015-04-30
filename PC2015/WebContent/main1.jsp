@@ -53,10 +53,6 @@
 					<th>出身地</th>
 					<th>誕生日</th>
 					<th>趣味</th>
-					<th>登録日時</th>
-					<th>更新日時</th>
-					<th>登録USER</th>
-					<th>更新USER</th>
 						<th>削除</th>
 
 				</tr>
@@ -68,10 +64,6 @@
 						<td class="data"><s:property value="home" /></td>
 						<td class="data"><s:property value="birthday" /></td>
 						<td class="data"><s:property value="hobby" /></td>
-						<td class="data"><s:property value="day" /></td>
-						<td class="data"><s:property value="new_day" /></td>
-						<td class="data"><s:property value="userid" /></td>
-						<td class="data"><s:property value="new_userid" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
