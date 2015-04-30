@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import model.ResultTable6;
 import controller.LikeManager;
-import controller.Result6Manager;
 
 public class Main6Action extends AbstractAction {
 
@@ -60,7 +59,7 @@ public class Main6Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		} else {
-			Result6Manager linkController = new Result6Manager();
+			LikeManager linkController = new LikeManager();
 			this.outputTable = linkController.resultList(this.title,this.series);
 		}
 		this.do_search = "true";
