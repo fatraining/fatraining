@@ -2,11 +2,12 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.Movie;
+import model.MovieGenre;
 import model.ResultTableMovie;
 import controller.MovieManager;
-import controller.Result7Manager;
-import action.AbstractAction;
 
 public class Main7Action extends AbstractAction {
 
@@ -47,16 +48,17 @@ public class Main7Action extends AbstractAction {
 
 	public String print() {
 		MovieManager allController = new MovieManager();
-
 		this.userId = (String) this.sessionMap.get("userId");
+		List<?> resultTableMovie;
 		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
-				this.outputTableMovie = allController.resultList(this.genreId,
-						this.exhibition_year);
+			resultTableMovie = allController.resultList();
 		} else {
-			Result7Manager linkController = new Result7Manager();
-			this.outputTableMovie = linkController.resultList(this.genreId,
+			resultTableMovie = allController.resultList(this.genreId,
 					this.exhibition_year);
 		}
+
+		this.outputTableMovie = tableTrans(resultTableMovie);
+
 		this.do_print = "true";
 		this.delete = "true";
 		return "success";
@@ -85,4 +87,30 @@ public class Main7Action extends AbstractAction {
 
 		return "success";
 	}
+
+	
+	//表示結果の配列
+	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable){
+		ArrayList<ResultTableMovie> tempTable = new ArrayList<ResultTableMovie>();
+		Object[] obj;
+		try {
+			for(int i = 0 ; i < resultTable.size() ; i++){
+				ResultTableMovie temp = new ResultTableMovie();
+				obj = (Object[]) resultTable.get(i);
+				Movie movie =  (Movie)obj[0];
+				MovieGenre movie_genre  = (MovieGenre)obj[1];
+				temp.setGenre(movie_genre.getGenre());
+				temp.setId(movie.getId());
+				temp.setTitle(movie.getTitle());
+				temp.setExhibition_year(movie.getExhibition_year());
+				tempTable.add(temp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return tempTable;
+	}
+
 }
