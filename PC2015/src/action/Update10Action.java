@@ -46,7 +46,7 @@ public class Update10Action extends AbstractAction {
 			
 		//登録、更新UAER表示
 		this.entry_userid = (String) this.sessionMap.get("userId");
-		this.renew_userid = (String) this.sessionMap.get("userId");
+		this.renew_userid = (String) this.sessionMap.get("userId");//セッションマップからuserIDを取得
 		
 		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
