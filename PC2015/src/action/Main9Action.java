@@ -23,33 +23,33 @@ public class Main9Action extends AbstractAction {
 
 	public ArrayList<Result9Table> outputTable;
 
-	private String getDefaultName() {
-		return "";
-	}
-
-	private String getDefaultFood() {
-		return "";
-	}
-
-	private String getDefaultDrink() {
-		return "";
-	}
+//	private String getDefaultName() {
+//		return "";
+//	}
+//
+//	private String getDefaultFood() {
+//		return "";
+//	}
+//
+//	private String getDefaultDrink() {
+//		return "";
+//	}
 
 	// executeメソッド
 	@Override
 	public String execute() {
-		this.name = getDefaultName();
-		this.food = getDefaultFood();
-		this.drink = getDefaultDrink();
-		this.delete = "faluse";
+//		this.name = getDefaultName();
+//		this.food = getDefaultFood();
+//		this.drink = getDefaultDrink();
+		this.delete = "false";
 		return "success";
 	}
 
 	// resetメソッド
 	public String reset() {
-		this.name = getDefaultName();
-		this.food = getDefaultFood();
-		this.drink = getDefaultDrink();
+		this.name = "";
+		this.food = "";
+		this.drink = "";
 		return "success";
 	}
 
