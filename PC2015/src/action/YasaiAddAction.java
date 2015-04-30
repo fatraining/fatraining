@@ -23,18 +23,21 @@ public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// テーブル内のカラム名の宣言
-	public String delete_id;
 	public String yasai;
 	public String ryouri;
 	public String date_entry;
 	public String date_up;
 	public String tyouri;
-	
+
 	// ユーザーID
 	public String userId;
+	
+	//削除チェックボックス
+	public String delete_id;
 
+	//画面表示時に実行
 	public String execute() throws Exception {
-		//YasaiSearchActionのdelete_idを呼び出し
+		// YasaiSearchActionのdelete_idを呼び出し
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
@@ -65,7 +68,7 @@ public class YasaiAddAction extends AbstractAction {
 		insert_ryouri_table.setDate_Entry(this.date_entry);
 		insert_ryouri_table.setDate_Up(this.date_up);
 		insert_ryouri_table.setUserId(this.userId);
-		insert_ryouri_table.setControl(0);
+		// insert_ryouri_table.setControl(0);
 		// insert_ryouri_table.setDeleteFlg(0);
 
 		// 料理テーブルに追加
@@ -90,8 +93,8 @@ public class YasaiAddAction extends AbstractAction {
 		insert_yasai_table.setDate_Entry(this.date_entry);
 		insert_yasai_table.setDate_Up(this.date_up);
 		insert_yasai_table.setUserId(this.userId);
-		insert_yasai_table.setControl(0);
-		insert_yasai_table.setDeleteFlg(0);
+//		insert_yasai_table.setControl(0);
+//		insert_yasai_table.setDeleteFlg(0);
 
 		// 野菜テーブルに追加
 		try {
@@ -108,7 +111,7 @@ public class YasaiAddAction extends AbstractAction {
 	// 検索結果内の値を削除
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		// update_idが空だとそのままmain8にもどる
+		// delete_idが空だとそのままmain8にもどる
 		if (this.delete_id.isEmpty()) {
 			return "yasaiSearch";
 		}
