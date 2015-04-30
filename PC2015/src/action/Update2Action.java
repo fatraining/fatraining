@@ -37,7 +37,8 @@ public class Update2Action extends AbstractAction {
 	public String genreNm;
 	
 	//変数
-	public String update_id;
+	public String delete_id;
+	public String add_id;
 	public String do_search;
 	public String errormsg;
 	public String delete;
@@ -97,12 +98,12 @@ public class Update2Action extends AbstractAction {
 	
 	//deleteメソッド
 	public String delete(){
-		this.update_id = (String)this.sessionMap.get("update_id");
+		this.delete_id = (String)this.sessionMap.get("delete_id");
 		
-		String str = new String(this.update_id);
+		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 		
-		if (this.update_id.isEmpty()) {
+		if (this.delete_id.isEmpty()) {
 			return "main2";
 		}
 		
@@ -135,7 +136,7 @@ public class Update2Action extends AbstractAction {
 	//executeメソッド
 	@Override
 	public String execute() {
-		this.update_id = (String) this.sessionMap.get("delete_id");
+		this.add_id = (String) this.sessionMap.get("add_id");
 		this.id = (String) this.sessionMap.get("id");
 		this.name = getDefaultName();
 		this.genreNm = getDefaultGenreNm();
@@ -184,8 +185,9 @@ public class Update2Action extends AbstractAction {
 	}
 
 	//updateメソッド
-	public String update() {
-		 this.sessionMap.put("update_id", this.update_id);
+	//addメソッド？
+	public String add() {
+		 this.sessionMap.put("add_id", this.add_id);
 
 		try {
 			this.response.sendRedirect("/PC2015/update2.action");
