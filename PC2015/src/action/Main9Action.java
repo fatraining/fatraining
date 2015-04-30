@@ -14,7 +14,7 @@ public class Main9Action extends AbstractAction {
 	public String food;
 	public String drink;
 	// 変数
-	public String update_id;
+	public String delete_id;
 	public String delete;
 	public String do_print;
 
@@ -55,15 +55,11 @@ public class Main9Action extends AbstractAction {
 
 	// searchメソッド
 	public String search() {
+		LiofTaManager allController = new LiofTaManager();
+		LiofTaManager linkController = new LiofTaManager();
 		if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
-			try {
-				LiofTaManager allController = new LiofTaManager();
 				this.outputTable = allController.resultList();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else {
-			LiofTaManager linkController = new LiofTaManager();
 			this.outputTable = linkController.resultList(this.name, this.food,
 					this.drink);
 		}
@@ -71,10 +67,19 @@ public class Main9Action extends AbstractAction {
 		this.delete = "true";
 		return "success";
 	}
-
-	// updateメソッド
 	public String update() {
-		this.sessionMap.put("update_id", this.update_id);
+		this.sessionMap.put("delete_id", null);
+
+		try {
+			this.response.sendRedirect("/PC2015/update9.action");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "success";
+	}
+	public String delete_id() {
+		this.sessionMap.put("delete_id", this.delete_id);
 		try {
 			this.response.sendRedirect("/PC2015/update9.action");
 		} catch (IOException e) {
