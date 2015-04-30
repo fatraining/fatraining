@@ -105,9 +105,9 @@ public class Update9Action extends AbstractAction {
 		session.beginTransaction();
 		try {
 			CoofTa coofta = (CoofTa) session.load(CoofTa.class,
-					Integer.valueOf(update_id));
+					update_id);
 			LiofTa liofta = (LiofTa) session.load(LiofTa.class,
-					Integer.valueOf(update_id));
+					update_id);
 			session.delete(coofta);
 			session.delete(liofta);
 		} catch (HibernateException e) {
