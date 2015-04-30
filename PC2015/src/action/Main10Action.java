@@ -10,13 +10,13 @@ public class Main10Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public String eat_year;
-	public String eat_month;
-	public String eat_day;
-	public String eat_hour;
-	public String do_search;
-	public String delete_id;
-	public String delete;
+	public String eat_year;//年
+	public String eat_month;//月
+	public String eat_day;//日
+	public String eat_hour;//時間
+	public String do_search;//検索結果の表示・非表示フラグ
+	public String delete_id;//削除のチェックボックス
+	public String delete;//削除の表示・非表示フラグ
 	public String userId;
 
 	public ArrayList<Result10Table> outputTable;
@@ -49,6 +49,7 @@ public class Main10Action extends AbstractAction {
 		return "success";
 	}
 	
+	//resetメソッド（リセットボタンを押した時）
 	public String reset(){
 		this.userId = (String) this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
 		this.eat_year = getDefaultEat_year(); // デフォルト値の取得
@@ -59,32 +60,27 @@ public class Main10Action extends AbstractAction {
 	}
 	
 	
-	
-	public String search() { // searchメソッド
-		this.do_search = "true"; // ボタンで処理する
+	//searchメソッド（検索ボタンを押した時）	
+	public String search() {
 		this.userId = (String) this.sessionMap.get("userId");
+		// もしすべて空だった場合は
 		if (this.eat_year.isEmpty() && this.eat_month.isEmpty()
 				&& this.eat_day.isEmpty() && this.eat_hour.isEmpty()) {
-			// もしすべて空だった場合は
-			try {
-				searchall(); // searchallメソッドを呼び出す
-			} catch (Exception e) { // 例外キャッチ
-				e.printStackTrace(); // todo
-			}
-		} else { // 空でなかったら 検索結果の表示をする
+			All10Manager allController = new All10Manager(); // インスタンスの生成
+			this.outputTable = allController.resultList();
+		// 空でなかったら 検索結果の表示をする
+		} else { 
 			All10Manager allController = new All10Manager(); // インスタンスの生成
 			this.outputTable = allController.resultList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
 		}
-		this.delete = "true"; // deleteボタンができる
-		return "success"; // searchが成功する
+		//検索結果の表示
+		this.do_search = "true";
+		//削除ボタンの表示
+		this.delete = "true"; 
+		return "success"; //successが見つからないので戻る
 	}
 
-	public String searchall() { // searchallメソッド
-		All10Manager allController = new All10Manager(); // todo
-		this.outputTable = allController.resultList(); // searchよりsearchallは値が空のときについてなので引数なし
-		return "success"; // 空欄での全検索ができるようになる
-	}
 
 	public String update() { // updateメソッド
 		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
