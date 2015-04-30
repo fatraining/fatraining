@@ -24,7 +24,7 @@ public class Main2Action extends AbstractAction {
 	
     //削除の表示フラグ
 	public String delete;
-	
+
 	//画面が表示時に実行
 	@Override
 	public String execute() {
