@@ -26,7 +26,7 @@
 	<div class="col-sm-offset-2 col-sm-10">
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="delete_id" value="追加" cssClass="btn btn-primary" />
 
 		<a href="menu.action">Back</a>
 
@@ -57,7 +57,7 @@
 						<td class="data"><s:property value="drink" /></td>
 						<td class="data"><s:property value="colorNm" /></td>
 						<td class="data"><s:property value="taste" /></td>
-						<td class="data"><input type="checkbox" name="update_id"
+						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
 					</tr>
@@ -66,7 +66,7 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="update" name="update_id" value="削除"
+				<s:submit method="delete_id" name="delete_id" value="削除"
 					cssClass="btn btn-primary" />
 			</div>
 		</s:if>
