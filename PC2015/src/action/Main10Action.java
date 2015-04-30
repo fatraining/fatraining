@@ -94,7 +94,7 @@ public class Main10Action extends AbstractAction {
 	}
 
 	// deleteメソッド（削除ボタンを押したとき）
-	public String delete() { // deleteメソッド
+	public String delete() {
 		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
 		try {
 			// 例外が発生するかもしれない処理

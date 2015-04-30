@@ -36,7 +36,7 @@ public class Update10Action extends AbstractAction {
 		return "success";
 	}
 	
-	//追加の処理
+	//insertメソッド、追加の処理 データベースに値を入れる
 	public String insert() {
 		//日付の設定
 		Date date = new Date();
@@ -78,9 +78,9 @@ public class Update10Action extends AbstractAction {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-		}//todo
+		}//TODO
 
-		session.getTransaction().commit();  //todo(データベースに処理結果を反映させる？)
+		session.getTransaction().commit();  //TODO(データベースに処理結果を反映させる？)
 		return "main10"; //Main10Actionへ
 	}
 	
@@ -99,7 +99,7 @@ public class Update10Action extends AbstractAction {
 			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 					Integer.valueOf(delete_id));
 			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(delete_id)); //todo(delete_idがStringでは処理できないのでキャストする)			
+					Integer.valueOf(delete_id)); //TODO(delete_idがStringでは処理できないのでキャストする)			
 			
 			session.delete(detaileat); //引数を入れ、指定した行を削除する
 			session.delete(idofeat); //引数を入れ、指定した行を削除する
@@ -108,7 +108,7 @@ public class Update10Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback(); //障害が起きたら障害が起きる前に戻る
 		}
-		session.getTransaction().commit();  //todo(削除してデータベースに処理結果を反映させる？)
+		session.getTransaction().commit();  //TODO(削除してデータベースに処理結果を反映させる？)
 		return "main10"; //Main10Actionへ
 	}
 
