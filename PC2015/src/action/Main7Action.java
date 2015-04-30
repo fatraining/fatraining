@@ -22,13 +22,11 @@ public class Main7Action extends AbstractAction {
 	public ArrayList<ResultTableMovie> outputTableMovie;
 
 	private String getDefaultGenre() {
-		this.genreId = "";
-		return this.genreId;
+		return "";
 	}
 
 	private String getDefaultExhibition_year() {
-		this.exhibition_year = "";
-		return this.exhibition_year;
+		return "";
 	}
 
 	@Override
@@ -36,7 +34,7 @@ public class Main7Action extends AbstractAction {
 		this.userId = (String) this.sessionMap.get("userId");
 		this.genreId = getDefaultGenre();
 		this.exhibition_year = getDefaultExhibition_year();
-		this.delete = "faluse";
+		this.delete = "false";
 		return "success";
 	}
 
@@ -48,16 +46,12 @@ public class Main7Action extends AbstractAction {
 	}
 
 	public String print() {
+		MovieManager allController = new MovieManager();
 
 		this.userId = (String) this.sessionMap.get("userId");
 		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
-			try {
-				MovieManager allController = new MovieManager();
 				this.outputTableMovie = allController.resultList(this.genreId,
 						this.exhibition_year);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else {
 			Result7Manager linkController = new Result7Manager();
 			this.outputTableMovie = linkController.resultList(this.genreId,
@@ -69,7 +63,7 @@ public class Main7Action extends AbstractAction {
 	}
 
 	public String update() {
-		this.sessionMap.put("update_id", this.update_id);
+		this.sessionMap.put("update_id", null);
 
 		try {
 			this.response.sendRedirect("/PC2015/update7.action");
@@ -80,7 +74,7 @@ public class Main7Action extends AbstractAction {
 		return "success";
 	}
 
-	public String delete2() {
+	public String delete() {
 		this.sessionMap.put("update_id", this.update_id);
 
 		try {
