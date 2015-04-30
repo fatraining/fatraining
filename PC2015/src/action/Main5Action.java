@@ -82,7 +82,7 @@ public class Main5Action extends AbstractAction {
 		if (this.dwelling.isEmpty() && this.name.isEmpty()) {
 			//入力がない場合
 			UserProfileManager allController = new UserProfileManager();
-			this.outputTable = allController.resultList();
+			this.outputTable = allController.searchAll();
 		}else{
 			//入力された場合
 			UserProfileManager linkController = new UserProfileManager();

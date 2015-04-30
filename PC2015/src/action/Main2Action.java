@@ -74,7 +74,7 @@ public class Main2Action extends AbstractAction {
 		if (this.name.isEmpty() && this.genreNm.isEmpty()) {
 			//入力がない場合
 			SweetsManager allController = new SweetsManager();
-			this.outputTable = allController.resultList();
+			this.outputTable = allController.searchAll();
 		}else{
 			//入力された場合
 			SweetsManager linkController = new SweetsManager();
