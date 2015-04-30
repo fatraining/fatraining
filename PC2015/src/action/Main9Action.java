@@ -2,11 +2,8 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import controller.LiofTaManager;
-import model.CoofTa;
-import model.LiofTa;
 import model.Result9Table;
 
 public class Main9Action extends AbstractAction {
@@ -17,7 +14,7 @@ public class Main9Action extends AbstractAction {
 	public String food;
 	public String drink;
 	// 変数
-	public String delete_id;
+	public String update_id;
 	public String delete;
 	public String do_print;
 
@@ -58,18 +55,16 @@ public class Main9Action extends AbstractAction {
 
 	// searchメソッド
 	public String search() {
-		LiofTaManager allController = new LiofTaManager();
-		List<?> resultTable;
-
 		if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
 			try {
-				resultTable = allController.resultList();
+				LiofTaManager allController = new LiofTaManager();
+				this.outputTable = allController.resultList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			LiofTaManager linkController = new LiofTaManager();
-			resultTable = linkController.resultList(this.name, this.food,
+			this.outputTable = linkController.resultList(this.name, this.food,
 					this.drink);
 		}
 		this.do_print = "true";
@@ -77,9 +72,9 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
-	// delete_idメソッド
-	public String delete_id() {
-		this.sessionMap.put("delete_id", this.delete_id);
+	// updateメソッド
+	public String update() {
+		this.sessionMap.put("update_id", this.update_id);
 		try {
 			this.response.sendRedirect("/PC2015/update9.action");
 		} catch (IOException e) {
@@ -87,31 +82,6 @@ public class Main9Action extends AbstractAction {
 		}
 
 		return "success";
-	}
-
-	public ArrayList<Result9Table> tableTrans(List<?> result9Table) {
-		ArrayList<Result9Table> tempTable = new ArrayList<Result9Table>();
-		Object[] obj;
-		try {
-			for (int i = 0; i < result9Table.size(); i++) {
-				Result9Table temp = new Result9Table();
-				obj = (Object[]) result9Table.get(i);
-				LiofTa liofta = (LiofTa) obj[0];
-				CoofTa coofta = (CoofTa) obj[1];
-				temp.setId(liofta.getId());
-				temp.setName(liofta.getName());
-				temp.setFood(liofta.getFood());
-				temp.setDrink(liofta.getDrink());
-				temp.setColorNm(coofta.getColorNm());
-				temp.setTaste(coofta.getTaste());
-				tempTable.add(temp);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		return tempTable;
 	}
 
 }
