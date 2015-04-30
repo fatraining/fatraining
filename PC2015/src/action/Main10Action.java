@@ -21,26 +21,26 @@ public class Main10Action extends AbstractAction {
 	public String userId;//ログインのuserID
 
 	public ArrayList<Result10Table> outputTable;
-
-	private String getDefaultEat_year() {// eat_yearのデフォルト値は2015
+	// eat_yearのデフォルト値は2015
+	private String getDefaultEat_year() {
 		return "2015";
 	}
-
-	private String getDefaultEat_month() {// eat_monthのデフォルト値は1
+	// eat_monthのデフォルト値は1
+	private String getDefaultEat_month() {
 		return "1";
 	}
-
-	private String getDefaultEat_day() {// eat_dayのデフォルト値は1
+	// eat_dayのデフォルト値は1
+	private String getDefaultEat_day() {
 		return "1";
 	}
-
-	private String getDefaultEat_hour() {// eat_hourのデフォルト値はAM
+	// eat_hourのデフォルト値はAM
+	private String getDefaultEat_hour() {
 		return "AM";
 	}
 
-	@Override
-	// スーパークラスのメソッドをサブクラスで書きなおすこと
-	public String execute() { // executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくため）
+	@Override //オーバーライドする
+	// executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくため）
+	public String execute() { 
 		this.userId = (String) this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
 		this.eat_year = getDefaultEat_year(); // デフォルト値の取得
 		this.eat_month = getDefaultEat_month(); // デフォルト値の取得
@@ -63,14 +63,14 @@ public class Main10Action extends AbstractAction {
 	
 	//searchメソッド（検索ボタンを押した時）	
 	public String search() {
-		this.userId = (String) this.sessionMap.get("userId");
+		this.userId = (String) this.sessionMap.get("userId"); // sessionMapに保存していたuserIDを取得
 		// もしすべて空だった場合は
 		if (this.eat_year.isEmpty() && this.eat_month.isEmpty()
 				&& this.eat_day.isEmpty() && this.eat_hour.isEmpty()) {
 			All10Manager allController = new All10Manager(); // インスタンスの生成
 			this.outputTable = allController.resultList();
 		// 空でなかったら 検索結果の表示をする
-		} else { 
+		} else {
 			All10Manager allController = new All10Manager(); // インスタンスの生成
 			this.outputTable = allController.resultList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
@@ -82,7 +82,7 @@ public class Main10Action extends AbstractAction {
 		return "success"; //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 	
-	// updateメソッド。追加で使用
+	// updateメソッド（追加ボタンを押したとき）
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 		try {
@@ -93,7 +93,7 @@ public class Main10Action extends AbstractAction {
 		return "success";  //SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 
-
+	// deleteメソッド（削除ボタンを押したとき）
 	public String delete() { // deleteメソッド
 		this.sessionMap.put("delete_id", this.delete_id);// update_idを取得する
 		try {
