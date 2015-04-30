@@ -11,9 +11,6 @@ public class YasaiResultTable implements Serializable{
 	private String tyouri ;
 	private int tyouriId;
 	private String ryouri;
-	private String date_entry;
-	private String date_up;
-	private String userId;
 
 
 	public YasaiResultTable() { }
@@ -47,24 +44,6 @@ public class YasaiResultTable implements Serializable{
 	}
 	public void setRyouri(String ryouri) {
 		this.ryouri = ryouri;
-	}
-	public String getDate_Entry() {
-		return date_entry;
-	}
-	public void setDate_Entry(String date_entry) {
-		 this.date_entry = date_entry;
-	}
-	public String getDate_Up() {
-		return date_up;
-	}
-	public void setDate_Up(String date_up) {
-		 this.date_up = date_up;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	
