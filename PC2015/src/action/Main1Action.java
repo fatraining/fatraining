@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.ProfileManager;
+import controller.Result1Manager;
 import model.Result1Table;
 
 public class Main1Action extends AbstractAction {
@@ -61,7 +62,7 @@ public class Main1Action extends AbstractAction {
 				e.printStackTrace();
 			}
 		} else {
-			ProfileManager linkController = new ProfileManager();// インスタンス化
+			Result1Manager linkController = new Result1Manager();// インスタンス化
 			this.outputTable = linkController.resultList(this.name, this.home,
 					this.hobby);
 		}
