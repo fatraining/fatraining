@@ -19,7 +19,7 @@
 			<label class="col-sm-2 control-label"> ID:</label>
 			<div class="col-md-3">
 				<s:textfield name="id" cssClass="form-control" rows="10"
-					maxlength="50" />
+					maxlength="11" />
 			</div>
 			<label class="col-sm-2 control-label"> タイトル:</label>
 			<div class="col-md-3">
@@ -38,19 +38,7 @@
 				<s:textfield name="se" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br /> <br /> <br /> 
-			<label class="col-sm-2 control-label">登録日:</label>
-			<div class="col-md-3">
 
-				<s:textfield name="u" cssClass="form-control" rows="10"
-					maxlength="50" />
-
-			</div>
-			<label class="col-sm-2 control-label"> 更新日:</label>
-			<div class="col-md-3">
-				<s:textfield name="upDay" cssClass="form-control" rows="10"
-					maxlength="50" />
-			</div>
 			<br /> <br /> <br />
 			<hr />
 			<label class="col-sm-2 control-label"> 登録USERID:</label>
