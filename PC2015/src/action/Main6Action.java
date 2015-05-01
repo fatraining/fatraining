@@ -24,26 +24,39 @@ public class Main6Action extends AbstractAction {
 	//シリーズID
 	private String getDefaultSeries() {
 		this.series = "1";
-		return this.series;
+		return "";
 	}
 
 	//タイトル
 	private String getDefaultTitle() {
 		this.title = "Fate/stay night";
-		return this.title;
+		return "";
 	}
 
 	@Override
 	//代入した変数の値の表示
 	public String execute() {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
 		getDefaultTitle();
 		this.delete = "false";
 		return "success";
 	}
+	
+	// 追加ボタンを押下時
+		public String add() {
+			try {
+				//追加画面に遷移
+				this.response.sendRedirect("/PC2015/update3.action");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return "success";
+		}
 
-	//executeを初期状態に戻す。
+	//初期状態に戻す。
 	public String reset() {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
 		getDefaultTitle();
 		return "success";
@@ -54,29 +67,46 @@ public class Main6Action extends AbstractAction {
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
 				LikeManager allController = new LikeManager();
-				this.outputTable = allController.resultList();
+				this.outputTable = allController.searchList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			LikeManager linkController = new LikeManager();
-			this.outputTable = linkController.resultList(this.title,this.series);
+			this.outputTable = linkController.searchList(this.title,this.series);
 		}
 		this.do_search = "true";
 		this.delete = "true";
 		return "success";
 	}
 	
-    //追加
-	public String delete() {
-		this.sessionMap.put("delete_id", this.delete_id);
+	// updateメソッド。追加で使用
+		public String update() {
+			//sessionMapのdelete_idの値をnullにする
+			this.sessionMap.put("delete_id", null);
+			try {
+				//mane6.actionページに飛ぶ
+				this.response.sendRedirect("/PC2015/update6.action");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			this.response.sendRedirect("/PC2015/update6.action");
-		} catch (IOException e) {
-			e.printStackTrace();
+			return "success";
 		}
 
-		return "success";
-	}
+		// deleteメソッド。行の削除に使用
+		public String delete() {
+			//sessionMapのdelete_idの値にdelete_idの値を代入
+			this.sessionMap.put("delete_id", this.delete_id);
+
+			try {
+				//update6.actionページに飛ぶ
+				this.response.sendRedirect("/PC2015/update6.action");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return "success";
+		}
+
 }
