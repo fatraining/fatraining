@@ -45,41 +45,24 @@
 		<table class="brwsr2">
 			<tbody>
 				<tr>
-					<th>Id</th>
-					<th>電話番号</th>
-
-					<th>郵便番号</th>
-
-					<th>住所</th>
-
 					<th>名前</th>
-
 					<th>性格</th>
-
-					<th>登録日時</th>
-
-					<th>更新日時</th>
-
-					<th>登録USERID</th>
-
-					<th>更新USERID</th>
-
+					<th>趣味</th>
+					<th>郵便番号</th>
+					<th>住所</th>
+					<th>電話番号</th>
 					<th>削除</th>
 
 				</tr>
 				<td class="bar" colspan="16"></td>
 				<s:iterator value="outputTable">
 					<tr>
-						<td class="data"><s:property value="id" /></td>
-						<td class="data"><s:property value="phonenumber" /></td>
+						<td class="data"><s:property value="name" /></td>	
+						<td class="data"><s:property value="personality" /></td>
+						<td class="data"><s:property value="interest" /></td>
 						<td class="data"><s:property value="zipcode" /></td>
 						<td class="data"><s:property value="dwelling" /></td>
-						<td class="data"><s:property value="name" /></td>
-						<td class="data"><s:property value="personality" /></td>
-						<td class="data"><s:property value="day" /></td>
-						<td class="data"><s:property value="newday" /></td>
-						<td class="data"><s:property value="userid" /></td>
-						<td class="data"><s:property value="newuserid" /></td>
+						<td class="data"><s:property value="phonenumber" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
