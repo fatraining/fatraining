@@ -19,11 +19,11 @@ public class YasaiSearchAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// 入力項目
-	public String yasai;// 野菜
-	public String delete_id;// 削除ボックス
+	public String yasai; // 野菜
+	public String delete_id; // 削除ボックス
 
 	// 表示
-	public String userId;// ユーザーID
+	public String userId; // ユーザーID
 
 	// 削除ボタンフラグ
 	public String delete;
@@ -128,7 +128,7 @@ public class YasaiSearchAction extends AbstractAction {
 	}
 
 	// ArrayListのYasaiResultTable型で返す（引数はresultTable(sql)）
-	public ArrayList<YasaiResultTable> tableTrans(List<?> resultTable) {
+	private ArrayList<YasaiResultTable> tableTrans(List<?> resultTable) {
 
 		// YasaiResultTableをtempTableでインスタンス化
 		ArrayList<YasaiResultTable> tempTable = new ArrayList<YasaiResultTable>();
@@ -144,7 +144,7 @@ public class YasaiSearchAction extends AbstractAction {
 				// resultTableのインデックスを全て取得して、objectに代入
 				// リスト型を配列に変換（キャスト）
 				obj = (Object[]) resultTable.get(i);
-				
+
 				//
 				Yasai yasai = (Yasai) obj[0];
 				Ryouri ryouri = (Ryouri) obj[1];
