@@ -19,7 +19,7 @@ import controller.HibernateUtil;
 public class Update6Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	//カラムの呼び出し
-	public String update_id;
+	public String delete_id;
 	public String id;
 	public String series;
 	public String se;
@@ -34,7 +34,7 @@ public class Update6Action extends AbstractAction {
 	public String errormsg;
 
 	public String execute() throws Exception {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
 	}
@@ -83,12 +83,12 @@ public class Update6Action extends AbstractAction {
 	
 	//削除動作
 	public String delete() {
-		this.update_id = (String) this.sessionMap.get("update_id");
+		this.delete_id = (String) this.sessionMap.get("delete_id");
 		
-		String str = new String(this.update_id);
+		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 		
-		if (this.update_id.isEmpty()) {
+		if (this.delete_id.isEmpty()) {
 			return "main6";
 		}
 		for(int i = 0; i < strAry.length; i++){
