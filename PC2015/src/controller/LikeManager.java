@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.LikeGame;
 import model.LikeSeries;
+import model.Result3Table;
 import model.ResultTable6;
 
 import org.hibernate.classic.Session;
@@ -33,7 +34,7 @@ public class LikeManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 
-		this.outputTable = tableTrans(resultTable);
+		ArrayList<ResultTable6> outputTable = tableTrans(resultTable);
 
 		return outputTable;
 	}
@@ -43,7 +44,7 @@ public class LikeManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
 		session.beginTransaction();
-		try {
+		
 			if(title.isEmpty())title="%";
 			if(series.isEmpty())series="%";
 			String select = "SELECT * FROM like_game g,like_series s";
@@ -51,7 +52,11 @@ public class LikeManager extends HibernateUtil {
 			String where2 = "AND (g.title LIKE '"+ title +"' AND g.series LIKE '"
 					+ series + "')";
 			String sql = select + " "  + where1 + " " + where2 ;
-			resultTable = session.createSQLQuery(sql)
+			
+			List<?> resultTable = null;
+			
+			try {
+				resultTable = session.createSQLQuery(sql)
 					.addEntity("LikeGame", LikeGame.class)
 					.addEntity("LikeSeries", LikeSeries.class).list();
 		} catch (Exception e) {
@@ -59,7 +64,7 @@ public class LikeManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-		this.outputTable = tableTrans(resultTable);
+		ArrayList<ResultTable6> outputTable = tableTrans(resultTable);
 		return outputTable;
 	}
 	
