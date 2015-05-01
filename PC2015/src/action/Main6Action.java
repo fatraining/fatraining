@@ -14,7 +14,7 @@ public class Main6Action extends AbstractAction {
 	public String series;
 	public String title;
 	public String do_search;
-	public String update_id;
+	public String delete_id;
 	public String delete;
 
 	//検索結果の表示に必要なもの
@@ -69,7 +69,7 @@ public class Main6Action extends AbstractAction {
 	
     //追加
 	public String delete() {
-		this.sessionMap.put("update_id", this.update_id);
+		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
 			this.response.sendRedirect("/PC2015/update6.action");
