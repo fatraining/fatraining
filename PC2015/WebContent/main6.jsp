@@ -24,6 +24,7 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
 		<s:submit method="delete" value="追加" cssClass="btn btn-primary" />
+		<a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
