@@ -17,10 +17,13 @@ public class Main1Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 	// テーブルで作ったカラム　検索画面にて検索をかけたいカラム名
+	//名前
 	public String name;
+	//出身地
 	public String home;
+	//趣味
 	public String hobby;
-	// メソッドを起こすための変数
+	// メソッドを起こすための宣言
 	public String delete_id;
 	public String do_search;
 	public String delete;
@@ -50,7 +53,7 @@ public class Main1Action extends AbstractAction {
 		return "success";
 	}
 
-	// resetメソッド　メソッドが呼ばれたとき最初の状態にする。(executeメソッドが呼ばれた時の状態)
+	// resetメソッド　メソッドが呼ばれたとき最初の画面の状態にする
 	public String reset() {
 		this.name = getDefaultName();
 		this.home = getDefaultHome();
@@ -101,6 +104,7 @@ public class Main1Action extends AbstractAction {
 
 		return "success";
 	}
+	//検索結果時の値を表示
 	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
 		Object[] obj;
