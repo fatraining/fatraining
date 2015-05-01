@@ -9,10 +9,11 @@ import org.hibernate.classic.Session;
 
 public class MovieManager extends HibernateUtil {//HibernateUtilを継承
 
-	public  List<?> resultTableMovie;//リスト型の変数宣言
 
 	//検索項目未入力の場合のメソッド
 	public List<?> resultList() {
+		  List<?> resultTableMovie = null;//リスト型の変数宣言
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();//DB接続
 		session.beginTransaction();//トランザクション(?)開始
 
@@ -35,6 +36,7 @@ public class MovieManager extends HibernateUtil {//HibernateUtilを継承
 	
 	//検索項目入力済みの場合のメソッド
 	public List<?> resultList(String genreId,String exhibition_year){
+		  List<?> resultTableMovie = null;//リスト型の変数宣言
 
 		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
