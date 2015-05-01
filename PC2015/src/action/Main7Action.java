@@ -39,26 +39,26 @@ public class Main7Action extends AbstractAction {
 		return "success";
 	}
 
-	public String reset() {
-		this.userId = (String) this.sessionMap.get("userId");
-		this.genreId = "";
-		this.exhibition_year = "";
+	public String reset() {//リセットボタンを押した時のメソッド
+		this.userId = (String) this.sessionMap.get("userId");//ユーザーIDを取ってくる
+		this.genreId = "";//ジャンルを空にする。
+		this.exhibition_year = "";//公開年を空にする。
 		return "success";
 	}
 
-	public String print() {
-		MovieManager allController = new MovieManager();
-		List<?> resultTableMovie;
-		this.userId = (String) this.sessionMap.get("userId");
+	public String print() {//検索結果を表示させるためのメソッド
+		MovieManager moviemanager = new MovieManager();//MovieManagerをインスタンス化
+		 List<?> resultTable;//リスト型の変数宣言
+		this.userId = (String) this.sessionMap.get("userId");//ユーザーIDの取得
 
-		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
-			resultTableMovie = allController.resultList();
-		} else {
-			resultTableMovie = allController.resultList(this.genreId,
-					this.exhibition_year);
+		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {//未入力の場合
+			resultTable = moviemanager.resultList();//マネージャーのresultList()を呼ぶ
+		} else {//どちらかが入力された場合
+			resultTable = moviemanager.resultList(this.genreId,
+					this.exhibition_year);//マネージャーのresultList(genreId,exhibition_year)を呼ぶ
 		}
 
-		this.outputTableMovie = tableTrans(resultTableMovie);
+		this.outputTableMovie = tableTrans(resultTable);
 
 		this.do_print = "true";
 		this.delete = "true";
