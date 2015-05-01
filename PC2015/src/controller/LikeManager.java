@@ -5,24 +5,26 @@ import java.util.List;
 
 import model.LikeGame;
 import model.LikeSeries;
-import model.Result3Table;
 import model.ResultTable6;
 
 import org.hibernate.classic.Session;
 
 public class LikeManager extends HibernateUtil {
 
-	public  List<?> resultTable;
-	public  ArrayList<ResultTable6> outputTable;
-
-	public ArrayList<ResultTable6> resultList() {
+	//全件のデータを検索
+	public ArrayList<ResultTable6> searchList() {
+		//DBへの接続処理
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
 
-		//表示条件
+		//SQL文
 		String select = "SELECT * FROM like_game g,like_series s ";
 		String where1 = "WHERE g.series=s.i";
 		String sql    = select + " " +where1;
+		
+		//SQL文の実行
+		List<?> resultTable = null; //SQLの検索結果用の変数
 
 		try {
 			resultTable = session.createSQLQuery(sql)
@@ -32,6 +34,7 @@ public class LikeManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		//トランザクションの終了
 		session.getTransaction().commit();
 
 		ArrayList<ResultTable6> outputTable = tableTrans(resultTable);
@@ -39,7 +42,7 @@ public class LikeManager extends HibernateUtil {
 		return outputTable;
 	}
 	
-	public ArrayList<ResultTable6> resultList(String title, String series){
+	public ArrayList<ResultTable6> searchList(String title, String series){
 
 		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
