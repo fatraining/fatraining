@@ -1,21 +1,20 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Movie;
 import model.MovieGenre;
-import model.ResultTableMovie;
 
 import org.hibernate.classic.Session;
 
-public class MovieManager extends HibernateUtil {
+public class MovieManager extends HibernateUtil {//HibernateUtilを継承
 
-	public  List<?> resultTableMovie;
+	public  List<?> resultTableMovie;//リスト型の変数宣言
 
+	//検索項目未入力の場合のメソッド
 	public List<?> resultList() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();//DB接続
+		session.beginTransaction();//トランザクション(?)開始
 
 		//インサートするためのsql文
 		String select = "SELECT * FROM movie m,movie_genre g";
@@ -23,10 +22,10 @@ public class MovieManager extends HibernateUtil {
 		String sql    = select + " "+where1;
 
 		try {
-			resultTableMovie = session.createSQLQuery(sql)
-					.addEntity("Movie", Movie.class)
-					.addEntity("MovieGenre", MovieGenre.class).list();
-		} catch (Exception e) {
+			resultTableMovie = session.createSQLQuery(sql)//Queryインターフェイスのインスタンスを取得(?)
+					.addEntity("Movie", Movie.class)//ネイティブ SQL クエリからエンティティオブジェクトを取得する
+					.addEntity("MovieGenre", MovieGenre.class).list();//クエリの実行(?)
+		} catch (Exception e) {//例外がeに代入される
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
@@ -34,6 +33,7 @@ public class MovieManager extends HibernateUtil {
 		return resultTableMovie;
 	}
 	
+	//検索項目入力済みの場合のメソッド
 	public List<?> resultList(String genreId,String exhibition_year){
 
 		Session session = HibernateUtil.getSessionFactory()
@@ -48,8 +48,8 @@ public class MovieManager extends HibernateUtil {
 					+ exhibition_year+ "')";
 			String sql = select + " " + where1 + " " + where2;
 			resultTableMovie = session.createSQLQuery(sql)
-					.addEntity("Movie", Movie.class)
-					.addEntity("MovieGenre", MovieGenre.class).list();
+					.addEntity("Movie", Movie.class)//ネイティブ SQL クエリからエンティティオブジェクトを取得する
+					.addEntity("MovieGenre", MovieGenre.class).list();//ネイティブ SQL クエリからエンティティオブジェクトを取得する
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
