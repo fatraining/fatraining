@@ -2,7 +2,10 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.LikeGame;
+import model.LikeSeries;
 import model.ResultTable6;
 import controller.LikeManager;
 
@@ -64,19 +67,25 @@ public class Main6Action extends AbstractAction {
 	
 	//検索結果
 	public String search() {
+		List<?> resultTable = null;
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
 				LikeManager allController = new LikeManager();
-				this.outputTable = allController.searchList();
+				resultTable = allController.searchList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			LikeManager linkController = new LikeManager();
-			this.outputTable = linkController.searchList(this.title,this.series);
+			resultTable = linkController.searchList(this.title,this.series);
 		}
+		this.outputTable = tableTrans(resultTable);
+		
+		//検索結果の表示
 		this.do_search = "true";
+		//削除ボタンの表示
 		this.delete = "true";
+		
 		return "success";
 	}
 	
@@ -107,6 +116,34 @@ public class Main6Action extends AbstractAction {
 			}
 
 			return "success";
+		}
+		
+		//検索結果
+		//SQLの検索結果を画面表示用のListに入れ替えている
+		public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
+			//画面表示用のリストをインスタンス化する。
+			ArrayList<ResultTable6> tempTable = new ArrayList<ResultTable6>();
+			//変数の初期化
+			Object[] obj;
+			//SQLの検索結果の件数分ループする。
+				for(int i = 0 ; i < resultTable.size() ; i++){
+					ResultTable6 temp = new ResultTable6();
+					obj = (Object[]) resultTable.get(i);
+					LikeGame likegame = (LikeGame)obj[0];
+					LikeSeries likeseries  = (LikeSeries)obj[1];
+					temp.setId(likegame.getId());
+					temp.setTitle(likegame.getTitle());
+					temp.setSe(likeseries.getSe());
+					temp.setU(likeseries.getU());
+					temp.setUpDay(likegame.getUpDay());
+					temp.setUserId(likegame.getUserId());
+					temp.setUpUser(likegame.getUpUser());
+					temp.setNonStyle(likegame.getNonStyle());
+					temp.setDel(likegame.getDel());
+					tempTable.add(temp);
+				}
+				
+			return tempTable;
 		}
 
 }
