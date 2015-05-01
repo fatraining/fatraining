@@ -22,6 +22,7 @@ import controller.YasaiManager;
 public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
+	//カラム名
 	public String yasai;
 	public String ryouri;
 	public String tyouri;
@@ -77,7 +78,7 @@ public class YasaiAddAction extends AbstractAction {
 		Yasai insert_yasai_table = new Yasai();
 		insert_yasai_table.setYasai(this.yasai);
 
-		// 料理テーブルのid取得し、野菜テーブルの調理idにいれる
+		// 料理テーブルのid取得し、野菜テーブルの調理idに代入
 		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
 		insert_yasai_table.setDate_Entry(date_entry);
 		insert_yasai_table.setDate_Up(date_up);
