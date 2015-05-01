@@ -106,10 +106,10 @@ public class SweetsManager extends HibernateUtil {
 			temp.setGenreNm(genre.getGenreNm());
 			// temp.setRecord_date(sweets.getRecord_date());
 			// temp.setReset_date(sweets.getReset_date());
-			temp.setEntry_userId(sweets.getEntry_userId());
-			temp.setRecord_userId(sweets.getRecord_userId());
-			temp.setExclusive_FLG(sweets.getExclusive_FLG());
-			temp.setDelete_FLG(sweets.getDelete_FLG());
+//			temp.setEntry_userId(sweets.getEntry_userId());
+//			temp.setRecord_userId(sweets.getRecord_userId());
+//			temp.setExclusive_FLG(sweets.getExclusive_FLG());
+//			temp.setDelete_FLG(sweets.getDelete_FLG());
 
 			// 画面表示用にリストに追加する。
 			tempTable.add(temp);
