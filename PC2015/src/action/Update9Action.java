@@ -16,18 +16,27 @@ import controller.HibernateUtil;
 @Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class Update9Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
+	// 名前
 	public String name;
+	// 食べ物
 	public String food;
+	// 飲み物
 	public String drink;
+	// 色
 	public String colorNm;
+	// 趣味
 	public String taste;
+	// 登録日時
 	public String day;
+	// 更新日時
 	public String new_day;
+	// 登録USERid
 	public String userid;
+	// 更新USERid
 	public String new_userid;
+	// 変数
 	public String delete_id;
 	// public int time_stamp;
-	// public int delete;
 	public String errormsg;
 
 	// executeメソッド
@@ -43,7 +52,7 @@ public class Update9Action extends AbstractAction {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		day = String.valueOf(sdf.format(date));
 		new_day = String.valueOf(sdf.format(date));
-		// USER
+		// USERid
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
 
@@ -63,7 +72,6 @@ public class Update9Action extends AbstractAction {
 		insert_like_table.setUserid(this.userid);
 		insert_like_table.setNew_userid(this.new_userid);
 
-		// 例外処理
 		try {
 			session.save(insert_like_table);
 			session.save(insert_color_table);
@@ -72,18 +80,18 @@ public class Update9Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		
-		session.getTransaction().commit(); // 処理が成功したときに結果を確立させる
+
+		session.getTransaction().commit();
 		return "main9";
 
 	}
 
-	// deleteメソッド
+	// deleteメソッド（消去）
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
-		
+
 		if (this.delete_id.isEmpty()) {
 			return "main9";
 		}
