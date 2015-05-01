@@ -59,7 +59,7 @@
 						<td class="data"><s:property value="upUser" /></td>
 						<td class="data"><s:property value="nonStyle" /></td>
 						<td class="data"><s:property value="del" /></td>
-						<td class="data"><input type="checkbox" name="update_id"
+						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 					</tr>
 				</s:iterator>
@@ -67,7 +67,7 @@
 		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
-				<s:submit method="delete" name="update_id" value="削除"
+				<s:submit method="delete" name="delete_id" value="削除"
 					cssClass="btn btn-primary" />
 			</div>
 		</s:if>
