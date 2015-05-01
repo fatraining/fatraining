@@ -9,11 +9,9 @@ import org.hibernate.classic.Session;
 
 public class YasaiManager extends HibernateUtil {
 
-	// 三つのメソッドで使用するため、フィールドで宣言
-	public List<?> resultTable;
-
 	// 何も入力されなかったときのメソッド
 	public List<?> resultList() {
+		List<?> resultTable = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -27,13 +25,9 @@ public class YasaiManager extends HibernateUtil {
 		String sql = select + " " + where1;
 
 		try {
-			// 条件の結果がresultTableに代入される
+			// SQLが実行され、結果がresultTableに代入される
 			resultTable = session.createSQLQuery(sql)
-
-			// Yasaiクラスを"Yasai"と関連付け
 					.addEntity("Yasai", Yasai.class)
-
-					// Ryouriクラスを"Ryouri"と関連付けてリスト化
 					.addEntity("Ryouri", Ryouri.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,6 +40,7 @@ public class YasaiManager extends HibernateUtil {
 
 	// yasaiが入力された場合のメソッド
 	public List<?> resultList(String yasai) {
+		List<?> resultTable = null;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -54,8 +49,8 @@ public class YasaiManager extends HibernateUtil {
 			String select = "SELECT * FROM yasai y,ryouri r";
 			String where1 = "WHERE y.tyouriId=r.id";
 
-			// 野菜の文字列を検索
-			String where2 = "AND y.yasai LIKE '" + yasai + "'";
+			// 野菜の文字列を検索(部分一致)
+			String where2 = "AND y.yasai LIKE '%" + yasai + "%'";
 
 			// selectとwhere1,where2をつなげたものをsqlに代入
 			String sql = select + " " + where1 + " " + where2;
@@ -73,6 +68,7 @@ public class YasaiManager extends HibernateUtil {
 
 	// 料理テーブル検索用のメソッド
 	public Ryouri ryouriList() {
+		List<?> resultTable = null;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -80,6 +76,7 @@ public class YasaiManager extends HibernateUtil {
 			// 料理テーブルの全件検索
 			String sql = "SELECT * FROM ryouri r";
 			resultTable = session.createSQLQuery(sql)
+					//session.createSQLQuery(sql)の戻り値をRyouriクラスに渡している
 					.addEntity("Ryouri", Ryouri.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
