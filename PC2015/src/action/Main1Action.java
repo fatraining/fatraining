@@ -19,10 +19,6 @@ public class Main1Action extends AbstractAction {
 	// テーブルで作ったカラム　検索画面にて検索をかけたいカラム名
 	//名前
 	public String name;
-	//出身地
-	public String home;
-	//趣味
-	public String hobby;
 	// メソッドを起こすための宣言
 	public String delete_id;
 	public String do_search;
@@ -35,20 +31,10 @@ public class Main1Action extends AbstractAction {
 		return "";
 	}
 
-	private String getDefaultHome() {
-		return "";
-	}
-
-	private String getDefaultHobby() {
-		return "";
-	}
-
 	// executeメソッド　メソッドが呼ばれたとき変数に代入した値が表示
 	@Override
 	public String execute() {
 		this.name = getDefaultName();
-		this.home = getDefaultHome();
-		this.hobby = getDefaultHobby();
 		this.delete = "false";
 		return "success";
 	}
@@ -56,8 +42,6 @@ public class Main1Action extends AbstractAction {
 	// resetメソッド　メソッドが呼ばれたとき最初の画面の状態にする
 	public String reset() {
 		this.name = getDefaultName();
-		this.home = getDefaultHome();
-		this.hobby = getDefaultHobby();
 		return "success";
 	}
 
@@ -66,12 +50,11 @@ public class Main1Action extends AbstractAction {
 		ProfileManager profileManager = new ProfileManager();
 		List<?> resultTable;
 		
-		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
+		if (this.name.isEmpty()) {
 				resultTable = profileManager.resultList();
 
 		} else {
-			resultTable = profileManager.resultList(this.name, this.home,
-					this.hobby);
+			resultTable = profileManager.resultList(this.name);
 		}
 		this.outputTable = tableTrans(resultTable);
 		
