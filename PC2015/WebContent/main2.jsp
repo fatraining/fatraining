@@ -38,7 +38,7 @@
 				<tr>
 					<th>名前</th>
 					<th>ジャンル</th>
-						<th>削除</th>
+					<th>削除</th>
 
 				</tr>
 				<td class="bar" colspan="16"></td>
