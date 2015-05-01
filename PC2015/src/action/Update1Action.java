@@ -18,17 +18,12 @@ public class Update1Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// テーブルで作ったカラム　追加画面にて検索をかけたいカラム名
-	//名前
 	public String name;
-	//性格
 	public String personality;
-	//出身地
 	public String home;
-	//誕生月
 	public int birthday;
-	//趣味
 	public String hobby;
-	// メソッドを起こすための宣言
+	// メソッドを起こすための変数
 	public String delete_id;
 	public String day;
 	public String new_day;
@@ -44,12 +39,12 @@ public class Update1Action extends AbstractAction {
 
 	// insertメソッド
 	public String insert() {
-		// 登録、更新日時を追加
+		// 登録、更新日時表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		day = String.valueOf(sdf.format(date));
 		new_day = String.valueOf(sdf.format(date));
-		// 登録、更新UAERを追加
+		// 登録、更新UAER表示
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
 

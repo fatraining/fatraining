@@ -13,6 +13,21 @@
 			<s:textfield name="name" cssClass="form-control" rows="1" />
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">出身地:<br />
+
+		</label>
+		<div class="col-md-3">
+			<s:textfield name="home" cssClass="form-control" rows="1" />
+		</div>
+
+		<label class="col-sm-2 control-label">趣味:<br />
+
+		</label>
+		<div class="col-md-3">
+			<s:textfield name="hobby" cssClass="form-control" rows="1" />
+		</div>
+	</div>
 
 
 	<div class="col-sm-offset-2 col-sm-10">
