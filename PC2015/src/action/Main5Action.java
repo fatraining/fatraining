@@ -2,8 +2,11 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Result5Table;
+import model.User_Character;
+import model.User_Profile;
 import controller.UserProfileManager;
 
 public class Main5Action extends AbstractAction {
@@ -64,7 +67,7 @@ public class Main5Action extends AbstractAction {
 	
 	// 追加ボタンを押下時
 	public String add() {
-
+		this.sessionMap.put("delete_id",null);
 		try {
 			//追加画面に遷移
 			this.response.sendRedirect("/PC2015/update5.action");
@@ -79,16 +82,18 @@ public class Main5Action extends AbstractAction {
 	public String search() {
 
 		//SQLの実行
+		List<?> resultTable = null;
 		if (this.dwelling.isEmpty() && this.name.isEmpty()) {
 			//入力がない場合
 			UserProfileManager allController = new UserProfileManager();
-			this.outputTable = allController.searchAll();
+			resultTable = allController.searchAll();
 		}else{
 			//入力された場合
 			UserProfileManager linkController = new UserProfileManager();
-			this.outputTable = linkController.resultList(this.dwelling,
+			resultTable = linkController.searchAll(this.dwelling,
 					this.name);
 		}
+		this.outputTable = tableTrans(resultTable);
 		
 		//検索結果の表示
 		this.do_search = "true";
@@ -113,4 +118,39 @@ public class Main5Action extends AbstractAction {
 		return "success";		
 	}
 
+	// SQLの検索結果を画面表示用のListに入れ替えている
+	private ArrayList<Result5Table> tableTrans(List<?> resultTable) {
+
+		// 画面表示用のリストをインスタンス化する。
+		ArrayList<Result5Table> tempTable = new ArrayList<Result5Table>();
+
+		// 変数の初期化
+		Object[] obj;
+
+		// SQLの検索結果の件数分ループする。
+		for (int i = 0; i < resultTable.size(); i++) {
+
+			// 画面表示用のレコードをインスタンス化する。
+			Result5Table temp = new Result5Table();
+
+			// SQLの検索結果を分解する。
+			obj = (Object[]) resultTable.get(i);
+			User_Character user_character = (User_Character) obj[0];
+			User_Profile user_profile = (User_Profile) obj[1];
+
+			// 画面表示用に設定する。
+			temp.setName(user_profile.getName()); // 名前
+			temp.setPersonality(user_character.getPersonality()); // 性格
+			temp.setInterest(user_character.getInterest()); // 趣味
+			temp.setZipcode(user_profile.getZipcode()); // 郵便番号
+			temp.setDwelling(user_profile.getDwelling()); // 住所
+			temp.setPhonenumber(user_profile.getPhonenumber()); // 電話番号
+			temp.setId(user_profile.getId()); // 削除チェックボックス
+
+			// 画面表示用にリストに追加する。
+			tempTable.add(temp);
+		}
+
+		return tempTable;
+	}
 }

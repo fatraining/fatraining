@@ -2,8 +2,11 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Result3Table;
+import model.Story;
+import model.Tb_Genre;
 import controller.StoryManager;
 
 public class Main3Action extends AbstractAction {
@@ -64,6 +67,8 @@ public class Main3Action extends AbstractAction {
 	// 追加ボタンを押下時
 	public String add() {
 
+		this.sessionMap.put("delete_id",null);
+		
 		try {
 			//追加画面に遷移
 			this.response.sendRedirect("/PC2015/update3.action");
@@ -78,16 +83,18 @@ public class Main3Action extends AbstractAction {
 	public String search(){
 		
 		//SQLの実行
+		List<?> resultTable = null;
 		if(this.title.isEmpty() && this.genre.isEmpty()){
 			//入力がない場合
 			StoryManager allController  = new StoryManager();
-	        this.outputTable = allController.searchAll();
+			resultTable = allController.searchAll();
 		}else{
 			//入力された場合
 			StoryManager linkController  = new StoryManager();
-		    this.outputTable = linkController.resultList(this.title,this.genre);
+			resultTable = linkController.searchAll(this.title,this.genre);
 		}
-
+		this.outputTable = tableTrans(resultTable);
+		
 		//検索結果の表示
 		this.do_print = "true";
 		//削除ボタンの表示
@@ -110,6 +117,37 @@ public class Main3Action extends AbstractAction {
 		}
 		
 		return "success";		
+	}
+	
+	// SQLの検索結果を画面表示用のListに入れ替えている
+	private ArrayList<Result3Table> tableTrans(List<?> resultTable) {
+
+		// 画面表示用のリストをインスタンス化する。
+		ArrayList<Result3Table> tempTable = new ArrayList<Result3Table>();
+
+		// 変数の初期化
+		Object[] obj;
+
+		// SQLの検索結果の件数分ループする。
+		for (int i = 0; i < resultTable.size(); i++) {
+			// 画面表示用のレコードをインスタンス化する。
+			Result3Table temp = new Result3Table();
+
+			// SQLの検索結果を分解する。
+			obj = (Object[]) resultTable.get(i);
+			Story story = (Story) obj[0];
+			Tb_Genre genre = (Tb_Genre) obj[1];
+
+			// 画面表示用に設定する。
+			temp.setTitle(story.getTitle()); // タイトル
+			temp.setGenre(genre.getGenre()); // ジャンル
+			temp.setId(story.getId()); // 削除チェックボックス
+
+			// 画面表示用にリストに追加する。
+			tempTable.add(temp);
+		}
+
+		return tempTable;
 	}
 
 }

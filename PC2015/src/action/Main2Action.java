@@ -2,8 +2,11 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.Genre;
 import model.Result2Table;
+import model.Sweets;
 import controller.SweetsManager;
 import action.AbstractAction;
 
@@ -64,7 +67,7 @@ public class Main2Action extends AbstractAction {
 	public String add() {
 		
 		//削除チェックボックスの値を取得しセッション（add_id）に設定
-		this.sessionMap.put("add_id",this.add_id);
+		this.sessionMap.put("delete_id",null);
 		
 		//削除画面に遷移
 		try {
@@ -81,16 +84,19 @@ public class Main2Action extends AbstractAction {
 	public String search() {
 
 		//SQLの実行
+		List<?> resultTable = null;
 		if (this.name.isEmpty() && this.genreNm.isEmpty()) {
 			//入力がない場合
 			SweetsManager allController = new SweetsManager();
-			this.outputTable = allController.searchAll();
+			resultTable = allController.searchAll();
 		}else{
 			//入力された場合
 			SweetsManager linkController = new SweetsManager();
-			this.outputTable = linkController.resultList(this.genreNm, this.name);
+			resultTable = linkController.searchAll(this.genreNm, this.name);
 		}
-
+		this.outputTable = tableTrans(resultTable);
+		
+		
 		//検索結果の表示
 		this.do_search = "true";
 		//削除ボタンの表示
@@ -113,6 +119,37 @@ public class Main2Action extends AbstractAction {
 		}
 		
 		return "success";		
+	}
+	
+	// SQLの検索結果を画面表示用のListに入れ替えている
+	private ArrayList<Result2Table> tableTrans(List<?> resultTable) {
+
+		// 画面表示用のリストをインスタンス化する。
+		ArrayList<Result2Table> tempTable = new ArrayList<Result2Table>();
+
+		// 変数の初期化
+		Object[] obj;
+
+		// SQLの検索結果の件数分ループする。
+		for (int i = 0; i < resultTable.size(); i++) {
+			// 画面表示用のレコードをインスタンス化する。
+			Result2Table temp = new Result2Table();
+
+			// SQLの検索結果を分解する。
+			obj = (Object[]) resultTable.get(i);
+			Sweets sweets = (Sweets) obj[0];
+			Genre genre = (Genre) obj[1];
+
+			// 画面表示用に設定する。
+			temp.setName(sweets.getName()); // 名前
+			temp.setGenreNm(genre.getGenreNm()); // ジャンル
+			temp.setId(sweets.getId()); // 削除チェックボックス
+
+			// 画面表示用にリストに追加する。
+			tempTable.add(temp);
+		}
+
+		return tempTable;
 	}
 
 }
