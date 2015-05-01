@@ -21,7 +21,7 @@ public class BandAccount implements Serializable{
 	private String school;
 	private String favorite_song;
 	private String part;
-	private int band_id;//カラム名BAND_IDの変数、データ型int(String型からint型へ変更)
+	private String band_id;//カラム名BAND_IDの変数、データ型int(String型からint型へ変更)
 	private String entry_date;
 	private String renewal_date;
 	private String entry_userid;
@@ -61,7 +61,7 @@ public class BandAccount implements Serializable{
 		return part;
 	}
 	@Column(name="BAND_ID")
-	public int getBand_id() {
+	public String getBand_id() {
 		return band_id;
 	}	@Column(name="ENTRY_DATE")
 	public String getEntry_date() {
@@ -110,7 +110,7 @@ public class BandAccount implements Serializable{
 	public void setPart(String part) {
 		this.part = part;
 	}
-	public void setBand_id(int band_id) {
+	public void setBand_id(String band_id) {
 		this.band_id = band_id;
 	}
 	public void setEntry_date(String entry_date) {

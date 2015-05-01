@@ -14,6 +14,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
+import controller.BandAllManager;
 
 @Result(name = "bandsearch", value = "bandSearch.action", type = ServletRedirectResult.class)
 public class BandAddAction extends AbstractAction {
@@ -27,10 +28,10 @@ public class BandAddAction extends AbstractAction {
 	public String favorite_song; //好きな曲に関する変数favorite_songを宣言
 	public String part; //演奏楽器に関する変数partを宣言
 	public int band_id;//テーブル結合の時に必要なBAND_IDに関する変数band_idを宣言
-	public String entry_date; //登録日付に関する変数entry_dateを宣言
-	public String renewal_date; //更新日付に関する変数renewal_dateを宣言
-	public String entry_userid; //登録useridに関する変数entry_useridを宣言
-	public String renewal_userid; //更新useridに関する変数renewal_useridを宣言
+	//public String entry_date; //登録日付に関する変数entry_dateを宣言
+	//public String renewal_date; //更新日付に関する変数renewal_dateを宣言
+	//public String entry_userid; //登録useridに関する変数entry_useridを宣言
+	//public String renewal_userid; //更新useridに関する変数renewal_useridを宣言
 	public int exclusion_flg; //更新FLGに関する変数exclusion_flgを宣言
 	public int delete_flg; //削除FLGに関する変数delete_flgを宣言
 	public String band_name; //バンド名に関する変数band_nameを宣言
@@ -45,48 +46,62 @@ public class BandAddAction extends AbstractAction {
 		//日付の設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		entry_date = String.valueOf(sdf.format(date));
-		renewal_date = String.valueOf(sdf.format(date));
+		String entry_date = String.valueOf(sdf.format(date));
+		String renewal_date = String.valueOf(sdf.format(date));
 		
 		//登録useridにuserIdの値を入れる。
-		this.entry_userid = (String)this.sessionMap.get("userId");
+		String entry_userid = (String)this.sessionMap.get("userId");
 		//更新useridにuserIdの値を入れる。
-		this.renewal_userid = (String)this.sessionMap.get("userId");
+		String renewal_userid = (String)this.sessionMap.get("userId");
 		
 		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		//トランザクションを開始
 		session.beginTransaction();
 
-		//インスタンス化
-		BandAccount insert_band_account = new BandAccount();
+		//インスタンス化。band_tableのデータ作成
 		BandTable insert_band_table = new BandTable();
+		insert_band_table.setBand_name(this.band_name);
+		insert_band_table.setEntry_date(entry_date);
+		insert_band_table.setRenewal_date(renewal_date);
+		insert_band_table.setEntry_userid(entry_userid);
+		insert_band_table.setRenewal_userid(renewal_userid);
+		
+		//band_tableテーブルに追加
+		try{
+			session.save(insert_band_table);
+		}catch(HibernateException e){
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		
+		//band_tableテーブルのデータ検索
+		BandAllManager bandAllManager = new BandAllManager();
+		insert_band_table = bandAllManager.bandTableList();
+		
+		//band_accountデータの作成
+		BandAccount insert_band_account = new BandAccount();
 		insert_band_account.setName(this.name);
 		insert_band_account.setSex(this.sex);
 		insert_band_account.setAge(this.age);
 		insert_band_account.setSchool(this.school);
 		insert_band_account.setFavorite_song(this.favorite_song);
 		insert_band_account.setPart(this.part);
-		insert_band_account.setBand_id(this.band_id);
-		insert_band_account.setEntry_date(this.entry_date);
-		insert_band_account.setRenewal_date(this.renewal_date);
-		insert_band_account.setEntry_userid(this.entry_userid);
-		insert_band_account.setRenewal_userid(this.renewal_userid);
-		insert_band_account.setExclusion_flg(this.exclusion_flg);
-		insert_band_account.setDelete_flg(this.delete_flg);
-		insert_band_table.setBand_name(this.band_name);
-		
+		//band_tableテーブルのIDを取得し、band_accountテーブルのBAND_IDに代入
+		insert_band_account.setBand_id(insert_band_table.getId());
+		insert_band_account.setEntry_date(entry_date);
+		insert_band_account.setRenewal_date(renewal_date);
+		insert_band_account.setEntry_userid(entry_userid);
+		insert_band_account.setRenewal_userid(renewal_userid);
 
-			//ToDo
+			//band_accountテーブルに追加
 			try {
 				session.save(insert_band_account);
-				session.save(insert_band_table);
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
 
-		//ToDo
 		session.getTransaction().commit();
 		return "bandsearch";
 
