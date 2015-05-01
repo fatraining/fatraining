@@ -52,10 +52,6 @@
 				<th>出身校</th>
 				<th>好きな曲</th>
 				<th>演奏楽器</th>
-				<th>登録日付</th>
-				<th>更新日付</th>
-				<th>登録USERID</th>
-				<th>更新USERID</th>
 					<th>削除</th>
 			</tr>
 			<td class="bar" colspan="16"></td>
@@ -68,10 +64,6 @@
 					<td class="data"><s:property value="school" /></td>
 					<td class="data"><s:property value="favorite_song" /></td>
 					<td class="data"><s:property value="part" /></td>
-					<td class="data"><s:property value="entry_date" /></td>
-					<td class="data"><s:property value="renewal_date" /></td>
-					<td class="data"><s:property value="entry_userid" /></td>
-					<td class="data"><s:property value="renewal_userid" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"value=<s:property value="id" />/></td>
 				</tr>
 			</s:iterator>
