@@ -44,9 +44,6 @@ public class YasaiSearchAction extends AbstractAction {
 		// 初期値の設定
 		this.yasai = getDefaultYasai();
 
-		// 最初の検索画面では削除ボタンは出さないので、"false"
-		// this.delete = "false";
-
 		return "success";
 	}
 
@@ -130,7 +127,10 @@ public class YasaiSearchAction extends AbstractAction {
 		return "success";
 	}
 
+	// ArrayListのYasaiResultTable型で返す（引数はresultTable(sql)）
 	public ArrayList<YasaiResultTable> tableTrans(List<?> resultTable) {
+
+		// YasaiResultTableをtempTableでインスタンス化
 		ArrayList<YasaiResultTable> tempTable = new ArrayList<YasaiResultTable>();
 
 		// objectの配列を宣言
@@ -144,6 +144,7 @@ public class YasaiSearchAction extends AbstractAction {
 				// resultTableのインデックスを全て取得して、objectに代入
 				// リスト型を配列に変換（キャスト）
 				obj = (Object[]) resultTable.get(i);
+				
 				//
 				Yasai yasai = (Yasai) obj[0];
 				Ryouri ryouri = (Ryouri) obj[1];

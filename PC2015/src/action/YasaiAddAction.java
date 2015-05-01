@@ -28,8 +28,6 @@ public class YasaiAddAction extends AbstractAction {
 	public String date_entry;
 	public String date_up;
 	public String tyouri;
-
-	// ユーザーID
 	public String userId;
 
 	// 削除チェックボックス
@@ -43,7 +41,6 @@ public class YasaiAddAction extends AbstractAction {
 		return "success";
 	}
 
-	// 追加ボタン押下時
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
