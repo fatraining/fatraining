@@ -13,8 +13,8 @@ import org.hibernate.classic.Session;
 public class BandAllManager extends HibernateUtil{
 	
 	//三つのメソッドで使用するため、フィールドで宣言
-	public List<?> bandResultTable;
-	public ArrayList<BandResultTable> outputTable;
+	public List<?> bandResultTable;//いらない
+	public ArrayList<BandResultTable> outputTable;//いらない（BandSearchActionにまとめるから）
 	
 	//bandResultListメソッド(引数なし)。検索時入力がなかったとき実行
 	public ArrayList<BandResultTable> bandResultList(){
