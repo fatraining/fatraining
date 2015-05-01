@@ -24,6 +24,8 @@ public class Main2Action extends AbstractAction {
 	
     //削除の表示フラグ
 	public String delete;
+	
+	public String add_id;
 
 	//画面が表示時に実行
 	@Override
@@ -53,19 +55,27 @@ public class Main2Action extends AbstractAction {
 		this.genreNm = getDefaultGenreNm();
 		return "success";
 	}
-	
-	// 追加ボタンを押下時
-	public String add() {
 
+	
+	
+	
+	
+	//追加ボタンを押下時
+	public String add() {
+		
+		//削除チェックボックスの値を取得しセッション（add_id）に設定
+		this.sessionMap.put("add_id",this.add_id);
+		
+		//削除画面に遷移
 		try {
-			//追加画面に遷移
 			this.response.sendRedirect("/PC2015/update2.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return "success";
+		
+		return "success";		
 	}
+
 
 	//検索ボタンを押下時
 	public String search() {
