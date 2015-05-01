@@ -1,9 +1,7 @@
 package action;
 
-//import java.io.UnsupportedEncodingException;
 
 import model.Movie;
-//import model.MovieGenre;
 
 import java.util.*;
 import java.text.*;
@@ -15,23 +13,22 @@ import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
 
+//リターンがmain7だったらmain7.actionに戻る
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// デリートに必要な変数
-	public String delete_id;
+	public String delete_id;//削除するID
 	// テーブルにインサートするための変数
-	public String title;
-	public int genreId;
-	public int exhibition_year;
-	public String registration_date;
-	public String renewal_date;
-	public String registration_userid;
-	public String renewal_userid;
-	public int control;
-	// public int delete;
-	public String errormsg;
+	public String title;//タイトル
+	public int genreId;//ジャンル
+	public int exhibition_year;//公開年
+	public String registration_date;//登録日
+	public String renewal_date;//更新日
+	public String registration_userid;//登録ユーザーID
+	public String renewal_userid;//更新ユーザーID
+	public String errormsg;//エラーメッセージ
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
@@ -67,7 +64,6 @@ public class Update7Action extends AbstractAction {
 
 			// 登録するテーブルとカラムを指定
 			Movie insert_movie_table = new Movie();
-			// MovieGenre insert_movie_genre_table = new MovieGenre();
 			insert_movie_table.setTitle(this.title);
 			insert_movie_table.setGenreId(this.genreId);
 			insert_movie_table.setExhibition_year(this.exhibition_year);
@@ -75,12 +71,10 @@ public class Update7Action extends AbstractAction {
 			insert_movie_table.setRenewal_date(this.renewal_date);
 			insert_movie_table.setRegistration_userid(this.registration_userid);
 			insert_movie_table.setRenewal_userid(this.renewal_userid);
-			// insert_movie_table.setControl(this.control);
 
 			// テーブルにインサートする
 			try {
 				session.save(insert_movie_table);
-				// session.save(insert_movie_genre_table);
 				// TODO
 			} catch (HibernateException e) {
 				e.printStackTrace();
