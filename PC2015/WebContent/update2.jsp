@@ -31,7 +31,7 @@
 		</div>
 	</s:form>
 </s:if>
-<s:if test="%{delete_id!=null}">
+<s:if test="%{delete_id!=true}">
 	<h3>本当に削除して宜しいですか？</h3>
 	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
