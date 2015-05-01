@@ -18,19 +18,22 @@ public class Update1Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// テーブルで作ったカラム　追加画面にて検索をかけたいカラム名
+	//名前
 	public String name;
+	//性格
 	public String personality;
+	//出身地
 	public String home;
+	//誕生月
 	public int birthday;
+	//趣味
 	public String hobby;
-	// メソッドを起こすための変数
+	// メソッドを起こすための宣言
 	public String delete_id;
 	public String day;
 	public String new_day;
 	public String userid;
 	public String new_userid;
-	// public int time_stamp;
-	// public int delete;
 	public String errormsg;
 
 	// executeメソッド
@@ -41,12 +44,12 @@ public class Update1Action extends AbstractAction {
 
 	// insertメソッド
 	public String insert() {
-		// 登録、更新日時表示
+		// 登録、更新日時を追加
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		day = String.valueOf(sdf.format(date));
 		new_day = String.valueOf(sdf.format(date));
-		// 登録、更新UAER表示
+		// 登録、更新UAERを追加
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
 
@@ -64,10 +67,6 @@ public class Update1Action extends AbstractAction {
 		insert_profile_table.setNew_day(this.new_day);
 		insert_profile_table.setUserid(this.userid);
 		insert_profile_table.setNew_userid(this.new_userid);
-		// String[] data = { this.hobby, this.name, this.personality, this.home,
-		// this.day, this.new_day, this.userid, this.new_userid };
-		// int i = 0;
-		// for (String temp : data) {
 
 		try {
 			session.save(insert_my_hobby_table);
