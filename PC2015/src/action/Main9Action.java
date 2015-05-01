@@ -12,9 +12,11 @@ import model.Result9Table;
 public class Main9Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-	// カラム
+	// 名前
 	public String name;
+	// 食べ物
 	public String food;
+	// 飲み物
 	public String drink;
 	// 変数
 	public String delete_id;
@@ -71,6 +73,7 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
+	// updateメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 
@@ -83,6 +86,7 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
+	// delete_idメソッド
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 		try {
