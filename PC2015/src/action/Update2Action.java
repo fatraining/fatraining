@@ -12,6 +12,7 @@ import controller.SweetsManager;
 
 
 
+
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
@@ -38,10 +39,10 @@ public class Update2Action extends AbstractAction {
 	
 	//変数
 	public String delete_id;
-	public String add_id;
 	public String do_search;
 	public String errormsg;
 	public String delete;
+	public String add_id;
 
 //	private Result2Manager linkController;
 	private SweetsManager allController;
@@ -57,17 +58,36 @@ public class Update2Action extends AbstractAction {
 		this.genreNm = "";
 		return this.genreNm;
 	}
+	
+	//executeメソッド
+	@Override
+	public String execute() {
+		this.delete_id = (String) this.sessionMap.get("delete_id");
+		this.id = (String) this.sessionMap.get("id");
+		this.name = getDefaultName();
+		this.genreNm = getDefaultGenreNm();
+
+
+		return "success";
+	}
 
 	
 	//insertメソッド
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
+		
+		Sweets sweets = new Sweets();
+		Genre genre = new Genre();
+		
 		Sweets insert_sweets = new Sweets();
 		Genre insert_genre = new Genre();
 		insert_sweets.setName(this.name);
 		insert_genre.setGenreNm(this.genreNm);
+		
+		
+		sweets.setName(this.name);
+		genre.setGenreNm(this.genreNm);
 
 		
 //		String[] data = { this.genreNm, this.name };
@@ -84,8 +104,8 @@ public class Update2Action extends AbstractAction {
 //				return "error";
 //			}
 			try {
-				session.save(insert_sweets);
-				session.save(insert_genre);
+				session.save(sweets);
+				session.save(genre);
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
@@ -133,17 +153,7 @@ public class Update2Action extends AbstractAction {
 //		return "date";
 //	}
 
-	//executeメソッド
-	@Override
-	public String execute() {
-		this.add_id = (String) this.sessionMap.get("add_id");
-		this.id = (String) this.sessionMap.get("id");
-		this.name = getDefaultName();
-		this.genreNm = getDefaultGenreNm();
 
-
-		return "success";
-	}
 
 	//resetメソッド
 	public String reset() {
