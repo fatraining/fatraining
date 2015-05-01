@@ -19,16 +19,12 @@ public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// デリートに必要な変数
-	public String delete_id;//削除するID
+	public String delete_id; //削除するID
 	// テーブルにインサートするための変数
-	public String title;//タイトル
-	public int genreId;//ジャンル
-	public int exhibition_year;//公開年
-	public String registration_date;//登録日
-	public String renewal_date;//更新日
-	public String registration_userid;//登録ユーザーID
-	public String renewal_userid;//更新ユーザーID
-	public String errormsg;//エラーメッセージ
+	public String title; //タイトル
+	public int genreId; //ジャンル
+	public int exhibition_year; //公開年
+	public String errormsg; //エラーメッセージ
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
@@ -39,6 +35,11 @@ public class Update7Action extends AbstractAction {
 
 	// 追加するメソッド
 	public String insert() {
+		String registration_date; //登録日
+		String renewal_date; //更新日
+		String registration_userid; //登録ユーザーID
+		String renewal_userid; //更新ユーザーID
+
 		// 未入力の項目があるときにエラーを返す
 		if (this.title.isEmpty() || this.genreId == 0
 				|| this.exhibition_year == 0) {
@@ -59,18 +60,18 @@ public class Update7Action extends AbstractAction {
 			renewal_date = String.valueOf(sdf.format(date));
 
 			// ユーザーIdを自動で入力
-			this.registration_userid = (String) this.sessionMap.get("userId");
-			this.renewal_userid = (String) this.sessionMap.get("userId");
+			registration_userid = (String) this.sessionMap.get("userId");
+			renewal_userid = (String) this.sessionMap.get("userId");
 
 			// 登録するテーブルとカラムを指定
 			Movie insert_movie_table = new Movie();
 			insert_movie_table.setTitle(this.title);
 			insert_movie_table.setGenreId(this.genreId);
 			insert_movie_table.setExhibition_year(this.exhibition_year);
-			insert_movie_table.setRegistration_date(this.registration_date);
-			insert_movie_table.setRenewal_date(this.renewal_date);
-			insert_movie_table.setRegistration_userid(this.registration_userid);
-			insert_movie_table.setRenewal_userid(this.renewal_userid);
+			insert_movie_table.setRegistration_date(registration_date);
+			insert_movie_table.setRenewal_date(renewal_date);
+			insert_movie_table.setRegistration_userid(registration_userid);
+			insert_movie_table.setRenewal_userid(renewal_userid);
 
 			// テーブルにインサートする
 			try {
