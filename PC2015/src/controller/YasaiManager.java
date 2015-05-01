@@ -19,23 +19,27 @@ public class YasaiManager extends HibernateUtil {
 
 		// 野菜と料理テーブルを全件検索
 		String select = "SELECT * FROM yasai y,ryouri r";
+
 		// 野菜テーブルの調理idと料理テーブルのidが一緒という条件
 		String where1 = "WHERE y.tyouriId=r.id";
+
 		// select文とwhere文あわせたものをsqlに代入
 		String sql = select + " " + where1;
 
 		try {
 			// 条件の結果がresultTableに代入される
 			resultTable = session.createSQLQuery(sql)
+
+			// Yasaiクラスを"Yasai"と関連付け
 					.addEntity("Yasai", Yasai.class)
+
+					// Ryouriクラスを"Ryouri"と関連付けてリスト化
 					.addEntity("Ryouri", Ryouri.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit();
-
-		// this.outputTable = tableTrans(resultTable);
 
 		return resultTable;
 	}
@@ -49,8 +53,10 @@ public class YasaiManager extends HibernateUtil {
 
 			String select = "SELECT * FROM yasai y,ryouri r";
 			String where1 = "WHERE y.tyouriId=r.id";
+
 			// 野菜の文字列を検索
 			String where2 = "AND y.yasai LIKE '" + yasai + "'";
+
 			// selectとwhere1,where2をつなげたものをsqlに代入
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
@@ -80,7 +86,8 @@ public class YasaiManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 
-		//resultTableの最終行を取得
+		// resultTableの最終行を取得
+		// 自分で入力したものを取得したいため、最終行
 		return (Ryouri) resultTable.get(resultTable.size() - 1);
 	}
 
