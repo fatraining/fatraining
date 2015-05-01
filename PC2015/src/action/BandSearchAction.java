@@ -6,10 +6,11 @@ import java.util.List;
 
 import model.BandResultTable;
 import model.BandTable;
+import model.BandAccount;
 import controller.BandAllManager;
 
-import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletRedirectResult;
+import org.apache.struts2.config.Result;//Main3Actionには書かれていない
+import org.apache.struts2.dispatcher.ServletRedirectResult;//Main3Actionには書かれていない
 
 @Result(name = "bandAdd", value = "bandAdd.action", type = ServletRedirectResult.class)
 public class BandSearchAction extends AbstractAction {
@@ -64,15 +65,17 @@ public class BandSearchAction extends AbstractAction {
 		if (this.band_name.isEmpty() && this.name.isEmpty()
 				&& this.part.isEmpty()) {
 			
-			//bandResultTable = bandAllManager.bandResultList();
-			this.outputTable = bandAllManager.bandResultList();
+			bandResultTable = bandAllManager.bandSearchAll();
+			//this.outputTable = bandAllManager.bandSearchAll();
 			
 		} else {
 			
-			//bandResultTable = bandAllManager.bandResultList(this.band_name,this.name,this.part);
-			this.outputTable = bandAllManager.bandResultList(this.band_name,this.name,this.part);
-			
+			bandResultTable = bandAllManager.bandSearchAll(this.band_name,this.name,this.part);
+			//this.outputTable = bandAllManager.bandSearchAll(this.band_name,this.name,this.part);
 		}
+		
+		//bandResultTableを引数にbandTableTransメソッドを呼び出し、outputTableに代入
+		this.outputTable = bandTableTrans(bandResultTable);
 		
 		this.do_search = "true"; //検索結果を表示させるためにtrueを代入している
 		this.delete = "true"; //削除ボタンを表示させるためにtrueを代入している
@@ -108,4 +111,40 @@ public class BandSearchAction extends AbstractAction {
 		return "success";
 	}
 
+	//SQLの検索結果を画面表示用のListに入れ替えている
+		private ArrayList<BandResultTable> bandTableTrans(List<?> bandResultTable){
+			
+			//画面表示用のリストをインスタンス化
+			ArrayList<BandResultTable> tempTable = new ArrayList<BandResultTable>();
+			
+			//変数の初期化
+			Object[] obj;
+			
+			//SQLの検索結果の件数分ループ
+			for(int i = 0;i < bandResultTable.size();i++){
+				
+				//画面表示用のレコードをインスタンス化
+				BandResultTable temp = new BandResultTable();
+				
+				//SQLの検索結果を分解
+				obj = (Object[]) bandResultTable.get(i);
+				BandAccount bandaccount = (BandAccount)obj[0];
+				BandTable bandtable = (BandTable)obj[1];
+				
+				//画面表示用に設定
+				temp.setId(bandaccount.getId());
+				temp.setName(bandaccount.getName());
+				temp.setSex(bandaccount.getSex());
+				temp.setAge(bandaccount.getAge());
+				temp.setSchool(bandaccount.getSchool());
+				temp.setFavorite_song(bandaccount.getFavorite_song());
+				temp.setPart(bandaccount.getPart());
+				temp.setBand_name(bandtable.getBand_name());
+				
+				//画面表示用にリストに追加
+				tempTable.add(temp);
+				}
+			
+			return tempTable;
+		}
 }
