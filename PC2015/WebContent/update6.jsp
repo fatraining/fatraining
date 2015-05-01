@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="header.jsp" />
 
-<s:if test="%{update_id==null}">
+<s:if test="%{delete_id==null}">
 	<h3>新しくデータを登録します</h3>
 	<p class="err">
 		<s:property value="errormsg" />
@@ -69,9 +69,9 @@
 
 	</s:form>
 </s:if>
-<s:if test="%{update_id!=nulld}">
+<s:if test="%{delete_id!=nulld}">
 	<h3>さっきクリックした情報のデータを削除済ます</h3>
-	<td class="data">削除する ID:<s:property value="update_id" /></td>
+	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
 		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
 		<a href="main6.action">Back</a>
