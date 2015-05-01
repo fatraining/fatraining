@@ -13,49 +13,42 @@ public class Main7Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public String userId;//ユーザーID
-	public String genreId;//ジャンルID
-	public String exhibition_year;//公開年
-	public String delete;//削除ボタン
-	public String do_print;//結果表示
-	public String delete_id;//削除するID
+	public String userId; //ユーザーID
+	public String genreId; //ジャンルID
+	public String exhibition_year; //公開年
+	public String delete; //削除ボタン
+	public String do_print; //結果表示
+	public String delete_id; //削除するID
 
 	public ArrayList<ResultTableMovie> outputTableMovie;
 
-//	private String getDefaultGenre() {
-//		return "";
-//	}
-//
-//	private String getDefaultExhibition_year() {
-//		return "";
-//	}
-
+	//開かれた時に呼ばれる最初のメソッド
 	@Override
 	public String execute() {
 		this.userId = (String) this.sessionMap.get("userId");
-//		this.genreId = getDefaultGenre();
-//		this.exhibition_year = getDefaultExhibition_year();
 		this.delete = "false";
 		return "success";
 	}
-
-	public String reset() {//リセットボタンを押した時のメソッド
+	
+	//リセットボタンを押した時のメソッド
+	public String reset() {
 		this.userId = (String) this.sessionMap.get("userId");//ユーザーIDを取ってくる
-		this.genreId = "";//ジャンルを空にする。
-		this.exhibition_year = "";//公開年を空にする。
+		this.genreId = ""; //ジャンルを空にする。
+		this.exhibition_year = ""; //公開年を空にする。
 		return "success";
 	}
 
-	public String print() {//検索結果を表示させるためのメソッド
-		MovieManager moviemanager = new MovieManager();//MovieManagerをインスタンス化
-		 List<?> resultTable;//リスト型の変数宣言
+	//検索結果を表示させるためのメソッド
+	public String print() {
+		MovieManager moviemanager = new MovieManager(); //MovieManagerをインスタンス化
+		 List<?> resultTable; //リスト型の変数宣言
 		this.userId = (String) this.sessionMap.get("userId");//ユーザーIDの取得
 
-		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {//未入力の場合
-			resultTable = moviemanager.resultList();//マネージャーのresultList()を呼ぶ
-		} else {//どちらかが入力された場合
+		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) { //未入力の場合
+			resultTable = moviemanager.resultList(); //マネージャーのresultList()を呼ぶ
+		} else { //どちらかが入力された場合
 			resultTable = moviemanager.resultList(this.genreId,
-					this.exhibition_year);//マネージャーのresultList(genreId,exhibition_year)を呼ぶ
+					this.exhibition_year); //マネージャーのresultList(genreId,exhibition_year)を呼ぶ
 		}
 
 		this.outputTableMovie = tableTrans(resultTable);
@@ -90,7 +83,7 @@ public class Main7Action extends AbstractAction {
 	}
 
 	// 表示結果の配列
-	public ArrayList<ResultTableMovie> tableTrans(List<?> resultTable) {
+	private ArrayList<ResultTableMovie> tableTrans(List<?> resultTable) {
 		ArrayList<ResultTableMovie> tempTable = new ArrayList<ResultTableMovie>();
 		Object[] obj;
 		try {
