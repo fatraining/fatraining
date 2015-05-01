@@ -17,9 +17,10 @@ public class Main1Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 	// テーブルで作ったカラム　検索画面にて検索をかけたいカラム名
-	//名前
 	public String name;
-	// メソッドを起こすための宣言
+	public String home;
+	public String hobby;
+	// メソッドを起こすための変数
 	public String delete_id;
 	public String do_search;
 	public String delete;
@@ -31,17 +32,29 @@ public class Main1Action extends AbstractAction {
 		return "";
 	}
 
+	private String getDefaultHome() {
+		return "";
+	}
+
+	private String getDefaultHobby() {
+		return "";
+	}
+
 	// executeメソッド　メソッドが呼ばれたとき変数に代入した値が表示
 	@Override
 	public String execute() {
 		this.name = getDefaultName();
+		this.home = getDefaultHome();
+		this.hobby = getDefaultHobby();
 		this.delete = "false";
 		return "success";
 	}
 
-	// resetメソッド　メソッドが呼ばれたとき最初の画面の状態にする
+	// resetメソッド　メソッドが呼ばれたとき最初の状態にする。(executeメソッドが呼ばれた時の状態)
 	public String reset() {
 		this.name = getDefaultName();
+		this.home = getDefaultHome();
+		this.hobby = getDefaultHobby();
 		return "success";
 	}
 
@@ -50,11 +63,12 @@ public class Main1Action extends AbstractAction {
 		ProfileManager profileManager = new ProfileManager();
 		List<?> resultTable;
 		
-		if (this.name.isEmpty()) {
+		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
 				resultTable = profileManager.resultList();
 
 		} else {
-			resultTable = profileManager.resultList(this.name);
+			resultTable = profileManager.resultList(this.name, this.home,
+					this.hobby);
 		}
 		this.outputTable = tableTrans(resultTable);
 		
@@ -87,7 +101,6 @@ public class Main1Action extends AbstractAction {
 
 		return "success";
 	}
-	//検索結果時の値を表示
 	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
 		Object[] obj;

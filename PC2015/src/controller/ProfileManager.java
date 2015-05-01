@@ -31,14 +31,22 @@ public class ProfileManager extends HibernateUtil {
 
 		return resultTable;
 	}
-	public List<?> resultList(String name) {
+	public List<?> resultList(String name, String home,
+			String hobby) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
+			if (name.isEmpty())
+				name = "%";
+			if (home.isEmpty())
+				home = "%";
+			if (hobby.isEmpty())
+				hobby = "%";
 
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.id = d.id";
-			String where2 = "AND i.name LIKE '" + name + "'";
+			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
+					+ home + "' AND i.id LIKE '" + hobby + "')";
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("My_hobby", My_hobby.class)
