@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="header.jsp" />
 
-<s:if test="%{delete_id==null}">
+<s:if test="%{add_id==null}">
 	<h3>新しくお菓子を登録します</h3>
 	<p class="err">
 		<s:property value="errormsg" />
