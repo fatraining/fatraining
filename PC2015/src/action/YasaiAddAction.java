@@ -22,13 +22,9 @@ import controller.YasaiManager;
 public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	// テーブル内のカラム名の宣言
 	public String yasai;
 	public String ryouri;
-	public String date_entry;
-	public String date_up;
 	public String tyouri;
-	public String userId;
 
 	// 削除チェックボックス
 	public String delete_id;
@@ -42,17 +38,18 @@ public class YasaiAddAction extends AbstractAction {
 	}
 
 	public String insert() {
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		// 日付の設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		date_entry = String.valueOf(sdf.format(date));
-		date_up = String.valueOf(sdf.format(date));
+		String date_entry = String.valueOf(sdf.format(date));
+		String date_up = String.valueOf(sdf.format(date));
 
 		// ユーザーID設定
-		this.userId = (String) this.sessionMap.get("userId");
+		String userId = (String) this.sessionMap.get("userId");
 
 		// 入力チェック
 
@@ -60,9 +57,9 @@ public class YasaiAddAction extends AbstractAction {
 		Ryouri insert_ryouri_table = new Ryouri();
 		insert_ryouri_table.setRyouri(this.ryouri);
 		insert_ryouri_table.setTyouri(this.tyouri);
-		insert_ryouri_table.setDate_Entry(this.date_entry);
-		insert_ryouri_table.setDate_Up(this.date_up);
-		insert_ryouri_table.setUserId(this.userId);
+		insert_ryouri_table.setDate_Entry(date_entry);
+		insert_ryouri_table.setDate_Up(date_up);
+		insert_ryouri_table.setUserId(userId);
 
 		// 料理テーブルに追加
 		try {
@@ -82,9 +79,9 @@ public class YasaiAddAction extends AbstractAction {
 
 		// 料理テーブルのid取得し、野菜テーブルの調理idにいれる
 		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
-		insert_yasai_table.setDate_Entry(this.date_entry);
-		insert_yasai_table.setDate_Up(this.date_up);
-		insert_yasai_table.setUserId(this.userId);
+		insert_yasai_table.setDate_Entry(date_entry);
+		insert_yasai_table.setDate_Up(date_up);
+		insert_yasai_table.setUserId(userId);
 
 		// 野菜テーブルに追加
 		try {
