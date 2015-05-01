@@ -29,7 +29,7 @@
 	</div>
 	
 	<div class="col-sm-offset-2 col-sm-10">
-		<s:submit method="print" value="検索" cssClass="btn btn-success" />
+		<s:submit method="search" value="検索" cssClass="btn btn-success" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-inverse" />
 		<s:submit method="update" value="追加" cssClass="btn btn-danger" />
 		<br/><br/>
@@ -39,7 +39,7 @@
 	</div>
 </s:form>
 
-<s:if test="%{do_print=='true'}">
+<s:if test="%{do_search=='true'}">
 	<h3>検索結果 ↓</h3>
 	<s:form>
 	<table class="brwsr2">
