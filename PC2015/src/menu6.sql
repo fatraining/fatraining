@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E27 日 18:15
+-- Generation Time: 2015 年 5 朁E07 日 15:38
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -36,19 +36,15 @@ CREATE TABLE IF NOT EXISTS `like_game` (
   `upUser` varchar(50) DEFAULT NULL,
   `nonStyle` varchar(50) DEFAULT NULL,
   `del` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `like_game`
 --
 
 INSERT INTO `like_game` (`id`, `title`, `series`, `user`, `upDay`, `userId`, `upUser`, `nonStyle`, `del`) VALUES
-(1, 'Fate/stay night', 1, '4/21', '4/21', 'ShirouEmiya', '1', 'Unlimited Blade Works', 'Sword'),
-(2, 'Perusona3', 2, '4/22', '4/22', 'ShionAikawa', '2', 'Orpheus', 'Wild'),
-(3, 'FAINALFANTASY7', 3, '4/22', '4/22', 'Cloud', '3', 'MeteorStrike', 'Soldier'),
-(4, 'Fate/hollow', 1, NULL, '4/23', 'RinTosaka', '4', 'JewelrySword', 'Money'),
-(5, 'LORD of VERMILION', 5, NULL, '4/24', 'Alma=Calma', '5', 'Bahamut', 'Arcana'),
-(6, 'Perusona4', 2, NULL, '4/27', 'YuNarukami', '6', 'Izanagi', 'Wild');
+(1, 'Fate/stay night', 1, '05/07', '05/07', 'ShirouEmiya', '1', 'Unlimitd Blad Works', 'Sowrd'),
+(2, 'Perusona3', 2, NULL, '05/07', 'ShinonAikawa', '2', 'Olfeuse', 'Wild');
 
 -- --------------------------------------------------------
 
@@ -57,29 +53,27 @@ INSERT INTO `like_game` (`id`, `title`, `series`, `user`, `upDay`, `userId`, `up
 --
 
 CREATE TABLE IF NOT EXISTS `like_series` (
-`i` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
+`iD` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
   `se` varchar(50) DEFAULT NULL,
-  `u` varchar(50) DEFAULT NULL,
+  `us` varchar(50) DEFAULT NULL,
   `upD` varchar(50) DEFAULT NULL,
   `userI` varchar(50) DEFAULT NULL,
   `upU` varchar(50) DEFAULT NULL,
   `nonS` varchar(50) DEFAULT NULL,
-  `d` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `de` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `like_series`
 --
 
-INSERT INTO `like_series` (`i`, `se`, `u`, `upD`, `userI`, `upU`, `nonS`, `d`) VALUES
-(1, 'Fate', '4/21', '4/21', 'ShirouEmiya', '1', 'Unlimited Blade Works', 'Sword'),
-(2, 'Perusona', '4/22', '4/22', 'ShionAikawa', '2', 'Orpheus', 'Wild'),
-(3, 'FAINALFANTASY', '4/22', '4/22', 'Cloud', '3', 'MeteorStrike', 'Soldier'),
-(4, NULL, '4/23', NULL, NULL, NULL, NULL, NULL),
-(5, 'LORD of VERMILION', '4/24', NULL, NULL, NULL, NULL, NULL),
-(6, 'Perusona', '4/27', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `like_series` (`iD`, `se`, `us`, `upD`, `userI`, `upU`, `nonS`, `de`) VALUES
+(1, 'Fate', '05/07', '05/07', NULL, NULL, NULL, NULL),
+(2, 'Perusona', '05/07', NULL, NULL, NULL, NULL, NULL);
 
--- --------------------------------------------------------
+--
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `like_game`
@@ -91,19 +85,22 @@ ALTER TABLE `like_game`
 -- Indexes for table `like_series`
 --
 ALTER TABLE `like_series`
- ADD PRIMARY KEY (`i`);
+ ADD PRIMARY KEY (`iD`);
 
- 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCERMENT',AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCERMENT',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `like_series`
 --
 ALTER TABLE `like_series`
-MODIFY `i` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=7;
-
+MODIFY `iD` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
