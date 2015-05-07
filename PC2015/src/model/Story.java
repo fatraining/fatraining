@@ -17,12 +17,12 @@ public class Story implements Serializable{
 	private int id;
 	private String title;
 	private int genre_id ;
-//	private String signup;
-//	private String update;
-//	private String signupUSERID;
-//	private String updateUSERID;
-//	private String exclusiveFLG ;
-//	private String deleteFLG ;
+	private String signup;
+	private String updateDate;
+	private String signupUSERID;
+	private String updateUSERID;
+	private int exclusiveFLG ;
+	private int deleteFLG ;
 	
 	/*--------------------------------------------------*/
 	@Id
@@ -39,30 +39,31 @@ public class Story implements Serializable{
 	public int getGenre_id() {
 		return genre_id;
 	}
-//	@Column(name="signup")
-//	public String getSignup() {
-//		return signup;
-//	}
-//	@Column(name="update")
-//	public String getUpdate() {
-//		return update;
-//	}
-//	@Column(name="signupUSERID")
-//	public String getSignupUSERID() {
-//		return signupUSERID;
-//	}
-//	@Column(name="updateUSERID")
-//	public String getUpdateUSERID() {
-//		return updateUSERID;
-//	}
-//	@Column(name="exclusiveFLG")
-//	public String getExclusiveFLG() {
-//		return exclusiveFLG;
-//	
-//	}	@Column(name="deleteFLG")
-//	public String getDeleteFLG() {
-//		return deleteFLG;
-//	}
+	@Column(name="signup")
+	public String getSignup() {
+		return signup;
+	}
+	@Column(name="updateDate")
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	@Column(name="signupUSERID")
+	public String getSignupUSERID() {
+		return signupUSERID;
+	}
+	@Column(name="updateUSERID")
+	public String getUpdateUSERID() {
+		return updateUSERID;
+	}
+	@Column(name="exclusiveFLG")
+	public int getExclusiveFLG() {
+		return exclusiveFLG;
+	
+	}	
+	@Column(name="deleteFLG")
+	public int getDeleteFLG() {
+		return deleteFLG;
+	}
 	
 /*--------------------------------------------------*/
 
@@ -75,24 +76,24 @@ public class Story implements Serializable{
 	public void setGenre_id(int genre_id) {
 		this.genre_id = genre_id;
 	}
-//	public void setSignup(String signup) {
-//		this.signup = signup;
-//	}
-//	public void setUpdate(String update) {
-//		this.update = update;
-//	}
-//	public void setSignupUSERID(String signupUSERID) {
-//		this.signupUSERID = signupUSERID;
-//	}
-//	public void setUpdateUSERID(String updateUSERID) {
-//		this.updateUSERID = updateUSERID;
-//	}
-//	public void setExclusiveFLG(String exclusiveFLG) {
-//		this.exclusiveFLG = exclusiveFLG;
-//	}
-//	public void setdeleteFLG(String deleteFLG) {
-//		this.deleteFLG = deleteFLG;
-//	}
+	public void setSignup(String signup) {
+		this.signup = signup;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	public void setSignupUSERID(String signupUSERID) {
+		this.signupUSERID = signupUSERID;
+	}
+	public void setUpdateUSERID(String updateUSERID) {
+		this.updateUSERID = updateUSERID;
+	}
+	public void setExclusiveFLG(int exclusiveFLG) {
+		this.exclusiveFLG = exclusiveFLG;
+	}
+	public void setdeleteFLG(int deleteFLG) {
+		this.deleteFLG = deleteFLG;
+	}
 	
 }
 

@@ -19,7 +19,7 @@
 				<label class="col-md-2 control-label">ジャンル:</label>
 				<div class="col-md-5">
 					<s:select name="genreNm"
-						list="#{'','1':'焼き菓子', '2':'冷菓','3':'チョコレート菓子'}"
+						list="#{'1':'焼き菓子', '2':'冷菓','3':'チョコレート菓子'}"
 						cssClass="form-control" />
 				</div></div>
 				<br> <br> <br>
