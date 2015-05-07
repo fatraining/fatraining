@@ -71,15 +71,7 @@ CREATE TABLE IF NOT EXISTS `sweets` (
 --
 
 INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`, `genre`) VALUES
-(1, 'クッキー', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'トリュフ', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'プリン', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'スコーン', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'ババロア', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, '羊羹', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'バウムクーヘン', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'ゼリー', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'ガトーショコラ', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 
 --
 -- Indexes for dumped tables
