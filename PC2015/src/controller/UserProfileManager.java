@@ -3,10 +3,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Result2Table;
 import model.User_Profile;
 import model.User_Character;
-import model.Result5Table;
 
 import org.hibernate.classic.Session;
 
@@ -40,11 +38,11 @@ public class UserProfileManager extends HibernateUtil {
 		// トランザクションの終了（固定文言）
 		session.getTransaction().commit();
 
-
 		return resultTable;
 	}
 
 	// 条件指定のデータを検索
+
 	public List<?> searchAll(String dwelling, String name) {
 
 		// DBへの接続処理（固定文言）
@@ -91,5 +89,23 @@ public class UserProfileManager extends HibernateUtil {
 		return resultTable;
 	}
 
-	
+	// user_characterテーブル検索用のメソッド
+	public User_Character user_characterList() {
+		List<?> resultTable = null;
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			// user_charactrテーブルの全件検索
+			String sql = "SELECT * FROM user_character i";
+			resultTable = session.createSQLQuery(sql)
+			// session.createSQLQuery(sql)の戻り値をUser_Profileクラスに渡している
+					.addEntity("User_Character", User_Character.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		return (User_Character) resultTable.get(resultTable.size() - 1);
+	}
 }
