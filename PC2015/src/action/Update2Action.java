@@ -135,15 +135,15 @@ public class Update2Action extends AbstractAction {
 //		
 //		sweets.setName(this.name);
 //		genre.setGenreNm(this.genreNm);
-
-		
-//		String[] data = { this.genreNm, this.name };
-//		int i = 0;
-//		for (String temp : data) {
-//			if (temp.length() > 50) {
-//				this.errormsg = "50文字以下で入力してください";
-//				return "error";
-//			}
+//
+//		
+////		String[] data = { this.genreNm, this.name };
+////		int i = 0;
+////		for (String temp : data) {
+////			if (temp.length() > 50) {
+////				this.errormsg = "50文字以下で入力してください";
+////				return "error";
+////			}
 ////			if (temp.length() < 1)
 ////				i++;
 ////			if (i > 14) {
@@ -162,22 +162,22 @@ public class Update2Action extends AbstractAction {
 //		session.getTransaction().commit();
 //		return "main2";
 //	}
-	
+//	
 	//deleteメソッド
 	public String delete(){
-		this.delete_id = (String)this.sessionMap.get("delete_id");
-		
-		String str = new String(this.delete_id);
-		String[] strAry = str.split(",");
-		
-		if (this.delete_id.isEmpty()) {
-			return "main2";
-		}
-		
-		for(int i = 0; i < strAry.length; i++) {
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+//		this.delete_id = (String)this.sessionMap.get("delete_id");
+//		
+//		String str = new String(this.delete_id);
+//		String[] strAry = str.split(",");
+//		
+//		if (this.delete_id.isEmpty()) {
+//			return "main2";
+//		}
+//		
+//		for(int i = 0; i < strAry.length; i++) {
+//		
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		session.beginTransaction();
 //		try {
 //			Sweets sweets = (Sweets) session.load(Sweets.class, strAry[i]);
 //			Genre genre = (Genre) session.load(Genre.class, strAry[i]);
@@ -187,8 +187,8 @@ public class Update2Action extends AbstractAction {
 //			e.printStackTrace();
 //			session.getTransaction().rollback();
 //		}
-		session.getTransaction().commit();
-		}
+//		session.getTransaction().commit();
+//		}
 		return "main2";
 	}
 //		public String getDefaultDate(){
