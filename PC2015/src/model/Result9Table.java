@@ -10,14 +10,10 @@ public class Result9Table implements Serializable {
 	private String food;
 	private String drink;
 	private String colorNm;
-	private String taste;
 	private String day;
 	private String new_day;
 	private String userid;
 	private String new_userid;
-
-	// private int time_stamp;
-	// private int delete;
 
 	public Result9Table() {
 	}
@@ -62,14 +58,6 @@ public class Result9Table implements Serializable {
 		this.colorNm = colorNm;
 	}
 
-	public String getTaste() {
-		return taste;
-	}
-
-	public void setTaste(String taste) {
-		this.taste = taste;
-	}
-
 	public String getDay() {
 		return day;
 	}
@@ -101,20 +89,4 @@ public class Result9Table implements Serializable {
 	public void setNew_userid(String new_userid) {
 		this.new_userid = new_userid;
 	}
-	//
-	// public int getTime_stamp() {
-	// return time_stamp;
-	// }
-	//
-	// public void setTime_stamp(int time_stamp) {
-	// this.time_stamp = time_stamp;
-	// }
-
-	// public int getDelete() {
-	// return delete;
-	// }
-	//
-	// public void setDelete(int delete) {
-	// this.delete = delete;
-	// }
 }
