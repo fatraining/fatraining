@@ -1,11 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.LikeGame;
 import model.LikeSeries;
-import model.ResultTable6;
 
 import org.hibernate.classic.Session;
 
@@ -20,7 +18,7 @@ public class LikeManager extends HibernateUtil {
 
 		//SQL文
 		String select = "SELECT * FROM like_game g,like_series s ";
-		String where1 = "WHERE g.series=s.i";
+		String where1 = "WHERE g.series=s.iD";
 		String sql    = select + " " +where1;
 		
 		//SQL文の実行
@@ -56,7 +54,7 @@ public class LikeManager extends HibernateUtil {
 				series="%";
 			}
 			String select = "SELECT * FROM like_game g,like_series s";
-			String where1 = "WHERE g.series=s.i";
+			String where1 = "WHERE g.series=s.iD";
 			String where2 = "AND (g.title LIKE '"+ title +"' AND g.series LIKE '"
 					+ series + "')";
 			String sql = select + " "  + where1 + " " + where2 ;
