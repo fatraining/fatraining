@@ -9,9 +9,8 @@ import org.hibernate.classic.Session;
 
 public class LiofTaManager extends HibernateUtil {
 
-	public List<?> resultTable;
-
 	public List<?> resultList() {
+		List<?> resultTable = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
@@ -32,6 +31,8 @@ public class LiofTaManager extends HibernateUtil {
 		return resultTable;
 	}
 	public List<?> resultList(String name, String food, String drink) {
+		List<?> resultTable = null;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
@@ -59,6 +60,8 @@ public class LiofTaManager extends HibernateUtil {
 	}
 
 	public CoofTa cooftaList() {
+		List<?> resultTable = null;
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
