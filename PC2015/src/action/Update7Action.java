@@ -35,6 +35,7 @@ public class Update7Action extends AbstractAction {
 
 	// 追加するメソッド
 	public String insert() {
+		//インサートに必要な変数
 		String registration_date; //登録日
 		String renewal_date; //更新日
 		String registration_userid; //登録ユーザーID
@@ -49,9 +50,8 @@ public class Update7Action extends AbstractAction {
 		// 全項目入力済みの時
 		else {
 			// TODO
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			session.beginTransaction();
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();//DB接続
+			session.beginTransaction();//トランザクション(?)開始
 
 			// 日付を自動で入力
 			Date date = new Date();
