@@ -5,23 +5,22 @@
 <s:form cssClass="form-horizontal">
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">お菓子の名前:</label>
-		<div class="col-md-8">
+		<label class="col-md-2 control-label">お菓子の名前:</label>
+		<div class="col-md-5">
 			<s:textfield name="name" cssClass="form-control" rows="10" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label">ジャンル:</label>
-		<div class="col-md-3">
+		<label class="col-md-2 control-label">ジャンル:</label>
+		<div class="col-md-5">
 			<s:select name="genreNm" list="#{'','1':'焼き菓子', '2':'冷菓','3':'チョコレート菓子'}"
 				 cssClass="form-control" />
 		</div>
 	</div>
 
-
 	<div class="col-sm-offset-2 col-sm-10">
-		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
-		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
+		<s:submit method="search" value="検索" cssClass="btn btn-danger" />
+		<s:submit method="reset" value="リセット" cssClass="btn btn-default" />
 		<s:submit method="add" value="追加" cssClass="btn btn-primary" />
 		
 		<a href="menu.action">Back</a>
