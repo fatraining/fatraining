@@ -11,7 +11,8 @@ public class ResultTableMovie implements Serializable{
 	private String title ;
 	private String genre ;
 	private int exhibition_year ;
-
+	private String comment ;
+	
 	public ResultTableMovie() { }
 
 	public String getId() {
@@ -37,5 +38,11 @@ public class ResultTableMovie implements Serializable{
 	}
 	public void setExhibition_year(int exhibition_year) {
 		this.exhibition_year = exhibition_year;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }
