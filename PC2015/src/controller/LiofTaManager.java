@@ -69,7 +69,7 @@ public class LiofTaManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			String sql = "SELECT * FROM table_color i";
+			String sql = "SELECT * FROM table_color i ORDER BY id";
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("CoofTa", CoofTa.class).list();
 		} catch (Exception e) {
