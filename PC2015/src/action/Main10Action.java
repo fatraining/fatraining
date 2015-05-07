@@ -77,10 +77,10 @@ public class Main10Action extends AbstractAction {
 		if (this.eat_year.isEmpty() && this.eat_month.isEmpty()
 				&& this.eat_day.isEmpty() && this.eat_hour.isEmpty()) {
 
-			result10Table = allController.resultList();
+			result10Table = allController.searchallList();
 			// 空でなかったら 検索結果の表示をする
 		} else {
-			result10Table = allController.resultList(this.eat_year,
+			result10Table = allController.searchallList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
 		}
 		this.outputTable = tableTrans(result10Table);

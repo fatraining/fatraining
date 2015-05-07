@@ -10,9 +10,11 @@ import org.hibernate.classic.Session;
 //HibernateUtilを継承したAll10Managerクラス
 public class All10Manager extends HibernateUtil{
 
-	//引数なしのresultList（検索欄入力なしの場合）
-	public List<?> resultList() {
+	//引数なしのsearchallList（検索欄入力なしの場合）
+	public List<?> searchallList() {
+		//データベースに接続する
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
 
 		//全件検索
@@ -36,8 +38,8 @@ public class All10Manager extends HibernateUtil{
 		return result10Table;
 	}
 	
-	//引数ありのresultList（検索欄入力ありの場合）
-	public List<?> resultList(String eat_year, String eat_month,
+	//引数ありのsearchallList（検索欄入力ありの場合）
+	public List<?> searchallList(String eat_year, String eat_month,
 			String eat_day, String eat_hour) {
 		//データベースに接続する
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
