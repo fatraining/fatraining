@@ -46,7 +46,7 @@ public class ProfileManager extends HibernateUtil {
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.hobby_id = d.id";
 			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
-					+ home + "' AND i.id LIKE '" + hobby + "')";
+					+ home + "' AND d.hobby LIKE '" + hobby + "')";
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("My_hobby", My_hobby.class)
