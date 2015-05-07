@@ -18,20 +18,26 @@
 				<s:textfield name="name" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
+			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 食べ物:</label>
 			<div class="col-md-3">
 				<s:textfield name="food" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 飲み物:</label>
 			<div class="col-md-3">
 				<s:textfield name="drink" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
+			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 色:</label>
 			<div class="col-md-3">
-				<s:textfield name="color" cssClass="form-control" rows="10"
+				<s:textfield name="colorNm" cssClass="form-control" rows="10"
+					maxlength="50" />
+			</div>
+			<label class="col-sm-2 control-label"> 趣味:</label>
+			<div class="col-md-3">
+				<s:textfield name="taste" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
 		</div>
