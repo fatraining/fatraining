@@ -1,14 +1,19 @@
 package action;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import model.My_hobby;
+import model.Profile;
 import model.Sweets;
 import model.Genre;
 import model.Result2Table;
 import controller.HibernateUtil;
 import controller.SweetsManager;
 //import controller.Result2Manager;
+
 
 
 
@@ -54,6 +59,35 @@ public class Update2Action extends AbstractAction {
 	}
 	
 	
+	// insertメソッド
+	public String insert() {
+
+		this.name = (String) this.sessionMap.get("name");
+		this.genreNm = (String) this.sessionMap.get("genreNm");
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		// サーバーのテーブルに値をインサート
+		Sweets insert_sweets = new Sweets();
+		Genre insert_genre = new Genre();
+		insert_sweets.setName(this.name);
+		insert_genre.setGenreNm(this.genreNm);
+
+
+		try {
+			session.save(insert_sweets);
+			session.save(insert_genre);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+		}
+		session.getTransaction().commit();
+		return "main2";
+	}
+	
+	
 	
 	
 	
@@ -86,7 +120,7 @@ public class Update2Action extends AbstractAction {
 
 	
 	//insertメソッド
-	public String insert() {
+//	public String insert() {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		session.beginTransaction();
 //		
@@ -101,15 +135,15 @@ public class Update2Action extends AbstractAction {
 //		
 //		sweets.setName(this.name);
 //		genre.setGenreNm(this.genreNm);
-//
-//		
-////		String[] data = { this.genreNm, this.name };
-////		int i = 0;
-////		for (String temp : data) {
-////			if (temp.length() > 50) {
-////				this.errormsg = "50文字以下で入力してください";
-////				return "error";
-////			}
+
+		
+//		String[] data = { this.genreNm, this.name };
+//		int i = 0;
+//		for (String temp : data) {
+//			if (temp.length() > 50) {
+//				this.errormsg = "50文字以下で入力してください";
+//				return "error";
+//			}
 ////			if (temp.length() < 1)
 ////				i++;
 ////			if (i > 14) {
@@ -126,24 +160,24 @@ public class Update2Action extends AbstractAction {
 //			
 ////		}
 //		session.getTransaction().commit();
-		return "main2";
-	}
+//		return "main2";
+//	}
 	
 	//deleteメソッド
 	public String delete(){
-//		this.delete_id = (String)this.sessionMap.get("delete_id");
-//		
-//		String str = new String(this.delete_id);
-//		String[] strAry = str.split(",");
-//		
-//		if (this.delete_id.isEmpty()) {
-//			return "main2";
-//		}
-//		
-//		for(int i = 0; i < strAry.length; i++) {
-//		
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		session.beginTransaction();
+		this.delete_id = (String)this.sessionMap.get("delete_id");
+		
+		String str = new String(this.delete_id);
+		String[] strAry = str.split(",");
+		
+		if (this.delete_id.isEmpty()) {
+			return "main2";
+		}
+		
+		for(int i = 0; i < strAry.length; i++) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
 //		try {
 //			Sweets sweets = (Sweets) session.load(Sweets.class, strAry[i]);
 //			Genre genre = (Genre) session.load(Genre.class, strAry[i]);
@@ -153,8 +187,8 @@ public class Update2Action extends AbstractAction {
 //			e.printStackTrace();
 //			session.getTransaction().rollback();
 //		}
-//		session.getTransaction().commit();
-//		}
+		session.getTransaction().commit();
+		}
 		return "main2";
 	}
 //		public String getDefaultDate(){
