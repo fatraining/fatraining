@@ -14,7 +14,7 @@ public class DetailEat implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private String id;
 	private String eat_year ;
 	private String eat_month ;
 	private String eat_day;
@@ -23,7 +23,7 @@ public class DetailEat implements Serializable{
 	private String renew_day;
 	private String entry_userid;
 	private String renew_userid;
-	private int food_id;
+	private String food_id;
 	private int renew_flg;
 	private int delete_flg; 
 	
@@ -32,7 +32,7 @@ public class DetailEat implements Serializable{
 	@GeneratedValue
 	
 	@Column(name="id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	@Column(name="eat_year")
@@ -53,7 +53,7 @@ public class DetailEat implements Serializable{
 	}
 	
 	@Column(name="food_id")
-	public int getFood_id() {
+	public String getFood_id() {
 		return food_id;
 	}
 
@@ -83,7 +83,7 @@ public class DetailEat implements Serializable{
 	}
 /*--------------------------------------------------*/
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setEat_year(String eat_year) {
@@ -98,7 +98,7 @@ public class DetailEat implements Serializable{
 	public void setEat_hour(String eat_hour) {
 		this.eat_hour = eat_hour;
 	}
-	public void setFood_id(int food_id) {
+	public void setFood_id(String food_id) {
 		this.food_id = food_id;
 	}
 	public void setEntry_day(String entry_day) {

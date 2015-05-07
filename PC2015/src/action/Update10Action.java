@@ -108,10 +108,13 @@ public class Update10Action extends AbstractAction {
 		// トランザクションの開始
 		session.beginTransaction();
 		try {
-			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
-					Integer.valueOf(delete_id));
-			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-					Integer.valueOf(detaileat.getFood_id())); // TODO(delete_idがStringでは処理できないのでキャストする)
+			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, delete_id);
+			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, detaileat.getFood_id());
+			
+//			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
+//					Integer.valueOf(delete_id));
+//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
+//					Integer.valueOf(detaileat.getFood_id())); // TODO(delete_idがStringでは処理できないのでキャストする)
 
 			session.delete(detaileat); // detail_tableの指定した行を削除する
 			session.delete(idofeat); // id_tableの指定した行を削除する
