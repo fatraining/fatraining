@@ -1,11 +1,21 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import model.BandAccount;
 import model.BandTable;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
+//import org.apache.struts2.config.Result;
+//import org.apache.struts2.dispatcher.ServletRedirectResult;
+//
+//import java.util.*;
+//
+//import action.AbstractAction;
+//import action.BandAddAction;
 
 //HibernateUtilクラスを継承したクラス
 public class BandAllManager extends HibernateUtil {
@@ -91,27 +101,92 @@ public class BandAllManager extends HibernateUtil {
 
 		return bandResultTable;
 	}
-	
-	//band_tableテーブル検索用のメソッド
-	public BandTable bandTableList(){
+
+	// band_tableテーブル検索用のメソッド
+	public BandTable bandTableList() {
 		List<?> bandResultTable = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		try{
-			//band_tableテーブルの全件検索
-			String sql = "SELECT * FROM band_table t";
+		try {
+			// band_tableテーブルの全件検索
+			String select = "SELECT * FROM band_table t ";
+			String where1 = "WHERE id ORDER BY id ASC ";
+			String sql = select + "" + where1;
 			bandResultTable = session.createSQLQuery(sql)
-					//session.createSQLQuwey(sql)の戻り値をBandTableクラスに渡している
-					.addEntity("BandTable",BandTable.class).list();
-		}catch (Exception e){
+			// session.createSQLQuwey(sql)の戻り値をBandTableクラスに渡している
+					.addEntity("BandTable", BandTable.class).list();
+		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		
-		//bandResultTableの最終行を取得
-		//自分で入力したものを取得したいため、最終行
+
+		// bandResultTableの最終行を取得
+		// 自分で入力したものを取得したいため、最終行
 		return (BandTable) bandResultTable.get(bandResultTable.size() - 1);
 	}
+	
+	
+	//insertメソッド。データベースに値を入れる。
+		public void insert(String band_name,String name,String sex,String age,String school,String favorite_song,String part,String entry_userid,String renewal_userid) {
+			
+			//日付の設定
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+			String entry_date = String.valueOf(sdf.format(date));
+			String renewal_date = String.valueOf(sdf.format(date));
+			
+			//データベースに接続
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			//トランザクションを開始
+			session.beginTransaction();
+	
+			//インスタンス化。band_tableのデータ作成
+			BandTable insert_band_table = new BandTable();
+			insert_band_table.setBand_name(band_name);
+			insert_band_table.setEntry_date(entry_date);
+			insert_band_table.setRenewal_date(renewal_date);
+			insert_band_table.setEntry_userid(entry_userid);
+			insert_band_table.setRenewal_userid(renewal_userid);
+			
+			//band_tableテーブルに追加
+			try{
+				session.save(insert_band_table);
+			}catch(HibernateException e){
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			
+			//band_tableテーブルのデータ検索
+			BandAllManager bandAllManager = new BandAllManager();
+			insert_band_table = bandAllManager.bandTableList();
+			
+			//band_accountデータの作成
+			BandAccount insert_band_account = new BandAccount();
+			insert_band_account.setName(name);
+			insert_band_account.setSex(sex);
+			insert_band_account.setAge(age);
+			insert_band_account.setSchool(school);
+			insert_band_account.setFavorite_song(favorite_song);
+			insert_band_account.setPart(part);
+			//band_tableテーブルのIDを取得し、band_accountテーブルのBAND_IDに代入
+			insert_band_account.setBand_id(insert_band_table.getId());
+			insert_band_account.setEntry_date(entry_date);
+			insert_band_account.setRenewal_date(renewal_date);
+			insert_band_account.setEntry_userid(entry_userid);
+			insert_band_account.setRenewal_userid(renewal_userid);
+	
+				//band_accountテーブルに追加
+				try {
+					session.save(insert_band_account);
+				} catch (HibernateException e) {
+					e.printStackTrace();
+					session.getTransaction().rollback();
+				}
+	
+			session.getTransaction().commit();
+			//return "bandsearch";
+
+		}
 
 }
