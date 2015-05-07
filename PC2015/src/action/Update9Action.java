@@ -1,7 +1,7 @@
 package action;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 
 import model.CoofTa;
 import model.LiofTa;
@@ -24,10 +24,6 @@ public class Update9Action extends AbstractAction {
 
 	public String colorNm;
 
-	public String day;
-	public String new_day;
-	public String userid;
-	public String new_userid;
 	public String delete_id;
 
 	// executeメソッド
@@ -41,25 +37,16 @@ public class Update9Action extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String day;
-		String new_day;
-		
-		// 日付
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		day = String.valueOf(sdf.format(date));
-		new_day = String.valueOf(sdf.format(date));
 		
-		String userid;
-		String new_userid;
-		
-		// USER
-		userid = (String) this.sessionMap.get("userId");
-		new_userid = (String) this.sessionMap.get("userId");
-
 		CoofTa insert_color_table = new CoofTa();
 		insert_color_table.setColorNm(this.colorNm);
-
+		insert_color_table.setDay(String.valueOf(sdf.format(date)));
+		insert_color_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_color_table.setUserid((String) this.sessionMap.get("userId"));
+		insert_color_table.setNew_userid((String) this.sessionMap.get("userId"));
+		
 		try {
 			session.save(insert_color_table);
 
@@ -77,10 +64,10 @@ public class Update9Action extends AbstractAction {
 		insert_like_table.setName(this.name);
 		insert_like_table.setFood(this.food);
 		insert_like_table.setDrink(this.drink);
-		insert_like_table.setDay(day);
-		insert_like_table.setNew_day(new_day);
-		insert_like_table.setUserid(userid);
-		insert_like_table.setNew_userid(new_userid);
+		insert_like_table.setDay(String.valueOf(sdf.format(date)));
+		insert_like_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_like_table.setUserid((String) this.sessionMap.get("userId"));
+		insert_like_table.setNew_userid((String) this.sessionMap.get("userId"));
 
 		try {
 			session.save(insert_like_table);
@@ -98,7 +85,7 @@ public class Update9Action extends AbstractAction {
 	// deleteメソッド
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		
+
 		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 
