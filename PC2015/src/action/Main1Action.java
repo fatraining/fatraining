@@ -12,7 +12,7 @@ import model.Result1Table;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-@Result(name = "update", value = "update.action", type = ServletRedirectResult.class)
+@Result(name = "update1", value = "update1.action", type = ServletRedirectResult.class)
 public class Main1Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
