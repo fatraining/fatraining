@@ -9,6 +9,10 @@ import model.CoofTa;
 import model.LiofTa;
 import model.Result9Table;
 
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
+
+@Result(name = "update9", value = "update9.action", type = ServletRedirectResult.class)
 public class Main9Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
