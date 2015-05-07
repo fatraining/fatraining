@@ -65,7 +65,6 @@ public class Update2Action extends AbstractAction {
 		insert_sweets.setName(this.name);
 		insert_genre.setGenreNm(this.genreNm);
 
-
 		try {
 			session.save(insert_sweets);
 			session.save(insert_genre);
