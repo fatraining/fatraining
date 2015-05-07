@@ -14,7 +14,7 @@
 			<div class="col-md-5">
 				<s:textfield name="name" cssClass="form-control" rows="10"
 					maxlength="50" />
-			</div>
+			</div></div>
 			<br> <br> <br>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">ジャンル:</label>
@@ -22,7 +22,7 @@
 					<s:select name="genreNm"
 						list="#{'','1':'焼き菓子', '2':'冷菓','3':'チョコレート菓子'}"
 						cssClass="form-control" />
-				</div>
+				</div></div>
 				<br> <br> <br>
 				<div align=right>
 					<div class="col-sm-offset-2 col-sm-10">
