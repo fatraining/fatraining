@@ -17,13 +17,11 @@ public class LiofTa implements Serializable {
 	private String name;
 	private String food;
 	private String drink;
+	private int color;
 	private String day;
 	private String new_day;
 	private String userid;
 	private String new_userid;
-
-	// private int time_stamp;
-	// private int delete;
 
 	@Id
 	@GeneratedValue
@@ -47,6 +45,11 @@ public class LiofTa implements Serializable {
 		return drink;
 	}
 
+	@Column(name = "color")
+	public int getColor() {
+		return color;
+	}
+
 	@Column(name = "day")
 	public String getDay() {
 		return day;
@@ -67,17 +70,6 @@ public class LiofTa implements Serializable {
 		return new_userid;
 	}
 
-	//
-	// @Column(name = "time_stamp")
-	// public int getTime_stamp() {
-	// return time_stamp;
-	// }
-	//
-	// @Column(name = "delete")
-	// public int getDelete() {
-	// return delete;
-	// }
-
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -92,6 +84,10 @@ public class LiofTa implements Serializable {
 
 	public void setDrink(String drink) {
 		this.drink = drink;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 
 	public void setDay(String day) {
@@ -109,12 +105,4 @@ public class LiofTa implements Serializable {
 	public void setNew_userid(String new_userid) {
 		this.new_userid = new_userid;
 	}
-
-	// public void setTime_stamp(int time_stamp) {
-	// this.time_stamp = time_stamp;
-	// }
-
-	// public void setDelete(int delete) {
-	// this.delete = delete;
-	// }
 }
