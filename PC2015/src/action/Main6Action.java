@@ -20,7 +20,7 @@ public class Main6Action extends AbstractAction {
 	//検索結果の表示フラグ
 	public String do_search;
 	//削除の表示フラグ
-	public String delete;
+	public String add;
 
 	//検索結果の表示
 	public ArrayList<ResultTable6> outputTable;
@@ -44,7 +44,7 @@ public class Main6Action extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
 		getDefaultTitle();
-		this.delete = "false";
+		this.add = "false";
 		return "success";
 	}
 	
@@ -52,7 +52,7 @@ public class Main6Action extends AbstractAction {
 		public String add() {
 			try {
 				//追加画面に遷移
-				this.response.sendRedirect("/PC2015/update3.action");
+				this.response.sendRedirect("/PC2015/update6.action");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -89,25 +89,11 @@ public class Main6Action extends AbstractAction {
 		//検索結果の表示
 		this.do_search = "true";
 		//削除ボタンの表示
-		this.delete = "true";
+		this.add = "true";
 		
 		return "success";
 	}
 	
-	// updateメソッド。追加で使用
-		public String update() {
-			//sessionMapのdelete_idの値をnullにする
-			this.sessionMap.put("delete_id", null);
-			try {
-				//mane6.actionページに飛ぶ
-				this.response.sendRedirect("/PC2015/update6.action");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return "success";
-		}
-
 		// deleteメソッド。行の削除に使用
 		public String delete() {
 			//sessionMapのdelete_idの値にdelete_idの値を代入
@@ -139,7 +125,7 @@ public class Main6Action extends AbstractAction {
 					temp.setId(likegame.getId());
 					temp.setTitle(likegame.getTitle());
 					temp.setSe(likeseries.getSe());
-					temp.setU(likeseries.getU());
+					temp.setUs(likeseries.getUs());
 					temp.setUpDay(likegame.getUpDay());
 					temp.setUserId(likegame.getUserId());
 					temp.setUpUser(likegame.getUpUser());
