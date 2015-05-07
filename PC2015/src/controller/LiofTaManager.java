@@ -13,11 +13,11 @@ public class LiofTaManager extends HibernateUtil {
 		List<?> resultTable = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		
+
 		String select = "SELECT * FROM table_like d,table_color i";
 		String where1 = "WHERE d.color = i.id";
 		String sql = select + " " + where1;
-		
+
 		try {
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("table_color", LiofTa.class)
@@ -30,18 +30,22 @@ public class LiofTaManager extends HibernateUtil {
 
 		return resultTable;
 	}
+
 	public List<?> resultList(String name, String food, String drink) {
 		List<?> resultTable = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			if (name.isEmpty())
+			if (name.isEmpty()) {
 				name = "%";
-			if (food.isEmpty())
+			}
+			if (food.isEmpty()) {
 				food = "%";
-			if (drink.isEmpty())
+			}
+			if (drink.isEmpty()) {
 				drink = "%";
+			}
 
 			String select = "SELECT * FROM table_like d, table_color i";
 			String where1 = "WHERE d.color = i.id";
