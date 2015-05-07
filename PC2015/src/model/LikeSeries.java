@@ -14,29 +14,29 @@ public class LikeSeries implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//カラム
-	private String i;
+	private String iD;
 	private String se ;
-	private String u;
+	private String us;
 	private String upD;
 	private String userI;
 	private String upU;
 	private String nonS ;
-	private String d ;
+	private String de ;
 
 	/*--------------------------------------------------*/
 	@Id
 	@GeneratedValue
-	@Column(name="i")
-	public String getI() {
-		return i;
+	@Column(name="iD")
+	public String getID() {
+		return iD;
 	}
 	@Column(name="se")
 	public String getSe() {
 		return se;
 	}
-	@Column(name="u")
-	public String getU() {
-		return u;
+	@Column(name="us")
+	public String getUs() {
+		return us;
 	}
 	@Column(name="upD")
 	public String getUpD() {
@@ -54,19 +54,19 @@ public class LikeSeries implements Serializable{
 	public String getNonS() {
 		return nonS;
 	}	
-	@Column(name="d")
-	public String getD() {
-		return d;
+	@Column(name="de")
+	public String getDe() {
+		return de;
 	}
 /*--------------------------------------------------*/
-	public void setI(String i) {
-		this.i = i;
+	public void setID(String iD) {
+		this.iD = iD;
 	}
 	public void setSe(String se) {
 		this.se= se;
 	}
-	public void setU(String u) {
-		this.u = u;
+	public void setUs(String us) {
+		this.us = us;
 	}
 	public void setUpD(String upD) {
 		this.upD = upD;
@@ -80,7 +80,7 @@ public class LikeSeries implements Serializable{
 	public void setNonS(String nonS) {
 		this.nonS = nonS;
 	}
-	public void setD(String d) {
-		this.d = d;
+	public void setDe(String de) {
+		this.de = de;
 	}
 }
