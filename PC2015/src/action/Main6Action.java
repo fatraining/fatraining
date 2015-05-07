@@ -16,28 +16,30 @@ public class Main6Action extends AbstractAction {
 	//表示したいカラムの呼び出し・検索、削除、追加を作成
 	public String series;
 	public String title;
-	public String do_search;
 	public String delete_id;
+	//検索結果の表示フラグ
+	public String do_search;
+	//削除の表示フラグ
 	public String delete;
 
-	//検索結果の表示に必要なもの
+	//検索結果の表示
 	public ArrayList<ResultTable6> outputTable;
 
 	//検索画面
-	//シリーズID
+	//初期値の設定（シリーズID）
 	private String getDefaultSeries() {
 		this.series = "1";
 		return "";
 	}
 
-	//タイトル
+	////初期値の設定（タイトル）
 	private String getDefaultTitle() {
 		this.title = "Fate/stay night";
 		return "";
 	}
 
 	@Override
-	//代入した変数の値の表示
+	//初期値の表示
 	public String execute() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
@@ -57,7 +59,7 @@ public class Main6Action extends AbstractAction {
 			return "success";
 		}
 
-	//初期状態に戻す。
+	//リセットボタンを押下時
 	public String reset() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
@@ -65,17 +67,20 @@ public class Main6Action extends AbstractAction {
 		return "success";
 	}
 	
-	//検索結果
+	//検索ボタンを押下時
 	public String search() {
+		//SQLの実行
 		List<?> resultTable = null;
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
+				//未記入の場合
 				LikeManager allController = new LikeManager();
 				resultTable = allController.searchList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
+			//記入された場合
 			LikeManager linkController = new LikeManager();
 			resultTable = linkController.searchList(this.title,this.series);
 		}
