@@ -8,7 +8,7 @@ import model.Profile;
 import org.hibernate.classic.Session;
 
 public class ProfileManager extends HibernateUtil {
-
+	
 	public List<?> resultTable;
 
 	public List<?> resultList() {
@@ -16,7 +16,7 @@ public class ProfileManager extends HibernateUtil {
 		session.beginTransaction();
 
 		String select = "SELECT * FROM table_profile i, table_hobby d";
-		String where1 = "WHERE i.id = d.id";
+		String where1 = "WHERE i.hobby_id = d.id";
 		String sql = select + " " + where1;
 
 		try {
@@ -44,7 +44,7 @@ public class ProfileManager extends HibernateUtil {
 				hobby = "%";
 
 			String select = "SELECT * FROM table_profile i, table_hobby d";
-			String where1 = "WHERE i.id = d.id";
+			String where1 = "WHERE i.hobby_id = d.id";
 			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
 					+ home + "' AND i.id LIKE '" + hobby + "')";
 			String sql = select + " " + where1 + " " + where2;
@@ -57,5 +57,19 @@ public class ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 		return resultTable;
+	}
+	
+	public My_hobby my_hobbyList() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			String sql = "SELECT * FROM table_hobby d";
+			resultTable = session.createSQLQuery(sql)
+					.addEntity("My_hobby", My_hobby.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return (My_hobby) resultTable.get(resultTable.size() - 1);
 	}
 }

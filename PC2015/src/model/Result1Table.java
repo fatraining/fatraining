@@ -12,10 +12,11 @@ public class Result1Table implements Serializable {
 	private String home;
 	private int birthday;
 	private String hobby;
-	private String day;
-	private String new_day;
-	private String userid;
-	private String new_userid;
+	private int hobby_id;
+//	private String day;
+//	private String new_day;
+//	private String userid;
+//	private String new_userid;
 //	private int time_stamp;
 //	private int delete;
 
@@ -69,39 +70,47 @@ public class Result1Table implements Serializable {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
-
-	public String getDay() {
-		return day;
+	
+	public int getHobby_id() {
+		return hobby_id;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setHobby_id(int hobby_id) {
+		this.hobby_id = hobby_id;
 	}
 
-	public String getNew_day() {
-		return new_day;
-	}
-
-	public void setNew_day(String new_day) {
-		this.new_day = new_day;
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
-	public String getNew_userid() {
-		return new_userid;
-	}
-
-	public void setNew_userid(String new_userid) {
-		this.new_userid = new_userid;
-	}
-
+//	public String getDay() {
+//		return day;
+//	}
+//
+//	public void setDay(String day) {
+//		this.day = day;
+//	}
+//
+//	public String getNew_day() {
+//		return new_day;
+//	}
+//
+//	public void setNew_day(String new_day) {
+//		this.new_day = new_day;
+//	}
+//
+//	public String getUserid() {
+//		return userid;
+//	}
+//
+//	public void setUserid(String userid) {
+//		this.userid = userid;
+//	}
+//
+//	public String getNew_userid() {
+//		return new_userid;
+//	}
+//
+//	public void setNew_userid(String new_userid) {
+//		this.new_userid = new_userid;
+//	}
+//
 //	public int getTime_stamp() {
 //		return time_stamp;
 //	}

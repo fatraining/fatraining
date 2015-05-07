@@ -101,7 +101,7 @@ public class Main1Action extends AbstractAction {
 
 		return "success";
 	}
-	public ArrayList<Result1Table> tableTrans(List<?> resultTable) {
+	private ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
 		Object[] obj;
 		try {
