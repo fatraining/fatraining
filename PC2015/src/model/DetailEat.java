@@ -23,6 +23,7 @@ public class DetailEat implements Serializable{
 	private String renew_day;
 	private String entry_userid;
 	private String renew_userid;
+	private int food_id;
 	private int renew_flg;
 	private int delete_flg; 
 	
@@ -49,6 +50,11 @@ public class DetailEat implements Serializable{
 	@Column(name="eat_hour")
 	public String getEat_hour() {
 		return eat_hour;
+	}
+	
+	@Column(name="food_id")
+	public int getFood_id() {
+		return food_id;
 	}
 
 	@Column(name="entry_day")
@@ -91,6 +97,9 @@ public class DetailEat implements Serializable{
 	}
 	public void setEat_hour(String eat_hour) {
 		this.eat_hour = eat_hour;
+	}
+	public void setFood_id(int food_id) {
+		this.food_id = food_id;
 	}
 	public void setEntry_day(String entry_day) {
 		this.entry_day = entry_day;
