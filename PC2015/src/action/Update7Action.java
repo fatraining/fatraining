@@ -36,11 +36,6 @@ public class Update7Action extends AbstractAction {
 
 	// 追加するメソッド
 	public String insert() {
-		//インサートに必要な変数
-		String registration_date; //登録日
-		String renewal_date; //更新日
-		String registration_userid; //登録ユーザーID
-		String renewal_userid; //更新ユーザーID
 
 		// 未入力の項目があるときにエラーを返す
 		if (this.title.isEmpty() || this.genreId == 0
@@ -88,10 +83,9 @@ public class Update7Action extends AbstractAction {
 	public String delete() {
 		// delete_id=movieテーブルのidを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		String str = new String(this.delete_id);
-		String[] strAry = str.split(",");
+		String[] strAry = this.delete_id.split(",");
 
-		if (this.delete_id.isEmpty()) {
+		if (strAry.length == 0) {
 			return "main7";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
