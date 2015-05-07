@@ -118,30 +118,29 @@ public class Main10Action extends AbstractAction {
 		return "success"; // SuccessActionが見つからないのでMain10Actionへ戻る
 	}
 
-	// TODO
 	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
 		Object[] obj;
-			for (int i = 0; i < result10Table.size(); i++) {
-				// Result10Tableのインスタンスの生成
-				Result10Table temp = new Result10Table();
+		for (int i = 0; i < result10Table.size(); i++) {
+			// Result10Tableのインスタンスの生成
+			Result10Table temp = new Result10Table();
 
-				obj = (Object[]) result10Table.get(i);
+			obj = (Object[]) result10Table.get(i);
 
-				// 画面表示用に設定
-				DetailEat detaileat = (DetailEat) obj[0];
-				IDofEat idofeat = (IDofEat) obj[1];
-				temp.setId(detaileat.getId());
-				temp.setEat_year(detaileat.getEat_year());
-				temp.setEat_month(detaileat.getEat_month());
-				temp.setEat_day(detaileat.getEat_day());
-				temp.setEat_hour(detaileat.getEat_hour());
-				temp.setEatFood(idofeat.getEatFood());
-				temp.setEatCalory(idofeat.getEatCalory());
-				//画面表示用にリストに追加
-				tempTable.add(temp);
-			}
+			// 画面表示用に設定
+			DetailEat detaileat = (DetailEat) obj[0];
+			IDofEat idofeat = (IDofEat) obj[1];
+			temp.setId(detaileat.getId());
+			temp.setEat_year(detaileat.getEat_year());
+			temp.setEat_month(detaileat.getEat_month());
+			temp.setEat_day(detaileat.getEat_day());
+			temp.setEat_hour(detaileat.getEat_hour());
+			temp.setEatFood(idofeat.getEatFood());
+			temp.setEatCalory(idofeat.getEatCalory());
+			// 画面表示用にリストに追加
+			tempTable.add(temp);
+		}
 
-		return tempTable; // TODO
+		return tempTable; 
 	}
 }

@@ -37,7 +37,7 @@ public class Update10Action extends AbstractAction {
 
 	// insertメソッド、追加の処理 データベースに値を入れる
 	public String insert() {
-		// 日付の設定
+		// 変数に日付を設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		String entry_day = String.valueOf(sdf.format(date));
@@ -52,7 +52,7 @@ public class Update10Action extends AbstractAction {
 		// トランザクションの開始
 		session.beginTransaction();
 
-		// インスタンス化、id_tableのデータ作成
+		// インスタンス化、id_tableにレコードを挿入する
 		IDofEat insert_id_table = new IDofEat();
 		insert_id_table.setEatFood(this.eatFood);
 		insert_id_table.setEatCalory(this.eatCalory);
@@ -66,13 +66,13 @@ public class Update10Action extends AbstractAction {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-		}// TODO
+		}
 
 		// id_tableのデータ検索
 		All10Manager all10manager = new All10Manager();
 		insert_id_table = all10manager.eat_idList();
 
-		// インスタンス化、detail_tableのデータ作成
+		// インスタンス化、detail_tableにレコードを挿入する
 		DetailEat insert_detail_table = new DetailEat();
 		insert_detail_table.setEat_year(this.eat_year);
 		insert_detail_table.setEat_month(this.eat_month);
