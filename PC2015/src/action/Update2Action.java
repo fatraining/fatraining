@@ -1,23 +1,15 @@
 package action;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+//import java.io.IOException;
+//import java.text.SimpleDateFormat;
+//import java.util.ArrayList;
+//import java.util.Date;
 
-import model.My_hobby;
-import model.Profile;
 import model.Sweets;
 import model.Genre;
-import model.Result2Table;
+//import model.Result2Table;
 import controller.HibernateUtil;
-import controller.SweetsManager;
 //import controller.Result2Manager;
-
-
-
-
-
 
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
