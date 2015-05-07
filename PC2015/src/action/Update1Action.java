@@ -27,7 +27,6 @@ public class Update1Action extends AbstractAction {
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
-	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
