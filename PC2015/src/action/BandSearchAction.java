@@ -33,9 +33,6 @@ public class BandSearchAction extends AbstractAction {
 	@Override
 	public String execute() {
 		this.userId = (String) this.sessionMap.get("userId"); //USER名をuserIdに代入する
-		this.band_name = ""; //band_nameに初期値を代入する
-		this.name = ""; //nameに初期値を代入する
-		this.part = ""; //partに初期値を代入する
 		this.delete = "false"; //deleteにfalseを代入し、削除ボタンを非表示に
 		return "success";
 	}
@@ -49,7 +46,7 @@ public class BandSearchAction extends AbstractAction {
 		return "success";
 	}
 
-	// printメソッド。検索結果を表示させるための処理→printメソッドからsearchメソッドに名前の変更
+	// searchメソッド。検索結果を表示させるための処理
 	public String search() {
 		
 		//BandAllManagerをインスタンス化

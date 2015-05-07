@@ -16,10 +16,10 @@ public class BandResultTable implements Serializable{
 	private int band_id;//カラム名BAND_IDの変数、データ型int(String型からint型に変更)
 	private String entry_date;
 	private String renewal_date;
-	private String entry_userid;
-	private String renewal_userid;
-	private int exclusion_flg; //カラム名EXCLUSION_FLGの変数、データ型int(String型からint型に修正)
-	private int delete_flg; //カラム名DELETE_FLGの変数、データ型int(String型からint型に修正)
+//	private String entry_userid;
+//	private String renewal_userid;
+//	private int exclusion_flg; //カラム名EXCLUSION_FLGの変数、データ型int(String型からint型に修正)
+//	private int delete_flg; //カラム名DELETE_FLGの変数、データ型int(String型からint型に修正)
 	private String band_name;
 	
 	public BandResultTable(){}
@@ -84,30 +84,30 @@ public class BandResultTable implements Serializable{
 	public void setRenewal_date(String renewal_date){
 		this.renewal_date = renewal_date;
 	}
-	public String getEntry_userid(){
-		return entry_userid;
-	}
-	public void setEntry_userid(String entry_userid){
-		this.entry_userid = entry_userid;
-	}
-	public String getRenewal_userid(){
-		return renewal_userid;
-	}
-	public void setRenewal_userid(String renewal_userid){
-		this.renewal_userid = renewal_userid;
-	}
-	public int getExclusion_flg(){
-		return exclusion_flg;
-	}
-	public void setExclusion_flg(int exclusion_flg){
-		this.exclusion_flg = exclusion_flg;
-	}
-	public int getDelete_flg(){
-		return delete_flg;
-	}
-	public void setDelete_flg(int delete_flg){
-		this.delete_flg = delete_flg;
-	}
+//	public String getEntry_userid(){
+//		return entry_userid;
+//	}
+//	public void setEntry_userid(String entry_userid){
+//		this.entry_userid = entry_userid;
+//	}
+//	public String getRenewal_userid(){
+//		return renewal_userid;
+//	}
+//	public void setRenewal_userid(String renewal_userid){
+//		this.renewal_userid = renewal_userid;
+//	}
+//	public int getExclusion_flg(){
+//		return exclusion_flg;
+//	}
+//	public void setExclusion_flg(int exclusion_flg){
+//		this.exclusion_flg = exclusion_flg;
+//	}
+//	public int getDelete_flg(){
+//		return delete_flg;
+//	}
+//	public void setDelete_flg(int delete_flg){
+//		this.delete_flg = delete_flg;
+//	}
 	public String getBand_name(){
 		return band_name;
 	}
