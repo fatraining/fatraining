@@ -25,10 +25,6 @@ public class Update10Action extends AbstractAction {
 	public String eat_month; // 月
 	public String eat_day; // 日
 	public String eat_hour; // 時間
-	public String entry_day; // 登録日付
-	public String renew_day; // 更新日付
-	public String entry_userid; // 登録userID
-	public String renew_userid; // 更新userID
 	public String delete_id; // 削除に使うレコードのID
 
 	public String execute() throws Exception {
@@ -41,12 +37,12 @@ public class Update10Action extends AbstractAction {
 		// 日付の設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		entry_day = String.valueOf(sdf.format(date));
-		renew_day = String.valueOf(sdf.format(date));
+		String entry_day = String.valueOf(sdf.format(date));
+		String renew_day = String.valueOf(sdf.format(date));
 
 		// 登録、更新UAER表示
-		this.entry_userid = (String) this.sessionMap.get("userId");
-		this.renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
+		String entry_userid = (String) this.sessionMap.get("userId");
+		String renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
 
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -55,24 +51,32 @@ public class Update10Action extends AbstractAction {
 
 		// インスタンス化
 		DetailEat insert_detail_table = new DetailEat();
-		IDofEat insert_id_table = new IDofEat();
+
 		insert_detail_table.setEat_year(this.eat_year);
 		insert_detail_table.setEat_month(this.eat_month);
 		insert_detail_table.setEat_day(this.eat_day);
 		insert_detail_table.setEat_hour(this.eat_hour);
-		insert_detail_table.setEntry_day(this.entry_day);
-		insert_detail_table.setRenew_day(this.renew_day);
-		insert_detail_table.setEntry_userid(this.entry_userid);
-		insert_detail_table.setRenew_userid(this.renew_userid);
-		insert_id_table.setEatFood(this.eatFood);
-		insert_id_table.setEatCalory(this.eatCalory);
-		insert_id_table.setEntry_day(this.entry_day);
-		insert_id_table.setRenew_day(this.renew_day);
-		insert_id_table.setEntry_userid(this.entry_userid);
-		insert_id_table.setRenew_userid(this.renew_userid);
-
+		insert_detail_table.setEntry_day(entry_day);
+		insert_detail_table.setRenew_day(renew_day);
+		insert_detail_table.setEntry_userid(entry_userid);
+		insert_detail_table.setRenew_userid(renew_userid);
+		
 		try {
 			session.save(insert_detail_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}// TODO
+		
+		IDofEat insert_id_table = new IDofEat();
+		insert_id_table.setEatFood(this.eatFood);
+		insert_id_table.setEatCalory(this.eatCalory);
+		insert_id_table.setEntry_day(entry_day);
+		insert_id_table.setRenew_day(renew_day);
+		insert_id_table.setEntry_userid(entry_userid);
+		insert_id_table.setRenew_userid(renew_userid);
+
+		try {
 			session.save(insert_id_table);
 		} catch (HibernateException e) {
 			e.printStackTrace();

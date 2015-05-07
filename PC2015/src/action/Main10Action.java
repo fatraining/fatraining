@@ -122,36 +122,25 @@ public class Main10Action extends AbstractAction {
 	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
 		Object[] obj;
-		try {
 			for (int i = 0; i < result10Table.size(); i++) {
 				// Result10Tableのインスタンスの生成
 				Result10Table temp = new Result10Table();
 
 				obj = (Object[]) result10Table.get(i);
 
-				// 結合したテーブルを表示させる
-				DetailEat detaileat = (DetailEat) obj[0]; // 0番テーブル
-				IDofEat idofeat = (IDofEat) obj[1]; // 1番テーブル
+				// 画面表示用に設定
+				DetailEat detaileat = (DetailEat) obj[0];
+				IDofEat idofeat = (IDofEat) obj[1];
 				temp.setId(detaileat.getId());
 				temp.setEat_year(detaileat.getEat_year());
 				temp.setEat_month(detaileat.getEat_month());
 				temp.setEat_day(detaileat.getEat_day());
 				temp.setEat_hour(detaileat.getEat_hour());
-				temp.setEntry_day(detaileat.getEntry_day());
-				temp.setRenew_day(detaileat.getRenew_day());
-				temp.setEntry_userid(detaileat.getEntry_userid());
-				temp.setRenew_userid(detaileat.getRenew_userid());
 				temp.setEatFood(idofeat.getEatFood());
 				temp.setEatCalory(idofeat.getEatCalory());
-				temp.setEntry_day(idofeat.getEntry_day());
-				temp.setRenew_day(idofeat.getRenew_day());
-				temp.setEntry_userid(idofeat.getEntry_userid());
-				temp.setRenew_userid(idofeat.getRenew_userid());
+				//画面表示用にリストに追加
 				tempTable.add(temp);
 			}
-		} catch (Exception e) {
-			e.printStackTrace(); // TODO
-		}
 
 		return tempTable; // TODO
 	}
