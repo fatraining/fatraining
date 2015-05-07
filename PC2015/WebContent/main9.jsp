@@ -35,7 +35,7 @@
 </s:form>
 
 
-<s:if test="%{do_search=='true'}">
+<s:if test="%{do_print=='true'}">
 	<h3>結果↓</h3>
 	<s:form>
 		<table class="brwsr2">
@@ -45,6 +45,7 @@
 					<th>食べ物</th>
 					<th>飲み物</th>
 					<th>色</th>
+					<th>趣味</th>
 					<th>削除</th>
 
 				</tr>
@@ -54,7 +55,8 @@
 						<td class="data"><s:property value="name" /></td>
 						<td class="data"><s:property value="food" /></td>
 						<td class="data"><s:property value="drink" /></td>
-						<td class="data"><s:property value="color" /></td>
+						<td class="data"><s:property value="colorNm" /></td>
+						<td class="data"><s:property value="taste" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
