@@ -19,21 +19,23 @@ import controller.HibernateUtil;
 public class Update6Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	//カラムの呼び出し
-	public String delete_id;
-	public String id;
-	public String series;
-	public String se;
-	public String title;
-	public String u;
-	public String upDay;
-	public String userId;
-	public String upUser;
-	public String nonStyle;
-	public String del;
+	//表示項目
+	public String delete_id; //削除画面
+	public String id; //ID
+	public String u; //登録日
+	public String upDay; //更新日
+	//入力項目
+	public String series; //シリーズ名
+	public String se; //シリーズID
+	public String title; //タイトル
+	public String userId; //ユーザー名
+	public String upUser; //ユーザーID
+	public String nonStyle; //切り札
+	public String del; //起源
 	
-	public String errormsg;
-
+    //画面が表示時に実行
 	public String execute() throws Exception {
+		//削除ボタンが押下　or 追加画面の判定
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		return "success";
@@ -41,15 +43,19 @@ public class Update6Action extends AbstractAction {
 
 	//追加画面
 	//追加入力
+    //　日付の表示
 	public String insert() {
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
 		u = String.valueOf(sdf.format(date));
 		upDay = String.valueOf(sdf.format(date));
 		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();//dbの接続
+		//dbの接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションの開始
 		session.beginTransaction();
-
+		
+		// サーバーのテーブルに値をインサート
 		LikeGame insert_game_table = new LikeGame();
 		LikeSeries insert_series_table = new LikeSeries();
 		insert_game_table.setId(this.id);
@@ -62,20 +68,16 @@ public class Update6Action extends AbstractAction {
 		insert_game_table.setUpUser(this.upUser);
 		insert_game_table.setNonStyle(this.nonStyle);
 		insert_game_table.setDel(this.del);
-//		String[] data = {this.id, this.title, this.series, this.u, this.upDay,
-//				this.userId, this.upUser, this.nonStyle, this.del,
-//				 };
-//		int i = 0;
 
-			try {
-				session.save(insert_series_table);
-				session.save(insert_game_table);
+		try {
+			session.save(insert_series_table);
+			session.save(insert_game_table);
 
-			} catch (HibernateException e) {
+		} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
-			}
-
+		}
+        //トランザクションの終了
 		session.getTransaction().commit();
 		return "main6";
 
@@ -83,18 +85,21 @@ public class Update6Action extends AbstractAction {
 	
 	//削除動作
 	public String delete() {
+		//delete_idを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		
 		String str = new String(this.delete_id);
 		String[] strAry = str.split(",");
 		
+		// delete_idが空である場合
 		if (this.delete_id.isEmpty()) {
 			return "main6";
 		}
 		for(int i = 0; i < strAry.length; i++){
 			//データベースに接続
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			//トランザクション
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			//トランザクション開始
 			session.beginTransaction();
 			
 		try {
@@ -106,23 +111,9 @@ public class Update6Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		//トランザクションの終了
 		session.getTransaction().commit();
-		return "main6";
 	}
-		return str;
-
-		
-//	private static boolean checkCharacterCode(String str, String encoding) {
-//		if (str == null) {
-//			return true;
-//		}
-//
-//		try {
-//			byte[] bytes = str.getBytes(encoding);
-//			return str.equals(new String(bytes, encoding));
-//		} catch (UnsupportedEncodingException ex) {
-//			throw new RuntimeException("エンコード名称が正しくありません。", ex);
-//		}
-//	}
-  }
+	return "main6";
+   }
 }
