@@ -39,6 +39,8 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
 		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<br />
+		<br /> <a href="menu.action">Back</a>
 
 		<!--<s:submit method="searchall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
@@ -48,42 +50,34 @@
 <s:if test="%{do_search=='true'}">
 	<h3>結果↓</h3>
 	<s:form>
-	<table class="brwsr2">
-		<tbody>
-			<tr>
-				<th>年</th>
-				<th>月</th>
-				<th>日</th>
-				<th>AM/PM</th>
-				<th>食べ物</th>
-				<th>カロリー</th>
-				<th>登録日付</th>
-				<th>更新日付</th>
-				<th>登録ユーザー</th>
-				<th>更新ユーザー</th>
+		<table class="brwsr2">
+			<tbody>
+				<tr>
+					<th>年</th>
+					<th>月</th>
+					<th>日</th>
+					<th>AM/PM</th>
+					<th>食べ物</th>
+					<th>カロリー</th>
 					<th>削除</th>
 
-			</tr>
-			<td class="bar" colspan="16"></td>
-			<s:iterator value="outputTable">
-				<tr>
-					<td class="data"><s:property value="eat_year" /></td>
-					<td class="data"><s:property value="eat_month" /></td>
-					<td class="data"><s:property value="eat_day" /></td>
-					<td class="data"><s:property value="eat_hour" /></td>
-					<td class="data"><s:property value="eatFood" /></td>
-					<td class="data"><s:property value="eatCalory" /></td>
-					<td class="data"><s:property value="entry_day" /></td>
-					<td class="data"><s:property value="renew_day" /></td>
-					<td class="data"><s:property value="entry_userid" /></td>
-					<td class="data"><s:property value="renew_userid" /></td>
-					<td class="data"><input type="checkbox" name="delete_id"
+				</tr>
+				<td class="bar" colspan="16"></td>
+				<s:iterator value="outputTable">
+					<tr>
+						<td class="data"><s:property value="eat_year" /></td>
+						<td class="data"><s:property value="eat_month" /></td>
+						<td class="data"><s:property value="eat_day" /></td>
+						<td class="data"><s:property value="eat_hour" /></td>
+						<td class="data"><s:property value="eatFood" /></td>
+						<td class="data"><s:property value="eatCalory" /></td>
+						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
-				</tr>
-			</s:iterator>
-		</tbody>
-	</table>
+					</tr>
+				</s:iterator>
+			</tbody>
+		</table>
 		<s:if test="%{delete=='true'}">
 			<div align=right>
 				<s:submit method="delete" name="delete_id" value="削除"
