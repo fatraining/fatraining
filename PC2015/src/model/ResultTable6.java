@@ -16,14 +16,14 @@ public class ResultTable6 implements Serializable {
 	private String upUser;
 	private String nonStyle;
 	private String del;
-	private String i;
+	private String iD;
 	private String se;
-	private String u;
+	private String us;
 	private String upD;
 	private String userI;
 	private String upU;
 	private String nonS;
-	private String d;
+	private String de;
 
 	public ResultTable6() {
 	}
@@ -100,12 +100,12 @@ public class ResultTable6 implements Serializable {
 		this.del = del;
 	}
 
-	public String getI() {
-		return i;
+	public String getID() {
+		return iD;
 	}
 
-	public void setI(String i) {
-		this.i = i;
+	public void setID(String iD) {
+		this.iD = iD;
 	}
 	
 	public String getSe() {
@@ -116,12 +116,12 @@ public class ResultTable6 implements Serializable {
 		this.se = se;
 	}
 
-	public String getU() {
-		return u;
+	public String getUs() {
+		return us;
 	}
 
-	public void setU(String u) {
-		this.u = u;
+	public void setUs(String us) {
+		this.us = us;
 	}
 
 	public String upD() {
@@ -156,12 +156,12 @@ public class ResultTable6 implements Serializable {
 		this.nonS = nonS;
 	}
 
-	public String getD() {
-		return d;
+	public String getDe() {
+		return de;
 	}
 
-	public void setD(String d) {
-		this.d = d;
+	public void setDe(String de) {
+		this.de = de;
 	}
 
 }
