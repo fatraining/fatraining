@@ -8,10 +8,10 @@ import model.Profile;
 import org.hibernate.classic.Session;
 
 public class ProfileManager extends HibernateUtil {
-	
-	public List<?> resultTable;
 
 	public List<?> resultList() {
+		List<?> resultTable = null;
+				
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -33,6 +33,8 @@ public class ProfileManager extends HibernateUtil {
 	}
 	public List<?> resultList(String name, String home,
 			String hobby) {
+		List<?> resultTable = null;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
@@ -60,6 +62,8 @@ public class ProfileManager extends HibernateUtil {
 	}
 	
 	public My_hobby my_hobbyList() {
+		List<?> resultTable = null;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
