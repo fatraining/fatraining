@@ -101,13 +101,6 @@ public class Main1Action extends AbstractAction {
 
 		return "success";
 	}
-	public String checkcode(String code) {
-		String r = "[a-zA-Z0-9]{0,50}";
-		if(code.matches(r)){
-			return code;
-		}
-		return "";
-	}
 	private ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
 		Object[] obj;
