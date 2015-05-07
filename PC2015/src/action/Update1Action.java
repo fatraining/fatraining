@@ -27,10 +27,6 @@ public class Update1Action extends AbstractAction {
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
-	public String day;
-	public String new_day;
-	public String userid;
-	public String new_userid;
 	public String errormsg;
 
 	// executeメソッド
@@ -43,15 +39,22 @@ public class Update1Action extends AbstractAction {
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		
+		String day;
+		String new_day;
 
 		// 登録、更新日時表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		this.day = String.valueOf(sdf.format(date));
-		this.new_day = String.valueOf(sdf.format(date));
+		day = String.valueOf(sdf.format(date));
+		new_day = String.valueOf(sdf.format(date));
+		
+		String userid;
+		String new_userid;
+		
 		// 登録、更新UAER表示
-		this.userid = (String) this.sessionMap.get("userId");
-		this.new_userid = (String) this.sessionMap.get("userId");
+		userid = (String) this.sessionMap.get("userId");
+		new_userid = (String) this.sessionMap.get("userId");
 
 		My_hobby insert_my_hobby_table = new My_hobby();
 		insert_my_hobby_table.setHobby(this.hobby);
@@ -68,17 +71,15 @@ public class Update1Action extends AbstractAction {
 		insert_my_hobby_table = profilemanager.my_hobbyList();
 
 		Profile insert_profile_table = new Profile();
-		insert_profile_table.setName(this.name);
-
 		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
 		insert_profile_table.setName(this.name);
 		insert_profile_table.setPersonality(this.personality);
 		insert_profile_table.setHome(this.home);
 		insert_profile_table.setBirthday(this.birthday);
-		insert_profile_table.setDay(this.day);
-		insert_profile_table.setNew_day(this.new_day);
-		insert_profile_table.setUserid(this.userid);
-		insert_profile_table.setNew_userid(this.new_userid);
+		insert_profile_table.setDay(day);
+		insert_profile_table.setNew_day(new_day);
+		insert_profile_table.setUserid(userid);
+		insert_profile_table.setNew_userid(new_userid);
 
 		try {
 			session.save(insert_profile_table);
