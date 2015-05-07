@@ -29,6 +29,7 @@ public class Update5Action extends AbstractAction {
 	// 表示項目（削除画面）
 	public String delete_id;
 
+	//画面が表示時に実行
 	public String execute() throws Exception {
 		// 削除ボタンが押下　or 追加画面の判定
 		this.delete_id = (String) this.sessionMap.get("delete_id");
@@ -44,9 +45,12 @@ public class Update5Action extends AbstractAction {
 		return "success";
 	}
 
+	//追加ボタンを押下時
 	public String insert() {
 
+		// DBへの接続処理（固定文言）
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始（固定文言）
 		session.beginTransaction();
 
 		// 登録、更新日時設定
@@ -57,15 +61,21 @@ public class Update5Action extends AbstractAction {
 
 		// 登録更新ID設定
 		String userid = (String) this.sessionMap.get("userId");
-		String newuserid = (String) this.sessionMap.get("newuserId");
+		String newuserid = (String) this.sessionMap.get("userId");
 
 		// インスタンス化
 		User_Character insert_user_character_table = new User_Character();
 
 		// user_characterのデータ作成
-		insert_user_character_table.setPersonality(this.personality);
-		insert_user_character_table.setInterest(this.interest);
-
+		insert_user_character_table.setPersonality(this.personality); //性格
+		insert_user_character_table.setInterest(this.interest); //趣味
+		insert_user_character_table.setDay(day); //登録日付
+		insert_user_character_table.setNewday(newday); //更新日付
+		insert_user_character_table.setUserid(userid); //登録ユーザID
+		insert_user_character_table.setNewuserid(newuserid); //更新ユーザID
+		insert_user_character_table.setDeleteFlg(0); //排他フラグ
+		insert_user_character_table.setFlg(0); //削除フラグ
+		
 		// user_characterテーブルに追加
 		try {
 			session.save(insert_user_character_table);
@@ -77,26 +87,24 @@ public class Update5Action extends AbstractAction {
 
 		// user_characterテーブルのデータ検索
 		UserProfileManager userprofilemanager = new UserProfileManager();
-		insert_user_character_table = userprofilemanager.user_characterList();
+		User_Character tmpInsert_user_character_table = userprofilemanager.user_characterList();
 
-		// user_profileデータの作成
+		// インスタンス化
 		User_Profile insert_userprofile_table = new User_Profile();
 
-		// user_profileテーブルのpersonality2を取得し、user_characterテーブルのidに代入
-		insert_userprofile_table.setPersonality2(insert_user_character_table
-				.getId());
-
-		// profileテーブルに追加
+		// User_Profileのデータ作成
+		insert_userprofile_table.setPersonality2(tmpInsert_user_character_table.getId()); // user_profileテーブルのpersonality2を取得し、user_characterテーブルのidに代入
 		insert_userprofile_table.setName(this.name);
 		insert_userprofile_table.setZipcode(Integer.valueOf(this.zipcode));
 		insert_userprofile_table.setDwelling(this.dwelling);
-		insert_userprofile_table.setPhonenumber(Integer
-				.valueOf(this.phonenumber));
+		insert_userprofile_table.setPhonenumber(Integer.valueOf(this.phonenumber));
 		insert_userprofile_table.setDay(day);
 		insert_userprofile_table.setNewday(newday);
 		insert_userprofile_table.setUserid(userid);
 		insert_userprofile_table.setNewuserid(newuserid);
-
+		insert_userprofile_table.setDeleteFlg(0); //排他フラグ
+		insert_userprofile_table.setFlg(0); //削除フラグ
+		
 		try {
 			session.save(insert_userprofile_table);
 		} catch (HibernateException e) {

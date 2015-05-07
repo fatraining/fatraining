@@ -13,7 +13,7 @@
 	<div class="form-group">
 		<label class="col-md-2 control-label">ジャンル:</label>
 		<div class="col-md-5">
-			<s:select name="genreNm" list="#{'','1':'焼き菓子', '2':'冷菓','3':'チョコレート菓子'}"
+			<s:select name="genreNm" list="#{'','焼き菓子':'焼き菓子', '冷菓':'冷菓','チョコレート菓子':'チョコレート菓子'}"
 				 cssClass="form-control" />
 		</div>
 	</div>

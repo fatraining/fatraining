@@ -69,7 +69,7 @@
 </s:if>
 <s:if test="%{delete_id!=null}">
 	<h3>さっきクリックしたパソコンのデータを削除済ます</h3>
-	<td class="data">削除するレコード ID:<s:property value="update_id" /></td>
+	<td class="data">削除するレコード ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
 		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
 		<a href="main5.action">Back</a>

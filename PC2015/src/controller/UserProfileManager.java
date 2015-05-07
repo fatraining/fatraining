@@ -97,7 +97,7 @@ public class UserProfileManager extends HibernateUtil {
 		session.beginTransaction();
 		try {
 			// user_charactrテーブルの全件検索
-			String sql = "SELECT * FROM user_character i";
+			String sql = "SELECT * FROM user_Character i";
 			resultTable = session.createSQLQuery(sql)
 			// session.createSQLQuery(sql)の戻り値をUser_Profileクラスに渡している
 					.addEntity("User_Character", User_Character.class).list();

@@ -5,16 +5,19 @@ package action;
 //import java.util.ArrayList;
 //import java.util.Date;
 
-import model.Sweets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import model.Genre;
-//import model.Result2Table;
-import controller.HibernateUtil;
-//import controller.Result2Manager;
+import model.Sweets;
 
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
+//import model.Result2Table;
+import controller.HibernateUtil;
+//import controller.Result2Manager;
 //import java.util.*;
 //import java.text.*;
 //import java.io.UnsupportedEncodingException;
@@ -22,7 +25,6 @@ import org.hibernate.classic.Session;
 //
 //import model.BandAccount;
 //import model.BandTable;
-
 import org.apache.struts2.config.Result;
 //import controller.HibernateUtil;
 
@@ -51,24 +53,31 @@ public class Update2Action extends AbstractAction {
 	}
 	
 	
-	// insertメソッド
+	//追加ボタンを押下時
 	public String insert() {
-
-		this.name = (String) this.sessionMap.get("name");
-		this.genreNm = (String) this.sessionMap.get("genreNm");
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		// サーバーのテーブルに値をインサート
+		
+		// 登録、更新日時設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		
+		// インスタンス化
 		Sweets insert_sweets = new Sweets();
-		Genre insert_genre = new Genre();
-		insert_sweets.setName(this.name);
-		insert_genre.setGenreNm(this.genreNm);
+		insert_sweets.setName(name); //お菓子の名前
+		insert_sweets.setGenre_id(genreNm); //ジャンルID
+		insert_sweets.setRecord_date(String.valueOf(sdf.format(date))); //登録日付
+		insert_sweets.setReset_date(String.valueOf(sdf.format(date))); //更新日付
+		insert_sweets.setEntry_userId((String) this.sessionMap.get("userId")); //登録ユーザID
+		insert_sweets.setRecord_userId((String) this.sessionMap.get("userId")); //更新ユーザID
+		insert_sweets.setExclusive_FLG(0); //排他フラグ
+		insert_sweets.setDelete_FLG(0); //削除フラグ
+
+		// DBへの接続処理（固定文言）
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始（固定文言）
+		session.beginTransaction();
 
 		try {
 			session.save(insert_sweets);
-			session.save(insert_genre);
-
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -161,16 +170,6 @@ public class Update2Action extends AbstractAction {
 		}
 		return "main2";
 	}
-//		public String getDefaultDate(){
-//		Date date = new Date();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-//		record_date = String.valueOf(sdf.format(date));
-//		reset_date = String.valueOf(sdf.format(date));
-//
-//		return "date";
-//	}
 
-
-	
 }
 

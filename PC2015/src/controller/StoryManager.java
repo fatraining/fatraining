@@ -6,6 +6,7 @@ import java.util.List;
 import model.Story;
 import model.Result3Table;
 import model.Tb_Genre;
+import model.User_Character;
 
 import org.hibernate.classic.Session;
 
@@ -82,5 +83,23 @@ public class StoryManager extends HibernateUtil {
 		return resultTable;
 	}
 
+	// Tb_Genreテーブル検索用のメソッド
+	public Tb_Genre tb_GenreList() {
+		List<?> resultTable = null;
 
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			// user_charactrテーブルの全件検索
+			String sql = "SELECT * FROM Tb_Genre i";
+			resultTable = session.createSQLQuery(sql)
+			// session.createSQLQuery(sql)の戻り値をUser_Profileクラスに渡している
+					.addEntity("Tb_Genre", Tb_Genre.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		return (Tb_Genre) resultTable.get(resultTable.size() - 1);
+	}
 }

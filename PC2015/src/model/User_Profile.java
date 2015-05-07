@@ -26,8 +26,8 @@ public class User_Profile implements Serializable {
 
 	private String userid;
 	private String newuserid;
-//	private int delete;
-//	private int flg;
+	private int deleteFlg;
+	private int flg;
 
 	/*--------------------------------------------------*/
 	@Id
@@ -82,15 +82,15 @@ public class User_Profile implements Serializable {
 		return newuserid;
 	}
 
-//	@Column(name = "delete")
-//	public int getDelete() {
-//		return delete;
-//	}
-//
-//	@Column(name = "flg")
-//	public int getFlg() {
-//		return flg;
-//	}
+	@Column(name = "deleteFlg")
+	public int getDeleteFlg() {
+		return deleteFlg;
+	}
+
+	@Column(name = "flg")
+	public int getFlg() {
+		return flg;
+	}
 
 	/*--------------------------------------------------*/
 	public void setId(int id) {
@@ -133,12 +133,12 @@ public class User_Profile implements Serializable {
 		this.newuserid = newuserid;
 	}
 
-//	public void setDelete(int delete) {
-//		this.delete = delete;
-//	}
-//
-//	public void setFlg(int flg) {
-//		this.flg = flg;
-//	}
+	public void setDeleteFlg(int deleteFlg) {
+		this.deleteFlg = deleteFlg;
+	}
+
+	public void setFlg(int flg) {
+		this.flg = flg;
+	}
 
 }

@@ -1,5 +1,8 @@
 package action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import model.Story;
 import model.Tb_Genre;
 
@@ -9,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
+import controller.StoryManager;
 
 @Result(name = "main3", value = "main3.action", type = ServletRedirectResult.class)
 public class Update3Action extends AbstractAction {
@@ -34,77 +38,69 @@ public class Update3Action extends AbstractAction {
 		return "success";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	
-//
-//	public int genre_id;
-//	// public String signup;
-//	// public String update;
-//	// public String signupUSERID;
-//	// public String updateUSERID;
-//	// public String exclusiveFLG;
-//	// public String deleteFLG;
-//	public String do_print;
-//	public String update_id;
-//	public String errormsg;
-
-
-
-	//インサートのメソッド
+	//追加ボタンを押下時
 	public String insert() {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		session.beginTransaction();
-//
-//		Tb_Genre insert_genre_table = new Tb_Genre();
-//		Story insert_story_table = new Story();
-//		insert_genre_table.setGenre(this.genre);
-//		insert_story_table.setTitle(this.title);
-//		insert_story_table.setGenre_id(this.genre_id);
-//		// insert_story_table.setSignup(this.signup);
-//		// insert_story_table.setUpdate(this.update);
-//		// insert_story_table.setSignupUSERID(this.signupUSERID);
-//		// insert_story_table.setUpdateUSERID(this.updateUSERID);
-//		// insert_story_table.setExclusiveFLG(this.exclusiveFLG);
-//		// insert_story_table.setdeleteFLG(this.deleteFLG);
-//		//
-//		// String[] data =
-//		// {this.update_id,this.title,this.genre,this.signup,this.update,this.signupUSERID,this.updateUSERID,this.exclusiveFLG,this.deleteFLG};
-//		// int i=0;
-//		// for(String temp : data){
-//		// if(temp.length()>50){
-//		// this.errormsg =
-//		// "50�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾈ会ｿｽ�ｿｽﾅ難ｿｽ�ｿｽﾍゑｿｽ�ｿｽﾄゑｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ";
-//		// return "error";
-//		// }
-//		// if(temp.length()<1)i++;
-//		// if(i>14){
-//		// this.errormsg = "�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾍは登�ｿｽ^�ｿｽﾅゑｿｽ�ｿｽﾜゑｿｽ�ｿｽ�ｿｽ";
-//		// return "error";
-//		// }
-//
-//		try {
-//			session.save(insert_story_table);
-//			session.save(insert_genre_table);
-//
-//		} catch (HibernateException e) {
-//			e.printStackTrace();
-//			session.getTransaction().rollback();
-//		}
-//
-//		// }
-//		session.getTransaction().commit();
+		
+		// 登録、更新日時設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		String day = String.valueOf(sdf.format(date));
+		String newday = String.valueOf(sdf.format(date));
+		
+		// 登録更新ID設定
+		String userid = (String) this.sessionMap.get("userId");
+		String newuserid = (String) this.sessionMap.get("userId");
+		
+		// インスタンス化
+		Tb_Genre ｔbGenre = new Tb_Genre();
+		ｔbGenre.setGenre(this.genre); //ジャンル
+		ｔbGenre.setSignup(day); //登録日付
+		ｔbGenre.setUpdateDate(newday); //更新日付
+		ｔbGenre.setSignupUSERID(userid); //登録ユーザID
+		ｔbGenre.setUpdateUSERID(newuserid); //更新ユーザID
+		ｔbGenre.setExclusiveFLG(0); //排他フラグ
+		ｔbGenre.setdeleteFLG(0); //削除フラグ
+		
+		// DBへの接続処理（固定文言）
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始（固定文言）
+		session.beginTransaction();
+		
+		// Tb_Genreテーブルに追加
+		try {
+			session.save(ｔbGenre);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		
+		// Tb_Genreテーブルのデータ検索
+		StoryManager linkController  = new StoryManager();
+		Tb_Genre tmpTbGenre = linkController.tb_GenreList();
+		
+		Story insert_story_table = new Story();
+		insert_story_table.setTitle(this.title); //タイトル
+		insert_story_table.setGenre_id(tmpTbGenre.getId()); //ジャンル
+		insert_story_table.setSignup(day); //登録日付
+		insert_story_table.setUpdateDate(newday); //更新日付
+		insert_story_table.setSignupUSERID(userid); //登録ユーザID
+		insert_story_table.setUpdateUSERID(newuserid); //更新ユーザID
+		insert_story_table.setExclusiveFLG(0); //排他フラグ
+		insert_story_table.setdeleteFLG(0); //削除フラグ
+		
+		try {
+			session.save(insert_story_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		session.getTransaction().commit();
+		
 		return "main3";
-
 	}
-
+	
 	//デリートのメソッド
 	public String delete() {
 //		this.update_id = (String) this.sessionMap.get("update_id");
