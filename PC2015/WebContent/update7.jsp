@@ -16,7 +16,7 @@
 
 			<label class="col-sm-2 control-label"> タイトル:</label>
 			<div class="col-md-5">
-				<s:textfield name="title" cssClass="form-control" rows="10" maxlength="50" />
+				<s:textfield name="title" cssClass="form-control" rows="10" maxlength="17" />
 			</div>
 		<br/><br/><br/>
 		<hr/>
@@ -28,10 +28,16 @@
 		<hr/>
 			<label class="col-sm-2 control-label"> 公開年:</label>
 			<div class="col-md-2">
-				<s:select name="exhibition_year" list="{'',1980,1990,2000,2010}" cssClass="form-control" />
+				<s:textfield name="exhibition_year" cssClass="form-control" rows="10" />
 			</div>
-			<br />
-			<hr />
+		<br />
+		<hr />
+			<label class="col-sm-2 control-label"> コメント:</label>
+			<div class="col-md-10">
+				<s:textarea name="comment" cssClass="form-control" rows="10" maxlength="100" />
+			</div>
+		<br/>
+		<hr/>
 
 	</div>
 
