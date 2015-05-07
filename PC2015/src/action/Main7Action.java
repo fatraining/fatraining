@@ -102,6 +102,7 @@ public class Main7Action extends AbstractAction {
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
 				temp.setExhibition_year(movie.getExhibition_year());
+				temp.setComment(movie.getComment());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
