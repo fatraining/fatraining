@@ -44,7 +44,7 @@ public class BandAllManager extends HibernateUtil {
 		return bandResultTable;
 	}
 
-	// BandResultManager.javaの処理をここに移す。bandResultListメソッド(引数あり)。検索時入力があったときに実行
+	// bandSearchAllメソッド(引数あり)。検索時入力があったときに実行
 	public List<?> bandSearchAll(String band_name, String name, String part) {
 
 		// データベースに接続
@@ -64,7 +64,7 @@ public class BandAllManager extends HibernateUtil {
 
 		// band_accountテーブルとband_tableテーブルの全件を検索
 		String select = "SELECT * FROM band_account a,band_table t ";
-		// band_accountテーブルのIDとband_tableテーブルのIDが等しいという条件
+		// band_accountテーブルのBAND_IDとband_tableテーブルのIDが等しいという条件
 		String where1 = "WHERE a.band_id = t.id ";
 		// 入力された値とそれぞれのテーブルにあるカラムの値が等しいという条件
 		String where2 = "AND (t.BAND_NAME LIKE '" + band_name

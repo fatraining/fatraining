@@ -2,7 +2,6 @@ package action;
 
 import java.util.*;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 
 import model.BandAccount;
@@ -27,13 +26,8 @@ public class BandAddAction extends AbstractAction {
 	public String school; //出身校に関する変数schoolを宣言
 	public String favorite_song; //好きな曲に関する変数favorite_songを宣言
 	public String part; //演奏楽器に関する変数partを宣言
-	public int band_id;//テーブル結合の時に必要なBAND_IDに関する変数band_idを宣言
-	//public String entry_date; //登録日付に関する変数entry_dateを宣言
-	//public String renewal_date; //更新日付に関する変数renewal_dateを宣言
-	//public String entry_userid; //登録useridに関する変数entry_useridを宣言
-	//public String renewal_userid; //更新useridに関する変数renewal_useridを宣言
-	public int exclusion_flg; //更新FLGに関する変数exclusion_flgを宣言
-	public int delete_flg; //削除FLGに関する変数delete_flgを宣言
+	//public int exclusion_flg; //更新FLGに関する変数exclusion_flgを宣言
+	//public int delete_flg; //削除FLGに関する変数delete_flgを宣言
 	public String band_name; //バンド名に関する変数band_nameを宣言
 	
 	//executeメソッド。update_idの値を受け取っている。
