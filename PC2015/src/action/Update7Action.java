@@ -24,12 +24,13 @@ public class Update7Action extends AbstractAction {
 	public String title; //タイトル
 	public int genreId; //ジャンル
 	public int exhibition_year; //公開年
+	public String comment;
 	public String errormsg; //エラーメッセージ
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-
+		this.exhibition_year = 1980;
 		return "success";
 	}
 
@@ -56,22 +57,17 @@ public class Update7Action extends AbstractAction {
 			// 日付を自動で入力
 			Date date = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-			registration_date = String.valueOf(sdf.format(date));
-			renewal_date = String.valueOf(sdf.format(date));
-
-			// ユーザーIdを自動で入力
-			registration_userid = (String) this.sessionMap.get("userId");
-			renewal_userid = (String) this.sessionMap.get("userId");
 
 			// 登録するテーブルとカラムを指定
 			Movie insert_movie_table = new Movie();
 			insert_movie_table.setTitle(this.title);
 			insert_movie_table.setGenreId(this.genreId);
 			insert_movie_table.setExhibition_year(this.exhibition_year);
-			insert_movie_table.setRegistration_date(registration_date);
-			insert_movie_table.setRenewal_date(renewal_date);
-			insert_movie_table.setRegistration_userid(registration_userid);
-			insert_movie_table.setRenewal_userid(renewal_userid);
+			insert_movie_table.setComment(this.comment);
+			insert_movie_table.setRegistration_date(String.valueOf(sdf.format(date))); //日付を入力
+			insert_movie_table.setRenewal_date(String.valueOf(sdf.format(date))); //日付を入力
+			insert_movie_table.setRegistration_userid((String) this.sessionMap.get("userId")); //ユーザーIDを指定
+			insert_movie_table.setRenewal_userid((String) this.sessionMap.get("userId")); //ユーザーIDを指定
 
 			// テーブルにインサートする
 			try {
