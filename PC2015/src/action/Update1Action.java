@@ -3,6 +3,7 @@ package action;
 import model.My_hobby;
 import model.Profile;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -27,6 +28,7 @@ public class Update1Action extends AbstractAction {
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
+	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
@@ -44,7 +46,7 @@ public class Update1Action extends AbstractAction {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 
 		My_hobby insert_my_hobby_table = new My_hobby();
-		insert_my_hobby_table.setHobby(this.hobby);
+		insert_my_hobby_table.setHobby(checkcode(this.hobby));
 		insert_my_hobby_table.setDay(String.valueOf(sdf.format(date)));
 		insert_my_hobby_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_my_hobby_table.setUserid((String) this.sessionMap.get("userId"));
@@ -63,14 +65,26 @@ public class Update1Action extends AbstractAction {
 
 		Profile insert_profile_table = new Profile();
 		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
-		insert_profile_table.setName(this.name);
-		insert_profile_table.setPersonality(this.personality);
-		insert_profile_table.setHome(this.home);
+		insert_profile_table.setName(checkcode(this.name));
+		insert_profile_table.setPersonality(checkcode(this.personality));
+		insert_profile_table.setHome(checkcode(this.home));
 		insert_profile_table.setBirthday(this.birthday);
 		insert_profile_table.setDay(String.valueOf(sdf.format(date)));
 		insert_profile_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_profile_table.setUserid((String) this.sessionMap.get("userId"));
 		insert_profile_table.setNew_userid((String) this.sessionMap.get("userId"));
+		String[] data = {this.hobby,this.name,this.personality,this.home};
+		int i=0;
+		for(String temp : data){
+			if(temp.length()>50){
+				this.errormsg = "50文字以下で入力してください";
+				return "error";
+			}
+			if(temp.length()<1)i++;
+			if(i>3){
+				this.errormsg = "未入力は登録できません";
+				return "error";
+			}
 
 		try {
 			session.save(insert_profile_table);
@@ -79,10 +93,10 @@ public class Update1Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		}
 		session.getTransaction().commit();
 		return "main1";
-	}
-
+		}
 	// deleteメソッド
 	// 検索結果の内容を削除のため
 	public String delete() {
@@ -114,5 +128,26 @@ public class Update1Action extends AbstractAction {
 			session.getTransaction().commit();
 		}
 		return "main1";
+	}
+	public String checkcode(String code) {
+
+
+		//code = code.replaceAll("[^a-zA-Z_0-9]","_");
+		if(!code.matches("[a-zA-Z_0-9]{0,50}")){
+			//return "";
+		}
+		return code;
+	}
+	private static boolean checkCharacterCode(String str, String encoding) {
+		if (str == null) {
+			return true;
+		}
+
+		try {
+			byte[] bytes = str.getBytes(encoding);
+			return str.equals(new String(bytes, encoding));
+		} catch (UnsupportedEncodingException ex) {
+			throw new RuntimeException("エンコード名称が正しくありません。", ex);
+		}
 	}
 }
