@@ -18,26 +18,20 @@
 				<s:textfield name="name" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 食べ物:</label>
 			<div class="col-md-3">
 				<s:textfield name="food" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
+			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 飲み物:</label>
 			<div class="col-md-3">
 				<s:textfield name="drink" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
-			<br/><br/><br/>
 			<label class="col-sm-2 control-label"> 色:</label>
 			<div class="col-md-3">
 				<s:textfield name="colorNm" cssClass="form-control" rows="10"
-					maxlength="50" />
-			</div>
-			<label class="col-sm-2 control-label"> 趣味:</label>
-			<div class="col-md-3">
-				<s:textfield name="taste" cssClass="form-control" rows="10"
 					maxlength="50" />
 			</div>
 		</div>
@@ -45,10 +39,11 @@
 </s:if>
 <s:if test="%{delete_id!=null}">
 	<h3>さっきクリックしたデータを削除します</h3>
-	<td class="data">削除するレコード ID:<s:property value="delete_id" /></td>
+	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
 		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
 		<a href="main9.action">Back</a>
 	</s:form>
+	
 </s:if>
 <jsp:include page="footer.jsp" />
