@@ -26,7 +26,7 @@ public class Update6Action extends AbstractAction {
 	public String series; // シリーズ名
 	public String se; // シリーズID
 	public String title; // タイトル
-	public String u; // 登録日
+	public String us; // 登録日
 	public String upDay; // 更新日
 	public String userId; // ユーザー名
 	public String upUser; // ユーザーID
@@ -51,7 +51,7 @@ public class Update6Action extends AbstractAction {
 		// 登録日の表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
-		u = String.valueOf(sdf.format(date));
+		us = String.valueOf(sdf.format(date));
 		upDay = String.valueOf(sdf.format(date));
 
 		LikeGame insert_game_table = new LikeGame();
@@ -61,7 +61,7 @@ public class Update6Action extends AbstractAction {
 		insert_game_table.setTitle(this.title);
 		insert_game_table.setSeries(this.series);
 		insert_series_table.setSe(this.se);
-		insert_series_table.setU(this.u);
+		insert_series_table.setUs(this.us);
 		insert_game_table.setUpDay(this.upDay);
 		insert_game_table.setUserId(this.userId);
 		insert_game_table.setUpUser(this.upUser);
