@@ -105,7 +105,7 @@ public class All10Manager extends HibernateUtil{
 		try {
 			
 			// eat_idテーブルの全件検索
-			String sql = "SELECT * FROM eat_id i";
+			String sql = "SELECT * FROM eat_id i ORDER BY id ASC";
 			
 			//SQLの実行結果がresult10Tableに代入される
 			result10Table = session.createSQLQuery(sql)

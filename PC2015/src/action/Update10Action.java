@@ -19,8 +19,8 @@ import controller.All10Manager;
 @Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
 public class Update10Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
-	
-	//フィールドの宣言
+
+	// フィールドの宣言
 	public String eatFood; // 食べ物名
 	public String eatCalory; // カロリー
 	public String eat_year; // 年
@@ -51,7 +51,7 @@ public class Update10Action extends AbstractAction {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		// トランザクションの開始
 		session.beginTransaction();
-		
+
 		// インスタンス化、id_tableのデータ作成
 		IDofEat insert_id_table = new IDofEat();
 		insert_id_table.setEatFood(this.eatFood);
@@ -67,8 +67,8 @@ public class Update10Action extends AbstractAction {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}// TODO
-		
-		//id_tableのデータ検索
+
+		// id_tableのデータ検索
 		All10Manager all10manager = new All10Manager();
 		insert_id_table = all10manager.eat_idList();
 
@@ -83,8 +83,8 @@ public class Update10Action extends AbstractAction {
 		insert_detail_table.setRenew_day(renew_day);
 		insert_detail_table.setEntry_userid(entry_userid);
 		insert_detail_table.setRenew_userid(renew_userid);
-		
-		//detail_tableに追加
+
+		// detail_tableに追加
 		try {
 			session.save(insert_detail_table);
 		} catch (HibernateException e) {
@@ -99,32 +99,47 @@ public class Update10Action extends AbstractAction {
 	// 検索結果内の値の削除
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");// セッションマップからdelete_idを取得
+
+		// 複数選択の削除のために文字列の分割
+		String str = new String(this.delete_id);
+		String[] strAry = str.split(",");
+
 		// delete_idが空である場合
 		if (this.delete_id.isEmpty()) {
 			return "main10"; // Main10Actionへ
 		}
-		// データベースに接続
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		// トランザクションの開始
-		session.beginTransaction();
-		try {
-			DetailEat detaileat = (DetailEat) session.load(DetailEat.class, delete_id);
-			IDofEat idofeat = (IDofEat) session.load(IDofEat.class, detaileat.getFood_id());
-			
-//			DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
-//					Integer.valueOf(delete_id));
-//			IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
-//					Integer.valueOf(detaileat.getFood_id())); // TODO(delete_idがStringでは処理できないのでキャストする)
 
-			session.delete(detaileat); // detail_tableの指定した行を削除する
-			session.delete(idofeat); // id_tableの指定した行を削除する
+		// for文で処理を繰り返す
+		for (int i = 0; i < strAry.length; i++) {
 
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback(); 
+			// データベースに接続
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			// トランザクションの開始
+			session.beginTransaction();
+			try {
+				DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
+						strAry[i]);
+				IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
+						detaileat.getFood_id());
+
+				// DetailEat detaileat = (DetailEat)
+				// session.load(DetailEat.class,
+				// Integer.valueOf(delete_id));
+				// IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
+				// Integer.valueOf(detaileat.getFood_id())); //
+				// TODO(delete_idがStringでは処理できないのでキャストする)
+
+				session.delete(detaileat); // detail_tableの指定した行を削除する
+				session.delete(idofeat); // id_tableの指定した行を削除する
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			// トランザクションの終了
+			session.getTransaction().commit();
 		}
-		// トランザクションの終了
-		session.getTransaction().commit(); // 
 		return "main10"; // Main10Actionへ
 	}
 
