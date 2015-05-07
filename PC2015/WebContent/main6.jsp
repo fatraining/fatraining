@@ -23,7 +23,7 @@
 	<div class="col-sm-offset-2 col-sm-10">
 		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="delete" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="add" value="追加" cssClass="btn btn-primary" />
 		<a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
@@ -54,7 +54,7 @@
 						<td><s:property value="id" /></td>
 						<td class="data"><s:property value="title" /></td>
 						<td class="data"><s:property value="se" /></td>
-						<td class="data"><s:property value="u" /></td>
+						<td class="data"><s:property value="us" /></td>
 						<td class="data"><s:property value="upDay" /></td>
 						<td class="data"><s:property value="userId" /></td>
 						<td class="data"><s:property value="upUser" /></td>
@@ -66,7 +66,7 @@
 				</s:iterator>
 			</tbody>
 		</table>
-		<s:if test="%{delete=='true'}">
+		<s:if test="%{add=='true'}">
 			<div align=right>
 				<s:submit method="delete" name="delete_id" value="削除"
 					cssClass="btn btn-primary" />
