@@ -12,7 +12,7 @@ import org.hibernate.classic.Session;
 public class LikeManager extends HibernateUtil {
 
 	//全件のデータを検索
-	public ArrayList<ResultTable6> searchList() {
+	public List<?> searchList() {
 		//DBへの接続処理
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		//トランザクションの開始
@@ -37,26 +37,31 @@ public class LikeManager extends HibernateUtil {
 		//トランザクションの終了
 		session.getTransaction().commit();
 
-		ArrayList<ResultTable6> outputTable = tableTrans(resultTable);
 
-		return outputTable;
+		return resultTable;
 	}
 	
-	public ArrayList<ResultTable6> searchList(String title, String series){
+	public List<?> searchList(String title, String series){
 
-		Session session = HibernateUtil.getSessionFactory()
-				.getCurrentSession();
+		// DBへの接続処理
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始
 		session.beginTransaction();
 		
-			if(title.isEmpty())title="%";
-			if(series.isEmpty())series="%";
+			if(title.isEmpty()){
+				title="%";
+			}
+			
+			if(series.isEmpty()){
+				series="%";
+			}
 			String select = "SELECT * FROM like_game g,like_series s";
 			String where1 = "WHERE g.series=s.i";
 			String where2 = "AND (g.title LIKE '"+ title +"' AND g.series LIKE '"
 					+ series + "')";
 			String sql = select + " "  + where1 + " " + where2 ;
 			
-			List<?> resultTable = null;
+			List<?> resultTable = null; // SQLの検索結果用の変数
 			
 			try {
 				resultTable = session.createSQLQuery(sql)
@@ -66,38 +71,11 @@ public class LikeManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		// トランザクションの終了
 		session.getTransaction().commit();
-		ArrayList<ResultTable6> outputTable = tableTrans(resultTable);
-		return outputTable;
+		
+		return resultTable;
 	}
 	
-	//検索結果
-	//リスト内のどこに各要素が挿入されるかを精密に制御できます
-	public ArrayList<ResultTable6> tableTrans(List<?> resultTable){
-		ArrayList<ResultTable6> tempTable = new ArrayList<ResultTable6>();
-		Object[] obj;
-		try {
-			for(int i = 0 ; i < resultTable.size() ; i++){
-				ResultTable6 temp = new ResultTable6();
-				obj = (Object[]) resultTable.get(i);
-				LikeGame likegame = (LikeGame)obj[0];
-				LikeSeries likeseries  = (LikeSeries)obj[1];
-				temp.setId(likegame.getId());
-				temp.setTitle(likegame.getTitle());
-				temp.setSe(likeseries.getSe());
-				temp.setU(likeseries.getU());
-				temp.setUpDay(likegame.getUpDay());
-				temp.setUserId(likegame.getUserId());
-				temp.setUpUser(likegame.getUpUser());
-				temp.setNonStyle(likegame.getNonStyle());
-				temp.setDel(likegame.getDel());
-				tempTable.add(temp);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		return tempTable;
-	}
+	
 }
