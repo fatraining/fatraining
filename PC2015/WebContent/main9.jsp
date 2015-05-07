@@ -45,7 +45,6 @@
 					<th>食べ物</th>
 					<th>飲み物</th>
 					<th>色</th>
-					<th>趣味</th>
 					<th>削除</th>
 
 				</tr>
@@ -56,7 +55,6 @@
 						<td class="data"><s:property value="food" /></td>
 						<td class="data"><s:property value="drink" /></td>
 						<td class="data"><s:property value="colorNm" /></td>
-						<td class="data"><s:property value="taste" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
