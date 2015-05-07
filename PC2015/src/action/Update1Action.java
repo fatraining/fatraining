@@ -27,7 +27,6 @@ public class Update1Action extends AbstractAction {
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
-	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
@@ -39,25 +38,17 @@ public class Update1Action extends AbstractAction {
 	public String insert() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		
-		String day;
-		String new_day;
 
 		// 登録、更新日時表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		day = String.valueOf(sdf.format(date));
-		new_day = String.valueOf(sdf.format(date));
-		
-		String userid;
-		String new_userid;
-		
-		// 登録、更新UAER表示
-		userid = (String) this.sessionMap.get("userId");
-		new_userid = (String) this.sessionMap.get("userId");
 
 		My_hobby insert_my_hobby_table = new My_hobby();
 		insert_my_hobby_table.setHobby(this.hobby);
+		insert_my_hobby_table.setDay(String.valueOf(sdf.format(date)));
+		insert_my_hobby_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_my_hobby_table.setUserid((String) this.sessionMap.get("userId"));
+		insert_my_hobby_table.setNew_userid((String) this.sessionMap.get("userId"));
 
 		try {
 			session.save(insert_my_hobby_table);
@@ -76,10 +67,10 @@ public class Update1Action extends AbstractAction {
 		insert_profile_table.setPersonality(this.personality);
 		insert_profile_table.setHome(this.home);
 		insert_profile_table.setBirthday(this.birthday);
-		insert_profile_table.setDay(day);
-		insert_profile_table.setNew_day(new_day);
-		insert_profile_table.setUserid(userid);
-		insert_profile_table.setNew_userid(new_userid);
+		insert_profile_table.setDay(String.valueOf(sdf.format(date)));
+		insert_profile_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_profile_table.setUserid((String) this.sessionMap.get("userId"));
+		insert_profile_table.setNew_userid((String) this.sessionMap.get("userId"));
 
 		try {
 			session.save(insert_profile_table);
@@ -96,13 +87,13 @@ public class Update1Action extends AbstractAction {
 	// 検索結果の内容を削除のため
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-
-		String str = new String(this.delete_id);
-		String[] strAry = str.split(",");
-
+		
 		if (this.delete_id.isEmpty()) {
 			return "main1";
 		}
+
+		String[] strAry = this.delete_id.split(",");
+
 
 		for (int i = 0; i < strAry.length; i++) {
 
