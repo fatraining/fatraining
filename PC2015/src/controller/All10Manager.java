@@ -72,6 +72,7 @@ public class All10Manager extends HibernateUtil{
 			//あいまい検索
 			String where2 = "AND (d.eat_year LIKE '" + eat_year + "' AND d.eat_month LIKE '"
 					+ eat_month + "' AND d.eat_day LIKE '" + eat_day + "' AND d.eat_hour LIKE '" + eat_hour + "')";
+			// select文とwhere文を合わせたものをsqlに代入
 			String sql = select + " " + where1+ " " + where2;
 			
 			List<?> result10Table = null; // SQLの検索結果用の変数
@@ -96,8 +97,9 @@ public class All10Manager extends HibernateUtil{
 	// eat_idテーブル検索用のメソッド
 	public IDofEat eat_idList() {
 		List<?> result10Table = null;
-
+		//データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//トランザクションを開始する
 		session.beginTransaction();
 		
 		try {
@@ -105,8 +107,10 @@ public class All10Manager extends HibernateUtil{
 			// eat_idテーブルの全件検索
 			String sql = "SELECT * FROM eat_id i";
 			
+			//SQLの実行結果がresult10Tableに代入される
 			result10Table = session.createSQLQuery(sql)
-					//session.createSQLQuery(sql)の戻り値をIDofEatクラスに渡している
+					
+					// SQLQuery.addEntityメソッドで戻り値IDofEatの型設定、SQLQuery.listメソッドでクエリの実行
 					.addEntity("IDofEat", IDofEat.class).list();
 			
 		} catch (Exception e) {
