@@ -68,7 +68,7 @@ public class Update10Action extends AbstractAction {
 			session.getTransaction().rollback();
 		}
 
-		// id_tableのデータ検索
+		// データ検索（レコードを取ってくるため）
 		All10Manager all10manager = new All10Manager();
 		insert_id_table = all10manager.eat_idList();
 

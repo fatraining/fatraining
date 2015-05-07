@@ -52,19 +52,23 @@ public class All10Manager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		// トランザクションの開始
 		session.beginTransaction();
-
+		
+		// eat_yearに入力された値が空の場合はeat_yearはなんでも
 		if (eat_year.isEmpty()) {
 			eat_year = "%";
-		}// eat_yearに入力された値が空の場合はeat_yearはなんでも
+		}
+		// eat_monthに入力された値が空の場合eat_monthはなんでも
 		if (eat_month.isEmpty()) {
 			eat_month = "%";
-		}// eat_monthに入力された値が空の場合eat_monthはなんでも
+		}
+		// eat_dayに入力された値が空の場合eat_dayはなんでも
 		if (eat_day.isEmpty()) {
 			eat_day = "%";
-		}// eat_dayに入力された値が空の場合eat_dayはなんでも
+		}
+		// eat_hourに入力された値が空の場合はeat_hourはなんでも
 		if (eat_hour.isEmpty()) {
 			eat_hour = "%";
-		}// eat_hourに入力された値が空の場合はeat_hourはなんでも
+		}
 
 		// eat_detailとeat_idのテーブルを全件選択
 		String select = "SELECT * FROM eat_detail d, eat_id i";
@@ -107,7 +111,6 @@ public class All10Manager extends HibernateUtil {
 		session.beginTransaction();
 
 		try {
-
 			// eat_idテーブルの全件検索
 			String sql = "SELECT * FROM eat_id i ORDER BY id ASC";
 
@@ -122,8 +125,7 @@ public class All10Manager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 
-		// result10Tableの最終行を取得
-		// 自分で入力したものを取得したいため、最終行
+		// result10Tableの最終行を取得（0からなのでマイナス1する）
 		return (IDofEat) result10Table.get(result10Table.size() - 1);
 	}
 
