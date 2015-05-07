@@ -14,7 +14,7 @@ public class My_hobby implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 //カラム名
-	private String id;
+	private int id;
 	private String hobby;
 	private String day;
 	private String new_day;
@@ -27,7 +27,7 @@ public class My_hobby implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -67,7 +67,7 @@ public class My_hobby implements Serializable {
 //	}
 
 	/*--------------------------------------------------*/
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

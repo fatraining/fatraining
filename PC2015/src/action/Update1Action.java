@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
+import controller.ProfileManager;
 
 @Result(name = "main1", value = "main1.action", type = ServletRedirectResult.class)
 public class Update1Action extends AbstractAction {
@@ -22,6 +23,7 @@ public class Update1Action extends AbstractAction {
 	public String personality;
 	public String home;
 	public int birthday;
+	public int hobby_id;
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
@@ -39,21 +41,36 @@ public class Update1Action extends AbstractAction {
 
 	// insertメソッド
 	public String insert() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
 		// 登録、更新日時表示
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		day = String.valueOf(sdf.format(date));
-		new_day = String.valueOf(sdf.format(date));
+		this.day = String.valueOf(sdf.format(date));
+		this.new_day = String.valueOf(sdf.format(date));
 		// 登録、更新UAER表示
 		this.userid = (String) this.sessionMap.get("userId");
 		this.new_userid = (String) this.sessionMap.get("userId");
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		// サーバーのテーブルに値をインサート
 		My_hobby insert_my_hobby_table = new My_hobby();
-		Profile insert_profile_table = new Profile();
 		insert_my_hobby_table.setHobby(this.hobby);
+
+		try {
+			session.save(insert_my_hobby_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		ProfileManager profilemanager = new ProfileManager();
+		insert_my_hobby_table = profilemanager.my_hobbyList();
+
+		Profile insert_profile_table = new Profile();
+		insert_profile_table.setName(this.name);
+
+		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
 		insert_profile_table.setName(this.name);
 		insert_profile_table.setPersonality(this.personality);
 		insert_profile_table.setHome(this.home);
@@ -64,13 +81,11 @@ public class Update1Action extends AbstractAction {
 		insert_profile_table.setNew_userid(this.new_userid);
 
 		try {
-			session.save(insert_my_hobby_table);
 			session.save(insert_profile_table);
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-
 		}
 		session.getTransaction().commit();
 		return "main1";
@@ -95,8 +110,10 @@ public class Update1Action extends AbstractAction {
 
 			session.beginTransaction();
 			try {
-				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,strAry[i]);
-				Profile profile = (Profile) session.load(Profile.class,strAry[i]);
+				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,
+						Integer.valueOf(strAry[i]));
+				Profile profile = (Profile) session.load(Profile.class,
+						strAry[i]);
 				session.delete(my_hobby);
 				session.delete(profile);
 			} catch (HibernateException e) {

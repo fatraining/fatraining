@@ -19,6 +19,7 @@ public class Profile implements Serializable {
 	private String personality;
 	private String home;
 	private int birthday;
+	private int hobby_id;
 	private String day;
 	private String new_day;
 	private String userid;
@@ -52,6 +53,11 @@ public class Profile implements Serializable {
 	@Column(name = "birthday")
 	public int getBirthday() {
 		return birthday;
+	}
+	
+	@Column(name = "hobby_id")
+	public int getHobby_id() {
+		return hobby_id;
 	}
 
 	@Column(name = "day")
@@ -104,6 +110,10 @@ public class Profile implements Serializable {
 
 	public void setBirthday(int birthday) {
 		this.birthday = birthday;
+	}
+	
+	public void setHobby_id(int hobby_id) {
+		this.hobby_id = hobby_id;
 	}
 
 	public void setDay(String day) {
