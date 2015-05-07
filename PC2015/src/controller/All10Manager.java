@@ -43,19 +43,22 @@ public class All10Manager extends HibernateUtil{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		//トランザクションの開始
 		session.beginTransaction();
-			if (eat_year.isEmpty())
-				eat_year = "%"; //eat_yearに入力された値が空の場合はeat_yearはなんでも
-			if (eat_month.isEmpty())
-				eat_month = "%";  //eat_monthに入力された値が空の場合eat_monthはなんでも
-			if (eat_day.isEmpty())
-				eat_day = "%";  //eat_dayに入力された値が空の場合eat_dayはなんでも
-			if (eat_hour.isEmpty())
-				eat_hour = "%";  //eat_hourに入力された値が空の場合はeat_hourはなんでも
-			
+			if (eat_year.isEmpty()){
+				eat_year = "%"; 
+			}//eat_yearに入力された値が空の場合はeat_yearはなんでも
+			if (eat_month.isEmpty()){
+				eat_month = "%"; 
+			}//eat_monthに入力された値が空の場合eat_monthはなんでも
+			if (eat_day.isEmpty()){
+				eat_day = "%";
+			}//eat_dayに入力された値が空の場合eat_dayはなんでも
+			if (eat_hour.isEmpty()){
+				eat_hour = "%";  
+			}//eat_hourに入力された値が空の場合はeat_hourはなんでも
 			
 			//eat_detailとeat_idのテーブルを全件選択
 			String select = "SELECT * FROM eat_detail d, eat_id i";
-			//eat_detailのidとeat_idのidが同じ
+			//eat_detailのfood_idとeat_idのidが同じ
 			String where1 = "WHERE d.food_id = i.id";
 			//入力された値とカラムの値が等しい
 			String where2 = "AND (d.eat_year LIKE '" + eat_year + "' AND d.eat_month LIKE '"
