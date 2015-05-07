@@ -41,7 +41,7 @@ public class Main9Action extends AbstractAction {
 		this.name = getDefaultName();
 		this.food = getDefaultFood();
 		this.drink = getDefaultDrink();
-		this.delete = "faluse";
+		this.delete = "false";
 		return "success";
 	}
 
@@ -108,7 +108,6 @@ public class Main9Action extends AbstractAction {
 				temp.setFood(liofta.getFood());
 				temp.setDrink(liofta.getDrink());
 				temp.setColorNm(coofta.getColorNm());
-				temp.setTaste(coofta.getTaste());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
