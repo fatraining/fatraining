@@ -11,7 +11,7 @@ public class ProfileManager extends HibernateUtil {
 
 	public List<?> resultList() {
 		List<?> resultTable = null;
-				
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -31,19 +31,24 @@ public class ProfileManager extends HibernateUtil {
 
 		return resultTable;
 	}
-	public List<?> resultList(String name, String home,
-			String hobby) {
+
+	public List<?> resultList(String name, String home, String hobby) {
 		List<?> resultTable = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			if (name.isEmpty())
-				name = "%";
-			if (home.isEmpty())
-				home = "%";
-			if (hobby.isEmpty())
-				hobby = "%";
+			if (name.isEmpty()) {
+			}
+			name = "%";
+			
+			if (home.isEmpty()) {
+			}
+			home = "%";
+			
+			if (hobby.isEmpty()) {
+			}
+			hobby = "%";
 
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.hobby_id = d.id";
@@ -60,10 +65,10 @@ public class ProfileManager extends HibernateUtil {
 		session.getTransaction().commit();
 		return resultTable;
 	}
-	
+
 	public My_hobby my_hobbyList() {
 		List<?> resultTable = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
