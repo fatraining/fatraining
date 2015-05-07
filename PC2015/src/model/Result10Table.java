@@ -6,11 +6,12 @@ public class Result10Table implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private String id;
 	private String eat_year ;
 	private String eat_month;
 	private String eat_day;
 	private String eat_hour;
+	private int food_id;
 	private String eatFood;
 	private String eatCalory;
 	private String entry_day;
@@ -23,10 +24,10 @@ public class Result10Table implements Serializable{
 
 	public Result10Table() { }
 
-	public int getId() { //Idを表示
+	public String getId() { //Idを表示
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getEat_year() {//eat_yearを表示
@@ -54,7 +55,12 @@ public class Result10Table implements Serializable{
 		this.eat_hour = eat_hour;
 	}
 	
-	
+	public int getFood_id() {//eat_hourを表示
+		return food_id;
+	}
+	public void setFood_id(int food_id) {
+		this.food_id = food_id;
+	}
 
 	
 	public String getEatFood() { //eatFoodを表示
