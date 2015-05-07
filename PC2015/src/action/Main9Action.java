@@ -9,23 +9,17 @@ import model.CoofTa;
 import model.LiofTa;
 import model.Result9Table;
 
-import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletRedirectResult;
-
-@Result(name = "update9", value = "update9.action", type = ServletRedirectResult.class)
 public class Main9Action extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-	// 名前
+	// カラム
 	public String name;
-	// 食べ物
 	public String food;
-	// 飲み物
 	public String drink;
 	// 変数
 	public String delete_id;
 	public String delete;
-	public String do_search;
+	public String do_print;
 
 	public ArrayList<Result9Table> outputTable;
 
@@ -47,7 +41,7 @@ public class Main9Action extends AbstractAction {
 		this.name = getDefaultName();
 		this.food = getDefaultFood();
 		this.drink = getDefaultDrink();
-		this.delete = "false";
+		this.delete = "faluse";
 		return "success";
 	}
 
@@ -72,12 +66,11 @@ public class Main9Action extends AbstractAction {
 		}
 		this.outputTable = tableTrans(resultTable);
 
-		this.do_search = "true";
+		this.do_print = "true";
 		this.delete = "true";
 		return "success";
 	}
 
-	// updateメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 
@@ -90,7 +83,6 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
-	// delete_idメソッド
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 		try {
@@ -102,7 +94,7 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
-	private ArrayList<Result9Table> tableTrans(List<?> resultTable) {
+	public ArrayList<Result9Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result9Table> tempTable = new ArrayList<Result9Table>();
 		Object[] obj;
 		try {
@@ -111,10 +103,12 @@ public class Main9Action extends AbstractAction {
 				obj = (Object[]) resultTable.get(i);
 				LiofTa liofta = (LiofTa) obj[0];
 				CoofTa coofta = (CoofTa) obj[1];
+				temp.setId(liofta.getId());
 				temp.setName(liofta.getName());
 				temp.setFood(liofta.getFood());
 				temp.setDrink(liofta.getDrink());
-				temp.setColor(coofta.getColor());
+				temp.setColorNm(coofta.getColorNm());
+				temp.setTaste(coofta.getTaste());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
