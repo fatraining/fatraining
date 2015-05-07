@@ -25,7 +25,7 @@
 
 		</label>
 		<div class="col-md-2">
-			<s:select name="exhibition_year" list="{'',1980,1990,2000,2010}" cssClass="form-control" />
+			<s:textfield name="exhibition_year" cssClass="form-control" rows="10" />
 		</div>
 
 	</div>
@@ -52,25 +52,17 @@
 				<th>タイトル</th>
 				<th>ジャンル</th>
 				<th>公開年</th>
-				<%-- <th>登録日付</th>				
-				<th>更新日付</th>
-				<th>登録USERID</th>
-				<th>更新USERID</th>
-				<th>排他FLG</th> --%>
+				<th>コメント</th>
 					<th>削除</th>
 
 			</tr>
-			<td class="bar" colspan="4"></td>
+			<td class="bar" colspan="5"></td>
 			<s:iterator value="outputTableMovie">
 				<tr>
 					<td class="data"><s:property value="title" /></td>
 					<td class="data"><s:property value="genre" /></td>
 					<td class="data"><s:property value="exhibition_year" /></td>
-					<%-- <td class="data"><s:property value="registration_date" /></td>
-					<td class="data"><s:property value="renewal_date" /></td>
-					<td class="data"><s:property value="registration_userid" /></td>
-					<td class="data"><s:property value="renewal_userid" /></td>
-					<td class="data"><s:property value="control" /></td> --%>
+					<td class="data"><s:property value="comment" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 
