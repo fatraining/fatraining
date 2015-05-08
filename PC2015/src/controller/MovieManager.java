@@ -1,6 +1,7 @@
 package controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,28 @@ import org.hibernate.classic.Session;
 
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 public class MovieManager extends HibernateUtil { // HibernateUtilを継承
+
+	public ArrayList<MovieGenre> expression() {
+		ArrayList<MovieGenre> resultTableMovie = null; // リスト型の変数宣言
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession(); // DB接続
+		session.beginTransaction(); // トランザクション(?)開始
+
+		String select = "SELECT * FROM movie_genre";
+		String sql = select;
+
+		try {
+			resultTableMovie = (ArrayList<MovieGenre>)session.createSQLQuery(sql) // Queryインターフェイスのインスタンスを取得(?)
+					.addEntity("MovieGenre", MovieGenre.class).list(); // クエリの実行(?)
+			// 例外がeに代入される
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit(); // トランザクション(?)終了
+		return resultTableMovie;
+
+	}
 
 	// 検索項目未入力の場合のメソッド
 	public List<?> resultList() {
