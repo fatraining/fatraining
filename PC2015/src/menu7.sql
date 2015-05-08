@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 17:16
+-- Generation Time: 2015 年 5 朁E08 日 17:56
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -36,15 +36,15 @@ CREATE TABLE IF NOT EXISTS `movie` (
   `renewal_date` char(50) COLLATE utf8_bin DEFAULT NULL,
   `registration_userid` char(50) COLLATE utf8_bin DEFAULT NULL,
   `renewal_userid` char(50) COLLATE utf8_bin DEFAULT NULL,
-  `control` int(50) DEFAULT NULL,
-  `delete` int(11) DEFAULT NULL
+  `control` int(50) NOT NULL,
+  `deleteflg` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `movie`
 --
 
-INSERT INTO `movie` (`id`, `title`, `genreId`, `exhibition_year`, `comment`, `registration_date`, `renewal_date`, `registration_userid`, `renewal_userid`, `control`, `delete`) VALUES
+INSERT INTO `movie` (`id`, `title`, `genreId`, `exhibition_year`, `comment`, `registration_date`, `renewal_date`, `registration_userid`, `renewal_userid`, `control`, `deleteflg`) VALUES
 (1, 'E.T.', 3, 1982, 'おうちカエル。。。。゛(ノ‥)ノｶｴﾙ…', '2014/07/29 10:27:17', '2014/06/29 10:27:17', 'frog', 'frog', 0, 0),
 (2, 'アイアン・ジャイアント', 2, 2000, 'ヒーローΣΣ≡≡≡ｰ(ｰ´･ω･`)ｰ', '2007/09/10 16:27:17', '2007/09/10 16:27:17', 'atom', 'atom', 0, 0),
 (3, 'あなたは私の婿になる', 7, 2009, 'なかなかに…\r\n(*｀Λ´*)｣ﾍﾞ､ﾍﾞﾂﾆｽｷｯﾃﾜｹｼﾞｬ…', '2012/03/02 19:23:45', '2012/03/02 19:23:45', 'queen', 'queen', 0, 0),
