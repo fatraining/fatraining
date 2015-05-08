@@ -74,7 +74,7 @@ public class ProfileManager extends HibernateUtil {
 		session.beginTransaction();
 		//　table_hobbyのリストをすべて表示
 		try {
-			String sql = "SELECT * FROM table_hobby d ORDER BY id";
+			String sql = "SELECT * FROM table_hobby d";
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("My_hobby", My_hobby.class).list();
 		} catch (Exception e) {
@@ -104,6 +104,8 @@ public class ProfileManager extends HibernateUtil {
 		insert_my_hobby_table.setNew_day(new_day);
 		insert_my_hobby_table.setUserid(userid);
 		insert_my_hobby_table.setNew_userid(new_userid);
+		insert_my_hobby_table.setDbflg(0);
+		insert_my_hobby_table.setDeleteflg(0);
 
 		try {
 			session.save(insert_my_hobby_table);
@@ -128,6 +130,8 @@ public class ProfileManager extends HibernateUtil {
 		insert_profile_table.setNew_day(new_day);
 		insert_profile_table.setUserid(userid);
 		insert_profile_table.setNew_userid(new_userid);
+		insert_profile_table.setDbflg(0);
+		insert_profile_table.setDeleteflg(0);
 
 		try {
 			session.save(insert_profile_table);
