@@ -189,7 +189,7 @@ public class All10Manager extends HibernateUtil {
 		return "main10";
 	}
 
-	public String delete(String delete_id) {
+	public void delete(String delete_id) {
 
 		// 複数選択の削除のために文字列の分割
 		String str = new String(delete_id);
@@ -197,7 +197,7 @@ public class All10Manager extends HibernateUtil {
 
 		// delete_idが空である場合
 		if (delete_id.isEmpty()) {
-			return "main10"; // Main10Actionへ
+			return;
 		}
 
 		// データベースに接続
@@ -223,6 +223,6 @@ public class All10Manager extends HibernateUtil {
 		}
 		// トランザクションの終了
 		session.getTransaction().commit();
-		return "main10"; // Main10Actionへ
+		return;
 	}
 }
