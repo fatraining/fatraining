@@ -24,9 +24,9 @@
 
 
 	<div class="col-sm-offset-2 col-sm-10">
-		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
-		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="search" value="検索" cssClass="btn btn-info" />
+		<s:submit method="reset" value="リセット" cssClass="btn btn-default" />
+		<s:submit method="update" value="追加" cssClass="btn btn-success" />
 
 		<a href="menu.action">Back</a>
 
@@ -65,7 +65,7 @@
 		<s:if test="%{delete=='true'}">
 			<div align=right>
 				<s:submit method="delete_id" name="delete_id" value="削除"
-					cssClass="btn btn-primary" />
+					cssClass="btn btn-danger" />
 			</div>
 		</s:if>
 	</s:form>
