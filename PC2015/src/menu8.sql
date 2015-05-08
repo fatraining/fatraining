@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E28 日 03:27
+-- Generation Time: 2015 年 5 朁E08 日 08:59
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -36,15 +36,16 @@ CREATE TABLE IF NOT EXISTS `ryouri` (
   `userId_up` varchar(50) DEFAULT NULL,
   `control` int(50) NOT NULL,
   `deleteflg` int(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `ryouri`
 --
 
 INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId`, `userId_up`, `control`, `deleteflg`) VALUES
-(1, '煮る', '肉じゃが', '1月', '2月', '太郎', '次郎', 1, 1),
-(2, '炒める', '野菜炒め', '３月', '４月', '三郎', '四郎', 2, 2);
+(138, '野菜', '野菜', '2015/05/08 15:51:2', NULL, 'Struts2', NULL, 0, 0),
+(139, '煮る', '肉じゃが', '2015/05/08 15:51:45', NULL, 'Struts2', NULL, 0, 0),
+(140, '炒める', '野菜炒め', '2015/05/08 15:52:21', NULL, 'Struts2', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -62,15 +63,16 @@ CREATE TABLE IF NOT EXISTS `yasai` (
   `userId_up` varchar(50) DEFAULT NULL,
   `control` int(50) NOT NULL,
   `deleteflg` int(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `yasai`
 --
 
 INSERT INTO `yasai` (`id`, `yasai`, `tyouriId`, `date_entry`, `date_up`, `userId`, `userId_up`, `control`, `deleteflg`) VALUES
-(1, 'じゃがいも', 1, '1/1', '1/2', 'あああ', 'いいい', 1, 1),
-(2, 'きゃべつ', 2, '4/22', '4/22', 'あああ', 'いいいい', 2, 2);
+(133, '野菜', 138, '2015/05/08 15:51:2', NULL, 'Struts2', NULL, 0, 0),
+(134, 'じゃがいも', 139, '2015/05/08 15:51:45', NULL, 'Struts2', NULL, 0, 0),
+(135, 'きゃべつ', 140, '2015/05/08 15:52:21', NULL, 'Struts2', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -96,12 +98,12 @@ ALTER TABLE `yasai`
 -- AUTO_INCREMENT for table `ryouri`
 --
 ALTER TABLE `ryouri`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=143;
 --
 -- AUTO_INCREMENT for table `yasai`
 --
 ALTER TABLE `yasai`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=138;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
