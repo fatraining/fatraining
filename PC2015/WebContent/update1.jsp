@@ -12,7 +12,7 @@
 		<div class="form-group">
 
 			<div align=right>
-				<s:submit method="insert" value="追加" cssClass="btn btn-primary" />
+				<s:submit method="insert" value="追加" cssClass="btn btn-warning" />
 				<a href="main1.action">Back</a>
 			</div>
 

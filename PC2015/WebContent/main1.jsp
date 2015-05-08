@@ -31,9 +31,9 @@
 
 
 	<div class="col-sm-offset-2 col-sm-10">
-		<s:submit method="search" value="検索" cssClass="btn btn-primary" />
+		<s:submit method="search" value="検索" cssClass="btn btn-danger" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
-		<s:submit method="update" value="追加" cssClass="btn btn-primary" />
+		<s:submit method="update" value="追加" cssClass="btn btn-warning" />
 		
 		<a href="menu.action">Back</a>
 
