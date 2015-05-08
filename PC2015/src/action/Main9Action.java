@@ -23,18 +23,21 @@ public class Main9Action extends AbstractAction {
 	// 変数
 	public String delete_id;
 	public String delete;
-	public String do_print;
+	public String do_search;
 
 	public ArrayList<Result9Table> outputTable;
 
+	// 初期値の設定
 	private String getDefaultName() {
 		return "";
 	}
-
+	
+	// 初期値の設定
 	private String getDefaultFood() {
 		return "";
 	}
-
+	
+	// 初期値の設定
 	private String getDefaultDrink() {
 		return "";
 	}
@@ -49,7 +52,7 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
-	// resetメソッド
+	// resetメソッド 初期値に返す
 	public String reset() {
 		this.name = getDefaultName();
 		this.food = getDefaultFood();
@@ -57,7 +60,7 @@ public class Main9Action extends AbstractAction {
 		return "success";
 	}
 
-	// searchメソッド
+	// searchメソッド 検索
 	public String search() {
 		LiofTaManager lioftamamager = new LiofTaManager();
 		List<?> resultTable;
@@ -70,11 +73,12 @@ public class Main9Action extends AbstractAction {
 		}
 		this.outputTable = tableTrans(resultTable);
 
-		this.do_print = "true";
+		this.do_search = "true";
 		this.delete = "true";
 		return "success";
 	}
-
+	
+	//updateメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 
@@ -86,7 +90,8 @@ public class Main9Action extends AbstractAction {
 
 		return "success";
 	}
-
+	
+	// delete_idメソッド
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 		try {
