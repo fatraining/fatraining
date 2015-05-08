@@ -148,6 +148,8 @@ public class BandAllManager extends HibernateUtil {
 		insert_band_table.setRenewal_date(renewal_date);
 		insert_band_table.setEntry_userid(entry_userid);
 		insert_band_table.setRenewal_userid(renewal_userid);
+		insert_band_table.setExclusion_flg(String.valueOf(0));
+		insert_band_table.setDelete_flg(String.valueOf(0));
 
 		// band_tableテーブルに追加
 		try {
