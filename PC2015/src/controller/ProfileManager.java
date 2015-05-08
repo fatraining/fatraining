@@ -1,10 +1,13 @@
 package controller;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import model.My_hobby;
 import model.Profile;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 public class ProfileManager extends HibernateUtil {
@@ -38,16 +41,13 @@ public class ProfileManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			if (name.isEmpty()) {
-			}
+			if (name.isEmpty())
 			name = "%";
-			
-			if (home.isEmpty()) {
-			}
+
+			if (home.isEmpty())
 			home = "%";
-			
-			if (hobby.isEmpty()) {
-			}
+
+			if (hobby.isEmpty()) 
 			hobby = "%";
 
 			String select = "SELECT * FROM table_profile i, table_hobby d";
@@ -80,5 +80,56 @@ public class ProfileManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		return (My_hobby) resultTable.get(resultTable.size() - 1);
+	}
+
+	public void insert(String hobby, String name, String personality,
+			String home, int birthday, String userid, String new_userid) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		// 登録、更新日時表示
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		String day = String.valueOf(sdf.format(date));
+		String new_day = String.valueOf(sdf.format(date));
+
+		My_hobby insert_my_hobby_table = new My_hobby();
+		insert_my_hobby_table.setHobby(hobby);
+		insert_my_hobby_table.setDay(day);
+		insert_my_hobby_table.setNew_day(new_day);
+		insert_my_hobby_table.setUserid(userid);
+		insert_my_hobby_table.setNew_userid(new_userid);
+
+		try {
+			session.save(insert_my_hobby_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		ProfileManager profilemanager = new ProfileManager();
+		insert_my_hobby_table = profilemanager.my_hobbyList();
+
+		Profile insert_profile_table = new Profile();
+		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
+		insert_profile_table.setName(name);
+		insert_profile_table.setPersonality(personality);
+		insert_profile_table.setHome(home);
+		insert_profile_table.setBirthday(birthday);
+		insert_profile_table.setDay(day);
+		insert_profile_table.setNew_day(new_day);
+		insert_profile_table.setUserid(userid);
+		insert_profile_table.setNew_userid(new_userid);
+
+		try {
+			session.save(insert_profile_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
 	}
 }
