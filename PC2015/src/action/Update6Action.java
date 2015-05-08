@@ -22,6 +22,12 @@ public class Update6Action extends AbstractAction {
 	public String execute() throws Exception {
 		// 削除ボタンが押下　or 追加画面の判定
 		this.delete_id = (String) this.sessionMap.get("delete_id");
+		
+		this.title = "Fate/stay night";
+		this.series = "Fate";
+		this.trump = "Unlimited Blade Works";
+		this.origin = "Swrod";
+		
 		return "success";
 	}
 

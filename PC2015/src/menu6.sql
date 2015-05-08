@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 19:44
+-- Generation Time: 2015 年 5 朁E08 日 20:13
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -38,14 +38,14 @@ CREATE TABLE IF NOT EXISTS `like_game` (
   `upUserID` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `like_game`
 --
 
 INSERT INTO `like_game` (`id`, `title`, `seriesId`, `trump`, `Origin`, `addDate`, `updateDate`, `addUserID`, `upUserID`, `another_flg`, `delete_flg`) VALUES
-(9, 'Fate/stay night', 20, 'ソード', '剣', '05/08', '05/08', 'sinozaki', 'sinozaki', 0, 0);
+(18, 'Fate/stay night', 29, 'Unlimited Blade Works', 'Swrod', '05/08', '05/08', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -62,14 +62,14 @@ CREATE TABLE IF NOT EXISTS `like_series` (
   `upUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `like_series`
 --
 
 INSERT INTO `like_series` (`up_id`, `seriesNm`, `addDate`, `updateDate`, `addUserId`, `upUserId`, `another_flg`, `delete_flg`) VALUES
-(20, 'Fate/stay', '05/08', '05/08', 'sinozaki', 'sinozaki', 0, 0);
+(29, 'Fate', '05/08', '05/08', 'Struts2', 'Struts2', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -95,12 +95,12 @@ ALTER TABLE `like_series`
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=17;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `like_series`
 --
 ALTER TABLE `like_series`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=28;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
