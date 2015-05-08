@@ -22,8 +22,8 @@ public class LiofTa implements Serializable {
 	private String new_day;
 	private String userid;
 	private String new_userid;
-	private int time_stamp;
-	private int delete;
+//	private int time_stamp;
+//	private int delete;
 
 	@Id
 	@GeneratedValue
@@ -72,15 +72,15 @@ public class LiofTa implements Serializable {
 		return new_userid;
 	}
 
-	@Column(name = "time_stamp")
-	public int getTime_stamp() {
-		return time_stamp;
-	}
-
-	@Column(name = "delete")
-	public int getDelete() {
-		return delete;
-	}
+//	@Column(name = "time_stamp")
+//	public int getTime_stamp() {
+//		return time_stamp;
+//	}
+//
+//	@Column(name = "delete")
+//	public int getDelete() {
+//		return delete;
+//	}
 
 	public void setId(String id) {
 		this.id = id;
@@ -118,11 +118,11 @@ public class LiofTa implements Serializable {
 		this.new_userid = new_userid;
 	}
 
-	public void setTime_stamp(int time_stamp) {
-		this.time_stamp = time_stamp;
-	}
-
-	public void setDelete(int delete) {
-		this.delete = delete;
-	}
+//	public void setTime_stamp(int time_stamp) {
+//		this.time_stamp = time_stamp;
+//	}
+//
+//	public void setDelete(int delete) {
+//		this.delete = delete;
+//	}
 }
