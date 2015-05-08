@@ -200,14 +200,13 @@ public class All10Manager extends HibernateUtil {
 			return "main10"; // Main10Actionへ
 		}
 
+		// データベースに接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始
+		session.beginTransaction();
 		// for文で処理を繰り返す
 		for (int i = 0; i < strAry.length; i++) {
 
-			// データベースに接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			// トランザクションの開始
-			session.beginTransaction();
 			try {
 				DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
 						strAry[i]);
@@ -221,9 +220,9 @@ public class All10Manager extends HibernateUtil {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
-			// トランザクションの終了
-			session.getTransaction().commit();
 		}
+		// トランザクションの終了
+		session.getTransaction().commit();
 		return "main10"; // Main10Actionへ
 	}
 }
