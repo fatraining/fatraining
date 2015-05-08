@@ -41,15 +41,15 @@ public class ProfileManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			if (name.isEmpty())
-			name = "%";
-
-			if (home.isEmpty())
-			home = "%";
-
-			if (hobby.isEmpty()) 
-			hobby = "%";
-
+			if (name.isEmpty()) {
+				name = "%";
+			}
+			if (home.isEmpty()) {
+				home = "%";
+			}
+			if (hobby.isEmpty()) {
+				hobby = "%";
+			}
 			String select = "SELECT * FROM table_profile i, table_hobby d";
 			String where1 = "WHERE i.hobby_id = d.id";
 			String where2 = "AND (i.name LIKE '" + name + "' AND i.home LIKE '"
@@ -84,7 +84,7 @@ public class ProfileManager extends HibernateUtil {
 
 	public void insert(String hobby, String name, String personality,
 			String home, int birthday, String userid, String new_userid) {
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -132,8 +132,9 @@ public class ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 	}
+
 	public String delete(String delete_id) {
-		
+
 		if (delete_id.isEmpty()) {
 			return "main1";
 		}
