@@ -1,19 +1,8 @@
 package action;
 
-//import java.io.UnsupportedEncodingException;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.*;
-
-import model.LikeGame;
-import model.LikeSeries;
-
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
-import org.hibernate.HibernateException;
-import org.hibernate.classic.Session;
-//
-import controller.HibernateUtil;
+
 import controller.LikeManager;
 
 @Result(name = "main6", value = "main6.action", type = ServletRedirectResult.class)
@@ -50,10 +39,12 @@ public class Update6Action extends AbstractAction {
 		String userID = (String) this.sessionMap.get("userId");
 		// 更新useridにuserIdの値を入れる。
 		String upUser = (String) this.sessionMap.get("userId");
+		//インスタンスを生成
 		LikeManager insert = new LikeManager();
 		
 		insert.insert(this.series, this.se, this.title, this.nonStyle ,this.del,
 				userID, upUser);
+		
 	    return "main6";
 
 	}
@@ -64,37 +55,12 @@ public class Update6Action extends AbstractAction {
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
-		String str = new String(this.delete_id);
-		String[] strAry = str.split(",");
-
-		if (this.delete_id.isEmpty()) {
-			return "main6";
-		}
-
-		for (int i = 0; i < strAry.length; i++) {
-			// データベースに接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			// トランザクション開始
-			session.beginTransaction();
-
-			try {
-				LikeGame likegame = (LikeGame) session.load(LikeGame.class,
-						strAry[i]);
-				LikeSeries likeseries = (LikeSeries) session.load(
-						LikeSeries.class, strAry[i]);
-
-				session.delete(likegame);// 指定したIDを削除する
-				session.delete(likeseries);// 指定したIDを削除する
-
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				session.getTransaction().rollback();
-			}
-			// トランザクションの終了
-			session.getTransaction().commit();
-
-		}
+		//LikeManagerのインスタンスを生成
+		LikeManager delete = new LikeManager();
+		
+		// LikeManagerのdeleteメソッドを参照
+		delete.delete(delete_id);
+		
 		return "main6";
 	}
 }
