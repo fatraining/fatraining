@@ -21,7 +21,7 @@
 		<label class="col-sm-2 control-label">野菜:<br />
 		</label>
 		<div class="col-md-8">
-			<s:textfield name="yasai" cssClass="form-control" rows="1" />
+			<s:textfield name="yasai" cssClass="form-control" rows="1" maxlength="10"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -29,14 +29,14 @@
 
 		</label>
 		<div class="col-md-3">
-			<s:textfield name="tyouri" cssClass="form-control" rows="1" />
+			<s:textfield name="tyouri" cssClass="form-control" rows="1" maxlength="10"/>
 		</div>
 
 		<label class="col-sm-2 control-label">料理名:<br />
 
 		</label>
 		<div class="col-md-3">
-			<s:textfield name="ryouri" cssClass="form-control" rows="1" />
+			<s:textfield name="ryouri" cssClass="form-control" rows="1" maxlength="10"/>
 		</div>
 	</div>
 					

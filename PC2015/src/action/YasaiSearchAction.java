@@ -145,7 +145,6 @@ public class YasaiSearchAction extends AbstractAction {
 				// リスト型を配列に変換（キャスト）
 				obj = (Object[]) resultTable.get(i);
 
-				
 				Yasai yasai = (Yasai) obj[0];
 				Ryouri ryouri = (Ryouri) obj[1];
 

@@ -1,31 +1,22 @@
 package action;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import model.Ryouri;
-import model.Yasai;
-
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
-import org.hibernate.HibernateException;
-import org.hibernate.classic.Session;
 
-import controller.HibernateUtil;
 import controller.YasaiManager;
 
-/**
- * @author a_yoshida
- *
- */
+
 @Result(name = "yasaiSearch", value = "yasaiSearch.action", type = ServletRedirectResult.class)
 public class YasaiAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	//カラム名
+	// 追加画面入力
 	public String yasai;
 	public String ryouri;
 	public String tyouri;
+
+	// エラーメッセージ表示
+	public String errormsg;
 
 	// 削除チェックボックス
 	public String delete_id;
@@ -38,87 +29,47 @@ public class YasaiAddAction extends AbstractAction {
 		return "success";
 	}
 
+	/****************** TODO *********************/
+
+	// 追加ボタン押下時
 	public String insert() {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-
-		// 日付の設定
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
-		String date_entry = String.valueOf(sdf.format(date));
-		String date_up = String.valueOf(sdf.format(date));
-
-		// ユーザーID設定
-		String userId = (String) this.sessionMap.get("userId");
-
 		// 入力チェック
+		// 野菜、料理、調理の欄のいずれかが空だとエラーメッセージを返す
+		if (this.yasai.isEmpty() || this.ryouri.isEmpty()
+				|| this.tyouri.isEmpty()) {
+			this.errormsg = "全ての項目に入力してください";
+			return "errormsg";
 
-		// 料理のデータ作成
-		Ryouri insert_ryouri_table = new Ryouri();
-		insert_ryouri_table.setRyouri(this.ryouri);
-		insert_ryouri_table.setTyouri(this.tyouri);
-		insert_ryouri_table.setDate_Entry(date_entry);
-		insert_ryouri_table.setDate_Up(date_up);
-		insert_ryouri_table.setUserId(userId);
-
-		// 料理テーブルに追加
-		try {
-			session.save(insert_ryouri_table);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
+			// 全て入力された場合
+		} else {
+			// セッションマップからuserIdを取得
+			String userId = (String) this.sessionMap.get("userId");
+			// YasaiManagerをインスタンス化
+			YasaiManager yasaimanager = new YasaiManager();
+			// YasaiManagerのinsertメソッドに値を渡す
+			yasaimanager.insert(this.yasai, this.tyouri, this.ryouri, userId);
 		}
 
-		// 料理テーブルのデータ検索
-		YasaiManager yasaimanager = new YasaiManager();
-		insert_ryouri_table = yasaimanager.ryouriList();
-
-		// 野菜データの作成
-		Yasai insert_yasai_table = new Yasai();
-		insert_yasai_table.setYasai(this.yasai);
-
-		// 料理テーブルのid取得し、野菜テーブルの調理idに代入
-		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
-		insert_yasai_table.setDate_Entry(date_entry);
-		insert_yasai_table.setDate_Up(date_up);
-		insert_yasai_table.setUserId(userId);
-
-		// 野菜テーブルに追加
-		try {
-			session.save(insert_yasai_table);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-
-		session.getTransaction().commit();
 		return "yasaiSearch";
 	}
 
-	// 検索結果内の値を削除
+	// 削除画面で削除ボタン押下時
 	public String delete() {
+
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		// delete_idが空だとそのままmain8にもどる
-		if (this.delete_id.isEmpty()) {
+
+		if (delete_id.isEmpty()) {
 			return "yasaiSearch";
 		}
-		// DBと接続
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		try {
-			Yasai yasai = (Yasai) session.load(Yasai.class, delete_id);
-			Ryouri ryouri = (Ryouri) session.load(Ryouri.class,
-					yasai.getTyouriId());
-			session.delete(yasai);
-			session.delete(ryouri);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		session.getTransaction().commit();
+		YasaiManager yasaimanager = new YasaiManager();
+		yasaimanager.delete(this.delete_id);
+
 		return "yasaiSearch";
+
 	}
+
+	/****************** TODO *****************/
 
 }
 
