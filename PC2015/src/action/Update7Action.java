@@ -57,6 +57,7 @@ public class Update7Action extends AbstractAction {
 		// delete_id=movieテーブルのidを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
+		//MovieManagerのdelete()の呼び出し
 		moviemanager.delete(this.delete_id);
 
 		return "main7";
