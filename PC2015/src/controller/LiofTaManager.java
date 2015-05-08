@@ -1,15 +1,19 @@
 package controller;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
 import model.LiofTa;
 import model.CoofTa;
 
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
+@Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class LiofTaManager extends HibernateUtil {
 
 	public List<?> resultList() {
