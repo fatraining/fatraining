@@ -32,6 +32,7 @@ public class Update1Action extends AbstractAction {
 		String new_userid = (String) this.sessionMap.get("userId");
 
 		ProfileManager insert = new ProfileManager();
+		//　引数として値を取得し表示する
 		insert.insert(this.hobby, this.name, this.personality, this.home,
 				this.birthday, userid, new_userid);
 
@@ -39,12 +40,11 @@ public class Update1Action extends AbstractAction {
 	}
 
 	// deleteメソッド
-	// 検索結果の内容を削除のため
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		
 		ProfileManager delete = new ProfileManager();
-		
+		//　引数として値を取得し表示する
 		delete.delete(this.delete_id);
 		return "main1";
 	}

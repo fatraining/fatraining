@@ -7,21 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//task_masteDBのテーブルtable_hobby
+
+//　task_masteDBのテーブルtable_hobby
 @Entity
 @Table(name = "table_hobby")
 public class My_hobby implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-//カラム名
+	// カラム名
 	private int id;
 	private String hobby;
 	private String day;
 	private String new_day;
 	private String userid;
 	private String new_userid;
-//	private int time_stamp;
-//	private int delete;
+
+	// private int time_stamp;
+	// private int delete;
 
 	/*--------------------------------------------------*/
 	@Id
@@ -56,15 +58,15 @@ public class My_hobby implements Serializable {
 		return new_userid;
 	}
 
-//	@Column(name = "time_stamp")
-//	public int getTime_stamp() {
-//		return time_stamp;
-//	}
-//
-//	@Column(name = "delete")
-//	public int getDelete() {
-//		return delete;
-//	}
+	// @Column(name = "time_stamp")
+	// public int getTime_stamp() {
+	// return time_stamp;
+	// }
+	//
+	// @Column(name = "delete")
+	// public int getDelete() {
+	// return delete;
+	// }
 
 	/*--------------------------------------------------*/
 	public void setId(int id) {
@@ -91,11 +93,11 @@ public class My_hobby implements Serializable {
 		this.new_userid = new_userid;
 	}
 
-//	public void setTime_stamp(int time_stamp) {
-//		this.time_stamp = time_stamp;
-//	}
-//
-//	public void setDelete(int delete) {
-//		this.delete = delete;
-//	}
+	// public void setTime_stamp(int time_stamp) {
+	// this.time_stamp = time_stamp;
+	// }
+	//
+	// public void setDelete(int delete) {
+	// this.delete = delete;
+	// }
 }

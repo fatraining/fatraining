@@ -14,10 +14,10 @@ public class ProfileManager extends HibernateUtil {
 
 	public List<?> resultList() {
 		List<?> resultTable = null;
-
+		//　DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
+		//　検索結果の全表示
 		String select = "SELECT * FROM table_profile i, table_hobby d";
 		String where1 = "WHERE i.hobby_id = d.id";
 		String sql = select + " " + where1;
@@ -37,9 +37,10 @@ public class ProfileManager extends HibernateUtil {
 
 	public List<?> resultList(String name, String home, String hobby) {
 		List<?> resultTable = null;
-
+		//　DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		//　検索をかける場合
 		try {
 			if (name.isEmpty()) {
 				name = "%";
@@ -68,9 +69,10 @@ public class ProfileManager extends HibernateUtil {
 
 	public My_hobby my_hobbyList() {
 		List<?> resultTable = null;
-
+		// DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		//　table_hobbyのリストをすべて表示
 		try {
 			String sql = "SELECT * FROM table_hobby d";
 			resultTable = session.createSQLQuery(sql)
@@ -79,12 +81,13 @@ public class ProfileManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		//　my_hobby_tableで生成したIDを取得(昇順)
 		return (My_hobby) resultTable.get(resultTable.size() - 1);
 	}
-
+	//　insertメソッドに引数として値を渡す
 	public void insert(String hobby, String name, String personality,
 			String home, int birthday, String userid, String new_userid) {
-
+		//　DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -95,6 +98,7 @@ public class ProfileManager extends HibernateUtil {
 		String new_day = String.valueOf(sdf.format(date));
 
 		My_hobby insert_my_hobby_table = new My_hobby();
+		// table_myhobbyにインサート
 		insert_my_hobby_table.setHobby(hobby);
 		insert_my_hobby_table.setDay(day);
 		insert_my_hobby_table.setNew_day(new_day);
@@ -111,9 +115,11 @@ public class ProfileManager extends HibernateUtil {
 
 		ProfileManager profilemanager = new ProfileManager();
 		insert_my_hobby_table = profilemanager.my_hobbyList();
-
+		
 		Profile insert_profile_table = new Profile();
+		// my_hobby_tableで生成したIDを取得しHobby_idにセットする
 		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
+		// table_profileにインサート
 		insert_profile_table.setName(name);
 		insert_profile_table.setPersonality(personality);
 		insert_profile_table.setHome(home);
@@ -132,17 +138,17 @@ public class ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 	}
-
+	// deleteメソッドに引数として値を渡す
 	public String delete(String delete_id) {
 
 		if (delete_id.isEmpty()) {
 			return "main1";
 		}
-
+		// 分割
 		String[] strAry = delete_id.split(",");
 
 		for (int i = 0; i < strAry.length; i++) {
-
+			//　DB接続
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 			session.beginTransaction();

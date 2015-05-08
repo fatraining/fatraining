@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Result1Table implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-//画面に表示させたいカラム名
+	// 画面に表示させたいカラム名
 	private String id;
 	private String name;
 	private String personality;
@@ -13,12 +13,13 @@ public class Result1Table implements Serializable {
 	private int birthday;
 	private String hobby;
 	private int hobby_id;
-//	private String day;
-//	private String new_day;
-//	private String userid;
-//	private String new_userid;
-//	private int time_stamp;
-//	private int delete;
+
+	// private String day;
+	// private String new_day;
+	// private String userid;
+	// private String new_userid;
+	// private int time_stamp;
+	// private int delete;
 
 	public Result1Table() {
 	}
@@ -70,7 +71,7 @@ public class Result1Table implements Serializable {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
-	
+
 	public int getHobby_id() {
 		return hobby_id;
 	}
@@ -79,51 +80,51 @@ public class Result1Table implements Serializable {
 		this.hobby_id = hobby_id;
 	}
 
-//	public String getDay() {
-//		return day;
-//	}
-//
-//	public void setDay(String day) {
-//		this.day = day;
-//	}
-//
-//	public String getNew_day() {
-//		return new_day;
-//	}
-//
-//	public void setNew_day(String new_day) {
-//		this.new_day = new_day;
-//	}
-//
-//	public String getUserid() {
-//		return userid;
-//	}
-//
-//	public void setUserid(String userid) {
-//		this.userid = userid;
-//	}
-//
-//	public String getNew_userid() {
-//		return new_userid;
-//	}
-//
-//	public void setNew_userid(String new_userid) {
-//		this.new_userid = new_userid;
-//	}
-//
-//	public int getTime_stamp() {
-//		return time_stamp;
-//	}
-//
-//	public void setTime_stamp(int time_stamp) {
-//		this.time_stamp = time_stamp;
-//	}
-//
-//	public int getDelete() {
-//		return delete;
-//	}
-//
-//	public void setDelete(int delete) {
-//		this.delete = delete;
-//	}
+	// public String getDay() {
+	// return day;
+	// }
+	//
+	// public void setDay(String day) {
+	// this.day = day;
+	// }
+	//
+	// public String getNew_day() {
+	// return new_day;
+	// }
+	//
+	// public void setNew_day(String new_day) {
+	// this.new_day = new_day;
+	// }
+	//
+	// public String getUserid() {
+	// return userid;
+	// }
+	//
+	// public void setUserid(String userid) {
+	// this.userid = userid;
+	// }
+	//
+	// public String getNew_userid() {
+	// return new_userid;
+	// }
+	//
+	// public void setNew_userid(String new_userid) {
+	// this.new_userid = new_userid;
+	// }
+	//
+	// public int getTime_stamp() {
+	// return time_stamp;
+	// }
+	//
+	// public void setTime_stamp(int time_stamp) {
+	// this.time_stamp = time_stamp;
+	// }
+	//
+	// public int getDelete() {
+	// return delete;
+	// }
+	//
+	// public void setDelete(int delete) {
+	// this.delete = delete;
+	// }
 }

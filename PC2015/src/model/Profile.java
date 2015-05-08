@@ -7,13 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//task_masteDBのテーブルtable_profile
+
+//　task_masteDBのテーブルtable_profile
 @Entity
 @Table(name = "table_profile")
 public class Profile implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-//カラム名
+	// カラム名
 	private String id;
 	private String name;
 	private String personality;
@@ -24,8 +25,9 @@ public class Profile implements Serializable {
 	private String new_day;
 	private String userid;
 	private String new_userid;
-//	private int time_stamp;
-//	private int delete;
+
+	// private int time_stamp;
+	// private int delete;
 
 	/*--------------------------------------------------*/
 	@Id
@@ -54,7 +56,7 @@ public class Profile implements Serializable {
 	public int getBirthday() {
 		return birthday;
 	}
-	
+
 	@Column(name = "hobby_id")
 	public int getHobby_id() {
 		return hobby_id;
@@ -80,15 +82,15 @@ public class Profile implements Serializable {
 		return new_userid;
 	}
 
-//	@Column(name = "time_stamp")
-//	public int getTime_stamp() {
-//		return time_stamp;
-//	}
-//
-//	@Column(name = "delete")
-//	public int getDelete() {
-//		return delete;
-//	}
+	// @Column(name = "time_stamp")
+	// public int getTime_stamp() {
+	// return time_stamp;
+	// }
+	//
+	// @Column(name = "delete")
+	// public int getDelete() {
+	// return delete;
+	// }
 
 	/*--------------------------------------------------*/
 
@@ -111,7 +113,7 @@ public class Profile implements Serializable {
 	public void setBirthday(int birthday) {
 		this.birthday = birthday;
 	}
-	
+
 	public void setHobby_id(int hobby_id) {
 		this.hobby_id = hobby_id;
 	}
@@ -132,11 +134,11 @@ public class Profile implements Serializable {
 		this.new_userid = new_userid;
 	}
 
-//	public void setTime_stamp(int time_stamp) {
-//		this.time_stamp = time_stamp;
-//	}
-//
-//	public void setDelete(int delete) {
-//		this.delete = delete;
-//	}
+	// public void setTime_stamp(int time_stamp) {
+	// this.time_stamp = time_stamp;
+	// }
+	//
+	// public void setDelete(int delete) {
+	// this.delete = delete;
+	// }
 }
