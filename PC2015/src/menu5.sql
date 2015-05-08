@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E07 日 11:42
+-- Generation Time: 2015 年 5 朁E08 日 03:04
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -36,16 +36,14 @@ CREATE TABLE IF NOT EXISTS `user_character` (
   `newuserid` char(50) DEFAULT NULL,
   `deleteFlg` int(11) DEFAULT NULL,
   `flg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `user_character`
 --
 
 INSERT INTO `user_character` (`id`, `personality`, `interest`, `day`, `newday`, `userid`, `newuserid`, `deleteFlg`, `flg`) VALUES
-(1, '優しい', '読書', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '明るい', 'カラオケ', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, '穏やか', 'ゲーム', NULL, NULL, NULL, NULL, NULL, NULL);
+(6, '穏やか', 'けん玉', '2015/05/08 9:16:27', '2015/05/08 9:16:27', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -66,16 +64,14 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `newuserid` char(50) DEFAULT NULL,
   `deleteFlg` int(11) DEFAULT NULL,
   `flg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `user_profile`
 --
 
 INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, `personality2`, `day`, `newday`, `userid`, `newuserid`, `deleteFlg`, `flg`) VALUES
-(1, 2, 3, '千葉', '田中', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 1, 2, '東京', '佐藤', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 3, 1, '埼玉', '大木', 2, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 124551334, 1111234, '千葉県印旛郡栄町矢口', '田中進', 6, '2015/05/08 9:16:27', '2015/05/08 9:16:27', 'Struts2', 'Struts2', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -101,12 +97,12 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for table `user_character`
 --
 ALTER TABLE `user_character`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
