@@ -37,7 +37,7 @@ public class Update7Action extends AbstractAction {
 		if (this.title.isEmpty() || this.genreId == 0
 				|| this.exhibition_year == 0) {
 			this.errormsg = "全ての項目に入力してください";
-			return "execute()";
+			return "success";
 		}
 		// 全項目入力済みの時
 		else {
