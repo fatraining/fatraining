@@ -10,18 +10,30 @@ public class BandAddAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// フィールドの宣言
-	public String delete_id; // update_idからdelete_idに変更
-	public String name; // 名前に関する変数nameを宣言
-	public String sex; // 性別に関する変数sexを宣言
-	public String age; // 年齢に関する変数ageを宣言
-	public String school; // 出身校に関する変数schoolを宣言
-	public String favorite_song; // 好きな曲に関する変数favorite_songを宣言
-	public String part; // 演奏楽器に関する変数partを宣言
-	public String band_name; // バンド名に関する変数band_nameを宣言
+	public String delete_id; // 削除に関する変数
+	public String name; // 名前
+	public String sex; // 性別
+	public String age; // 年齢
+	public String school; // 出身校
+	public String favorite_song; // 好きな曲
+	public String part; // 演奏楽器
+	public String band_name; // バンド名
 
-	// executeメソッド。update_idの値を受け取っている。
+	// executeメソッド。
 	public String execute() throws Exception {
+
+		// delete_idの値を受け取っている。
 		this.delete_id = (String) this.sessionMap.get("delete_id");
+
+		// 初期値の設定
+		this.band_name = "砂糖と塩";
+		this.name = "佐藤敏夫";
+		this.sex = "男";
+		this.age = "20";
+		this.school = "銀座大学";
+		this.favorite_song = "二月の兵隊";
+		this.part = "ギター";
+
 		return "success";
 	}
 
