@@ -104,6 +104,8 @@ public class ProfileManager extends HibernateUtil {
 		insert_my_hobby_table.setNew_day(new_day);
 		insert_my_hobby_table.setUserid(userid);
 		insert_my_hobby_table.setNew_userid(new_userid);
+//		insert_my_hobby_table.setTime_stamp(0);
+//		insert_my_hobby_table.setDelete(0);
 
 		try {
 			session.save(insert_my_hobby_table);
@@ -128,6 +130,8 @@ public class ProfileManager extends HibernateUtil {
 		insert_profile_table.setNew_day(new_day);
 		insert_profile_table.setUserid(userid);
 		insert_profile_table.setNew_userid(new_userid);
+//		insert_profile_table.setTime_stamp(0);
+//		insert_profile_table.setDelete(0);
 
 		try {
 			session.save(insert_profile_table);
@@ -139,19 +143,18 @@ public class ProfileManager extends HibernateUtil {
 		session.getTransaction().commit();
 	}
 	// deleteメソッドに引数として値を渡す
-	public String delete(String delete_id) {
+	public void delete(String delete_id) {
 
 		if (delete_id.isEmpty()) {
-			return "main1";
 		}
 		// 分割
 		String[] strAry = delete_id.split(",");
+		//　DB接続
+		Session session = HibernateUtil.getSessionFactory()
+				.getCurrentSession();
+		session.beginTransaction();
 
 		for (int i = 0; i < strAry.length; i++) {
-			//　DB接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			session.beginTransaction();
 			try {
 				Profile profile = (Profile) session.load(Profile.class,
 						strAry[i]);
@@ -163,8 +166,7 @@ public class ProfileManager extends HibernateUtil {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
-			session.getTransaction().commit();
 		}
-		return "main1";
+		session.getTransaction().commit();
 	}
 }
