@@ -35,27 +35,31 @@ public class Update10Action extends AbstractAction {
 
 		// インスタンス化、id_tableにレコードを挿入する
 		IDofEat insert_id_table = new IDofEat();
-		
+
 		insert_id_table.setEntry_userid(entry_userid);
 		insert_id_table.setRenew_userid(renew_userid);
 
+		// All10Managerのインスタンス生成
 		All10Manager insert = new All10Manager();
-		
-		//insertメソッドを参照
-		insert.insert(this.eat_year,this.eat_month,this.eat_day, this.eat_hour,this.eatFood,this.eatCalory,entry_userid,renew_userid);
 
-		return "main10";
+		// All10Managerのinsertメソッドを参照
+		insert.insert(this.eat_year, this.eat_month, this.eat_day,
+				this.eat_hour, this.eatFood, this.eatCalory, entry_userid,
+				renew_userid);
+
+		return "main10";// Main10Actionへ
 	}
 
 	// 検索結果内の値の削除
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");// セッションマップからdelete_idを取得
 
-All10Manager delete = new All10Manager();
-		
-		//insertメソッドを参照
+		// All10Managerのインスタンス生成
+		All10Manager delete = new All10Manager();
+
+		// All10Managerのdeleteメソッドを参照
 		delete.delete(delete_id);
-		
+
 		return "main10"; // Main10Actionへ
 	}
 
