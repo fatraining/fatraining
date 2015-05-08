@@ -15,17 +15,15 @@ public class Movie implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//｛入力した値をテーブルに挿入するため、検索結果を表示させるためにデータを取り出すため｝の変数とメソッド
-	private String id;
-	private String title ;
-	private int genreId ;
-	private int exhibition_year ;
-	private String comment ;
-	private String registration_date;
-	private String renewal_date;
-	private String registration_userid;
-	private String renewal_userid ;
-//	private int control;
-//	private int delete ;
+	private String id; // ID
+	private String title ; // タイトル
+	private int genreId ; // ジャンルID
+	private int exhibition_year ; // 公開年
+	private String comment ; // コメント
+	private String registration_date; // 登録日時
+	private String renewal_date; // 更新日時
+	private String registration_userid; // 登録ユーザーID
+	private String renewal_userid ; // 更新ユーザーID
 	/*--------------------------------------------------*/
 	@Id
 	@GeneratedValue
@@ -65,14 +63,6 @@ public class Movie implements Serializable{
 	public String getRenewal_userid() {
 		return renewal_userid;
 	}
-//	@Column(name="control")
-//	public int getControl() {
-//		return control;
-//	}
-//	@Column(name="delete")
-//	public int getDelete() {
-//		return delete;
-//	}	
 /*--------------------------------------------------*/
 
 	public void setId(String id) {
@@ -102,10 +92,4 @@ public class Movie implements Serializable{
 	public void setRenewal_userid(String renewal_userid) {
 		this.renewal_userid = renewal_userid;
 	}	
-//	public void setControl(int control) {
-//		this.control = control;
-//	}
-//	public void setDelete(int delete) {
-//		this.delete = delete;
-//	}
 	}
