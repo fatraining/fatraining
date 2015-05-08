@@ -187,4 +187,42 @@ public class All10Manager extends HibernateUtil {
 		session.getTransaction().commit();
 		return "main10";
 	}
+	
+	public String delete(String delete_id) {
+
+		// 複数選択の削除のために文字列の分割
+		String str = new String(delete_id);
+		String[] strAry = str.split(",");
+
+		// delete_idが空である場合
+		if (delete_id.isEmpty()) {
+			return "main10"; // Main10Actionへ
+		}
+
+		// for文で処理を繰り返す
+		for (int i = 0; i < strAry.length; i++) {
+
+			// データベースに接続
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			// トランザクションの開始
+			session.beginTransaction();
+			try {
+				DetailEat detaileat = (DetailEat) session.load(DetailEat.class,
+						strAry[i]);
+				IDofEat idofeat = (IDofEat) session.load(IDofEat.class,
+						detaileat.getFood_id());
+
+				session.delete(detaileat); // detail_tableの指定した行を削除する
+				session.delete(idofeat); // id_tableの指定した行を削除する
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			// トランザクションの終了
+			session.getTransaction().commit();
+		}
+		return "main10"; // Main10Actionへ
+	}
 }
