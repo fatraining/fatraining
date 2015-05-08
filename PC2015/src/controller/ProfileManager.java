@@ -147,13 +147,13 @@ public class ProfileManager extends HibernateUtil {
 
 		if (delete_id.isEmpty()) {
 		}
-		// 分割
-		String[] strAry = delete_id.split(",");
 		//　DB接続
 		Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
 		session.beginTransaction();
-
+		
+		// 分割
+		String[] strAry = delete_id.split(",");
 		for (int i = 0; i < strAry.length; i++) {
 			try {
 				Profile profile = (Profile) session.load(Profile.class,
