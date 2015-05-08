@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E07 日 11:47
+-- Generation Time: 2015 年 5 朁E08 日 18:01
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -39,16 +39,14 @@ CREATE TABLE IF NOT EXISTS `eat_detail` (
   `renew_userid` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `renew_flg` int(50) NOT NULL,
   `delete_flg` int(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- テーブルのデータのダンプ `eat_detail`
 --
 
 INSERT INTO `eat_detail` (`id`, `eat_year`, `eat_month`, `eat_day`, `eat_hour`, `food_id`, `entry_day`, `renew_day`, `entry_userid`, `renew_userid`, `renew_flg`, `delete_flg`) VALUES
-(1, '2015', '5', '4', 'PM', 1, '2015/05/07 11:42:12', '2015/05/07 11:42:12', 'Struts2', 'Struts2', 0, 0),
-(2, '2015', '5', '6', 'PM', 2, '2015/05/07 11:43:21', '2015/05/07 11:43:21', 'Struts2', 'Struts2', 0, 0),
-(3, '2015', '5', '7', 'AM', 3, '2015/05/07 11:44:4', '2015/05/07 11:44:4', 'Struts2', 'Struts2', 0, 0);
+(1, '2015', '1', '1', 'AM', 1, '2015/05/08 18:0:29', '2015/05/08 18:0:29', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -66,16 +64,14 @@ CREATE TABLE IF NOT EXISTS `eat_id` (
   `renew_userid` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `renew_flg` int(50) NOT NULL,
   `delete_flg` int(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- テーブルのデータのダンプ `eat_id`
 --
 
 INSERT INTO `eat_id` (`id`, `eatFood`, `eatCalory`, `entry_day`, `renew_day`, `entry_userid`, `renew_userid`, `renew_flg`, `delete_flg`) VALUES
-(1, '焼肉', '1000kcal', '2015/05/07 11:42:12', '2015/05/07 11:42:12', 'Struts2', 'Struts2', 0, 0),
-(2, '焼鳥', '500kcal', '2015/05/07 11:43:21', '2015/05/07 11:43:21', 'Struts2', 'Struts2', 0, 0),
-(3, 'パン', '200kcal', '2015/05/07 11:44:4', '2015/05/07 11:44:4', 'Struts2', 'Struts2', 0, 0);
+(1, 'お餅', '350kcal', '2015/05/08 18:0:29', '2015/05/08 18:0:29', 'Struts2', 'Struts2', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -101,12 +97,12 @@ ALTER TABLE `eat_id`
 -- AUTO_INCREMENT for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `eat_id`
 --
 ALTER TABLE `eat_id`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
