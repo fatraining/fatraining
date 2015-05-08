@@ -147,13 +147,13 @@ public class StoryManager extends HibernateUtil {
 		
 		Story insert_story_table = new Story();
 		insert_story_table.setTitle(title); //タイトル
-//		insert_story_table.setGenre_id(tmpTbGenre.getId()); //ジャンル
+		insert_story_table.setGenre_id(tmpTbGenre.getId()); //ジャンル
 		insert_story_table.setSignup(day); //登録日付
 		insert_story_table.setUpdateDate(newday); //更新日付
 		insert_story_table.setSignupUSERID(userid); //登録ユーザID
 		insert_story_table.setUpdateUSERID(newuserid); //更新ユーザID
-//		insert_story_table.setExclusiveFLG(0); //排他フラグ
-//		insert_story_table.setdeleteFLG(0); //削除フラグ
+		insert_story_table.setExclusiveFLG(0); //排他フラグ
+		insert_story_table.setdeleteFLG(0); //削除フラグ
 		
 		try {
 			session.save(insert_story_table);
@@ -181,7 +181,7 @@ public class StoryManager extends HibernateUtil {
 		for (int i = 0; i < strAry.length; i++) {
 
 			try {
-				Story story = (Story) session.load(Story.class, strAry[i]);
+				Story story = (Story) session.load(Story.class, Integer.valueOf(strAry[i].trim()));
 				Tb_Genre tbGenre = (Tb_Genre) session.load(Tb_Genre.class,
 						story.getGenre_id());
 				session.delete(story);

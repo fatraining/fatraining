@@ -12,12 +12,10 @@ public class Update6Action extends AbstractAction {
 	// 表示項目
 	public String delete_id; // 削除画面
 	// 入力項目
-	public String id; // ID
-	public String series; // シリーズ名
-	public String se; // シリーズID
 	public String title; // タイトル
-	public String nonStyle; // 切り札
-	public String del; // 起源
+	public String series; // シリーズ名
+	public String trump; // 切り札
+	public String origin; // 起源
 
 	// executeメソッド
 	// 画面が表示時に実行
@@ -37,7 +35,7 @@ public class Update6Action extends AbstractAction {
 		String upUser = (String) this.sessionMap.get("userId");
 		//インスタンスを生成
 		LikeManager insert = new LikeManager();
-		insert.insert(this.series, this.se, this.title, this.nonStyle ,this.del,
+		insert.insert(this.title, this.series, this.trump ,this.origin,
 				userID, upUser);
 		
 	    return "main6";

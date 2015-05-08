@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,90 +14,82 @@ public class LikeSeries implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	//カラム
-	private String up_id;
-	private String se ;
-	private String us;
-	private String upD;
-	private String userI;
-	private String upU;
-	private String nonS ;
-	private String de ;
-	private int an_flg;
-	private int del_flg;
-
-	/*--------------------------------------------------*/
+	private int up_id;
+	private String seriesNm;
+	private String addDate;
+	private String updateDate;
+	private String addUserID;
+	private String upUserID;
+	private int another_flg;
+	private int delete_flg;
+	
 	@Id
 	@GeneratedValue
 	@Column(name="up_id")
-	public String getUp_id() {
+	public int getUp_id() {
 		return up_id;
 	}
-	@Column(name="se")
-	public String getSe() {
-		return se;
+	
+	@Column(name="seriesNm")
+	public String getSeriesNm() {
+		return seriesNm;
 	}
-	@Column(name="us")
-	public String getUs() {
-		return us;
+	
+	@Column(name="addDate")
+	public String getAddDate() {
+		return addDate;
 	}
-	@Column(name="upD")
-	public String getUpD() {
-		return upD;
+	
+	@Column(name="updateDate")
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	@Column(name="userI")
-	public String getUserI() {
-		return userI;
+	
+	@Column(name="addUserID")
+	public String getAddUserID() {
+		return addUserID;
 	}
-	@Column(name="upU")
-	public String getUpU() {
-		return upU;
+	
+	@Column(name="upUserID")
+	public String getUpUserID() {
+		return upUserID;
 	}
-	@Column(name="nonS")
-	public String getNonS() {
-		return nonS;
-	}	
-	@Column(name="de")
-	public String getDe() {
-		return de;
+	
+	@Column(name="another_flg")
+	public int getAnother_flg() {
+		return another_flg;
 	}
-	@Column(name="an_flg")
-	public int getAn_flg() {
-		return an_flg;
+	
+	@Column(name="delete_flg")
+	public int getDelete_flg() {
+		return delete_flg;
 	}
-	@Column(name="del_flg")
-	public int getDel_flg() {
-		return del_flg;
-	}
-/*--------------------------------------------------*/
-	public void setUp_id(String up_id) {
+	
+	
+	public void setUp_id(int up_id) {
 		this.up_id = up_id;
 	}
-	public void setSe(String se) {
-		this.se= se;
+	public void setSeriesNm(String seriesNm) {
+		this.seriesNm = seriesNm;
 	}
-	public void setUs(String us) {
-		this.us = us;
+	public void setAddDate(String addDate) {
+		this.addDate = addDate;
 	}
-	public void setUpD(String upD) {
-		this.upD = upD;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
-	public void setUserI(String userI) {
-		this.userI = userI;
+	public void setAddUserID(String addUserID) {
+		this.addUserID = addUserID;
 	}
-	public void setUpU(String upU) {
-		this.upU = upU;
+	public void setUpUserID(String upUserID) {
+		this.upUserID = upUserID;
 	}
-	public void setNonS(String nonS) {
-		this.nonS = nonS;
+	public void setAnother_flg(int another_flg) {
+		this.another_flg = another_flg;
 	}
-	public void setDe(String de) {
-		this.de = de;
+	public void setDelete_flg(int delete_flg) {
+		this.delete_flg = delete_flg;
 	}
-	public void setAn_flg(int an_flg) {
-		this.an_flg = an_flg;
-	}
-	public void setDel_flg(int del_flg) {
-		this.del_flg = del_flg;
-	}
+	
+	
 }

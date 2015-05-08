@@ -33,7 +33,7 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-info" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-info" />
 		<s:submit method="add" value="追加" cssClass="btn btn-info" />
-
+		<a href="menu.action">Back</a>
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
 </s:form>
