@@ -111,19 +111,20 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 		session.getTransaction().commit();
 	}
+	//Update7Actionから呼ばれるdeleteメソッド
 	public String delete(String delete_id) {
-		String[] strAry = delete_id.split(",");
+		String[] deleteId = delete_id.split(","); //取得したdelete_idの分割
 
-		if (strAry.length == 0) {
+		if (deleteId.length == 0) {
 			return "main7";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		for (int i = 0; i < strAry.length; i++) {
+		for (int i = 0; i < deleteId.length; i++) {
 
 			try {
-				Movie movie = (Movie) session.load(Movie.class, strAry[i]);
+				Movie movie = (Movie) session.load(Movie.class, deleteId[i]);
 				session.delete(movie);
 			} catch (HibernateException e) {
 				e.printStackTrace();
