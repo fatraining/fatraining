@@ -8,8 +8,6 @@ import java.util.List;
 import model.LiofTa;
 import model.CoofTa;
 
-import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
