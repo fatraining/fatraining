@@ -22,8 +22,8 @@ public class My_hobby implements Serializable {
 	private String userid;
 	private String new_userid;
 
-	// private int time_stamp;
-	// private int delete;
+//	 private int time_stamp;
+//	 private int delete;
 
 	/*--------------------------------------------------*/
 	@Id
@@ -58,15 +58,15 @@ public class My_hobby implements Serializable {
 		return new_userid;
 	}
 
-	// @Column(name = "time_stamp")
-	// public int getTime_stamp() {
-	// return time_stamp;
-	// }
-	//
-	// @Column(name = "delete")
-	// public int getDelete() {
-	// return delete;
-	// }
+//	 @Column(name = "time_stamp")
+//	 public int getTime_stamp() {
+//	 return time_stamp;
+//	 }
+//	
+//	 @Column(name = "delete")
+//	 public int getDelete() {
+//	 return delete;
+//	 }
 
 	/*--------------------------------------------------*/
 	public void setId(int id) {
@@ -93,11 +93,11 @@ public class My_hobby implements Serializable {
 		this.new_userid = new_userid;
 	}
 
-	// public void setTime_stamp(int time_stamp) {
-	// this.time_stamp = time_stamp;
-	// }
-	//
-	// public void setDelete(int delete) {
-	// this.delete = delete;
-	// }
+//	 public void setTime_stamp(int time_stamp) {
+//	 this.time_stamp = time_stamp;
+//	 }
+//	
+//	 public void setDelete(int delete) {
+//	 this.delete = delete;
+//	 }
 }
