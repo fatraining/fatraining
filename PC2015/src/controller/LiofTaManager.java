@@ -14,11 +14,16 @@ public class LiofTaManager extends HibernateUtil {
 
 	public List<?> resultList() {
 		List<?> resultTable = null;
+
+		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
+		// table_likeとtable_colorを全件検索
 		String select = "SELECT * FROM table_like d,table_color i";
+		// table_likeのcolorとtable_colorのidは等しい
 		String where1 = "WHERE d.color = i.id";
+		// select文とwhere文をsqlに代入
 		String sql = select + " " + where1;
 
 		try {
@@ -37,8 +42,10 @@ public class LiofTaManager extends HibernateUtil {
 	public List<?> resultList(String name, String food, String drink) {
 		List<?> resultTable = null;
 
+		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+
 		try {
 			if (name.isEmpty()) {
 				name = "%";
@@ -50,10 +57,13 @@ public class LiofTaManager extends HibernateUtil {
 				drink = "%";
 			}
 
+			// table_likeとtable_colorを全件検索
 			String select = "SELECT * FROM table_like d, table_color i";
+			// table_likeのcolorとtable_colorのidは等しい
 			String where1 = "WHERE d.color = i.id";
 			String where2 = "AND (d.name LIKE '" + name + "' AND d.food LIKE '"
 					+ food + "' AND d.drink LIKE '" + drink + "')";
+			// select文とwhere文をsqlに代入
 			String sql = select + " " + where1 + " " + where2;
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("CoofTa", LiofTa.class)
@@ -66,12 +76,15 @@ public class LiofTaManager extends HibernateUtil {
 		return resultTable;
 	}
 
+	// table_colorの検索用メソッド
 	public CoofTa cooftaList() {
 		List<?> resultTable = null;
 
+		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
+			// table_colorを全件検索して昇順化している
 			String sql = "SELECT * FROM table_color i ORDER BY id";
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("CoofTa", CoofTa.class).list();
@@ -82,9 +95,11 @@ public class LiofTaManager extends HibernateUtil {
 		return (CoofTa) resultTable.get(resultTable.size() - 1);
 	}
 
+	// insertメソッド（挿入）
 	public String insert(String name, String food, String drink, String color,
 			String colorNm, String userid, String new_userid) {
 
+		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -130,15 +145,18 @@ public class LiofTaManager extends HibernateUtil {
 		return "main9";
 	}
 
+	// deleteメソッド
 	public String delete(String delete_id) {
 
 		if (delete_id.isEmpty()) {
 			return "main9";
 		}
+		// 分割
 		String[] strAry = delete_id.split(",");
 
 		for (int i = 0; i < strAry.length; i++) {
 
+			// データベースに接続
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 
