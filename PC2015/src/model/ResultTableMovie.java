@@ -10,7 +10,7 @@ public class ResultTableMovie implements Serializable{
 	private String id;
 	private String title ;
 	private String genre ;
-	private int exhibition_year ;
+	private String exhibition_year ;
 	private String comment ;
 	
 	public ResultTableMovie() { }
@@ -33,10 +33,10 @@ public class ResultTableMovie implements Serializable{
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public int getExhibition_year() {
+	public String getExhibition_year() {
 		return exhibition_year;
 	}
-	public void setExhibition_year(int exhibition_year) {
+	public void setExhibition_year(String exhibition_year) {
 		this.exhibition_year = exhibition_year;
 	}
 	public String getComment() {
