@@ -56,7 +56,7 @@
 		<s:if test="%{delete=='true'}">
 			<div align=right>
 				<s:submit method="delete" name="delete_id" value="削除"
-					cssClass="btn btn-danger" />
+					cssClass="btn btn-success" />
 			</div>
 		</s:if>
 	</s:form>
