@@ -14,57 +14,65 @@ public class LikeGame implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	//カラム
-	private String id;
-	private String title ;
-	private String series ;
-	private String user;
-	private String upDay;
-	private String userID;
-	private String upUser;
-	private String nonStyle ;
-	private String del ;
+	// カラム
+
+	private int id;
+	private String title;
+	private int seriesId;
+	private String trump;
+	private String origin;
+	private String addDate;
+	private String updateDate;
+	private String addUserID;
+	private String upUserID;
 	private int another_flg;
 	private int delete_flg;
 	
-	/*--------------------------------------------------*/
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	public String getId() {
+	public int getId() {
 		return id;
 	}
+	
 	@Column(name="title")
 	public String getTitle() {
 		return title;
 	}
-	@Column(name="series")
-	public String getSeries() {
-		return series;
+	
+	@Column(name="seriesId")
+	public int getSeriesId() {
+		return seriesId;
 	}
-	@Column(name="user")
-	public String getUser() {
-		return user;
+	
+	@Column(name="trump")
+	public String getTrump() {
+		return trump;
 	}
-	@Column(name="upDay")
-	public String getUpDay() {
-		return upDay;
+	
+	@Column(name="Origin")
+	public String getOrigin() {
+		return origin;
 	}
-	@Column(name="userID")
-	public String getUserID() {
-		return userID;
+	
+	@Column(name="addDate")
+	public String getAddDate() {
+		return addDate;
 	}
-	@Column(name="upUser")
-	public String getUpUser() {
-		return upUser;
+	
+	@Column(name="updateDate")
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	@Column(name="nonStyle")
-	public String getNonStyle() {
-		return nonStyle;
-	}	
-	@Column(name="del")
-	public String getDel() {
-		return del;
+	
+	@Column(name="addUserID")
+	public String getAddUserID() {
+		return addUserID;
+	}
+	
+	@Column(name="upUserID")
+	public String getUpUserID() {
+		return upUserID;
 	}
 	
 	@Column(name="another_flg")
@@ -72,38 +80,39 @@ public class LikeGame implements Serializable{
 		return another_flg;
 	}
 	
-	@Column(name="deleete_flg")
+	@Column(name="delete_flg")
 	public int getDelete_flg() {
 		return delete_flg;
 	}
-/*--------------------------------------------------*/
-
-	public void setId(String id) {
+	
+	
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setSeries(String series) {
-		this.series = series;
+	public void setSeriesId(int seriesId) {
+		this.seriesId = seriesId;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setTrump(String trump) {
+		this.trump = trump;
 	}
-	public void setUpDay(String upDay) {
-		this.upDay = upDay;
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setAddDate(String addDate) {
+		this.addDate = addDate;
 	}
-	public void setUpUser(String upUser) {
-		this.upUser = upUser;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
-	public void setNonStyle(String nonStyle) {
-		this.nonStyle = nonStyle;
+	public void setAddUserID(String addUserID) {
+		this.addUserID = addUserID;
 	}
-	public void setDel(String del) {
-		this.del = del;
+	public void setUpUserID(String upUserID) {
+		this.upUserID = upUserID;
 	}
 	public void setAnother_flg(int another_flg) {
 		this.another_flg = another_flg;
@@ -111,4 +120,5 @@ public class LikeGame implements Serializable{
 	public void setDelete_flg(int delete_flg) {
 		this.delete_flg = delete_flg;
 	}
+
 }

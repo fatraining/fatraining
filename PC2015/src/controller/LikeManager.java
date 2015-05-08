@@ -26,7 +26,7 @@ public class LikeManager extends HibernateUtil {
 		// テーブルの全件を検索
 		String select = "SELECT * FROM like_game g,like_series s ";
 		// gameのseriesとseriesのidが等しい
-		String where1 = "WHERE g.series=s.up_id";
+		String where1 = "WHERE g.seriesId=s.up_id";
 		// select文とwhere文を合わせたものをsqlに代入
 		String sql = select + " " + where1;
 
@@ -69,9 +69,9 @@ public class LikeManager extends HibernateUtil {
 		// テーブルの全件を検索
 		String select = "SELECT * FROM like_game g,like_series s";
 		// gameのseriesとseriesのidが等しい
-		String where1 = "WHERE g.series=s.up_id";
+		String where1 = "WHERE g.seriesId=s.up_id";
 		// 入力された値とそれぞれのテーブルにあるカラムの値が等しいという条件
-		String where2 = "AND (g.title LIKE '" + title + "' AND g.series LIKE '"
+		String where2 = "AND (g.title LIKE '" + title + "' AND s.seriesNm LIKE '"
 				+ series + "')";
 		String sql = select + " " + where1 + " " + where2;
 
@@ -110,7 +110,7 @@ public class LikeManager extends HibernateUtil {
 			resultTable6 = session.createSQLQuery(sql)
 
 			// SQLQuery.addEntityメソッドで戻り値LikeSeriesの型設定、SQLQuery.listメソッドでクエリの実行
-					.addEntity("LikeSeries", LikeSeries.class).list();
+					.addEntity("like_series", LikeSeries.class).list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,14 +122,14 @@ public class LikeManager extends HibernateUtil {
 		return (LikeSeries) resultTable6.get(resultTable6.size() - 1);
 	}
 
-	public void insert(String series, String se, String title, String nonStyle,
-			String del, String userID, String upUser) {
+	public void insert(String title, String series,  String trump,
+			String origin, String userID, String upUser) {
 
 		// 日付の設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
-		String us = String.valueOf(sdf.format(date));
-		String upDay = String.valueOf(sdf.format(date));
+		String addDate = String.valueOf(sdf.format(date));
+		String upDate = String.valueOf(sdf.format(date));
 
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -138,10 +138,13 @@ public class LikeManager extends HibernateUtil {
 
 		// インスタンス化。like_seriesのデータ作成
 		LikeSeries insert_series_table = new LikeSeries();
-		insert_series_table.setUs(us);
-		insert_series_table.setSe(se);
-		insert_series_table.setAn_flg(0);
-		insert_series_table.setDel_flg(0);
+		insert_series_table.setSeriesNm(series);
+		insert_series_table.setAddDate(addDate);
+		insert_series_table.setUpdateDate(upDate);
+		insert_series_table.setAddUserID(userID);
+		insert_series_table.setUpUserID(upUser);
+//		insert_series_table.setAnother_flg(0);
+//		insert_series_table.setDelete_flg(0);
 		
 
 		try {
@@ -159,15 +162,16 @@ public class LikeManager extends HibernateUtil {
 		// インスタンス化。like_gameのデータ作成
 		LikeGame insert_game_table = new LikeGame();
 		insert_game_table.setTitle(title);
-		insert_game_table.setSeries(series);
-		insert_game_table.setUpDay(upDay);
-		insert_game_table.setUserID(userID);
-		insert_game_table.setUpUser(upUser);
-		insert_game_table.setNonStyle(nonStyle);
-		insert_game_table.setDel(del);
+		insert_game_table.setOrigin(origin);
+		insert_game_table.setTrump(trump);
+		insert_game_table.setSeriesId(Integer.valueOf(insert_series_table.getUp_id()));
+		insert_game_table.setAddDate(addDate);
+		insert_game_table.setUpdateDate(upDate);
+		insert_game_table.setAddUserID(userID);
+		insert_game_table.setUpUserID(upUser);
 		insert_game_table.setAnother_flg(0);
 		insert_game_table.setDelete_flg(0);
-		insert_game_table.setSeries(insert_series_table.getUp_id());
+		
 
 		// like_gameに追加
 		try {
@@ -193,19 +197,21 @@ public class LikeManager extends HibernateUtil {
 			return "main6";
 		}
 
+		// データベースに接続
+		Session session = HibernateUtil.getSessionFactory()
+				.getCurrentSession();
+		// トランザクション開始
+		session.beginTransaction();
+		
 		// for文で処理を繰り返す
 		for (int i = 0; i < strAry.length; i++) {
-			// データベースに接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			// トランザクション開始
-			session.beginTransaction();
+
 
 			try {
 				LikeGame likegame = (LikeGame) session.load(LikeGame.class,
-						strAry[i]);
+						Integer.valueOf(strAry[i].trim()));
 				LikeSeries likeseries = (LikeSeries) session.load(
-						LikeSeries.class, likegame.getId());
+						LikeSeries.class, likegame.getSeriesId());
 
 				session.delete(likegame);// 指定したIDを削除する
 				session.delete(likeseries);// 指定したIDを削除する
@@ -214,10 +220,11 @@ public class LikeManager extends HibernateUtil {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
-			// トランザクションの終了
-			session.getTransaction().commit();
-
 		}
+		
+		// トランザクションの終了
+		session.getTransaction().commit();
+		
 		return "main6";
 	}
 }

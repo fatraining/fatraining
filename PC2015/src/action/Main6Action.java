@@ -52,8 +52,7 @@ public class Main6Action extends AbstractAction {
 
 	// 追加ボタンを押下時
 	public String add() {
-		// sessionMapのdelete_idの値にdelete_idの値を代入
-		this.sessionMap.put("delete_id", this.delete_id);
+		this.sessionMap.put("delete_id", null);
 		try {
 			// 追加画面に遷移
 			this.response.sendRedirect("/PC2015/update6.action");
@@ -128,15 +127,11 @@ public class Main6Action extends AbstractAction {
 			obj = (Object[]) resultTable.get(i);
 			LikeGame likegame = (LikeGame) obj[0];
 			LikeSeries likeseries = (LikeSeries) obj[1];
-			temp.setId(likegame.getId());
+			temp.setId(String.valueOf(likegame.getId()));
 			temp.setTitle(likegame.getTitle());
-			temp.setSe(likeseries.getSe());
-			temp.setUs(likeseries.getUs());
-			temp.setUpDay(likegame.getUpDay());
-			temp.setUserID(likegame.getUserID());
-			temp.setUpUser(likegame.getUpUser());
-			temp.setNonStyle(likegame.getNonStyle());
-			temp.setDel(likegame.getDel());
+			temp.setSeries(likeseries.getSeriesNm());
+			temp.setTrump(likegame.getTrump());
+			temp.setOrigin(likegame.getOrigin());
 			tempTable.add(temp);
 		}
 

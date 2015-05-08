@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 16:22
+-- Generation Time: 2015 年 5 朁E08 日 19:44
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -28,17 +28,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `like_game` (
 `id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
-  `title` varchar(50) DEFAULT NULL,
-  `series` int(11) DEFAULT NULL,
-  `user` varchar(50) DEFAULT NULL,
-  `upDay` varchar(50) DEFAULT NULL,
-  `userID` varchar(50) DEFAULT NULL,
-  `upUser` varchar(50) DEFAULT NULL,
-  `nonStyle` varchar(50) DEFAULT NULL,
-  `del` varchar(50) DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `seriesId` int(11) DEFAULT NULL,
+  `trump` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `Origin` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `addDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `addUserID` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `upUserID` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `like_game`
+--
+
+INSERT INTO `like_game` (`id`, `title`, `seriesId`, `trump`, `Origin`, `addDate`, `updateDate`, `addUserID`, `upUserID`, `another_flg`, `delete_flg`) VALUES
+(9, 'Fate/stay night', 20, 'ソード', '剣', '05/08', '05/08', 'sinozaki', 'sinozaki', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -48,16 +55,21 @@ CREATE TABLE IF NOT EXISTS `like_game` (
 
 CREATE TABLE IF NOT EXISTS `like_series` (
 `up_id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
-  `se` varchar(50) DEFAULT NULL,
-  `us` varchar(50) DEFAULT NULL,
-  `upD` varchar(50) DEFAULT NULL,
-  `userI` varchar(50) DEFAULT NULL,
-  `upU` varchar(50) DEFAULT NULL,
-  `nonS` varchar(50) DEFAULT NULL,
-  `de` varchar(50) DEFAULT NULL,
-  `an_flg` int(11) NOT NULL,
-  `del_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `seriesNm` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `addDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `addUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `upUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `another_flg` int(11) NOT NULL,
+  `delete_flg` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `like_series`
+--
+
+INSERT INTO `like_series` (`up_id`, `seriesNm`, `addDate`, `updateDate`, `addUserId`, `upUserId`, `another_flg`, `delete_flg`) VALUES
+(20, 'Fate/stay', '05/08', '05/08', 'sinozaki', 'sinozaki', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -83,12 +95,12 @@ ALTER TABLE `like_series`
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `like_series`
 --
 ALTER TABLE `like_series`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=9;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=28;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

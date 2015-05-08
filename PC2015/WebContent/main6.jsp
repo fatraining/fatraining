@@ -37,29 +37,19 @@
 		<table class="brwsr2">
 			<tbody>
 				<tr>
-					<th>ID</th>
 					<th>タイトル</th>
 					<th>シリーズ</th>
 					<th>切り札</th>
 					<th>起源</th>
-					<th>登録日</th>
-					<th>更新日</th>
-					<th>登録USERID</th>
-					<th>更新USERID</th>
 					<th>削除</th>
 				</tr>
 				<td class="bar" colspan="16"></td>
 				<s:iterator value="outputTable">
 					<tr>
-						<td><s:property value="id" /></td>
 						<td class="data"><s:property value="title" /></td>
-						<td class="data"><s:property value="se" /></td>
-						<td class="data"><s:property value="nonStyle" /></td>
-						<td class="data"><s:property value="del" /></td>
-						<td class="data"><s:property value="us" /></td>
-						<td class="data"><s:property value="upDay" /></td>
-						<td class="data"><s:property value="userId" /></td>
-						<td class="data"><s:property value="upUser" /></td>
+						<td class="data"><s:property value="series" /></td>
+						<td class="data"><s:property value="trump" /></td>
+						<td class="data"><s:property value="origin" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> /></td>
 					</tr>
