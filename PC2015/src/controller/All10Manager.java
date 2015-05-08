@@ -26,7 +26,7 @@ public class All10Manager extends HibernateUtil {
 		String where1 = " WHERE d.food_id = i.id";
 		// select文とwhere文を合わせたものをsqlに代入
 		String sql = select + " " + where1;
-		
+
 		List<?> result10Table = null; // SQLの検索結果用の変数
 
 		try {
@@ -54,7 +54,7 @@ public class All10Manager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		// トランザクションの開始
 		session.beginTransaction();
-		
+
 		// eat_yearに入力された値が空の場合はeat_yearはなんでも
 		if (eat_year.isEmpty()) {
 			eat_year = "%";
@@ -130,8 +130,10 @@ public class All10Manager extends HibernateUtil {
 		// result10Tableの最終行を取得（0からなのでマイナス1する）
 		return (IDofEat) result10Table.get(result10Table.size() - 1);
 	}
-	
-	public String insert(String eat_year,String eat_month,String eat_day, String eat_hour,String eatFood,String eatCalory,String entry_userid,String renew_userid) {
+
+	public String insert(String eat_year, String eat_month, String eat_day,
+			String eat_hour, String eatFood, String eatCalory,
+			String entry_userid, String renew_userid) {
 		// 変数に日付を設定
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
@@ -186,7 +188,7 @@ public class All10Manager extends HibernateUtil {
 		session.getTransaction().commit();
 		return "main10";
 	}
-	
+
 	public String delete(String delete_id) {
 
 		// 複数選択の削除のために文字列の分割
