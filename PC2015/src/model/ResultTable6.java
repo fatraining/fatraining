@@ -12,11 +12,11 @@ public class ResultTable6 implements Serializable {
 	private String series;
 	private String user;
 	private String upDay;
-	private String userId;
+	private String userID;
 	private String upUser;
 	private String nonStyle;
 	private String del;
-	private String iD;
+	private String up_id;
 	private String se;
 	private String us;
 	private String upD;
@@ -68,12 +68,12 @@ public class ResultTable6 implements Serializable {
 		this.upDay = upDay;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUserID() {
+		return userID;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	public String getUpUser() {
@@ -100,12 +100,12 @@ public class ResultTable6 implements Serializable {
 		this.del = del;
 	}
 
-	public String getID() {
-		return iD;
+	public String getUp_id() {
+		return up_id;
 	}
 
-	public void setID(String iD) {
-		this.iD = iD;
+	public void setUp_id(String up_id) {
+		this.up_id = up_id;
 	}
 	
 	public String getSe() {

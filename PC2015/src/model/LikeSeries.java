@@ -14,7 +14,7 @@ public class LikeSeries implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//カラム
-	private String iD;
+	private String up_id;
 	private String se ;
 	private String us;
 	private String upD;
@@ -26,9 +26,9 @@ public class LikeSeries implements Serializable{
 	/*--------------------------------------------------*/
 	@Id
 	@GeneratedValue
-	@Column(name="iD")
-	public String getID() {
-		return iD;
+	@Column(name="up_id")
+	public String getUp_id() {
+		return up_id;
 	}
 	@Column(name="se")
 	public String getSe() {
@@ -59,8 +59,8 @@ public class LikeSeries implements Serializable{
 		return de;
 	}
 /*--------------------------------------------------*/
-	public void setID(String iD) {
-		this.iD = iD;
+	public void setUp_id(String up_id) {
+		this.up_id = up_id;
 	}
 	public void setSe(String se) {
 		this.se= se;

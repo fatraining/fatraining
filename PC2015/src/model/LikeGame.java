@@ -20,7 +20,7 @@ public class LikeGame implements Serializable{
 	private String series ;
 	private String user;
 	private String upDay;
-	private String userId;
+	private String userID;
 	private String upUser;
 	private String nonStyle ;
 	private String del ;
@@ -48,9 +48,9 @@ public class LikeGame implements Serializable{
 	public String getUpDay() {
 		return upDay;
 	}
-	@Column(name="userId")
-	public String getUserId() {
-		return userId;
+	@Column(name="userID")
+	public String getUserID() {
+		return userID;
 	}
 	@Column(name="upUser")
 	public String getUpUser() {
@@ -81,8 +81,8 @@ public class LikeGame implements Serializable{
 	public void setUpDay(String upDay) {
 		this.upDay = upDay;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 	public void setUpUser(String upUser) {
 		this.upUser = upUser;
