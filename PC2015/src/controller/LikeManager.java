@@ -103,9 +103,9 @@ public class LikeManager extends HibernateUtil {
 		try {
 
 			// like_gameテーブルの全件検索
-			String select = "SELECT * FROM like_game g";
-			String where1 = "WHERE id ORDER BY id ASC ";
-			String sql = select + "" + where1;
+			String sql = "SELECT * FROM like_game g";
+//			String where1 = "WHERE id ORDER BY id ASC ";
+//			String sql = select + "" + where1;
 
 			// SQLの実行結果がresult10Tableに代入される
 			resultTable6 = session.createSQLQuery(sql)
@@ -140,7 +140,7 @@ public class LikeManager extends HibernateUtil {
 		// インスタンス化。like_gameのデータ作成
 		LikeGame insert_game_table = new LikeGame();
 		insert_game_table.setTitle(title);
-		// insert_game_table.setSeries(series);
+		insert_game_table.setSeries(series);
 		insert_game_table.setUpDay(upDay);
 		insert_game_table.setUserID(userID);
 		insert_game_table.setUpUser(upUser);

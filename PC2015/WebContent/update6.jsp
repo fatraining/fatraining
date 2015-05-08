@@ -4,9 +4,6 @@
 
 <s:if test="%{delete_id==null}">
 	<h3>新しくデータを登録します</h3>
-	<p class="err">
-		<s:property value="errormsg" />
-	</p>
 	<s:form cssClass="form-horizontal">
 
 		<div class="form-group">
