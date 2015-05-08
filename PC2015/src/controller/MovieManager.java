@@ -7,8 +7,12 @@ import java.util.List;
 import model.Movie;
 import model.MovieGenre;
 
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
+
+@Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 
 public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
@@ -106,5 +110,28 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		}
 
 		session.getTransaction().commit();
+	}
+	public String delete(String delete_id) {
+		String[] strAry = delete_id.split(",");
+
+		if (strAry.length == 0) {
+			return "main7";
+		}
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			try {
+				Movie movie = (Movie) session.load(Movie.class, strAry[i]);
+				session.delete(movie);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+		}
+
+		session.getTransaction().commit();
+		return "main7";
 	}
 }
