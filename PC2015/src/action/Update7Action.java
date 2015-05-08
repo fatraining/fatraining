@@ -1,6 +1,5 @@
 package action;
 
-
 import model.Movie;
 
 import java.util.*;
@@ -12,6 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 import controller.HibernateUtil;
+import controller.MovieManager;
 
 //リターンがmain7だったらmain7.actionに戻る
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
@@ -19,13 +19,13 @@ public class Update7Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	// デリートに必要な変数
-	public String delete_id; //削除するID
+	public String delete_id; // 削除するID
 	// テーブルにインサートするための変数
-	public String title; //タイトル
-	public int genreId; //ジャンル
-	public int exhibition_year; //公開年
+	public String title; // タイトル
+	public int genreId; // ジャンル
+	public int exhibition_year; // 公開年
 	public String comment;
-	public String errormsg; //エラーメッセージ
+	public String errormsg; // エラーメッセージ
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
@@ -41,39 +41,18 @@ public class Update7Action extends AbstractAction {
 		if (this.title.isEmpty() || this.genreId == 0
 				|| this.exhibition_year == 0) {
 			this.errormsg = "全ての項目に入力してください";
-			return "errormsg";
+			return "execute()";
 		}
 		// 全項目入力済みの時
 		else {
-			// TODO
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();//DB接続
-			session.beginTransaction();//トランザクション(?)開始
 
-			// 日付を自動で入力
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+			String registration_userid = (String) this.sessionMap.get("userId");
+			String renewal_userid = (String) this.sessionMap.get("userId");
 
-			// 登録するテーブルとカラムを指定
-			Movie insert_movie_table = new Movie();
-			insert_movie_table.setTitle(this.title);
-			insert_movie_table.setGenreId(this.genreId);
-			insert_movie_table.setExhibition_year(this.exhibition_year);
-			insert_movie_table.setComment(this.comment);
-			insert_movie_table.setRegistration_date(String.valueOf(sdf.format(date))); //日付を入力
-			insert_movie_table.setRenewal_date(String.valueOf(sdf.format(date))); //日付を入力
-			insert_movie_table.setRegistration_userid((String) this.sessionMap.get("userId")); //ユーザーIDを指定
-			insert_movie_table.setRenewal_userid((String) this.sessionMap.get("userId")); //ユーザーIDを指定
+			MovieManager moviemanager = new MovieManager();
 
-			// テーブルにインサートする
-			try {
-				session.save(insert_movie_table);
-				// TODO
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				session.getTransaction().rollback();
-			}
-
-			session.getTransaction().commit();
+			moviemanager.insert(this.title, this.genreId, this.exhibition_year,
+					this.comment, registration_userid, renewal_userid);
 		}
 		return "main7";
 
