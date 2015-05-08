@@ -32,9 +32,9 @@ public class YasaiAddAction extends AbstractAction {
 	public String insert() {
 
 		// 入力チェック
-		// 野菜、料理、調理の欄のいずれかが空だとエラーメッセージを返す
 		if (this.yasai.isEmpty() || this.ryouri.isEmpty()
 				|| this.tyouri.isEmpty()) {
+			// 野菜、料理、調理の欄のいずれかが空だとエラーメッセージを返す
 			this.errormsg = "全ての項目に入力してください";
 			return "errormsg";
 
