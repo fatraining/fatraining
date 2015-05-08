@@ -163,5 +163,4 @@ public class ResultTable6 implements Serializable {
 	public void setDe(String de) {
 		this.de = de;
 	}
-
 }

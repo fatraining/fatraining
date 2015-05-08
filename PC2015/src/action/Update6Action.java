@@ -16,10 +16,6 @@ public class Update6Action extends AbstractAction {
 	public String series; // シリーズ名
 	public String se; // シリーズID
 	public String title; // タイトル
-	public String us; // 登録日
-	public String upDay; // 更新日
-	public String userID; // ユーザー名
-	public String upUser; // ユーザーID
 	public String nonStyle; // 切り札
 	public String del; // 起源
 
@@ -41,7 +37,6 @@ public class Update6Action extends AbstractAction {
 		String upUser = (String) this.sessionMap.get("userId");
 		//インスタンスを生成
 		LikeManager insert = new LikeManager();
-		
 		insert.insert(this.series, this.se, this.title, this.nonStyle ,this.del,
 				userID, upUser);
 		
