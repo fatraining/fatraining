@@ -143,8 +143,8 @@ public class LikeManager extends HibernateUtil {
 		insert_series_table.setUpdateDate(upDate);
 		insert_series_table.setAddUserID(userID);
 		insert_series_table.setUpUserID(upUser);
-//		insert_series_table.setAnother_flg(0);
-//		insert_series_table.setDelete_flg(0);
+		insert_series_table.setAnother_flg(0);
+		insert_series_table.setDelete_flg(0);
 		
 
 		try {

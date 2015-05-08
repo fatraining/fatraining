@@ -29,13 +29,11 @@ public class Main6Action extends AbstractAction {
 	// 検索画面
 	// 初期値の設定（シリーズID）
 	private String getDefaultSeries() {
-		this.series = "1";
 		return "";
 	}
 
 	// //初期値の設定（タイトル）
 	private String getDefaultTitle() {
-		this.title = "Fate/stay night";
 		return "";
 	}
 
