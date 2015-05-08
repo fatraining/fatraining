@@ -1,5 +1,12 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import model.MovieGenre;
+
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
@@ -16,37 +23,47 @@ public class Update7Action extends AbstractAction {
 	// テーブルにインサートするための変数
 	public String title; // タイトル
 	public int genreId; // ジャンル
-	public int exhibition_year; // 公開年
+	public String exhibition_year; // 公開年
 	public String comment;
 	public String errormsg; // エラーメッセージ
+	public ArrayList<MovieGenre> values; // エラーメッセージ
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		this.exhibition_year = 1980;
+		this.exhibition_year = "1980";
+
+		this.listBox();
 
 		return "success";
 	}
 
 	// 追加するメソッド
 	public String insert() {
-
 		// 未入力の項目があるときにエラーを返す
-		if (this.title.isEmpty() || this.genreId == 0
-				|| this.exhibition_year == 0) {
-			this.errormsg = "全ての項目に入力してください";
+		if (this.title.isEmpty()) {
+			this.listBox();
+			this.errormsg = "タイトルは必須入力項目です";
 			return "errormsg";
 		}
-		// 全項目入力済みの時
-		else {
+		if (!isNumber(exhibition_year)) {
+			this.listBox();
+			this.errormsg = "公開年には数字のみ入力できます";
+			return "errormsg";
 
-			String registration_userid = (String) this.sessionMap.get("userId");
-			String renewal_userid = (String) this.sessionMap.get("userId");
-			MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
-
-			moviemanager.insert(this.title, this.genreId, this.exhibition_year,
-					this.comment, registration_userid, renewal_userid);
 		}
+		// 全項目入力済みの時
+
+		String registration_userid = (String) this.sessionMap.get("userId");
+		String renewal_userid = (String) this.sessionMap.get("userId");
+		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		if (exhibition_year.isEmpty()) {
+			exhibition_year = "0";
+		}
+
+		moviemanager.insert(this.title, this.genreId,
+				Integer.valueOf(this.exhibition_year), this.comment,
+				registration_userid, renewal_userid);
 		return "main7";
 
 	}
@@ -64,4 +81,15 @@ public class Update7Action extends AbstractAction {
 		return "main7";
 	}
 
+	private void listBox() {
+		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		values = moviemanager.hyouji();
+	}
+
+	private boolean isNumber(String val) {
+		String regex = "\\A[-]?[0-9]+\\z";
+		Pattern p = Pattern.compile(regex);
+		Matcher m1 = p.matcher(val);
+		return m1.find();
+	}
 }
