@@ -83,7 +83,7 @@ public class Update7Action extends AbstractAction {
 
 	private void listBox() {
 		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
-		values = moviemanager.hyouji();
+		values = moviemanager.expression();
 	}
 
 	private boolean isNumber(String val) {
