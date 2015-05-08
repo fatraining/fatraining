@@ -1,7 +1,5 @@
 package action;
 
-import model.IDofEat; //モデルのインポート
-
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
@@ -32,12 +30,6 @@ public class Update10Action extends AbstractAction {
 		// 登録、更新UAER表示
 		String entry_userid = (String) this.sessionMap.get("userId");
 		String renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
-
-		// インスタンス化、id_tableにレコードを挿入する
-		IDofEat insert_id_table = new IDofEat();
-
-		insert_id_table.setEntry_userid(entry_userid);
-		insert_id_table.setRenew_userid(renew_userid);
 
 		// All10Managerのインスタンス生成
 		All10Manager insert = new All10Manager();
