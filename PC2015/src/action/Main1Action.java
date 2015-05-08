@@ -76,7 +76,7 @@ public class Main1Action extends AbstractAction {
 		this.delete = "true";
 		return "success";
 	}
-	//updateメソッド
+	//　updateメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 
@@ -101,6 +101,7 @@ public class Main1Action extends AbstractAction {
 
 		return "success";
 	}
+	//　検索結果の表示
 	private ArrayList<Result1Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result1Table> tempTable = new ArrayList<Result1Table>();
 		Object[] obj;
