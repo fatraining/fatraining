@@ -13,10 +13,13 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-@Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
+// HibernateUtilクラスを継承したクラス
 public class LiofTaManager extends HibernateUtil {
 
+	// resultListメソッド
 	public List<?> resultList() {
+
+		// SQLの検索結果用の変数
 		List<?> resultTable = null;
 
 		// データベースに接続
@@ -38,16 +41,22 @@ public class LiofTaManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		// トランザクションの終了
 		session.getTransaction().commit();
 
 		return resultTable;
 	}
 
+	// resultListメソッド
 	public List<?> resultList(String name, String food, String drink) {
+
+		// SQLの検索結果用の変数
 		List<?> resultTable = null;
 
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		// トランザクションを開始
 		session.beginTransaction();
 
 		try {
@@ -69,6 +78,8 @@ public class LiofTaManager extends HibernateUtil {
 					+ food + "' AND d.drink LIKE '" + drink + "')";
 			// select文とwhere文をsqlに代入
 			String sql = select + " " + where1 + " " + where2;
+			
+			// SQLが実行され、結果がresultTableに代入される
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("CoofTa", LiofTa.class)
 					.addEntity("LiofTa", CoofTa.class).list();
@@ -76,17 +87,23 @@ public class LiofTaManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		// トランザクションの終了
 		session.getTransaction().commit();
 		return resultTable;
 	}
 
 	// table_colorの検索用メソッド
 	public CoofTa cooftaList() {
+
+		// SQLの検索結果用の変数
 		List<?> resultTable = null;
 
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		// トランザクションを開始
 		session.beginTransaction();
+		
 		try {
 			// table_colorを全件検索して昇順化している
 			String sql = "SELECT * FROM table_color i ORDER BY id";
@@ -100,23 +117,32 @@ public class LiofTaManager extends HibernateUtil {
 	}
 
 	// insertメソッド（挿入）
-	public String insert(String name, String food, String drink, String color,
+	public void insert(String name, String food, String drink, String color,
 			String colorNm, String userid, String new_userid) {
 
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		// トランザクションを開始
 		session.beginTransaction();
 
+		// 日時を取得
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 
+		// インスタンス化
 		CoofTa insert_color_table = new CoofTa();
+
+		// データを挿入
 		insert_color_table.setColorNm(colorNm);
 		insert_color_table.setDay(String.valueOf(sdf.format(date)));
 		insert_color_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_color_table.setUserid(userid);
 		insert_color_table.setNew_userid(new_userid);
+//		insert_color_table.setTime_stamp(0);
+//		insert_color_table.setDelete(0);
 
+		// color_tableテーブルに追加
 		try {
 			session.save(insert_color_table);
 
@@ -125,9 +151,11 @@ public class LiofTaManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 
+		// color_tableテーブルのデータ検索
 		LiofTaManager lioftamanager = new LiofTaManager();
 		insert_color_table = lioftamanager.cooftaList();
 
+		// like_tableデータの作成
 		LiofTa insert_like_table = new LiofTa();
 		insert_like_table.setColor(insert_color_table.getId());
 		insert_like_table.setName(name);
@@ -137,7 +165,10 @@ public class LiofTaManager extends HibernateUtil {
 		insert_like_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_like_table.setUserid(userid);
 		insert_like_table.setNew_userid(new_userid);
+//		insert_like_table.setTime_stamp(0);
+//		insert_like_table.setDelete(0);
 
+		// like_tableテーブルに追加
 		try {
 			session.save(insert_like_table);
 
@@ -145,38 +176,44 @@ public class LiofTaManager extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+		
+		// トランザクションの終了
 		session.getTransaction().commit();
-		return "main9";
 	}
 
 	// deleteメソッド
-	public String delete(String delete_id) {
+	public void delete(String delete_id) {
 
 		if (delete_id.isEmpty()) {
-			return "main9";
 		}
 		// 分割
 		String[] strAry = delete_id.split(",");
 
+		// データベースに接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		// トランザクションを開始
+		session.beginTransaction();
+
+		// for文で処理を繰り返す
 		for (int i = 0; i < strAry.length; i++) {
 
-			// データベースに接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-
-			session.beginTransaction();
 			try {
+				// load = 主キーの検索
 				LiofTa liofta = (LiofTa) session.load(LiofTa.class, strAry[i]);
 				CoofTa coofta = (CoofTa) session.load(CoofTa.class,
 						liofta.getColor());
+
+				// 削除
 				session.delete(coofta);
 				session.delete(liofta);
+				
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
-			session.getTransaction().commit();
 		}
-		return "main9";
+		// トランザクションの終了
+		session.getTransaction().commit();
 	}
 }
