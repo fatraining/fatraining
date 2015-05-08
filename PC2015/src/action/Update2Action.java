@@ -159,7 +159,7 @@ public class Update2Action extends AbstractAction {
 		session.beginTransaction();
 		try {
 			Sweets sweets = (Sweets) session.load(Sweets.class, strAry[i]);
-			Genre genre = (Genre) session.load(Genre.class, strAry[i]);
+			Genre genre = (Genre) session.load(Genre.class, sweets.getGenre_id());
 			session.delete(sweets);
 			session.delete(genre);
 		}catch (HibernateException e) {
