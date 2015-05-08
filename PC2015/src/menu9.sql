@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E07 日 06:27
+-- Generation Time: 2015 年 5 朁E08 日 03:33
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -34,20 +34,19 @@ CREATE TABLE IF NOT EXISTS `table_color` (
   `userid` char(50) DEFAULT NULL,
   `new_userid` char(50) DEFAULT NULL,
   `time_stamp` int(50) DEFAULT NULL,
-  `delete` int(50) DEFAULT NULL,
-  `taste` varchar(255) DEFAULT NULL
+  `delete` int(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `table_color`
 --
 
-INSERT INTO `table_color` (`id`, `colorNm`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`, `taste`) VALUES
-(1, '赤', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '青', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, '黄色', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'オレンジ', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, '緑', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `table_color` (`id`, `colorNm`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
+(1, '赤', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '青', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '黄色', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'オレンジ', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '緑', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
