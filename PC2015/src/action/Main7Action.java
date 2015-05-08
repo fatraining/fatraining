@@ -101,7 +101,12 @@ public class Main7Action extends AbstractAction {
 				temp.setGenre(movie_genre.getGenre());
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
-				temp.setExhibition_year(movie.getExhibition_year());
+				if (movie.getExhibition_year() == 0) {
+					temp.setExhibition_year("不明");
+				} else {
+					temp.setExhibition_year(String.valueOf(movie
+							.getExhibition_year()));
+				}
 				temp.setComment(movie.getComment());
 				tempTable.add(temp);
 			}
