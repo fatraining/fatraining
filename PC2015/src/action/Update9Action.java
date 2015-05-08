@@ -16,9 +16,13 @@ public class Update9Action extends AbstractAction {
 	public String colorNm;
 	public String delete_id;
 
+
 	// executeメソッド
 	public String execute() throws Exception {
+		
+		// Main9Actionのdelete_idを呼び出し
 		this.delete_id = (String) this.sessionMap.get("delete_id");
+		
 		return "success";
 	}
 
