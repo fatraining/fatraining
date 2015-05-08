@@ -107,7 +107,6 @@ public class YasaiManager extends HibernateUtil {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		String date_entry = String.valueOf(sdf.format(date));
-		String date_up = String.valueOf(sdf.format(date));
 
 		// 料理のデータ作成
 		Ryouri insert_ryouri_table = new Ryouri();
@@ -115,8 +114,9 @@ public class YasaiManager extends HibernateUtil {
 		insert_ryouri_table.setRyouri(ryouri);
 		insert_ryouri_table.setTyouri(tyouri);
 		insert_ryouri_table.setDate_Entry(date_entry);
-		insert_ryouri_table.setDate_Up(date_up);
 		insert_ryouri_table.setUserId(userId);
+		insert_ryouri_table.setControl(0);
+		insert_ryouri_table.setDeleteFlg(0);
 
 		// 料理テーブルに追加
 		try {
@@ -132,13 +132,15 @@ public class YasaiManager extends HibernateUtil {
 
 		// 野菜データの作成
 		Yasai insert_yasai_table = new Yasai();
+
 		insert_yasai_table.setYasai(yasai);
 
 		// 料理テーブルのid取得し、野菜テーブルの調理idに代入
 		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
 		insert_yasai_table.setDate_Entry(date_entry);
-		insert_yasai_table.setDate_Up(date_up);
 		insert_yasai_table.setUserId(userId);
+		insert_yasai_table.setControl(0);
+		insert_yasai_table.setDeleteFlg(0);
 
 		// 野菜テーブルに追加
 		try {
@@ -158,7 +160,7 @@ public class YasaiManager extends HibernateUtil {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		// 複数選択の削除のために文字列の分割
+		// 複数選択の削除のために文字列(delete_id)の分割
 		String[] strAry = delete_id.split(",");
 
 		for (int i = 0; i < strAry.length; i++) {
