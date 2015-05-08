@@ -14,26 +14,26 @@
 		<label class="col-sm-1 control-label">年:<br />
 		</label>
 		<div class="col-md-2">
-			<s:select name="eat_year" list="#{'','2015':'2015', '2014':'2014','2013':'2013','2012':'2012','2011':'2011'}"
+			<s:select name="eat_year" list="{'',2015,2014,2013,2012,2011}"
 				 cssClass="form-control" />
 		</div>
 		<label class="col-sm-1 control-label">月:<br />
 		</label>
 		<div class="col-md-2">
-			<s:select name="eat_month" list="#{'','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','11':'11','12':'12'}"
+			<s:select name="eat_month" list="{'',1,2,3,4,5,6,7,8,9,10,11,12}"
 				 cssClass="form-control" />
 		</div>
 		<label class="col-sm-1 control-label">日:<br />
 		</label>
 		<div class="col-md-2">
-			<s:select name="eat_day" list="#{'','1':'1', '2':'2','3':'3','4':'4','5':'5','6':'6', '7':'7','8':'8','9':'9','10':'10','11':'11','12':'12','13':'13','14':'14','15':'15','16':'16','17':'17','18':'18','19':'19','20':'20','21':'21','22':'22','23':'23','24':'24','25':'25','26':'26','27':'27','28':'28','29':'29','30':'30','31':'31'}"
+			<s:select name="eat_day" list="{'',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31}"
 				cssClass="form-control" />
 		</div>
 
 		<label class="col-sm-1 control-label">AM/PM:<br />
 		</label>
 		<div class="col-md-2">
-			<s:select name="eat_hour" list="#{'','AM':'AM','PM':'PM'}"
+			<s:select name="eat_hour" list="{'','AM','PM'}"
 				 cssClass="form-control" />
 		</div>
 	</div>
