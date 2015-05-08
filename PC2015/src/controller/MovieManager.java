@@ -13,7 +13,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
-
 public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 	// 検索項目未入力の場合のメソッド
@@ -23,7 +22,7 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession(); // DB接続
 		session.beginTransaction(); // トランザクション(?)開始
 
-		// インサートするためのsql文
+		// 表示させるためのためのsql文
 		String select = "SELECT * FROM movie m,movie_genre g";
 		String where1 = "WHERE m.genreId=g.id";
 		String sql = select + " " + where1;
@@ -50,7 +49,7 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		session.beginTransaction(); // トランザクション(?)開始
 
 		try {
-			// 　もしgenreIdが空だったらワイルドカード(%)を入れる
+			// もしgenreIdが空だったらワイルドカード(%)を入れる
 			if (genreId.isEmpty()) {
 				genreId = "%";
 			}
@@ -59,7 +58,7 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 				exhibition_year = "%";
 			}
 
-			// インサートするためのsql文
+			// 表示させるためのsql文
 			String select = "SELECT * FROM movie m,movie_genre g ";
 			String where1 = "WHERE m.genreId=g.id ";
 			String where2 = "AND (m.genreId LIKE '" + genreId
@@ -78,7 +77,7 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		return resultTableMovie;
 	}
 
-	//Update7Actionから呼ばれるinsertメソッド
+	// Update7Actionから呼ばれるinsertメソッド
 	public void insert(String title, int genreId, int exhibition_year,
 			String comment, String registration_userid, String renewal_userid) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();// DB接続
@@ -90,15 +89,17 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 		// 登録するテーブルとカラムを指定
 		Movie insert_movie_table = new Movie();
-		insert_movie_table.setTitle(title);
-		insert_movie_table.setGenreId(genreId);
-		insert_movie_table.setExhibition_year(exhibition_year);
-		insert_movie_table.setComment(comment);
+		insert_movie_table.setTitle(title); // タイトル
+		insert_movie_table.setGenreId(genreId); //ジャンルID
+		insert_movie_table.setExhibition_year(exhibition_year); // 公開年
+		insert_movie_table.setComment(comment); // コメント
 		insert_movie_table
 				.setRegistration_date(String.valueOf(sdf.format(date))); // 日付を入力
 		insert_movie_table.setRenewal_date(String.valueOf(sdf.format(date))); // 日付を入力
 		insert_movie_table.setRegistration_userid(registration_userid); // ユーザーIDを指定
 		insert_movie_table.setRenewal_userid(renewal_userid); // ユーザーIDを指定
+		insert_movie_table.setControl(0); // ユーザーIDを指定
+		insert_movie_table.setDeleteflg(0); // ユーザーIDを指定
 
 		// テーブルにインサートする
 		try {
@@ -111,17 +112,17 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		session.getTransaction().commit();
 	}
 
-	//Update7Actionから呼ばれるdeleteメソッド
+	// Update7Actionから呼ばれるdeleteメソッド
 	public String delete(String delete_id) {
-		String[] deleteId = delete_id.split(","); //取得したdelete_idの分割
+		String[] deleteId = delete_id.split(","); // 取得したdelete_idの分割
 
-		if (deleteId.length == 0) {
+		if (deleteId.length == 0) { // 取得、分割したデリートIDの長さが0の時
 			return "main7";
 		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		for (int i = 0; i < deleteId.length; i++) {
+		for (int i = 0; i < deleteId.length; i++) { // 　取得、分割したデリートIDの長さが0より大きい時
 
 			try {
 				Movie movie = (Movie) session.load(Movie.class, deleteId[i]);
