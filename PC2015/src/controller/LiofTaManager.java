@@ -139,8 +139,8 @@ public class LiofTaManager extends HibernateUtil {
 		insert_color_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_color_table.setUserid(userid);
 		insert_color_table.setNew_userid(new_userid);
-//		insert_color_table.setTime_stamp(0);
-//		insert_color_table.setDelete(0);
+		insert_color_table.setTime_stamp(0);
+		insert_color_table.setDeleteFlg(0);
 
 		// color_tableテーブルに追加
 		try {
@@ -165,8 +165,8 @@ public class LiofTaManager extends HibernateUtil {
 		insert_like_table.setNew_day(String.valueOf(sdf.format(date)));
 		insert_like_table.setUserid(userid);
 		insert_like_table.setNew_userid(new_userid);
-//		insert_like_table.setTime_stamp(0);
-//		insert_like_table.setDelete(0);
+		insert_like_table.setTime_stamp(0);
+		insert_like_table.setDeleteFlg(0);
 
 		// like_tableテーブルに追加
 		try {
