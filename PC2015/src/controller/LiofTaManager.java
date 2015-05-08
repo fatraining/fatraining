@@ -1,10 +1,13 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import model.LiofTa;
 import model.CoofTa;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 public class LiofTaManager extends HibernateUtil {
@@ -77,5 +80,81 @@ public class LiofTaManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		return (CoofTa) resultTable.get(resultTable.size() - 1);
+	}
+
+	public String insert(String name, String food, String drink, String color,
+			String colorNm, String userid, String new_userid) {
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+
+		CoofTa insert_color_table = new CoofTa();
+		insert_color_table.setColorNm(colorNm);
+		insert_color_table.setDay(String.valueOf(sdf.format(date)));
+		insert_color_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_color_table.setUserid(userid);
+		insert_color_table.setNew_userid(new_userid);
+
+		try {
+			session.save(insert_color_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		LiofTaManager lioftamanager = new LiofTaManager();
+		insert_color_table = lioftamanager.cooftaList();
+
+		LiofTa insert_like_table = new LiofTa();
+		insert_like_table.setColor(insert_color_table.getId());
+		insert_like_table.setName(name);
+		insert_like_table.setFood(food);
+		insert_like_table.setDrink(drink);
+		insert_like_table.setDay(String.valueOf(sdf.format(date)));
+		insert_like_table.setNew_day(String.valueOf(sdf.format(date)));
+		insert_like_table.setUserid(userid);
+		insert_like_table.setNew_userid(new_userid);
+
+		try {
+			session.save(insert_like_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		session.getTransaction().commit();
+		return "main9";
+	}
+
+	public String delete(String delete_id) {
+
+		if (delete_id.isEmpty()) {
+			return "main9";
+		}
+		String[] strAry = delete_id.split(",");
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+
+			session.beginTransaction();
+			try {
+				LiofTa liofta = (LiofTa) session.load(LiofTa.class, strAry[i]);
+				CoofTa coofta = (CoofTa) session.load(CoofTa.class,
+						liofta.getColor());
+				session.delete(coofta);
+				session.delete(liofta);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			session.getTransaction().commit();
+		}
+		return "main9";
 	}
 }
