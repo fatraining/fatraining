@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 10:19
+-- Generation Time: 2015 年 5 朁E08 日 11:09
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -33,17 +33,18 @@ CREATE TABLE IF NOT EXISTS `table_hobby` (
   `new_day` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `new_userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `time_stamp` int(11) DEFAULT NULL,
-  `delete` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `dbflg` int(11) DEFAULT NULL,
+  `deleteflg` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- テーブルのデータのダンプ `table_hobby`
 --
 
-INSERT INTO `table_hobby` (`id`, `hobby`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
-(1, '書道', '12/04', '01/01', 'aaa', 'bbb', 0, 0),
-(2, 'サッカー', '07/08', '10/27', 'kkk', 'ooo', 0, 0);
+INSERT INTO `table_hobby` (`id`, `hobby`, `day`, `new_day`, `userid`, `new_userid`, `dbflg`, `deleteflg`) VALUES
+(1, '書道', '2015/05/08 18:7:44', '2015/05/08 18:7:44', 'Struts2', 'Struts2', 0, 0),
+(2, 'サッカー', '2015/05/08 18:8:6', '2015/05/08 18:8:6', 'Struts2', 'Struts2', 0, 0),
+(3, 'サッカー', '2015/05/08 18:8:26', '2015/05/08 18:8:26', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -62,17 +63,18 @@ CREATE TABLE IF NOT EXISTS `table_profile` (
   `new_day` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `new_userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `time_stamp` int(11) DEFAULT NULL,
-  `delete` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `dbflg` int(11) DEFAULT NULL,
+  `deleteflg` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- テーブルのデータのダンプ `table_profile`
 --
 
-INSERT INTO `table_profile` (`id`, `name`, `personality`, `home`, `birthday`, `hobby_id`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
-(1, '真斗', '大人しい', '京都', 12, 1, '03/04', '09/24', 'uuu', 'fff', 0, 0),
-(2, '音也', '元気', '東京', 4, 2, '11/15', '03/07', 'ddd', 'ttt', 0, 0);
+INSERT INTO `table_profile` (`id`, `name`, `personality`, `home`, `birthday`, `hobby_id`, `day`, `new_day`, `userid`, `new_userid`, `dbflg`, `deleteflg`) VALUES
+(1, '真斗', '大人しい', '京都', 12, 1, '2015/05/08 18:7:44', '2015/05/08 18:7:44', 'Struts2', 'Struts2', 0, 0),
+(2, '音也', '元気', '東京', 4, 2, '2015/05/08 18:8:6', '2015/05/08 18:8:6', 'Struts2', 'Struts2', 0, 0),
+(3, '翔', '男気', '名古屋', 6, 3, '2015/05/08 18:8:26', '2015/05/08 18:8:26', 'Struts2', 'Struts2', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -98,12 +100,12 @@ ALTER TABLE `table_profile`
 -- AUTO_INCREMENT for table `table_hobby`
 --
 ALTER TABLE `table_hobby`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `table_profile`
 --
 ALTER TABLE `table_profile`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
