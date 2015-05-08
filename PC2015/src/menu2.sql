@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 朁E23 日 08:06
+-- Generation Time: 2015 年 5 朁E08 日 17:08
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -34,18 +34,17 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `entry_userId` char(50) DEFAULT NULL,
   `record_userId` char(50) DEFAULT NULL,
   `exclusive_FLG` int(50) DEFAULT NULL,
-  `delete_FLG` int(50) DEFAULT NULL,
-  `genre` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `delete_FLG` int(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `genre`
 --
 
-INSERT INTO `genre` (`id`, `genreNm`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`, `genre`) VALUES
-(1, '焼き菓子', NULL, NULL, NULL, NULL, 0, 0, NULL),
-(2, '冷菓', NULL, NULL, NULL, NULL, 0, 0, NULL),
-(3, 'チョコレート菓子', NULL, NULL, NULL, NULL, 0, 0, NULL);
+INSERT INTO `genre` (`id`, `genreNm`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`) VALUES
+(1, '焼き菓子', '2015/05/08 15:52:42', '2015/05/08 15:52:42', 'testUser', 'testUser', 0, 0),
+(2, '冷菓', '2015/05/08 15:52:42', '2015/05/08 15:52:42', 'testUser', 'testUser', 0, 0),
+(3, 'チョコレート菓子', '2015/05/08 15:52:42', '2015/05/08 15:52:42', 'testUser', 'testUser', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -62,26 +61,16 @@ CREATE TABLE IF NOT EXISTS `sweets` (
   `entry_userId` char(50) DEFAULT NULL,
   `record_userId` char(50) DEFAULT NULL,
   `exclusive_FLG` int(50) DEFAULT NULL,
-  `delete_FLG` int(50) DEFAULT NULL,
-  `genre` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+  `delete_FLG` int(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `sweets`
 --
 
-INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`, `genre`) VALUES
-(30, 'クッキー', 1, '2015/05/07 19:11:49', '2015/05/07 19:11:49', NULL, NULL, 0, 0, NULL),
-(31, 'トリュフ', 3, '2015/05/07 19:12:26', '2015/05/07 19:12:26', NULL, NULL, 0, 0, NULL),
-(32, 'プリン', 2, '2015/05/07 19:12:43', '2015/05/07 19:12:43', NULL, NULL, 0, 0, NULL),
-(33, 'スコーン', 1, '2015/05/07 19:12:57', '2015/05/07 19:12:57', NULL, NULL, 0, 0, NULL),
-(34, 'ババロア', 2, '2015/05/07 19:13:15', '2015/05/07 19:13:15', NULL, NULL, 0, 0, NULL),
-(35, '羊羹', 2, '2015/05/07 19:13:25', '2015/05/07 19:13:25', NULL, NULL, 0, 0, NULL),
-(36, 'バウムクーヘン', 1, '2015/05/07 19:13:36', '2015/05/07 19:13:36', NULL, NULL, 0, 0, NULL),
-(37, 'ゼリー', 2, '2015/05/07 19:13:45', '2015/05/07 19:13:45', NULL, NULL, 0, 0, NULL),
-(38, 'ガトーショコラ', 3, '2015/05/07 19:13:56', '2015/05/07 19:13:56', NULL, NULL, 0, 0, NULL),
-(39, '生チョコ', 3, '2015/05/07 19:14:8', '2015/05/07 19:14:8', NULL, NULL, 0, 0, NULL),
-(40, 'マドレーヌ', 1, '2015/05/07 19:16:2', '2015/05/07 19:16:2', NULL, NULL, 0, 0, NULL);
+INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`) VALUES
+(15, 'クッキー', 1, '2015/05/08 16:41:54', '2015/05/08 16:41:54', 'hokari', 'hokari', 0, 0),
+(16, 'ガレット', 1, '2015/05/08 16:42:1', '2015/05/08 16:42:1', 'hokari', 'hokari', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -107,12 +96,12 @@ ALTER TABLE `sweets`
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sweets`
 --
 ALTER TABLE `sweets`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

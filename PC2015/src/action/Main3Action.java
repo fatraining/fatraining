@@ -100,6 +100,9 @@ public class Main3Action extends AbstractAction {
 		//削除ボタンの表示
 		this.delete = "true";
 		
+		// ログインIDの表示
+		this.user_name = (String)this.sessionMap.get("userId");
+		
 		return "success";
 	}
 	
