@@ -74,7 +74,7 @@ public class ProfileManager extends HibernateUtil {
 		session.beginTransaction();
 		//　table_hobbyのリストをすべて表示
 		try {
-			String sql = "SELECT * FROM table_hobby d";
+			String sql = "SELECT * FROM table_hobby d ORDER BY id";
 			resultTable = session.createSQLQuery(sql)
 					.addEntity("My_hobby", My_hobby.class).list();
 		} catch (Exception e) {
