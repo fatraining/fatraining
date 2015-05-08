@@ -75,12 +75,14 @@ public class YasaiSearchAction extends AbstractAction {
 		// list<?>型のresultTableを宣言
 		List<?> resultTable;
 
-		// 入力されなかった場合、yasaimanagerのresultList()を呼び出す
+		
 		if (this.yasai.isEmpty()) {
+			// 入力されなかった場合、yasaimanagerのresultList()を呼び出す
 			resultTable = yasaimanager.resultList();
 
-			// 入力された場合、yasaimanagerのresultList(yasai)を呼び出す
+			
 		} else {
+			// 入力された場合、yasaimanagerのresultList(yasai)を呼び出す
 			resultTable = yasaimanager.resultList(yasai);
 
 		}
@@ -117,6 +119,10 @@ public class YasaiSearchAction extends AbstractAction {
 		// 削除チェックボックスの値を取得しセッション（delete_id）に設定
 		this.sessionMap.put("delete_id", this.delete_id);
 		
+		if (this.yasai.isEmpty() || this.ryouri.isEmpty()
+				|| this.tyouri.isEmpty()) {
+			this.errormsg = "全ての項目に入力してください";
+			return "errormsg";
 		
 
 		try {
