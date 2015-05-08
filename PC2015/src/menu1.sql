@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 09:50
+-- Generation Time: 2015 年 5 朁E08 日 10:19
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -19,68 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `task_master`
 --
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `movie_genre`
---
-
-CREATE TABLE IF NOT EXISTS `movie_genre` (
-`id` int(11) NOT NULL,
-  `genre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `ryouri`
---
-
-CREATE TABLE IF NOT EXISTS `ryouri` (
-`id` int(11) NOT NULL,
-  `control` int(11) DEFAULT NULL,
-  `date_up` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `userId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `userId_up` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date_entry` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deleteflg` int(11) DEFAULT NULL,
-  `tyouri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ryouri` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `story`
---
-
-CREATE TABLE IF NOT EXISTS `story` (
-`id` int(11) NOT NULL,
-  `deleteFLG` int(11) DEFAULT NULL,
-  `signupUSERID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `signup` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `genre_id` int(11) DEFAULT NULL,
-  `updateDate` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `updateUSERID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `exclusiveFLG` int(11) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `table_color`
---
-
-CREATE TABLE IF NOT EXISTS `table_color` (
-`id` int(11) NOT NULL,
-  `day` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `new_userid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `new_day` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `userid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `colorNm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -105,8 +43,7 @@ CREATE TABLE IF NOT EXISTS `table_hobby` (
 
 INSERT INTO `table_hobby` (`id`, `hobby`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
 (1, '書道', '12/04', '01/01', 'aaa', 'bbb', 0, 0),
-(2, 'サッカー', '07/08', '10/27', 'kkk', 'ooo', 0, 0),
-(5, '', '2015/05/08 16:49:11', '2015/05/08 16:49:11', 'Struts2', 'Struts2', NULL, NULL);
+(2, 'サッカー', '07/08', '10/27', 'kkk', 'ooo', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -135,71 +72,11 @@ CREATE TABLE IF NOT EXISTS `table_profile` (
 
 INSERT INTO `table_profile` (`id`, `name`, `personality`, `home`, `birthday`, `hobby_id`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `delete`) VALUES
 (1, '真斗', '大人しい', '京都', 12, 1, '03/04', '09/24', 'uuu', 'fff', 0, 0),
-(2, '音也', '元気', '東京', 4, 2, '11/15', '03/07', 'ddd', 'ttt', 0, 0),
-(5, 'ｆｆ', '', '', 1, 5, '2015/05/08 16:49:11', '2015/05/08 16:49:11', 'Struts2', 'Struts2', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `tb_genre`
---
-
-CREATE TABLE IF NOT EXISTS `tb_genre` (
-`id` int(11) NOT NULL,
-  `deleteFLG` int(11) DEFAULT NULL,
-  `signupUSERID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `signup` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `updateDate` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `updateUSERID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `exclusiveFLG` int(11) DEFAULT NULL,
-  `genre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `user_character`
---
-
-CREATE TABLE IF NOT EXISTS `user_character` (
-`id` int(11) NOT NULL,
-  `day` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `newday` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `newuserid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `flg` int(11) DEFAULT NULL,
-  `userid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deleteFlg` int(11) DEFAULT NULL,
-  `personality` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `interest` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+(2, '音也', '元気', '東京', 4, 2, '11/15', '03/07', 'ddd', 'ttt', 0, 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `movie_genre`
---
-ALTER TABLE `movie_genre`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ryouri`
---
-ALTER TABLE `ryouri`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `story`
---
-ALTER TABLE `story`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `table_color`
---
-ALTER TABLE `table_color`
- ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_hobby`
@@ -214,41 +91,9 @@ ALTER TABLE `table_profile`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_genre`
---
-ALTER TABLE `tb_genre`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_character`
---
-ALTER TABLE `user_character`
- ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `movie_genre`
---
-ALTER TABLE `movie_genre`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `ryouri`
---
-ALTER TABLE `ryouri`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `story`
---
-ALTER TABLE `story`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `table_color`
---
-ALTER TABLE `table_color`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `table_hobby`
 --
@@ -259,16 +104,6 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 ALTER TABLE `table_profile`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `tb_genre`
---
-ALTER TABLE `tb_genre`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user_character`
---
-ALTER TABLE `user_character`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
