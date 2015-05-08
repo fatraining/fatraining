@@ -1,10 +1,13 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import model.Movie;
 import model.MovieGenre;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 public class MovieManager extends HibernateUtil { // HibernateUtilを継承
@@ -23,9 +26,10 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 		try {
 			resultTableMovie = session.createSQLQuery(sql) // Queryインターフェイスのインスタンスを取得(?)
-					.addEntity("Movie", Movie.class) // ネイティブ SQLクエリからエンティティオブジェクトを取得する
+					.addEntity("Movie", Movie.class) // ネイティブ
+														// SQLクエリからエンティティオブジェクトを取得する
 					.addEntity("MovieGenre", MovieGenre.class).list(); // クエリの実行(?)
-		 // 例外がeに代入される
+			// 例外がeに代入される
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -40,32 +44,67 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();// DB接続
 		session.beginTransaction(); // トランザクション(?)開始
-		
+
 		try {
-			//　もしgenreIdが空だったらワイルドカード(%)を入れる
+			// 　もしgenreIdが空だったらワイルドカード(%)を入れる
 			if (genreId.isEmpty()) {
 				genreId = "%";
 			}
-			//　もしexhibition_yearが空だったらワイルドカード(%)を入れる
+			// 　もしexhibition_yearが空だったらワイルドカード(%)を入れる
 			if (exhibition_year.isEmpty()) {
 				exhibition_year = "%";
 			}
-			
+
 			// インサートするためのsql文
 			String select = "SELECT * FROM movie m,movie_genre g ";
 			String where1 = "WHERE m.genreId=g.id ";
 			String where2 = "AND (m.genreId LIKE '" + genreId
 					+ "' AND m.exhibition_year LIKE '" + exhibition_year + "')";
-			String sql = select + where1 +  where2;
+			String sql = select + where1 + where2;
 			resultTableMovie = session.createSQLQuery(sql) // Queryインターフェイスのインスタンスを取得(?)
-					.addEntity("Movie", Movie.class)// ネイティブ SQL。クエリからエンティティオブジェクトを取得する
+					.addEntity("Movie", Movie.class)// ネイティブ
+													// SQL。クエリからエンティティオブジェクトを取得する
 					.addEntity("MovieGenre", MovieGenre.class).list(); // クエリの実行(?)
-		 // 例外がeに代入される
+			// 例外がeに代入される
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		session.getTransaction().commit(); // トランザクション(?)終了
 		return resultTableMovie;
+	}
+
+	public void insert(String title, int genreId, int exhibition_year,
+			String comment, String registration_userid, String renewal_userid) {
+		// TODO
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();// DB接続
+		session.beginTransaction();// トランザクション(?)開始
+
+		// 日付を自動で入力
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+
+		// 登録するテーブルとカラムを指定
+		Movie insert_movie_table = new Movie();
+		insert_movie_table.setTitle(title);
+		insert_movie_table.setGenreId(genreId);
+		insert_movie_table.setExhibition_year(exhibition_year);
+		insert_movie_table.setComment(comment);
+		insert_movie_table
+				.setRegistration_date(String.valueOf(sdf.format(date))); // 日付を入力
+		insert_movie_table.setRenewal_date(String.valueOf(sdf.format(date))); // 日付を入力
+		insert_movie_table.setRegistration_userid(registration_userid); // ユーザーIDを指定
+		insert_movie_table.setRenewal_userid(renewal_userid); // ユーザーIDを指定
+
+		// テーブルにインサートする
+		try {
+			session.save(insert_movie_table);
+			// TODO
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		session.getTransaction().commit();
 	}
 }
