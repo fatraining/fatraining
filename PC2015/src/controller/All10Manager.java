@@ -26,15 +26,14 @@ public class All10Manager extends HibernateUtil {
 		String where1 = " WHERE d.food_id = i.id";
 		// select文とwhere文を合わせたものをsqlに代入
 		String sql = select + " " + where1;
-		// SQL文の実行
+		
 		List<?> result10Table = null; // SQLの検索結果用の変数
 
 		try {
-			// （実行結果をresult10Tableに代入）
 			result10Table = session.createSQLQuery(sql)
 			// SQLQuery.addEntityメソッドで戻り値DetailEatの型設定
 					.addEntity("eat_detail", DetailEat.class)
-					// SQLQuery.addEntityメソッドで戻り値IDofEatの型設定、SQLQuery.listメソッドでクエリの実行
+					// SQLQuery.addEntityメソッドで戻り値IDofEatの型設定、SQLQuery.listメソッドでクエリの実行（結果をresult10Tableに代入）
 					.addEntity("eat_id", IDofEat.class).list();
 
 		} catch (Exception e) {
@@ -102,7 +101,7 @@ public class All10Manager extends HibernateUtil {
 		// トランザクションの終了
 		session.getTransaction().commit();
 
-		return result10Table; // テーブルを表示させる
+		return result10Table;
 	}
 
 	// eat_idテーブル検索用のメソッド
