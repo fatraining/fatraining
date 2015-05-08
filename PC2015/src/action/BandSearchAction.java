@@ -63,14 +63,12 @@ public class BandSearchAction extends AbstractAction {
 				&& this.part.isEmpty()) {
 
 			bandResultTable = bandAllManager.bandSearchAll();
-			// this.outputTable = bandAllManager.bandSearchAll();
 
 		} else {
 
 			bandResultTable = bandAllManager.bandSearchAll(this.band_name,
 					this.name, this.part);
-			// this.outputTable =
-			// bandAllManager.bandSearchAll(this.band_name,this.name,this.part);
+
 		}
 
 		// bandResultTableを引数にbandTableTransメソッドを呼び出し、outputTableに代入
@@ -83,11 +81,14 @@ public class BandSearchAction extends AbstractAction {
 
 	// updateメソッド。追加で使用
 	public String update() {
+
 		// sessionMapのdelete_idの値をnullにする
 		this.sessionMap.put("delete_id", null);
+
 		try {
 			// bandAdd.actionページに飛ぶ
 			this.response.sendRedirect("/PC2015/bandAdd.action");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -97,12 +98,14 @@ public class BandSearchAction extends AbstractAction {
 
 	// deleteメソッド。行の削除に使用
 	public String delete() {
+
 		// sessionMapのdelete_idの値にdelete_idの値を代入
 		this.sessionMap.put("delete_id", this.delete_id);
 
 		try {
 			// bandAdd.actionページに飛ぶ
 			this.response.sendRedirect("/PC2015/bandAdd.action");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

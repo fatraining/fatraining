@@ -7,12 +7,11 @@ import java.util.List;
 import model.BandAccount;
 import model.BandTable;
 
-import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletRedirectResult;
+//import org.apache.struts2.config.Result;
+//import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-@Result(name = "bandsearch", value = "bandSearch.action", type = ServletRedirectResult.class)
 // HibernateUtilクラスを継承したクラス
 public class BandAllManager extends HibernateUtil {
 
@@ -26,7 +25,7 @@ public class BandAllManager extends HibernateUtil {
 		// 検索した結果を表示させるためのsql文
 		// band_accountテーブルとband_tableテーブルの全件を検索
 		String select = "SELECT * FROM band_account a,band_table t ";
-		// band_accountテーブルのIDとband_tableテーブルのIDが等しい
+		// band_accountテーブルのBAND_IDとband_tableテーブルのIDが等しい
 		String where1 = "WHERE a.band_id = t.id ";
 		// select文とwhere文を合わせたものをsqlに代入
 		String sql = select + " " + where1;
@@ -34,11 +33,13 @@ public class BandAllManager extends HibernateUtil {
 		// SQL文の実行(固定文言)
 		List<?> bandResultTable = null; // SQLの検索結果用の変数
 		try {
-			bandResultTable = session.createSQLQuery(sql) // インスタンス生成
-					// SQLQuery.addEntityメソッドで戻り値BandAccountの型設定
+			// インスタンス生成
+			// SQLQuery.addEntityメソッドで戻り値BandAccountの型設定
+			// SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
+			bandResultTable = session.createSQLQuery(sql)
 					.addEntity("BandAccount", BandAccount.class)
-					// SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
 					.addEntity("BandTable", BandTable.class).list();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -85,10 +86,10 @@ public class BandAllManager extends HibernateUtil {
 		List<?> bandResultTable = null; // SQLの検索結果用の変数
 		try {
 
-			bandResultTable = session.createSQLQuery(sql)
 			// SQLQuery.addEntityメソッドで戻り値BandAccountの型設定
+			// SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
+			bandResultTable = session.createSQLQuery(sql)
 					.addEntity("BandAccount", BandAccount.class)
-					// SQLQuery.addEntityメソッドで戻り値BandTableの型設定。SQLQuery.listメソッドでクエリの実行
 					.addEntity("BandTable", BandTable.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,14 +108,17 @@ public class BandAllManager extends HibernateUtil {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+
 		try {
 			// band_tableテーブルの全件検索
 			String select = "SELECT * FROM band_table t ";
 			String where1 = "WHERE id ORDER BY id ASC ";
 			String sql = select + "" + where1;
-			bandResultTable = session.createSQLQuery(sql)
+
 			// session.createSQLQuwey(sql)の戻り値をBandTableクラスに渡している
+			bandResultTable = session.createSQLQuery(sql)
 					.addEntity("BandTable", BandTable.class).list();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -148,12 +152,13 @@ public class BandAllManager extends HibernateUtil {
 		insert_band_table.setRenewal_date(renewal_date);
 		insert_band_table.setEntry_userid(entry_userid);
 		insert_band_table.setRenewal_userid(renewal_userid);
-		insert_band_table.setExclusion_flg(String.valueOf(0));
-		insert_band_table.setDelete_flg(String.valueOf(0));
+		insert_band_table.setExclusion_flg(0);
+		insert_band_table.setDelete_flg(0);
 
 		// band_tableテーブルに追加
 		try {
 			session.save(insert_band_table);
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -177,6 +182,8 @@ public class BandAllManager extends HibernateUtil {
 		insert_band_account.setRenewal_date(renewal_date);
 		insert_band_account.setEntry_userid(entry_userid);
 		insert_band_account.setRenewal_userid(renewal_userid);
+		insert_band_account.setExclusion_flg(0);
+		insert_band_account.setDelete_flg(0);
 
 		// band_accountテーブルに追加
 		try {
@@ -191,22 +198,24 @@ public class BandAllManager extends HibernateUtil {
 	}
 
 	// deleteメソッド。削除するときの処理
-	public String delete(String delete_id) {
+	public void delete(String delete_id) {
 
 		// 複数選択の削除のために文字列の分割
 		String str = new String(delete_id);
 		String[] strAry = str.split(",");
 
 		if (delete_id.isEmpty()) {
-			return "bandsearch";
+			return;
 		}
+
+		// データベースに接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションを開始
+		session.beginTransaction();
+
 		// for文で処理を繰り返す
 		for (int i = 0; i < strAry.length; i++) {
-			// データベースに接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			// トランザクションを開始
-			session.beginTransaction();
+
 			try {
 				BandAccount bandaccount = (BandAccount) session.load(
 						BandAccount.class, strAry[i]);
@@ -214,13 +223,17 @@ public class BandAllManager extends HibernateUtil {
 						bandaccount.getBand_id());
 				session.delete(bandaccount); // band_accountテーブルの選択された行を削除
 				session.delete(bandtable); // band_tableテーブルの選択された行を削除
+
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
 			}
-			session.getTransaction().commit();
+
 		}
-		return "bandsearch";
+
+		session.getTransaction().commit();
+
+		return;
 
 	}
 
