@@ -78,9 +78,9 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		return resultTableMovie;
 	}
 
+	//Update7Actionから呼ばれるinsertメソッド
 	public void insert(String title, int genreId, int exhibition_year,
 			String comment, String registration_userid, String renewal_userid) {
-		// TODO
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();// DB接続
 		session.beginTransaction();// トランザクション(?)開始
 
@@ -103,7 +103,6 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 		// テーブルにインサートする
 		try {
 			session.save(insert_movie_table);
-			// TODO
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -111,6 +110,7 @@ public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
 		session.getTransaction().commit();
 	}
+
 	//Update7Actionから呼ばれるdeleteメソッド
 	public String delete(String delete_id) {
 		String[] deleteId = delete_id.split(","); //取得したdelete_idの分割
