@@ -21,6 +21,7 @@ public class Main6Action extends AbstractAction {
 	public String do_search;
 	//削除の表示フラグ
 	public String add;
+	public String userId; //ログイン時のUSERに関する変数
 
 	//検索結果の表示
 	public ArrayList<ResultTable6> outputTable;
@@ -41,6 +42,7 @@ public class Main6Action extends AbstractAction {
 	@Override
 	//初期値の表示
 	public String execute() {
+		this.userId = (String) this.sessionMap.get("userId");
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
 		getDefaultTitle();
@@ -61,6 +63,7 @@ public class Main6Action extends AbstractAction {
 
 	//リセットボタンを押下時
 	public String reset() {
+		this.userId = (String) this.sessionMap.get("userId");
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		getDefaultSeries();
 		getDefaultTitle();
@@ -69,6 +72,7 @@ public class Main6Action extends AbstractAction {
 	
 	//検索ボタンを押下時
 	public String search() {
+		this.userId = (String) this.sessionMap.get("userId");
 		//SQLの実行
 		List<?> resultTable = null;
 		if (this.title.isEmpty() && this.series.isEmpty()) {
@@ -127,7 +131,7 @@ public class Main6Action extends AbstractAction {
 					temp.setSe(likeseries.getSe());
 					temp.setUs(likeseries.getUs());
 					temp.setUpDay(likegame.getUpDay());
-					temp.setUserId(likegame.getUserId());
+					temp.setUserID(likegame.getUserID());
 					temp.setUpUser(likegame.getUpUser());
 					temp.setNonStyle(likegame.getNonStyle());
 					temp.setDel(likegame.getDel());
