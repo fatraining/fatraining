@@ -35,7 +35,7 @@
 </s:form>
 
 
-<s:if test="%{do_print=='true'}">
+<s:if test="%{do_search=='true'}">
 	<h3>結果↓</h3>
 	<s:form>
 		<table class="brwsr2">
