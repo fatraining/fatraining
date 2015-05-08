@@ -13,7 +13,7 @@ public class Result5Table implements Serializable {
 	private int zipcode;
 	private String dwelling;
 	private int phonenumber;
-	private int id;
+	private String id;
 	
 	public String getName() {
 		return name;
@@ -51,10 +51,10 @@ public class Result5Table implements Serializable {
 	public void setPhonenumber(int phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public static long getSerialversionuid() {

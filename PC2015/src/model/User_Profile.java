@@ -14,7 +14,7 @@ public class User_Profile implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+	private String id;
 	private int phonenumber;
 	private int zipcode;
 	private String dwelling;
@@ -33,7 +33,7 @@ public class User_Profile implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -93,7 +93,7 @@ public class User_Profile implements Serializable {
 	}
 
 	/*--------------------------------------------------*/
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
