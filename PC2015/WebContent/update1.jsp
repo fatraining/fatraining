@@ -61,7 +61,7 @@
 	<h3>さっきクリックしたデータを削除済ます</h3>
 	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
-		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
+		<s:submit method="delete" value="削除" cssClass="btn btn-info" />
 		<a href="main1.action">Back</a>
 	</s:form>
 
