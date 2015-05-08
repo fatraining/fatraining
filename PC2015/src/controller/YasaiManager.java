@@ -1,11 +1,21 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import model.BandAccount;
+import model.BandTable;
+import model.CoofTa;
+import model.LiofTa;
 import model.Ryouri;
 import model.Yasai;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
+
+import action.AbstractAction;
+import action.YasaiAddAction;
 
 public class YasaiManager extends HibernateUtil {
 
@@ -76,7 +86,7 @@ public class YasaiManager extends HibernateUtil {
 			// 料理テーブルの全件検索
 			String sql = "SELECT * FROM ryouri r";
 			resultTable = session.createSQLQuery(sql)
-					//session.createSQLQuery(sql)の戻り値をRyouriクラスに渡している
+			// session.createSQLQuery(sql)の戻り値をRyouriクラスに渡している
 					.addEntity("Ryouri", Ryouri.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,4 +98,86 @@ public class YasaiManager extends HibernateUtil {
 		return (Ryouri) resultTable.get(resultTable.size() - 1);
 	}
 
+	public void insert(String yasai, String tyouri, String ryouri, String userId) {
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		// 日付の設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		String date_entry = String.valueOf(sdf.format(date));
+		String date_up = String.valueOf(sdf.format(date));
+
+		// 入力チェック
+
+		// 料理のデータ作成
+		Ryouri insert_ryouri_table = new Ryouri();
+
+		insert_ryouri_table.setRyouri(ryouri);
+		insert_ryouri_table.setTyouri(tyouri);
+		insert_ryouri_table.setDate_Entry(date_entry);
+		insert_ryouri_table.setDate_Up(date_up);
+		insert_ryouri_table.setUserId(userId);
+
+		// 料理テーブルに追加
+		try {
+			session.save(insert_ryouri_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		// 料理テーブルのデータ検索
+		YasaiManager yasaimanager = new YasaiManager();
+		insert_ryouri_table = yasaimanager.ryouriList();
+
+		// 野菜データの作成
+		Yasai insert_yasai_table = new Yasai();
+		insert_yasai_table.setYasai(yasai);
+
+		// 料理テーブルのid取得し、野菜テーブルの調理idに代入
+		insert_yasai_table.setTyouriId(insert_ryouri_table.getId());
+		insert_yasai_table.setDate_Entry(date_entry);
+		insert_yasai_table.setDate_Up(date_up);
+		insert_yasai_table.setUserId(userId);
+
+		// 野菜テーブルに追加
+		try {
+			session.save(insert_yasai_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		session.getTransaction().commit();
+
+	}
+
+	// 検索結果内の値を削除
+	public void delete(String delete_id) {
+
+		// 複数選択の削除のために文字列の分割
+		String[] strAry = delete_id.split(",");
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			// DBと接続
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			session.beginTransaction();
+			try {
+				Yasai yasai = (Yasai) session.load(Yasai.class, strAry[i]);
+				Ryouri ryouri = (Ryouri) session.load(Ryouri.class,
+						yasai.getTyouriId());
+				session.delete(yasai);
+				session.delete(ryouri);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+
+			session.getTransaction().commit();
+		}
+	}
 }

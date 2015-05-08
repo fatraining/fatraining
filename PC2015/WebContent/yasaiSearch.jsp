@@ -14,7 +14,7 @@
 		<label class="col-sm-2 control-label">野菜:<br />
 		</label>
 		<div class="col-md-8">
-			<s:textfield name="yasai" cssClass="form-control" rows="1" />
+			<s:textfield name="yasai" cssClass="form-control" rows="1" maxlength="10"/>
 		</div>
 	</div>
 	
@@ -26,6 +26,8 @@
 			<s:submit method="search" value="検索" cssClass="btn btn-primary" />
 			<s:submit method="reset" value="リセット" cssClass="btn btn-warning" />
 			<s:submit method="add" value="追加" cssClass="btn btn-success" />
+			<br/><br/>
+			<a href="menu.action">Back</a>
 
 			<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 		</div>
