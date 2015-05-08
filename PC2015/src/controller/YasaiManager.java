@@ -109,8 +109,6 @@ public class YasaiManager extends HibernateUtil {
 		String date_entry = String.valueOf(sdf.format(date));
 		String date_up = String.valueOf(sdf.format(date));
 
-		// 入力チェック
-
 		// 料理のデータ作成
 		Ryouri insert_ryouri_table = new Ryouri();
 
@@ -157,15 +155,14 @@ public class YasaiManager extends HibernateUtil {
 	// 検索結果内の値を削除
 	public void delete(String delete_id) {
 
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
 		// 複数選択の削除のために文字列の分割
 		String[] strAry = delete_id.split(",");
 
 		for (int i = 0; i < strAry.length; i++) {
 
-			// DBと接続
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			session.beginTransaction();
 			try {
 				Yasai yasai = (Yasai) session.load(Yasai.class, strAry[i]);
 				Ryouri ryouri = (Ryouri) session.load(Ryouri.class,
@@ -177,7 +174,7 @@ public class YasaiManager extends HibernateUtil {
 				session.getTransaction().rollback();
 			}
 
-			session.getTransaction().commit();
 		}
+		session.getTransaction().commit();
 	}
 }

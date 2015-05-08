@@ -116,6 +116,8 @@ public class YasaiSearchAction extends AbstractAction {
 
 		// 削除チェックボックスの値を取得しセッション（delete_id）に設定
 		this.sessionMap.put("delete_id", this.delete_id);
+		
+		
 
 		try {
 			// 削除画面に遷移
