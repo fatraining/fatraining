@@ -123,9 +123,9 @@ public class YasaiSearchAction extends AbstractAction {
 		try {
 			// 削除画面に遷移
 			this.response.sendRedirect("/PC2015/yasaiAdd.action");
-			if (delete_id.isEmpty()) {
-				return "";
-			}
+//			if (delete_id.isEmpty()) {
+//				return "";
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
