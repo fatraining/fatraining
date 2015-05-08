@@ -22,8 +22,9 @@
 		<hr/>
 			<label class="col-sm-2 control-label"> ジャンル:</label>
 			<div class="col-md-3">
-				<s:select name="genreId" list="#{'','1':'アクション', '2':'アニメ','3':'SF・ファンタジー','4':'コメディ','5':'サスペンス','6':'ホラー','7':'恋愛','8':'その他'}" cssClass="form-control" />
-			</div>
+			    <s:select name="genreId" list="values" listKey="id" listValue="genre"  cssClass="form-control"/>
+				
+				</div>
 		<br/>
 		<hr/>
 			<label class="col-sm-2 control-label"> 公開年:</label>
