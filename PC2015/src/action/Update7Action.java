@@ -1,21 +1,14 @@
 package action;
 
-import model.Movie;
-
-import java.util.*;
-import java.text.*;
-
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
-import org.hibernate.HibernateException;
-import org.hibernate.classic.Session;
 
-import controller.HibernateUtil;
 import controller.MovieManager;
 
 //リターンがmain7だったらmain7.actionに戻る
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 public class Update7Action extends AbstractAction {
+
 	private static final long serialVersionUID = 1L;
 
 	// デリートに必要な変数
@@ -26,6 +19,9 @@ public class Update7Action extends AbstractAction {
 	public int exhibition_year; // 公開年
 	public String comment;
 	public String errormsg; // エラーメッセージ
+
+	//MovieManagerをインスタンス化（2つのメソッドで使用）
+	private MovieManager moviemanager = new MovieManager();
 
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
@@ -49,8 +45,6 @@ public class Update7Action extends AbstractAction {
 			String registration_userid = (String) this.sessionMap.get("userId");
 			String renewal_userid = (String) this.sessionMap.get("userId");
 
-			MovieManager moviemanager = new MovieManager();
-
 			moviemanager.insert(this.title, this.genreId, this.exhibition_year,
 					this.comment, registration_userid, renewal_userid);
 		}
@@ -62,26 +56,10 @@ public class Update7Action extends AbstractAction {
 	public String delete() {
 		// delete_id=movieテーブルのidを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		String[] strAry = this.delete_id.split(",");
 
-		if (strAry.length == 0) {
-			return "main7";
-		}
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		moviemanager.delete(this.delete_id);
 
-		for (int i = 0; i < strAry.length; i++) {
-
-			try {
-				Movie movie = (Movie) session.load(Movie.class, strAry[i]);
-				session.delete(movie);
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				session.getTransaction().rollback();
-			}
-		}
-
-		session.getTransaction().commit();
 		return "main7";
 	}
+
 }
