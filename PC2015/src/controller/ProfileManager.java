@@ -132,4 +132,32 @@ public class ProfileManager extends HibernateUtil {
 		}
 		session.getTransaction().commit();
 	}
+	public String delete(String delete_id) {
+		
+		if (delete_id.isEmpty()) {
+			return "main1";
+		}
+
+		String[] strAry = delete_id.split(",");
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			session.beginTransaction();
+			try {
+				Profile profile = (Profile) session.load(Profile.class,
+						strAry[i]);
+				My_hobby my_hobby = (My_hobby) session.load(My_hobby.class,
+						profile.getHobby_id());
+				session.delete(my_hobby);
+				session.delete(profile);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			session.getTransaction().commit();
+		}
+		return "main1";
+	}
 }
