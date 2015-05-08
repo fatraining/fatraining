@@ -24,6 +24,8 @@ public class LikeGame implements Serializable{
 	private String upUser;
 	private String nonStyle ;
 	private String del ;
+	private int another_flg;
+	private int delete_flg;
 	
 	/*--------------------------------------------------*/
 	@Id
@@ -64,6 +66,16 @@ public class LikeGame implements Serializable{
 	public String getDel() {
 		return del;
 	}
+	
+	@Column(name="another_flg")
+	public int getAnother_flg() {
+		return another_flg;
+	}
+	
+	@Column(name="deleete_flg")
+	public int getDelete_flg() {
+		return delete_flg;
+	}
 /*--------------------------------------------------*/
 
 	public void setId(String id) {
@@ -92,5 +104,11 @@ public class LikeGame implements Serializable{
 	}
 	public void setDel(String del) {
 		this.del = del;
+	}
+	public void setAnother_flg(int another_flg) {
+		this.another_flg = another_flg;
+	}
+	public void setDelete_flg(int delete_flg) {
+		this.delete_flg = delete_flg;
 	}
 }

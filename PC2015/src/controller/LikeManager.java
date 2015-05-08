@@ -78,10 +78,11 @@ public class LikeManager extends HibernateUtil {
 		List<?> resultTable = null; // SQLの検索結果用の変数
 
 		try {
-			resultTable = session.createSQLQuery(sql)
 			// SQLQuery.addEntityメソッドで戻り値を設定
-					.addEntity("LikeGame", LikeGame.class)
-					// SQLQuery.addEntityメソッドで戻り値を設定 listメソッドでクエリの実行
+			// SQLQuery.addEntityメソッドで戻り値を設定 listメソッドでクエリの実行
+			resultTable = session.createSQLQuery(sql)
+
+			.addEntity("LikeGame", LikeGame.class)
 					.addEntity("LikeSeries", LikeSeries.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +94,7 @@ public class LikeManager extends HibernateUtil {
 		return resultTable;
 	}
 
-	public LikeGame like_gameList() {
+	public LikeSeries like_seriesList() {
 		List<?> resultTable6 = null;
 		// データベースに接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -103,24 +104,22 @@ public class LikeManager extends HibernateUtil {
 		try {
 
 			// like_gameテーブルの全件検索
-			String sql = "SELECT * FROM like_game g";
-//			String where1 = "WHERE id ORDER BY id ASC ";
-//			String sql = select + "" + where1;
+			String sql = "SELECT * FROM like_series s";
 
-			// SQLの実行結果がresult10Tableに代入される
+			// SQLの実行結果がresultTable6に代入される
 			resultTable6 = session.createSQLQuery(sql)
 
-			// SQLQuery.addEntityメソッドで戻り値IDofEatの型設定、SQLQuery.listメソッドでクエリの実行
-					.addEntity("LikeGame", LikeGame.class).list();
+			// SQLQuery.addEntityメソッドで戻り値LikeSeriesの型設定、SQLQuery.listメソッドでクエリの実行
+					.addEntity("LikeSeries", LikeSeries.class).list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 
-		// result10Tableの最終行を取得
+		// resultTable6の最終行を取得
 		// 自分で入力したものを取得したいため、最終行
-		return (LikeGame) resultTable6.get(resultTable6.size() - 1);
+		return (LikeSeries) resultTable6.get(resultTable6.size() - 1);
 	}
 
 	public void insert(String series, String se, String title, String nonStyle,
@@ -137,6 +136,26 @@ public class LikeManager extends HibernateUtil {
 		// トランザクションを開始
 		session.beginTransaction();
 
+		// インスタンス化。like_seriesのデータ作成
+		LikeSeries insert_series_table = new LikeSeries();
+		insert_series_table.setUs(us);
+		insert_series_table.setSe(se);
+		insert_series_table.setAn_flg(0);
+		insert_series_table.setDel_flg(0);
+		
+
+		try {
+			session.save(insert_series_table);
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		// like_gameのテーブのルデータ検索
+		LikeManager likeManager = new LikeManager();
+		insert_series_table = likeManager.like_seriesList();
+
 		// インスタンス化。like_gameのデータ作成
 		LikeGame insert_game_table = new LikeGame();
 		insert_game_table.setTitle(title);
@@ -146,28 +165,13 @@ public class LikeManager extends HibernateUtil {
 		insert_game_table.setUpUser(upUser);
 		insert_game_table.setNonStyle(nonStyle);
 		insert_game_table.setDel(del);
+		insert_game_table.setAnother_flg(0);
+		insert_game_table.setDelete_flg(0);
+		insert_game_table.setSeries(insert_series_table.getUp_id());
 
 		// like_gameに追加
 		try {
 			session.save(insert_game_table);
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-
-		// like_gameのテーブのルデータ検索
-		LikeManager likeManager = new LikeManager();
-		insert_game_table = likeManager.like_gameList();
-
-		// インスタンス化。like_seriesのデータ作成
-		LikeSeries insert_series_table = new LikeSeries();
-		insert_series_table.setUs(us);
-		insert_series_table.setSe(se);
-		insert_series_table.setUp_id(insert_game_table.getId());
-
-		try {
-			session.save(insert_series_table);
 
 		} catch (HibernateException e) {
 			e.printStackTrace();

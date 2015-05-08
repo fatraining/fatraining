@@ -22,6 +22,8 @@ public class LikeSeries implements Serializable{
 	private String upU;
 	private String nonS ;
 	private String de ;
+	private int an_flg;
+	private int del_flg;
 
 	/*--------------------------------------------------*/
 	@Id
@@ -58,6 +60,14 @@ public class LikeSeries implements Serializable{
 	public String getDe() {
 		return de;
 	}
+	@Column(name="an_flg")
+	public int getAn_flg() {
+		return an_flg;
+	}
+	@Column(name="del_flg")
+	public int getDel_flg() {
+		return del_flg;
+	}
 /*--------------------------------------------------*/
 	public void setUp_id(String up_id) {
 		this.up_id = up_id;
@@ -82,5 +92,11 @@ public class LikeSeries implements Serializable{
 	}
 	public void setDe(String de) {
 		this.de = de;
+	}
+	public void setAn_flg(int an_flg) {
+		this.an_flg = an_flg;
+	}
+	public void setDel_flg(int del_flg) {
+		this.del_flg = del_flg;
 	}
 }
