@@ -11,7 +11,7 @@ public class Result10Table implements Serializable {
 	private String eat_month;
 	private String eat_day;
 	private String eat_hour;
-	private int food_id;
+	private String food_id;
 	private String eatFood;
 	private String eatCalory;
 	private String entry_day;
@@ -64,11 +64,11 @@ public class Result10Table implements Serializable {
 		this.eat_hour = eat_hour;
 	}
 
-	public int getFood_id() {
+	public String getFood_id() {
 		return food_id;
 	}
 
-	public void setFood_id(int food_id) {
+	public void setFood_id(String food_id) {
 		this.food_id = food_id;
 	}
 

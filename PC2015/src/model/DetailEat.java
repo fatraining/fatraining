@@ -19,11 +19,11 @@ public class DetailEat implements Serializable {
 	private String eat_month;
 	private String eat_day;
 	private String eat_hour;
+	private String food_id;
 	private String entry_day;
 	private String renew_day;
 	private String entry_userid;
 	private String renew_userid;
-	private String food_id;
 	private int renew_flg;
 	private int delete_flg;
 

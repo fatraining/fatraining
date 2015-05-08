@@ -153,6 +153,8 @@ public class All10Manager extends HibernateUtil {
 		insert_id_table.setRenew_day(renew_day);
 		insert_id_table.setEntry_userid(entry_userid);
 		insert_id_table.setRenew_userid(renew_userid);
+		insert_id_table.setRenew_flg(0);
+		insert_id_table.setDelete_flg(0);
 
 		try {
 			session.save(insert_id_table);
@@ -176,6 +178,8 @@ public class All10Manager extends HibernateUtil {
 		insert_detail_table.setRenew_day(renew_day);
 		insert_detail_table.setEntry_userid(entry_userid);
 		insert_detail_table.setRenew_userid(renew_userid);
+		insert_detail_table.setRenew_flg(0);
+		insert_detail_table.setDelete_flg(0);
 
 		// detail_tableに追加
 		try {
