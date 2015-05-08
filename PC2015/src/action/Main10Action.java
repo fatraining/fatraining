@@ -44,7 +44,7 @@ public class Main10Action extends AbstractAction {
 	private String getDefaultEat_hour() {
 		return "AM";
 	}
-	
+
 	// オーバーライドする
 	@Override
 	// executeメソッドを作る（始めにデフォルト値を検索欄に表示させておくため）
@@ -71,22 +71,22 @@ public class Main10Action extends AbstractAction {
 	// searchメソッド（検索ボタンを押した時）
 	public String search() {
 		// sessionMapに保存していたuserIDを取得
-		this.userId = (String) this.sessionMap.get("userId"); 
+		this.userId = (String) this.sessionMap.get("userId");
 		// All10Managerのインスタンスの生成
-		All10Manager allController = new All10Manager(); 
+		All10Manager allController = new All10Manager();
 		List<?> result10Table;
-		
+
 		// 検索画面での入力がなかった場合、allControllerのsearchallListメソッドの引数なし呼び出す
 		if (this.eat_year.isEmpty() && this.eat_month.isEmpty()
 				&& this.eat_day.isEmpty() && this.eat_hour.isEmpty()) {
 			result10Table = allController.searchallList();
-			
-		// 検索画面での入力があった場合はallControllerのsearchallListメソッドの引数ありを呼び出す
+
+			// 検索画面での入力があった場合はallControllerのsearchallListメソッドの引数ありを呼び出す
 		} else {
 			result10Table = allController.searchallList(this.eat_year,
 					this.eat_month, this.eat_day, this.eat_hour);
 		}
-		
+
 		this.outputTable = tableTrans(result10Table);
 
 		// 検索結果の表示
@@ -94,7 +94,7 @@ public class Main10Action extends AbstractAction {
 		// 削除ボタンの表示
 		this.delete = "true";
 		// Successが見つからないのでMain10Actionへ戻る
-		return "success"; 
+		return "success";
 	}
 
 	// updateメソッド（追加ボタンを押したとき）
@@ -106,7 +106,7 @@ public class Main10Action extends AbstractAction {
 			e.printStackTrace();
 		}
 		// Successが見つからないのでMain10Actionへ戻る
-		return "success"; 
+		return "success";
 	}
 
 	// deleteメソッド（削除ボタンを押したとき）
@@ -120,24 +120,24 @@ public class Main10Action extends AbstractAction {
 			e.printStackTrace();
 		}
 		// SuccessActionが見つからないのでMain10Actionへ戻る
-		return "success"; 
+		return "success";
 	}
 
 	// SQLの検索結果を画面表示用のListに入れ替えている
 	public ArrayList<Result10Table> tableTrans(List<?> result10Table) {
-		
+
 		// リストをインスタンス化
 		ArrayList<Result10Table> tempTable = new ArrayList<Result10Table>();
-		
+
 		// objectの配列を宣言（変数の初期化）
 		Object[] obj;
-		
+
 		// すべて同じ処理をする
 		for (int i = 0; i < result10Table.size(); i++) {
-			
+
 			// 画面表示用のレコードをインスタンス化
 			Result10Table temp = new Result10Table();
-			
+
 			// result10Tableのデータを取得して、objectに代入
 			// リスト型を配列に変換（キャスト）
 			obj = (Object[]) result10Table.get(i);
@@ -152,11 +152,11 @@ public class Main10Action extends AbstractAction {
 			temp.setEat_hour(detaileat.getEat_hour());
 			temp.setEatFood(idofeat.getEatFood());
 			temp.setEatCalory(idofeat.getEatCalory());
-			
+
 			// tempTableにtempを追加
 			tempTable.add(temp);
 		}
 
-		return tempTable; 
+		return tempTable;
 	}
 }
