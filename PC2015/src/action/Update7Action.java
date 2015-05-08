@@ -20,13 +20,11 @@ public class Update7Action extends AbstractAction {
 	public String comment;
 	public String errormsg; // エラーメッセージ
 
-	//MovieManagerをインスタンス化（2つのメソッドで使用）
-	private MovieManager moviemanager = new MovieManager();
-
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		this.exhibition_year = 1980;
+
 		return "success";
 	}
 
@@ -37,13 +35,14 @@ public class Update7Action extends AbstractAction {
 		if (this.title.isEmpty() || this.genreId == 0
 				|| this.exhibition_year == 0) {
 			this.errormsg = "全ての項目に入力してください";
-			return "success";
+			return "errormsg";
 		}
 		// 全項目入力済みの時
 		else {
 
 			String registration_userid = (String) this.sessionMap.get("userId");
 			String renewal_userid = (String) this.sessionMap.get("userId");
+			MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
 
 			moviemanager.insert(this.title, this.genreId, this.exhibition_year,
 					this.comment, registration_userid, renewal_userid);
@@ -57,7 +56,9 @@ public class Update7Action extends AbstractAction {
 		// delete_id=movieテーブルのidを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
-		//MovieManagerのdelete()の呼び出し
+		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+
+		// MovieManagerのdelete()の呼び出し
 		moviemanager.delete(this.delete_id);
 
 		return "main7";
