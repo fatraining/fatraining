@@ -1,10 +1,13 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import model.DetailEat;
 import model.IDofEat;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 //HibernateUtilを継承したAll10Managerクラス
@@ -128,5 +131,60 @@ public class All10Manager extends HibernateUtil {
 		// result10Tableの最終行を取得（0からなのでマイナス1する）
 		return (IDofEat) result10Table.get(result10Table.size() - 1);
 	}
+	
+	public String insert(String eat_year,String eat_month,String eat_day, String eat_hour,String eatFood,String eatCalory,String entry_userid,String renew_userid) {
+		// 変数に日付を設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		String entry_day = String.valueOf(sdf.format(date));
+		String renew_day = String.valueOf(sdf.format(date));
 
+		// データベースに接続
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始
+		session.beginTransaction();
+
+		// インスタンス化、id_tableにレコードを挿入する
+		IDofEat insert_id_table = new IDofEat();
+		insert_id_table.setEatFood(eatFood);
+		insert_id_table.setEatCalory(eatCalory);
+		insert_id_table.setEntry_day(entry_day);
+		insert_id_table.setRenew_day(renew_day);
+		insert_id_table.setEntry_userid(entry_userid);
+		insert_id_table.setRenew_userid(renew_userid);
+
+		try {
+			session.save(insert_id_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		// データ検索（レコードを取ってくるため）
+		All10Manager all10manager = new All10Manager();
+		insert_id_table = all10manager.eat_idList();
+
+		// インスタンス化、detail_tableにレコードを挿入する
+		DetailEat insert_detail_table = new DetailEat();
+		insert_detail_table.setEat_year(eat_year);
+		insert_detail_table.setEat_month(eat_month);
+		insert_detail_table.setEat_day(eat_day);
+		insert_detail_table.setEat_hour(eat_hour);
+		insert_detail_table.setFood_id(insert_id_table.getId());
+		insert_detail_table.setEntry_day(entry_day);
+		insert_detail_table.setRenew_day(renew_day);
+		insert_detail_table.setEntry_userid(entry_userid);
+		insert_detail_table.setRenew_userid(renew_userid);
+
+		// detail_tableに追加
+		try {
+			session.save(insert_detail_table);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		// トランザクションの終了
+		session.getTransaction().commit();
+		return "main10";
+	}
 }
