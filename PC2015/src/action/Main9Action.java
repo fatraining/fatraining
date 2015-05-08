@@ -62,6 +62,8 @@ public class Main9Action extends AbstractAction {
 
 	// searchメソッド 検索
 	public String search() {
+		
+		// インスタンス化
 		LiofTaManager lioftamamager = new LiofTaManager();
 		List<?> resultTable;
 
