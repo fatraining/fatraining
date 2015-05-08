@@ -3,9 +3,6 @@ package action;
 import model.My_hobby;
 import model.Profile;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.HibernateException;
@@ -27,7 +24,6 @@ public class Update1Action extends AbstractAction {
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
-	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
@@ -37,63 +33,27 @@ public class Update1Action extends AbstractAction {
 
 	// insertメソッド
 	public String insert() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
 
-		// 登録、更新日時表示
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+		String userid = (String) this.sessionMap.get("userId");
+		String new_userid = (String) this.sessionMap.get("userId");
 
-		My_hobby insert_my_hobby_table = new My_hobby();
-		insert_my_hobby_table.setHobby(this.hobby);
-		insert_my_hobby_table.setDay(String.valueOf(sdf.format(date)));
-		insert_my_hobby_table.setNew_day(String.valueOf(sdf.format(date)));
-		insert_my_hobby_table.setUserid((String) this.sessionMap.get("userId"));
-		insert_my_hobby_table.setNew_userid((String) this.sessionMap.get("userId"));
+		ProfileManager insert = new ProfileManager();
+		insert.insert(this.hobby, this.name, this.personality, this.home,
+				this.birthday, userid, new_userid);
 
-		try {
-			session.save(insert_my_hobby_table);
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-
-		ProfileManager profilemanager = new ProfileManager();
-		insert_my_hobby_table = profilemanager.my_hobbyList();
-
-		Profile insert_profile_table = new Profile();
-		insert_profile_table.setHobby_id(insert_my_hobby_table.getId());
-		insert_profile_table.setName(this.name);
-		insert_profile_table.setPersonality(this.personality);
-		insert_profile_table.setHome(this.home);
-		insert_profile_table.setBirthday(this.birthday);
-		insert_profile_table.setDay(String.valueOf(sdf.format(date)));
-		insert_profile_table.setNew_day(String.valueOf(sdf.format(date)));
-		insert_profile_table.setUserid((String) this.sessionMap.get("userId"));
-		insert_profile_table.setNew_userid((String) this.sessionMap.get("userId"));
-
-		try {
-			session.save(insert_profile_table);
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		session.getTransaction().commit();
 		return "main1";
-		}
+	}
+
 	// deleteメソッド
 	// 検索結果の内容を削除のため
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		
+
 		if (this.delete_id.isEmpty()) {
 			return "main1";
 		}
 
 		String[] strAry = this.delete_id.split(",");
-
 
 		for (int i = 0; i < strAry.length; i++) {
 
