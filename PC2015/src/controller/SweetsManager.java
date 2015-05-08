@@ -1,12 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import model.Sweets;
 import model.Genre;
-import model.Result2Table;
+import model.Sweets;
 
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 public class SweetsManager extends HibernateUtil {
@@ -37,7 +38,6 @@ public class SweetsManager extends HibernateUtil {
 
 		// トランザクションの終了（固定文言）
 		session.getTransaction().commit();
-
 
 		return resultTable;
 	}
@@ -83,5 +83,59 @@ public class SweetsManager extends HibernateUtil {
 		return resultTable;
 	}
 
+	public void insert(String name, String genreNm, String userId) {
+		// 登録、更新日時設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
+
+		// インスタンス化
+		Sweets insert_sweets = new Sweets();
+		insert_sweets.setName(name); // お菓子の名前
+		insert_sweets.setGenre_id(genreNm); // ジャンルID
+		insert_sweets.setRecord_date(String.valueOf(sdf.format(date))); // 登録日付
+		insert_sweets.setReset_date(String.valueOf(sdf.format(date))); // 更新日付
+		insert_sweets.setEntry_userId(userId); // 登録ユーザID
+		insert_sweets.setRecord_userId(userId); // 更新ユーザID
+		insert_sweets.setExclusive_FLG(0); // 排他フラグ
+		insert_sweets.setDelete_FLG(0); // 削除フラグ
+
+		// DBへの接続処理（固定文言）
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// トランザクションの開始（固定文言）
+		session.beginTransaction();
+
+		try {
+			session.save(insert_sweets);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+
+		}
+		session.getTransaction().commit();
+
+	}
+
+	public void delete(String deleteId) {
+
+		String str = new String(deleteId);
+		String[] strAry = str.split(",");
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		for (int i = 0; i < strAry.length; i++) {
+
+			try {
+				Sweets sweets = (Sweets) session.load(Sweets.class, strAry[i]);
+				session.delete(sweets);
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}
+
+		}
+		session.getTransaction().commit();
+
+	}
 
 }

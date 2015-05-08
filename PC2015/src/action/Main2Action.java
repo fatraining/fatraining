@@ -8,7 +8,6 @@ import model.Genre;
 import model.Result2Table;
 import model.Sweets;
 import controller.SweetsManager;
-import action.AbstractAction;
 
 public class Main2Action extends AbstractAction {
 
