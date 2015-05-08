@@ -10,7 +10,7 @@
 	<s:form cssClass="form-horizontal">
 		<div class="form-group">
 			<div align=right>
-				<s:submit method="insert" value="追加" cssClass="btn btn-primary" />
+				<s:submit method="insert" value="追加" cssClass="btn btn-success" />
 				<a href="main9.action">Back</a>
 			</div>
 			<label class="col-sm-2 control-label"> 名前:</label>
@@ -41,7 +41,7 @@
 	<h3>さっきクリックしたデータを削除します</h3>
 	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
-		<s:submit method="delete" value="削除" cssClass="btn btn-primary" />
+		<s:submit method="delete" value="削除" cssClass="btn btn-danger" />
 		<a href="main9.action">Back</a>
 	</s:form>
 	
