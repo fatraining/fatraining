@@ -75,12 +75,10 @@ public class YasaiSearchAction extends AbstractAction {
 		// list<?>型のresultTableを宣言
 		List<?> resultTable;
 
-		
 		if (this.yasai.isEmpty()) {
 			// 入力されなかった場合、yasaimanagerのresultList()を呼び出す
 			resultTable = yasaimanager.resultList();
 
-			
 		} else {
 			// 入力された場合、yasaimanagerのresultList(yasai)を呼び出す
 			resultTable = yasaimanager.resultList(this.yasai);
@@ -118,14 +116,11 @@ public class YasaiSearchAction extends AbstractAction {
 
 		// 削除チェックボックスの値を取得しセッション（delete_id）に設定
 		this.sessionMap.put("delete_id", this.delete_id);
-		
 
 		try {
 			// 削除画面に遷移
 			this.response.sendRedirect("/PC2015/yasaiAdd.action");
-//			if (delete_id.isEmpty()) {
-//				return "";
-//			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -141,8 +136,9 @@ public class YasaiSearchAction extends AbstractAction {
 
 		// objectの配列を宣言
 		Object[] obj;
+
 		try {
-			// resultTableのサイズ分まわす
+			// SQLの検索結果の件数分ループ
 			for (int i = 0; i < resultTable.size(); i++) {
 				// Result8Tableをインスタンス化
 				YasaiResultTable temp = new YasaiResultTable();
@@ -154,10 +150,10 @@ public class YasaiSearchAction extends AbstractAction {
 				Yasai yasai = (Yasai) obj[0];
 				Ryouri ryouri = (Ryouri) obj[1];
 
+				// 画面表示用に設定
 				temp.setId(yasai.getId());
 				temp.setYasai(yasai.getYasai());
 				temp.setTyouriId(yasai.getTyouriId());
-
 				temp.setTyouri(ryouri.getTyouri());
 				temp.setRyouri(ryouri.getRyouri());
 
