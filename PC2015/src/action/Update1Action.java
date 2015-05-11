@@ -14,10 +14,10 @@ public class Update1Action extends AbstractAction {
 	public String personality;
 	public String home;
 	public int birthday;
-	public int hobby_id;
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
+	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
@@ -27,12 +27,17 @@ public class Update1Action extends AbstractAction {
 
 	// insertメソッド
 	public String insert() {
+		if (this.name.isEmpty() && this.personality.isEmpty()
+				&& this.home.isEmpty() && this.hobby.isEmpty()) {
+			this.errormsg = "未入力は登録できません";
+			return "errormsg";
+		}
 
 		String userid = (String) this.sessionMap.get("userId");
 		String new_userid = (String) this.sessionMap.get("userId");
 
 		ProfileManager insert = new ProfileManager();
-		//　引数として値を取得し表示する
+		// 　引数として値を取得し表示する
 		insert.insert(this.hobby, this.name, this.personality, this.home,
 				this.birthday, userid, new_userid);
 
@@ -42,9 +47,9 @@ public class Update1Action extends AbstractAction {
 	// deleteメソッド
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		
+
 		ProfileManager delete = new ProfileManager();
-		//　引数として値を取得し表示する
+		// 　引数として値を取得し表示する
 		delete.delete(this.delete_id);
 		return "main1";
 	}
