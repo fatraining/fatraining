@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 5 朁E08 日 17:08
+-- Generation Time: 2015 年 5 朁E11 日 09:01
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `sweets` (
   `record_userId` char(50) DEFAULT NULL,
   `exclusive_FLG` int(50) DEFAULT NULL,
   `delete_FLG` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `sweets`
@@ -70,7 +70,16 @@ CREATE TABLE IF NOT EXISTS `sweets` (
 
 INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`) VALUES
 (15, 'クッキー', 1, '2015/05/08 16:41:54', '2015/05/08 16:41:54', 'hokari', 'hokari', 0, 0),
-(16, 'ガレット', 1, '2015/05/08 16:42:1', '2015/05/08 16:42:1', 'hokari', 'hokari', 0, 0);
+(16, 'ガレット', 1, '2015/05/08 16:42:1', '2015/05/08 16:42:1', 'hokari', 'hokari', 0, 0),
+(17, 'トリュフ', 3, '2015/05/11 15:58:29', '2015/05/11 15:58:29', 'Struts2', 'Struts2', 0, 0),
+(18, 'プリン', 2, '2015/05/11 15:58:38', '2015/05/11 15:58:38', 'Struts2', 'Struts2', 0, 0),
+(19, 'スコーン', 1, '2015/05/11 15:58:52', '2015/05/11 15:58:52', 'Struts2', 'Struts2', 0, 0),
+(20, 'ババロア', 2, '2015/05/11 15:59:1', '2015/05/11 15:59:1', 'Struts2', 'Struts2', 0, 0),
+(21, 'バウムクーヘン', 1, '2015/05/11 15:59:32', '2015/05/11 15:59:32', 'Struts2', 'Struts2', 0, 0),
+(22, 'ガトーショコラ', 3, '2015/05/11 15:59:46', '2015/05/11 15:59:46', 'Struts2', 'Struts2', 0, 0),
+(23, '羊羹', 2, '2015/05/11 15:59:55', '2015/05/11 15:59:55', 'Struts2', 'Struts2', 0, 0),
+(24, 'マドレーヌ', 1, '2015/05/11 16:0:11', '2015/05/11 16:0:11', 'Struts2', 'Struts2', 0, 0),
+(25, '生チョコ', 3, '2015/05/11 16:0:53', '2015/05/11 16:0:53', 'Struts2', 'Struts2', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -101,7 +110,7 @@ MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `sweets`
 --
 ALTER TABLE `sweets`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
