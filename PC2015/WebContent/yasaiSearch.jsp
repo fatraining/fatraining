@@ -39,7 +39,7 @@
 			<tbody>
 				<tr>
 					<th>野菜</th>
-					<th>調理方</th>
+					<th>調理法</th>
 					<th>料理名</th>
 					<th>削除</th>
 
