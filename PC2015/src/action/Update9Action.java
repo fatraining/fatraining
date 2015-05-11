@@ -15,19 +15,25 @@ public class Update9Action extends AbstractAction {
 	public String color;
 	public String colorNm;
 	public String delete_id;
-
+	public String errormsg;
 
 	// executeメソッド
 	public String execute() throws Exception {
-		
+
 		// Main9Actionのdelete_idを呼び出し
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		
+
 		return "success";
 	}
 
 	// insertメソッド（挿入）
 	public String insert() {
+		// 未入力の項目があるときにエラーを返す
+		if (this.name.isEmpty() || this.food.isEmpty() || this.drink.isEmpty()
+				|| this.colorNm.isEmpty()) {
+			this.errormsg = "全項目入力してください";
+			return "errormsg";
+		}
 		String userid = (String) this.sessionMap.get("userId");
 		String new_userid = (String) this.sessionMap.get("userId");
 
