@@ -32,8 +32,13 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-success" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-inverse" />
 		<s:submit method="update" value="追加" cssClass="btn btn-danger" />
-		<br />
-		<br /> <a href="menu.action">Back</a>
+		<br /> <br /> <a href="menu.action">Back</a>
+
+		<s:if test="%{errorMsg=='true'}">
+			<span style="color: red">
+				<h5>＊削除する項目を選択してください</h5>
+			</span>
+		</s:if>
 
 	</div>
 </s:form>
@@ -69,6 +74,7 @@
 				</s:iterator>
 			</tbody>
 		</table>
+
 		<s:if test="%{delete=='true'}">
 			<div align=right>
 				<s:submit method="delete" name="delete_id" value="削除"
