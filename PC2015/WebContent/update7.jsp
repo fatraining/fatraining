@@ -29,7 +29,7 @@
 		<hr/>
 			<label class="col-sm-2 control-label"> 公開年:</label>
 			<div class="col-md-2">
-				<s:textfield name="exhibition_year" cssClass="form-control" rows="10" />
+				<s:textfield name="exhibition_year" cssClass="form-control" rows="10" maxlength="4"/>
 			</div>
 		<br />
 		<hr />
