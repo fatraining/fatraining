@@ -17,6 +17,7 @@ public class Update10Action extends AbstractAction {
 	public String eat_day; // 日
 	public String eat_hour; // 時間
 	public String delete_id; // 削除に使うレコードのID
+	public String errormsg;
 
 	// 画面表示時に実行
 	public String execute() throws Exception {
@@ -27,25 +28,34 @@ public class Update10Action extends AbstractAction {
 	// insertメソッド、追加の処理 データベースに値を入れる
 	public String insert() {
 
-		// 登録、更新UAER表示
-		String entry_userid = (String) this.sessionMap.get("userId");
-		String renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
+		// 入力チェック
+		if (this.eat_year.isEmpty() || this.eat_month.isEmpty()
+				|| this.eat_day.isEmpty() || this.eat_hour.isEmpty()
+				|| this.eatFood.isEmpty() || this.eatCalory.isEmpty()) {
+			// いずれかが空だとエラーメッセージを返す
+			this.errormsg = "全ての項目に入力してください";
+			return "errormsg";
 
-		// All10Managerのインスタンス生成
-		All10Manager insert = new All10Manager();
+			// 全て入力された場合
+		} else {// 登録、更新UAER表示
+			String entry_userid = (String) this.sessionMap.get("userId");
+			String renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
 
-		// All10Managerのinsertメソッドを参照
-		insert.insert(this.eat_year, this.eat_month, this.eat_day,
-				this.eat_hour, this.eatFood, this.eatCalory, entry_userid,
-				renew_userid);
+			// All10Managerのインスタンス生成
+			All10Manager insert = new All10Manager();
 
+			// All10Managerのinsertメソッドを参照
+			insert.insert(this.eat_year, this.eat_month, this.eat_day,
+					this.eat_hour, this.eatFood, this.eatCalory, entry_userid,
+					renew_userid);
+		}
 		return "main10";// Main10Actionへ
 	}
 
 	// 検索結果内の値の削除
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");// セッションマップからdelete_idを取得
-
+	
 		// All10Managerのインスタンス生成
 		All10Manager delete = new All10Manager();
 
