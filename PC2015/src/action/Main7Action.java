@@ -98,7 +98,11 @@ public class Main7Action extends AbstractAction {
 				obj = (Object[]) resultTable.get(i);
 				Movie movie = (Movie) obj[0];
 				MovieGenre movie_genre = (MovieGenre) obj[1];
-				temp.setGenre(movie_genre.getGenre());
+				if(movie_genre.getGenre().isEmpty()){
+					temp.setGenre("不明");
+				}else{
+					temp.setGenre(movie_genre.getGenre());
+				}
 				temp.setId(movie.getId());
 				temp.setTitle(movie.getTitle());
 				if (movie.getExhibition_year() == 0) {
