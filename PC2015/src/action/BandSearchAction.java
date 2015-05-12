@@ -25,6 +25,7 @@ public class BandSearchAction extends AbstractAction {
 	public String delete_id; // 削除チェックボックス
 	public String delete; // 削除ボタンの表示フラグ
 	public String userId; // ログイン時のUSERに関する変数
+	public String errorMsg; // エラーメッセージ表示フラグ
 
 	// 検索結果の表示(データ)
 	public ArrayList<BandResultTable> outputTable;
@@ -48,6 +49,11 @@ public class BandSearchAction extends AbstractAction {
 
 	// searchメソッド。検索結果を表示させるための処理
 	public String search() {
+
+		// 入力項目に入力された値をsessionMapで保持する。
+		this.sessionMap.put("band_name", this.band_name); // sessionMap"band_name"にband_nameを代入し保持
+		this.sessionMap.put("name", this.name); // sessionMap"name"にnameを代入し保持
+		this.sessionMap.put("part", this.part); // sessionMap"part"にpartを代入し保持
 
 		// BandAllManagerをインスタンス化
 		BandAllManager bandAllManager = new BandAllManager();
@@ -101,6 +107,45 @@ public class BandSearchAction extends AbstractAction {
 
 		// sessionMapのdelete_idの値にdelete_idの値を代入
 		this.sessionMap.put("delete_id", this.delete_id);
+
+		// delete_idの値が空の時、エラーメッセージを表示
+		if (this.delete_id == null) {
+
+			// BandAllManagerをインスタンス化
+			BandAllManager bandAllManager = new BandAllManager();
+
+			// userIdの取得
+			this.userId = (String) this.sessionMap.get("userId");
+
+			// sessionMapを使って、入力された値を受け取る。
+			this.band_name = (String) this.sessionMap.get("band_name"); // sessionMap"band_name"の値を代入
+			this.name = (String) this.sessionMap.get("name"); // sessionMap"name"の値を代入
+			this.part = (String) this.sessionMap.get("part"); // sessionMap"part"の値を代入
+
+			// list<?>型のresultTableを宣言
+			List<?> bandResultTable;
+
+			// band_nameとnameとpartの値が空だったらif文内の処理を実行
+			if (this.band_name.isEmpty() && this.name.isEmpty()
+					&& this.part.isEmpty()) {
+
+				bandResultTable = bandAllManager.bandSearchAll();
+
+			} else {
+
+				bandResultTable = bandAllManager.bandSearchAll(this.band_name,
+						this.name, this.part);
+
+			}
+
+			// bandResultTableを引数にbandTableTransメソッドを呼び出し、outputTableに代入
+			this.outputTable = bandTableTrans(bandResultTable);
+
+			this.errorMsg = "true"; // エラーメッセージを表示させるためにtrueを代入
+			this.do_search = "true"; // 検索結果を表示させるためにtrueを代入している
+			this.delete = "true"; // 削除ボタンを表示させるためにtrueを代入している
+			return "success";
+		}
 
 		try {
 			// bandAdd.actionページに飛ぶ
