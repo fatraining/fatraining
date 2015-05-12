@@ -31,7 +31,7 @@ public class Update7Action extends AbstractAction {
 	// 登録画面の初期値設定
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		this.exhibition_year = "1980";
+		this.exhibition_year = "";
 
 		this.listBox();
 
@@ -46,9 +46,9 @@ public class Update7Action extends AbstractAction {
 			this.errormsg = "タイトルは必須入力項目です";
 			return "errormsg";
 		}
-		if (!isNumber(exhibition_year)) {
+		if (!this.exhibition_year.isEmpty() && !isNumber(exhibition_year)) {
 			this.listBox();
-			this.errormsg = "公開年には数字のみ入力できます";
+			this.errormsg = "公開年は半角数字（西暦）で入力してください";
 			return "errormsg";
 
 		}
