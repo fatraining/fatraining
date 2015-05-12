@@ -3,7 +3,7 @@
 <jsp:include page="header.jsp" />
 
 <s:if test="%{delete_id==null}">
-	<h3>新しく登録します</h3>
+	<h3>新しく登録します。</h3>
 	<p class="err">
 		<s:property value="errormsg" />
 	</p>
@@ -38,7 +38,7 @@
 	</s:form>
 </s:if>
 <s:if test="%{delete_id!=null}">
-	<h3>さっきクリックしたデータを削除します</h3>
+	<h3>さっきクリックしたデータを削除します。</h3>
 	<td class="data">削除する ID:<s:property value="delete_id" /></td>
 	<s:form cssClass="form-horizontal">
 		<s:submit method="delete" value="削除" cssClass="btn btn-danger" />
