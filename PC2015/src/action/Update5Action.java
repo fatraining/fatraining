@@ -1,5 +1,8 @@
 package action;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
@@ -17,6 +20,9 @@ public class Update5Action extends AbstractAction {
 	public String dwelling; // 住所
 	public String phonenumber; // 電話番号
 
+	// エラーメッセージ表示
+	public String errormsg;
+	
 	// 表示項目（削除画面）
 	public String delete_id;
 
@@ -39,6 +45,26 @@ public class Update5Action extends AbstractAction {
 	// 追加ボタンを押下時
 	public String insert() {
 
+		if(this.zipcode.isEmpty()  || this.zipcode.trim().length() == 0){
+			this.errormsg = "郵便番号を入力して下さい";
+			return "err";
+		}
+		
+		if(!this.isNumber(this.zipcode)){
+			this.errormsg = "郵便番号に数字を入力して下さい";
+			return "err";
+		}
+		
+		if(this.phonenumber.isEmpty()  || this.phonenumber.trim().length() == 0){
+			this.errormsg = "電話番号を入力して下さい";
+			return "err";
+		}
+		
+		if(!this.isNumber(this.phonenumber)){
+			this.errormsg = "電話番号に数字を入力して下さい";
+			return "err";
+		}
+		
 		UserProfileManager linkController = new UserProfileManager();
 		linkController.insert(this.personality, this.interest, this.name,
 				this.zipcode, this.dwelling, this.phonenumber,
@@ -60,5 +86,12 @@ public class Update5Action extends AbstractAction {
 		linkController.delete(this.delete_id);
 
 		return "main5";
+	}
+	
+	private boolean isNumber(String val) {
+		String regex = "\\A[-]?[0-9]+\\z";
+		Pattern p = Pattern.compile(regex);
+		Matcher m1 = p.matcher(val);
+		return m1.find();
 	}
 }
