@@ -18,6 +18,7 @@ public class BandAddAction extends AbstractAction {
 	public String favorite_song; // 好きな曲
 	public String part; // 演奏楽器
 	public String band_name; // バンド名
+	public String errorMsg; // エラーフラグ
 
 	// executeメソッド。
 	public String execute() throws Exception {
@@ -44,6 +45,18 @@ public class BandAddAction extends AbstractAction {
 		String entry_userid = (String) this.sessionMap.get("userId");
 		// 更新useridにuserIdの値を入れる。
 		String renewal_userid = (String) this.sessionMap.get("userId");
+
+		// 全ての入力項目が入力されていなかったとき、エラーメッセージを表示
+		if (this.band_name.isEmpty() || this.name.isEmpty()
+				|| this.sex.isEmpty() || this.age.isEmpty()
+				|| this.school.isEmpty() || this.favorite_song.isEmpty()
+				|| this.part.isEmpty()) {
+
+			this.errorMsg = "true"; // エラーメッセージを表示させるためにtrueを代入
+
+			return "success";
+
+		}
 
 		// BandAllManagerのインスタンス生成
 		BandAllManager insert = new BandAllManager();
