@@ -32,7 +32,7 @@ public class Update7Action extends AbstractAction {
 	public String execute() throws Exception {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		this.exhibition_year = "";
-
+		//listBoxメソッドを呼ぶ
 		this.listBox();
 
 		return "success";
@@ -42,11 +42,13 @@ public class Update7Action extends AbstractAction {
 	public String insert() {
 		// 未入力の項目があるときにエラーを返す
 		if (this.title.isEmpty()) {
+			//listBoxメソッドを呼ぶ			
 			this.listBox();
 			this.errormsg = "タイトルは必須入力項目です";
 			return "errormsg";
 		}
 		if (!this.exhibition_year.isEmpty() && !isNumber(exhibition_year)) {
+			//
 			this.listBox();
 			this.errormsg = "公開年は半角数字（西暦）で入力してください";
 			return "errormsg";
@@ -81,6 +83,7 @@ public class Update7Action extends AbstractAction {
 		return "main7";
 	}
 
+	//movie_genreテーブルをリストボックスに入れるためのメソッド
 	private void listBox() {
 		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
 		values = moviemanager.expression();
