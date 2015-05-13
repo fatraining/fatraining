@@ -24,6 +24,8 @@ public class Main9Action extends AbstractAction {
 	public String delete_id;
 	public String delete;
 	public String do_search;
+	public String errormsg;
+
 
 	public ArrayList<Result9Table> outputTable;
 
@@ -62,7 +64,9 @@ public class Main9Action extends AbstractAction {
 
 	// searchメソッド 検索
 	public String search() {
-		
+		this.sessionMap.put("name", this.name);
+		this.sessionMap.put("food", this.food);
+		this.sessionMap.put("drink", this.drink);
 		// インスタンス化
 		LiofTaManager lioftamamager = new LiofTaManager();
 		List<?> resultTable;
@@ -83,7 +87,7 @@ public class Main9Action extends AbstractAction {
 	//updateメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null);
-
+		
 		try {
 			this.response.sendRedirect("/PC2015/update9.action");
 		} catch (IOException e) {
@@ -96,6 +100,26 @@ public class Main9Action extends AbstractAction {
 	// delete_idメソッド
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
+		if (this.delete_id == null) {
+			LiofTaManager lioftamamager = new LiofTaManager();
+			this.name = (String) this.sessionMap.get("name"); 
+			this.food = (String) this.sessionMap.get("food"); 
+			this.drink = (String) this.sessionMap.get("drink"); 
+			List<?> resultTable;
+			if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
+				resultTable = lioftamamager.resultList();
+			} else {
+				resultTable = lioftamamager.resultList(this.name, this.food,
+						this.drink);
+			}
+			this.outputTable = tableTrans(resultTable);
+
+			this.do_search = "true";
+			this.delete = "true";
+			this.errormsg = "true";
+			return "success";
+
+		}
 		try {
 			this.response.sendRedirect("/PC2015/update9.action");
 		} catch (IOException e) {
