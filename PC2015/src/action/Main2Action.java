@@ -119,6 +119,8 @@ public class Main2Action extends AbstractAction {
 		
 		return "success";		
 	}
+	 
+	
 	
 	// SQLの検索結果を画面表示用のListに入れ替えている
 	private ArrayList<Result2Table> tableTrans(List<?> resultTable) {
