@@ -38,6 +38,13 @@
 		<a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
+		
+		<s:if test="%{errormsg=='true'}">
+			<span style="color: red">
+				<h5>＊削除する項目を選択してください</h5>
+			</span>
+		</s:if>
+		
 	</div>
 </s:form>
 

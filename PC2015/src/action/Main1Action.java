@@ -24,6 +24,8 @@ public class Main1Action extends AbstractAction {
 	public String delete_id;
 	public String do_search;
 	public String delete;
+	public String userId;
+	public String errormsg;
 
 	public ArrayList<Result1Table> outputTable;
 
@@ -60,6 +62,11 @@ public class Main1Action extends AbstractAction {
 
 	// searchメソッド
 	public String search() {
+		
+		this.sessionMap.put("name",this.name);
+		this.sessionMap.put("home",this.home);
+		this.sessionMap.put("hobby",this.hobby);
+		
 		ProfileManager profileManager = new ProfileManager();
 		List<?> resultTable;
 		
@@ -92,6 +99,31 @@ public class Main1Action extends AbstractAction {
 	// delete_idメソッド
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
+		
+		if (this.delete_id == null) {
+			
+			ProfileManager profileManager = new ProfileManager();
+			
+			this.name = (String) this.sessionMap.get("name");
+			this.home = (String) this.sessionMap.get("home");
+			this.hobby = (String) this.sessionMap.get("hobby");
+			
+			List<?> resultTable;
+			
+			if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
+					resultTable = profileManager.resultList();
+
+			} else {
+				resultTable = profileManager.resultList(this.name, this.home,
+						this.hobby);
+			}
+			this.outputTable = tableTrans(resultTable);
+			
+			this.errormsg = "true";
+			this.do_search = "true";
+			this.delete = "true";
+			return "success";
+		}
 
 		try {
 			this.response.sendRedirect("/PC2015/update1.action");
