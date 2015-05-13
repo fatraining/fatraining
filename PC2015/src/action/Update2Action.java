@@ -55,7 +55,6 @@ public class Update2Action extends AbstractAction {
 
 		SweetsManager SweetsManager = new SweetsManager();
 		SweetsManager.delete(this.delete_id);
-		;
 
 		return "main2";
 	}
