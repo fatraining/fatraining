@@ -2,6 +2,7 @@ package action;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
+
 import controller.SweetsManager;
 
 @Result(name = "main2", value = "main2.action", type = ServletRedirectResult.class)
@@ -15,6 +16,8 @@ public class Update2Action extends AbstractAction {
 	// 表示項目（削除画面）
 	public String delete_id;
 
+	public String errormsg;
+	
 	// 画面が表示時に実行
 	@Override
 	public String execute() {
@@ -30,6 +33,10 @@ public class Update2Action extends AbstractAction {
 
 	// 追加ボタンを押下時
 	public String insert() {
+			if (this.name.isEmpty()) {
+				this.errormsg = "未入力は登録できません";
+				return "errormsg";
+			}
 
 		SweetsManager SweetsManager = new SweetsManager();
 		SweetsManager.insert(name, genreNm,
