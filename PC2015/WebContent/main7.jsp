@@ -41,7 +41,6 @@
 
 	<p class="err"><s:property value="errermassage" /></p>
 
-		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
 </s:form>
 
