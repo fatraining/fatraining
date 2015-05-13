@@ -37,6 +37,9 @@
 		<s:submit method="update" value="追加" cssClass="btn btn-danger" />
 			<br/><br/><br/>
 						<a href="menu.action">Back</a>
+<br/><br/>
+
+	<p class="err"><s:property value="errermassage" /></p>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
 	</div>
