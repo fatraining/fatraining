@@ -16,14 +16,14 @@ import org.hibernate.classic.Session;
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
 public class MovieManager extends HibernateUtil { // HibernateUtilを継承
 
+	//movie_genreテーブルの全件検索
 	public ArrayList<MovieGenre> expression() {
 		ArrayList<MovieGenre> resultTableMovie = null; // リスト型の変数宣言
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession(); // DB接続
 		session.beginTransaction(); // トランザクション(?)開始
 
-		String select = "SELECT * FROM movie_genre";
-		String sql = select;
+		String sql = "SELECT * FROM movie_genre";
 
 		try {
 			resultTableMovie = (ArrayList<MovieGenre>)session.createSQLQuery(sql) // Queryインターフェイスのインスタンスを取得(?)
