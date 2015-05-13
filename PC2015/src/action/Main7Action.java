@@ -19,6 +19,7 @@ public class Main7Action extends AbstractAction {
 	public String delete; // 削除ボタン
 	public String do_print; // 結果表示
 	public String delete_id; // 削除するID
+	public String errermassage; // エラーメッセージ
 
 	public ArrayList<ResultTableMovie> outputTableMovie;
 
@@ -40,15 +41,18 @@ public class Main7Action extends AbstractAction {
 
 	// 検索結果を表示させるためのメソッド
 	public String print() {
+		this.sessionMap.put("genreId", this.genreId); // 入力したジャンルIDをセッションマップに置く
+		this.sessionMap.put("exhibition_year", this.exhibition_year); // 入力した公開年をセッションマップに置く
+
 		this.userId = (String) this.sessionMap.get("userId");// ユーザーIDの取得
 
 		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
 		List<?> resultTable; // リスト型の変数宣言
-		
+
 		// 未入力の場合
 		if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
 			resultTable = moviemanager.resultList(); // マネージャーのresultList()を呼ぶ
-		// どちらかが入力された場合
+			// どちらかが入力された場合
 		} else {
 			resultTable = moviemanager.resultList(this.genreId,
 					this.exhibition_year); // マネージャーのresultList(genreId,exhibition_year)を呼ぶ
@@ -60,35 +64,64 @@ public class Main7Action extends AbstractAction {
 		this.delete = "true"; // 削除ボタンを表示する
 		return "success";
 	}
+
 	// 追加するメソッド
 	public String update() {
 		this.sessionMap.put("delete_id", null); // デリートIDをセッションマップに置く
 
 		try {
-			this.response.sendRedirect("/PC2015/update7.action"); //要求に応え、update7.actionに接続する
-		// 例外を拾う,ストリームクラスを使用している間に発生する、ファイル入出力（IO）関係の例外のスーパークラス
+			this.response.sendRedirect("/PC2015/update7.action"); // 要求に応え、update7.actionに接続する
+			// 例外を拾う,ストリームクラスを使用している間に発生する、ファイル入出力（IO）関係の例外のスーパークラス
 		} catch (IOException e) {
-			e.printStackTrace(); //例外元のクラスや説明原因、メソッド名などを出力する。例外が投げられた理由を簡単に取得できる。
+			e.printStackTrace(); // 例外元のクラスや説明原因、メソッド名などを出力する。例外が投げられた理由を簡単に取得できる。
 		}
 
 		return "success";
 	}
+
 	// 削除の確認をするメソッド
 	public String delete() {
 		this.sessionMap.put("delete_id", this.delete_id); // デリートIDをセッションマップに置く
+		if (this.delete_id == null) {
 
+			this.genreId = (String) this.sessionMap.get("genreId");// ユーザーIDの取得
+			this.exhibition_year = (String) this.sessionMap
+					.get("exhibition_year");// ユーザーIDの取得
+
+			this.userId = (String) this.sessionMap.get("userId");// ユーザーIDの取得
+
+			MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+			List<?> resultTable; // リスト型の変数宣言
+
+			// 未入力の場合
+			if (this.genreId.isEmpty() && this.exhibition_year.isEmpty()) {
+				resultTable = moviemanager.resultList(); // マネージャーのresultList()を呼ぶ
+				// どちらかが入力された場合
+			} else {
+				resultTable = moviemanager.resultList(this.genreId,
+						this.exhibition_year); // マネージャーのresultList(genreId,exhibition_year)を呼ぶ
+			}
+
+			this.outputTableMovie = tableTrans(resultTable);
+
+			this.do_print = "true"; // 検索結果を表示する
+			this.delete = "true"; // 削除ボタンを表示する
+			this.errermassage = "チェックボックスを選択してください";
+			return "errermassage";
+
+		}
 		try {
 			this.response.sendRedirect("/PC2015/update7.action"); // update7.actionに接続する
-		// 例外を拾う
+			// 例外を拾う
 		} catch (IOException e) {
-			e.printStackTrace();  // 例外を出力する
+			e.printStackTrace(); // 例外を出力する
 		}
 
 		return "success";
 	}
 
 	// 表示結果の配列
-	//可変長配列を実現するクラス。add()メソッドで追加でき、get()メソッドで取得する
+	// 可変長配列を実現するクラス。add()メソッドで追加でき、get()メソッドで取得する
 	private ArrayList<ResultTableMovie> tableTrans(List<?> resultTable) {
 		ArrayList<ResultTableMovie> tempTable = new ArrayList<ResultTableMovie>();
 		Object[] obj;
@@ -98,9 +131,9 @@ public class Main7Action extends AbstractAction {
 				obj = (Object[]) resultTable.get(i);
 				Movie movie = (Movie) obj[0];
 				MovieGenre movie_genre = (MovieGenre) obj[1];
-				if(movie_genre.getGenre().isEmpty()){
+				if (movie_genre.getGenre().isEmpty()) {
 					temp.setGenre("不明");
-				}else{
+				} else {
 					temp.setGenre(movie_genre.getGenre());
 				}
 				temp.setId(movie.getId());
