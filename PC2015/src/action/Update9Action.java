@@ -31,7 +31,7 @@ public class Update9Action extends AbstractAction {
 		// 未入力の項目があるときにエラーを返す
 		if (this.name.isEmpty() || this.food.isEmpty() || this.drink.isEmpty()
 				|| this.colorNm.isEmpty()) {
-			this.errormsg = "全項目入力してください";
+			this.errormsg = "全項目入力してください。";
 			return "errormsg";
 		}
 		String userid = (String) this.sessionMap.get("userId");
