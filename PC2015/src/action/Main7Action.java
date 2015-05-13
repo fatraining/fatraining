@@ -106,8 +106,8 @@ public class Main7Action extends AbstractAction {
 
 			this.do_print = "true"; // 検索結果を表示する
 			this.delete = "true"; // 削除ボタンを表示する
-			this.errermassage = "チェックボックスを選択してください";
-			return "errermassage";
+			this.errermassage = "チェックボックスを選択してください"; // エラーメッセージの内容
+			return "errermassage"; // 　エラーメッセージを返す
 
 		}
 		try {
