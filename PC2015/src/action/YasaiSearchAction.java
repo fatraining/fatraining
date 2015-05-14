@@ -78,20 +78,30 @@ public class YasaiSearchAction extends AbstractAction {
 		if (this.yasai.isEmpty()) {
 			// 入力されなかった場合、yasaimanagerのresultList()を呼び出す
 			resultTable = yasaimanager.resultList();
+			this.outputTable = tableTrans(resultTable);
+
+			this.do_search = "true";
+			this.delete = "true";
 
 		} else {
 			// 入力された場合、yasaimanagerのresultList(yasai)を呼び出す
 			resultTable = yasaimanager.resultList(this.yasai);
 
+			// 入力された値の検索結果がなかったとき（ｓｑｌ）
+			if (resultTable.size() == 0) {
+				// 結果を表示しない
+				this.do_search = "表示するな";
+				// 削除ボタンを表示しない
+				this.delete = "表示するな";
+
+			} else {
+				this.outputTable = tableTrans(resultTable);
+
+				this.do_search = "true";
+				this.delete = "true";
+			}
+
 		}
-
-		// resultTableを引数にtableTranseメソッドを呼び出し、outputTableに代入
-		this.outputTable = tableTrans(resultTable);
-
-		// 検索結果の表示
-		this.do_search = "true";
-		// 削除ボタンの表示
-		this.delete = "true";
 
 		return "success";
 	}
