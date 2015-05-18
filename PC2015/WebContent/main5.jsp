@@ -16,14 +16,14 @@
 
 		</label>
 		<div class="col-md-3">
-			<s:textfield name="dwelling" cssClass="form-control" rows="1" />
+			<s:textfield name="dwelling" cssClass="form-control" rows="1" maxlength="50"/>
 		</div>
 
 		<label class="col-sm-2 control-label">名前:<br />
 
 		</label>
 		<div class="col-md-3">
-			<s:textfield name="name" cssClass="form-control" rows="1" />
+			<s:textfield name="name" cssClass="form-control" rows="1" maxlength="50"/>
 		</div>
 
 	</div>
