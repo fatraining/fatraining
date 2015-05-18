@@ -18,7 +18,7 @@
 
 			<label class="col-sm-2 control-label"> 名前:</label>
 			<div class="col-md-3">
-				<s:textfield name="name" cssClass="form-control" rows="10"
+				<s:textfield name="name" cssClass="form-control" rows="51"
 					maxlength="50" />
 			</div>
 			<br /> <br /> <br />
@@ -26,7 +26,7 @@
 			
 			<label class="col-sm-2 control-label"> 性格:</label>
 			<div class="col-md-3">
-				<s:textfield name="personality" cssClass="form-control" rows="10"
+				<s:textfield name="personality" cssClass="form-control" rows="51"
 					maxlength="50" />
 			</div>
 			<br />
@@ -34,7 +34,7 @@
 			
 			<label class="col-sm-2 control-label"> 趣味:</label>
 			<div class="col-md-3">
-				<s:textfield name="interest" cssClass="form-control" rows="10"
+				<s:textfield name="interest" cssClass="form-control" rows="51"
 					maxlength="50" />
 			</div>
 			<br />
@@ -42,15 +42,15 @@
 			
 			<label class="col-sm-2 control-label"> 郵便番号:</label>
 			<div class="col-md-3">
-				<s:textfield name="zipcode" cssClass="form-control" rows="10"
-					maxlength="50" />
+				<s:textfield name="zipcode" cssClass="form-control" rows="11"
+					maxlength="10" />
 			</div>
 			<br /> <br /> <br />
 			<hr />
 
 			<label class="col-sm-2 control-label"> 住所:</label>
 			<div class="col-md-3">
-				<s:textfield name="dwelling" cssClass="form-control" rows="10"
+				<s:textfield name="dwelling" cssClass="form-control" rows="51"
 					maxlength="50" />
 			</div>
 			<br /> <br /> <br />
@@ -58,8 +58,8 @@
 			
 			<label class="col-sm-2 control-label"> 電話番号:</label>
 			<div class="col-md-3">
-				<s:textfield name="phonenumber" cssClass="form-control" rows="10"
-					maxlength="50" />
+				<s:textfield name="phonenumber" cssClass="form-control" rows="11"
+					maxlength="10" />
 			</div>
 			<br /> <br /> <br />
 			<hr />
