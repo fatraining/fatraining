@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="header.jsp" />
 
-<h3>条件に一致する食事についてを検索します。</h3>
+<h3>条件に一致する食事について検索します。</h3>
 <s:form cssClass="form-horizontal">
 
 	<div align=right>
