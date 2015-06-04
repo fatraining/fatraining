@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.BandAllManager;
+import dao.BandDao;
 
 @Result(name = "bandsearch", value = "bandSearch.action", type = ServletRedirectResult.class)
 public class BandAddAction extends AbstractAction {
@@ -59,7 +59,7 @@ public class BandAddAction extends AbstractAction {
 		}
 
 		// BandAllManagerのインスタンス生成
-		BandAllManager insert = new BandAllManager();
+		BandDao insert = new BandDao();
 
 		// BandAllManagerのinsertメソッドを参照
 		insert.insert(this.band_name, this.name, this.sex, this.age,
@@ -75,7 +75,7 @@ public class BandAddAction extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		// BandAllManagerのインスタンス生成
-		BandAllManager delete = new BandAllManager();
+		BandDao delete = new BandDao();
 
 		// BandAllManagerのdeleteメソッドを参照
 		delete.delete(delete_id);

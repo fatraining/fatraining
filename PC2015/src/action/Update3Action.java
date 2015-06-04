@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.StoryManager;
+import dao.StoryDao;
 
 @Result(name = "main3", value = "main3.action", type = ServletRedirectResult.class)
 public class Update3Action extends AbstractAction {
@@ -32,7 +32,7 @@ public class Update3Action extends AbstractAction {
 	//追加ボタンを押下時
 	public String insert() {
 		
-		StoryManager storyManager = new StoryManager();
+		StoryDao storyManager = new StoryDao();
 		storyManager.insert(this.genre, this.title, (String) this.sessionMap.get("userId"));
 		
 		return "main3";
@@ -46,7 +46,7 @@ public class Update3Action extends AbstractAction {
 			return "main5";
 		}
 
-		StoryManager storyManager = new StoryManager();
+		StoryDao storyManager = new StoryDao();
 		storyManager.delete(this.delete_id);
 
 		return "main3";

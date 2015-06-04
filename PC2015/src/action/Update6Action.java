@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.LikeManager;
+import dao.LikeDao;
 
 @Result(name = "main6", value = "main6.action", type = ServletRedirectResult.class)
 public class Update6Action extends AbstractAction {
@@ -40,7 +40,7 @@ public class Update6Action extends AbstractAction {
 		// 更新useridにuserIdの値を入れる。
 		String upUser = (String) this.sessionMap.get("userId");
 		//インスタンスを生成
-		LikeManager insert = new LikeManager();
+		LikeDao insert = new LikeDao();
 		insert.insert(this.title, this.series, this.trump ,this.origin,
 				userID, upUser);
 		
@@ -55,7 +55,7 @@ public class Update6Action extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		//LikeManagerのインスタンスを生成
-		LikeManager delete = new LikeManager();
+		LikeDao delete = new LikeDao();
 		
 		// LikeManagerのdeleteメソッドを参照
 		delete.delete(delete_id);

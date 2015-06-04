@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +13,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 // HibernateUtilクラスを継承したクラス
-public class BandAllManager extends HibernateUtil {
+public class BandDao extends HibernateUtil {
 
 	// bandSearchAllメソッド(引数なし)。検索時入力がなかったとき実行
 	public List<?> bandSearchAll() {
@@ -165,7 +165,7 @@ public class BandAllManager extends HibernateUtil {
 		}
 
 		// band_tableテーブルのデータ検索
-		BandAllManager bandAllManager = new BandAllManager();
+		BandDao bandAllManager = new BandDao();
 		insert_band_table = bandAllManager.bandTableList();
 
 		// band_accountデータの作成

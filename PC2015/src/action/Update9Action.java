@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.LiofTaManager;
+import dao.LiofTaDao;
 
 @Result(name = "main9", value = "main9.action", type = ServletRedirectResult.class)
 public class Update9Action extends AbstractAction {
@@ -38,7 +38,7 @@ public class Update9Action extends AbstractAction {
 		String new_userid = (String) this.sessionMap.get("userId");
 
 		// インスタンス化
-		LiofTaManager insert = new LiofTaManager();
+		LiofTaDao insert = new LiofTaDao();
 
 		// LiofTaManagerのinsertメソッドを参照
 		insert.insert(this.name, this.food, this.drink, this.color,
@@ -53,7 +53,7 @@ public class Update9Action extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
 		// インスタンス化
-		LiofTaManager delete = new LiofTaManager();
+		LiofTaDao delete = new LiofTaDao();
 
 		// LiofTaManagerのdeleteメソッドを参照
 		delete.delete(this.delete_id);

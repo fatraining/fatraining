@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.All10Manager;
+import dao.FoodDao;
 
 @Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class)
 public class Update10Action extends AbstractAction {
@@ -42,7 +42,7 @@ public class Update10Action extends AbstractAction {
 			String renew_userid = (String) this.sessionMap.get("userId");// セッションマップからuserIDを取得
 
 			// All10Managerのインスタンス生成
-			All10Manager insert = new All10Manager();
+			FoodDao insert = new FoodDao();
 
 			// All10Managerのinsertメソッドを参照
 			insert.insert(this.eat_year, this.eat_month, this.eat_day,
@@ -57,7 +57,7 @@ public class Update10Action extends AbstractAction {
 		this.delete_id = (String) this.sessionMap.get("delete_id");// セッションマップからdelete_idを取得
 	
 		// All10Managerのインスタンス生成
-		All10Manager delete = new All10Manager();
+		FoodDao delete = new FoodDao();
 
 		// All10Managerのdeleteメソッドを参照
 		delete.delete(delete_id);

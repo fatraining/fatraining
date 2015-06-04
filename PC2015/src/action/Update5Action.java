@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.UserProfileManager;
+import dao.UserProfileDao;
 
 @Result(name = "main5", value = "main5.action", type = ServletRedirectResult.class)
 public class Update5Action extends AbstractAction {
@@ -65,7 +65,7 @@ public class Update5Action extends AbstractAction {
 			return "err";
 		}
 		
-		UserProfileManager linkController = new UserProfileManager();
+		UserProfileDao linkController = new UserProfileDao();
 		linkController.insert(this.personality, this.interest, this.name,
 				this.zipcode, this.dwelling, this.phonenumber,
 				(String) this.sessionMap.get("userId"));
@@ -82,7 +82,7 @@ public class Update5Action extends AbstractAction {
 			return "main5";
 		}
 
-		UserProfileManager linkController = new UserProfileManager();
+		UserProfileDao linkController = new UserProfileDao();
 		linkController.delete(this.delete_id);
 
 		return "main5";

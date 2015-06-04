@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.ProfileManager;
 import model.My_hobby;
 import model.Profile;
 import model.Result1Table;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
+
+import dao.ProfileDao;
 
 @Result(name = "update1", value = "update1.action", type = ServletRedirectResult.class)
 public class Main1Action extends AbstractAction {
@@ -67,7 +68,7 @@ public class Main1Action extends AbstractAction {
 		this.sessionMap.put("home",this.home);
 		this.sessionMap.put("hobby",this.hobby);
 		
-		ProfileManager profileManager = new ProfileManager();
+		ProfileDao profileManager = new ProfileDao();
 		List<?> resultTable;
 		
 		if (this.name.isEmpty() && this.home.isEmpty() && this.hobby.isEmpty()) {
@@ -102,7 +103,7 @@ public class Main1Action extends AbstractAction {
 		
 		if (this.delete_id == null) {
 			
-			ProfileManager profileManager = new ProfileManager();
+			ProfileDao profileManager = new ProfileDao();
 			
 			this.name = (String) this.sessionMap.get("name");
 			this.home = (String) this.sessionMap.get("home");

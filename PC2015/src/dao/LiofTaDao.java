@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 
@@ -12,7 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 // HibernateUtilクラスを継承したクラス
-public class LiofTaManager extends HibernateUtil {
+public class LiofTaDao extends HibernateUtil {
 
 	// resultListメソッド
 	public List<?> resultList() {
@@ -150,7 +150,7 @@ public class LiofTaManager extends HibernateUtil {
 		}
 
 		// color_tableテーブルのデータ検索
-		LiofTaManager lioftamanager = new LiofTaManager();
+		LiofTaDao lioftamanager = new LiofTaDao();
 		insert_color_table = lioftamanager.cooftaList();
 
 		// like_tableデータの作成

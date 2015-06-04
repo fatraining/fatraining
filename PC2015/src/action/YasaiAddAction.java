@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.YasaiManager;
+import dao.YasaiDao;
 
 @Result(name = "yasaiSearch", value = "yasaiSearch.action", type = ServletRedirectResult.class)
 public class YasaiAddAction extends AbstractAction {
@@ -43,7 +43,7 @@ public class YasaiAddAction extends AbstractAction {
 			// セッションマップからuserIdを取得
 			String userId = (String) this.sessionMap.get("userId");
 			// YasaiManagerをインスタンス化
-			YasaiManager yasaimanager = new YasaiManager();
+			YasaiDao yasaimanager = new YasaiDao();
 			// YasaiManagerのinsertメソッドに値を渡す
 			yasaimanager.insert(this.yasai, this.tyouri, this.ryouri, userId);
 		}
@@ -59,7 +59,7 @@ public class YasaiAddAction extends AbstractAction {
 		if (delete_id.isEmpty()) {
 			return "yasaiSearch";
 		}
-		YasaiManager yasaimanager = new YasaiManager();
+		YasaiDao yasaimanager = new YasaiDao();
 		yasaimanager.delete(this.delete_id);
 
 		return "yasaiSearch";

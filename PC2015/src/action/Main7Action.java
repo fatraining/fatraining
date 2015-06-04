@@ -7,7 +7,7 @@ import java.util.List;
 import model.Movie;
 import model.MovieGenre;
 import model.ResultTableMovie;
-import controller.MovieManager;
+import dao.MovieDao;
 
 public class Main7Action extends AbstractAction {
 
@@ -46,7 +46,7 @@ public class Main7Action extends AbstractAction {
 
 		this.userId = (String) this.sessionMap.get("userId");// ユーザーIDの取得
 
-		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		MovieDao moviemanager = new MovieDao(); // MovieManagerをインスタンス化
 		List<?> resultTable; // リスト型の変数宣言
 
 		// 未入力の場合
@@ -90,7 +90,7 @@ public class Main7Action extends AbstractAction {
 
 			this.userId = (String) this.sessionMap.get("userId");// ユーザーIDの取得
 
-			MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+			MovieDao moviemanager = new MovieDao(); // MovieManagerをインスタンス化
 			List<?> resultTable; // リスト型の変数宣言
 
 			// 未入力の場合

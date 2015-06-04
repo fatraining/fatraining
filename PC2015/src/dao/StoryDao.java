@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +11,7 @@ import model.Tb_Genre;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-public class StoryManager extends HibernateUtil {
+public class StoryDao extends HibernateUtil {
 
 	// 全件のデータを検索
 	public List<?> searchAll() {
@@ -142,7 +142,7 @@ public class StoryManager extends HibernateUtil {
 		}
 		
 		// Tb_Genreテーブルのデータ検索
-		StoryManager linkController  = new StoryManager();
+		StoryDao linkController  = new StoryDao();
 		Tb_Genre tmpTbGenre = linkController.tb_GenreList();
 		
 		Story insert_story_table = new Story();
