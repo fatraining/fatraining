@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.LiofTaManager;
 import model.CoofTa;
 import model.LiofTa;
 import model.Result9Table;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
+
+import dao.LiofTaDao;
 
 @Result(name = "update9", value = "update9.action", type = ServletRedirectResult.class)
 public class Main9Action extends AbstractAction {
@@ -68,7 +69,7 @@ public class Main9Action extends AbstractAction {
 		this.sessionMap.put("food", this.food);
 		this.sessionMap.put("drink", this.drink);
 		// インスタンス化
-		LiofTaManager lioftamamager = new LiofTaManager();
+		LiofTaDao lioftamamager = new LiofTaDao();
 		List<?> resultTable;
 
 		if (this.name.isEmpty() && this.food.isEmpty() && this.drink.isEmpty()) {
@@ -101,7 +102,7 @@ public class Main9Action extends AbstractAction {
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 		if (this.delete_id == null) {
-			LiofTaManager lioftamamager = new LiofTaManager();
+			LiofTaDao lioftamamager = new LiofTaDao();
 			this.name = (String) this.sessionMap.get("name"); 
 			this.food = (String) this.sessionMap.get("food"); 
 			this.drink = (String) this.sessionMap.get("drink"); 

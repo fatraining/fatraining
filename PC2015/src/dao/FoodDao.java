@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 //HibernateUtilを継承したAll10Managerクラス
-public class All10Manager extends HibernateUtil {
+public class FoodDao extends HibernateUtil {
 
 	// 引数なしのsearchallList（検索欄入力なしの場合）
 	public List<?> searchallList() {
@@ -164,7 +164,7 @@ public class All10Manager extends HibernateUtil {
 		}
 
 		// データ検索（レコードを取ってくるため）
-		All10Manager all10manager = new All10Manager();
+		FoodDao all10manager = new FoodDao();
 		insert_id_table = all10manager.eat_idList();
 
 		// インスタンス化、detail_tableにレコードを挿入する

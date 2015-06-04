@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
-public class MovieManager extends HibernateUtil { // HibernateUtilを継承
+public class MovieDao extends HibernateUtil { // HibernateUtilを継承
 
 	//movie_genreテーブルの全件検索
 	public ArrayList<MovieGenre> expression() {

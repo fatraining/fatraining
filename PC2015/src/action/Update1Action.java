@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.ProfileManager;
+import dao.ProfileDao;
 
 @Result(name = "main1", value = "main1.action", type = ServletRedirectResult.class)
 public class Update1Action extends AbstractAction {
@@ -36,7 +36,7 @@ public class Update1Action extends AbstractAction {
 		String userid = (String) this.sessionMap.get("userId");
 		String new_userid = (String) this.sessionMap.get("userId");
 
-		ProfileManager insert = new ProfileManager();
+		ProfileDao insert = new ProfileDao();
 		// 　引数として値を取得し表示する
 		insert.insert(this.hobby, this.name, this.personality, this.home,
 				this.birthday, userid, new_userid);
@@ -48,7 +48,7 @@ public class Update1Action extends AbstractAction {
 	public String delete() {
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
-		ProfileManager delete = new ProfileManager();
+		ProfileDao delete = new ProfileDao();
 		// 　引数として値を取得し表示する
 		delete.delete(this.delete_id);
 		return "main1";

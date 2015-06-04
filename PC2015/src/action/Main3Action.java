@@ -7,7 +7,7 @@ import java.util.List;
 import model.Result3Table;
 import model.Story;
 import model.Tb_Genre;
-import controller.StoryManager;
+import dao.StoryDao;
 
 public class Main3Action extends AbstractAction {
 //変数にカラムを代入
@@ -86,11 +86,11 @@ public class Main3Action extends AbstractAction {
 		List<?> resultTable = null;
 		if(this.title.isEmpty() && this.genre.isEmpty()){
 			//入力がない場合
-			StoryManager allController  = new StoryManager();
+			StoryDao allController  = new StoryDao();
 			resultTable = allController.searchAll();
 		}else{
 			//入力された場合
-			StoryManager linkController  = new StoryManager();
+			StoryDao linkController  = new StoryDao();
 			resultTable = linkController.searchAll(this.title,this.genre);
 		}
 		this.outputTable = tableTrans(resultTable);

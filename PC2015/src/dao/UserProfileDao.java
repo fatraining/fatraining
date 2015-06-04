@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +10,7 @@ import model.User_Profile;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-public class UserProfileManager extends HibernateUtil {
+public class UserProfileDao extends HibernateUtil {
 
 	// 全件のデータを検索
 	public List<?> searchAll() {
@@ -151,7 +151,7 @@ public class UserProfileManager extends HibernateUtil {
 		}
 
 		// user_characterテーブルのデータ検索
-		UserProfileManager userprofilemanager = new UserProfileManager();
+		UserProfileDao userprofilemanager = new UserProfileDao();
 		User_Character tmpInsert_user_character_table = userprofilemanager
 				.user_characterList();
 

@@ -7,10 +7,11 @@ import java.util.List;
 import model.BandResultTable;
 import model.BandTable;
 import model.BandAccount;
-import controller.BandAllManager;
 
 import org.apache.struts2.config.Result;//Main3Actionには書かれていない
 import org.apache.struts2.dispatcher.ServletRedirectResult;//Main3Actionには書かれていない
+
+import dao.BandDao;
 
 @Result(name = "bandAdd", value = "bandAdd.action", type = ServletRedirectResult.class)
 public class BandSearchAction extends AbstractAction {
@@ -56,7 +57,7 @@ public class BandSearchAction extends AbstractAction {
 		this.sessionMap.put("part", this.part); // sessionMap"part"にpartを代入し保持
 
 		// BandAllManagerをインスタンス化
-		BandAllManager bandAllManager = new BandAllManager();
+		BandDao bandAllManager = new BandDao();
 
 		// userIdの取得
 		this.userId = (String) this.sessionMap.get("userId");
@@ -112,7 +113,7 @@ public class BandSearchAction extends AbstractAction {
 		if (this.delete_id == null) {
 
 			// BandAllManagerをインスタンス化
-			BandAllManager bandAllManager = new BandAllManager();
+			BandDao bandAllManager = new BandDao();
 
 			// userIdの取得
 			this.userId = (String) this.sessionMap.get("userId");

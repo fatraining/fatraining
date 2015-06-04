@@ -11,7 +11,7 @@ import model.Yasai;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.YasaiManager;
+import dao.YasaiDao;
 
 @Result(name = "yasaiAdd", value = "yasaiAdd.action", type = ServletRedirectResult.class)
 public class YasaiSearchAction extends AbstractAction {
@@ -67,7 +67,7 @@ public class YasaiSearchAction extends AbstractAction {
 	public String search() {
 
 		// yasaimanagerをインスタンス化
-		YasaiManager yasaimanager = new YasaiManager();
+		YasaiDao yasaimanager = new YasaiDao();
 
 		// ユーザーIDの表示
 		this.userId = (String) this.sessionMap.get("userId");

@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;

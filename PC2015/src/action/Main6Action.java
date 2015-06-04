@@ -7,7 +7,7 @@ import java.util.List;
 import model.LikeGame;
 import model.LikeSeries;
 import model.ResultTable6;
-import controller.LikeManager;
+import dao.LikeDao;
 
 public class Main6Action extends AbstractAction {
 
@@ -77,14 +77,14 @@ public class Main6Action extends AbstractAction {
 		if (this.title.isEmpty() && this.series.isEmpty()) {
 			try {
 				// 未記入の場合
-				LikeManager allController = new LikeManager();
+				LikeDao allController = new LikeDao();
 				resultTable = allController.searchList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			// 記入された場合
-			LikeManager linkController = new LikeManager();
+			LikeDao linkController = new LikeDao();
 			resultTable = linkController.searchList(this.title, this.series);
 		}
 		this.outputTable = tableTrans(resultTable);

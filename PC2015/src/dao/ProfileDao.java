@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,7 @@ import model.Profile;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-public class ProfileManager extends HibernateUtil {
+public class ProfileDao extends HibernateUtil {
 
 	public List<?> resultList() {
 		List<?> resultTable = null;
@@ -115,7 +115,7 @@ public class ProfileManager extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 
-		ProfileManager profilemanager = new ProfileManager();
+		ProfileDao profilemanager = new ProfileDao();
 		insert_my_hobby_table = profilemanager.my_hobbyList();
 		
 		Profile insert_profile_table = new Profile();

@@ -7,7 +7,7 @@ import java.util.List;
 import model.Result5Table;
 import model.User_Character;
 import model.User_Profile;
-import controller.UserProfileManager;
+import dao.UserProfileDao;
 
 public class Main5Action extends AbstractAction {
 
@@ -85,11 +85,11 @@ public class Main5Action extends AbstractAction {
 		List<?> resultTable = null;
 		if (this.dwelling.isEmpty() && this.name.isEmpty()) {
 			// 入力がない場合
-			UserProfileManager allController = new UserProfileManager();
+			UserProfileDao allController = new UserProfileDao();
 			resultTable = allController.searchAll();
 		} else {
 			// 入力された場合
-			UserProfileManager linkController = new UserProfileManager();
+			UserProfileDao linkController = new UserProfileDao();
 			resultTable = linkController.searchAll(this.dwelling, this.name);
 		}
 		this.outputTable = tableTrans(resultTable);

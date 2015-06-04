@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -14,7 +14,7 @@ import org.hibernate.classic.Session;
 
 @Result(name = "main6", value = "main6.action", type = ServletRedirectResult.class)
 // HibernateUtilクラスを継承したクラス
-public class LikeManager extends HibernateUtil {
+public class LikeDao extends HibernateUtil {
 	// 検索時入力がなかったとき実行
 	public List<?> searchList() {
 		// DBへの接続処理
@@ -156,7 +156,7 @@ public class LikeManager extends HibernateUtil {
 		}
 
 		// like_gameのテーブのルデータ検索
-		LikeManager likeManager = new LikeManager();
+		LikeDao likeManager = new LikeDao();
 		insert_series_table = likeManager.like_seriesList();
 
 		// インスタンス化。like_gameのデータ作成

@@ -7,7 +7,7 @@ import java.util.List;
 import model.DetailEat;
 import model.IDofEat;
 import model.Result10Table;
-import controller.All10Manager;
+import dao.FoodDao;
 
 public class Main10Action extends AbstractAction {
 
@@ -73,7 +73,7 @@ public class Main10Action extends AbstractAction {
 		// sessionMapに保存していたuserIDを取得
 		this.userId = (String) this.sessionMap.get("userId");
 		// All10Managerのインスタンスの生成
-		All10Manager allController = new All10Manager();
+		FoodDao allController = new FoodDao();
 		List<?> result10Table;
 
 		// 検索画面での入力がなかった場合、allControllerのsearchallListメソッドの引数なし呼び出す

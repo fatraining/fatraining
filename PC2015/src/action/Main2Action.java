@@ -7,7 +7,7 @@ import java.util.List;
 import model.Genre;
 import model.Result2Table;
 import model.Sweets;
-import controller.SweetsManager;
+import dao.SweetsDao;
 
 public class Main2Action extends AbstractAction {
 
@@ -84,11 +84,11 @@ public class Main2Action extends AbstractAction {
 		List<?> resultTable = null;
 		if (this.name.isEmpty() && this.genreNm.isEmpty()) {
 			// 入力がない場合
-			SweetsManager allController = new SweetsManager();
+			SweetsDao allController = new SweetsDao();
 			resultTable = allController.searchAll();
 		} else {
 			// 入力された場合
-			SweetsManager linkController = new SweetsManager();
+			SweetsDao linkController = new SweetsDao();
 			resultTable = linkController.searchAll(this.genreNm, this.name);
 		}
 		this.outputTable = tableTrans(resultTable);
@@ -127,11 +127,11 @@ public class Main2Action extends AbstractAction {
 			List<?> resultTable = null;
 			if (this.name.isEmpty() && this.genreNm.isEmpty()) {
 				// 入力がない場合
-				SweetsManager allController = new SweetsManager();
+				SweetsDao allController = new SweetsDao();
 				resultTable = allController.searchAll();
 			} else {
 				// 入力された場合
-				SweetsManager linkController = new SweetsManager();
+				SweetsDao linkController = new SweetsDao();
 				resultTable = linkController.searchAll(this.genreNm, this.name);
 			}
 			this.outputTable = tableTrans(resultTable);

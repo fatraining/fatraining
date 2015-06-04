@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +17,7 @@ import org.hibernate.classic.Session;
 import action.AbstractAction;
 import action.YasaiAddAction;
 
-public class YasaiManager extends HibernateUtil {
+public class YasaiDao extends HibernateUtil {
 
 	// 何も入力されなかったときのメソッド
 	public List<?> resultList() {
@@ -127,7 +127,7 @@ public class YasaiManager extends HibernateUtil {
 		}
 
 		// 料理テーブルのデータ検索
-		YasaiManager yasaimanager = new YasaiManager();
+		YasaiDao yasaimanager = new YasaiDao();
 		insert_ryouri_table = yasaimanager.ryouriList();
 
 		// 野菜データの作成

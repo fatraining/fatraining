@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +10,7 @@ import model.Sweets;
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 
-public class SweetsManager extends HibernateUtil {
+public class SweetsDao extends HibernateUtil {
 
 	// 全件のデータを検索
 	public List<?> searchAll() {

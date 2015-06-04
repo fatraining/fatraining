@@ -10,7 +10,7 @@ import model.MovieGenre;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.MovieManager;
+import dao.MovieDao;
 
 //リターンがmain7だったらmain7.actionに戻る
 @Result(name = "main7", value = "main7.action", type = ServletRedirectResult.class)
@@ -58,7 +58,7 @@ public class Update7Action extends AbstractAction {
 
 		String registration_userid = (String) this.sessionMap.get("userId");
 		String renewal_userid = (String) this.sessionMap.get("userId");
-		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		MovieDao moviemanager = new MovieDao(); // MovieManagerをインスタンス化
 		if (exhibition_year.isEmpty()) {
 			exhibition_year = "0";
 		}
@@ -75,7 +75,7 @@ public class Update7Action extends AbstractAction {
 		// delete_id=movieテーブルのidを取得
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 
-		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		MovieDao moviemanager = new MovieDao(); // MovieManagerをインスタンス化
 
 		// MovieManagerのdelete()の呼び出し
 		moviemanager.delete(this.delete_id);
@@ -85,7 +85,7 @@ public class Update7Action extends AbstractAction {
 
 	//movie_genreテーブルをリストボックスに入れるためのメソッド
 	private void listBox() {
-		MovieManager moviemanager = new MovieManager(); // MovieManagerをインスタンス化
+		MovieDao moviemanager = new MovieDao(); // MovieManagerをインスタンス化
 		values = moviemanager.expression();
 	}
 

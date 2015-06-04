@@ -3,7 +3,7 @@ package action;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import controller.SweetsManager;
+import dao.SweetsDao;
 
 @Result(name = "main2", value = "main2.action", type = ServletRedirectResult.class)
 public class Update2Action extends AbstractAction {
@@ -38,7 +38,7 @@ public class Update2Action extends AbstractAction {
 				return "errormsg";
 			}
 
-		SweetsManager SweetsManager = new SweetsManager();
+		SweetsDao SweetsManager = new SweetsDao();
 		SweetsManager.insert(name, genreNm,
 				(String) this.sessionMap.get("userId"));
 
@@ -53,7 +53,7 @@ public class Update2Action extends AbstractAction {
 			return "main2";
 		}
 
-		SweetsManager SweetsManager = new SweetsManager();
+		SweetsDao SweetsManager = new SweetsDao();
 		SweetsManager.delete(this.delete_id);
 
 		return "main2";
