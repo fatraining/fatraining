@@ -13,7 +13,7 @@
 
 			<div align=right>
 				<s:submit method="insert" value="追加" cssClass="btn btn-primary" />
-				<a href="main.action">Back</a>
+				<a href="main3.action">Back</a>
 			</div>
 
 			<label class="col-sm-2 control-label"> タイトル名:</label>
