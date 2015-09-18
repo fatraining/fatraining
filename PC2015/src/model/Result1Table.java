@@ -10,7 +10,7 @@ public class Result1Table implements Serializable {
 	private String name;
 	private String personality;
 	private String home;
-	private int birthday;
+	private String birthday;
 	private String hobby;
 	private int hobby_id;
 
@@ -56,11 +56,11 @@ public class Result1Table implements Serializable {
 		this.home = home;
 	}
 
-	public int getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(int birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
