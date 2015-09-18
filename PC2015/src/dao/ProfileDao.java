@@ -86,7 +86,7 @@ public class ProfileDao extends HibernateUtil {
 	}
 	//　insertメソッドに引数として値を渡す
 	public void insert(String hobby, String name, String personality,
-			String home, int birthday, String userid, String new_userid) {
+			String home, String birthday, String userid, String new_userid) {
 		//　DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
