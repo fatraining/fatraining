@@ -4,20 +4,20 @@
 
 <s:form cssClass="form-horizontal">
 
-	
-	
+
+
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoMain1" value="メニュー１" cssClass="btn btn-primary" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoMain2" value="メニュー２" cssClass="btn btn-primary" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoMain3" value="メニュー3" cssClass="btn btn-primary" />
@@ -55,11 +55,17 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="gotoMain10" value="メニュー10" cssClass="btn btn-primary" />
+			<s:submit method="gotoMain10" value="メニュー10"
+				cssClass="btn btn-primary" />
 		</div>
 	</div>
-	
-	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
+		</div>
+	</div>
+
+
 
 </s:form>
 <jsp:include page="footer.jsp" />

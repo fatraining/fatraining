@@ -69,6 +69,8 @@
 		<mapping class="model.Tb_Genre" />
 		<mapping class="model.User_Character" />
 		<mapping class="model.User_Profile" />
+		<mapping class="model.Busyo" />
+		<mapping class="model.Kaisya" />
 		
 		
 	</session-factory>
