@@ -148,7 +148,7 @@ public class Main1Action extends AbstractAction {
 				temp.setName(profile.getName());
 				temp.setPersonality(profile.getPersonality());
 				temp.setHome(profile.getHome());
-				temp.setBirthday(profile.getBirthday());
+				temp.setBirthday(profile.getBirthday()+"月");
 				temp.setHobby(my_hobby.getHobby());
 				tempTable.add(temp);
 			}
