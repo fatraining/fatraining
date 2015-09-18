@@ -34,17 +34,17 @@
 		<s:submit method="search" value="検索" cssClass="btn btn-danger" />
 		<s:submit method="reset" value="リセット" cssClass="btn btn-primary" />
 		<s:submit method="update" value="追加" cssClass="btn btn-warning" />
-		
+
 		<a href="menu.action">Back</a>
 
 		<!--<s:submit method="printall" value="全件リスト" cssClass="btn btn-primary" />-->
-		
+
 		<s:if test="%{errormsg=='true'}">
 			<span style="color: red">
 				<h5>＊削除する項目を選択してください</h5>
 			</span>
 		</s:if>
-		
+
 	</div>
 </s:form>
 
@@ -60,7 +60,7 @@
 					<th>出身地</th>
 					<th>誕生日</th>
 					<th>趣味</th>
-						<th>削除</th>
+					<th>削除</th>
 
 				</tr>
 				<td class="bar" colspan="16"></td>
