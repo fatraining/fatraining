@@ -13,7 +13,7 @@ public class Update1Action extends AbstractAction {
 	public String name;
 	public String personality;
 	public String home;
-	public int birthday;
+	public String birthday;
 	public String hobby;
 	// メソッドを起こすための変数
 	public String delete_id;
