@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 9 朁E18 日 11:00
--- サーバのバージョン： 5.6.21
--- PHP Version: 5.5.19
+-- Generation Time: 2015 年 10 朁E05 日 05:11
+-- サーバのバージョン： 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `task_master`
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `band_account` (
-`ID` int(50) NOT NULL,
+  `ID` int(50) NOT NULL,
   `NAME` varchar(50) DEFAULT NULL,
   `SEX` varchar(50) DEFAULT NULL,
   `AGE` varchar(50) DEFAULT NULL,
@@ -57,7 +57,7 @@ INSERT INTO `band_account` (`ID`, `NAME`, `SEX`, `AGE`, `SCHOOL`, `FAVORITE_SONG
 --
 
 CREATE TABLE IF NOT EXISTS `band_table` (
-`ID` int(50) NOT NULL,
+  `ID` int(50) NOT NULL,
   `BAND_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `ENTRY_DATE` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `RENEWAL_DATE` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -77,11 +77,39 @@ INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTR
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `company`
+--
+
+CREATE TABLE IF NOT EXISTS `company` (
+  `companyID` smallint(3) NOT NULL,
+  `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
+  `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
+  `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
+  `registeredperson` char(20) CHARACTER SET utf8 NOT NULL,
+  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateby` char(20) CHARACTER SET utf8 NOT NULL,
+  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `e_flag` tinyint(1) NOT NULL,
+  `d_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `company`
+--
+
+INSERT INTO `company` (`companyID`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+(1, '佐藤株式会社', '東京都', '0344556633', '高橋', '1900-01-02 00:00:00', '高橋', '1900-02-24 00:00:00', 0, 0),
+(2, '鈴木株式会社', '神奈川県', '0358575588', '福田', '1900-02-03 00:00:00', '福田', '1901-11-07 00:00:00', 0, 0),
+(3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 1);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `eat_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `eat_detail` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `eat_year` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `eat_month` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `eat_day` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -109,7 +137,7 @@ INSERT INTO `eat_detail` (`id`, `eat_year`, `eat_month`, `eat_day`, `eat_hour`, 
 --
 
 CREATE TABLE IF NOT EXISTS `eat_id` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `eatFood` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `eatCalory` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `entry_day` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -134,7 +162,7 @@ INSERT INTO `eat_id` (`id`, `eatFood`, `eatCalory`, `entry_day`, `renew_day`, `e
 --
 
 CREATE TABLE IF NOT EXISTS `genre` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `genreNm` char(50) DEFAULT NULL,
   `record_date` char(50) DEFAULT NULL,
   `reset_date` char(50) DEFAULT NULL,
@@ -160,7 +188,7 @@ INSERT INTO `genre` (`id`, `genreNm`, `record_date`, `reset_date`, `entry_userId
 --
 
 CREATE TABLE IF NOT EXISTS `like_game` (
-`id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
+  `id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
   `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `seriesId` int(11) DEFAULT NULL,
   `trump` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -188,7 +216,7 @@ INSERT INTO `like_game` (`id`, `title`, `seriesId`, `trump`, `Origin`, `addDate`
 --
 
 CREATE TABLE IF NOT EXISTS `like_series` (
-`up_id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
+  `up_id` int(11) NOT NULL COMMENT 'AUTO_INCREMENT',
   `seriesNm` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `addDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `updateDate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -213,7 +241,7 @@ INSERT INTO `like_series` (`up_id`, `seriesNm`, `addDate`, `updateDate`, `addUse
 --
 
 CREATE TABLE IF NOT EXISTS `movie` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `title` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `genreId` int(50) DEFAULT NULL,
   `exhibition_year` int(8) DEFAULT NULL,
@@ -294,7 +322,7 @@ INSERT INTO `movie_genre` (`id`, `genre`, `registration_date`, `renewal_date`, `
 --
 
 CREATE TABLE IF NOT EXISTS `ryouri` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `tyouri` varchar(50) DEFAULT NULL,
   `ryouri` varchar(50) DEFAULT NULL,
   `date_entry` varchar(50) DEFAULT NULL,
@@ -327,11 +355,40 @@ INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `staff`
+--
+
+CREATE TABLE IF NOT EXISTS `staff` (
+  `staffID` smallint(3) NOT NULL,
+  `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
+  `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
+  `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
+  `companyID` smallint(3) NOT NULL,
+  `registeredperson` char(20) CHARACTER SET utf8 NOT NULL,
+  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateby` char(20) CHARACTER SET utf8 NOT NULL,
+  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `e_flag` tinyint(1) NOT NULL,
+  `d_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `staff`
+--
+
+INSERT INTO `staff` (`staffID`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+(1, '鈴木', '埼玉県', '08076546543', 2, '鈴木', '1900-11-28 00:00:00', '鈴木', '1901-03-19 00:00:00', 0, 0),
+(2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 1),
+(3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `story`
 --
 
 CREATE TABLE IF NOT EXISTS `story` (
-`id` int(50) NOT NULL COMMENT 'AUTO_INCREMENT',
+  `id` int(50) NOT NULL COMMENT 'AUTO_INCREMENT',
   `title` varchar(50) DEFAULT NULL,
   `genre_id` varchar(50) DEFAULT NULL,
   `signup` varchar(50) DEFAULT NULL,
@@ -358,7 +415,7 @@ INSERT INTO `story` (`id`, `title`, `genre_id`, `signup`, `updateDate`, `signupU
 --
 
 CREATE TABLE IF NOT EXISTS `sweets` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `name` char(50) DEFAULT NULL,
   `genre_id` int(50) DEFAULT NULL,
   `record_date` char(50) DEFAULT NULL,
@@ -374,7 +431,6 @@ CREATE TABLE IF NOT EXISTS `sweets` (
 --
 
 INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`) VALUES
-(15, 'クッキー', 1, '2015/05/08 16:41:54', '2015/05/08 16:41:54', 'hokari', 'hokari', 0, 0),
 (16, 'ガレット', 1, '2015/05/08 16:42:1', '2015/05/08 16:42:1', 'hokari', 'hokari', 0, 0),
 (17, 'トリュフ', 3, '2015/05/11 15:58:29', '2015/05/11 15:58:29', 'Struts2', 'Struts2', 0, 0),
 (18, 'プリン', 2, '2015/05/11 15:58:38', '2015/05/11 15:58:38', 'Struts2', 'Struts2', 0, 0),
@@ -393,7 +449,7 @@ INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `en
 --
 
 CREATE TABLE IF NOT EXISTS `table_busyo` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `busyo` char(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `day_entry` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `day_up` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -401,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `table_busyo` (
   `userId_up` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `control` int(11) NOT NULL,
   `deleteflg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `table_busyo`
@@ -426,7 +482,7 @@ INSERT INTO `table_busyo` (`id`, `busyo`, `day_entry`, `day_up`, `userId`, `user
 --
 
 CREATE TABLE IF NOT EXISTS `table_color` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `colorNm` char(50) DEFAULT NULL,
   `day` char(50) DEFAULT NULL,
   `new_day` char(50) DEFAULT NULL,
@@ -451,7 +507,7 @@ INSERT INTO `table_color` (`id`, `colorNm`, `day`, `new_day`, `userid`, `new_use
 --
 
 CREATE TABLE IF NOT EXISTS `table_hobby` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `hobby` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `day` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `new_day` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -477,7 +533,7 @@ INSERT INTO `table_hobby` (`id`, `hobby`, `day`, `new_day`, `userid`, `new_useri
 --
 
 CREATE TABLE IF NOT EXISTS `table_kaisya` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `syamei` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name` char(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nyusyabi` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -489,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `table_kaisya` (
   `userId_up` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `control` int(11) NOT NULL,
   `deleteflg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- テーブルのデータのダンプ `table_kaisya`
@@ -514,7 +570,7 @@ INSERT INTO `table_kaisya` (`id`, `syamei`, `name`, `nyusyabi`, `busyo_id`, `com
 --
 
 CREATE TABLE IF NOT EXISTS `table_like` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `name` char(50) DEFAULT NULL,
   `food` char(50) DEFAULT NULL,
   `drink` char(50) DEFAULT NULL,
@@ -542,7 +598,7 @@ INSERT INTO `table_like` (`id`, `name`, `food`, `drink`, `color`, `day`, `new_da
 --
 
 CREATE TABLE IF NOT EXISTS `table_profile` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `personality` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `home` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -572,7 +628,7 @@ INSERT INTO `table_profile` (`id`, `name`, `personality`, `home`, `birthday`, `h
 --
 
 CREATE TABLE IF NOT EXISTS `tb_genre` (
-`id` int(50) NOT NULL COMMENT 'AUTO_INCREMENT',
+  `id` int(50) NOT NULL COMMENT 'AUTO_INCREMENT',
   `genre` varchar(50) DEFAULT NULL,
   `signup` varchar(50) DEFAULT NULL,
   `updateDate` varchar(50) DEFAULT NULL,
@@ -598,7 +654,7 @@ INSERT INTO `tb_genre` (`id`, `genre`, `signup`, `updateDate`, `signupUSERID`, `
 --
 
 CREATE TABLE IF NOT EXISTS `user_character` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `personality` char(50) DEFAULT NULL,
   `interest` char(50) DEFAULT NULL,
   `day` char(50) DEFAULT NULL,
@@ -623,7 +679,7 @@ INSERT INTO `user_character` (`id`, `personality`, `interest`, `day`, `newday`, 
 --
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `phonenumber` int(11) DEFAULT NULL,
   `zipcode` int(11) DEFAULT NULL,
   `dwelling` char(50) DEFAULT NULL,
@@ -651,7 +707,7 @@ INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, 
 --
 
 CREATE TABLE IF NOT EXISTS `yasai` (
-`id` int(50) NOT NULL,
+  `id` int(50) NOT NULL,
   `yasai` varchar(50) DEFAULT NULL,
   `tyouriId` int(50) DEFAULT NULL,
   `date_entry` varchar(50) DEFAULT NULL,
@@ -689,133 +745,145 @@ INSERT INTO `yasai` (`id`, `yasai`, `tyouriId`, `date_entry`, `date_up`, `userId
 -- Indexes for table `band_account`
 --
 ALTER TABLE `band_account`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `band_table`
 --
 ALTER TABLE `band_table`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`companyID`);
 
 --
 -- Indexes for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `eat_id`
 --
 ALTER TABLE `eat_id`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `genre`
 --
 ALTER TABLE `genre`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `like_game`
 --
 ALTER TABLE `like_game`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `like_series`
 --
 ALTER TABLE `like_series`
- ADD PRIMARY KEY (`up_id`);
+  ADD PRIMARY KEY (`up_id`);
 
 --
 -- Indexes for table `movie`
 --
 ALTER TABLE `movie`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `movie_genre`
 --
 ALTER TABLE `movie_genre`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ryouri`
 --
 ALTER TABLE `ryouri`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staffID`);
 
 --
 -- Indexes for table `story`
 --
 ALTER TABLE `story`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sweets`
 --
 ALTER TABLE `sweets`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_busyo`
 --
 ALTER TABLE `table_busyo`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_color`
 --
 ALTER TABLE `table_color`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_hobby`
 --
 ALTER TABLE `table_hobby`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_kaisya`
 --
 ALTER TABLE `table_kaisya`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_like`
 --
 ALTER TABLE `table_like`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_profile`
 --
 ALTER TABLE `table_profile`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_genre`
 --
 ALTER TABLE `tb_genre`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_character`
 --
 ALTER TABLE `user_character`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_profile`
 --
 ALTER TABLE `user_profile`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `yasai`
 --
 ALTER TABLE `yasai`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -825,107 +893,117 @@ ALTER TABLE `yasai`
 -- AUTO_INCREMENT for table `band_account`
 --
 ALTER TABLE `band_account`
-MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `band_table`
 --
 ALTER TABLE `band_table`
-MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `companyID` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `eat_id`
 --
 ALTER TABLE `eat_id`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `like_series`
 --
 ALTER TABLE `like_series`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=31;
+  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `ryouri`
 --
 ALTER TABLE `ryouri`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `staffID` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `sweets`
 --
 ALTER TABLE `sweets`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `table_busyo`
 --
 ALTER TABLE `table_busyo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `table_color`
 --
 ALTER TABLE `table_color`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `table_hobby`
 --
 ALTER TABLE `table_hobby`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `table_kaisya`
 --
 ALTER TABLE `table_kaisya`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `table_like`
 --
 ALTER TABLE `table_like`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `table_profile`
 --
 ALTER TABLE `table_profile`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_genre`
 --
 ALTER TABLE `tb_genre`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=17;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `user_character`
 --
 ALTER TABLE `user_character`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `yasai`
 --
 ALTER TABLE `yasai`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=149;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=149;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
