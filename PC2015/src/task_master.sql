@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 10 朁E05 日 05:11
+-- Generation Time: 2015 年 10 朁E05 日 11:36
 -- サーバのバージョン： 5.6.26
 -- PHP Version: 5.6.12
 
@@ -81,7 +81,7 @@ INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTR
 --
 
 CREATE TABLE IF NOT EXISTS `company` (
-  `companyID` smallint(3) NOT NULL,
+  `id` smallint(3) NOT NULL,
   `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
   `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
   `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- テーブルのデータのダンプ `company`
 --
 
-INSERT INTO `company` (`companyID`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+INSERT INTO `company` (`id`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
 (1, '佐藤株式会社', '東京都', '0344556633', '高橋', '1900-01-02 00:00:00', '高橋', '1900-02-24 00:00:00', 0, 0),
 (2, '鈴木株式会社', '神奈川県', '0358575588', '福田', '1900-02-03 00:00:00', '福田', '1901-11-07 00:00:00', 0, 0),
 (3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 1);
@@ -359,7 +359,7 @@ INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId
 --
 
 CREATE TABLE IF NOT EXISTS `staff` (
-  `staffID` smallint(3) NOT NULL,
+  `id` smallint(3) NOT NULL,
   `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
   `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
   `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
@@ -376,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 -- テーブルのデータのダンプ `staff`
 --
 
-INSERT INTO `staff` (`staffID`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+INSERT INTO `staff` (`id`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
 (1, '鈴木', '埼玉県', '08076546543', 2, '鈴木', '1900-11-28 00:00:00', '鈴木', '1901-03-19 00:00:00', 0, 0),
 (2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 1),
 (3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0);
@@ -757,7 +757,7 @@ ALTER TABLE `band_table`
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
-  ADD PRIMARY KEY (`companyID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `eat_detail`
@@ -811,7 +811,7 @@ ALTER TABLE `ryouri`
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`staffID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `story`
@@ -903,7 +903,7 @@ ALTER TABLE `band_table`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `companyID` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `eat_detail`
 --
@@ -943,7 +943,7 @@ ALTER TABLE `ryouri`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staffID` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `story`
 --
