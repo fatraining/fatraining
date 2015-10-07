@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 10 朁E05 日 11:36
+-- Generation Time: 2015 年 10 朁E07 日 03:20
 -- サーバのバージョン： 5.6.26
 -- PHP Version: 5.6.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `task_master`
+-- Database: `t`
 --
 
 -- --------------------------------------------------------
@@ -82,16 +82,16 @@ INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTR
 
 CREATE TABLE IF NOT EXISTS `company` (
   `id` smallint(3) NOT NULL,
-  `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
-  `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
-  `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
-  `registeredperson` char(20) CHARACTER SET utf8 NOT NULL,
+  `name` char(20) NOT NULL,
+  `prefecture` char(5) NOT NULL,
+  `phonenumber` char(11) NOT NULL,
+  `registeredperson` char(20) NOT NULL,
   `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updateby` char(20) CHARACTER SET utf8 NOT NULL,
+  `updateby` char(20) NOT NULL,
   `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `e_flag` tinyint(1) NOT NULL,
+  `e_flag` bigint(11) unsigned NOT NULL,
   `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `company`
@@ -360,17 +360,17 @@ INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId
 
 CREATE TABLE IF NOT EXISTS `staff` (
   `id` smallint(3) NOT NULL,
-  `name` char(20) CHARACTER SET utf8 DEFAULT NULL,
-  `prefecture` char(5) CHARACTER SET utf8 DEFAULT NULL,
-  `phonenumber` char(11) CHARACTER SET utf8 DEFAULT NULL,
+  `name` char(20) NOT NULL,
+  `prefecture` char(5) NOT NULL,
+  `phonenumber` char(11) NOT NULL,
   `companyID` smallint(3) NOT NULL,
-  `registeredperson` char(20) CHARACTER SET utf8 NOT NULL,
+  `registeredperson` char(20) NOT NULL,
   `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updateby` char(20) CHARACTER SET utf8 NOT NULL,
+  `updateby` char(20) NOT NULL,
   `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `e_flag` tinyint(1) NOT NULL,
+  `e_flag` bigint(11) unsigned NOT NULL,
   `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `staff`
@@ -903,7 +903,7 @@ ALTER TABLE `band_table`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `eat_detail`
 --
@@ -943,7 +943,7 @@ ALTER TABLE `ryouri`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `story`
 --
