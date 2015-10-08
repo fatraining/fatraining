@@ -15,7 +15,7 @@ public class Staff implements Serializable{
 	private static final long serialVersionUID=1L;
 	
 	//カラム名
-	private int staffID;
+	private int id;
 	private String name;
 	private String prefecture;
 	private String phoneNumber;
@@ -25,15 +25,15 @@ public class Staff implements Serializable{
 	private String updateBy;
 	private String updateDate;
 	
-	private boolean e_flag;
-	private boolean d_flag;
+	private int e_flag;
+	private int d_flag;
 
 	/*-----------------getter------------------------*/
 	@Id
 	@GeneratedValue
-	@Column(name ="staffID")
-	public int getStaffID() {
-		return staffID;
+	@Column(name ="id")
+	public int getId() {
+		return id;
 	}
 	
 	@Column(name="name")
@@ -77,18 +77,18 @@ public class Staff implements Serializable{
 	}
 	
 	@Column(name="e_flag")
-	public boolean isE_flag() {
+	public int isE_flag() {
 		return e_flag;
 	}
 	
 	@Column(name="d_flag")
-	public boolean isD_flag() {
+	public int isD_flag() {
 		return d_flag;
 	}
 	
 	/*-----------------setter------------------------*/
-	public void setStaffID(int staffID) {
-		this.staffID = staffID;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setName(String name) {
@@ -123,11 +123,11 @@ public class Staff implements Serializable{
 		this.updateDate = updateDate;
 	}
 	
-	public void setE_flag(boolean e_flag) {
+	public void setE_flag(int e_flag) {
 		this.e_flag = e_flag;
 	}
 	
-	public void setD_flag(boolean d_flag) {
+	public void setD_flag(int d_flag) {
 		this.d_flag = d_flag;
 	}
 	

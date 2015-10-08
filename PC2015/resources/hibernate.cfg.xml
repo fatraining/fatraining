@@ -71,6 +71,9 @@
 		<mapping class="model.User_Profile" />
 		<mapping class="model.Busyo" />
 		<mapping class="model.Kaisya" />
+ 		<mapping class="model.Staff"/>
+ 		<mapping class="model.Company"/>
+ 		<mapping class="model.Result11Table"/>
 		
 		
 	</session-factory>
