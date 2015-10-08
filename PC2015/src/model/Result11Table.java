@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Result11Table implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// 画面に表示させたいカラム名
-	public int staffID;
+	public int id;
 	public String sName;
 	public String sPrefecture;
 	public String sPhonenumber;
@@ -15,8 +15,8 @@ public class Result11Table implements Serializable {
 	public String cPhonenumber;
 	
 	/*-----------------getter------------------------*/
-	public int getStaffID() {
-		return staffID;
+	public int getId() {
+		return id;
 	}
 	public String getSName() {
 		return sName;
@@ -40,7 +40,12 @@ public class Result11Table implements Serializable {
 		return cPhonenumber;
 	}
 	
+	
 	/*-----------------setter------------------------*/
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setSName(String sName) {
 		this.sName = sName;
 	}
