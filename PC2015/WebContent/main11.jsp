@@ -13,7 +13,7 @@
 		<label class="col-sm-2 control-label">都道府県(住所):</label>
 		<div class="col-md-3">
 			<s:select name="prefecture"
-				list="#{'','1':'東京都','2':'神奈川県','3':'埼玉県','4':'千葉県','5':'静岡県'}"
+				list="#{'','東京都':'東京都','神奈川県':'神奈川県','埼玉県':'埼玉県','千葉県':'千葉県','静岡県':'静岡県'}"
 				cssClass="form-control" />
 		</div>
 	</div>
@@ -41,4 +41,39 @@
 		</s:if>
 	</div>
 </s:form>
+
+<s:if test="%{do_search=='true'}">
+	<h3>検索結果</h3>
+	<s:form>
+		<table class="brwsr2">
+			<tbody>
+				<tr>
+					<th>社員名</th>
+					<th>都道府県(住所)</th>
+					<th>電話番号</th>
+					<th>所属会社名</th>
+					<th>削除</th>
+
+				</tr>
+				<s:iterator value="outputTable">
+					<tr>
+						<td class="data"><s:property value="sName" /></td>
+						<td class="data"><s:property value="sPrefecture" /></td>
+						<td class="data"><s:property value="sPhonenumber" /></td>
+						<td class="data"><s:property value="cName" /></td>
+						<td class="data"><input type="checkbox" name="delete_id"
+							value=<s:property value="id" /> /></td>
+
+					</tr>
+				</s:iterator>
+			</tbody>
+		</table>
+		<s:if test="%{delete=='true'}">
+			<div align=right>
+				<s:submit method="delete_id" name="delete_id" value="削除"
+					cssClass="btn btn-danger" />
+			</div>
+		</s:if>
+	</s:form>
+</s:if>
 <jsp:include page="footer.jsp" />
