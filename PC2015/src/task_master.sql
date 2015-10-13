@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 10 朁E07 日 03:20
+-- Generation Time: 2015 年 10 朁E13 日 07:21
 -- サーバのバージョン： 5.6.26
 -- PHP Version: 5.6.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `t`
+-- Database: `task_master`
 --
 
 -- --------------------------------------------------------
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `e_flag` bigint(11) unsigned NOT NULL,
   `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `company`
@@ -100,7 +100,17 @@ CREATE TABLE IF NOT EXISTS `company` (
 INSERT INTO `company` (`id`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
 (1, '佐藤株式会社', '東京都', '0344556633', '高橋', '1900-01-02 00:00:00', '高橋', '1900-02-24 00:00:00', 0, 0),
 (2, '鈴木株式会社', '神奈川県', '0358575588', '福田', '1900-02-03 00:00:00', '福田', '1901-11-07 00:00:00', 0, 0),
-(3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 1);
+(3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 0),
+(4, 'a1', '静岡県', '0123456789', 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
+(5, 'a2', '埼玉県', '0123456790', 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
+(6, 'a3', '東京都', '0123456791', 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
+(7, 'a4', '神奈川県', '0123456792', 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
+(8, 'a5', '千葉県', '0123456793', 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
+(9, 'a6', '静岡県', '0123456794', 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
+(10, 'a7', '埼玉県', '0123456795', 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
+(11, 'a8', '東京都', '0123456796', 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
+(12, 'a9', '神奈川県', '0123456797', 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
+(13, 'a10', '千葉県', '0123456798', 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -370,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `e_flag` bigint(11) unsigned NOT NULL,
   `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `staff`
@@ -378,8 +388,18 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 INSERT INTO `staff` (`id`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
 (1, '鈴木', '埼玉県', '08076546543', 2, '鈴木', '1900-11-28 00:00:00', '鈴木', '1901-03-19 00:00:00', 0, 0),
-(2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 1),
-(3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0);
+(2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 0),
+(3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0),
+(4, 'a1', '東京都', '098765432', 4, 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
+(5, 'a2', '静岡県', '0987654322', 5, 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
+(6, 'a3', '埼玉県', '0987654323', 6, 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
+(7, 'a4', '神奈川県', '0987654324', 7, 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
+(8, 'a5', '静岡県', '0987654325', 8, 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
+(9, 'a6', '東京都', '0987654326', 9, 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
+(10, 'a7', '静岡県', '0987654327', 10, 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
+(11, 'a8', '埼玉県', '0987654328', 11, 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
+(12, 'a9', '神奈川県', '0987654329', 12, 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
+(13, 'a10', '静岡県', '0987654330', 13, 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -903,7 +923,7 @@ ALTER TABLE `band_table`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `eat_detail`
 --
@@ -943,7 +963,7 @@ ALTER TABLE `ryouri`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `story`
 --
