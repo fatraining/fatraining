@@ -9,6 +9,7 @@ public class Result11Table implements Serializable {
 	public String sName;
 	public String sPrefecture;
 	public String sPhonenumber;
+	public String sUpdatedate;
 	public int companyID;
 	public String cName;
 	public String cPrefecture;
@@ -26,6 +27,9 @@ public class Result11Table implements Serializable {
 	}
 	public String getSPhonenumber() {
 		return sPhonenumber;
+	}
+	public String getSUpdatedate() {
+		return sUpdatedate;
 	}
 	public int getCompanyID() {
 		return companyID;
@@ -54,6 +58,9 @@ public class Result11Table implements Serializable {
 	}
 	public void setSPhonenumber(String sPhonenumber) {
 		this.sPhonenumber = sPhonenumber;
+	}
+	public void setSUpdatedate(String sUpdatedate) {
+		this.sUpdatedate = sUpdatedate;
 	}
 	public void setCompanyID(int companyID) {
 		this.companyID = companyID;
