@@ -10,16 +10,23 @@ import org.hibernate.classic.Session;
 import model.Company;
 import model.Staff;
 
+/**
+ * データベースアクセスクラス
+ */
 public class StaffDao extends HibernateUtil {
-	
+	/**
+	 * 全件検索処理<br>
+	 * List&lt;[0]Staff(Object),[1]Company(Object)&gt;の形で返す
+	 */
 	public List<?> searchResult() {
+		//検索処理結果取得変数の初期化
 		List<?> resultTable = null;
 		// DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
 		String select = "SELECT {staff.*}, {company.*} FROM staff,company";
-		String where = "WHERE staff.companyID = company.id";
+		String where = "WHERE staff.companyID = company.id AND staff.d_flag=0";
 		String sql = select + " " + where;
 		try{
 			resultTable = session.createSQLQuery(sql)
@@ -33,7 +40,12 @@ public class StaffDao extends HibernateUtil {
 		
 		return resultTable;
 	}
+	/**
+	 * 条件一致検索<br>
+	 * List&lt;[0]Staff(Object),[1]Company(Object)&gt;の形で返す
+	 */
 	public List<?> searchResult(String sName,String prefecture,String cName){
+		//検索処理結果取得変数の初期化
 		List<?> resultTable = null;
 		//DB接続
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
@@ -50,7 +62,7 @@ public class StaffDao extends HibernateUtil {
 				cName="%";
 			}
 			String select = "SELECT {staff.*},{company.*} FROM staff,company";
-			String where1 = "WHERE staff.companyID = company.id";
+			String where1 = "WHERE staff.companyID = company.id AND staff.d_flag=0";
 			String where2 = "AND (staff.name LIKE '" + sName + "' AND staff.prefecture LIKE '"
 					+ prefecture + "' AND company.name LIKE '" + cName + "')";
 			String sql = select + " " + where1 + " " + where2 ;
@@ -64,13 +76,14 @@ public class StaffDao extends HibernateUtil {
 		session.getTransaction().commit();
 		return resultTable;	
 	}
-	
+	/**
+	 * 一番最後に追加したCompanyの行データを取得
+	 */
 	public Company companyList() {
 		List<?> resultTable = null;
 		// DB接続
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		//　table_hobbyのリストをすべて表示
 		try {
 			String sql = "SELECT * FROM company";
 			resultTable = session.createSQLQuery(sql)
@@ -79,11 +92,12 @@ public class StaffDao extends HibernateUtil {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		//　company_tableで生成したIDを取得(昇順)
 		return (Company) resultTable.get(resultTable.size() - 1);
 	}
 	
-	
+	/**
+	 * 追加処理
+	 */
 	public void insert(String sName, String sPrefecture, String sPhonenumber,
 			String cName, String cPrefecture, String cPhonenumber,
 			String registeredPerson,String updateBy) {
@@ -96,10 +110,9 @@ public class StaffDao extends HibernateUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd k:m:s");
 		String registrationDate = String.valueOf(sdf.format(date));
 		String updateDate = String.valueOf(sdf.format(date));
-
-		Company insertCompany = new Company();
 		
-		// table_profileにインサート
+		//Companyデータの追加
+		Company insertCompany = new Company();
 		insertCompany.setName(cName);
 		insertCompany.setPrefecture(cPrefecture);
 		insertCompany.setPhoneNumber(cPhonenumber);
@@ -109,7 +122,6 @@ public class StaffDao extends HibernateUtil {
 		insertCompany.setUpdateBy(updateBy);
 		insertCompany.setD_flag(0);
 		insertCompany.setE_flag(0);
-
 		try {
 			session.save(insertCompany);
 
@@ -118,13 +130,13 @@ public class StaffDao extends HibernateUtil {
 			session.getTransaction().rollback();
 		}
 		
+		//追加したCompanyデータの取得
 		StaffDao StaffController = new StaffDao();
 		insertCompany = StaffController.companyList();
 		
+		//Staffデータの追加
 		Staff insertStaff = new Staff();
-		// my_sName_tableで生成したIDを取得しsName_idにセットする
 		insertStaff.setCompanyID(insertCompany.getId());
-		// table_mysNameにインサート
 		insertStaff.setName(sName);
 		insertStaff.setPrefecture(sPrefecture);
 		insertStaff.setPhoneNumber(sPhonenumber);
@@ -145,6 +157,9 @@ public class StaffDao extends HibernateUtil {
 		session.getTransaction().commit();
 	}
 	
+	/**
+	 * 削除処理
+	 */
 	public void delete(String delete_id) {
 		//　DB接続
 		Session session = HibernateUtil.getSessionFactory()
@@ -159,8 +174,8 @@ public class StaffDao extends HibernateUtil {
 						Integer.parseInt(strAry[i]));
 				Company company = (Company) session.load(Company.class,
 						staff.getCompanyID());
-				session.delete(company);
-				session.delete(staff);
+				//session.delete(company);
+				staff.setD_flag(1);
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				session.getTransaction().rollback();
