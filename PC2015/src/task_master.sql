@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 10 朁E13 日 07:21
+-- Generation Time: 2015 年 10 朁E13 日 11:35
 -- サーバのバージョン： 5.6.26
 -- PHP Version: 5.6.12
 
@@ -73,44 +73,6 @@ CREATE TABLE IF NOT EXISTS `band_table` (
 
 INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTRY_USERID`, `RENEWAL_USERID`, `EXCLUSION_FLG`, `DELETE_FLG`) VALUES
 (1, '砂糖と塩', '2015/05/08 15:48:33', '2015/05/08 15:48:33', 'Struts2', 'Struts2', 0, 0);
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `company`
---
-
-CREATE TABLE IF NOT EXISTS `company` (
-  `id` smallint(3) NOT NULL,
-  `name` char(20) NOT NULL,
-  `prefecture` char(5) NOT NULL,
-  `phonenumber` char(11) NOT NULL,
-  `registeredperson` char(20) NOT NULL,
-  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updateby` char(20) NOT NULL,
-  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `e_flag` bigint(11) unsigned NOT NULL,
-  `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `company`
---
-
-INSERT INTO `company` (`id`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
-(1, '佐藤株式会社', '東京都', '0344556633', '高橋', '1900-01-02 00:00:00', '高橋', '1900-02-24 00:00:00', 0, 0),
-(2, '鈴木株式会社', '神奈川県', '0358575588', '福田', '1900-02-03 00:00:00', '福田', '1901-11-07 00:00:00', 0, 0),
-(3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 0),
-(4, 'a1', '静岡県', '0123456789', 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
-(5, 'a2', '埼玉県', '0123456790', 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
-(6, 'a3', '東京都', '0123456791', 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
-(7, 'a4', '神奈川県', '0123456792', 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
-(8, 'a5', '千葉県', '0123456793', 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
-(9, 'a6', '静岡県', '0123456794', 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
-(10, 'a7', '埼玉県', '0123456795', 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
-(11, 'a8', '東京都', '0123456796', 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
-(12, 'a9', '神奈川県', '0123456797', 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
-(13, 'a10', '千葉県', '0123456798', 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -209,15 +171,7 @@ CREATE TABLE IF NOT EXISTS `like_game` (
   `upUserID` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
-
---
--- テーブルのデータのダンプ `like_game`
---
-
-INSERT INTO `like_game` (`id`, `title`, `seriesId`, `trump`, `Origin`, `addDate`, `updateDate`, `addUserID`, `upUserID`, `another_flg`, `delete_flg`) VALUES
-(18, 'Fate/stay night', 29, 'Unlimited Blade Works', 'Swrod', '05/08', '05/08', 'Struts2', 'Struts2', 0, 0),
-(19, 'Fate/hollow  ataraxia ', 30, 'Angra Mainyu', 'Evil', '05/13', '05/13', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -234,15 +188,7 @@ CREATE TABLE IF NOT EXISTS `like_series` (
   `upUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
-
---
--- テーブルのデータのダンプ `like_series`
---
-
-INSERT INTO `like_series` (`up_id`, `seriesNm`, `addDate`, `updateDate`, `addUserId`, `upUserId`, `another_flg`, `delete_flg`) VALUES
-(29, 'Fate', '05/08', '05/08', 'Struts2', 'Struts2', 0, 0),
-(30, 'Fate', '05/13', '05/13', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -328,6 +274,34 @@ INSERT INTO `movie_genre` (`id`, `genre`, `registration_date`, `renewal_date`, `
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `registration_name`
+--
+
+CREATE TABLE IF NOT EXISTS `registration_name` (
+  `id` int(11) NOT NULL,
+  `registration_number` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `competition_number` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registered_person` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registration_date` datetime DEFAULT NULL,
+  `update_by` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `e_flag` int(2) DEFAULT NULL,
+  `d_flag` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `registration_name`
+--
+
+INSERT INTO `registration_name` (`id`, `registration_number`, `name`, `competition_number`, `registered_person`, `registration_date`, `update_by`, `update_date`, `e_flag`, `d_flag`) VALUES
+(1, '1', '中野', '2', '中野', '2015-11-01 00:00:00', '中野', '2015-12-15 00:00:00', 1, 1),
+(2, '2', '太田', '1', '太田', '2015-11-01 00:00:00', '太田', '2015-12-15 00:00:00', 0, 0),
+(3, '3', '大原', '3', '大原', '2015-11-03 00:00:00', '大原', '2015-10-17 00:00:00', 0, 1);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `ryouri`
 --
 
@@ -365,41 +339,29 @@ INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `staff`
+-- テーブルの構造 `sport_event`
 --
 
-CREATE TABLE IF NOT EXISTS `staff` (
-  `id` smallint(3) NOT NULL,
-  `name` char(20) NOT NULL,
-  `prefecture` char(5) NOT NULL,
-  `phonenumber` char(11) NOT NULL,
-  `companyID` smallint(3) NOT NULL,
-  `registeredperson` char(20) NOT NULL,
-  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updateby` char(20) NOT NULL,
-  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `e_flag` bigint(11) unsigned NOT NULL,
-  `d_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `sport_event` (
+  `id` int(11) NOT NULL,
+  `competition_number` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sport` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registered_person` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registration_date` datetime DEFAULT NULL,
+  `update_by` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `e_flag` int(2) DEFAULT NULL,
+  `d_flag` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- テーブルのデータのダンプ `staff`
+-- テーブルのデータのダンプ `sport_event`
 --
 
-INSERT INTO `staff` (`id`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
-(1, '鈴木', '埼玉県', '08076546543', 2, '鈴木', '1900-11-28 00:00:00', '鈴木', '1901-03-19 00:00:00', 0, 0),
-(2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 0),
-(3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0),
-(4, 'a1', '東京都', '098765432', 4, 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
-(5, 'a2', '静岡県', '0987654322', 5, 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
-(6, 'a3', '埼玉県', '0987654323', 6, 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
-(7, 'a4', '神奈川県', '0987654324', 7, 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
-(8, 'a5', '静岡県', '0987654325', 8, 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
-(9, 'a6', '東京都', '0987654326', 9, 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
-(10, 'a7', '静岡県', '0987654327', 10, 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
-(11, 'a8', '埼玉県', '0987654328', 11, 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
-(12, 'a9', '神奈川県', '0987654329', 12, 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
-(13, 'a10', '静岡県', '0987654330', 13, 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
+INSERT INTO `sport_event` (`id`, `competition_number`, `sport`, `registered_person`, `registration_date`, `update_by`, `update_date`, `e_flag`, `d_flag`) VALUES
+(1, '1', 'テニス', '小泉', '2015-03-15 00:00:00', '小泉', '2015-07-10 00:00:00', 1, 1),
+(2, '2', 'サッカー', '高橋', '2015-06-10 00:00:00', '高橋', '2015-09-20 00:00:00', 1, 0),
+(3, '3', '野球', '青木', '2015-08-15 00:00:00', '青木', '2015-12-10 00:00:00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -417,16 +379,7 @@ CREATE TABLE IF NOT EXISTS `story` (
   `updateUSERID` varchar(50) DEFAULT NULL,
   `exclusiveFLG` int(50) DEFAULT NULL,
   `deleteFLG` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `story`
---
-
-INSERT INTO `story` (`id`, `title`, `genre_id`, `signup`, `updateDate`, `signupUSERID`, `updateUSERID`, `exclusiveFLG`, `deleteFLG`) VALUES
-(17, '黒い家', '14', '2015/05/07 17:22:52', '2015/05/07 17:22:52', NULL, NULL, 0, 0),
-(18, 'ああああ', '15', '2015/05/07 17:23:23', '2015/05/07 17:23:23', 'dsf', 'dsf', 0, 0),
-(19, '黒い家', '16', '2015/09/16 10:36:32', '2015/09/16 10:36:32', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -444,23 +397,7 @@ CREATE TABLE IF NOT EXISTS `sweets` (
   `record_userId` char(50) DEFAULT NULL,
   `exclusive_FLG` int(50) DEFAULT NULL,
   `delete_FLG` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `sweets`
---
-
-INSERT INTO `sweets` (`id`, `name`, `genre_id`, `record_date`, `reset_date`, `entry_userId`, `record_userId`, `exclusive_FLG`, `delete_FLG`) VALUES
-(16, 'ガレット', 1, '2015/05/08 16:42:1', '2015/05/08 16:42:1', 'hokari', 'hokari', 0, 0),
-(17, 'トリュフ', 3, '2015/05/11 15:58:29', '2015/05/11 15:58:29', 'Struts2', 'Struts2', 0, 0),
-(18, 'プリン', 2, '2015/05/11 15:58:38', '2015/05/11 15:58:38', 'Struts2', 'Struts2', 0, 0),
-(19, 'スコーン', 1, '2015/05/11 15:58:52', '2015/05/11 15:58:52', 'Struts2', 'Struts2', 0, 0),
-(20, 'ババロア', 2, '2015/05/11 15:59:1', '2015/05/11 15:59:1', 'Struts2', 'Struts2', 0, 0),
-(21, 'バウムクーヘン', 1, '2015/05/11 15:59:32', '2015/05/11 15:59:32', 'Struts2', 'Struts2', 0, 0),
-(22, 'ガトーショコラ', 3, '2015/05/11 15:59:46', '2015/05/11 15:59:46', 'Struts2', 'Struts2', 0, 0),
-(23, '羊羹', 2, '2015/05/11 15:59:55', '2015/05/11 15:59:55', 'Struts2', 'Struts2', 0, 0),
-(24, 'マドレーヌ', 1, '2015/05/11 16:0:11', '2015/05/11 16:0:11', 'Struts2', 'Struts2', 0, 0),
-(25, '生チョコ', 3, '2015/05/11 16:0:53', '2015/05/11 16:0:53', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -510,15 +447,7 @@ CREATE TABLE IF NOT EXISTS `table_color` (
   `new_userid` char(50) DEFAULT NULL,
   `time_stamp` int(50) DEFAULT NULL,
   `deleteFlg` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `table_color`
---
-
-INSERT INTO `table_color` (`id`, `colorNm`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `deleteFlg`) VALUES
-(1, '青', '2015/05/08 17:54:37', '2015/05/08 17:54:37', 'Struts2', 'Struts2', 0, 0),
-(2, '白', '2015/05/08 17:55:16', '2015/05/08 17:55:16', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -535,16 +464,7 @@ CREATE TABLE IF NOT EXISTS `table_hobby` (
   `new_userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dbflg` int(11) DEFAULT NULL,
   `deleteflg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- テーブルのデータのダンプ `table_hobby`
---
-
-INSERT INTO `table_hobby` (`id`, `hobby`, `day`, `new_day`, `userid`, `new_userid`, `dbflg`, `deleteflg`) VALUES
-(1, '書道', '2015/05/08 18:7:44', '2015/05/08 18:7:44', 'Struts2', 'Struts2', 0, 0),
-(2, 'サッカー', '2015/05/08 18:8:6', '2015/05/08 18:8:6', 'Struts2', 'Struts2', 0, 0),
-(3, 'サッカー', '2015/05/08 18:8:26', '2015/05/08 18:8:26', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -601,15 +521,7 @@ CREATE TABLE IF NOT EXISTS `table_like` (
   `new_userid` char(50) DEFAULT NULL,
   `time_stamp` int(50) DEFAULT NULL,
   `deleteFlg` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `table_like`
---
-
-INSERT INTO `table_like` (`id`, `name`, `food`, `drink`, `color`, `day`, `new_day`, `userid`, `new_userid`, `time_stamp`, `deleteFlg`) VALUES
-(1, '橘', 'ピザ', '水', 1, '2015/05/08 17:54:37', '2015/05/08 17:54:37', 'Struts2', 'Struts2', 0, 0),
-(2, '岡本', 'ケーキ', 'コーヒー', 2, '2015/05/08 17:55:16', '2015/05/08 17:55:16', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -630,16 +542,7 @@ CREATE TABLE IF NOT EXISTS `table_profile` (
   `new_userid` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dbflg` int(11) DEFAULT NULL,
   `deleteflg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- テーブルのデータのダンプ `table_profile`
---
-
-INSERT INTO `table_profile` (`id`, `name`, `personality`, `home`, `birthday`, `hobby_id`, `day`, `new_day`, `userid`, `new_userid`, `dbflg`, `deleteflg`) VALUES
-(1, '真斗', '大人しい', '京都', '12', 1, '2015/05/08 18:7:44', '2015/05/08 18:7:44', 'Struts2', 'Struts2', 0, 0),
-(2, '音也', '元気', '東京', '4', 2, '2015/05/08 18:8:6', '2015/05/08 18:8:6', 'Struts2', 'Struts2', 0, 0),
-(3, '翔', '男気', '名古屋', '6', 3, '2015/05/08 18:8:26', '2015/05/08 18:8:26', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -656,16 +559,7 @@ CREATE TABLE IF NOT EXISTS `tb_genre` (
   `updateUSERID` varchar(50) DEFAULT NULL,
   `exclusiveFLG` int(50) DEFAULT NULL,
   `deleteFLG` int(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `tb_genre`
---
-
-INSERT INTO `tb_genre` (`id`, `genre`, `signup`, `updateDate`, `signupUSERID`, `updateUSERID`, `exclusiveFLG`, `deleteFLG`) VALUES
-(14, 'ホラー', '2015/05/07 17:22:52', '2015/05/07 17:22:52', NULL, NULL, 0, 0),
-(15, 'いいいい', '2015/05/07 17:23:23', '2015/05/07 17:23:23', 'dsf', 'dsf', 0, 0),
-(16, 'ホラー', '2015/09/16 10:36:32', '2015/09/16 10:36:32', 'Struts2', 'Struts2', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -683,14 +577,14 @@ CREATE TABLE IF NOT EXISTS `user_character` (
   `newuserid` char(50) DEFAULT NULL,
   `deleteFlg` int(11) DEFAULT NULL,
   `flg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `user_character`
 --
 
 INSERT INTO `user_character` (`id`, `personality`, `interest`, `day`, `newday`, `userid`, `newuserid`, `deleteFlg`, `flg`) VALUES
-(9, '穏やか', 'けん玉', '2015/05/08 16:49:50', '2015/05/08 16:49:50', NULL, NULL, 0, 0);
+(1, '???', '???', '2015/10/06 14:36:59', '2015/10/06 14:36:59', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -711,14 +605,14 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `newuserid` char(50) DEFAULT NULL,
   `deleteFlg` int(11) DEFAULT NULL,
   `flg` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `user_profile`
 --
 
 INSERT INTO `user_profile` (`id`, `phonenumber`, `zipcode`, `dwelling`, `name`, `personality2`, `day`, `newday`, `userid`, `newuserid`, `deleteFlg`, `flg`) VALUES
-(7, 124551334, 1111234, '千葉県印旛郡栄町矢口', '田中進', 9, '2015/05/08 16:49:50', '2015/05/08 16:49:50', NULL, NULL, 0, 0);
+(1, 124551334, 1111234, '??????????', '???', 1, '2015/10/06 14:36:59', '2015/10/06 14:36:59', 'Struts2', 'Struts2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -774,12 +668,6 @@ ALTER TABLE `band_table`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
@@ -822,15 +710,21 @@ ALTER TABLE `movie_genre`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `registration_name`
+--
+ALTER TABLE `registration_name`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ryouri`
 --
 ALTER TABLE `ryouri`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `staff`
+-- Indexes for table `sport_event`
 --
-ALTER TABLE `staff`
+ALTER TABLE `sport_event`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -920,11 +814,6 @@ ALTER TABLE `band_account`
 ALTER TABLE `band_table`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `company`
---
-ALTER TABLE `company`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
 -- AUTO_INCREMENT for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
@@ -943,37 +832,42 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `like_game`
 --
 ALTER TABLE `like_game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT';
 --
 -- AUTO_INCREMENT for table `like_series`
 --
 ALTER TABLE `like_series`
-  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=31;
+  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT';
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
+-- AUTO_INCREMENT for table `registration_name`
+--
+ALTER TABLE `registration_name`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+--
 -- AUTO_INCREMENT for table `ryouri`
 --
 ALTER TABLE `ryouri`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
 --
--- AUTO_INCREMENT for table `staff`
+-- AUTO_INCREMENT for table `sport_event`
 --
-ALTER TABLE `staff`
-  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+ALTER TABLE `sport_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=20;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT';
 --
 -- AUTO_INCREMENT for table `sweets`
 --
 ALTER TABLE `sweets`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `table_busyo`
 --
@@ -983,12 +877,12 @@ ALTER TABLE `table_busyo`
 -- AUTO_INCREMENT for table `table_color`
 --
 ALTER TABLE `table_color`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `table_hobby`
 --
 ALTER TABLE `table_hobby`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `table_kaisya`
 --
@@ -998,27 +892,27 @@ ALTER TABLE `table_kaisya`
 -- AUTO_INCREMENT for table `table_like`
 --
 ALTER TABLE `table_like`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `table_profile`
 --
 ALTER TABLE `table_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_genre`
 --
 ALTER TABLE `tb_genre`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT',AUTO_INCREMENT=17;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT';
 --
 -- AUTO_INCREMENT for table `user_character`
 --
 ALTER TABLE `user_character`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `yasai`
 --
