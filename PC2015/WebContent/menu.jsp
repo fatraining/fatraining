@@ -66,6 +66,11 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoMain12" value="メニュー12" cssClass="btn btn-primary" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
 		</div>
 	</div>
