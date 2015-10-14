@@ -77,6 +77,44 @@ INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTR
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `company`
+--
+
+CREATE TABLE IF NOT EXISTS `company` (
+  `id` smallint(3) NOT NULL,
+  `name` char(20) NOT NULL,
+  `prefecture` char(5) NOT NULL,
+  `phonenumber` char(11) NOT NULL,
+  `registeredperson` char(20) NOT NULL,
+  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateby` char(20) NOT NULL,
+  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `e_flag` bigint(11) unsigned NOT NULL,
+  `d_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `company`
+--
+
+INSERT INTO `company` (`id`, `name`, `prefecture`, `phonenumber`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+(1, '佐藤株式会社', '東京都', '0344556633', '高橋', '1900-01-02 00:00:00', '高橋', '1900-02-24 00:00:00', 0, 0),
+(2, '鈴木株式会社', '神奈川県', '0358575588', '福田', '1900-02-03 00:00:00', '福田', '1901-11-07 00:00:00', 0, 0),
+(3, '田中株式会社', '千葉県', '0854654345', '長野', '1900-02-24 00:00:00', '長野', '1902-05-26 00:00:00', 0, 0),
+(4, 'a1', '静岡県', '0123456789', 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
+(5, 'a2', '埼玉県', '0123456790', 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
+(6, 'a3', '東京都', '0123456791', 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
+(7, 'a4', '神奈川県', '0123456792', 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
+(8, 'a5', '千葉県', '0123456793', 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
+(9, 'a6', '静岡県', '0123456794', 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
+(10, 'a7', '埼玉県', '0123456795', 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
+(11, 'a8', '東京都', '0123456796', 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
+(12, 'a9', '神奈川県', '0123456797', 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
+(13, 'a10', '千葉県', '0123456798', 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `eat_detail`
 --
 
@@ -336,6 +374,45 @@ INSERT INTO `ryouri` (`id`, `tyouri`, `ryouri`, `date_entry`, `date_up`, `userId
 (151, 'a8', 'a8', '2015/05/11 19:45:15', NULL, 'Struts2', NULL, 0, 0),
 (152, 'a9', 'a9', '2015/05/11 19:45:23', NULL, 'Struts2', NULL, 0, 0),
 (153, 'a10', 'a10', '2015/05/11 19:45:31', NULL, 'Struts2', NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `staff`
+--
+
+CREATE TABLE IF NOT EXISTS `staff` (
+  `id` smallint(3) NOT NULL,
+  `name` char(20) NOT NULL,
+  `prefecture` char(5) NOT NULL,
+  `phonenumber` char(11) NOT NULL,
+  `companyID` smallint(3) NOT NULL,
+  `registeredperson` char(20) NOT NULL,
+  `registrationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateby` char(20) NOT NULL,
+  `updatedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `e_flag` bigint(11) unsigned NOT NULL,
+  `d_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `staff`
+--
+
+INSERT INTO `staff` (`id`, `name`, `prefecture`, `phonenumber`, `companyID`, `registeredperson`, `registrationdate`, `updateby`, `updatedate`, `e_flag`, `d_flag`) VALUES
+(1, '鈴木', '埼玉県', '08076546543', 2, '鈴木', '1900-11-28 00:00:00', '鈴木', '1901-03-19 00:00:00', 0, 0),
+(2, '田中', '神奈川県', '09034521345', 3, '田中', '1900-11-28 00:00:00', '田中', '1901-07-08 00:00:00', 0, 0),
+(3, '佐藤', '静岡県', '08045676543', 1, '佐藤', '1900-11-29 00:00:00', '佐藤', '1901-10-27 00:00:00', 0, 0),
+(4, 'a1', '東京都', '098765432', 4, 'Struts2', '2015-10-13 14:05:32', 'Struts2', '2015-10-13 14:05:32', 0, 0),
+(5, 'a2', '静岡県', '0987654322', 5, 'Struts2', '2015-10-13 14:07:45', 'Struts2', '2015-10-13 14:07:45', 0, 0),
+(6, 'a3', '埼玉県', '0987654323', 6, 'Struts2', '2015-10-13 14:09:18', 'Struts2', '2015-10-13 14:09:18', 0, 0),
+(7, 'a4', '神奈川県', '0987654324', 7, 'Struts2', '2015-10-13 14:10:45', 'Struts2', '2015-10-13 14:10:45', 0, 0),
+(8, 'a5', '静岡県', '0987654325', 8, 'Struts2', '2015-10-13 14:12:05', 'Struts2', '2015-10-13 14:12:05', 0, 0),
+(9, 'a6', '東京都', '0987654326', 9, 'Struts2', '2015-10-13 14:13:44', 'Struts2', '2015-10-13 14:13:44', 0, 0),
+(10, 'a7', '静岡県', '0987654327', 10, 'Struts2', '2015-10-13 14:15:05', 'Struts2', '2015-10-13 14:15:05', 0, 0),
+(11, 'a8', '埼玉県', '0987654328', 11, 'Struts2', '2015-10-13 14:16:38', 'Struts2', '2015-10-13 14:16:38', 0, 0),
+(12, 'a9', '神奈川県', '0987654329', 12, 'Struts2', '2015-10-13 14:18:37', 'Struts2', '2015-10-13 14:18:37', 0, 0),
+(13, 'a10', '静岡県', '0987654330', 13, 'Struts2', '2015-10-13 14:19:41', 'Struts2', '2015-10-13 14:19:41', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -669,6 +746,12 @@ ALTER TABLE `band_table`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
@@ -720,6 +803,12 @@ ALTER TABLE `registration_name`
 -- Indexes for table `ryouri`
 --
 ALTER TABLE `ryouri`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -815,6 +904,11 @@ ALTER TABLE `band_account`
 ALTER TABLE `band_table`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
 -- AUTO_INCREMENT for table `eat_detail`
 --
 ALTER TABLE `eat_detail`
@@ -854,6 +948,11 @@ ALTER TABLE `registration_name`
 --
 ALTER TABLE `ryouri`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` smallint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `sport_event`
 --
