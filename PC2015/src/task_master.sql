@@ -276,6 +276,7 @@ INSERT INTO `movie_genre` (`id`, `genre`, `registration_date`, `renewal_date`, `
 --
 -- テーブルの構造 `registration_name`
 --
+-- for conflict
 
 CREATE TABLE IF NOT EXISTS `registration_name` (
   `id` int(11) NOT NULL,
