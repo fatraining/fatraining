@@ -74,6 +74,9 @@
  		<mapping class="model.Staff"/>
  		<mapping class="model.Company"/>
  		<mapping class="model.Result11Table"/>
+ 		<mapping class="model.Sport_Event"/>
+ 		<mapping class="model.Registration_Name"/>
+ 		<mapping class="model.Result12Table"/>
 		
 		
 	</session-factory>
