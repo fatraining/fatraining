@@ -1,8 +1,10 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
@@ -157,30 +159,79 @@ public class StaffDao extends HibernateUtil {
 		session.getTransaction().commit();
 	}
 	
+//	/**
+//	 * 削除処理
+//	 */
+//	public void delete(String delete_id) {
+//		//　DB接続
+//		Session session = HibernateUtil.getSessionFactory()
+//				.getCurrentSession();
+//		session.beginTransaction();
+//		
+//		// 分割
+//		String[] strAry = delete_id.split(", ");
+//		for (int i = 0; i < strAry.length; i++) {
+//			try {
+//				Staff staff = (Staff) session.load(Staff.class,
+//						Integer.parseInt(strAry[i]));
+//				Company company = (Company) session.load(Company.class,
+//						staff.getCompanyID());
+//				//session.delete(company);
+//				staff.setD_flag(1);
+//			} catch (HibernateException e) {
+//				e.printStackTrace();
+//				session.getTransaction().rollback();
+//			}
+//		}
+//		session.getTransaction().commit();
+//	}
+//}	
+	
 	/**
 	 * 削除処理
 	 */
-	public void delete(String delete_id) {
-		//　DB接続
-		Session session = HibernateUtil.getSessionFactory()
-				.getCurrentSession();
-		session.beginTransaction();
-		
-		// 分割
-		String[] strAry = delete_id.split(", ");
+public void delete(String delete_id,Map<Integer,String> lockMap) {
+	//　DB接続
+	Session session = HibernateUtil.getSessionFactory()
+			.getCurrentSession();
+	session.beginTransaction();
+	
+	// 分割
+	String[] strAry = delete_id.split(", ");
+
+	try {
+		boolean errFlg = false;
 		for (int i = 0; i < strAry.length; i++) {
-			try {
-				Staff staff = (Staff) session.load(Staff.class,
-						Integer.parseInt(strAry[i]));
-				Company company = (Company) session.load(Company.class,
-						staff.getCompanyID());
-				//session.delete(company);
-				staff.setD_flag(1);
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				session.getTransaction().rollback();
+			Staff staff = (Staff) session.load(Staff.class,
+					Integer.parseInt(strAry[i]));
+			Company company = (Company) session.load(Company.class,
+					staff.getCompanyID());
+			
+			// 排他チェック
+			String date1 = lockMap.get(staff.getId());
+			String date2 = staff.getUpdateDate();
+			if (!date1.equals(date2)) {
+				errFlg = true;
+				break;
 			}
+			
+			// 更新
+			//session.delete(company);
+			staff.setD_flag(1);
+			Timestamp datetime = new Timestamp(System.currentTimeMillis());
+			String dateTimeStr = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(datetime);
+			staff.setUpdateDate(dateTimeStr);
+			
 		}
-		session.getTransaction().commit();
+		if (errFlg) {
+			session.getTransaction().rollback();
+		} else {
+			session.getTransaction().commit();
+		}
+	} catch (HibernateException e) {
+		e.printStackTrace();
+		session.getTransaction().rollback();
 	}
+	
+}
 }	

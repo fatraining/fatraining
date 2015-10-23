@@ -6,7 +6,6 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 import dao.StaffDao;
-import dao.StaffDao;
 
 @Result(name = "main11", value = "main11.action", type = ServletRedirectResult.class)
 public class Update11Action extends AbstractAction {
@@ -52,7 +51,7 @@ public class Update11Action extends AbstractAction {
 	public String execute() throws Exception {
 		this.delete_id = (String)this.sessionMap.get("delete_id");
 		
-		Map<Integer, String> lockMap = (Map) this.sessionMap.get("lockMap");
+//		Map<Integer, String> lockMap = (Map) this.sessionMap.get("lockMap");
 		
 		return "success";
 	}
@@ -86,7 +85,10 @@ public class Update11Action extends AbstractAction {
 		
 		StaffDao delete = new StaffDao();
 		
-		delete.delete(this.delete_id);
+//		delete.delete(this.delete_id);修正
+		
+		delete.delete(delete_id,lockMap);
+		
 		return "main11";
 	}
 	
