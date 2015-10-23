@@ -117,6 +117,7 @@ public class Main11Action extends AbstractAction {
 		this.delete = "true";
 		return "success";
 	}
+	
 	/**
 	 * 追加ボタンの処理<br>
 	 * 追加画面(更新画面)に移動
@@ -138,7 +139,7 @@ public class Main11Action extends AbstractAction {
 	public String delete_id() {
 		this.sessionMap.put("delete_id", this.delete_id);
 		
-		Map<Integer, String> lockMap = (Map) this.sessionMap.get("lockMap");
+//		Map<Integer, String> lockMap = (Map) this.sessionMap.get("lockMap");
 		
 		//削除チェックがされていない場合
 		if (this.delete_id == null) {
@@ -172,6 +173,8 @@ public class Main11Action extends AbstractAction {
 	/**
 	 * 検索取得データ（List&lt;?&gt;)を結果を表示する形式
 	 * (ArraｙList&lt;Result11Table&gt;)に直して返す
+	 * @param resultTable
+	 * @return 変換後のList
 	 */
 	private ArrayList<Result11Table> tableTrans(List<?> resultTable) {
 		ArrayList<Result11Table> tempTable = new ArrayList<Result11Table>();
