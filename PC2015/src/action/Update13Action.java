@@ -14,7 +14,7 @@ public class Update13Action extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 	
 	// 追加画面時の入力項目
-	public String UserID;
+	private String UserID;
 	public String Name;
 	public int CompanyID;
 	public String Genre;
@@ -87,9 +87,11 @@ public class Update13Action extends AbstractAction {
 	public void setUserID(){
 		 this.UserID = (String) this.sessionMap.get("userId");
 	}
+	
 	public String getUserID(){
 		return this.UserID;
 	}
+	
 	public void setCompanies(){
 		this.Companies = new HashMap<Integer,String>();
 
