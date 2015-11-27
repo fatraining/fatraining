@@ -168,6 +168,64 @@ INSERT INTO `eat_id` (`id`, `eatFood`, `eatCalory`, `entry_day`, `renew_day`, `e
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `gamecompany`
+--
+
+CREATE TABLE `gamecompany` (
+  `ID` int(2) NOT NULL,
+  `CompanyName` varchar(15) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `gamecompany`
+--
+
+INSERT INTO `gamecompany` (`ID`, `CompanyName`) VALUES
+(1, '任天堂'),
+(2, 'カプコン'),
+(3, 'アトラス'),
+(4, 'コーエーテクモ'),
+(5, 'コナミ'),
+(6, 'スパイク・チュンソフト'),
+(7, 'セガ'),
+(8, 'ソニー'),
+(9, 'スクウェア・エニックス'),
+(10, 'タカラトミー'),
+(11, '日本一ソフトウェア'),
+(12, '日本マイクロソフト'),
+(13, 'バンダイナムコ'),
+(14, 'マーベラス'),
+(15, 'レベルファイブ');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `gametitle`
+--
+
+CREATE TABLE `gametitle` (
+  `ID` int(10) NOT NULL,
+  `Name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `CompanyID` int(2) NOT NULL,
+  `Genre` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Hardware` varchar(10) COLLATE utf8_bin NOT NULL,
+  `Comment` text COLLATE utf8_bin NOT NULL,
+  `RegistrationUserID` varchar(20) COLLATE utf8_bin NOT NULL,
+  `RegistrationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `gametitle`
+--
+
+INSERT INTO `gametitle` (`ID`, `Name`, `CompanyID`, `Genre`, `Hardware`, `Comment`, `RegistrationUserID`, `RegistrationDate`) VALUES
+(1, 'かまいたちの夜', 6, 'サウンドノベル', 'SFC', '２のほうが好き', '', '2015-11-24 07:07:29'),
+(2, '星のカービィ　スーパーデラックス', 1, 'アクション', 'SFC', 'はるかぜとともに', '', '2015-11-24 07:07:29'),
+(3, 'バルーンファイト', 1, 'アクション', 'FC', 'あに　ゆるさん', '', '2015-11-24 07:07:29'),
+(9, 'ぼくのなつやすみ', 8, 'アドベンチャー', 'PS', 'おもいで', '', '2015-11-24 07:07:29'),
+(15, '牧場物語3 ハートに火をつけて', 14, 'シミュレーション', 'PS2', 'いそげ', 'Struts2', '2015-11-27 03:06:01');
+
+--
 -- テーブルの構造 `genre`
 --
 
@@ -764,6 +822,18 @@ ALTER TABLE `eat_id`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `gamecompany`
+--
+ALTER TABLE `gamecompany`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `gametitle`
+--
+ALTER TABLE `gametitle`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `genre`
 --
 ALTER TABLE `genre`
@@ -918,6 +988,17 @@ ALTER TABLE `eat_detail`
 --
 ALTER TABLE `eat_id`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `gamecompany`
+--
+ALTER TABLE `gamecompany`
+  MODIFY `ID` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `gametitle`
+--
+ALTER TABLE `gametitle`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  
 --
 -- AUTO_INCREMENT for table `genre`
 --

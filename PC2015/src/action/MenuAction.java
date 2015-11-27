@@ -18,6 +18,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 		@Result(name = "main10", value = "main10.action", type = ServletRedirectResult.class),
 		@Result(name = "main11",value = "main11.action", type =ServletRedirectResult.class),
 		@Result(name = "main12",value = "main12.action", type =ServletRedirectResult.class),
+		@Result(name = "main13",value = "main13.action", type =ServletRedirectResult.class),
 		@Result(name = "kaisyaSearch", value = "kaisyaSearch.action", type = ServletRedirectResult.class) })
 public class MenuAction extends AbstractAction {
 
@@ -72,6 +73,9 @@ public class MenuAction extends AbstractAction {
 	}
 	public String gotoMain12(){
 		return "main12";
+	}
+	public String gotoMain13(){
+		return "main13";
 	}
 	public String gotoStaff() {
 		return "kaisyaSearch";
