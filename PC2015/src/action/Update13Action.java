@@ -37,7 +37,6 @@ public class Update13Action extends AbstractAction {
 	
 	public String execute() throws Exception {
 		// Main12Actionのdelete_idを呼び出し
-		this.setUserID();
 		this.delete_id = (String) this.sessionMap.get("delete_id");
 		this.setCompanies();
 		return "success";
@@ -84,12 +83,8 @@ public class Update13Action extends AbstractAction {
 		return "main13";
 	}
 	
-	public void setUserID(){
-		 this.UserID = (String) this.sessionMap.get("userId");
-	}
-	
 	public String getUserID(){
-		return this.UserID;
+		return (String) this.sessionMap.get("userId");
 	}
 	
 	public void setCompanies(){
