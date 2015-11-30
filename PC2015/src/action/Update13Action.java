@@ -38,7 +38,6 @@ public class Update13Action extends AbstractAction {
 	public String execute() throws Exception {
 		// Main12Actionのdelete_idを呼び出し
 		this.delete_id = (String) this.sessionMap.get("delete_id");
-		this.setCompanies();
 		return "success";
 	}
 // 追加ボタンを押したとき
@@ -109,12 +108,9 @@ public class Update13Action extends AbstractAction {
 	
 	private Map<Integer,String> tableTrans(List<?> resultTable) {
 		Map<Integer,String> tempMap =new HashMap<Integer,String>();
-		Object[] obj;
 		try {
 			for (int i = 0; i < resultTable.size(); i++) {
-				Result13Table temp = new Result13Table();
 				GameCompany gamecompany = (GameCompany)resultTable.get(i);
-				System.out.println(gamecompany);		
 				tempMap.put(gamecompany.getID(),gamecompany.getCompany());
 			}
 		} catch (Exception e) {
