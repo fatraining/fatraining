@@ -3,7 +3,13 @@
 <jsp:include page="header.jsp" />
 
 <s:form cssClass="form-horizontal">
-
+	</div>
+		<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoFacloud" value="勤怠管理ロ画面" cssClass="btn btn-primary" />
+			<p>勤怠管理ログイン画面</p>
+		</div>
+	</div>
 
 
 	<div class="form-group">
