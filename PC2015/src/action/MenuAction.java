@@ -6,6 +6,7 @@ import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 @Results({
+		@Result(name = "facloud", value = "facloud.action", type = ServletRedirectResult.class),
 		@Result(name = "main1", value = "main1.action", type = ServletRedirectResult.class),
 		@Result(name = "main2", value = "main2.action", type = ServletRedirectResult.class),
 		@Result(name = "main3", value = "main3.action", type = ServletRedirectResult.class),
@@ -27,7 +28,9 @@ public class MenuAction extends AbstractAction {
 	public String execute() throws Exception {
 		return "sccess";
 	}
-
+	public String gotoFacloud() {
+		return "facloud";
+	}
 	public String gotoMain1() {
 		return "main1";
 	}
