@@ -12,7 +12,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="connection.url">
-			jdbc:mysql://localhost:3306/task_master
+			jdbc:mysql://localhost:3306/task_master?zeroDateTimeBehavior=convertToNull
 		</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password"></property>
@@ -80,8 +80,9 @@
  		<mapping class="model.GameTitle"/>
  		<mapping class="model.GameCompany"/>
  		<mapping class="model.Result13Table"/>
-		
-		
+		<mapping class="model.Users"/>
+		<mapping class="model.Attendances"/>
+		<mapping class="model.Section"/>
 	</session-factory>
 
 </hibernate-configuration>
