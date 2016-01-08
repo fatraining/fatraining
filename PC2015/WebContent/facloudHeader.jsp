@@ -25,7 +25,12 @@
 				<h1><s:property value="titleTxt" /></h1>
 				<s:if test="userName != null">
 				<div id="user_menu">
-					<a class="user_name"><s:property value="sectionName" />：<s:property value="userName" /></a>
+					<a class="user_name">
+						<s:if test="sectionName != null">
+							<s:property value="sectionName" />：
+						</s:if>
+						<s:property value="userName" />
+					</a>
 					<ul>
 						<li><a>プロフィールやで</a></li>
 						<li><a>設定やで</a></li>
