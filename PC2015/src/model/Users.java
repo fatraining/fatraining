@@ -119,9 +119,8 @@ public class Users implements Serializable {
 		return imageUpdatedAt;
 	}
 	
-	@ManyToOne( cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@Fetch(FetchMode.JOIN)
-	@JoinColumn(name="section_id", insertable = false, updatable = false) //<--結合カラムを指定
+	@ManyToOne
+	@JoinColumn(insertable = false, updatable = false) //<--結合カラムを指定
 	public Section getSection(){
 		return section;
 	}
