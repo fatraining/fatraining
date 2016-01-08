@@ -10,7 +10,7 @@ import model.Attendances;
  * @author miyamoto
  *
  */
-public class FacloudAttendancesDao extends HibernateUtil {
+public class FacloudAttendancesDao{
 
 	/**
 	 * 引数のrecordIdと一致するレコードをattendancesテーブルから取得するやで。
