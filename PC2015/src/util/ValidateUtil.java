@@ -15,7 +15,7 @@ public class ValidateUtil {
 	 * ○○@○○.○○の形になっているかチェックするやで。
 	 * @return boolean
 	 */
-	public static boolean emailValidate(String email){
+	public static boolean isValidEmail(String email){
 		String str = email;
 		String regex = "[\\w\\.\\-]+@(?:[\\w\\-]+\\.)+[\\w\\-]+";
 		Pattern p = Pattern.compile(regex);
@@ -29,13 +29,13 @@ public class ValidateUtil {
 	
 	/**
 	 * 引数のinputTimeがHH:mmの形式になっているかチェックするやで。
-	 * @param inputTime
+	 * @param time
 	 * @return boolean
 	 */
-	public static boolean inputTimeValidate(String inputTime){
+	public static boolean isValidTime(String time){
 		String regex = "^([0-1][0-9]|2[0-3]):[0-5][0-9]$";
 		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(inputTime);
+		Matcher m = p.matcher(time);
 		if(m.find()){
 			return true;
 		} else {
