@@ -4,10 +4,11 @@ import java.util.Calendar;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
-import constants.Constants;
+
+import constant.Constants;
 import model.Attendances;
 import model.Users;
-import util.validateUtil;
+import util.ValidateUtil;
 import dao.FacloudAttendancesDao;
 
 
@@ -58,7 +59,7 @@ public class FacloudAttendanceUpdateAction extends AbstractAction {
 		this.titleTxt = "修正画面";
 		this.userName = usersData.getName();
 		this.sectionName = usersData.getSection().getName();
-		this.date = makeDate(attendancesData);
+		this.date = makeDateString(attendancesData);
 		this.inTime = datetimeToTime(attendancesData.getInTime());
 		this.outTime = datetimeToTime(attendancesData.getOutTime());
 		this.comment = attendancesData.getComment();
@@ -75,11 +76,11 @@ public class FacloudAttendanceUpdateAction extends AbstractAction {
 	public String update(){
 
 		// HH:mm形式かチェック
-		if( !inTime.isEmpty() && !validateUtil.inputTimeValidate(inTime) ) {
+		if( !inTime.isEmpty() && !ValidateUtil.isValidTime(inTime) ) {
 			errMsg = "時刻は hh:mm形式で入力するっちゅうお約束や。";
 			return "failed";
 		}
-		if( !outTime.isEmpty() && !validateUtil.inputTimeValidate(outTime) ) {
+		if( !outTime.isEmpty() && !ValidateUtil.isValidTime(outTime) ) {
 			errMsg = "時刻は hh:mm形式で入力するっちゅうお約束や。";
 			return "failed";
 		}
@@ -104,7 +105,7 @@ public class FacloudAttendanceUpdateAction extends AbstractAction {
 	 * @param attendancesData 修正するデータをAttendancesクラスのインスタンスに格納したもの
 	 * @return yyyy/mm/dd(曜日)形式の文字列
 	 */
-	public String makeDate(Attendances attendancesData){
+	public String makeDateString(Attendances attendancesData){
 		
 		// 年月日の取得
 		int year = attendancesData.getYear();
@@ -114,7 +115,7 @@ public class FacloudAttendanceUpdateAction extends AbstractAction {
 		// 曜日取得
 		Calendar dateCalen = Calendar.getInstance();
 		dateCalen.set(year, month-1, day-1);
-		String dayOfWeek = Constants.DAY_OF_WEEK[dateCalen.get(dateCalen.DAY_OF_WEEK)];
+		String dayOfWeek = Constants.DAY_OF_WEEK[dateCalen.get(Calendar.DAY_OF_WEEK)];
 		
 		// 結合して戻す
 		return year + "/" + month + "/" + day + "(" + dayOfWeek + ")";
@@ -129,9 +130,9 @@ public class FacloudAttendanceUpdateAction extends AbstractAction {
 	public String datetimeToTime(String datetime){
 		if(datetime != null) {
 			return datetime.substring(11,16);
-		} else {
-			return null;
 		}
+		return null;
+		
 	}
 	
 	/**

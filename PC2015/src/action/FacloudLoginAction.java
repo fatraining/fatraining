@@ -6,7 +6,7 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import dao.FacloudUsersDao;
 import model.Users;
-import util.validateUtil;
+import util.ValidateUtil;
 
 /**
  * ログイン画面
@@ -47,7 +47,7 @@ public class FacloudLoginAction extends AbstractAction {
 		}
 
 		// emailの妥当性チェック
-		if(!validateUtil.emailValidate(this.email)){
+		if(!ValidateUtil.isValidEmail(this.email)){
 			errEmail();
 			return "failed";
 		}
