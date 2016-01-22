@@ -94,10 +94,16 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
+			<s:submit method="gotoSoccer" value="サッカー" cssClass="btn btn-primary" />
+			<p>サッカー選手検索</p>
 		</div>
 	</div>
 
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
+		</div>
+	</div>
 
 
 </s:form>

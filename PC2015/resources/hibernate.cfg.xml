@@ -83,6 +83,8 @@
 		<mapping class="model.Users"/>
 		<mapping class="model.Attendances"/>
 		<mapping class="model.Section"/>
+		<mapping class="model.NationalTeam"/>
+		<mapping class="model.NationalTeamPlayer"/>
 	</session-factory>
 
 </hibernate-configuration>
