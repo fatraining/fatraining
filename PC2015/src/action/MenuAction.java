@@ -2,7 +2,6 @@ package action;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 @Results({
@@ -20,7 +19,8 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 		@Result(name = "main11",value = "main11.action", type =ServletRedirectResult.class),
 		@Result(name = "main12",value = "main12.action", type =ServletRedirectResult.class),
 		@Result(name = "main13",value = "main13.action", type =ServletRedirectResult.class),
-		@Result(name = "kaisyaSearch", value = "kaisyaSearch.action", type = ServletRedirectResult.class) })
+		@Result(name = "kaisyaSearch", value = "kaisyaSearch.action", type = ServletRedirectResult.class),
+		@Result(name = "soccerPlayerSearch", value = "soccerPlayerSearch.action", type = ServletRedirectResult.class)})
 public class MenuAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -70,7 +70,7 @@ public class MenuAction extends AbstractAction {
 	public String gotoMain10() {
 		return "main10";
 	}
-	
+
 	public String gotoMain11(){
 		return "main11";
 	}
@@ -82,5 +82,8 @@ public class MenuAction extends AbstractAction {
 	}
 	public String gotoStaff() {
 		return "kaisyaSearch";
+	}
+	public String gotoSoccer() {
+		return "soccerPlayerSearch";
 	}
 }
