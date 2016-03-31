@@ -465,6 +465,70 @@ INSERT INTO `nationalteamplayer` (`id`, `number`, `name`, `nationalteamid`, `pos
 (26, 12, 'オリヴィエ・ジルー', 6, 'FW', '2016-01-22 06:18:21', 'Struts2');
 
 -- --------------------------------------------------------
+--
+-- テーブルの構造 `operator`
+--
+
+CREATE TABLE `operator` (
+  `ID` int(11) NOT NULL,
+  `OperatorID` char(10) CHARACTER SET latin1 NOT NULL,
+  `OperatorName` char(50) COLLATE utf8mb4_bin NOT NULL,
+  `UserID` char(50) CHARACTER SET latin1 NOT NULL DEFAULT 'CURRENT_USER',
+  `Date` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- テーブルのデータのダンプ `operator`
+--
+
+INSERT INTO `operator` (`ID`, `OperatorID`, `OperatorName`, `UserID`, `Date`) VALUES
+(0, 'S', 'SoftBank', 'CURRENT_USER', NULL),
+(1, 'Y', 'Y!mobile', 'root@localhost', NULL),
+(2, 'A', 'au', 'root@localhost', NULL),
+(3, 'D', 'Docomo', 'root@localhost', NULL),
+(4, 'F', 'SIMフリー', 'root@localhost', NULL),
+(5, 'FT', 'FREETEL', 'root@localhost', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `phones`
+--
+
+CREATE TABLE `phones` (
+  `ID` int(11) NOT NULL,
+  `OperatorID` char(11) CHARACTER SET latin1 NOT NULL,
+  `PhonesName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Price` int(11) NOT NULL,
+  `Size` char(11) CHARACTER SET latin1 NOT NULL,
+  `Date` date NOT NULL,
+  `Comment` text COLLATE utf8_bin NOT NULL,
+  `operatorName` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `phones`
+--
+
+INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`, `Comment`, `operatorName`) VALUES
+(1, 'Y', 'iPhone2', 13000, '4.5', '2013-03-25', 'てｓｔ', NULL),
+(2, 'FT', 'MIYABI', 36000, '5.5', '2011-07-05', '', NULL),
+(3, 'A', 'iPhone2', 74000, '4.5', '2014-10-24', '', NULL),
+(4, 'D', 'Xperia Acco', 32000, '6', '2012-11-05', '', NULL),
+(5, 'F', 'iPhone3', 120000, '3', '2015-07-15', '', NULL),
+(6, 'S', 'HONEY By', 24000, '3.5', '2015-08-31', 'てｓ\r\n初めて買った機種', NULL),
+(7, 'D', 'Galaxy', 56000, '5.5', '2016-04-01', 'test', NULL),
+(8, 'F', 'GR5', 38000, '5.5', '2016-02-01', '', NULL),
+(9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
+(12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
+(13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
+(27, 'FT', '3.14159265358979323846264', 3, '3.1415', '2016-02-29', 'pi', NULL);
+(32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
+(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL),
+(34, 'A', 'Galaxy', 56000, '5.5', '2016-04-02', '', NULL);
+
+
+-- --------------------------------------------------------
 
 --
 -- テーブルの構造 `registration_name`
@@ -1011,6 +1075,17 @@ ALTER TABLE `nationalteam`
 --
 ALTER TABLE `nationalteamplayer`
   ADD PRIMARY KEY (`id`);
+--
+-- Indexes for table `operator`
+--
+ALTER TABLE `operator`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `phones`
+--
+ALTER TABLE `phones`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `registration_name`
@@ -1200,6 +1275,11 @@ ALTER TABLE `nationalteamplayer`
 --
 ALTER TABLE `registration_name`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `phones`
+--
+ALTER TABLE `phones`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `ryouri`
 --
