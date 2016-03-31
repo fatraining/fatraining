@@ -28,7 +28,7 @@
 		<!-- Enable Hibernate's automatic session context management -->
 		<property name="current_session_context_class">thread</property>
 
-		<!-- Disable the second-level cache  -->
+		<!-- Disable the second-level cache -->
 		<property name="cache.provider_class">
 			org.hibernate.cache.NoCacheProvider
 		</property>
@@ -71,20 +71,22 @@
 		<mapping class="model.User_Profile" />
 		<mapping class="model.Busyo" />
 		<mapping class="model.Kaisya" />
- 		<mapping class="model.Staff"/>
- 		<mapping class="model.Company"/>
- 		<mapping class="model.Result11Table"/>
- 		<mapping class="model.Sport_Event"/>
- 		<mapping class="model.Registration_Name"/>
- 		<mapping class="model.Result12Table"/>
- 		<mapping class="model.GameTitle"/>
- 		<mapping class="model.GameCompany"/>
- 		<mapping class="model.Result13Table"/>
-		<mapping class="model.Users"/>
-		<mapping class="model.Attendances"/>
-		<mapping class="model.Section"/>
-		<mapping class="model.NationalTeam"/>
-		<mapping class="model.NationalTeamPlayer"/>
+		<mapping class="model.Staff" />
+		<mapping class="model.Company" />
+		<mapping class="model.Result11Table" />
+		<mapping class="model.Sport_Event" />
+		<mapping class="model.Registration_Name" />
+		<mapping class="model.Result12Table" />
+		<mapping class="model.GameTitle" />
+		<mapping class="model.GameCompany" />
+		<mapping class="model.Result13Table" />
+		<mapping class="model.Users" />
+		<mapping class="model.Attendances" />
+		<mapping class="model.Section" />
+		<mapping class="model.NationalTeam" />
+		<mapping class="model.NationalTeamPlayer" />
+		<mapping class="model.Operator" />
+		<mapping class="model.Phones" />
 	</session-factory>
 
 </hibernate-configuration>
