@@ -20,7 +20,8 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 		@Result(name = "main12",value = "main12.action", type =ServletRedirectResult.class),
 		@Result(name = "main13",value = "main13.action", type =ServletRedirectResult.class),
 		@Result(name = "kaisyaSearch", value = "kaisyaSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "soccerPlayerSearch", value = "soccerPlayerSearch.action", type = ServletRedirectResult.class)})
+		@Result(name = "soccerPlayerSearch", value = "soccerPlayerSearch.action", type = ServletRedirectResult.class),
+		@Result(name = "phoneFinder",value = "phoneFinder.action", type =ServletRedirectResult.class),})
 public class MenuAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -85,5 +86,8 @@ public class MenuAction extends AbstractAction {
 	}
 	public String gotoSoccer() {
 		return "soccerPlayerSearch";
+	}
+	public String gotoPhoneFinder() {
+		return "phoneFinder";
 	}
 }

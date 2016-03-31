@@ -98,12 +98,18 @@
 			<p>サッカー選手検索</p>
 		</div>
 	</div>
-
+	</div>
+		<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoPhoneFinder" value="検索画面へ" cssClass="btn btn-info" />
+			<p>携帯検索</p>
+		</div>
+	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
 		</div>
-	</div>
+
 
 
 </s:form>
