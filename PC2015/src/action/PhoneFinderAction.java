@@ -1,7 +1,6 @@
 package action;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +32,9 @@ public class PhoneFinderAction extends AbstractAction {
 	public String getUserID() {
 		return (String) this.sessionMap.get("userId");
 	}
+	public String getMsg() {
+		return (String) this.sessionMap.get("msg");
+	}
 
 	// 初期値の設定 ↓↓
 	/*------------------------------------------------------*/
@@ -54,6 +56,7 @@ public class PhoneFinderAction extends AbstractAction {
 
 	// executeメソッド
 	/*------------------------------------------------------*/
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() {
 		this.operatorName = getDefaultOperator();
@@ -70,6 +73,7 @@ public class PhoneFinderAction extends AbstractAction {
 		this.phoneName = getDefaultPhoneName();
 		this.priceLow = getDefaultPriceLow();
 		this.priceHi = getDefaultPriceHi();
+		this.sessionMap.put("msg", null);
 		return "success";
 	}
 
@@ -84,15 +88,15 @@ public class PhoneFinderAction extends AbstractAction {
 		} else {
 			operatorName = this.operatorName.trim();
 			phoneName = this.phoneName.trim();
-			resultTable = Dao.resultList(operatorName, phoneName,priceLow, priceHi);
+			resultTable = Dao.resultList(operatorName, phoneName, priceLow, priceHi);
 		}
+		this.sessionMap.put("msg", null);
 		this.outputTable.addAll(tableTrans(resultTable));
 		this.setDelete("true");
 		return "success";
 	}
-	
 
-	//テーブルの作成 //
+	// テーブルの作成 //
 	/*------------------------------------------------------*/
 	public ArrayList<Phones> tableTrans(List<?> resultTable) {
 		ArrayList<Phones> tempTable = new ArrayList<Phones>();
@@ -106,7 +110,6 @@ public class PhoneFinderAction extends AbstractAction {
 				temp.setID(p.getID());
 				temp.setOperatorName(o.getOperatorName());
 				temp.setPhoneName(p.getPhoneName());
-/*				temp.setPrice(Integer.parseInt(String.format("%1$,3d", Integer.valueOf(p.getPrice()))));*/
 				temp.setPrice(p.getPrice());
 				temp.setSize(p.getSize());
 				temp.setComment(p.getComment());
@@ -138,19 +141,22 @@ public class PhoneFinderAction extends AbstractAction {
 	@SuppressWarnings("unchecked")
 	public String delete() {
 		this.sessionMap.put("deleteID", this.delete);
-		if (delete != null) {
+		if (delete == null) {			
+			addActionError("削除する項目を選択してください");
+			search();
+			return "error";
+		} else {
 			try {
-				this.response.sendRedirect("/PC2015/updatePhones.action");;
+				this.response.sendRedirect("/PC2015/updatePhones.action");
+				;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return "success";
-		} else 	
-				return "error";
-			}
-		
+		}
+	}
 
-		// get,setメソッド//↓↓
+	// get,setメソッド//↓↓
 	/*------------------------------------------------------*/
 	public void setOperatorName(String operatorName) {
 		this.operatorName = operatorName;
