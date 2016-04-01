@@ -2,10 +2,15 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="header.jsp" />
 <s:if test="%{delete==null}">
+<style>
+p.err {
+color:red;
+}
+</style>
 	<h3>新しくデータを登録します。</h3>
-	<p class="err">
-		<s:property value="errormsg" />
-	</p>
+		<div style="color:red">
+		<s:actionerror class="err"/></div>
+
 	<s:form cssClass="form-horizontal">
 
 		<div class="form-group">
