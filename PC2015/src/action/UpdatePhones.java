@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.struts2.components.ActionError;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.SessionException;
@@ -37,7 +38,8 @@ public class UpdatePhones extends AbstractAction {
 	public String size;
 	public String comment;
 	public String date;
-
+	public String msg;
+	
 	// エラー表示
 	public String errormsg;
 	// 削除画面時の表示項目
@@ -56,25 +58,32 @@ public class UpdatePhones extends AbstractAction {
 
 	/* 削除メソッド */
 	/*------------------------------------------------------*/
+	@SuppressWarnings("unchecked")
 	public String delete() {
 		this.delete = (String) this.sessionMap.get("deleteID");
 		PhoneDao phone = new PhoneDao();
 		phone.delete(this.delete);
+		this.msg = "削除が完了しました";
+		this.sessionMap.put("msg",this.msg);
 		return "phoneFinder";
 	}
 
 	/* 追加メソッド */
 	/*------------------------------------------------------*/
+	@SuppressWarnings("unchecked")
 	public String insert() {
 		if (this.isEmptyParam(this.phoneName)) {
-			this.errormsg = "機種名が未入力";
-			return "errormsg";
-		} else if (this.isEmptyParam(this.price)) {
-			this.errormsg = "価格が未入力";
-			return "errormsg";
-		} else if (this.isEmptyParam(this.size)) {
-			this.errormsg = "サイズが未入力";
-			return "errormsg";
+			addActionError("機種名が未入力です");
+		}
+		if (this.isEmptyParam(this.price)) {
+			addActionError("価格が未入力です");
+		} 
+		if (this.isEmptyParam(this.size)) {
+			addActionError("サイズが未入力です");
+		} 
+		if (this.isEmptyParam(this.date)) {
+			addActionError("日付が未入力です");
+			return "error";
 		} 
 		// 日付の書式を指定する
 		DateFormat df = new SimpleDateFormat("yyyy/mm/dd");
@@ -85,13 +94,12 @@ public class UpdatePhones extends AbstractAction {
 			PhoneDao insert = new PhoneDao();
 			priceN = Integer.parseInt(this.price);
 			insert.insert(this.ID, this.operatorID, this.phoneName, this.priceN, this.size, this.date, this.comment);
-		} catch (SessionException | ParseException e) {
-			this.errormsg = "日付が不正です";
-			return "errormsg";
-		} catch (NumberFormatException i) {
-			this.errormsg = "入力値が不正です";
-			return "errormsg";
+		} catch (SessionException |NumberFormatException | ParseException e) {
+			addActionError("日付が不正です");
+			return "error";
 		}
+		this.msg = "登録しました";
+		sessionMap.put("msg", this.msg);
 		return "phoneFinder";
 	}
 
