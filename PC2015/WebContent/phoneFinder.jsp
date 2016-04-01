@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="Windows-31J"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.text.DecimalFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.jsp" />
 <p class="text-right">
@@ -13,6 +13,10 @@
 <style>
 div.search {
 	margin-left: 40%;
+}
+
+div.row {
+	padding: 20px 0;
 }
 /* 02.テープ */
 #heading02 {
@@ -89,6 +93,14 @@ table.type td {
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 }
+
+.err {
+	text-align: center;
+}
+
+.bug {
+	width: 100%;
+}
 </style>
 
 <s:form cssClass="form-horizontal">
@@ -127,72 +139,71 @@ table.type td {
 			<label class="col-sm-1 control-label">円</label>
 		</div>
 	</div>
+
+
+
 	<div class="search">
-		<div class="row" style="padding: 20px 0;">
+		<div class="row">
 			<div class="col-md-3">
 				<s:submit method="search" value="検索"
 					cssClass="btn btn-default btn-block" />
 			</div>
 		</div>
-		<div class="row" style="padding: 20px 0;">
+		<div class="row">
 			<div class="col-md-3">
 				<s:submit method="reset" value="リセット"
 					cssClass="btn btn-primary btn-block" />
 			</div>
 		</div>
-		<div class="row" style="padding: 20px 0;">
+		<div class="row">
 			<div class="col-md-3">
 				<s:submit method="update" value="追加"
 					cssClass="btn btn-danger btn-block" />
 			</div>
 		</div>
 	</div>
-
-
-	<s:if test="%{errormsg=='true'}">
-		<span style="color: red">
-			<h1 class="h5">削除する項目を選択してください。</h1>
-		</span>
-	</s:if>
 	</div>
-</s:form>
-<s:if test="%{outputTable.size() > 0}">
-	<s:form>
-		<table class="type">
-			<tbody>
-				<tr>
-					<th>ID</th>
-					<th>事業社名</th>
-					<th>機種名</th>
-					<th>価格</th>
-					<th>画面サイズ</th>
-					<th>発売日</th>
-					<th>コメント</th>
-					<th>削除</th>
-				</tr>
-				<s:iterator value="outputTable">
+
+	<div class="bug">
+		<div style="color: red ; padding-left:5%">
+			<s:actionerror />
+			<s:property value="msg" />
+		</div>
+		<s:if test="%{outputTable.size() > 0}">
+			<table class="type">
+				<tbody>
 					<tr>
-						<td class="data"><s:property value="ID" /></td>
-						<td class="data"><s:property value="OperatorName" /></td>
-						<td class="data"><s:property value="PhoneName" /></td>
-						<td class="data"><s:property value="price" /> 円</td>
-						<td class="data"><s:property value="Size" /></td>
-						<td class="data"><s:property value="Date" /></td>
-						<td class="data"><s:property value="Comment" /></td>
-						<td class="data"><input type="checkbox" name="delete"
-							value="<s:property value="ID" />:<s:property value="OperatorName" />:<s:property value="PhoneName" />" /></td>
+						<th>ID</th>
+						<th>事業社名</th>
+						<th>機種名</th>
+						<th>価格</th>
+						<th>画面サイズ</th>
+						<th>発売日</th>
+						<th>コメント</th>
+						<th>削除</th>
 					</tr>
-				</s:iterator>
-			</tbody>
-		</table>
-		<s:if test="%{outputTable.size>0}">
-			<div align=right>
-				<s:submit method="delete" name="delete" value="削除"
-					cssClass="btn btn-danger" />
-			</div>
+					<s:iterator value="outputTable">
+						<tr>
+							<td class="data"><s:property value="ID" /></td>
+							<td class="data"><s:property value="OperatorName" /></td>
+							<td class="data"><s:property value="PhoneName" /></td>
+							<td class="data"><s:property value="price" /> 円</td>
+							<td class="data"><s:property value="Size" /></td>
+							<td class="data"><s:property value="Date" /></td>
+							<td class="data"><s:property value="Comment" /></td>
+							<td class="data"><input type="checkbox" name="delete"
+								value="<s:property value="ID" />:<s:property value="OperatorName" />:<s:property value="PhoneName" />" /></td>
+						</tr>
+					</s:iterator>
+				</tbody>
+			</table>
+			<s:if test="%{outputTable.size>0}">
+				<div align=right>
+					<s:submit method="delete" name="delete" value="削除"
+						cssClass="btn btn-danger" />
+				</div>
+			</s:if>
 		</s:if>
-	</s:form>
-</s:if>
-
-
+</s:form>
+</div>
 <jsp:include page="footer.jsp" />
