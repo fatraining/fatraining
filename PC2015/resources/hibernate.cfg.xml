@@ -87,6 +87,11 @@
 		<mapping class="model.NationalTeamPlayer" />
 		<mapping class="model.Operator" />
 		<mapping class="model.Phones" />
+		<mapping class="model.GoodsList"/>
+		<mapping class="model.Category"/>
+		<mapping class="model.MembersMaster"/>
+		<mapping class="model.MemberInfo"/>
+		<mapping class="model.OrderInfo"/>
 	</session-factory>
 
 </hibernate-configuration>
