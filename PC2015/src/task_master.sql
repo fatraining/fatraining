@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 1 朁E22 日 07:31
--- サーバのバージョン： 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: 2016 年 4 朁E06 日 07:35
+-- サーバのバージョン： 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -93,6 +93,37 @@ CREATE TABLE `band_table` (
 
 INSERT INTO `band_table` (`ID`, `BAND_NAME`, `ENTRY_DATE`, `RENEWAL_DATE`, `ENTRY_USERID`, `RENEWAL_USERID`, `EXCLUSION_FLG`, `DELETE_FLG`) VALUES
 (1, '砂糖と塩', '2015/05/08 15:48:33', '2015/05/08 15:48:33', 'Struts2', 'Struts2', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `category_master`
+--
+
+CREATE TABLE `category_master` (
+  `Category` varchar(5) NOT NULL,
+  `CategoryValue` varchar(50) NOT NULL,
+  `SubCategory` varchar(5) DEFAULT NULL,
+  `SubCategoryValue` varchar(50) DEFAULT NULL,
+  `DeleteFlag` varchar(1) DEFAULT '0',
+  `RegistrationUserID` varchar(20) DEFAULT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT NULL,
+  `UpdateUserID` varchar(20) DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='区分マスタ';
+
+--
+-- テーブルのデータのダンプ `category_master`
+--
+
+INSERT INTO `category_master` (`Category`, `CategoryValue`, `SubCategory`, `SubCategoryValue`, `DeleteFlag`, `RegistrationUserID`, `RegistrationDate`, `UpdateUserID`, `UpdateDate`) VALUES
+('GL001', '衣類', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL002', '寝具', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL003', '家電', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL004', '食料品', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL005', 'スポーツ用品', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL006', 'レジャー用品', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('GL007', '雑貨', NULL, NULL, '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00');
 
 -- --------------------------------------------------------
 
@@ -274,6 +305,71 @@ INSERT INTO `genre` (`id`, `genreNm`, `record_date`, `reset_date`, `entry_userId
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `goodslist`
+--
+
+CREATE TABLE `goodslist` (
+  `GoodsCode` varchar(15) NOT NULL,
+  `GoodsName` varchar(100) NOT NULL,
+  `Price` int(10) NOT NULL,
+  `Category` varchar(5) NOT NULL,
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT '0',
+  `RegistrationUserID` varchar(20) DEFAULT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdateUserID` varchar(20) DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品リストテーブル';
+
+--
+-- テーブルのデータのダンプ `goodslist`
+--
+
+INSERT INTO `goodslist` (`GoodsCode`, `GoodsName`, `Price`, `Category`, `DeleteFlag`, `RegistrationUserID`, `RegistrationDate`, `UpdateUserID`, `UpdateDate`) VALUES
+('1000-0101-10001', 'すごくよく消える消しゴム', 300, 'GL007', '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('1000-0101-10002', 'すごく消しやすい鉛筆 （HB）', 130, 'GL007', '0', 'system', '2016-03-27 15:00:00', 'system', '2016-03-27 15:00:00'),
+('1000-0101-10003', 'すごく消しやすい鉛筆 （2B）', 130, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10004', 'とても握りやすいシャープペンシル', 216, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10005', '万能　１６色ボールペン', 680, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10006', 'すごく測りやすい分度器', 160, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10007', 'とても見栄えのいい万年筆', 4600, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10008', '思った以上によく入る筆箱', 800, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10009', 'どこに置いても邪魔にならないペン立て', 324, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10010', '一度くっついたら絶対に離れない木工用ボンド', 980, 'GL007', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10011', 'とても暖かい毛糸のＴシャツ', 2980, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10012', '穴だらけ　ダメージジーンズ', 400, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10013', '風通し抜群　厚手のコート', 11980, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10014', '超お買い得！！　靴下10足セット', 880, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10015', '超お買い得！！　軍手20組セット', 1200, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10016', 'いかした甲冑', 3009800, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10017', '履き心地抜群　軽い長靴', 600, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10018', '子供用サングラス', 1200, 'GL001', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10019', '快眠間違いなし　固めの枕', 3240, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10020', '快眠間違いなし　柔めの枕', 3240, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10021', '触り心地がいいシーツ', 2100, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10022', '詰められるだけ詰め込んだ羽毛布団', 19800, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10023', '超反発してくるマットレス', 16300, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10024', '超お買い得！！　二段ベッド３組セット', 41890, 'GL002', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10025', 'でっかいテレビ', 168500, 'GL003', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10026', 'ちっちゃいテレビ', 6800, 'GL003', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10027', '何でも吸い込む掃除機', 16498, 'GL003', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10028', '暴風警報発令　風力が凄すぎる扇風機', 57130, 'GL003', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10029', '色んなスポーツのボール詰め合わせ', 10000, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10030', '使うと必ずうまくなる　ゴルフクラブセット', 119800, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10031', '長めのバット', 34000, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10032', '重めの竹刀', 6800, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10033', 'いかした日本刀', 5000000, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10034', 'いかした弓矢', 1200000, 'GL005', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10035', 'うまい棒チーズ味　100本セット', 1300, 'GL004', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10036', 'じっくりコトコト煮込んだうどん', 980, 'GL004', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10037', '特盛　オージービーフ５０００ｇ', 9800, 'GL004', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10038', '超豪華　一人用クリスマスケーキ', 10980, 'GL004', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10039', '一人用　キャンプセット（寝袋付き）', 39800, 'GL006', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10040', '一人用　お花見セット', 10365, 'GL006', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00'),
+('1000-0101-10041', '空のような青さ　特大ブルーシート', 5890, 'GL006', '0', 'system', '2016-03-30 15:00:00', 'system', '2016-03-30 15:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `like_game`
 --
 
@@ -307,6 +403,79 @@ CREATE TABLE `like_series` (
   `another_flg` int(11) NOT NULL,
   `delete_flg` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `members_master`
+--
+
+CREATE TABLE `members_master` (
+  `SequenceNo` int(10) NOT NULL,
+  `MemberID` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Password` varchar(12) COLLATE utf8_bin NOT NULL,
+  `LastLoginDate` datetime DEFAULT NULL,
+  `PasswordChangeDate` datetime DEFAULT NULL,
+  `DeleteFlag` varchar(1) COLLATE utf8_bin DEFAULT '0',
+  `RegistrationUserID` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdateUserID` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='会員マスタ';
+
+--
+-- テーブルのデータのダンプ `members_master`
+--
+
+INSERT INTO `members_master` (`SequenceNo`, `MemberID`, `Password`, `LastLoginDate`, `PasswordChangeDate`, `DeleteFlag`, `RegistrationUserID`, `RegistrationDate`, `UpdateUserID`, `UpdateDate`) VALUES
+(1, 'yamada', 'Pass', '2016-03-28 00:00:00', '2016-04-04 11:27:01', '0', 'system', '2016-03-27 15:00:00', 'system', '2016-04-04 02:27:01'),
+(2, 'tanaka', 'password', '2016-03-30 15:36:29', '2016-03-31 17:42:15', '0', 'system', '2016-03-30 06:36:29', 'system', '2016-03-31 08:42:15'),
+(3, 'ABCD', 'abcd', '2016-03-30 15:56:41', '2016-03-30 15:56:41', '1', 'system', '2016-03-30 06:56:41', 'system', '2016-03-31 02:14:24'),
+(6, 'wwww', 'wwww', '2016-03-31 11:32:25', '2016-03-31 11:32:25', '1', 'system', '2016-03-31 02:32:25', 'system', '2016-03-31 02:32:42'),
+(7, 'hoge', 'hoge', '2016-03-31 17:02:37', '2016-03-31 17:02:37', '1', 'system', '2016-03-31 08:02:37', 'system', '2016-03-31 08:03:19'),
+(8, 'hoge', 'hoge', '2016-03-31 17:05:28', '2016-03-31 17:05:28', '0', 'system', '2016-03-31 08:05:28', 'system', '2016-03-31 08:05:28'),
+(9, 'aho', 'ahoaho', '2016-04-04 11:49:44', '2016-04-04 11:49:44', '1', 'system', '2016-04-04 02:49:44', 'system', '2016-04-04 02:51:29');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `member_info`
+--
+
+CREATE TABLE `member_info` (
+  `SequenceNo` int(10) NOT NULL,
+  `MemberID` varchar(20) COLLATE utf8_bin NOT NULL,
+  `LastName` varchar(20) COLLATE utf8_bin NOT NULL,
+  `FirstName` varchar(20) COLLATE utf8_bin NOT NULL,
+  `LastNameKana` varchar(40) COLLATE utf8_bin NOT NULL,
+  `FirstNameKana` varchar(40) COLLATE utf8_bin NOT NULL,
+  `Sex` varchar(1) COLLATE utf8_bin NOT NULL,
+  `Birthday` varchar(10) COLLATE utf8_bin NOT NULL,
+  `Age` int(3) NOT NULL,
+  `PostalCode` varchar(8) COLLATE utf8_bin NOT NULL,
+  `Address` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Building` varchar(80) COLLATE utf8_bin DEFAULT NULL,
+  `TelKind` varchar(1) COLLATE utf8_bin NOT NULL,
+  `TelNumber` varchar(14) COLLATE utf8_bin NOT NULL,
+  `DeleteFlag` varchar(1) COLLATE utf8_bin DEFAULT '0',
+  `RegistrationUserID` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdateUserID` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='会員情報テーブル';
+
+--
+-- テーブルのデータのダンプ `member_info`
+--
+
+INSERT INTO `member_info` (`SequenceNo`, `MemberID`, `LastName`, `FirstName`, `LastNameKana`, `FirstNameKana`, `Sex`, `Birthday`, `Age`, `PostalCode`, `Address`, `Building`, `TelKind`, `TelNumber`, `DeleteFlag`, `RegistrationUserID`, `RegistrationDate`, `UpdateUserID`, `UpdateDate`) VALUES
+(1, 'yamada', '山田', '太郎', 'ヤマダ', 'タロウ', '0', '1989/07/13', 26, '987-4321', '東京都×××××区○○○○５丁目３－１２', '▲▲▲▲▲▲ハイツ８０６号室', '1', '050-9876-1234', '0', 'system', '2016-03-27 15:00:00', 'system', '2016-04-04 02:24:47'),
+(2, 'tanaka', '田中', '花子', 'タナカ', 'ハナコ', '1', '2000/11/01', 15, '907-0024', '沖縄県×××××市○○○町□□□□□１２１番地', '', '0', '098-800-3456', '0', 'system', '2016-03-30 06:36:29', 'system', '2016-03-31 08:46:32'),
+(3, 'ABCD', 'ああああああああああ', 'いいいいいいいいいい', 'アアアアアアアアアアアアアアアアアアアア', 'イイイイイイイイイイイイイイイイイイイイ', '0', '1900/01/01', 116, '000-9999', 'おおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお', 'ええええええええええええええええええええええええええええええええええええええええ', '0', '0000-9999-6666', '1', 'system', '2016-03-30 06:56:41', 'system', '2016-03-31 02:14:24'),
+(6, 'wwww', 'w', 'w', 'w', 'w', '1', '1900/01/03', 116, '000-4321', 'AAAAAAAA', '▲▲▲▲▲▲ハイツ８０６号室', '1', '0000-1111-1234', '1', 'system', '2016-03-31 02:32:25', 'system', '2016-03-31 02:32:42'),
+(7, 'hoge', 'ほ', 'げ', 'ホ', 'ゲ', '0', '1988/04/07', 27, '777-7777', 'ほげほげほげほげほげほげ', 'ほほほ', '0', '999-99-9999', '1', 'system', '2016-03-31 08:02:37', 'system', '2016-03-31 08:03:19'),
+(8, 'hoge', 'ho', 'ge', 'ホ', 'ゲ', '0', '1988/01/01', 27, '000-5678', 'ほげほげほげほげほげほげ', 'BBBBBBB', '2', '0000-9876-1234', '0', 'system', '2016-03-31 08:05:28', 'system', '2016-03-31 08:05:28'),
+(9, 'aho', 'あほ', 'はげ', 'アホ', 'ハゲ', '0', '1978/12/31', 37, '414-4141', 'あほあほあほあほあほあほあほ', 'はげ山', '1', '1234-1234-1234', '1', 'system', '2016-04-04 02:49:44', 'system', '2016-04-04 02:51:29');
 
 -- --------------------------------------------------------
 
@@ -463,6 +632,57 @@ INSERT INTO `nationalteamplayer` (`id`, `number`, `name`, `nationalteamid`, `pos
 (23, 10, 'エジル', 1, 'MF', '0000-00-00 00:00:00', ''),
 (25, 7, '中田英寿', 10, 'MF', '0000-00-00 00:00:00', ''),
 (26, 12, 'オリヴィエ・ジルー', 6, 'FW', '2016-01-22 06:18:21', 'Struts2');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `order_info`
+--
+
+CREATE TABLE `order_info` (
+  `SequenceNo` int(10) NOT NULL,
+  `OrderNo` varchar(18) NOT NULL,
+  `OrderMemberID` varchar(20) NOT NULL,
+  `OrderGoodsCode` varchar(15) NOT NULL,
+  `OrderQuantity` int(10) NOT NULL,
+  `OrderDate` datetime NOT NULL,
+  `Remarks` text NOT NULL,
+  `SendingFlag` varchar(1) NOT NULL DEFAULT '0',
+  `DeleteFlag` varchar(1) DEFAULT '0',
+  `RegistrationUserID` varchar(20) DEFAULT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdateUserID` varchar(20) DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='注文情報テーブル';
+
+--
+-- テーブルのデータのダンプ `order_info`
+--
+
+INSERT INTO `order_info` (`SequenceNo`, `OrderNo`, `OrderMemberID`, `OrderGoodsCode`, `OrderQuantity`, `OrderDate`, `Remarks`, `SendingFlag`, `DeleteFlag`, `RegistrationUserID`, `RegistrationDate`, `UpdateUserID`, `UpdateDate`) VALUES
+(3, '0000-000000-000001', 'yamada', '1000-0101-10001', 1, '2016-03-29 17:15:31', '特になし', '0', '0', 'system', '2016-03-29 08:15:31', 'system', '2016-03-29 08:15:31'),
+(9, '0000-000000-000002', 'yamada', '1000-0101-10002', 1, '2016-03-29 17:57:12', '', '0', '0', 'system', '2016-03-29 08:57:12', 'system', '2016-03-29 08:57:12'),
+(10, '0000-000000-000003', 'yamada', '1000-0101-10001', 10, '2016-03-30 10:24:59', '', '0', '0', 'system', '2016-03-30 01:24:59', 'system', '2016-03-30 01:24:59'),
+(11, '0000-000000-000004', 'yamada', '1000-0101-10002', 1, '2016-03-30 10:32:39', '', '0', '0', 'system', '2016-03-30 01:32:39', 'system', '2016-03-30 01:32:39'),
+(12, '0000-000000-000005', 'yamada', '1000-0101-10002', 1, '2016-03-30 10:34:49', '', '0', '0', 'system', '2016-03-30 01:34:49', 'system', '2016-03-30 01:34:49'),
+(13, '0000-000000-000006', 'yamada', '1000-0101-10002', 2, '2016-03-30 10:39:09', '', '0', '0', 'system', '2016-03-30 01:39:09', 'system', '2016-03-30 01:39:09'),
+(14, '0000-000000-000007', 'yamada', '1000-0101-10002', 10, '2016-03-30 10:41:29', '', '0', '0', 'system', '2016-03-30 01:41:29', 'system', '2016-03-30 01:41:29'),
+(15, '0000-000000-000008', 'yamada', '1000-0101-10002', 8, '2016-03-30 10:43:41', '', '0', '0', 'system', '2016-03-30 01:43:41', 'system', '2016-03-30 01:43:41'),
+(16, '0000-000000-000009', 'yamada', '1000-0101-10001', 3, '2016-03-30 10:45:57', '', '0', '0', 'system', '2016-03-30 01:45:57', 'system', '2016-03-30 01:45:57'),
+(17, '0000-000000-000009', 'yamada', '1000-0101-10002', 8, '2016-03-30 10:45:57', '', '0', '0', 'system', '2016-03-30 01:45:57', 'system', '2016-03-30 01:45:57'),
+(18, '0000-000000-000010', 'yamada', '1000-0101-10001', 2, '2016-03-30 10:57:37', '', '0', '0', 'system', '2016-03-30 01:57:37', 'system', '2016-03-30 01:57:37'),
+(19, '0000-000000-000011', '********************', '1000-0101-10001', 2, '2016-03-30 16:34:26', 'AAAAAAAA\r\nBBBB\r\nCCCCCC', '0', '0', 'system', '2016-03-30 07:34:26', 'system', '2016-03-30 07:34:26'),
+(20, '0000-000000-000012', 'tanaka', '1000-0101-10016', 1, '2016-03-31 17:27:33', '', '0', '0', 'system', '2016-03-31 08:27:33', 'system', '2016-03-31 08:27:33'),
+(21, '0000-000000-000012', 'tanaka', '1000-0101-10033', 1, '2016-03-31 17:27:33', '', '0', '0', 'system', '2016-03-31 08:27:33', 'system', '2016-03-31 08:27:33'),
+(22, '0000-000000-000012', 'tanaka', '1000-0101-10034', 1, '2016-03-31 17:27:33', '', '0', '0', 'system', '2016-03-31 08:27:33', 'system', '2016-03-31 08:27:33'),
+(23, '0000-000000-000013', 'yamada', '1000-0101-10013', 1, '2016-04-04 12:10:52', '', '0', '0', 'system', '2016-04-04 03:10:52', 'system', '2016-04-04 03:10:52'),
+(24, '0000-000000-000014', 'yamada', '1000-0101-10012', 1, '2016-04-05 15:33:03', '領収書ください。', '0', '0', 'system', '2016-04-05 06:33:03', 'system', '2016-04-05 06:33:03'),
+(25, '0000-000000-000014', 'yamada', '1000-0101-10018', 1, '2016-04-05 15:33:03', '領収書ください。', '0', '0', 'system', '2016-04-05 06:33:03', 'system', '2016-04-05 06:33:03'),
+(26, '0000-000000-000014', 'yamada', '1000-0101-10026', 1, '2016-04-05 15:33:03', '領収書ください。', '0', '0', 'system', '2016-04-05 06:33:03', 'system', '2016-04-05 06:33:03'),
+(27, '0000-000000-000014', 'yamada', '1000-0101-10038', 2, '2016-04-05 15:33:03', '領収書ください。', '0', '0', 'system', '2016-04-05 06:33:03', 'system', '2016-04-05 06:33:03'),
+(28, '0000-000000-000014', 'yamada', '1000-0101-10030', 1, '2016-04-05 15:33:03', '領収書ください。', '0', '0', 'system', '2016-04-05 06:33:03', 'system', '2016-04-05 06:33:03'),
+(29, '0000-000000-000015', 'tanaka', '1000-0101-10011', 1, '2016-04-06 08:56:55', '', '0', '0', 'system', '2016-04-05 23:56:55', 'system', '2016-04-05 23:56:55'),
+(30, '0000-000000-000015', 'tanaka', '1000-0101-10017', 1, '2016-04-06 08:56:55', '', '0', '0', 'system', '2016-04-05 23:56:55', 'system', '2016-04-05 23:56:55');
 
 -- --------------------------------------------------------
 --
@@ -1005,6 +1225,12 @@ ALTER TABLE `band_table`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `category_master`
+--
+ALTER TABLE `category_master`
+  ADD PRIMARY KEY (`Category`);
+
+--
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
@@ -1041,6 +1267,12 @@ ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `goodslist`
+--
+ALTER TABLE `goodslist`
+  ADD PRIMARY KEY (`GoodsCode`);
+
+--
 -- Indexes for table `like_game`
 --
 ALTER TABLE `like_game`
@@ -1051,6 +1283,18 @@ ALTER TABLE `like_game`
 --
 ALTER TABLE `like_series`
   ADD PRIMARY KEY (`up_id`);
+
+--
+-- Indexes for table `members_master`
+--
+ALTER TABLE `members_master`
+  ADD PRIMARY KEY (`SequenceNo`,`MemberID`);
+
+--
+-- Indexes for table `member_info`
+--
+ALTER TABLE `member_info`
+  ADD PRIMARY KEY (`SequenceNo`,`MemberID`);
 
 --
 -- Indexes for table `movie`
@@ -1075,6 +1319,12 @@ ALTER TABLE `nationalteam`
 --
 ALTER TABLE `nationalteamplayer`
   ADD PRIMARY KEY (`id`);
+--
+-- Indexes for table `order_info`
+--
+ALTER TABLE `order_info`
+  ADD PRIMARY KEY (`SequenceNo`);
+
 --
 -- Indexes for table `operator`
 --
@@ -1256,6 +1506,16 @@ ALTER TABLE `like_game`
 ALTER TABLE `like_series`
   MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT';
 --
+-- AUTO_INCREMENT for table `members_master`
+--
+ALTER TABLE `members_master`
+  MODIFY `SequenceNo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `member_info`
+--
+ALTER TABLE `member_info`
+  MODIFY `SequenceNo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
@@ -1270,6 +1530,11 @@ ALTER TABLE `nationalteam`
 --
 ALTER TABLE `nationalteamplayer`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `order_info`
+--
+ALTER TABLE `order_info`
+  MODIFY `SequenceNo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `registration_name`
 --
