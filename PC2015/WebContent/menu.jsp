@@ -107,6 +107,12 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
+			<s:submit method="gotoGoodsList" value="ショッピング" cssClass="btn btn-primary" />
+			<p>ショッピング</p>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
 			<s:submit method="gotoStaff" value="STAFF" cssClass="btn btn-warning" />
 		</div>
 
