@@ -1,63 +1,62 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>PC2015</title>
-<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 <style>
-div.container{
-    max-width:800px;
+div.container {
+	max-width: 800px;
 }
-p.err{
-    color:red;
+
+p.err {
+	color: red;
 }
-div.result dd{
-    margin-bottom:32px;
+
+div.result dd {
+	margin-bottom: 32px;
 }
 </style>
 <style>
 table.brwsr2 {
-    border-spacing:0;
-    border:solid #33f 2px;
-    border-radius:5px;
-    margin-left:auto;
-    margin-right:auto;
-
+	border-spacing: 0;
+	border: solid #33f 2px;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 table.brwsr2 th {
-    border-right:solid #33f 1px;
-
-    padding:10px;
-
-    background:linear-gradient(#39f,#aaa);
-
-    box-shadow:2px 2px 4px #FE9 inset;
-
-    color:#FFF;
-
-    text-shadow:1px 1px 1px #33f;
-
+	border-right: solid #33f 1px;
+	padding: 10px;
+	background: linear-gradient(#39f, #aaa);
+	box-shadow: 2px 2px 4px #FE9 inset;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #33f;
 }
+
 table.brwsr2 td.data {
-   border-top:solid #33f 1px;
-    border-right:solid #33f 1px;
-    padding:7px
-
+	border-top: solid #33f 1px;
+	border-right: solid #33f 1px;
+	padding: 7px
 }
-table.brwsr2 td.bar {
-	border-radius:0 0 0 3px;
 
+table.brwsr2 td.bar {
+	border-radius: 0 0 0 3px;
 }
 </style>
 </head>
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1><a href="/PC2015/login.action">PC2015</a><small>ver β</small></h1>
-        </div>
-<!--
+	<div class="container">
+		<div class="page-header">
+			<h1>
+				<a href="/PC2015/login.action">PC2015</a><small>ver β</small>
+			</h1>
+		</div>
+		<!--
 <style>
 table.brwsr2 {
     margin: 0 auto;
