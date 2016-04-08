@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="Windows-31J"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page import="java.text.DecimalFormat"%>
+<script type="text/javascript"src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="asset/tablesorter-blue/style.css" />
+<script type="text/javascript"
+	src="asset/jquery.tablesorter.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.jsp" />
 <p class="text-right">
@@ -34,64 +38,6 @@ div.row {
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 30px 0 0 0 #f0e800, -30px 0
 		0 0 #f0e800;
-}
-
-/* テーブル */
-h1 {
-	margin: 0 auto;
-	text-align: center;
-}
-
-body.form {
-	margin: 0 auto;
-	text-align: center;
-}
-
-table.type {
-	border-collapse: collapse;
-	margin: 0 auto;;
-	text-align: center;
-	line-height: 1.5;
-	border: 1px solid #ccc;
-}
-
-tr {
-	margin: 0 auto;
-	text-align: center;
-}
-
-table.type thead {
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	background: #04162e;
-}
-
-table.type thead th {
-	margin: 0 auto;
-	text-align: center padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-}
-
-table.type tbody th {
-	margin: 0 auto;
-	text-align: center;
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #efefef;
-}
-
-table.type td {
-	margin: 0 auto;
-	text-align: center;;
-	width: 200px;
-	padding: 10px;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
 }
 
 .err {
@@ -165,29 +111,31 @@ table.type td {
 	</div>
 
 	<div class="bug">
-		<div style="color: red ; padding-left:5%">
+		<div style="color: red; padding-left: 5%">
 			<s:actionerror />
 			<s:property value="msg" />
 		</div>
 		<s:if test="%{outputTable.size() > 0}">
-			<table class="type">
-				<tbody>
+			<table class="tablesorter" id="phones">
+				<thead>
 					<tr>
 						<th>ID</th>
 						<th>事業社名</th>
 						<th>機種名</th>
-						<th>価格</th>
+						<th>価格(円)</th>
 						<th>画面サイズ</th>
 						<th>発売日</th>
 						<th>コメント</th>
 						<th>削除</th>
 					</tr>
+					</thead>
+					<tbody>
 					<s:iterator value="outputTable">
 						<tr>
 							<td class="data"><s:property value="ID" /></td>
 							<td class="data"><s:property value="OperatorName" /></td>
 							<td class="data"><s:property value="PhoneName" /></td>
-							<td class="data"><s:property value="price" /> 円</td>
+							<td class="data"><s:property value="price" /></td>
 							<td class="data"><s:property value="Size" /></td>
 							<td class="data"><s:property value="Date" /></td>
 							<td class="data"><s:property value="Comment" /></td>
@@ -204,6 +152,19 @@ table.type td {
 				</div>
 			</s:if>
 		</s:if>
-</s:form>
 </div>
-<jsp:include page="footer.jsp" />
+</s:form>
+<script>
+	$(document).ready((function($) {
+
+	$('#phones').tablesorter({
+		  widgets: ['zebra'],
+		  headers: {
+
+    			7: {sorter:false}
+			  }
+	});
+	})); 
+</script>
+</div>
+</body>
