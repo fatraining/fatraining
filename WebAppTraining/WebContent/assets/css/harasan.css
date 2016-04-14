@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+h1, .h1 {
+    font-size: 36px;
+}
+
+#resultTable {
+    margin-top: 20px;
+}
+
+.btn-group-justified > .btn,
+.btn-group-justified > .btn-group {
+    width: 33%;
+}
