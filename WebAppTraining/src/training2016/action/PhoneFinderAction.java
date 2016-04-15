@@ -18,6 +18,9 @@ import training2016.model.Phones;
 public class PhoneFinderAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
+	/** 画面タイトル */
+	private String title = "携帯検索";
+
 	// 入力項目 ↓↓
 	/*------------------------------------------------------*/
 	private String operatorName;
@@ -127,7 +130,7 @@ public class PhoneFinderAction extends AbstractAction {
 	public String update() {
 		this.sessionMap.put("deleteID", null);
 		try {
-			this.response.sendRedirect("./updatePhones.action");
+			this.response.sendRedirect("updatePhones.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +147,7 @@ public class PhoneFinderAction extends AbstractAction {
 			return "error";
 		} else {
 			try {
-				this.response.sendRedirect("./updatePhones.action");
+				this.response.sendRedirect("updatePhones.action");
 				;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -195,6 +198,9 @@ public class PhoneFinderAction extends AbstractAction {
 		this.delete = delete;
 	}
 
+	public String getTitle() {
+		return this.title;
+	}
 	/*------------------------------------------------------*/
 
 }

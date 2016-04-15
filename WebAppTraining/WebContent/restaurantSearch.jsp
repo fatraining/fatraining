@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/header.jsp" />
-	<link rel="stylesheet" type="text/css" href="/WebApp/assets/css/bootswatch-paper.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/WebApp/assets/css/harasan.css"/>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/bootswatch-paper.min.css"/>"/>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/harasan.css"/>"/>
 	<body>
 		<div class="container">
 			<jsp:include page="/logo.jsp" />

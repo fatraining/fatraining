@@ -93,7 +93,7 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.sessionMap.put("delete_id", null);
 
 		try {
-			this.response.sendRedirect("./restaurantUpdate.action");
+			this.response.sendRedirect("restaurantUpdate.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -111,7 +111,7 @@ public class RestaurantSearchAction extends AbstractAction {
 
 		if (this.deleteId != null && this.deleteId.length == 0) {
 			try {
-				this.response.sendRedirect("./restaurantUpdate.action");
+				this.response.sendRedirect("restaurantUpdate.action");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

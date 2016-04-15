@@ -6,9 +6,10 @@
 	<jsp:include page="header.jsp" />
 
 	<link rel="stylesheet" type="text/css"
-		href="/WebApp/assets/css/tablesorter-blue/style.css" />
+		href="<s:url value="/assets/css/tablesorter-blue/style.css"/>"/>
 	<script type="text/javascript"
-		src="/WebApp/assets/js/jquery.tablesorter.min.js"></script>
+		src="<s:url value="/assets/js/jquery.tablesorter.min.js"/>"></script>
+
 	<style>
 		div.search {
 			margin-left: 40%;
