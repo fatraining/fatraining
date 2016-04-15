@@ -11,7 +11,7 @@ import training2016.dao.RestaurantDao;
 import training2016.model.Restaurant;
 import training2016.model.RestaurantSearchCondition;
 
-@Result(name = "update13", value = "update13.action", type = ServletRedirectResult.class)
+@Result(name = "update", value = "restaurantUpdate.action", type = ServletRedirectResult.class)
 public class RestaurantSearchAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -93,7 +93,7 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.sessionMap.put("delete_id", null);
 
 		try {
-			this.response.sendRedirect("/WebApp/training2016/restaurantUpdate.action");
+			this.response.sendRedirect("./restaurantUpdate.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -111,7 +111,7 @@ public class RestaurantSearchAction extends AbstractAction {
 
 		if (this.deleteId != null && this.deleteId.length == 0) {
 			try {
-				this.response.sendRedirect("/WebApp/training2016/restaurantUpdate.action");
+				this.response.sendRedirect("./restaurantUpdate.action");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -127,7 +127,7 @@ public class PhoneFinderAction extends AbstractAction {
 	public String update() {
 		this.sessionMap.put("deleteID", null);
 		try {
-			this.response.sendRedirect("/WebApp/training2016/updatePhones.action");
+			this.response.sendRedirect("./updatePhones.action");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +144,7 @@ public class PhoneFinderAction extends AbstractAction {
 			return "error";
 		} else {
 			try {
-				this.response.sendRedirect("/WebApp/training2016/updatePhones.action");
+				this.response.sendRedirect("./updatePhones.action");
 				;
 			} catch (IOException e) {
 				e.printStackTrace();
