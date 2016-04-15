@@ -18,6 +18,9 @@ import training2016.model.Operator;
 @Result(name = "phoneFinder", value = "phoneFinder.action", type = ServletRedirectResult.class)
 public class UpdatePhonesAction extends AbstractAction {
 
+	/** 画面タイトル */
+	private String title = "携帯追加";
+
 	private static final long serialVersionUID = 1L;
 	public Map<Integer, String> operators = new HashMap<Integer, String>();
 	public String ID;
@@ -121,4 +124,8 @@ public class UpdatePhonesAction extends AbstractAction {
 		return tempMap;
 	}
 	/*------------------------------------------------------*/
+
+	public String getTitle() {
+		return this.title;
+	}
 }
