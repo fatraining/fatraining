@@ -6,6 +6,7 @@ import org.hibernate.Query;
 
 import training2016.model.AbstractSearchCondition;
 import training2016.model.Area;
+import training2016.model.AreaSearchCondition;
 
 public class AreaDao extends AbstractDao {
 
@@ -16,7 +17,7 @@ public class AreaDao extends AbstractDao {
 	 */
 	public List<Area> getAll() {
 		// 検索
-		List<Area> areaList = this.select(null);
+		List<Area> areaList = this.select(new AreaSearchCondition());
 		return areaList;
 	}
 

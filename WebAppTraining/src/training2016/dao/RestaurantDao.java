@@ -30,4 +30,8 @@ public class RestaurantDao extends AbstractDao {
 		List<Restaurant> restaurantList = this.select(cond);
 		return restaurantList;
 	}
+
+	public void insert(Restaurant model) {
+		this.save(model);
+	}
 }

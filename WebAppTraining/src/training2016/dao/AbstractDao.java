@@ -1,5 +1,6 @@
 package training2016.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -95,7 +96,7 @@ public abstract class AbstractDao {
 	 * @return モデルリスト
 	 */
 	@SuppressWarnings("unchecked")
-	protected <M> List<M> select(AbstractSearchCondition cond) {
+	public <M> List<M> select(AbstractSearchCondition cond) {
 		this.startTransaction();
 		List<M> modelList = null;
 		try {
@@ -105,10 +106,26 @@ public abstract class AbstractDao {
 		} catch (Throwable e) {
 			this.rollback();
 			e.printStackTrace();
-			return null;
+			return new ArrayList<M>();
 		}
 		this.commit();
 		return modelList;
 	}
 
+	/**
+	 * 渡されたモデルを永続化(=insert)する
+	 *
+	 * @param m
+	 */
+	public <M> void save(M m) {
+		this.startTransaction();
+		try {
+			this.session.save(m);
+		} catch (Throwable e) {
+			this.rollback();
+			e.printStackTrace();
+			throw e;
+		}
+		this.commit();
+	}
 }
