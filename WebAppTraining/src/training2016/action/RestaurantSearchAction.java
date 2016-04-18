@@ -1,12 +1,14 @@
 package training2016.action;
 
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
+import training2016.dao.AreaDao;
 import training2016.dao.RestaurantDao;
 import training2016.model.Restaurant;
 import training2016.model.RestaurantSearchCondition;
@@ -23,6 +25,8 @@ public class RestaurantSearchAction extends AbstractAction {
 	private String name;
 	/** 店舗エリア */
 	private String area;
+	/** 検索結果マップ */
+	private Map<String, String> areaMap;
 	/** 店舗評価 */
 	private String stars;
 	/** 削除ID */
@@ -31,6 +35,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	private String errorMsg;
 	/** 検索結果リスト */
 	private List<Restaurant> resultList;
+
 
 	/**
 	 * executeメソッド
@@ -58,6 +63,7 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.name  = "";
 		this.area  = "";
 		this.stars = "";
+		this.setAreaMap();
 	}
 
 	/**
@@ -66,7 +72,6 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return 結果
 	 */
 	public String search() {
-		// インスタンス化
 		RestaurantDao dao = new RestaurantDao();
 
 		if (StringUtils.isEmpty(this.name)
@@ -76,10 +81,13 @@ public class RestaurantSearchAction extends AbstractAction {
 		} else {
 			RestaurantSearchCondition cond = new RestaurantSearchCondition();
 			cond.setName(this.name);
-			cond.setAreaId(Integer.parseInt(this.area));
-			cond.setStars(Integer.parseInt(this.stars));
+			cond.setAreaId(this.area);
+			cond.setStars(this.stars);
 			this.resultList = dao.getByCondition(cond);
 		}
+
+		// 作っとく
+		this.setAreaMap();
 
 		return "success";
 	}
@@ -92,13 +100,14 @@ public class RestaurantSearchAction extends AbstractAction {
 	public String update() {
 		this.sessionMap.put("delete_id", null);
 
-		try {
-			this.response.sendRedirect("restaurantUpdate.action");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return "success";
+//		try {
+//			this.response.sendRedirect("restaurantUpdate.action");
+			return "update";
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return "success";
 	}
 
 	/**
@@ -110,15 +119,40 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.sessionMap.put("deleteId", this.deleteId);
 
 		if (this.deleteId != null && this.deleteId.length == 0) {
-			try {
-				this.response.sendRedirect("restaurantUpdate.action");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return "success";
+//			try {
+//				this.response.sendRedirect("restaurantUpdate.action");
+				return "update";
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			return "success";
 		}else{
 			return "error";
 		}
+	}
+
+	/**
+	 * DBから取得したエリア情報を元に
+	 * プルダウン用エリアマップを作成してセットする
+	 */
+	private void setAreaMap() {
+		AreaDao dao = new AreaDao();
+		this.areaMap = dao.getAll().stream().collect(
+			() -> new HashMap<String, String>(),
+			(map, area) -> map.put(String.valueOf(area.getId()), area.getName()),
+			(map, area) -> map.putAll(map)
+		);
+		// エリア未選択時用
+		this.areaMap.put("", "");
+	}
+
+	/**
+	 * エリアマップを返す
+	 *
+	 * @return エリアマップ
+	 */
+	public Map<String, String> getAreaMap() {
+		return this.areaMap;
 	}
 
 	/**
@@ -127,7 +161,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return エラーメッセージ
 	 */
 	public String getErrorMsg() {
-		return errorMsg;
+		return this.errorMsg;
 	}
 
 	/**
@@ -135,7 +169,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return title
 	 */
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	/**
@@ -143,7 +177,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -159,7 +193,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return area
 	 */
 	public String getArea() {
-		return area;
+		return this.area;
 	}
 
 	/**
@@ -175,7 +209,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return stars
 	 */
 	public String getStars() {
-		return stars;
+		return this.stars;
 	}
 
 	/**
@@ -191,7 +225,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return deleteId
 	 */
 	public String[] getDeleteId() {
-		return deleteId;
+		return this.deleteId;
 	}
 
 	/**
@@ -207,6 +241,6 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return resultList
 	 */
 	public List<Restaurant> getResultList() {
-		return resultList;
+		return this.resultList;
 	}
 }

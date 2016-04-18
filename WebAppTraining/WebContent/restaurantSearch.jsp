@@ -4,6 +4,7 @@
 <html>
 	<jsp:include page="/header.jsp" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/bootswatch-paper.min.css"/>"/>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/libs/raty/jquery.raty.css"/>"/>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/harasan.css"/>"/>
 	<body>
 		<div class="container">
@@ -27,7 +28,7 @@
 			</div>
 			<div class="form-group">
 				<label for="area" class="control-label">エリア:</label>
-				<s:textfield name="area" cssClass="form-control"/>
+				<s:select name="area" value="area" list="areaMap" cssClass="form-control"/>
 			</div>
 
 			<div class="btn-group btn-group-justified">
@@ -57,7 +58,7 @@
 					<tr>
 						<td class="data"><s:property value="name" /></td>
 						<td class="data"><s:property value="area.name" /></td>
-						<td class="data"><s:property value="stars" /></td>
+						<td class="data"><div class="stars" value="<s:property value="stars"/>"></div></td>
 						<td class="data"><s:property value="comment" /></td>
 						<td class="data"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> />
@@ -73,5 +74,7 @@
 			</s:form>
 			</s:if>
 		</div>
+		<script type="text/javascript" src="<s:url value="/assets/libs/raty/jquery.raty.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/assets/js/harasan.js"/>"></script>
 	</body>
 </html>

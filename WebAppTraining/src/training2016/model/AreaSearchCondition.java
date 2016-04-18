@@ -6,16 +6,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 
 /**
- * 飲食店検索条件モデル
+ * エリア検索条件モデル
  *
  * @author harasan
  */
-public class RestaurantSearchCondition extends AbstractSearchCondition {
+public class AreaSearchCondition extends AbstractSearchCondition {
 
 	private String id;
 	private String name;
-	private String areaId;
-	private String stars;
 
 	/**
 	 * idを返す
@@ -53,48 +51,13 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 		this.name = name;
 	}
 
-	/**
-	 * areaIdを返す
-	 *
-	 * @return areaId
-	 */
-	public String getAreaId() {
-		return this.areaId;
-	}
-
-	/**
-	 * areaIdをセットする
-	 *
-	 * @param areaId セットする areaId
-	 */
-	public void setAreaId(String areaId) {
-		this.areaId = areaId;
-	}
-
-	/**
-	 * starsを返す
-	 *
-	 * @return stars
-	 */
-	public String getStars() {
-		return this.stars;
-	}
-
-	/**
-	 * starsをセットする
-	 *
-	 * @param stars セットする stars
-	 */
-	public void setStars(String stars) {
-		this.stars = stars;
-	}
 
 	/**
 	 * 検索条件が一つでもセットされていればtrue
 	 */
 	@Override
 	public boolean hasCondition() {
-		return this.hasId() || this.hasName() || this.hasAreaId() || this.hasStars();
+		return this.hasName() || this.hasId();
 	}
 
 	/**
@@ -105,7 +68,7 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 		StringBuilder sb = new StringBuilder();
 
 		// テーブル名（対応するモデルを完全修飾名で記述）
-		sb.append(" from training2016.model.Restaurant as restaurant left join fetch restaurant.area ");
+		sb.append(" from training2016.model.Area");
 
 		// 条件がセットされてればwhere句以降も生成する
 		if (this.hasCondition()) {
@@ -136,20 +99,6 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 								param -> param != null && param.length() > 0,
 								() -> " name like :name ");
 
-		// エリアID
-		this.appendQueryString(this.areaId,
-								sb,
-								isNeedAnd.test(qStrLen, sb.length()),
-								param -> param != null && param.length() > 0,
-								() -> " area_id = :areaId ");
-
-		// 星の数（評価）
-		this.appendQueryString(this.stars,
-								sb,
-								isNeedAnd.test(qStrLen, sb.length()),
-								param -> param != null && param.length() > 0,
-								() -> " stars = :stars ");
-
 		return sb.toString();
 	}
 
@@ -162,16 +111,10 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	@Override
 	public Query setQueryParams(Query query) {
 		if (this.hasId()) {
-			query.setInteger("id", Integer.parseInt(this.id));
+			query.setString("id", this.id);
 		}
 		if (this.hasName()) {
 			query.setString("name", this.name);
-		}
-		if (this.hasAreaId()) {
-			query.setInteger("areaId", Integer.parseInt(this.areaId));
-		}
-		if (this.hasName()) {
-			query.setInteger("stars", Integer.parseInt(this.stars));
 		}
 		return query;
 	}
@@ -192,23 +135,5 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	 */
 	private boolean hasName() {
 		return StringUtils.isNotEmpty(this.name);
-	}
-
-	/**
-	 * エリアIDがセットされているか
-	 *
-	 * @return されていればtrue
-	 */
-	private boolean hasAreaId() {
-		return this.areaId != null;
-	}
-
-	/**
-	 * 星がセットされているか
-	 *
-	 * @return されていればtrue
-	 */
-	private boolean hasStars() {
-		return this.stars != null;
 	}
 }
