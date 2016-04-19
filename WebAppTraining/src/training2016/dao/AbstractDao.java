@@ -86,7 +86,6 @@ public abstract class AbstractDao {
 	@SuppressWarnings("unchecked")
 	public <M> M select(int id, Class<M> cls) {
 		return (M)session.get(cls, id);
-//		return (M)session.load(cls, id);
 	}
 
 	/**
