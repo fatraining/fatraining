@@ -99,15 +99,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	 */
 	public String update() {
 		this.sessionMap.put("delete_id", null);
-
-//		try {
-//			this.response.sendRedirect("restaurantUpdate.action");
-			return "update";
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return "success";
+		return "update";
 	}
 
 	/**
@@ -119,13 +111,7 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.sessionMap.put("deleteId", this.deleteId);
 
 		if (this.deleteId != null && this.deleteId.length == 0) {
-//			try {
-//				this.response.sendRedirect("restaurantUpdate.action");
-				return "update";
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			return "success";
+			return "update";
 		}else{
 			return "error";
 		}

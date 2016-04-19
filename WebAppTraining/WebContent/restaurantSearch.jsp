@@ -10,7 +10,7 @@
 		<div class="container">
 			<jsp:include page="/logo.jsp" />
 			<p class="text-right"><a href="menu.action">Back</a></p>
-			<h1 class="h3 text-center">今日はどこで飲む</h1>
+			<h1 class="h3 text-center">今日飲むとこ検索</h1>
 
 			<s:form cssClass="form-horizontal" id="searchCondition">
 			<div class="text-right">
