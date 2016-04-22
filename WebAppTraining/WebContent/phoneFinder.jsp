@@ -45,6 +45,7 @@
 	</style>
 
 	<body>
+	<s:form cssClass="form-horizontal">
 		<div class="container">
 			<jsp:include page="logo.jsp" />
 			<p class="text-right">
@@ -53,7 +54,6 @@
 			<br>
 			<h1 class="h3 text-left" id="heading02">携帯検索</h1>
 
-			<s:form cssClass="form-horizontal">
 			<div class="text-right">
 				<s:property value="UserID" />
 				さん
@@ -112,61 +112,71 @@
 			</div>
 		</div>
 
-			<div class="bug">
-				<div style="color: red; padding-left: 5%">
-					<s:actionerror />
-					<s:property value="msg" />
-				</div>
-				<s:if test="%{outputTable.size() > 0}">
-					<table class="tablesorter" id="phones">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>事業社名</th>
-								<th>機種名</th>
-								<th>価格(円)</th>
-								<th>画面サイズ</th>
-								<th>発売日</th>
-								<th>コメント</th>
-								<th>削除</th>
-							</tr>
-							</thead>
-							<tbody>
-							<s:iterator value="outputTable">
-								<tr>
-									<td class="data"><s:property value="ID" /></td>
-									<td class="data"><s:property value="OperatorName" /></td>
-									<td class="data"><s:property value="PhoneName" /></td>
-									<td class="data"><s:property value="price" /></td>
-									<td class="data"><s:property value="Size" /></td>
-									<td class="data"><s:property value="Date" /></td>
-									<td class="data"><s:property value="Comment" /></td>
-									<td class="data"><input type="checkbox" name="delete"
-										value="<s:property value="ID" />:<s:property value="OperatorName" />:<s:property value="PhoneName" />" /></td>
-								</tr>
-							</s:iterator>
-						</tbody>
-					</table>
-					<s:if test="%{outputTable.size>0}">
-						<div align=right>
-							<s:submit method="delete" name="delete" value="削除"
-								cssClass="btn btn-danger" />
-						</div>
-					</s:if>
-				</s:if>
+		<div class="bug">
+			<div style="color: red; padding-left: 5%">
+				<s:actionerror />
+				<s:property value="msg" />
 			</div>
-			</s:form>
-			<script>
-				$(document).ready((function($) {
-
+			<s:if test="%{outputTable.size() > 0}">
+				<table class="tablesorter" id="phones">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>事業社名</th>
+							<th>機種名</th>
+							<th>価格(円)</th>
+							<th>画面サイズ</th>
+							<th>発売日</th>
+							<th>コメント</th>
+							<th>削除</th>
+						</tr>
+						</thead>
+						<tbody>
+						<s:iterator value="outputTable">
+							<tr>
+								<td class="data"><s:property value="ID" /></td>
+								<td class="data"><s:property value="OperatorName" /></td>
+								<td class="data"><s:property value="PhoneName" /></td>
+								<td class="data"><s:property value="price" /></td>
+								<td class="data"><s:property value="Size" /></td>
+								<td class="data"><s:property value="Date" /></td>
+								<td class="data"><s:property value="Comment" /></td>
+								<td class="data"><input type="checkbox" name="delete"
+									value="<s:property value="ID" />:<s:property value="OperatorName" />:<s:property value="PhoneName" />" /></td>
+							</tr>
+						</s:iterator>
+					</tbody>
+				</table>
+			</s:if>
+		</s:form>
+		</div>
+		<s:if test="%{outputTable.size>0}">
+			<div align=right>
+				<s:submit method="delete" id="deleteBtn" value="削除"
+					cssClass="btn btn-danger" />
+			</div>
+		</s:if>
+		<script>
+			$(document).ready((function($) {
 				$('#phones').tablesorter({
-					  widgets: ['zebra'],
-					  headers: {
-
-			    			7: {sorter:false}
-						  }
+					widgets: ['zebra'],
+					headers: {
+			    		7: {sorter:false}
+					}
 				});
-				}));
-			</script>
+			}));
+			// 削除ボタン用
+			$('#deleteBtn').click(function (e) {
+				// delete メソッドを実行するための要素を生成
+				var btn = document.createElement('input');
+				btn.setAttribute('type', 'hidden');
+				btn.setAttribute('name', 'method:delete');
+				btn.setAttribute('value', "1");
+
+				var form = document.forms[0];
+				form.appendChild(btn);
+				form.submit();
+			});
+		</script>
 	</body>
 </html>
