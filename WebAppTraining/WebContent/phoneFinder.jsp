@@ -148,14 +148,14 @@
 					</tbody>
 				</table>
 			</s:if>
+			<s:if test="%{outputTable.size>0}">
+				<div align=right>
+					<s:submit method="delete" id="deleteBtn" value="削除"
+						cssClass="btn btn-danger" />
+				</div>
+			</s:if>
 		</s:form>
 		</div>
-		<s:if test="%{outputTable.size>0}">
-			<div align=right>
-				<s:submit method="delete" id="deleteBtn" value="削除"
-					cssClass="btn btn-danger" />
-			</div>
-		</s:if>
 		<script>
 			$(document).ready((function($) {
 				$('#phones').tablesorter({
@@ -166,17 +166,17 @@
 				});
 			}));
 			// 削除ボタン用
-			$('#deleteBtn').click(function (e) {
-				// delete メソッドを実行するための要素を生成
-				var btn = document.createElement('input');
-				btn.setAttribute('type', 'hidden');
-				btn.setAttribute('name', 'method:delete');
-				btn.setAttribute('value', "1");
-
-				var form = document.forms[0];
-				form.appendChild(btn);
-				form.submit();
-			});
+//			$('#deleteBtn').click(function (e) {
+//				// delete メソッドを実行するための要素を生成
+//				var btn = document.createElement('input');
+//				btn.setAttribute('type', 'hidden');
+//				btn.setAttribute('name', 'method:delete');
+//				btn.setAttribute('value', "1");
+//
+//				var form = document.forms[0];
+//				form.appendChild(btn);
+//				form.submit();
+//			});
 		</script>
 	</body>
 </html>
