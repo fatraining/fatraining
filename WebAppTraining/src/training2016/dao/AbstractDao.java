@@ -85,7 +85,17 @@ public abstract class AbstractDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public <M> M select(int id, Class<M> cls) {
-		return (M)session.get(cls, id);
+		this.startTransaction();
+		M m = null;
+		try {
+			m = (M)this.session.load(cls, id);
+		} catch (Throwable e) {
+			this.rollback();
+			e.printStackTrace();
+			return null;
+		}
+		this.commit();
+		return m;
 	}
 
 	/**
@@ -120,6 +130,23 @@ public abstract class AbstractDao {
 		this.startTransaction();
 		try {
 			this.session.save(m);
+		} catch (Throwable e) {
+			this.rollback();
+			e.printStackTrace();
+			throw e;
+		}
+		this.commit();
+	}
+
+	/**
+	 * 渡されたモデルを更新する
+	 *
+	 * @param m
+	 */
+	public <M> void update(M m) {
+		this.startTransaction();
+		try {
+			this.session.update(m);
 		} catch (Throwable e) {
 			this.rollback();
 			e.printStackTrace();

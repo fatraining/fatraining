@@ -7,7 +7,25 @@ h1, .h1 {
     margin-top: 20px;
 }
 
+#resultTable .center {
+    text-align: center;
+}
+
+#resultTable th.per-12 {
+	width: 12%;
+}
+#resultTable th.per-7 {
+	width: 7%;
+}
+#resultTable th.per-16 {
+	width: 16%;
+}
+#resultTable th.per-46 {
+	width: 46%;
+}
+
 .btn-group-justified > .btn,
 .btn-group-justified > .btn-group {
     width: 33%;
 }
+

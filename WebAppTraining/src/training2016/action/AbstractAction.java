@@ -60,8 +60,9 @@ public abstract class AbstractAction extends ActionSupport implements
 	 *
 	 * @return Object セッションバリュー
 	 */
-	public Object getValueFromSession(String key) {
-		return this.sessionMap.get(key);
+	@SuppressWarnings("unchecked")
+	public <C> C getValueFromSession(String key) {
+		return (C) this.sessionMap.get(key);
 	}
 
 	/**

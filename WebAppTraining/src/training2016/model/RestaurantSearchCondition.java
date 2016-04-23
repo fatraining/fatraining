@@ -13,20 +13,20 @@ import training2016.annotations.ToString;
  */
 public class RestaurantSearchCondition extends AbstractSearchCondition {
 
-	@SimpleCondition(name="id")
 	@ToInteger
+	@SimpleCondition(name="id")
 	private String id;
 
-	@SimpleCondition(name="name")
 	@ToString
+	@SimpleCondition(name="name")
 	private String name;
 
-	@SimpleCondition(name="areaId")
 	@ToInteger
+	@SimpleCondition(name="areaId")
 	private String areaId;
 
-	@SimpleCondition(name="stars")
 	@ToInteger
+	@SimpleCondition(name="stars")
 	private String stars;
 
 	public RestaurantSearchCondition() {
