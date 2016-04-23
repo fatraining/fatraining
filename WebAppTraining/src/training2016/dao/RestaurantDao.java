@@ -31,7 +31,21 @@ public class RestaurantDao extends AbstractDao {
 		return restaurantList;
 	}
 
+	/**
+	 * 登録
+	 *
+	 * @param model
+	 */
 	public void insert(Restaurant model) {
 		this.save(model);
+	}
+
+	/**
+	 * 更新
+	 *
+	 * @param model
+	 */
+	public void update(Restaurant model) {
+		this.update(model);
 	}
 }

@@ -10,11 +10,12 @@
 	<div class="container">
 		<jsp:include page="/logo.jsp" />
 		<p class="text-right"><a href="restaurantSearch.action">Back</a></p>
-		<h1 class="h3 text-center">飲み屋新規登録</h1>
+		<h1 class="h3 text-center"><s:property value="title" /></h1>
 		<p class="err">
 			<s:property value="errorMsg" />
 		</p>
 		<s:form cssClass="form-horizontal">
+			<s:hidden name="id"></s:hidden>
 			<div class="text-right">
 				<s:property value="userId" />
 				さん
@@ -35,7 +36,7 @@
 				<label for="comment" class="control-label"> コメント:</label>
 				<s:textarea cssClass="form-control" name="comment" rows="5" placeholder="コメント" />
 			</div>
-			<s:submit method="insert" value="追加" cssClass="btn btn-success btn-block" />
+			<s:submit method="update" value="%{updateBtnTitle}" cssClass="btn btn-success btn-block" />
 		</s:form>
 	</div>
 	<script type="text/javascript" src="<s:url value="/assets/libs/raty/jquery.raty.js"/>"></script>

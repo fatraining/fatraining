@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
 		<div class="container">
 			<jsp:include page="/logo.jsp" />
 			<p class="text-right"><a href="menu.action">Back</a></p>
-			<h1 class="h3 text-center">今日飲むとこ検索</h1>
+			<h1 class="h3 text-center"><s:property value="title" /></h1>
 
 			<s:form cssClass="form-horizontal" id="searchCondition">
 			<div class="text-right">
@@ -23,8 +24,8 @@
 				<s:textfield name="name" cssClass="form-control" placeholder="店舗名がわかってるなら入れればいいじゃない"/>
 			</div>
 			<div class="form-group">
-				<label for="stars" class="control-label">評価:</label>
-				<s:textfield name="stars" cssClass="form-control" placeholder="評価"/>
+				<label for="stars" class="control-label"> 評価(クリックで確定):</label>
+				<div class="stars" value="<s:property value="stars"/>"></div>
 			</div>
 			<div class="form-group">
 				<label for="area" class="control-label">エリア:</label>
@@ -46,21 +47,25 @@
 			<table id="resultTable" class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th>店舗名</th>
-						<th>エリア名</th>
-						<th>評価</th>
-						<th>コメント</th>
-						<th>削除</th>
+						<th class="per-12 center">店舗名</th>
+						<th class="per-12 center">エリア名</th>
+						<th class="per-16 center">評価</th>
+						<th class="per-46 center">コメント</th>
+						<th class="per-7 center">更新</th>
+						<th class="per-7 center">削除</th>
 					</tr>
 				</thead>
 				<tbody>
 					<s:iterator value="resultList">
 					<tr>
-						<td class="data"><s:property value="name" /></td>
-						<td class="data"><s:property value="area.name" /></td>
-						<td class="data"><div class="stars" value="<s:property value="stars"/>"></div></td>
+						<td class="data center"><s:property value="name" /></td>
+						<td class="data center"><s:property value="area.name" /></td>
+						<td class="data"><div class="stars-readOnly" value="<s:property value="stars"/>"></div></td>
 						<td class="data"><s:property value="comment" /></td>
-						<td class="data"><input type="checkbox" name="delete_id"
+						<td class="data"><input type="button" name="updateBtn" value="更新"
+							class="btn btn-primary" forUpdate="<s:property value="id"/>" />
+						</td>
+						<td class="data center"><input type="checkbox" name="delete_id"
 							value=<s:property value="id" /> />
 						</td>
 					</tr>
@@ -68,8 +73,7 @@
 				</tbody>
 			</table>
 			<div align=right>
-				<s:submit method="delete_id" name="delete_id" value="削除"
-					cssClass="btn btn-danger" />
+				<s:submit id="deleteBtn" method="delete" value="削除" cssClass="btn btn-danger" />
 			</div>
 			</s:form>
 			</s:if>

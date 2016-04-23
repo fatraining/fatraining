@@ -720,14 +720,12 @@
     }
   };
 
-var assetsPath = 'assets/libs/raty/images/';
-
   $.fn.raty.defaults = {
     cancel       : false,
     cancelClass  : 'raty-cancel',
     cancelHint   : 'Cancel this rating!',
-    cancelOff    : assetsPath + 'cancel-off.png',
-    cancelOn     : assetsPath + 'cancel-on.png',
+    cancelOff    : 'cancel-off.png',
+    cancelOn     : 'cancel-on.png',
     cancelPlace  : 'left',
     click        : undefined,
     half         : false,
@@ -747,9 +745,9 @@ var assetsPath = 'assets/libs/raty/images/';
     scoreName    : 'score',
     single       : false,
     space        : true,
-    starHalf     : assetsPath + 'star-half.png',
-    starOff      : assetsPath + 'star-off.png',
-    starOn       : assetsPath + 'star-on.png',
+    starHalf     : 'star-half.png',
+    starOff      : 'star-off.png',
+    starOn       : 'star-on.png',
     starType     : 'img',
     target       : undefined,
     targetFormat : '{score}',

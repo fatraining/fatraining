@@ -13,13 +13,22 @@ import training2016.dao.AreaDao;
 import training2016.dao.RestaurantDao;
 import training2016.model.Restaurant;
 
+/**
+ * 飲み屋追加・更新Action
+ *
+ * @author harasan
+ */
 @Result(name = "search", value = "restaurantSearch.action", type = ServletRedirectResult.class)
 public class RestaurantUpdateAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	/** 画面タイトル */
 	private String title = "いい店教えてクレメンス";
+	/** ボタン表示名 */
+	private String updateBtnTitle = "追加";
 
+	/** ID(更新時のみ) */
+	private String id;
 	/** 店舗名 */
 	private String name;
 	/** 店舗エリア */
@@ -34,33 +43,54 @@ public class RestaurantUpdateAction extends AbstractAction {
 	/** エラーメッセージ */
 	private String errorMsg;
 
+	// イニシャライザ
+	{
+		this.setAreaMap();
+	}
+
 	/**
 	 * executeメソッド
 	 *
 	 * @return 結果
 	 */
 	public String execute() throws Exception {
-		this.setAreaMap();
+		this.id = this.getValueFromSession("updateId");
+
+		RestaurantDao dao = new RestaurantDao();
+		Restaurant target = dao.select(Integer.parseInt(this.id), Restaurant.class);
+
+		if (target != null) {
+			this.name = target.getName();
+			this.area = String.valueOf(target.getAreaId());
+			this.stars = String.valueOf(target.getStars());
+			this.comment = target.getComment();
+			this.updateBtnTitle = "更新";
+		} else {
+			this.id = "";
+		}
+
 		return "success";
 	}
 
 	/**
-	 * insertメソッド。
-	 * 画面の初期表示に戻す。
+	 * updateメソッド。
 	 *
 	 * @return 結果
 	 */
-	public String insert() {
-		this.setAreaMap();
-
+	public String update() {
 		// 未入力の項目があるときにエラーを返す
 		if (!this.isValidate()) {
 			this.errorMsg = "全項目入力してください。";
 			return "error";
 		}
-
+		// ID があれば更新なので、一度取得したモデルに入力値をセットする
 		RestaurantDao dao = new RestaurantDao();
-		dao.save(this.generateRestaurantModel());
+		if (StringUtils.isEmpty(this.id)) {
+			Restaurant target = dao.select(Integer.parseInt(this.id), Restaurant.class);
+			dao.update(this.generateRestaurantModel(target));
+		} else {
+			dao.save(this.generateRestaurantModel());
+		}
 
 		return "search";
 	}
@@ -83,6 +113,24 @@ public class RestaurantUpdateAction extends AbstractAction {
 		model.setUpdateDate(new Timestamp(registerDate.getTime()));
 
 		return model;
+	}
+
+	/**
+	 * 今フィールドに保持している値で引数のモデルにセットして返す<br>
+	 * 更新用。
+	 *
+	 * @return restaurant
+	 */
+	private Restaurant generateRestaurantModel(Restaurant target) {
+		target.setName(this.name);
+		target.setStars(Short.parseShort(this.stars));
+		target.setComment(this.comment);
+		target.setAreaId(Integer.parseInt(this.area));
+		Date updateDate = new Date();
+		target.setUpdateUser(this.getUserId());
+		target.setUpdateDate(new Timestamp(updateDate.getTime()));
+
+		return target;
 	}
 
 	/**
@@ -122,6 +170,24 @@ public class RestaurantUpdateAction extends AbstractAction {
 	 */
 	public String getTitle() {
 		return this.title;
+	}
+
+	/**
+	 * idを返す
+	 *
+	 * @return id
+	 */
+	public String getId() {
+		return this.id;
+	}
+
+	/**
+	 * idをセットする
+	 *
+	 * @param id セットする id
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
@@ -170,21 +236,21 @@ public class RestaurantUpdateAction extends AbstractAction {
 	}
 
 	/**
-	 * scoreとしてstarsを返す
+	 * starsを返す
 	 *
 	 * @return stars
 	 */
-	public String getScore() {
+	public String getStars() {
 		return this.stars;
 	}
 
 	/**
-	 * scoreをstarsにセットする
+	 * starsにセットする
 	 *
-	 * @param score セットする score
+	 * @param stars セットする stars
 	 */
-	public void setScore(String score) {
-		this.stars = score;
+	public void setStars(String stars) {
+		this.stars = stars;
 	}
 
 	/**
@@ -214,4 +280,12 @@ public class RestaurantUpdateAction extends AbstractAction {
 		return this.errorMsg;
 	}
 
+	/**
+	 * updateBtnTitleを返す
+	 *
+	 * @return updateBtnTitle
+	 */
+	public String getUpdateBtnTitle() {
+		return this.updateBtnTitle;
+	}
 }
