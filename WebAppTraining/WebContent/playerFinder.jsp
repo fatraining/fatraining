@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<jsp:include page="header.jsp" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/libs/vegas/vegas.css"/>"/>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/yamamoto.css"/>"/>
 	<body>
-		<div class="container">
+		<div class="container" id="main">
 			<jsp:include page="logo.jsp" />
 			<p class="text-right"><a href="menu.action">Back</a></p>
 			<h1 class="h2 text-center">J3選手検索</h1>
@@ -16,7 +16,7 @@
 					さん
 				</div>
 
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="name" class="control-label col-sm-2">チーム名:</label>
 						<div class="col-sm-10">
 							<s:select cssClass="form-control" name="teamID" list="teamMap" />
@@ -61,7 +61,7 @@
 
 			<s:if test="%{resultTable.size() > 0}">
 				<div class="table-responsive  col-sm-offset-2">
-						<table class="table table-striped">
+						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th>チーム名</th>
@@ -95,7 +95,7 @@
 				</s:if>
 			</s:form>
 		</div>
-		<script type="text/javascript" src="<s:url value="/assets/libs/vegas/vegas.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/assets/libs/backstretch/jquery.backstretch.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/js/yamamoto.js"/>"></script>
 	</body>
 </html>

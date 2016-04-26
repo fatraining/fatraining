@@ -71,12 +71,12 @@ color:red;
 
 	<s:if test="%{delete!=null}">
 		<h3>選んだデータを削除します</h3>
-		<td class="data">削除するデータ:<br><s:property value="delete"/></td>
+		<td class="data">削除するデータ:<s:property value="delete"/></td>
 		<s:form cssClass="form-horizontal">
 			<s:submit method="delete" value="削除" cssClass="btn btn-primary " />
 			<a href="phoneFinder.action">Back</a>
+		</div>
 			</s:form>
 	</s:if>
-		</div>
 	</body>
 </html>
