@@ -6,5 +6,4 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/training2016.css"/>"/>
-		<link rel="stylesheet" type="text/css" href="<s:url value="/assets/libs/vegas/vegas.css"/>"/>
 </head>
