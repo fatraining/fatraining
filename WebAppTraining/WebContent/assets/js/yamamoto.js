@@ -1,15 +1,20 @@
 /**
-* Hi! I'm yamamoto...
+* My name is yamamoto...
 */
-$('body').vegas({
-  overlay: true,
-  transition: 'flash',
-  transitionDuration: 2000,
-  delay: 10000,
-  animation: 'random',
-  animationDuration: 20000,
-  slides: [
-    { src: '/assets/img/slide001.jpg' },
-    { src: '/assets/img/002.jpg' }
-  ]
+$.backstretch(["assets/libs/backstretch/images/001.jpg",
+		               "assets/libs/backstretch/images/002.jpg",
+		               "assets/libs/backstretch/images/003.jpg"], {
+fade: 1000,
+duration: 6000
 });
+$("#club").change(function () {
+	if($(this).val() == "") $(this).addClass("place");
+	else $(this).removeClass("place")
+});
+$("#club").change();
+$("#position").change(function () {
+	if($(this).val() == "") $(this).addClass("place");
+	else $(this).removeClass("place")
+});
+$("#position").change();
+

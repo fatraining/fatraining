@@ -1,8 +1,7 @@
 package training2016.action;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +31,8 @@ public class PlayerFinderAction extends AbstractAction {
 	private String delete;
 	/** チーム名プルダウン用マップ */
 	private Map<String, String> teamMap;
-	/** ポジションプルダウン用リスト */
-	private List<String> positionList;
+	/** ポジションプルダウン用マップ */
+	private Map<String,String> positionMap = new LinkedHashMap<String, String>();
 	/** 検索結果リスト */
 	public ArrayList<Players> resultTable = new ArrayList<Players>();
 
@@ -68,11 +67,11 @@ public class PlayerFinderAction extends AbstractAction {
 	}
 
 	private void fieldInit() {
+		this.setTeamMap();
+		this.setPositionMap();
 		this.teamID = "";
 		this.playerName = "";
 		this.position = "";
-		this.setTeamMap();
-		this.setPositionList(positionList);
 	}
 
 	// 検索ボタンを押したとき ↓↓
@@ -87,32 +86,18 @@ public class PlayerFinderAction extends AbstractAction {
 		} else {
 			teamID = this.teamID.trim();
 			playerName = this.playerName.trim();
+			position = this.position.trim();
 			resultTable = dao.resultList(teamID, playerName, position);
 		}
 		this.sessionMap.put("msg", null);
 		this.resultTable.addAll(resultTrans(resultTable));
 		this.setDelete("true");
 		this.setTeamMap();
-		this.setPositionList(positionList);
+		this.setPositionMap();
 		return "success";
 	}
 
-	// チーム名プルダウン用マップを返す //
-	/*------------------------------------------------------*/
-	public Map<String, String> tableTrans(List<?> resultTable) {
-		Map<String, String> tempMap = new HashMap<String, String>();
-		tempMap.put("", "");
-		try {
-			for (int i = 0; i < resultTable.size(); i++) {
-				Team team = (Team) resultTable.get(i);
-				tempMap.put(team.getID(), team.getTeamName());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return tempMap;
-	}
+	// 選択されたフォームのパラメータをセットして返す
 	/*------------------------------------------------------*/
 	public ArrayList<Players> resultTrans(List<?> resultTable) {
 		ArrayList<Players> tempTable = new ArrayList<Players>();
@@ -220,20 +205,41 @@ public class PlayerFinderAction extends AbstractAction {
 		List<?> resultTable = dao.getTeamList();
 		this.teamMap = tableTrans(resultTable);
 	}
-	/*------------------------------------------------------*/
+
 
 	/**
-	 * @return positionList
+	 * @return positionMap
 	 */
-	public List<String> getPositionList() {
-		return positionList;
+	public Map<String, String> getPositionMap() {
+		return positionMap;
 	}
 
 	/**
-	 * @param positionList セットする positionList
+	 * @param positionMap セットする positionMap
 	 */
-	public void setPositionList(List<String> positionList) {
-		this.positionList = Arrays.asList("","FW","MF", "DF", "GK");
+	public void setPositionMap() {
+		this.positionMap.put("","ポジションを選択");
+		this.positionMap.put("FW","FW");
+		this.positionMap.put("MF","MF");
+		this.positionMap.put("DF","DF");
+		this.positionMap.put("GK","GK");
+	}
+	/*------------------------------------------------------*/
+	// チーム名プルダウン用マップを返す //
+	/*------------------------------------------------------*/
+	public Map<String, String> tableTrans(List<?> resultTable) {
+		Map<String, String> tempMap = new LinkedHashMap<String, String>();
+		tempMap.put("", "チームを選択");
+		try {
+			for (int i = 0; i < resultTable.size(); i++) {
+				Team team = (Team) resultTable.get(i);
+				tempMap.put(team.getID(), team.getTeamName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return tempMap;
 	}
 
 }
