@@ -44,6 +44,8 @@
 		<mapping class="training2016.model.Restaurant"/>
 		<mapping class="training2016.model.Operator" />
 		<mapping class="training2016.model.Phones" />
+		<mapping class="training2016.model.Catarea"/>
+		<mapping class="training2016.model.Catcafe"/>
 		<mapping class="training2016.model.Team" />
 		<mapping class="training2016.model.Players" />
 	</session-factory>
