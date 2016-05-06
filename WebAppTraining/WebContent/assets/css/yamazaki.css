@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+/**共通項
+ *
+ */
+
+body {
+	font-family: "Comic Sans MS", "arial unicode ms", "sans-serif";
+	background-image: url(http://www.nekohon.jp/gazou/sozai/zzzz-t-8h.jpg);
+	background-repeat: repeat;
+}
+
+
+h2.textSplitLoad {
+	display: none;
+}
+
+h2.split {
+	visibility: hidden;
+}
+
+
