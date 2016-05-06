@@ -21,6 +21,14 @@ h1 {
                0 20px 20px rgba(0,0,0,.15);
 }
 
+img {
+	border: 5px #CCC solid;
+}
+
 .place {
 	color: #AAA
+}
+.modal-open {
+overflow: auto;
+}
 }
