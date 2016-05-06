@@ -1,20 +1,39 @@
 /**
 * My name is yamamoto...
 */
-$.backstretch(["assets/libs/backstretch/images/001.jpg",
-		               "assets/libs/backstretch/images/002.jpg",
-		               "assets/libs/backstretch/images/003.jpg"], {
-fade: 1000,
-duration: 6000
-});
-$("#club").change(function () {
+$(".select").change(function () {
 	if($(this).val() == "") $(this).addClass("place");
 	else $(this).removeClass("place")
 });
-$("#club").change();
-$("#position").change(function () {
-	if($(this).val() == "") $(this).addClass("place");
-	else $(this).removeClass("place")
-});
-$("#position").change();
+$(".select").change();
 
+/**
+ * モーダルへコメント受け渡す
+ */
+$('#profileModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget);
+	var recipient = button.data('recipient');
+	var modal = $(this);
+	if (recipient == '' || recipient == null) {
+		modal.find('div.commentPane').text('コメント：なし');
+	} else {
+		modal.find('div.commentPane').text('コメント：' + recipient);
+	}
+});
+/**
+ * モーダルへ画像パス受け渡す
+ */
+$('#profileModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget);
+	var recipient = button.data('whatever');
+	var modal = $(this);
+	if (recipient == '' || recipient == null) {
+		modal.find('div.imagePane').html('<img src="/WebAppTraining/assets/images/nophoto.jpg" class="img-responsive img-rounded" width=180 height=200">');
+	} else {
+		modal.find('div.imagePane').html('<img src="/WebAppTraining/assets/images/temp/' + recipient + '" class="img-responsive img-rounded" width=180 height=200>');
+	}
+});
+
+$('input[id=fileInput]').change(function(){
+	   $("#photo-dummy").val($(this).val());
+	});
