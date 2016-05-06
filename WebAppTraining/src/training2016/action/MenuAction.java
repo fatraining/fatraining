@@ -7,6 +7,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 @Results({
 	@Result(name = "tosaka", value = "phoneFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "harasan", value = "restaurantSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "yamazaki", value = "catcafeSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "yamamoto", value = "playerFinder.action", type = ServletRedirectResult.class),
 })
 public class MenuAction extends AbstractAction {
@@ -51,6 +52,15 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String gotoHarasan() {
 		return "harasan";
+	}
+
+	/**
+	 * 原さんの悪魔的Webアプリ画面へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String gotoCatcafeSearch() {
+		return "yamazaki";
 	}
 
 	/**
