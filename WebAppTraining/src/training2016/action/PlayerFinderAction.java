@@ -27,6 +27,8 @@ public class PlayerFinderAction extends AbstractAction {
 	private String playerName;
 	/** ポジション */
 	private String position;
+	/** 画像へのパス */
+	private String imagePath;
 	/** 削除ID */
 	private String delete;
 	/** チーム名プルダウン用マップ */
@@ -115,6 +117,7 @@ public class PlayerFinderAction extends AbstractAction {
 				temp.setPosition(p.getPosition());
 				temp.setAge(p.getAge());
 				temp.setComment(p.getComment());
+				temp.setImagePath(p.getImagePath());
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
@@ -187,6 +190,14 @@ public class PlayerFinderAction extends AbstractAction {
 
 	public String getTitle() {
 		return this.title;
+	}
+
+	public String getImagePath() {
+		return this.imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	/**
