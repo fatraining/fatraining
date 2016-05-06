@@ -95,32 +95,32 @@ public class PlayerDao extends AbstractDao {
 		return resultTable;
 	}
 
-	//追加時の接続//
-	/*------------------------------------------------------*/
-	public void insert(String playerID ,String teamID, String playerName, String position, int age, String comment) {
-		// データベースに接続
-		Session session = this.getCurrentSession();
-
-		// トランザクションを開始
-		session.beginTransaction();
-		Players p = new Players();
-		p.setPlayerID(playerID);
-		p.setPlayerName(playerName);
-		p.setTeamID(teamID);
-		p.setAge(age);
-		p.setPosition(position);
-		p.setComment(comment);
-
-		try {
-			session.save(p);
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		// トランザクションの終了
-		session.getTransaction().commit();
-	}
+//	//追加時の接続 (使ってない・・・)//
+//	/*------------------------------------------------------*/
+//	public void insert(String playerID ,String teamID, String playerName, String position, int age, String comment) {
+//		// データベースに接続
+//		Session session = this.getCurrentSession();
+//
+//		// トランザクションを開始
+//		session.beginTransaction();
+//		Players p = new Players();
+//		p.setPlayerID(playerID);
+//		p.setPlayerName(playerName);
+//		p.setTeamID(teamID);
+//		p.setAge(age);
+//		p.setPosition(position);
+//		p.setComment(comment);
+//
+//		try {
+//			session.save(p);
+//
+//		} catch (HibernateException e) {
+//			e.printStackTrace();
+//			session.getTransaction().rollback();
+//		}
+//		// トランザクションの終了
+//		session.getTransaction().commit();
+//	}
 
 
 	//削除時の接続 //
