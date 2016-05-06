@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 4 朁E14 日 12:45
--- サーバのバージョン： 10.1.8-MariaDB
--- PHP Version: 5.6.14
+-- Generation Time: 2016 年 5 朁E06 日 04:44
+-- サーバのバージョン： 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -105,10 +105,52 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 (9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
 (12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
 (13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
-(27, 'FT', '3.14159265358979323846264', 3, '3.1415', '2016-02-29', 'pi', NULL),
 (32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
-(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL),
-(34, 'A', 'Galaxy', 56000, '5.5', '2016-04-02', '', NULL);
+(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `player`
+--
+
+CREATE TABLE `player` (
+  `playerID` int(11) NOT NULL,
+  `playername` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `teamID` int(11) DEFAULT NULL,
+  `position` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `teamName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `imagePath` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '画像へのパス'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `player`
+--
+
+INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `comment`, `teamName`, `imagePath`) VALUES
+(1, '土井康平', 1, 'GK', 28, '', NULL, NULL),
+(2, '谷口堅三', 1, 'FW', 28, '', NULL, NULL),
+(3, '深井脩平', 2, 'DF', 23, '', NULL, NULL),
+(4, '日高慶太', 2, 'MF', 26, '', NULL, NULL),
+(5, '岡田大', 3, 'GK', 31, '', NULL, NULL),
+(6, '渡辺匠', 3, 'MF', 34, '', NULL, NULL),
+(7, '亀島周', 10, 'DF', 23, '', NULL, NULL),
+(8, '前田俊介', 10, 'FW', 30, '', NULL, NULL),
+(9, '宮城晃太', 13, 'MF', 23, '', NULL, NULL),
+(10, 'パブロ', 13, 'FW', 20, '', NULL, NULL),
+(11, '修行智仁', 11, 'GK', 32, '', NULL, NULL),
+(12, 'パウリーニョ', 11, 'FW', 34, '', NULL, NULL),
+(13, '鈴木義宜', 11, 'DF', 24, '', NULL, NULL),
+(22, 'みんなの友達', 12, 'MF', 931, 'よろしく', NULL, 'pepper.jpg'),
+(23, '澤穂希', 9, 'FW', -3, '', NULL, NULL),
+(40, 'あ', 2, 'MF', 12, '', NULL, NULL),
+(41, 'a', 3, 'MF', 2, '', NULL, NULL),
+(42, 'ああ', 2, 'FW', 11, '', NULL, NULL),
+(43, 'a', 2, 'MF', 1, '', NULL, NULL),
+(44, 'a', 2, 'MF', 1, '', NULL, NULL),
+(45, 'aa', 3, 'MF', 2, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,6 +178,39 @@ CREATE TABLE `restaurant` (
 INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_date`, `create_user`, `update_date`, `update_user`, `version`) VALUES
 (1, '四文屋', 4, '安くて美味いのでオススメです。アキバとかにもあります。', 1, '2015-12-05 08:24:51', 'struts2', '2015-12-05 08:24:51', 'struts2', 0);
 
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `team`
+--
+
+CREATE TABLE `team` (
+  `ID` int(11) NOT NULL,
+  `teamname` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `team`
+--
+
+INSERT INTO `team` (`ID`, `teamname`) VALUES
+(1, 'グルージャ盛岡'),
+(2, 'ブラウブリッツ秋田'),
+(3, '福島ユナイテッドFC'),
+(4, '栃木S.C'),
+(5, 'Y.S.C.C.横浜'),
+(6, 'SC相模原'),
+(7, 'AC長野パルセイロ'),
+(8, 'カターレ富山'),
+(9, '藤枝MYFC'),
+(10, 'ガイナーレ鳥取'),
+(11, '大分トリニータ'),
+(12, '鹿児島ユナイテッドFC'),
+(13, 'FC琉球'),
+(14, 'FC東京U-23'),
+(15, 'ガンバ大阪U-23'),
+(16, 'セレッソ大阪U-23');
+
 --
 -- Indexes for dumped tables
 --
@@ -159,11 +234,23 @@ ALTER TABLE `phones`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `player`
+--
+ALTER TABLE `player`
+  ADD PRIMARY KEY (`playerID`);
+
+--
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK965A4B3DF35C8430` (`area_id`);
+
+--
+-- Indexes for table `team`
+--
+ALTER TABLE `team`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -178,7 +265,12 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+--
+-- AUTO_INCREMENT for table `player`
+--
+ALTER TABLE `player`
+  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
