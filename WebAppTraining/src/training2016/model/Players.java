@@ -20,6 +20,7 @@ public class Players implements Serializable {
 	private String position;
 	private int age;
 	private String comment;
+	private String imagePath;
 
 	/*------------------------------------------------------*/
 	@Id
@@ -54,6 +55,10 @@ public class Players implements Serializable {
 	public String getComment() {
 		return comment;
 	}
+	@Column(name = "imagePath")
+	public String getImagePath() {
+		return imagePath;
+	}
 	/*------------------------------------------------------*/
 	public void setPlayerID(String iD) {
 		this.playerID = iD;
@@ -75,6 +80,9 @@ public class Players implements Serializable {
 	}
 	public void setComment(String Comment) {
 		this.comment = Comment;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	/*------------------------------------------------------*/
