@@ -49,6 +49,58 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `catarea`
+--
+
+CREATE TABLE `catarea` (
+  `ID` int(11) NOT NULL,
+  `prefecture` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `catarea`
+--
+
+INSERT INTO `catarea` (`ID`, `prefecture`) VALUES
+(1, '東京'),
+(2, '神奈川'),
+(3, '千葉'),
+(4, '埼玉');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `catcafe`
+--
+
+CREATE TABLE `catcafe` (
+  `ID` int(11) NOT NULL,
+  `catcafename` varchar(100) COLLATE utf8_bin NOT NULL,
+  `prefectureID` int(11) NOT NULL,
+  `station` varchar(100) COLLATE utf8_bin NOT NULL,
+  `hours` varchar(100) COLLATE utf8_bin NOT NULL,
+  `closed` varchar(100) COLLATE utf8_bin NOT NULL,
+  `comment` varchar(100) COLLATE utf8_bin NOT NULL,
+  `prefecture` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `catcafe`
+--
+
+INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, `closed`, `comment`, `prefecture`) VALUES
+(1, '猫まるカフェ 上野店', 1, '上野', '11:00～22:00', 'なし', '', NULL),
+(2, '猫カフェ MoCHA 渋谷店', 1, '渋谷', '10:00～22:00', 'なし', '', NULL),
+(3, 'Nyafe Melange', 1, '恵比寿', '12:00～20:00', 'なし', '', NULL),
+(22, '猫カフェ きゃりこ 新宿店', 1, '新宿', '10:00～22:00', 'なし', '', NULL),
+(23, 'Cat Cafe ねころび', 1, '池袋', '11:00～23:00', 'なし', '', NULL),
+(24, 'ねこカフェクラブ', 1, '自由が丘', '11:00～19:00', 'なし', '', NULL),
+(26, '猫カフェ れおん', 2, '石川町', '11:00～22:00', 'なし', '', NULL),
+(28, '猫カフェ にゃんくる 鎌倉店', 2, '鎌倉', '11:00～20:00', 'なし', 'もふってきたよ', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `operator`
 --
 
@@ -216,6 +268,18 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `catarea`
+--
+ALTER TABLE `catarea`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `catcafe`
+--
+ALTER TABLE `catcafe`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
@@ -255,6 +319,16 @@ ALTER TABLE `team`
 --
 ALTER TABLE `area`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `catarea`
+--
+ALTER TABLE `catarea`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `catcafe`
+--
+ALTER TABLE `catcafe`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `phones`
 --
