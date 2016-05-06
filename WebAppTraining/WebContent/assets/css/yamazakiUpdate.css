@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+
+
+/**ヘッダー
+ *
+ */
+h2 {
+	font-family: "Comic Sans MS", "arial unicode ms", "sans-serif";
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	position: relative;
+	padding: 0 .4em .1em;
+}
+
+h2::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	content: '';
+	width: 64%;
+	height: 10px;
+	background-color: #ff9999;
+}
+
+#text {
+	font-size: 1.2em;
+}
+/**削除画面
+ *
+ */
+.showData {
+	font-size: 1.2em;
+	text-align: left;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.error {
+	color: red;
+	padding-top: 20px;
+}
+/**吹き出し
+ *
+ */
+
+.arrow_box {
+  display: none;
+  position: absolute;
+  padding: 16px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #f08080;
+  color: #fff;
+}
+
+.arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #f08080;
+  border-width: 10px;
+  pointer-events: none;
+  content: " ";
+}
+
+span:hover + p.arrow_box {
+  display: block;
+}
+
+#submitBtn {
+	float: right;
+	padding-right: 20px;
+	padding-bottom: 80px;
+}
+#pop1 div {
+  position: relative;
+}
+#pop2 div {
+	position: relative;
+}
+#pop1 {
+	float: right;
+}
+
+#pop2 {
+	float: left;
+}
+#deleteBtn {
+	float: left;
+	padding-left: 10px;
+	padding-top: 40px;
+}
+.back {
+	padding-top: 70px;
+}
