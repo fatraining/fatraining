@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E06 日 04:53
+-- Generation Time: 2016 年 5 朁E06 日 08:43
 -- サーバのバージョン： 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -45,58 +45,6 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 (2, '新橋', '2015-12-05 08:20:03', 'struts2', '2015-12-05 08:20:03', 'struts2', 0),
 (3, '秋葉原', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0),
 (4, '上野', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0);
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `catarea`
---
-
-CREATE TABLE `catarea` (
-  `ID` int(11) NOT NULL,
-  `prefecture` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `catarea`
---
-
-INSERT INTO `catarea` (`ID`, `prefecture`) VALUES
-(1, '東京'),
-(2, '神奈川'),
-(3, '千葉'),
-(4, '埼玉');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `catcafe`
---
-
-CREATE TABLE `catcafe` (
-  `ID` int(11) NOT NULL,
-  `catcafename` varchar(100) COLLATE utf8_bin NOT NULL,
-  `prefectureID` int(11) NOT NULL,
-  `station` varchar(100) COLLATE utf8_bin NOT NULL,
-  `hours` varchar(100) COLLATE utf8_bin NOT NULL,
-  `closed` varchar(100) COLLATE utf8_bin NOT NULL,
-  `comment` varchar(100) COLLATE utf8_bin NOT NULL,
-  `prefecture` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `catcafe`
---
-
-INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, `closed`, `comment`, `prefecture`) VALUES
-(1, '猫まるカフェ 上野店', 1, '上野', '11:00～22:00', 'なし', '', NULL),
-(2, '猫カフェ MoCHA 渋谷店', 1, '渋谷', '10:00～22:00', 'なし', '', NULL),
-(3, 'Nyafe Melange', 1, '恵比寿', '12:00～20:00', 'なし', '', NULL),
-(22, '猫カフェ きゃりこ 新宿店', 1, '新宿', '10:00～22:00', 'なし', '', NULL),
-(23, 'Cat Cafe ねころび', 1, '池袋', '11:00～23:00', 'なし', '', NULL),
-(24, 'ねこカフェクラブ', 1, '自由が丘', '11:00～19:00', 'なし', '', NULL),
-(26, '猫カフェ れおん', 2, '石川町', '11:00～22:00', 'なし', '', NULL),
-(28, '猫カフェ にゃんくる 鎌倉店', 2, '鎌倉', '11:00～20:00', 'なし', 'もふってきたよ', NULL);
 
 -- --------------------------------------------------------
 
@@ -195,14 +143,8 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 (11, '修行智仁', 11, 'GK', 32, '', NULL, NULL),
 (12, 'パウリーニョ', 11, 'FW', 34, '', NULL, NULL),
 (13, '鈴木義宜', 11, 'DF', 24, '', NULL, NULL),
-(22, 'みんなの友達', 12, 'MF', 931, 'よろしく', NULL, 'pepper.jpg'),
-(23, '澤穂希', 9, 'FW', -3, '', NULL, NULL),
-(40, 'あ', 2, 'MF', 12, '', NULL, NULL),
-(41, 'a', 3, 'MF', 2, '', NULL, NULL),
-(42, 'ああ', 2, 'FW', 11, '', NULL, NULL),
-(43, 'a', 2, 'MF', 1, '', NULL, NULL),
-(44, 'a', 2, 'MF', 1, '', NULL, NULL),
-(45, 'aa', 3, 'MF', 2, '', NULL, NULL);
+(56, 'dorami', 6, 'DF', 5, 'オラァ！', NULL, '1462506571163.jpg'),
+(57, 'みんなの友達', 10, 'FW', 0, '俺を玩具にしてんじゃねえぞ', NULL, '1462509120132.jpg');
 
 -- --------------------------------------------------------
 
@@ -274,18 +216,6 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `catarea`
---
-ALTER TABLE `catarea`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `catcafe`
---
-ALTER TABLE `catcafe`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
@@ -326,16 +256,6 @@ ALTER TABLE `team`
 ALTER TABLE `area`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `catarea`
---
-ALTER TABLE `catarea`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `catcafe`
---
-ALTER TABLE `catcafe`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
---
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
@@ -344,7 +264,7 @@ ALTER TABLE `phones`
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
