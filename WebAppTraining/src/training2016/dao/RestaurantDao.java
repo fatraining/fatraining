@@ -37,7 +37,7 @@ public class RestaurantDao extends AbstractDao {
 	 * @param model
 	 */
 	public void insert(Restaurant model) {
-		this.save(model);
+		this.apply(model, (s, m) -> {s.save(m);});
 	}
 
 	/**
@@ -46,6 +46,15 @@ public class RestaurantDao extends AbstractDao {
 	 * @param model
 	 */
 	public void update(Restaurant model) {
-		this.update(model);
+		this.apply(model, (s, m) -> {s.update(m);});
+	}
+
+	/**
+	 * 削除
+	 *
+	 * @param model
+	 */
+	public void delete(Restaurant model) {
+		this.apply(model, (s, m) -> {s.delete(m);});
 	}
 }

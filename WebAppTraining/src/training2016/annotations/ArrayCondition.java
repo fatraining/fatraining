@@ -7,13 +7,13 @@ import java.lang.annotation.Target;
 
 /**
  * 検索条件モデルの各フィールドにつける。
- * 単一条件として使われるものにつけること。
+ * 単一のカラムに対して複数の値を条件とするもの(=in句)につけること。
  *
  * @author harasan
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface SimpleCondition {
+public @interface ArrayCondition {
 	public String name() default "";
 	public String operator() default "";
 	public boolean from() default false; // 未使用

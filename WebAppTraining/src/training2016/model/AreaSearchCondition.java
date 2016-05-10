@@ -14,11 +14,11 @@ import training2016.annotations.ToString;
 public class AreaSearchCondition extends AbstractSearchCondition {
 
 	@ToInteger
-	@SimpleCondition(name="id")
+	@SimpleCondition(name="id", operator="=")
 	private String id;
 
 	@ToString
-	@SimpleCondition(name="name")
+	@SimpleCondition(name="name", operator="=")
 	private String name;
 
 	/**
