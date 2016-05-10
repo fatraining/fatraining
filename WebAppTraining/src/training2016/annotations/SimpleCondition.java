@@ -16,6 +16,7 @@ import java.lang.annotation.Target;
 public @interface SimpleCondition {
 	public String name() default "";
 	public String operator() default "";
+	public boolean fuzzy() default false;
 	public boolean from() default false; // 未使用
 	public boolean to() default false; // 未使用
 }
