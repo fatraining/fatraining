@@ -2,6 +2,7 @@ package training2016.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import training2016.annotations.ArrayCondition;
 import training2016.annotations.SimpleCondition;
 import training2016.annotations.ToInteger;
 import training2016.annotations.ToString;
@@ -14,21 +15,28 @@ import training2016.annotations.ToString;
 public class RestaurantSearchCondition extends AbstractSearchCondition {
 
 	@ToInteger
-	@SimpleCondition(name="id")
+	@SimpleCondition(name="id", operator="=")
 	private String id;
 
+	@ToInteger
+	@ArrayCondition(name="id", operator="=")
+	private String[] ids;
+
 	@ToString
-	@SimpleCondition(name="name")
+	@SimpleCondition(name="name", operator="=")
 	private String name;
 
 	@ToInteger
-	@SimpleCondition(name="areaId")
+	@SimpleCondition(name="areaId", operator="=")
 	private String areaId;
 
 	@ToInteger
-	@SimpleCondition(name="stars")
+	@SimpleCondition(name="stars", operator="=")
 	private String stars;
 
+	/**
+	 * コンストラクタ
+	 */
 	public RestaurantSearchCondition() {
 		super(Restaurant.class);
 	}
@@ -49,6 +57,24 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * idsを返す
+	 *
+	 * @return ids
+	 */
+	public String[] getIds() {
+		return this.ids;
+	}
+
+	/**
+	 * idsをセットする
+	 *
+	 * @param ids セットする ids
+	 */
+	public void setIds(String[] ids) {
+		this.ids = ids;
 	}
 
 	/**
@@ -110,7 +136,7 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	 */
 	@Override
 	public boolean hasCondition() {
-		return this.hasId() || this.hasName() || this.hasAreaId() || this.hasStars();
+		return this.hasId() || this.hasIds() || this.hasName() || this.hasAreaId() || this.hasStars();
 	}
 
 	/**
@@ -133,6 +159,15 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	 */
 	private boolean hasId() {
 		return this.id != null;
+	}
+
+	/**
+	 * IDSがセットされているか
+	 *
+	 * @return されていればtrue
+	 */
+	private boolean hasIds() {
+		return this.ids != null && this.ids.length > 0;
 	}
 
 	/**

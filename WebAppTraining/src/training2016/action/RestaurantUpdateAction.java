@@ -1,9 +1,14 @@
 package training2016.action;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.config.Result;
@@ -23,7 +28,7 @@ public class RestaurantUpdateAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	/** 画面タイトル */
-	private String title = "いい店教えてクレメンス";
+	private String title = "いい店だけ追加";
 	/** ボタン表示名 */
 	private String updateBtnTitle = "追加";
 
@@ -40,8 +45,16 @@ public class RestaurantUpdateAction extends AbstractAction {
 	/** コメント */
 	private String comment;
 
+	/** アップロードファイル */
+	private File image;
+	/** アップロードファイルのコンテンツタイプ */
+	private String imageContentType;
+
 	/** エラーメッセージ */
 	private String errorMsg;
+
+	/** 保存先 */
+	private static final String IMG_SAVE_BASE = "C:\\Users\\harasan\\Documents\\allin\\pleiades\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp6\\wtpwebapps\\WebAppTraining\\assets\\images\\temp";
 
 	// イニシャライザ
 	{
@@ -54,21 +67,26 @@ public class RestaurantUpdateAction extends AbstractAction {
 	 * @return 結果
 	 */
 	public String execute() throws Exception {
+		// セッションマップから更新対象IDを取得
 		this.id = this.getValueFromSession("updateId");
 
 		RestaurantDao dao = new RestaurantDao();
-		Restaurant target = dao.select(Integer.parseInt(this.id), Restaurant.class);
-
-		if (target != null) {
-			this.name = target.getName();
-			this.area = String.valueOf(target.getAreaId());
-			this.stars = String.valueOf(target.getStars());
-			this.comment = target.getComment();
-			this.updateBtnTitle = "更新";
+		Restaurant target = null;
+		// 更新対象IDがあればデータの更新
+		if (StringUtils.isNotEmpty(this.id)) {
+			target = dao.select(Integer.parseInt(this.id), Restaurant.class);
+			if (target != null) {
+				this.name = target.getName();
+				this.area = String.valueOf(target.getAreaId());
+				this.stars = String.valueOf(target.getStars());
+				this.comment = target.getComment();
+				this.updateBtnTitle = "更新";
+				this.title = "いい店を更新";
+			}
 		} else {
+			// 新規
 			this.id = "";
 		}
-
 		return "success";
 	}
 
@@ -80,16 +98,29 @@ public class RestaurantUpdateAction extends AbstractAction {
 	public String update() {
 		// 未入力の項目があるときにエラーを返す
 		if (!this.isValidate()) {
-			this.errorMsg = "全項目入力してください。";
+			this.addActionError("全項目入力してください。");
 			return "error";
 		}
+
+		try {
+			// 歯像
+			if (this.image != null) {
+				BufferedImage img = ImageIO.read(image);
+				String expansionName = this.imageContentType.split("/")[1];
+				ImageIO.write(img, expansionName, new File(IMG_SAVE_BASE + "\\" + "hoo.jpg"));
+			}
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			this.errorMsg = "画像の保存に失敗しました";
+		}
+
 		// ID があれば更新なので、一度取得したモデルに入力値をセットする
 		RestaurantDao dao = new RestaurantDao();
-		if (StringUtils.isEmpty(this.id)) {
+		if (StringUtils.isNotEmpty(this.id)) {
 			Restaurant target = dao.select(Integer.parseInt(this.id), Restaurant.class);
 			dao.update(this.generateRestaurantModel(target));
 		} else {
-			dao.save(this.generateRestaurantModel());
+			dao.insert(this.generateRestaurantModel());
 		}
 
 		return "search";
@@ -287,5 +318,23 @@ public class RestaurantUpdateAction extends AbstractAction {
 	 */
 	public String getUpdateBtnTitle() {
 		return this.updateBtnTitle;
+	}
+
+	/**
+	 * imageをセットする
+	 *
+	 * @param image セットする image
+	 */
+	public void setImage(File image) {
+		this.image = image;
+	}
+
+	/**
+	 * imageContentTypeをセットする
+	 *
+	 * @param imageContentType セットする imageContentType
+	 */
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
 	}
 }

@@ -28,7 +28,7 @@ public class RestaurantSearchAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	/** 画面タイトル */
-	private String title = "お酒飲ませてクレメンス";
+	private String title = "お酒クレメンス";
 
 	/** 店舗名 */
 	private String name;
@@ -42,8 +42,6 @@ public class RestaurantSearchAction extends AbstractAction {
 	private String updateId;
 	/** 削除ID */
 	private String[] deleteId;
-	/** エラーメッセージ */
-	private String errorMsg;
 	/** 検索結果リスト */
 	private List<Restaurant> resultList;
 
@@ -121,12 +119,12 @@ public class RestaurantSearchAction extends AbstractAction {
 	 *
 	 * @return 結果
 	 */
-	public String delete_id() {
-		if (this.deleteId != null && this.deleteId.length == 0) {
+	public String delete() {
+		if (this.deleteId != null && this.deleteId.length > 0) {
 			this.sessionMap.put("deleteId", this.deleteId);
 			return "delete";
 		}else{
-			this.errorMsg = "チェック入れよう？";
+			this.addActionError("削除のとこ一つくらいはチェック入れないと");
 			return "error";
 		}
 	}
@@ -153,15 +151,6 @@ public class RestaurantSearchAction extends AbstractAction {
 	 */
 	public Map<String, String> getAreaMap() {
 		return this.areaMap;
-	}
-
-	/**
-	 * エラーメッセージを返す
-	 *
-	 * @return エラーメッセージ
-	 */
-	public String getErrorMsg() {
-		return this.errorMsg;
 	}
 
 	/**

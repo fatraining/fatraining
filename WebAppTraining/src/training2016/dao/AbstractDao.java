@@ -2,6 +2,7 @@ package training2016.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -110,7 +111,7 @@ public abstract class AbstractDao {
 		List<M> modelList = null;
 		try {
 			Query query = this.session.createQuery(cond.generateQueryString());
-			cond.setQueryParams(query);
+			cond.setQueryParameters(query);
 			modelList = query.list();
 		} catch (Throwable e) {
 			this.rollback();
@@ -137,16 +138,17 @@ public abstract class AbstractDao {
 		}
 		this.commit();
 	}
-
+	
 	/**
-	 * 渡されたモデルを更新する
+	 * 渡されたモデルに対応するテーブルに、<br>
+	 * 渡された関数型インターフェースにより操作を行う
 	 *
 	 * @param m
 	 */
-	public <M> void update(M m) {
+	public <M> void apply(M m, BiConsumer<Session, M> func) {
 		this.startTransaction();
 		try {
-			this.session.update(m);
+			func.accept(this.session, m);
 		} catch (Throwable e) {
 			this.rollback();
 			e.printStackTrace();
