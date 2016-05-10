@@ -23,7 +23,7 @@ public class RestaurantSearchCondition extends AbstractSearchCondition {
 	private String[] ids;
 
 	@ToString
-	@SimpleCondition(name="name", operator="=")
+	@SimpleCondition(name="name", fuzzy=true, operator="like")
 	private String name;
 
 	@ToInteger

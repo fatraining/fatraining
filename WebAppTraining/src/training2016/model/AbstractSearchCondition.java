@@ -194,7 +194,11 @@ public abstract class AbstractSearchCondition {
 		if(f.getAnnotation(ToString.class) != null &&
 			this.getEmptyTester().test(value)) {
 			// クエリ文字列を組み立てる
-			q.setString(element.name(), value);
+			if (element.fuzzy()) {
+				q.setString(element.name(), "%" + value + "%");
+			} else {
+				q.setString(element.name(), value);
+			}
 		} else if (f.getAnnotation(ToInteger.class) != null &&
 			 this.getEmptyTester().test(value)) {
 			// クエリ文字列を組み立てる
