@@ -37,7 +37,7 @@ public class MenuAction extends AbstractAction {
 	}
 
 	/**
-	 * 原さんの悪魔的Webアプリ画面へ遷移する
+	 * 登坂さんの標準的Webアプリ画面へ遷移する
 	 *
 	 * @return 結果
 	 */
@@ -55,7 +55,7 @@ public class MenuAction extends AbstractAction {
 	}
 
 	/**
-	 * 原さんの悪魔的Webアプリ画面へ遷移する
+	 * 山崎晴佳パン祭リ画面へ遷移する
 	 *
 	 * @return 結果
 	 */
@@ -64,7 +64,7 @@ public class MenuAction extends AbstractAction {
 	}
 
 	/**
-	 * 原さんの悪魔的Webアプリ画面へ遷移する
+	 * 山本さんのWebアプリ画面へ遷移する
 	 *
 	 * @return 結果
 	 */
