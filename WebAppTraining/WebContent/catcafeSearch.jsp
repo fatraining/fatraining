@@ -58,7 +58,7 @@
 
 		<h2 class="split">猫カフェ検索</h2>
 
-		<s:form cssClass="form-holizontal">
+		<s:form cssClass="form-horizontal">
 			<div class="text-right" style="padding-bottom: 10px; font-size: 1.2em;">
 				<s:property value="userID"/>
 				さん
