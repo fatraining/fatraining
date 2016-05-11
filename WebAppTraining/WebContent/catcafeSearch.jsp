@@ -15,7 +15,6 @@
 	href="<s:url value="/assets/css/yamazakiSearch.css"/>" />
 
 <style>
-
 </style>
 
 <script
@@ -46,33 +45,41 @@
 					<%
 						for (int i = 1; i <= 11; i++) {
 					%>
-					<li><img src="assets/images/catFootprint2.png" alt="catFootprint"></li>
+					<li><img src="assets/images/catFootprint2.png"
+						alt="catFootprint"></li>
 					<%
 						}
 					%>
-					<li><img src="assets/images/catSilhouette.png" alt="catSilhouette"
-						class="catSilhouette"></li>
+					<li><img src="assets/images/catSilhouette.png"
+						alt="catSilhouette" class="catSilhouette"></li>
 				</ul>
 			</div>
 		</div>
 
 		<h2 class="split">猫カフェ検索</h2>
 
-		<s:form cssClass="form-horizontal">
-			<div class="text-right" style="padding-bottom: 10px; font-size: 1.2em;">
-				<s:property value="userID"/>
+		<s:form>
+
+			<div class="text-right"
+				style="padding-bottom: 10px; font-size: 1.2em;">
+				<s:property value="userID" />
 				さん
 			</div>
-
 			<div class="slideShow">
 				<div class="mainView">
 					<ul>
-						<li><a href="#1"><img src="assets/images/cat1.jpg" alt="cat1"></a></li>
-						<li><a href="#2"><img src="assets/images/cat2.jpg" alt="cat2"></a></li>
-						<li><a href="#3"><img src="assets/images/cat3.jpg" alt="cat3"></a></li>
-						<li><a href="#4"><img src="assets/images/cat4.jpg" alt="cat4"></a></li>
-						<li><a href="#5"><img src="assets/images/cat5.jpg" alt="cat5"></a></li>
-						<li><a href="#6"><img src="assets/images/cat6.jpg" alt="cat6"></a></li>
+						<li><a href="#1"><img src="assets/images/cat1.jpg"
+								alt="cat1"></a></li>
+						<li><a href="#2"><img src="assets/images/cat2.jpg"
+								alt="cat2"></a></li>
+						<li><a href="#3"><img src="assets/images/cat3.jpg"
+								alt="cat3"></a></li>
+						<li><a href="#4"><img src="assets/images/cat4.jpg"
+								alt="cat4"></a></li>
+						<li><a href="#5"><img src="assets/images/cat5.jpg"
+								alt="cat5"></a></li>
+						<li><a href="#6"><img src="assets/images/cat6.jpg"
+								alt="cat6"></a></li>
 					</ul>
 				</div>
 
@@ -87,31 +94,34 @@
 					</ul>
 				</div>
 			</div>
+			<div class="form-horizontal">
+				<div class="form-group" style="padding-top: 30px;">
+					<label for="prefecture" style="font-size: 1.2em;">都道府県：</label>
+					<s:select name="prefecture" cssClass="form-control"
+						value="prefecture" list="prefectureMap" />
+				</div>
 
-			<div class="form-group" style="padding-top: 30px;">
-				<label for="prefecture" style="font-size: 1.2em;">都道府県：</label>
-				<s:select name="prefecture" cssClass="form-control"
-					value="prefecture" list="prefectureMap" />
+				<div class="form-group">
+					<label for="station" style="font-size: 1.2em;">最寄駅：</label>
+					<s:textfield name="station" cssClass="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label for="catcafeName" style="font-size: 1.2em;">店名：</label>
+					<s:textfield name="catcafeName" cssClass="form-control" />
+				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="station" style="font-size: 1.2em;">最寄駅：</label>
-				<s:textfield name="station" cssClass="form-control" />
-			</div>
-
-			<div class="form-group">
-				<label for="catcafeName" style="font-size: 1.2em;">店名：</label>
-				<s:textfield name="catcafeName" cssClass="form-control" />
-			</div>
-
-			<div class="form-group col-md-offset-2 col-md-8" style="padding-top: 10px;">
+			<div class="form-group col-md-offset-2 col-md-8"
+				style="padding-top: 10px;">
 				<s:submit method="search" value="検索"
-					cssClass="form-control btn btn-info" /><br>
+					cssClass="form-control btn btn-info" />
+				<br>
 			</div>
 			<div class="row col-md-offset-3">
 				<div class="form-group col-md-4">
 					<s:submit method="reset" value="リセット"
-						cssClass="form-control btn btn-warning"/>
+						cssClass="form-control btn btn-warning" />
 				</div>
 				<div class="form-group col-md-4">
 					<s:submit method="update" value="追加"
@@ -123,7 +133,7 @@
 	<div class="show">
 		<div class="message">
 			<s:actionerror />
-			<s:property value="message"/>
+			<s:property value="message" />
 		</div>
 
 		<s:if test="%{catcafeTable.size > 0}">
