@@ -8,7 +8,11 @@ div.container {
 
 div.search-menu {
 	margin-top: 15px;
-	height: 100vh;
+}
+@media (min-width: 980px) {
+	div.search-menu {
+		height: 100vh;
+	}
 }
 
 div.search-menu .btn-group {
