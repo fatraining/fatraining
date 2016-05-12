@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
@@ -49,12 +51,11 @@ public class RestaurantUpdateAction extends AbstractAction {
 	private File image;
 	/** アップロードファイルのコンテンツタイプ */
 	private String imageContentType;
-
-	/** エラーメッセージ */
-	private String errorMsg;
+	/** アップロードファイルの元ファイル名 */
+	private String imageFileName;
 
 	/** 保存先 */
-	private static final String IMG_SAVE_BASE = "C:\\Users\\harasan\\Documents\\allin\\pleiades\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp6\\wtpwebapps\\WebAppTraining\\assets\\images\\temp";
+	private static final String IMG_SAVE_BASE = "\\assets\\images\\temp";
 
 	// イニシャライザ
 	{
@@ -103,15 +104,17 @@ public class RestaurantUpdateAction extends AbstractAction {
 		}
 
 		try {
-			// 歯像
+			// 画像
 			if (this.image != null) {
 				BufferedImage img = ImageIO.read(image);
 				String expansionName = this.imageContentType.split("/")[1];
-				ImageIO.write(img, expansionName, new File(IMG_SAVE_BASE + "\\" + "hoo.jpg"));
+				String dateString =  new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+				String tempFileName = this.imageFileName + "_" + dateString + "." + expansionName;
+				ImageIO.write(img, expansionName, new File(ServletActionContext.getServletContext().getRealPath("") + IMG_SAVE_BASE + "\\" + tempFileName));
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
-			this.errorMsg = "画像の保存に失敗しました";
+			this.addActionError("画像の保存に失敗しました");
 		}
 
 		// ID があれば更新なので、一度取得したモデルに入力値をセットする
@@ -303,15 +306,6 @@ public class RestaurantUpdateAction extends AbstractAction {
 	}
 
 	/**
-	 * errorMsgを返す
-	 *
-	 * @return errorMsg
-	 */
-	public String getErrorMsg() {
-		return this.errorMsg;
-	}
-
-	/**
 	 * updateBtnTitleを返す
 	 *
 	 * @return updateBtnTitle
@@ -336,5 +330,14 @@ public class RestaurantUpdateAction extends AbstractAction {
 	 */
 	public void setImageContentType(String imageContentType) {
 		this.imageContentType = imageContentType;
+	}
+
+	/**
+	 * imageFileNameをセットする
+	 *
+	 * @param imageFileName セットする imageFileName
+	 */
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
 }
