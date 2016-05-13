@@ -10,6 +10,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "yamazaki", value = "catcafeSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "yamamoto", value = "playerFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "kasashima", value = "nailSearch.action", type = ServletRedirectResult.class),
 })
 public class MenuAction extends AbstractAction {
 
@@ -80,5 +81,14 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String gotoSimSearch() {
 		return "gotoSimSearch";
+	}
+
+	/**
+	 * 笠嶋のネイル検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String gotoNailSearch() {
+		return "kasashima";
 	}
 }
