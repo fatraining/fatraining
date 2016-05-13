@@ -30,6 +30,11 @@
 					<s:submit method="gotoCatcafeSearch" value="猫カフェ検索" cssClass="btn btn-warning" />
 				</div>
 			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="gotoSimSearch" value="SIM検索" cssClass="btn btn-warning" />
+				</div>
+			</div>
 			</s:form>
 		</div>
 </body>
