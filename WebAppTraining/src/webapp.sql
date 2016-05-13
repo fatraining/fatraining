@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E13 日 03:28
+-- Generation Time: 2016 年 5 朁E13 日 03:37
 -- サーバのバージョン： 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -306,6 +306,69 @@ INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `B
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `sim`
+--
+
+CREATE TABLE `sim` (
+  `ID` int(11) NOT NULL,
+  `simService` varchar(20) NOT NULL,
+  `charge` float NOT NULL,
+  `GB` double(10,1) NOT NULL,
+  `comment` text NOT NULL,
+  `simOpeID` varchar(255) DEFAULT NULL,
+  `SimOpeName` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `sim`
+--
+
+INSERT INTO `sim` (`ID`, `simService`, `charge`, `GB`, `comment`, `simOpeID`, `SimOpeName`) VALUES
+(1, 'マイネオ Dプラン', 1600, 3.0, '音声通話付き3GBシムフリーでベストチョイス。サービス面（1GB無料プレゼント、パケットシェア、誰とでもデータ容量共有ができる、GBの繰越、自宅でMNP切替可能）が他の業者の良い所取りをしている。3GBは価格面で差がつきにくいので、サービス面で選ぼう。\r\n', '1', NULL),
+(2, ' LTE・3G – ライトSプラン', 2150, 6.0, 'Wifiスポットが無料で利用できる。3日の通信速度制限（一定の通信料を越すと通信制限がかかる）がない。多少高くてもいいから、6GB使いたい人向け。', '2', NULL),
+(3, '通話プラス LTE使い放題プラン', 2980, 100.0, 'LTEが使い放題のプランだが、3日間の通信制限がある。通信制限を超えると、制限後の速度も128kbpsとかなり遅くなる。', '3', NULL),
+(4, 'マイネオ Aプラン', 1510, 3.0, 'mineoDとAの違いは、ドコモ回線かAU回線かの違い。現状、ドコモ回線よりも、AU回線の通信速度が早い。サービスはDプランには劣る。', '1', NULL),
+(5, '通話SIMプラン', 1260, 1.0, '1GBで最安値を選びたいなら、DMM を選ぼう。一番安い。とはいえ、1GB以外のプランは他社との価格差が少ない。WiiMax持ちで、１GBで使うのが一番いいと思う。', '5', NULL),
+(6, '音声通話みおふぉん', 1600, 3.0, 'これを選ぶなら、mioneを選ぼう。通信料は変わらないが、mioneはサービスが充実している。', '6', NULL),
+(7, '3.1GBパック', 1600, 3.1, '差別化に失敗したかわいそうなSIM。100MBの違いなど、普通分からない。メリットは、楽天カフェ（渋谷）で即日発行できる。通信速度（200kb）を求めないなら、1250円プランがある。', '7', NULL),
+(8, 'モバイル ONE – 音声対応SIM', 1600, 3.3, '一日の通信容量は110MB。1ヶ月で3.3GB使える。他には、スマートフォンで、電話番号が追加取得できる、050plus（月額300円）が無料で使える。', '8', NULL),
+(9, '@nifty 音声通話対応SIMカード', 1600, 3.0, 'かけ放題サービス（月額1300円）がある以外、サービス面では他の業者に劣る。通話はラインかスカイプを使えばいいので、あえてこれを使う必要はないかな。', '9', NULL),
+(10, '定額無制限プラン 音声通話プラス', 3736, 100.0, '定額無制限、通信制限なしのプラン。3日間10GBなど普通に使える。ネットフリックスやyoutubeをよく見る人にはいいかもしれない。でも、最大通信速度速度が遅いのが難点。後、値段が高い。', '10', NULL),
+(11, 'データ＋音声通話プラン', 1680, 3.0, 'AU回線を借りているので、早い。参考サイトによれば、SIMフリーで一番早いとのこと。値段は他の3GBプランと変わらない。速度重視なら、これでいいかもしれない。', '11', NULL),
+(12, '使ったぶ～んだけプラン', 800, 0.5, '音声通話SIMでおそらく最安値。サイトを見たが、会社名が不明だった。追加容量500MB毎に500円。2GB利用で月額2300円となるので、500MB以上利用するならやめとこう。', '12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `simope`
+--
+
+CREATE TABLE `simope` (
+  `ID` int(11) NOT NULL,
+  `simOpeName` varchar(11) NOT NULL,
+  `UserID` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `simope`
+--
+
+INSERT INTO `simope` (`ID`, `simOpeName`, `UserID`) VALUES
+(1, 'mineo', ''),
+(2, 'BIGLOBE', ''),
+(3, 'U-mobile', ''),
+(5, 'DMMmobile', ''),
+(6, 'IIJmio', ''),
+(7, '楽天モバイル', ''),
+(8, 'OCN', ''),
+(9, '@nifty', ''),
+(10, 'ぷららモバイルLTE', ''),
+(11, 'UQ mobile', ''),
+(12, '@モバイルくん。', '');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `team`
 --
 
@@ -396,6 +459,18 @@ ALTER TABLE `rider`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `sim`
+--
+ALTER TABLE `sim`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `simope`
+--
+ALTER TABLE `simope`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
@@ -440,6 +515,11 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `rider`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `sim`
+--
+ALTER TABLE `sim`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- ダンプしたテーブルの制約
 --
