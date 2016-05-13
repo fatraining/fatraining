@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E13 日 03:37
--- サーバのバージョン： 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Generation Time: 2016 年 5 朁E13 日 07:08
+-- サーバのバージョン： 10.1.8-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,7 +44,70 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 (1, '新宿', '2015-12-05 08:20:03', 'struts2', '2015-12-05 08:20:03', 'struts2', 0),
 (2, '新橋', '2015-12-05 08:20:03', 'struts2', '2015-12-05 08:20:03', 'struts2', 0),
 (3, '秋葉原', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0),
-(4, '上野', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0);
+(4, '上野', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0),
+(5, '渋谷', '2016-05-09 00:00:00', 'struts2', '2016-05-09 00:00:00', 'struts2', 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `baseballplayer`
+--
+
+CREATE TABLE `baseballplayer` (
+  `ID` int(11) NOT NULL,
+  `teamID` int(11) NOT NULL,
+  `baseballplayer` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
+  `target` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `date` varchar(20) CHARACTER SET ujis COLLATE ujis_bin DEFAULT NULL,
+  `note` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `team` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `baseballplayer`
+--
+
+INSERT INTO `baseballplayer` (`ID`, `teamID`, `baseballplayer`, `comment`, `target`, `date`, `note`, `team`) VALUES
+(1, 5, '新井貴浩', 'もちろん自分自身もうれしかったですけど、今日ここにたくさん詰めかけていただいたファンの皆さんの喜んでいる姿を見て、それが嬉しかったです。', NULL, '2016/04/26', '（2000安打となるヒットを打って）二塁ベースに立った時の心境は？\r\n', NULL),
+(2, 9, '金村曉', '絶対に許さない。外国人の監督だから個人の記録は関係ないのでしょう。顔も見たくない。', 'ヒルマン監督', '2006/09/24', '2桁勝利がかかったシーズン最終登板、3点リードの5回裏2死満塁で交代を命じられ勝ち投手の権利が消滅したことについて。', NULL),
+(4, 4, '佐伯貴弘', 'もらった祝儀袋の中身が図書券だった感じ。', NULL, '2005', '全試合で4番を打ち、打率.272/19本塁打/88打点を記録しながらも、契約更改にて1億3000万円の現状維持提示を受けて。', NULL),
+(5, 3, '井端弘和', 'ショックで震えることってあるんですね。金額を見た瞬間、足がガタガタして10分間くらいは無言でした。', NULL, '2005', '契約更改にて、3500万円アップの年俸1億7500万円を提示され保留。', NULL),
+(6, 3, '藤井淳志', 'アイドルじゃないんで。イメージはどうでもいいです。', NULL, '2009', '契約条件を保留することによるイメージ悪化について。', NULL),
+(8, 13, '中村紀洋', '中村紀洋というブランドを考えて、近鉄で終わっていいのか。', NULL, '2002', 'FA権を取得した際に。', NULL),
+(10, 1, '長嶋茂雄', '長嶋茂雄であり続けることは、結構苦労するんですよ。', NULL, NULL, NULL, NULL),
+(11, 2, '江本孟紀', 'ベンチがアホやから野球がでけへん。', NULL, '1981/08/26', '翌日、発言の責任を取って現役引退を表明。', NULL),
+(23, 3, 'あああああああ', 'ああああ\r\n\r\nふにゃああああああああああ', '', '', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `baseballteam`
+--
+
+CREATE TABLE `baseballteam` (
+  `ID` int(11) NOT NULL,
+  `team` varchar(100) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `baseballteam`
+--
+
+INSERT INTO `baseballteam` (`ID`, `team`) VALUES
+(1, '巨人'),
+(2, '阪神'),
+(3, '中日'),
+(4, '横浜'),
+(5, '広島'),
+(6, 'ヤクルト'),
+(7, 'オリックス'),
+(8, 'ソフトバンク'),
+(9, '日本ハム'),
+(10, 'ロッテ'),
+(11, '西武'),
+(12, '楽天'),
+(13, 'その他');
 
 -- --------------------------------------------------------
 
@@ -54,8 +117,8 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 
 CREATE TABLE `biketeam` (
   `ID` int(10) NOT NULL,
-  `TeamName` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `TeamName` varchar(300) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `biketeam`
@@ -131,6 +194,180 @@ INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `groupname`
+--
+
+CREATE TABLE `groupname` (
+  `GroupID` varchar(2) NOT NULL,
+  `GroupName` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=sjis;
+
+--
+-- テーブルのデータのダンプ `groupname`
+--
+
+INSERT INTO `groupname` (`GroupID`, `GroupName`) VALUES
+('A', 'アンジュルム'),
+('C', '℃-ute'),
+('CF', 'つばきファクトリー'),
+('CG', 'カントリー・ガールズ'),
+('H', 'Hollo!Ploject'),
+('HK', 'ハロプロ研修生'),
+('J', 'Juice=Juice'),
+('KF', 'こぶしファクトリー'),
+('M', 'モーニング娘。’16');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `guitarinfo`
+--
+
+CREATE TABLE `guitarinfo` (
+  `id` int(11) NOT NULL,
+  `guitarMakerId` int(11) NOT NULL,
+  `typeName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `guitarinfo`
+--
+
+INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`) VALUES
+(1, 1, 'Classic　Style-S', 241900, NULL),
+(2, 1, 'Classic Style-T', 222700, NULL),
+(3, 1, 'Classic Style-JM', 230900, NULL),
+(4, 2, 'Reunion', 340000, NULL),
+(5, 2, 'Ab''s24[6-strings]', 398000, NULL),
+(6, 2, 'Ab''s24[6-strings]', 438000, NULL),
+(7, 3, 'Arc-STD VS-100N', 490000, NULL),
+(8, 3, 'Arc-Hollow', 510000, NULL),
+(9, 3, 'DST Droptop Quilted Maple', 347000, NULL),
+(10, 4, 'Masterfield MFA-FP', 285000, NULL),
+(11, 4, 'Expert EEL-DE-7', 250000, NULL),
+(12, 4, 'Expert EFL-FM', 275000, NULL),
+(13, 5, 'MAROON CUSTOM 666 Limited Hight', 500000, NULL),
+(14, 5, 'HISTA CUSTOM 666', 370000, NULL),
+(15, 5, 'BORDER BC CUSTOM 666', 390000, NULL),
+(16, 6, 'DS 496 HR SPL/AT NAT', 426800, NULL),
+(17, 6, 'DS 499 M', 324000, NULL),
+(18, 7, 'STV Classic Series', 320000, NULL),
+(19, 7, 'STV-CS1', 399000, NULL),
+(20, 8, 'MLS1-STD', 390000, NULL),
+(21, 8, 'MJM2-WTW', 270000, NULL),
+(22, 8, 'MST2-SP NJ', 265800, NULL),
+(23, 9, 'HORIZON-CTM FR', 680000, NULL),
+(24, 9, 'ANTELOPE-CTM', 735000, NULL),
+(25, 9, 'AMOUS FR-CTM', 680000, NULL),
+(26, 9, 'POTBELLY-TR', 520000, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `guitarmaker`
+--
+
+CREATE TABLE `guitarmaker` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `guitarmaker`
+--
+
+INSERT INTO `guitarmaker` (`id`, `name`) VALUES
+(1, 'sago'),
+(2, 'Crews Maniac Sound'),
+(3, 'T''s Guitars'),
+(4, 'Fujigen'),
+(5, 'dragonfly'),
+(6, 'Sugi'),
+(7, 'Vanzandt'),
+(8, 'MOMOSE'),
+(9, 'ESP');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `iventcontents`
+--
+
+CREATE TABLE `iventcontents` (
+  `ID` int(11) NOT NULL,
+  `GroupID` varchar(2) DEFAULT NULL,
+  `Category` varchar(20) DEFAULT NULL,
+  `IventName` varchar(100) DEFAULT NULL,
+  `Place` varchar(100) DEFAULT NULL,
+  `Day` datetime DEFAULT NULL,
+  `Comment` varchar(100) DEFAULT NULL,
+  `groupName` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=sjis;
+
+--
+-- テーブルのデータのダンプ `iventcontents`
+--
+
+INSERT INTO `iventcontents` (`ID`, `GroupID`, `Category`, `IventName`, `Place`, `Day`, `Comment`, `groupName`) VALUES
+(8, 'M', 'コンサート', 'コンサートツアー春〜EMOTION IN MOTION〜', 'さいたま市文化センター大ホール（埼玉）', '2016-04-23 13:00:00', '譜久村生田鈴木（香）飯窪石田佐藤工藤小田尾形野中牧野羽賀', NULL),
+(9, 'M', 'コンサート', 'コンサートツアー春〜EMOTION IN MOTION〜', 'さいたま市文化センター大ホール（埼玉）', '2016-04-23 16:30:00', '譜久村生田鈴木（香）飯窪石田佐藤工藤小田尾形野中牧野羽賀', NULL),
+(10, 'A', '即売系', '21stシングル『次々続々／糸島Distance／恋ならとっくに始まってる』発売＆ミニライブ＆握手会', 'ヴィーナスフォート協会広場（東京）', '2016-04-27 17:30:00', '和田中西竹内勝田田村室田相川佐々木上國料', NULL),
+(15, 'M', 'コンサート', 'コンサートツアー春〜EMOTION IN MOTION〜', '結城市民文化センター アクロス (茨城)', '2016-05-15 15:00:00', '譜久村生田鈴木（香）飯窪石田佐藤工藤小田尾形野中牧野羽賀', NULL),
+(16, 'M', 'コンサート', 'コンサートツアー春〜EMOTION IN MOTION〜', '結城市民文化センター アクロス (茨城)', '2016-05-15 18:30:00', '譜久村生田鈴木（香）飯窪石田佐藤工藤小田尾形野中牧野羽賀', NULL),
+(22, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', '富岡本店 店内イベントスペース（山形）', '2016-05-14 10:30:00', '尾形', NULL),
+(23, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'エスパル郡山 1Fセンターコート（福島）', '2016-05-14 14:00:00', '尾形', NULL),
+(26, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'アリオ川口 １Fセンターコート（埼玉)', '2016-05-14 19:30:00', '譜久村佐藤尾形野中', NULL),
+(28, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'そごう横浜店 ２F 鐘の広場（神奈川）', '2016-05-14 18:30:00', '鈴木（香）飯窪小田牧野', NULL),
+(29, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'タワーレコード グランツリー武蔵小杉 店内イベントスペース（神奈川）', '2016-05-14 16:00:00', '牧野', NULL),
+(30, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'イオンモール新潟南 館内 イオンシネマ（新潟）', '2016-05-14 10:30:00', '飯窪', NULL),
+(31, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', '金沢フォーラス 6F KUUGO スクエア（石川）', '2016-05-14 10:45:00', '野中', NULL),
+(32, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'イオンモール高岡 1階セントラルコート（富山）', '2016-05-14 13:45:00', '野中', NULL),
+(39, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'タワーレコード京都店（京都）', '2016-05-14 16:00:00', '工藤', NULL),
+(40, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'ハロー！プロジェクトオフィシャルショップ大阪店（大阪）', '2016-05-14 10:00:00', '羽賀', NULL),
+(43, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'HMV三宮VIVRE 店内イベントスペース（兵庫）', '2016-05-14 19:00:00', '生田石田工藤羽賀', NULL),
+(44, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'アリオ倉敷 屋外イベントステージ（岡山）', '2016-05-14 14:30:00', '羽賀', NULL),
+(46, 'M', '即売系', '『泡沫サタデーナイト!／The Vision／Tokyoという片隅』発売記念 握手会', 'ミュージックプラザインドウ ２Fイベントスペース（福岡）', '2016-05-14 10:15:00', '牧野', NULL),
+(47, 'C', '個別系', '29thシングル 『何故 人は争うんだろう？/ Summer Wind/人生はSTEP！』 発売記念 個別握手会', 'ベルサール飯田橋駅前（東京）', '2016-05-15 10:30:00', '矢島中島鈴木（愛）岡井萩原', NULL),
+(48, 'M', 'その他', '演劇女子部「続・11人いる！東の地平・西の永遠」', '京都劇場(京都)', '2016-06-11 15:00:00', '譜久村生田飯窪石田佐藤工藤小田尾形野中牧野羽賀', NULL),
+(49, 'CF', 'その他', '演劇女子部「続・11人いる！東の地平・西の永遠」', '京都劇場(京都)', '2016-06-11 15:00:00', '山岸小片岸本浅倉', NULL),
+(50, 'HK', 'その他', '演劇女子部「続・11人いる！東の地平・西の永遠」', '京都劇場(京都)', '2016-06-11 15:00:00', '橋本高瀬', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `nail`
+--
+
+CREATE TABLE `nail` (
+  `ID` int(11) NOT NULL,
+  `date` char(20) COLLATE utf8_bin NOT NULL,
+  `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
+  `maincolor` char(20) COLLATE utf8_bin NOT NULL,
+  `handmodel` char(20) COLLATE utf8_bin NOT NULL,
+  `comment` varchar(300) COLLATE utf8_bin NOT NULL,
+  `imageFileName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `nail`
+--
+
+INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment`, `imageFileName`) VALUES
+(1, '2016/02/22', 'sp', 'オレンジ', 'ひとみさん', 'ハイキューネイル', '1.jpg'),
+(2, '2016/04/21', 'sp', 'ホワイト', 'ひとみさん', 'おそ松さんネイル', '2.jpg'),
+(3, '2016/08/06', 'su', 'グリーン', 'やよいさん', '夏パールネイル', '3.jpg'),
+(4, '2016/07/18', 'su', 'ピンク', 'じぶん', '成人式ネイル\r\n着物に合わせて施術', '4.jpg'),
+(5, '2016/10/22', 'au', 'グレー', 'じぶん', '秋冬ネイル', '5.jpg'),
+(6, '2016/09/22', 'au', 'レッド', 'じぶん', 'ワインレッドの秋ネイル', '6.jpg'),
+(7, '2016/02/22', 'wi', 'レッド', 'ひとみさん', 'バレンタインネイル', '7.jpg'),
+(8, '2016/12/24', 'wi', 'ピンク', 'じぶん', 'クリスマスネイル', '8.jpg'),
+(36, '2016/05/09', 'sp', 'ブルー', 'じぶん', 'ラメグラデネイル\r\n', '11695014_690307654434924_4673989754922144318_n.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `operator`
 --
 
@@ -187,10 +424,8 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 (9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
 (12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
 (13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
-(27, 'FT', '3.14159265358979323846264', 3, '3.1415', '2016-02-29', 'pi', NULL),
 (32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
-(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL),
-(34, 'A', 'Galaxy', 56000, '5.5', '2016-04-02', '', NULL);
+(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +489,10 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_date`, `create_user`, `update_date`, `update_user`, `version`) VALUES
-(1, '四文屋', 4, '安くて美味いのでオススメです。アキバとかにもあります。', 1, '2015-12-05 08:24:51', 'struts2', '2015-12-05 08:24:51', 'struts2', 0);
+(1, '四文屋', 4, '安くて美味いです。アキバとかにもあります。隣のカレー屋がいつもいい匂いさせててつらい。', 1, '2015-12-05 08:24:51', 'struts2', '2016-04-27 15:47:39', 'Struts2', 1),
+(2, 'てけてけ', 3, '割と安い。味はそこそこ。', 1, '2016-04-18 21:37:00', '豚野郎', '2016-04-18 21:37:00', '豚野郎', 0),
+(3, '四文屋', 4, '安くて美味いです。\r\n新宿とかにもあります。\r\nなんか外人の店員が多い気がする。', 3, '2016-04-19 20:33:09', 'Struts2', '2016-04-19 20:33:09', 'Struts2', 0),
+(5, '大衆居酒屋 いこい', 3, 'ハイボールが180円。でも食い物は別に安くない。ぶつ爆弾がうまかった。', 5, '2016-05-09 00:00:00', 'struts2', '2016-05-12 13:50:34', 'Struts2', 2);
 
 -- --------------------------------------------------------
 
@@ -265,14 +503,14 @@ INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_d
 CREATE TABLE `rider` (
   `ID` int(10) NOT NULL,
   `Number` int(10) DEFAULT NULL,
-  `RiderName` varchar(100) DEFAULT NULL,
+  `RiderName` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `TeamID` int(10) DEFAULT NULL,
-  `Country` varchar(100) DEFAULT NULL,
+  `Country` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `Age` int(10) DEFAULT NULL,
-  `BirthDay` varchar(100) DEFAULT NULL,
-  `Comment` varchar(500) NOT NULL,
-  `teamName` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `BirthDay` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `Comment` varchar(500) CHARACTER SET latin1 NOT NULL,
+  `teamName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `rider`
@@ -302,6 +540,85 @@ INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `B
 (22, 27, 'Casey Stoner', 12, 'AUS', 30, '1985/10/16', '', NULL),
 (27, 56, 'Shinya Nakano', 12, 'JPN', 38, '1977/10/10', '', NULL),
 (28, 8, 'Guy Martin', 13, 'GBR', 34, '1981/11/4', 'Isle of Man TT Rider', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sakearea`
+--
+
+CREATE TABLE `sakearea` (
+  `id` int(11) NOT NULL,
+  `area` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `sakearea`
+--
+
+INSERT INTO `sakearea` (`id`, `area`) VALUES
+(1, '神泉町'),
+(2, '道玄坂'),
+(3, '円山町'),
+(4, '渋谷'),
+(5, '宇田川町'),
+(6, '桜が丘');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sakeinfo`
+--
+
+CREATE TABLE `sakeinfo` (
+  `id` int(11) NOT NULL,
+  `areaId` int(11) NOT NULL,
+  `shopName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `recommend` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `priceHigh` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `priceLow` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `area` varchar(255) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `sakeinfo`
+--
+
+INSERT INTO `sakeinfo` (`id`, `areaId`, `shopName`, `hours`, `price`, `recommend`, `comment`, `priceHigh`, `priceLow`, `area`) VALUES
+(1, 2, 'KURAND SAKE MARKET 渋谷店', '17:00-23:00', 3000, NULL, '日本酒時間無制限にて飲み放題', NULL, NULL, NULL),
+(2, 1, '酒とさか菜', '17:30-24:00', 6000, NULL, 'なかなか飲めない珍しい日本酒をたくさん取り扱う', NULL, NULL, NULL),
+(3, 4, 'sakeda', '18:00-24:00', 3000, NULL, 'リーズナブルで新鮮な魚、気の利いたおつまみと美味しい日本酒が飲める知る人ぞ知る人気の居酒屋', NULL, NULL, NULL),
+(4, 3, '萬安', '17:30-23:00', 5000, NULL, '常時40種類の最高の状態で日本酒を管理', NULL, NULL, NULL),
+(5, 5, 'うのさと', '17:00-23:30', 4000, NULL, '全国から厳選した地酒、焼酎を取り揃える', NULL, NULL, NULL),
+(6, 4, '風ぐるま', '17:30-24:00', 3000, NULL, 'この道30年の店主が営む居酒屋', NULL, NULL, NULL),
+(7, 2, '米心', '17:00-23:30', 4000, NULL, '新橋にある「野崎酒店」の姉妹店', NULL, NULL, NULL),
+(8, 2, 'サカノチカ', '15:00-24:00', 3000, NULL, '日本酒メニューを日替わりで提供', NULL, NULL, NULL),
+(9, 3, 'ぽつらぽつら', '18:00-24:00', 6000, NULL, '日本酒だけでなく国産のワインも充実', NULL, NULL, NULL),
+(10, 6, '高太郎', '18:00-02:00', 6000, NULL, '食べログランキングトップ500入りを果たし予約困難な人気店', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `season`
+--
+
+CREATE TABLE `season` (
+  `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
+  `Kisetu` char(1) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `season`
+--
+
+INSERT INTO `season` (`KisetuID`, `Kisetu`) VALUES
+('sp', '春'),
+('su', '夏'),
+('au', '秋'),
+('wi', '冬');
 
 -- --------------------------------------------------------
 
@@ -410,6 +727,18 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `baseballplayer`
+--
+ALTER TABLE `baseballplayer`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `baseballteam`
+--
+ALTER TABLE `baseballteam`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `biketeam`
 --
 ALTER TABLE `biketeam`
@@ -425,6 +754,36 @@ ALTER TABLE `catarea`
 -- Indexes for table `catcafe`
 --
 ALTER TABLE `catcafe`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `groupname`
+--
+ALTER TABLE `groupname`
+  ADD PRIMARY KEY (`GroupID`);
+
+--
+-- Indexes for table `guitarinfo`
+--
+ALTER TABLE `guitarinfo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guitarmaker`
+--
+ALTER TABLE `guitarmaker`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `iventcontents`
+--
+ALTER TABLE `iventcontents`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `nail`
+--
+ALTER TABLE `nail`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -459,6 +818,18 @@ ALTER TABLE `rider`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `sakearea`
+--
+ALTER TABLE `sakearea`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sakeinfo`
+--
+ALTER TABLE `sakeinfo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sim`
 --
 ALTER TABLE `sim`
@@ -484,7 +855,17 @@ ALTER TABLE `team`
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `baseballplayer`
+--
+ALTER TABLE `baseballplayer`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `baseballteam`
+--
+ALTER TABLE `baseballteam`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `catarea`
 --
@@ -496,10 +877,30 @@ ALTER TABLE `catarea`
 ALTER TABLE `catcafe`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
+-- AUTO_INCREMENT for table `guitarinfo`
+--
+ALTER TABLE `guitarinfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `guitarmaker`
+--
+ALTER TABLE `guitarmaker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `iventcontents`
+--
+ALTER TABLE `iventcontents`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT for table `nail`
+--
+ALTER TABLE `nail`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `player`
 --
@@ -509,12 +910,22 @@ ALTER TABLE `player`
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `sakearea`
+--
+ALTER TABLE `sakearea`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `sakeinfo`
+--
+ALTER TABLE `sakeinfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `sim`
 --
