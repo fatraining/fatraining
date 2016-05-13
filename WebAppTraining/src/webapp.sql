@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E06 日 08:43
+-- Generation Time: 2016 年 5 朁E13 日 03:28
 -- サーバのバージョン： 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -45,6 +45,36 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 (2, '新橋', '2015-12-05 08:20:03', 'struts2', '2015-12-05 08:20:03', 'struts2', 0),
 (3, '秋葉原', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0),
 (4, '上野', '2015-12-05 08:22:03', 'struts2', '2015-12-05 08:22:03', 'struts2', 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `biketeam`
+--
+
+CREATE TABLE `biketeam` (
+  `ID` int(10) NOT NULL,
+  `TeamName` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `biketeam`
+--
+
+INSERT INTO `biketeam` (`ID`, `TeamName`) VALUES
+(1, 'Aprilia Racing Team Gresini'),
+(2, 'Aspar Team MotoGP'),
+(3, 'Anvintia Racing'),
+(4, 'Ducati Team'),
+(5, 'Estrella Galicia 0,0 Marc VDS'),
+(6, 'LCR Honda'),
+(7, 'Monster Yamaha Tech3'),
+(8, 'Movistar Yamaha MotoGP'),
+(9, 'OCTO Pramac Yakhnich'),
+(10, 'Repsol Honda Team'),
+(11, 'Team SUZUKI ECSTAR'),
+(12, 'Retirement'),
+(13, 'Other');
 
 -- --------------------------------------------------------
 
@@ -157,8 +187,10 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 (9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
 (12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
 (13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
+(27, 'FT', '3.14159265358979323846264', 3, '3.1415', '2016-02-29', 'pi', NULL),
 (32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
-(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL);
+(33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL),
+(34, 'A', 'Galaxy', 56000, '5.5', '2016-04-02', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -227,6 +259,53 @@ INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_d
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `rider`
+--
+
+CREATE TABLE `rider` (
+  `ID` int(10) NOT NULL,
+  `Number` int(10) DEFAULT NULL,
+  `RiderName` varchar(100) DEFAULT NULL,
+  `TeamID` int(10) DEFAULT NULL,
+  `Country` varchar(100) DEFAULT NULL,
+  `Age` int(10) DEFAULT NULL,
+  `BirthDay` varchar(100) DEFAULT NULL,
+  `Comment` varchar(500) NOT NULL,
+  `teamName` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `rider`
+--
+
+INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `BirthDay`, `Comment`, `teamName`) VALUES
+(1, 4, 'Andrea Dovizioso', 4, 'ITA', 30, '1986/3/23', '', NULL),
+(2, 6, 'Stefan Bradl', 1, 'DEU', 26, '1989/11/29', '', NULL),
+(3, 8, 'Hector Barbera', 3, 'ESP', 29, '1986/11/2', '', NULL),
+(4, 9, 'Danilo Petrucci', 9, 'ITA', 25, '1990/10/24', '', NULL),
+(5, 19, 'Alvaro Bautista', 1, 'ESP', 31, '1984/11/21', '', NULL),
+(6, 25, 'Maverick Vinales', 11, 'ESP', 21, '1995/1/12', '', NULL),
+(7, 26, 'Dani Pedrosa', 10, 'ESP', 30, '1985/9/29\r\n', '', NULL),
+(8, 29, 'Andrea Iannone', 4, 'ITA', 26, '1989/8/9', '', NULL),
+(10, 38, 'Bradley Smith', 7, 'GBR', 25, '1990/11/28', '', NULL),
+(11, 41, 'Aleix Espargaro', 11, 'ESP', 26, '1989/7/30', '', NULL),
+(12, 43, 'Jack Miller', 5, 'AUS', 21, '1995/1/18', '', NULL),
+(13, 44, 'Pol Espargaro', 7, 'ESP', 24, '1991/6/10', '', NULL),
+(14, 45, 'Scott Redding', 9, 'GBR', 23, '1993/1/4', '', NULL),
+(15, 46, 'Valentino Rossi', 8, 'ITA', 37, '1979/2/16', '', NULL),
+(16, 50, 'Eugene Laverty', 2, 'IRL', 29, '1986/6/3', '', NULL),
+(17, 53, 'Tito Rabat', 5, 'ESP', 26, '1989/5/25', '', NULL),
+(18, 68, 'Yonny Hernandez', 2, 'COL', 27, '1988/7/25', '', NULL),
+(19, 76, 'Loris Baz', 3, 'FRA', 23, '1993/2/1', '', NULL),
+(20, 93, 'Marc Maruquez', 10, 'ESP', 23, '1993/2/17', '', NULL),
+(21, 99, 'Jorge Lorenzo', 8, 'ESP', 28, '1987/5/4', '', NULL),
+(22, 27, 'Casey Stoner', 12, 'AUS', 30, '1985/10/16', '', NULL),
+(27, 56, 'Shinya Nakano', 12, 'JPN', 38, '1977/10/10', '', NULL),
+(28, 8, 'Guy Martin', 13, 'GBR', 34, '1981/11/4', 'Isle of Man TT Rider', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `team`
 --
 
@@ -268,6 +347,12 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `biketeam`
+--
+ALTER TABLE `biketeam`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `catarea`
 --
 ALTER TABLE `catarea`
@@ -305,6 +390,12 @@ ALTER TABLE `restaurant`
   ADD KEY `FK965A4B3DF35C8430` (`area_id`);
 
 --
+-- Indexes for table `rider`
+--
+ALTER TABLE `rider`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
@@ -333,7 +424,7 @@ ALTER TABLE `catcafe`
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `player`
 --
@@ -344,6 +435,11 @@ ALTER TABLE `player`
 --
 ALTER TABLE `restaurant`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `rider`
+--
+ALTER TABLE `rider`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- ダンプしたテーブルの制約
 --
