@@ -22,7 +22,7 @@ public class NailSearchAction extends AbstractAction {
 	private String color[];
 
 
-//	private String errormsg;/** エラーメッセージ */
+	private String errormsg;/** エラーメッセージ */
 	public String delete;/** 削除ID */
 
 	private static final String IMG_SAVE_BASE = "C:\\Users\\笠嶋　美雪\\Documents\\pleiades\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WebAppTraining\\assets\\images\\temp";
@@ -163,7 +163,7 @@ public class NailSearchAction extends AbstractAction {
 		this.sessionMap.put("deleteID", this.delete);
 		if (delete == null) {
 			addActionError("削除する項目を選択してください");
-			search();
+			reset();
 			return "error";
 		} else {
 			try {

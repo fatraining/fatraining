@@ -111,15 +111,23 @@ public class NailUpdateAction extends AbstractAction  {
 		}
 		if(this.KisetuID == null || this.KisetuID.length() == 0){
 			addActionError("季節が未選択です。");
+			return "error";
 		}
 		if(this.maincolor == null || this.maincolor.length() == 0){
 			addActionError("メインカラーが未選択です。");
+			return "error";
 		}
 		if(this.isEmptyParam(this.handmodel)){
 			addActionError("ハンドモデルの名前が未入力です。");
+			return "error";
+		}
+		if(this.image == null){
+			addActionError("画像が添付されていません。");
+			return "error";
 		}
 		if(this.isEmptyParam(this.comment)){
 			addActionError("コメントが未入力です。");
+			return "error";
 		}
 		//日付の書式指定
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/mm/dd");
