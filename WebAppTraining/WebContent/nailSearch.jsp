@@ -7,7 +7,7 @@
 	<title>Webアプリ研修 | ネイル検索<s:property value="title" /></title>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/nailCss.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+
 
 
 
