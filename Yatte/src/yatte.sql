@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E16 日 10:21
+-- Generation Time: 2016 年 5 朁E16 日 10:45
 -- サーバのバージョン： 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -38,6 +38,13 @@ CREATE TABLE `yatte` (
   `flg` int(50) NOT NULL,
   `yattal` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `yatte`
+--
+
+INSERT INTO `yatte` (`No`, `name`, `toDo`, `who`, `num`, `time`, `limit`, `ex`, `flg`, `yattal`) VALUES
+(1, '\n	とさか', 'やって', 'とさか', 1, 'tomorrow', '2016-05-18 17:45:09', '面談なので、スーツで通勤する', 0, '<button class=zlbtn btn-danger btn-lgzl ID=zlyattalzl onclick=yattal(1)>Yattal !</button>');
 
 -- --------------------------------------------------------
 
