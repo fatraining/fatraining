@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.hibernate.SessionException;
@@ -42,7 +43,7 @@ public class NailUpdateAction extends AbstractAction  {
 	private String imageContentType;
 	private String updateBtnTitle = "追加";
 
-	private static final String IMG_SAVE_BASE = "C:\\Users\\笠嶋　美雪\\Documents\\pleiades\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WebAppTraining\\assets\\images\\temp";
+	private static final String IMG_SAVE_BASE = "\\assets\\images\\temp";
 
 
 
@@ -131,7 +132,7 @@ public class NailUpdateAction extends AbstractAction  {
 				BufferedImage img = ImageIO.read(image);
 				String expansionName = this.imageContentType.split("/")[1];
 
-				ImageIO.write(img, expansionName, new File(IMG_SAVE_BASE + "\\" + imageFileName));
+				ImageIO.write(img, expansionName, new File(ServletActionContext.getServletContext().getRealPath("") + IMG_SAVE_BASE + "\\" + imageFileName));
 			}
 			//日付の取得
 			Date day = df.parse(this.date);
