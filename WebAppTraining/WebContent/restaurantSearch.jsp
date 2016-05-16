@@ -44,10 +44,10 @@
 					<s:submit method="reset" value="リセット" cssClass="btn btn-danger" />
 					<s:submit method="update" value="追加" cssClass="btn btn-primary" />
 				</div>
-				</s:form>
-<!-- 				<button type="button" id="sampleButton" class="btn btn-primary btn-lg">
-					モーダル・ダイアログ 呼び出し
+				<!-- <button type="button" id="areaButton" class="btn btn-primary">
+					エリア追加・削除
 				</button> -->
+				</s:form>
 			</div>
 			<div class="resultArea col-xs-12 col-sm-12 col-md-9 col-lg-9">
 				<s:if test="%{resultList.size!=0}">
@@ -77,10 +77,9 @@
 								value=<s:property value="id" /> />
 							</td>
 						</tr>
-
-<!-- 		<div class="panel panel-default panel-half">
+<!--
+		<div class="panel panel-default panel-half">
 			<div class="panel-body">
-
 			</div>
 		</div> -->
 
@@ -105,7 +104,7 @@
 						<div class="modal-body">
 							本文
 						</div>
-						<img src="<s:url value="/assets/images/temp/hoo.jpg"/>"></script>
+						<img src="<s:url value="/assets/images/temp/hoo.jpg"/>">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 							<button type="button" class="btn btn-primary">ボタン</button>
@@ -116,6 +115,7 @@
 
 		</div>
 		<script type="text/javascript" src="<s:url value="/assets/libs/raty/jquery.raty.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/assets/libs/shuffle/jquery.shuffle.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/js/harasan.js"/>"></script>
 	</body>
 </html>
