@@ -48,19 +48,17 @@
 									<s:textarea name="comment" cssClass="form-control" placeholder="コメントを入力" />
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-6">
-									<input class="input-file" id="fileInput" type="file" name="img" style="display:none;">
+							<div class="input-group customUpload col-sm-offset-2">
+									<input class="input-file form-control" id="fileInput" type="file" name="image" style="display:none;">
 									<div class="input-append">
 										<input class="span2" id="photo-dummy" type="text">
 										<button class="btn btn-success" onclick="$('input[id=fileInput]').click();" type="button">写真を選択する</button>
 									</div>
-								</div>
 							</div>
 							<div style="padding:20px">
 								<div class="col-sm-offset-2">
 									<s:submit method="insert" value="登録"
-										cssClass="btn btn-success form-control" />
+										cssClass="btn btn-primary form-control" />
 								</div>
 							</div>
 						</s:form>

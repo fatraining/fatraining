@@ -15,9 +15,9 @@ $('#profileModal').on('show.bs.modal', function (event) {
 	var recipient = button.data('recipient');
 	var modal = $(this);
 	if (recipient == '' || recipient == null) {
-		modal.find('div.commentPane').text('コメント：なし');
+		modal.find('div.commentPane').text('コメント:なし');
 	} else {
-		modal.find('div.commentPane').text('コメント：' + recipient);
+		modal.find('div.commentPane').html(recipient);
 	}
 });
 /**
@@ -37,3 +37,4 @@ $('#profileModal').on('show.bs.modal', function (event) {
 $('input[id=fileInput]').change(function(){
 	   $("#photo-dummy").val($(this).val());
 	});
+
