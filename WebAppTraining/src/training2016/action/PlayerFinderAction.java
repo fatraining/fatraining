@@ -42,7 +42,6 @@ public class PlayerFinderAction extends AbstractAction {
 	public String getUserID() {
 		return (String) this.sessionMap.get("userId");
 	}
-
 	public String getMsg() {
 		return (String) this.sessionMap.get("msg");
 	}

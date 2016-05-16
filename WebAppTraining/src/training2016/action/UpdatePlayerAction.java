@@ -1,13 +1,18 @@
 package training2016.action;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
+import javax.imageio.ImageIO;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
@@ -34,21 +39,28 @@ public class UpdatePlayerAction extends AbstractAction {
 	private String age;
 	/** コメント */
 	private String comment;
-	/** ファイル */
-	 private File img;
-	 private String imgContentType;
-	 private String imgFileName;
 	/** 削除ID */
 	private String delete;
 	/** チーム名プルダウン用マップ */
 	private Map<String, String> teamMap;
 	/** ポジションプルダウン用マップ */
 	private Map<String,String> positionMap = new LinkedHashMap<String, String>();
-
 	/** エラーメッセージ */
 	private String errorMsg;
-
+	/** 普通のメッセージ */
 	private String msg;
+
+	/** アップロードファイル */
+	 private File image;
+	 /** アップロードファイルのコンテンツタイプ */
+	 private String imageContentType;
+	 /** アップロードファイルの元ファイル名 */
+	 private String imageFileName;
+	 /** アップロードファイルの保存ファイル名 */
+	 private String tempFileName;
+
+	 /** 保存先 */
+	 private static final String IMG_SAVE_BASE = "\\assets\\images\\temp";
 
 	/**
 	 * executeメソッド
@@ -74,16 +86,19 @@ public class UpdatePlayerAction extends AbstractAction {
 		this.setTeamMap();
 		this.setPositionMap();
 
-		// ファイル入力があれば、/images/temp にコピー
-		if (this.img != null) {
-			setImgFileName(String.valueOf(System.currentTimeMillis()) + ".jpg");
-			File destFile = new File("D:\\pleiades\\workspace\\WebAppTraining\\WebContent\\assets\\images\\temp\\" + getImgFileName());
-			try {
-				FileUtils.copyFile(img, destFile);
-			} catch (IOException e) {
-				e.printStackTrace();
+		// ファイル入力があれば、/assets/images/temp に書き込み
+		try {
+			if (this.image != null) {
+				BufferedImage img = ImageIO.read(image);
+				String expansionName = this.imageContentType.split("/")[1];
+				String dateString = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+				tempFileName = this.imageFileName + "_" + dateString + "." + expansionName;
+				ImageIO.write(img, expansionName, new File(ServletActionContext.getServletContext().getRealPath("") + IMG_SAVE_BASE + "\\" + tempFileName));
 			}
-		}
+		} catch (IOException ioe) {
+				ioe.printStackTrace();
+				this.addActionError("画像の保存に失敗しました");
+			}
 
 		// 未入力の項目があるときにエラーを返す
 		if (!this.isValidate()) {
@@ -111,8 +126,12 @@ public class UpdatePlayerAction extends AbstractAction {
 		model.setPlayerName(this.playerName);
 		model.setPosition(this.position);
 		model.setAge(Integer.parseInt(this.age));
+		if (this.comment.indexOf("\r\n") != -1) {
+			System.out.println("あったよ");
+			this.comment = comment.replaceAll("\r\n", "<br />");
+		}
 		model.setComment(this.comment);
-		model.setImagePath(this.imgFileName);
+		model.setImagePath(this.tempFileName);
 
 		return model;
 	}
@@ -317,27 +336,27 @@ public class UpdatePlayerAction extends AbstractAction {
 		return this.errorMsg;
 	}
 
-	public File getImg() {
-		return img;
+	public File getImage() {
+		return image;
 	}
 
-	public void setImg(File img) {
-		this.img = img;
+	public void setImage(File image) {
+		this.image = image;
 	}
 
-	public String getImgFileName() {
-		return imgFileName;
+	public String getImageFileName() {
+		return imageFileName;
 	}
-	public void setImgFileName(String imgFileName) {
-		this.imgFileName = imgFileName;
-	}
-
-	public String getImgContentType() {
-		return imgContentType;
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
 
-	public void setImgContentType(String imgContentType) {
-		this.imgContentType = imgContentType;
+	public String getImageContentType() {
+		return imageContentType;
+	}
+
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
 	}
 
 }
