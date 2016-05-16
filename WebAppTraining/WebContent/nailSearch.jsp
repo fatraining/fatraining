@@ -17,7 +17,7 @@
 		<div class="page-header">
 		<h1><a href="login.action">研修Webアプリ</a><small>verβ</small></h1>
 		</div>
-		<a href="login.action" class="menu">メニューへ</a>
+		<a href="menu.action" class="menu">メニューへ</a>
 		<hr>
 		<a href="menu.action" class="back">Back</a>
 	</div>

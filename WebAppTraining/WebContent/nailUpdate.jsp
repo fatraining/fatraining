@@ -11,7 +11,7 @@
 <body>
 	<div id="global_header">
 		<jsp:include page="/logo.jsp" />
-		<a href="login.action" class="menu">メニューへ</a>
+		<a href="menu.action" class="menu">メニューへ</a>
 		<hr>
 		<a href="nailSearch.action" class="back">Back</a>
 	</div>
