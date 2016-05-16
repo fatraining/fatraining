@@ -1,6 +1,54 @@
 /**
  * harasan...
  */
+// テーブルボゴソート用
+var wait = 1;                  // ボゴ待ち時間。ミリ秒。1ミリ秒とか速すぎてらめぇぇぇってなるから1000くらいにしとけ
+var answer;                    // 正解配列用
+var col_no;                    // クリックされたヘッダのインデックス用
+var table_id = "#resultTable"; // テーブルのID
+// 実際にボゴる関数
+var doBogo = function () {
+	var isBogo = true;
+	// テーブルの並びをシャッフル
+	$('tbody').shuffle();
+	// シャッフルしたテーブルが正しいことを信じて確認
+	var childs = $(table_id + " tbody").children();
+	for (var i = 0; i < ($(table_id + " tbody").children().length); i++){
+		// i行目の、指定列(col_no)のtdの値を取得する
+		if (answer[i] != $(table_id + " tbody tr:eq(" + i + ") td:eq(" + col_no + ")" ).text()) {
+			// ボゴォ
+			isBogo = false;
+			break;
+		}
+	}
+	if (!isBogo) {
+		setTimeout("doBogo()", wait);
+		return;
+	}
+}
+// テーブルヘッダをクリックされた時にボゴる関数
+$(table_id + ' th').click(function(e){
+	// 列番号を取得
+	col_no = $(table_id + ' th').index(this);
+
+	// 正解を作成する
+	// 配列初期化
+	answer = new Array();
+	// クリック列の値を一旦全部取り出し
+	for(var i = 1; i < ($(table_id + ' tbody').children().length + 1); i++){
+		// i行目の、指定列(col_no)のtdの値を取得する
+		answer.push($(table_id + ' tr:eq(' + i + ') td:eq(' + col_no + ')' ).text());
+	}
+	// ソートする
+	answer.sort(function(a,b){
+		if( a < b ) return -1;
+		if( a > b ) return 1;
+		return 0;
+	});
+	// 1回目は即時実行
+	setTimeout("doBogo()", 0);
+	console.log(answer);
+});
 
 /**
  * 星を表示する。
@@ -89,8 +137,8 @@ $(function(){
 	});
 
 	// モーダルダイアログ用
-	$('#sampleButton').click( function () {
-		$('#sampleModal').modal();
+	$('#areaButton').click( function () {
+		$('#areaButton').modal();
 	});
 
 	// 削除ボタン用
