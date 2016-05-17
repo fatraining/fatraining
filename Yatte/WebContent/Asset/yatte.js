@@ -47,13 +47,12 @@ $( '#ex' ).keypress( function ( e ) {
 } );
 
 $("#yatte").click(function() {
-
+	var m = $('#name').text()
 	var d = $('#toDo option:selected').text()
 	var w = $('#who option:selected').text()
 	var n = $('#num option:selected').val()
 	var t = $('#time option:selected').val()
-	var e = ($('#ex').val() + "@" + $('#name').text())
-	var m = $('#name').text()
+	var e = $('#ex').val() + "@" + m
 
 	console.log(m)
 	if (e != "") {

@@ -1,6 +1,10 @@
 package endpoint;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +120,7 @@ public class YatteDao {
 							+ "' WHERE No =" + yaLi.get(i).getNo();
 					stm.executeUpdate(sql);
 					System.out.println(sql);
-					
+
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 					System.out.println("JDBCドライバのロードに失敗しました。");
 				} catch (SQLException e) {
@@ -134,7 +138,7 @@ public class YatteDao {
 			}
 		}
 	}
-	
+
 	/*
 	 * DBから名前とってくるメソッド
 	 * */
@@ -156,7 +160,7 @@ public class YatteDao {
 				yName.setName(rs.getString("name"));
 				yName.setPass(rs.getString("pass"));
 				names.add(yName);
-				System.out.println("取得結果 -> " + yName.getName() + ":" + yName.getPass());
+				System.out.println("取得結果 ->" + yName.getName() + ":" + yName.getPass());
 			}
 
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
