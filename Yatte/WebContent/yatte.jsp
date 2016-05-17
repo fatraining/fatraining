@@ -139,7 +139,7 @@ p.err {
 		<div class="form-horizontal">
 			<label class="col-sm-offset-2 col-sm-4 control-label">やるひと！</label>
 			<div class="col-sm-2">
-				<select name="name" id="name" class="form-control">
+				<select name="who" id="name" class="form-control">
 					<%
 						ArrayList<yatteName> yList = (ArrayList<yatteName>) request.getAttribute("nameList");
 						for (int i = 0; i < yList.size(); i++) {
