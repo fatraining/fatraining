@@ -39,6 +39,13 @@ $(document).ready(function() {
 /*******************************************************************************
  * yatte押された時の処理 ついでに選択肢の初期化 サーバーで処理させる場合、$('# option:selected').val()で指定
  ******************************************************************************/
+$( '#ex' ).keypress( function ( e ) {
+	if ( e.which == 13 ) {
+		$("#yatte").click();
+		return true;
+	}
+} );
+
 $("#yatte").click(function() {
 
 	var d = $('#toDo option:selected').text()
