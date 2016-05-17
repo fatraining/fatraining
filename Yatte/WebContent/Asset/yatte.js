@@ -52,17 +52,17 @@ $("#yatte").click(function() {
 	var w = $('#who option:selected').text()
 	var n = $('#num option:selected').val()
 	var t = $('#time option:selected').val()
-	var e = $('#ex').val() + "@" + m
+	var e = $('#ex').val()
 
 	console.log(m)
-	if (e != "") {
+	if (e != "" ) {
 	var yatteList = {
 		name : m,
 		toDo : d,
 		who : w,
 		num : n,
 		time : t,
-		ex : e,
+		ex : e + "@" + m,
 		flg : 0,
 		}
 	var msg = new yatteMessage("yatte",yatteList);
