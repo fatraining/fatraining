@@ -105,6 +105,17 @@ public class NailUpdateAction extends AbstractAction  {
 
 	//追加ボタンを押したとき
 	public String insert(){
+
+		if((this.isEmptyParam(this.date))&&(this.KisetuID == null || this.KisetuID.length() == 0)&&(this.maincolor == null || this.maincolor.length() == 0)&&
+				(this.isEmptyParam(this.handmodel))&&(this.image == null)&&(this.isEmptyParam(this.comment))){
+			addActionError("日時が未入力です。");
+			addActionError("季節が未選択です。");
+			addActionError("メインカラーが未選択です。");
+			addActionError("ハンドモデルの名前が未入力です。");
+			addActionError("画像が添付されていません。");
+			addActionError("コメントが未入力です。");
+			return "error";
+		}
 		if(this.isEmptyParam(this.date)){
 			addActionError("日時が未入力です。");
 			return "error";
