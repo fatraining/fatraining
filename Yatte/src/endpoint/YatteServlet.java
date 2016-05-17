@@ -45,7 +45,7 @@ public class YatteServlet extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,6 +55,9 @@ public class YatteServlet extends HttpServlet {
 			session.setAttribute("name", request.getParameter("name"));
 		}
 		System.out.println(" これが名前やぞ " + session.getAttribute("name"));
+		YatteDao dao = new YatteDao();
+		List<yatteName> yName = dao.name();
+		request.setAttribute("nameList", yName);
 		response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("/yatte.jsp");
 		rd.forward(request, response);

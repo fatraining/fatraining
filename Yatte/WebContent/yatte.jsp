@@ -1,3 +1,7 @@
+<%@ page session="true"%>
+<%@page import="endpoint.yatteName"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +13,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="/Yatte/Asset/jquery.columns.js"></script>
 <script type="text/javascript" src="/Yatte/Asset/mustache.min.js"></script>
-	
+
 <title>Yatte!</title>
 <style>
 #heading {
@@ -135,13 +139,15 @@ p.err {
 		<div class="form-horizontal">
 			<label class="col-sm-offset-2 col-sm-4 control-label">やるひと！</label>
 			<div class="col-sm-2">
-				<select name="who" ID="who" class="form-control">
-					<option value="all">みんな</option>
-					<option value="tos">とさか</option>
-					<option value="mkn">まきの</option>
-					<option value="j-3">三代目</option>
-					<option value="harasan">ﾊﾗｻﾝ</option>	
-					<option value="yamasan">ﾔﾏｻﾞｷ晴佳ﾊﾟﾝ祭り</option>
+				<select name="name" id="name" class="form-control">
+					<%
+						ArrayList<yatteName> yList = (ArrayList<yatteName>) request.getAttribute("nameList");
+						for (int i = 0; i < yList.size(); i++) {
+							out.print("<option ID='" + yList.get(i).getName() + "'>");
+							out.print(yList.get(i).getName());
+							out.print("</option>");
+						}
+					%>
 				</select>
 			</div>
 			<div class="col-sm-4"></div>
@@ -165,7 +171,7 @@ p.err {
 			<div class="col-sm-4"></div>
 		</div>
 	</div>
-	
+
 	<div>
 		<div class="form-horizontal">
 			<label class="col-sm-offset-2 col-sm-4 control-label">いつまで！</label>
@@ -175,7 +181,7 @@ p.err {
 					<option value="15min">15分後</option>
 					<option value="today">きょう</option>
 					<option value="tomorrow">あした</option>
-					<option value="dAt">あさって</option>	
+					<option value="dAt">あさって</option>
 				</select>
 			</div>
 			<div class="col-sm-4"></div>
