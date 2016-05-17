@@ -81,7 +81,7 @@ public class YatteMain {
 			// yattalをセット
 			contents.setYattal("<button class=zlbtn btn-danger btn-lgzl ID=zlyattalzl onclick=yattal("
 					+ contents.getNo() + ")>Yattal !</button>");
-			
+
 			// limitをセット
 			if (contents.getTime().equals("15min")) {
 				contents.setLimit(LocalDateTime.now().plusMinutes(15));
@@ -94,7 +94,7 @@ public class YatteMain {
 			} else if (contents.getTime().equals("test")) {
 				contents.setLimit(LocalDateTime.now().plusSeconds(20));
 			}
-			
+
 			json.contentsList = dao.addDao(contents);
 			for (int i = yatteList.size(); i <= json.contentsList.size(); i++) {
 				if (i > yatteList.size()) {
