@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.config.Result;
+import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 import training2016.dao.AreaDao;
@@ -25,7 +26,9 @@ import training2016.model.Restaurant;
  *
  * @author harasan
  */
-@Result(name = "search", value = "restaurantSearch.action", type = ServletRedirectResult.class)
+@Results({
+	@Result(name = "backToSearch", value = "restaurantSearch!redisplay", type = ServletRedirectResult.class)
+})
 public class RestaurantUpdateAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
@@ -126,7 +129,16 @@ public class RestaurantUpdateAction extends AbstractAction {
 			dao.insert(this.generateRestaurantModel());
 		}
 
-		return "search";
+		return "backToSearch";
+	}
+
+	/**
+	 * 検索画面に戻る
+	 *
+	 * @return
+	 */
+	public String back() {
+		return "backToSearch";
 	}
 
 	/**
@@ -174,9 +186,9 @@ public class RestaurantUpdateAction extends AbstractAction {
 	 */
 	private boolean isValidate() {
 		if (StringUtils.isEmpty(this.name) ||
-				StringUtils.isEmpty(this.area) ||
-				StringUtils.isEmpty(this.stars) ||
-				StringUtils.isEmpty(this.comment)) {
+			StringUtils.isEmpty(this.area) ||
+			StringUtils.isEmpty(this.stars) ||
+			StringUtils.isEmpty(this.comment)) {
 			return false;
 		}
 		return true;

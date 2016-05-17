@@ -3,6 +3,7 @@ package training2016.action;
 import java.util.List;
 
 import org.apache.struts2.config.Result;
+import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 import training2016.dao.RestaurantDao;
@@ -14,7 +15,9 @@ import training2016.model.RestaurantSearchCondition;
  *
  * @author harasan
  */
-@Result(name = "search", value = "restaurantSearch.action", type = ServletRedirectResult.class)
+@Results({
+	@Result(name = "backToSearch", value = "restaurantSearch!redisplay", type = ServletRedirectResult.class)
+})
 public class RestaurantDeleteAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
@@ -23,9 +26,6 @@ public class RestaurantDeleteAction extends AbstractAction {
 
 	/** 検索結果リスト */
 	private List<Restaurant> resultList;
-
-	/** エラーメッセージ */
-	private String errorMsg;
 
 	/**
 	 * executeメソッド。
@@ -40,7 +40,7 @@ public class RestaurantDeleteAction extends AbstractAction {
 		cond.setIds(deleteId);
 		this.resultList = dao.select(cond);
 		if (resultList == null || resultList.isEmpty()) {
-			this.errorMsg = "なかった";
+			this.addActionError("なかった");
 		}
 		return "success";
 	}
@@ -65,7 +65,16 @@ public class RestaurantDeleteAction extends AbstractAction {
 		// 削除し終わったらセッションから消す
 		this.putValueToSession("deleteId", null);
 
-		return "search";
+		return "backToSearch";
+	}
+
+	/**
+	 * 検索画面に戻る
+	 *
+	 * @return
+	 */
+	public String back() {
+		return "backToSearch";
 	}
 
 	/**
@@ -84,14 +93,5 @@ public class RestaurantDeleteAction extends AbstractAction {
 	 */
 	public String getTitle() {
 		return this.title;
-	}
-
-	/**
-	 * errorMsgを返す
-	 *
-	 * @return errorMsg
-	 */
-	public String getErrorMsg() {
-		return this.errorMsg;
 	}
 }

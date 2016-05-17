@@ -9,6 +9,7 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
+import training2016.annotations.ActionField;
 import training2016.dao.AreaDao;
 import training2016.dao.RestaurantDao;
 import training2016.model.Restaurant;
@@ -31,12 +32,15 @@ public class RestaurantSearchAction extends AbstractAction {
 	private String title = "お酒クレメンス";
 
 	/** 店舗名 */
+	@ActionField(name="name")
 	private String name;
 	/** 店舗エリア */
+	@ActionField(name="area")
 	private String area;
 	/** 検索結果マップ */
 	private Map<String, String> areaMap;
 	/** 店舗評価 */
+	@ActionField(name="stars")
 	private String stars;
 	/** 更新ID */
 	private String updateId;
@@ -79,6 +83,7 @@ public class RestaurantSearchAction extends AbstractAction {
 		this.name  = "";
 		this.area  = "";
 		this.stars = "";
+		this.setIsSearched(false);
 	}
 
 	/**
@@ -87,8 +92,15 @@ public class RestaurantSearchAction extends AbstractAction {
 	 * @return 結果
 	 */
 	public String search() {
-		RestaurantDao dao = new RestaurantDao();
+		this.doSearch();
+		return "success";
+	}
 
+	/**
+	 * 検索を行う。
+	 */
+	private void doSearch() {
+		RestaurantDao dao = new RestaurantDao();
 		if (StringUtils.isEmpty(this.name)
 			&& StringUtils.isEmpty(this.area)
 			&& StringUtils.isEmpty(this.stars)) {
@@ -100,8 +112,7 @@ public class RestaurantSearchAction extends AbstractAction {
 			cond.setStars(this.stars);
 			this.resultList = dao.getByCondition(cond);
 		}
-
-		return "success";
+		this.setIsSearched(true);
 	}
 
 	/**
@@ -111,6 +122,8 @@ public class RestaurantSearchAction extends AbstractAction {
 	 */
 	public String update() {
 		this.putValueToSession("updateId", this.updateId);
+		// 退避
+		this.backUp(this);
 		return "update";
 	}
 
@@ -122,11 +135,28 @@ public class RestaurantSearchAction extends AbstractAction {
 	public String delete() {
 		if (this.deleteId != null && this.deleteId.length > 0) {
 			this.sessionMap.put("deleteId", this.deleteId);
+			// 退避
+			this.backUp(this);
 			return "delete";
 		}else{
 			this.addActionError("削除のとこ一つくらいはチェック入れないと");
 			return "error";
 		}
+	}
+
+	/**
+	 * 画面再描画。
+	 * リセットではなく、他画面から戻ってくる時に呼び出す。
+	 *
+	 * @return
+	 */
+	public String redisplay() {
+		// 退避
+		this.restore(this);
+		if (this.getIsSearched()) {
+			this.doSearch();
+		}
+		return "success";
 	}
 
 	/**
