@@ -52,7 +52,7 @@ $("#yatte").click(function() {
 	var w = $('#who option:selected').text()
 	var n = $('#num option:selected').val()
 	var t = $('#time option:selected').val()
-	var e = $('#ex').val()
+	var e = ($('#ex').val() + "@" + $('#name').text())
 	var m = $('#name').text()
 
 	console.log(m)
