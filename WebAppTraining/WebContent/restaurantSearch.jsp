@@ -116,6 +116,7 @@
 			</div>
 
 		</div>
+		<div id="bogoCount" class="panel-clear"></div>
 		<script type="text/javascript" src="<s:url value="/assets/libs/raty/jquery.raty.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/libs/shuffle/jquery.shuffle.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/js/harasan.js"/>"></script>

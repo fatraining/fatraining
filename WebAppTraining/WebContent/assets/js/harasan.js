@@ -6,8 +6,13 @@ var wait = 1;                  // ボゴ待ち時間。ミリ秒。1ミリ秒と
 var answer;                    // 正解配列用
 var col_no;                    // クリックされたヘッダのインデックス用
 var table_id = "#resultTable"; // テーブルのID
+var bogoCount = 0;             // ボゴった回数
 // 実際にボゴる関数
 var doBogo = function () {
+	// 回数カウントアップして表示
+	bogoCount++;
+	$("#bogoCount").text(bogoCount);
+
 	var isBogo = true;
 	// テーブルの並びをシャッフル
 	$('tbody').shuffle();
@@ -25,9 +30,15 @@ var doBogo = function () {
 		setTimeout("doBogo()", wait);
 		return;
 	}
+	$("#bogoCount").hide();
 }
 // テーブルヘッダをクリックされた時にボゴる関数
 $(table_id + ' th').click(function(e){
+	// 回数初期化
+	bogoCount = 0;
+	$("#bogoCount").text(bogoCount);
+	$("#bogoCount").show();
+
 	// 列番号を取得
 	col_no = $(table_id + ' th').index(this);
 
@@ -47,7 +58,7 @@ $(table_id + ' th').click(function(e){
 	});
 	// 1回目は即時実行
 	setTimeout("doBogo()", 0);
-	console.log(answer);
+
 });
 
 /**
