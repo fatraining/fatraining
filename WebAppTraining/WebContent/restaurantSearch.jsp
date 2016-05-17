@@ -47,6 +47,7 @@
 				<!-- <button type="button" id="areaButton" class="btn btn-primary">
 					エリア追加・削除
 				</button> -->
+				<s:hidden name="isSearched"></s:hidden>
 				</s:form>
 			</div>
 			<div class="resultArea col-xs-12 col-sm-12 col-md-9 col-lg-9">
@@ -89,6 +90,7 @@
 				<div align=right>
 					<s:submit id="deleteBtn" method="delete" value="削除" cssClass="btn btn-danger" />
 				</div>
+				<s:hidden name="isSearched"></s:hidden>
 				</s:form>
 				</s:if>
 			</div>

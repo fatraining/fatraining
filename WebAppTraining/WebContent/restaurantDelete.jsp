@@ -14,7 +14,7 @@
 				<s:property value="title" />
 				<p class="text-right">
 					<s:property value="userId" /> さん
-					<a href="menu.action">Back</a>
+					<a href="<s:url action="restaurantDelete" method="back" />">Back</a>
 				</p>
 			</div>
 
@@ -47,6 +47,11 @@
 			</div>
 			</s:form>
 			</s:if>
+			<s:else>
+			<p class="err text-right">
+				<s:actionerror class="err"/>
+			</p>
+			</s:else>
 		</div>
 		<script type="text/javascript" src="<s:url value="/assets/libs/raty/jquery.raty.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/js/harasan.js"/>"></script>

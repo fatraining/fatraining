@@ -14,7 +14,7 @@
 			<s:property value="title" />
 			<p class="text-right">
 				<s:property value="userId" /> さん
-				<a href="menu.action">Back</a>
+				<a href="<s:url action="restaurantUpdate" method="back" />">Back</a>
 			</p>
 		</div>
 
