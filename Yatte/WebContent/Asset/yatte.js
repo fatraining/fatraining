@@ -3,8 +3,8 @@
 var uri = "ws://" + location.host + "/Yatte/yo";
 ws = new WebSocket(uri);
 
-//使用するとき
-//var msg = new yatteMessage("yatte", new yatteList);
+// 使用するとき
+// var msg = new yatteMessage("yatte", new yatteList);
 var yatteMessage = function (messageType, contentsList) {
 	this.messageType = messageType;
 	this.contentsList = new Array();
@@ -26,7 +26,7 @@ var yatteList = {
 
 
 // カラム隠しておく！！つくっておく！
-//Columnsっていうライブラリ
+// Columnsっていうライブラリ
 $('.popbox').hide();
 $('#columns').hide();
 $(document).ready(function() {
@@ -36,10 +36,9 @@ $(document).ready(function() {
 });
 
 
-/** yatte押された時の処理
- *  ついでに選択肢の初期化
- *  サーバーで処理させる場合、$('# option:selected').val()で指定
- * **/
+/*******************************************************************************
+ * yatte押された時の処理 ついでに選択肢の初期化 サーバーで処理させる場合、$('# option:selected').val()で指定
+ ******************************************************************************/
 $("#yatte").click(function() {
 
 	var d = $('#toDo option:selected').text()
@@ -48,7 +47,7 @@ $("#yatte").click(function() {
 	var t = $('#time option:selected').val()
 	var e = $('#ex').val()
 	var m = $('#name').text()
-	
+
 	console.log(m)
 	if (e != "") {
 	var yatteList = {
@@ -63,11 +62,11 @@ $("#yatte").click(function() {
 	var msg = new yatteMessage("yatte",yatteList);
 	ws.send(JSON.stringify(msg));
 	console.log("送る方 : " + JSON.stringify(msg))
-	
+
 	$('#toDo').val(0);
 	$('#who').val(0);
 	$('#num').val(0);
-	$('#time').val(0); 
+	$('#time').val(0);
 	$('#ex').val("");
 	target = document.getElementById("error")
 	target.innerHTML  = "";
@@ -78,7 +77,7 @@ $("#yatte").click(function() {
 });
 
 /*
- *yattalの処理
+ * yattalの処理
  */
 function yattal(no) {
 	console.log("やったる！" + no );
@@ -96,7 +95,7 @@ ws.onmessage = function(message) {
 	$('.popbox').show();
 	$('#columns').show();
 	var focus = document.getElementById('#ex');
-/*	console.log("受け取った方 : " + message.data);*/
+/* console.log("受け取った方 : " + message.data); */
 
 	/* message.dataをJSON形式にparse */
 	var json = JSON.parse(message.data);
@@ -104,7 +103,7 @@ ws.onmessage = function(message) {
 		$('#columns').hide();
 	} else {
 	json.contentsList.reverse()
-	
+
 	/* カラム作成(の前にデストローイ) */
 	$('#columns').columns('destroy');
 
@@ -120,9 +119,9 @@ ws.onmessage = function(message) {
 		         {"header":"こめんと！", "key":"ex"},
 		         {"header":"yattal !", "key":"yattal",
 		        	 },
-//		         {"header":"yattal !", "key":"time",
-//			        	 "template":'<font color="FF0000"><strong>あかんかった</strong></font>',
-//			        	 "condition":function(time) {return (time != 0);},},
+// {"header":"yattal !", "key":"time",
+// "template":'<font color="FF0000"><strong>あかんかった</strong></font>',
+// "condition":function(time) {return (time != 0);},},
 		         ]
 	});
 
@@ -134,24 +133,23 @@ ws.onmessage = function(message) {
 
 
 /* デスクトップ通知 */
-/* Notifications API で処理
- * Firefox,Chrome,Opera,Vivaldiとかいける(IEぶっころ)
- * 意外と簡単に通知が実装できるやーつ
- * 通知のbodyには\n使えるよ！！
- * */
+/*
+ * Notifications API で処理 Firefox,Chrome,Opera,Vivaldiとかいける(IEぶっころ)
+ * 意外と簡単に通知が実装できるやーつ 通知のbodyには\n使えるよ！！
+ */
     // Notificationを取得
     var Notification = window.Notification || window.mozNotification || window.webkitNotification;
- 
+
     // Notificationの権限チェック
     Notification.requestPermission(function (permission) {
         // console.log(permission);
     });
- 
+
     if (json.messageType == "yatte") {
     // 通知インスタンス生成
     data : json.contentsList.reverse()
     var instance = new Notification(
-        "【" + json.contentsList[json.contentsList.length-1]['toDo'] 
+        "【" + json.contentsList[json.contentsList.length-1]['toDo']
         + "】 " + "yatte!", // 通知タイトル
         {body : "やるひと : " + json.contentsList[json.contentsList.length-1]['who']
         		+ " \n募集人員 : " + json.contentsList[json.contentsList.length-1]['num'] + "人"
@@ -160,9 +158,9 @@ ws.onmessage = function(message) {
         	icon : 'images/yatte.jpg'
         }
     );
-    
+
     setTimeout(instance.close.bind(instance),5000); // 1000[ミリ秒後]に通知を閉じる
-    
+
     instance.onclick = function () {
     	window.focus(); // ←なんかしらんけど使える(Chrome)
     	window.opener.focus(); // ←なんかしらんけど使えない(多分Firefox用)
@@ -180,18 +178,19 @@ ws.onmessage = function(message) {
     };
 	} else if (json.messageType == "akan") {
 		var Notification = window.Notification || window.mozNotification || window.webkitNotification;
-		 
+
 	    // Notificationの権限チェック
 	    Notification.requestPermission(function (permission) {
 	        // console.log(permission);
 	    });
-	 
+
 	    // 通知インスタンス生成
 	    var instance = new Notification(
 	        "【あかんかった】 ", // 通知タイトル
-	        {body : "やってもうた"
+	        {body : "やってもうた",
+	        	icon : 'images/yatte.jpg'
 	        }
 	    );
 	};
-	} 
+	}
 };
