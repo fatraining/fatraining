@@ -44,6 +44,8 @@
 		<mapping class="training2016.model.Restaurant"/>
 		<mapping class="training2016.model.Operator" />
 		<mapping class="training2016.model.Phones" />
+		<mapping class="training2016.model.GroupName" />
+		<mapping class="training2016.model.Iventcontents"/>
 		<mapping class="training2016.model.Season" />
 		<mapping class="training2016.model.Nail" />
 		<mapping class="training2016.model.Catarea"/>
@@ -52,6 +54,7 @@
 		<mapping class="training2016.model.Players" />
 		<mapping class="training2016.model.Sim" />
 		<mapping class="training2016.model.SimOpe" />
+
 	</session-factory>
 
 </hibernate-configuration>

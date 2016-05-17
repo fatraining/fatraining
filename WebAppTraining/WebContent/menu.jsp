@@ -27,6 +27,12 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="gotoHpiventSearch" value="H!Pイベント検索"
+						cssClass="btn btn-warning" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
 					<s:submit method="gotoCatcafeSearch" value="猫カフェ検索" cssClass="btn btn-warning" />
 				</div>
 			</div>
