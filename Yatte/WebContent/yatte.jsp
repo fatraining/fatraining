@@ -111,8 +111,7 @@ p.err {
 </div>
 
 	<div>
-	<p style="color:#009933 ; padding :0 10%" ID="name" value="<%out.print(session.getAttribute("name").toString());%>">
-	<%out.print(session.getAttribute("name").toString());
+	<p style="color:#009933 ; padding :0 10%" ID="name" value="<%out.print(session.getAttribute("name").toString());%>"><%out.print(session.getAttribute("name").toString());
 	%></p>
 	<p style="color: red ; text-align : center " ID="error"/>
     </p></div>
