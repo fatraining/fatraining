@@ -23,6 +23,11 @@ h1 {
 
 img {
 	border: 5px #CCC solid;
+	max-width: auto;
+	height: 240px;
+	display:block;
+	margin:0 auto;
+	margin-bottom:20px;
 }
 
 .place {
