@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+	#clock-02{
+	font-size:42px;
+	color:white;
+	}
+#header{
+	font-size:42px;
+
+}
+.h3{
+	color:white;
+}
+.riderName{
+	padding-top:90px;
+}
+.row{
+	padding-top:20px;
+}
+
