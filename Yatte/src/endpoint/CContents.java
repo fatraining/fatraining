@@ -2,13 +2,12 @@ package endpoint;
 
 public class CContents {
 
-	private int flg;
 	private String name;
 	private String who;
 	private String time;
 	private String ex;
 	private String favButton;
-	private int favNum;
+
 	// YatteMainでIDふってあげてね
 	private int No;
 
@@ -65,20 +64,6 @@ public class CContents {
 		this.name = name;
 	}
 
-	public int getFlg() {
-		return flg;
-	}
 
-	public void setFlg(int flg) {
-		this.flg = flg;
-	}
-
-	public int getFavNum() {
-		return favNum;
-	}
-
-	public void setFavNum(int favNum) {
-		this.favNum = favNum;
-	}
 
 }

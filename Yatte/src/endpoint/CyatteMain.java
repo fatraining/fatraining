@@ -62,42 +62,26 @@ public class CyatteMain {
 		CContents cContents = new CContents();
 
 		cContents = mapper.readValue(message, CContents.class);
-		if (cContents.getFlg() == 0) {
 
 		cContents.setNo(yatteList.size() + 1);
 		System.out.println(yatteList.size());
 
 		// yattalをセット
 		cContents.setYattal("<button class=zlbtn btn-danger btn-lgzl ID=zlyattalzl onclick=yattal(" + cContents.getNo()
-				+ ")>いいね !" + cContents.getFavNum() + "</button>");
+				+ ")>いいね !" + "</button>");
 		cContents.setTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 		yatteList =  dao.addDao(cContents);
 		yo(yatteList, ses);
-		} else if (cContents.getFlg() == 1) {
-			check(cContents.getNo());
-			// やってオブジェクト再利用
-			yo(this.yatteList, ses);
-		}
-	}
-
-
-
-	private void check(int No) {
-		for (int i = 0; i < yatteList.size(); i++) {
-			CContents yaLi = yatteList.get(i);
-			if (yaLi.getNo() == No) {
-				yaLi.setFavNum(yaLi.getFavNum() + 1);
-			}
 		}
 
-	}
+
 
 	/*------------------------------------------------------*/
 	/**
 	 * Broadcastメソッド
 	 */
 	private void yo(List<CContents> yatteList, List<Session> sessions) throws IOException {
-		yatteList.get(yatteList.size() - 1).setFlg(1);;
+
 		ObjectMapper mapper = new ObjectMapper();
 		String yatte = mapper.writeValueAsString(yatteList).replaceAll("zl", "'");
 		System.out.println(yatte);
