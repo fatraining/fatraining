@@ -29,7 +29,6 @@ public class CyatteDao {
 
 			while (rs.next()) {
 				CContents yatte = new CContents();
-				yatte.setFlg(rs.getInt("flg"));
 				yatte.setName(rs.getString("name"));
 				yatte.setNo(rs.getInt("No"));
 				yatte.setWho(rs.getString("who"));
@@ -72,10 +71,9 @@ public class CyatteDao {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/yatte", "root", "");
 			System.out.println("MySQLに接続できました。");
 			Statement stm = con.createStatement();
-			String sql = "INSERT INTO cyatte (`No`, `name`, `who`, `time`, `ex`, `yattal`,`flg`) values (" + CContents.getNo() + ",'" + CContents.getName() + "','"
+			String sql = "INSERT INTO cyatte (`No`, `name`, `who`, `time`, `ex`, `yattal`) values (" + CContents.getNo() + ",'" + CContents.getName() + "','"
 					+ CContents.getWho() + "','" + CContents.getTime() + "','"
-					+ CContents.getEx() + "','" + CContents.getYattal() + "',"
-					+ CContents.getFlg() + ")";
+					+ CContents.getEx() + "','" + CContents.getYattal() + "')";
 			System.out.println(sql);
 			stm.executeUpdate(sql);
 //			System.out.println(sql);

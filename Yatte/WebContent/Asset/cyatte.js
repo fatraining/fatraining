@@ -19,7 +19,6 @@ var yatteList = {
 	time : "time",
 	ex : "",
 	yattal : null,
-	flg : 1,
 }
 
 
@@ -57,7 +56,6 @@ $("#yatte").click(function() {
 		who : w,
 		time : t,
 		ex : e + "@" + m,
-		flg : 0,
 		}
 	ws.send(JSON.stringify(yatteList));
 	console.log("送る方 : " + JSON.stringify(yatteList))
@@ -77,13 +75,12 @@ $("#yatte").click(function() {
  * yattalの処理
  */
 function yattal(no) {
-	console.log("やったる！" + no );
-	var yatteList = {
-			no : no,
-			flg : 1,
-	};
-
-	ws.send(JSON.stringify(yatteList));
+//	console.log("やったる！" + no );
+//	var yatteList = {
+//			no : no,
+//	};
+//
+//	ws.send(JSON.stringify(yatteList));
 }
 
 /* 受信用スクリプト */
