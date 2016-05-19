@@ -109,7 +109,7 @@ ws.onmessage = function(message) {
 		schema: [
 		         {"header":"No", "key":"no"},
 		         {"header":"やるひと！", "key":"who"},
-		         {"header":"いつまで！", "key":"time"},
+		         {"header":"じかん！", "key":"time"},
 		         {"header":"こめんと！", "key":"ex"},
 		         {"header":"yattal !", "key":"yattal",
 		        	 },
