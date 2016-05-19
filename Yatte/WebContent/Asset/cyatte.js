@@ -108,7 +108,7 @@ ws.onmessage = function(message) {
 		data : json,
 		schema: [
 		         {"header":"No", "key":"no"},
-		         {"header":"やるひと！", "key":"who"},
+		         {"header":"to", "key":"who"},
 		         {"header":"じかん！", "key":"time"},
 		         {"header":"こめんと！", "key":"ex"},
 		         {"header":"yattal !", "key":"yattal",
