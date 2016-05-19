@@ -134,8 +134,7 @@ ws.onmessage = function(message) {
  * 意外と簡単に通知が実装できるやーつ 通知のbodyには\n使えるよ！！
  */
     // Notificationを取得
-	data : json.reverse()
-	if(json.getJSONArray(0).getString("flg") === 0){
+
     var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
     // Notificationの権限チェック
@@ -144,6 +143,7 @@ ws.onmessage = function(message) {
     });
 
     // 通知インスタンス生成
+    data : json.reverse()
     var instance = new Notification(
         "【 from : " + json[json.length-1]['name']
         + "】 ", // 通知タイトル
@@ -170,6 +170,5 @@ ws.onmessage = function(message) {
     instance.onclose = function () {
         console.log("onclose");
     };
-	}
 	}
 };
