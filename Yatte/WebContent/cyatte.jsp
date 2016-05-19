@@ -9,12 +9,12 @@
 <link id="stylesheet" href="/Yatte/Asset/clean.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css"
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="shortcut icon" href='/Yatte/images/yatteFavicon.ico' >
+<link rel="shortcut icon" href='/Yatte/images/cyatteFavicon.ico' >
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="/Yatte/Asset/jquery.columns.js"></script>
 <script type="text/javascript" src="/Yatte/Asset/mustache.min.js"></script>
 
-<title>Yatte!</title>
+<title>Cyatte!</title>
 <style>
 #heading {
 	position: relative;
@@ -106,7 +106,7 @@ p.err {
 <body>
 <div class="header">
 	<div class="page-header">
-		<h1 class="h3 text-left" id="heading">Yatte!</h1>
+		<h1 class="h3 text-left" id="heading">Cyatte!</h1>
 	</div>
 </div>
 
