@@ -23,9 +23,6 @@
 				<s:actionerror class="err"/>
 			</p>
 			<div class="search-menu col-xs-12 col-sm-12 col-md-3 col-lg-3">
-				<span style="color: red">
-					<s:property value="errorMsg"/>
-				</span>
 				<s:form cssClass="form-horizontal" id="searchCondition">
 				<div class="form-group">
 					<label for="name" class="control-label">店舗名:</label>
@@ -44,6 +41,7 @@
 					<s:submit method="reset" value="リセット" cssClass="btn btn-danger" />
 					<s:submit method="update" value="追加" cssClass="btn btn-primary" />
 				</div>
+				<input type="button" id="ajaxJsonTest" value="ajax+json" class="btn btn-success" />
 				<!-- <button type="button" id="areaButton" class="btn btn-primary">
 					エリア追加・削除
 				</button> -->
