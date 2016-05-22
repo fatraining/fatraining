@@ -107,7 +107,7 @@ $(function(){
 //		}
 //		fd.append("imageFileName",$('#cu-imagePath').val());
 //		$.ajax({
-//			url : 'WebApp/imageUpload.action',
+//			url : 'WebAppTraining/imageUploadSample.action',
 //			type : 'POST',
 //			data : fd,
 //			processData : false,
@@ -175,4 +175,14 @@ $(function(){
 //		form.appendChild(btn);
 //		form.submit();
 //	});
+
+	$('#ajaxJsonTest').click(function() {
+		var fd = {"name":"豚野郎"};
+		$.getJSON('jsonSample.action',
+				fd,
+				function(jsonResponse) {
+					alert(jsonResponse.greet + " " + jsonResponse.name);
+				}
+		);
+	});
 });
