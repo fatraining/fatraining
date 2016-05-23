@@ -10,6 +10,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "matsufuji", value = "hpiventSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "yamazaki", value = "catcafeSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "yamamoto", value = "playerFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "sakeSearch", value = "sakeSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "baseballSearch", value = "baseballSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "riderSearch", value = "riderSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
@@ -85,6 +86,15 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String gotoPlayerSearch() {
 		return "yamamoto";
+	}
+
+	/**
+	 * 山花さんのWebアプリ画面へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String gotoSakeSearch() {
+		return "sakeSearch";
 	}
 	/**
 	 * 新宮
