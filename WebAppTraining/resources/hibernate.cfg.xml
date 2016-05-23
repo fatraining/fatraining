@@ -52,11 +52,12 @@
 		<mapping class="training2016.model.Catcafe"/>
 		<mapping class="training2016.model.Team" />
 		<mapping class="training2016.model.Players" />
+		<mapping class="training2016.model.BaseballPlayer"/>
+		<mapping class="training2016.model.BaseballTeam"/>
 		<mapping class="training2016.model.BikeTeam" />
 		<mapping class="training2016.model.Rider" />
 		<mapping class="training2016.model.Sim" />
 		<mapping class="training2016.model.SimOpe" />
-
 	</session-factory>
 
 </hibernate-configuration>
