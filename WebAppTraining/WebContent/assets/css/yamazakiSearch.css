@@ -88,6 +88,7 @@ h2 {
  *
  */
 table {
+	table-layout: fixed;
 	border-collapse: collapse;
 	border-right: 1px solid #999;
 	width: 72%;
@@ -122,6 +123,12 @@ td {
 	border-left: 1px solid #999;
 	font-size: 1.0em;
 	text-align: center;
+}
+.a {
+  width: 30%;
+}
+.b {
+  width: 20%;
 }
 /**メッセージ
  *
