@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+
+body{
+	background-image: url("../images/guitar2.jpg");
+	background-positioni: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #000000;
+}
+h1 {
+   font-style: oblique;
+   font-family: Impact,Charcoal;
+}
