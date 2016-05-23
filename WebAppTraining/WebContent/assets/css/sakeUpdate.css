@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+h2 {
+	text-align: left;
+	font-weight: bold;
+	margin: -20px 0 40px 0;
+	color: #000000;
+	font-family : 游明朝;
+}
+
+#items {
+	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#col-md-3 {
+	font-family : 游明朝;
+}
+
+#map {
+	font-family : 游明朝;
+}
+
+#registar {
+	background-color: #c8c2c6;
+	border-style: none;
+	font-family : 游明朝;
+	margin-bottom: 100px;
+}
+
+#registar:hover {
+	background-color: #e8d3d1;
+}
+
+#delete {
+	background-color: #c8c2c6;
+	border-style: none;
+	font-family : 游明朝;
+}
+
+#delete:hover {
+	background-color: #e8d3d1;
+}
+
+.img {
+	width: 80%;
+	height: 80%;
+	margin-left: -40px;
+	margin-bottom: 40px;
+	text-align: left;
+}
+
+.img li {
+	list-style-type: none;
+}
+
+#img {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}

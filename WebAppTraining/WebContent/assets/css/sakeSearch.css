@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+h2.serachTitle {
+	font-size: 32px;
+	margin-top: -40px;
+	margin-bottom: 40px;
+	font-family : YuMincho, '游明朝', serif;
+	font-weight: bold;
+	color: #485859;
+}
+
+.mainImg ul {
+	list-style-type: none;
+}
+
+.mainImg img {
+	width: 105%;
+	height: 105%;
+	margin-left: -40px;
+	margin-bottom : 40px;
+	text-align: center;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+#iframe {
+	margin-left: -40px;
+	margin-bottom : 40px;
+	text-align: center;
+}
+
+#items {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+}
+
+#map {
+	margin-left: -40px;
+	font-family : YuMincho, '游明朝', serif;
+}
+
+#price {
+	margin-left: -40px;
+}
+
+#en {
+	margin-left: -85px;
+}
+
+#button {
+	font-weight: bold;
+	font-size: 20px;
+	color: #ffffff;
+	width: 240px;
+	height: 50px;
+	margin: 40px 0;
+	background-color: #c8c2c6;
+	border-style: none;
+	font-family : YuMincho, '游明朝', serif;
+}
+
+#button:hover {
+	background-color: #e8d3d1;
+}
+
+#block01 {
+	float: left;
+}
+
+#block02 {
+	float: left;
+	padding: 0 25px;
+}
+
+#block03 {
+	float: left;
+}
+
+.table {
+	width: 1200px;
+	max-width: 1400px;
+	margin-left: 70px;
+}
+
+table th {
+	color: #000000;
+	background-color: #485859;
+	border-left: 1px solid #478384;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+}
+
+table td {
+	font-size: 14px;
+}
+
+#delete {
+	margin-bottom: 40px;
+	margin-right: 70px;
+	float: right;
+	background-color: #dccb18;
+	border-style: none;
+	font-family : YuMincho, '游明朝', serif;
+}
+
+#delete:hover {
+	background-color: #f5e56b;
+}
+
+#check-box {
+	text-align: center;
+}
