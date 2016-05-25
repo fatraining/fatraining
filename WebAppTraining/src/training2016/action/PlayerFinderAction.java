@@ -1,5 +1,8 @@
 package training2016.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,13 +10,20 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.config.Result;
+import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
+import org.apache.struts2.dispatcher.StreamResult;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import training2016.dao.PlayerDao;
 import training2016.model.Players;
 import training2016.model.Team;
-
+@Results({
+@Result(name="search", value="inputStream", type=StreamResult.class),
 @Result(name = "update", value = "updatePlayer.action", type = ServletRedirectResult.class)
+})
 public class PlayerFinderAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +48,9 @@ public class PlayerFinderAction extends AbstractAction {
 	/** 検索結果リスト */
 	public ArrayList<Players> resultTable = new ArrayList<Players>();
 
+	/** JSON文字列返却用inputstream */
+	private InputStream inputStream;
+
 
 	public String getUserID() {
 		return (String) this.sessionMap.get("userId");
@@ -57,15 +70,15 @@ public class PlayerFinderAction extends AbstractAction {
 		return "success";
 	}
 
-	/**
-	 * resetメソッド。 画面の初期表示に戻す。
-	 *
-	 * @return 結果
-	 */
-	public String reset() {
-		this.fieldInit();
-		return "success";
-	}
+//	/**
+//	 * resetメソッド。 画面の初期表示に戻す。
+//	 *JSであれこれやったんで不要になった。
+//	 * @return 結果
+//	 */
+//	public String reset() {
+//		this.fieldInit();
+//		return "success";
+//	}
 
 	private void fieldInit() {
 		this.setTeamMap();
@@ -77,7 +90,7 @@ public class PlayerFinderAction extends AbstractAction {
 
 	// 検索ボタンを押したとき ↓↓
 	/*------------------------------------------------------*/
-	public String search() {
+	public String search() throws JsonProcessingException, UnsupportedEncodingException {
 		PlayerDao dao = new PlayerDao();
 		List<Players> resultTable = null;
 		/** フォームがnullの場合 */
@@ -95,7 +108,13 @@ public class PlayerFinderAction extends AbstractAction {
 		this.setDelete("true");
 		this.setTeamMap();
 		this.setPositionMap();
-		return "success";
+
+		ObjectMapper mapper = new ObjectMapper();
+		// resultTableをJSON形式にしてinputstreamに乗せる。
+		String json = mapper.writeValueAsString(resultTable);
+		System.out.println(json);
+		inputStream = new ByteArrayInputStream(json.getBytes("utf-8"));
+		return "search";
 	}
 
 	// 選択されたフォームのパラメータをセットして返す
@@ -135,7 +154,7 @@ public class PlayerFinderAction extends AbstractAction {
 
 	// 削除ボタンクリック時、チェックありなら updatePlayer へ飛ばす//
 	/*------------------------------------------------------*/
-	public String delete() {
+	public String delete() throws JsonProcessingException, UnsupportedEncodingException {
 		this.sessionMap.put("deleteID", this.delete);
 
 		if (this.delete != null) {
@@ -250,6 +269,14 @@ public class PlayerFinderAction extends AbstractAction {
 		}
 
 		return tempMap;
+	}
+
+	/**
+	 * JSON文字列返却用inputstreamを返す
+	 * @return
+	 */
+	public InputStream getInputStream() {
+		return this.inputStream;
 	}
 
 }
