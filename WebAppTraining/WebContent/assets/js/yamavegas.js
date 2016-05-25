@@ -2,7 +2,7 @@
  * スルァイド用背景画像
  */
 $('body').vegas({
-  overlay: true,
+  overlay: false,
   transition: 'burn',
   transitionDuration: 2000,
   delay: 10000,
