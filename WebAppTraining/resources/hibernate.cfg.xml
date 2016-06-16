@@ -60,6 +60,8 @@
 		<mapping class="training2016.model.Rider" />
 		<mapping class="training2016.model.Sim" />
 		<mapping class="training2016.model.SimOpe" />
+		<mapping class="training2016.model.GuitarInfo"/>
+		<mapping class="training2016.model.GuitarMaker"/>
 	</session-factory>
 
 </hibernate-configuration>
