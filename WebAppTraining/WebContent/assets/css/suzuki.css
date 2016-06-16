@@ -2,7 +2,7 @@
 
 
 body{
-	background-image: url("../images/guitar2.jpg");
+	background-image: url("../images/01.jpg");
 	background-positioni: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -12,4 +12,5 @@ body{
 h1 {
    font-style: oblique;
    font-family: Impact,Charcoal;
+   font-codlor: white;
 }
