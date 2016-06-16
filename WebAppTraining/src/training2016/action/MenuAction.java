@@ -15,6 +15,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "riderSearch", value = "riderSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "kasashima", value = "nailSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
 })
 public class MenuAction extends AbstractAction {
 
@@ -132,4 +133,13 @@ public class MenuAction extends AbstractAction {
 	public String gotoNailSearch() {
 		return "kasashima";
 	}
+	/**
+	 * 鈴木のギター検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String guitarSearch() {
+		return "guitarSearch";
+	}
+
 }

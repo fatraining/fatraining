@@ -5,7 +5,6 @@
 <html>
 	<jsp:include page="header.jsp"/>
 
-	<script type="text/javascript" src="<s:url value="/assets/js/vegas.min.js"/>"></script>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/assets/css/suzuki.css"/>"/>
 
 <body>
@@ -23,7 +22,7 @@
 				さん
 			</div>
 			<div class="form-group" style="padding-top: 30px;">
-				<label for="name" style="font-size: 1.5em;">メーカー名：</label>
+				<label for="name" style="font-size: 1.5em;" style="color:white">メーカー名：</label>
 				<s:select name="name"  value = "name" list="nameMap" cssClass="form-control" />
 			</div>
 			<div class="form-group">
@@ -113,7 +112,6 @@
 
 		</s:form>
 		<script type="text/javascript" src="<s:url value="/assets/js/bootstrap.min.js"/>"></script>
-		<script type="text/javascript" src="<s:url value="/assets/js/vegas.min.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/assets/js/suzuki.js"/>"></script>
 
 </body>

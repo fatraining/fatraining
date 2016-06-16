@@ -63,6 +63,12 @@
 					cssClass="btn btn-warning" />
 				</div>
 			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="guitarSearch" value="ギター検索"
+					cssClass="btn btn-warning" />
+			</div>
+			</div>
 			</s:form>
 		</div>
 </body>
