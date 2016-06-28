@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 5 朁E13 日 07:08
--- サーバのバージョン： 10.1.8-MariaDB
--- PHP Version: 5.6.14
+-- Generation Time: 2016 年 6 朁E28 日 05:15
+-- サーバのバージョン： 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `webapp`
@@ -23,18 +23,63 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `aquarium`
+--
+
+CREATE TABLE IF NOT EXISTS `aquarium` (
+`id` int(11) NOT NULL,
+  `aquariumareaID` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+
+--
+-- テーブルのデータのダンプ `aquarium`
+--
+
+INSERT INTO `aquarium` (`id`, `aquariumareaID`, `name`, `price`, `hours`, `comment`) VALUES
+(1, 1, '横浜・八景島シーパラダイス', 3000, '9：00～20：00　季節により変動', 'アトラクションも楽しめる'),
+(2, 1, 'ヨコハマおもしろ水族館', 1400, '平日　11：00〜20：00\r\n土日祝日　10：00〜20：00', 'アルビノのオオグソクムシがいる'),
+(3, 2, 'サンシャイン水族館', 1600, '10：00〜18：00', '空飛ぶアシカが見られる'),
+(4, 3, '鴨川シーワールド', 2800, '平日　9：00〜16：30\r\n土・日・祝日　9：00〜17：00', '人工の砂浜「ウミガメの浜」でウミガメが産卵できるようになっている');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `aquariumarea`
+--
+
+CREATE TABLE IF NOT EXISTS `aquariumarea` (
+`id` int(11) NOT NULL,
+  `area` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+
+--
+-- テーブルのデータのダンプ `aquariumarea`
+--
+
+INSERT INTO `aquariumarea` (`id`, `area`) VALUES
+(1, '横浜'),
+(2, '豊島区'),
+(3, '鴨川市');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `area`
 --
 
-CREATE TABLE `area` (
-  `id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `area` (
+`id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `create_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `update_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `version` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 --
 -- テーブルのデータのダンプ `area`
@@ -53,8 +98,8 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 -- テーブルの構造 `baseballplayer`
 --
 
-CREATE TABLE `baseballplayer` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `baseballplayer` (
+`ID` int(11) NOT NULL,
   `teamID` int(11) NOT NULL,
   `baseballplayer` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `comment` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
@@ -62,7 +107,7 @@ CREATE TABLE `baseballplayer` (
   `date` varchar(20) CHARACTER SET ujis COLLATE ujis_bin DEFAULT NULL,
   `note` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   `team` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
 
 --
 -- テーブルのデータのダンプ `baseballplayer`
@@ -85,10 +130,10 @@ INSERT INTO `baseballplayer` (`ID`, `teamID`, `baseballplayer`, `comment`, `targ
 -- テーブルの構造 `baseballteam`
 --
 
-CREATE TABLE `baseballteam` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `baseballteam` (
+`ID` int(11) NOT NULL,
   `team` varchar(100) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
 
 --
 -- テーブルのデータのダンプ `baseballteam`
@@ -115,7 +160,7 @@ INSERT INTO `baseballteam` (`ID`, `team`) VALUES
 -- テーブルの構造 `biketeam`
 --
 
-CREATE TABLE `biketeam` (
+CREATE TABLE IF NOT EXISTS `biketeam` (
   `ID` int(10) NOT NULL,
   `TeamName` varchar(300) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -145,10 +190,10 @@ INSERT INTO `biketeam` (`ID`, `TeamName`) VALUES
 -- テーブルの構造 `catarea`
 --
 
-CREATE TABLE `catarea` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `catarea` (
+`ID` int(11) NOT NULL,
   `prefecture` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
 -- テーブルのデータのダンプ `catarea`
@@ -166,8 +211,8 @@ INSERT INTO `catarea` (`ID`, `prefecture`) VALUES
 -- テーブルの構造 `catcafe`
 --
 
-CREATE TABLE `catcafe` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `catcafe` (
+`ID` int(11) NOT NULL,
   `catcafename` varchar(100) COLLATE utf8_bin NOT NULL,
   `prefectureID` int(11) NOT NULL,
   `station` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -175,7 +220,7 @@ CREATE TABLE `catcafe` (
   `closed` varchar(100) COLLATE utf8_bin NOT NULL,
   `comment` varchar(100) COLLATE utf8_bin NOT NULL,
   `prefecture` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=29 ;
 
 --
 -- テーブルのデータのダンプ `catcafe`
@@ -197,7 +242,7 @@ INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, 
 -- テーブルの構造 `groupname`
 --
 
-CREATE TABLE `groupname` (
+CREATE TABLE IF NOT EXISTS `groupname` (
   `GroupID` varchar(2) NOT NULL,
   `GroupName` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=sjis;
@@ -223,45 +268,46 @@ INSERT INTO `groupname` (`GroupID`, `GroupName`) VALUES
 -- テーブルの構造 `guitarinfo`
 --
 
-CREATE TABLE `guitarinfo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `guitarinfo` (
+`id` int(11) NOT NULL,
   `guitarMakerId` int(11) NOT NULL,
   `typeName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `price` int(11) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
 
 --
 -- テーブルのデータのダンプ `guitarinfo`
 --
 
-INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`) VALUES
-(1, 1, 'Classic　Style-S', 241900, NULL),
-(2, 1, 'Classic Style-T', 222700, NULL),
-(3, 1, 'Classic Style-JM', 230900, NULL),
-(4, 2, 'Reunion', 340000, NULL),
-(5, 2, 'Ab''s24[6-strings]', 398000, NULL),
-(6, 2, 'Ab''s24[6-strings]', 438000, NULL),
-(7, 3, 'Arc-STD VS-100N', 490000, NULL),
-(8, 3, 'Arc-Hollow', 510000, NULL),
-(9, 3, 'DST Droptop Quilted Maple', 347000, NULL),
-(10, 4, 'Masterfield MFA-FP', 285000, NULL),
-(11, 4, 'Expert EEL-DE-7', 250000, NULL),
-(12, 4, 'Expert EFL-FM', 275000, NULL),
-(13, 5, 'MAROON CUSTOM 666 Limited Hight', 500000, NULL),
-(14, 5, 'HISTA CUSTOM 666', 370000, NULL),
-(15, 5, 'BORDER BC CUSTOM 666', 390000, NULL),
-(16, 6, 'DS 496 HR SPL/AT NAT', 426800, NULL),
-(17, 6, 'DS 499 M', 324000, NULL),
-(18, 7, 'STV Classic Series', 320000, NULL),
-(19, 7, 'STV-CS1', 399000, NULL),
-(20, 8, 'MLS1-STD', 390000, NULL),
-(21, 8, 'MJM2-WTW', 270000, NULL),
-(22, 8, 'MST2-SP NJ', 265800, NULL),
-(23, 9, 'HORIZON-CTM FR', 680000, NULL),
-(24, 9, 'ANTELOPE-CTM', 735000, NULL),
-(25, 9, 'AMOUS FR-CTM', 680000, NULL),
-(26, 9, 'POTBELLY-TR', 520000, NULL);
+INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`, `name`) VALUES
+(1, 1, 'Classic　Style-S', 241900, NULL, NULL),
+(2, 1, 'Classic Style-T', 222700, NULL, NULL),
+(3, 1, 'Classic Style-JM', 230900, NULL, NULL),
+(4, 2, 'Reunion', 340000, NULL, NULL),
+(5, 2, 'Ab''s24[6-strings]', 398000, NULL, NULL),
+(6, 2, 'Ab''s24[6-strings]', 438000, NULL, NULL),
+(7, 3, 'Arc-STD VS-100N', 490000, NULL, NULL),
+(8, 3, 'Arc-Hollow', 510000, NULL, NULL),
+(9, 3, 'DST Droptop Quilted Maple', 347000, NULL, NULL),
+(10, 4, 'Masterfield MFA-FP', 285000, NULL, NULL),
+(11, 4, 'Expert EEL-DE-7', 250000, NULL, NULL),
+(12, 4, 'Expert EFL-FM', 275000, NULL, NULL),
+(13, 5, 'MAROON CUSTOM 666 Limited Hight', 500000, NULL, NULL),
+(14, 5, 'HISTA CUSTOM 666', 370000, NULL, NULL),
+(15, 5, 'BORDER BC CUSTOM 666', 390000, NULL, NULL),
+(16, 6, 'DS 496 HR SPL/AT NAT', 426800, NULL, NULL),
+(17, 6, 'DS 499 M', 324000, NULL, NULL),
+(18, 7, 'STV Classic Series', 320000, NULL, NULL),
+(19, 7, 'STV-CS1', 399000, NULL, NULL),
+(20, 8, 'MLS1-STD', 390000, NULL, NULL),
+(21, 8, 'MJM2-WTW', 270000, NULL, NULL),
+(22, 8, 'MST2-SP NJ', 265800, NULL, NULL),
+(23, 9, 'HORIZON-CTM FR', 680000, NULL, NULL),
+(24, 9, 'ANTELOPE-CTM', 735000, NULL, NULL),
+(25, 9, 'AMOUS FR-CTM', 680000, NULL, NULL),
+(26, 9, 'POTBELLY-TR', 520000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -269,10 +315,10 @@ INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`)
 -- テーブルの構造 `guitarmaker`
 --
 
-CREATE TABLE `guitarmaker` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `guitarmaker` (
+`id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10 ;
 
 --
 -- テーブルのデータのダンプ `guitarmaker`
@@ -295,8 +341,8 @@ INSERT INTO `guitarmaker` (`id`, `name`) VALUES
 -- テーブルの構造 `iventcontents`
 --
 
-CREATE TABLE `iventcontents` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `iventcontents` (
+`ID` int(11) NOT NULL,
   `GroupID` varchar(2) DEFAULT NULL,
   `Category` varchar(20) DEFAULT NULL,
   `IventName` varchar(100) DEFAULT NULL,
@@ -304,7 +350,7 @@ CREATE TABLE `iventcontents` (
   `Day` datetime DEFAULT NULL,
   `Comment` varchar(100) DEFAULT NULL,
   `groupName` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=sjis;
+) ENGINE=InnoDB  DEFAULT CHARSET=sjis AUTO_INCREMENT=51 ;
 
 --
 -- テーブルのデータのダンプ `iventcontents`
@@ -340,15 +386,15 @@ INSERT INTO `iventcontents` (`ID`, `GroupID`, `Category`, `IventName`, `Place`, 
 -- テーブルの構造 `nail`
 --
 
-CREATE TABLE `nail` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `nail` (
+`ID` int(11) NOT NULL,
   `date` char(20) COLLATE utf8_bin NOT NULL,
   `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
   `maincolor` char(20) COLLATE utf8_bin NOT NULL,
   `handmodel` char(20) COLLATE utf8_bin NOT NULL,
   `comment` varchar(300) COLLATE utf8_bin NOT NULL,
   `imageFileName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=37 ;
 
 --
 -- テーブルのデータのダンプ `nail`
@@ -371,7 +417,7 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 -- テーブルの構造 `operator`
 --
 
-CREATE TABLE `operator` (
+CREATE TABLE IF NOT EXISTS `operator` (
   `ID` int(11) NOT NULL,
   `OperatorID` char(10) CHARACTER SET latin1 NOT NULL,
   `OperatorName` char(50) COLLATE utf8mb4_bin NOT NULL,
@@ -397,8 +443,8 @@ INSERT INTO `operator` (`ID`, `OperatorID`, `OperatorName`, `UserID`, `Date`) VA
 -- テーブルの構造 `phones`
 --
 
-CREATE TABLE `phones` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `phones` (
+`ID` int(11) NOT NULL,
   `OperatorID` char(11) CHARACTER SET latin1 NOT NULL,
   `PhonesName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `Price` int(11) NOT NULL,
@@ -406,7 +452,7 @@ CREATE TABLE `phones` (
   `Date` date NOT NULL,
   `Comment` text COLLATE utf8_bin NOT NULL,
   `operatorName` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=34 ;
 
 --
 -- テーブルのデータのダンプ `phones`
@@ -433,8 +479,8 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 -- テーブルの構造 `player`
 --
 
-CREATE TABLE `player` (
-  `playerID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `player` (
+`playerID` int(11) NOT NULL,
   `playername` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `teamID` int(11) DEFAULT NULL,
   `position` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -442,7 +488,7 @@ CREATE TABLE `player` (
   `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `teamName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `imagePath` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '画像へのパス'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
 
 --
 -- テーブルのデータのダンプ `player`
@@ -471,8 +517,8 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 -- テーブルの構造 `restaurant`
 --
 
-CREATE TABLE `restaurant` (
-  `id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `restaurant` (
+`id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `stars` smallint(6) DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -482,7 +528,7 @@ CREATE TABLE `restaurant` (
   `update_date` datetime DEFAULT NULL,
   `update_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `version` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 --
 -- テーブルのデータのダンプ `restaurant`
@@ -500,8 +546,8 @@ INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_d
 -- テーブルの構造 `rider`
 --
 
-CREATE TABLE `rider` (
-  `ID` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `rider` (
+`ID` int(10) NOT NULL,
   `Number` int(10) DEFAULT NULL,
   `RiderName` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `TeamID` int(10) DEFAULT NULL,
@@ -510,7 +556,7 @@ CREATE TABLE `rider` (
   `BirthDay` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `Comment` varchar(500) CHARACTER SET latin1 NOT NULL,
   `teamName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=29 ;
 
 --
 -- テーブルのデータのダンプ `rider`
@@ -547,10 +593,10 @@ INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `B
 -- テーブルの構造 `sakearea`
 --
 
-CREATE TABLE `sakearea` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sakearea` (
+`id` int(11) NOT NULL,
   `area` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
 -- テーブルのデータのダンプ `sakearea`
@@ -570,8 +616,8 @@ INSERT INTO `sakearea` (`id`, `area`) VALUES
 -- テーブルの構造 `sakeinfo`
 --
 
-CREATE TABLE `sakeinfo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sakeinfo` (
+`id` int(11) NOT NULL,
   `areaId` int(11) NOT NULL,
   `shopName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -581,7 +627,7 @@ CREATE TABLE `sakeinfo` (
   `priceHigh` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `priceLow` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `area` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
 
 --
 -- テーブルのデータのダンプ `sakeinfo`
@@ -605,7 +651,7 @@ INSERT INTO `sakeinfo` (`id`, `areaId`, `shopName`, `hours`, `price`, `recommend
 -- テーブルの構造 `season`
 --
 
-CREATE TABLE `season` (
+CREATE TABLE IF NOT EXISTS `season` (
   `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
   `Kisetu` char(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -626,15 +672,15 @@ INSERT INTO `season` (`KisetuID`, `Kisetu`) VALUES
 -- テーブルの構造 `sim`
 --
 
-CREATE TABLE `sim` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sim` (
+`ID` int(11) NOT NULL,
   `simService` varchar(20) NOT NULL,
   `charge` float NOT NULL,
   `GB` double(10,1) NOT NULL,
   `comment` text NOT NULL,
   `simOpeID` varchar(255) DEFAULT NULL,
   `SimOpeName` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- テーブルのデータのダンプ `sim`
@@ -660,7 +706,7 @@ INSERT INTO `sim` (`ID`, `simService`, `charge`, `GB`, `comment`, `simOpeID`, `S
 -- テーブルの構造 `simope`
 --
 
-CREATE TABLE `simope` (
+CREATE TABLE IF NOT EXISTS `simope` (
   `ID` int(11) NOT NULL,
   `simOpeName` varchar(11) NOT NULL,
   `UserID` varchar(11) NOT NULL
@@ -689,7 +735,7 @@ INSERT INTO `simope` (`ID`, `simOpeName`, `UserID`) VALUES
 -- テーブルの構造 `team`
 --
 
-CREATE TABLE `team` (
+CREATE TABLE IF NOT EXISTS `team` (
   `ID` int(11) NOT NULL,
   `teamname` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -721,216 +767,237 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 --
 
 --
+-- Indexes for table `aquarium`
+--
+ALTER TABLE `aquarium`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `aquariumarea`
+--
+ALTER TABLE `aquariumarea`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `area`
 --
 ALTER TABLE `area`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `biketeam`
 --
 ALTER TABLE `biketeam`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catarea`
 --
 ALTER TABLE `catarea`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catcafe`
 --
 ALTER TABLE `catcafe`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `groupname`
 --
 ALTER TABLE `groupname`
-  ADD PRIMARY KEY (`GroupID`);
+ ADD PRIMARY KEY (`GroupID`);
 
 --
 -- Indexes for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `nail`
 --
 ALTER TABLE `nail`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `phones`
 --
 ALTER TABLE `phones`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
-  ADD PRIMARY KEY (`playerID`);
+ ADD PRIMARY KEY (`playerID`);
 
 --
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK965A4B3DF35C8430` (`area_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `FK965A4B3DF35C8430` (`area_id`);
 
 --
 -- Indexes for table `rider`
 --
 ALTER TABLE `rider`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `sakearea`
 --
 ALTER TABLE `sakearea`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sim`
 --
 ALTER TABLE `sim`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `simope`
 --
 ALTER TABLE `simope`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
-  ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `aquarium`
+--
+ALTER TABLE `aquarium`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `aquariumarea`
+--
+ALTER TABLE `aquariumarea`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `catarea`
 --
 ALTER TABLE `catarea`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `catcafe`
 --
 ALTER TABLE `catcafe`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `nail`
 --
 ALTER TABLE `nail`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `sakearea`
 --
 ALTER TABLE `sakearea`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- ダンプしたテーブルの制約
 --
@@ -939,7 +1006,7 @@ ALTER TABLE `sim`
 -- テーブルの制約 `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
+ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
