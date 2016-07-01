@@ -62,6 +62,8 @@
 		<mapping class="training2016.model.SimOpe" />
 		<mapping class="training2016.model.GuitarInfo"/>
 		<mapping class="training2016.model.GuitarMaker"/>
+		<mapping class="training2016.model.Birthplace" />
+		<mapping class="training2016.model.Beerbrands" />
 	</session-factory>
 
 </hibernate-configuration>

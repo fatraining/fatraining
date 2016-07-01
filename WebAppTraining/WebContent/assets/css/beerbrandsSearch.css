@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+h2.serachTitle {
+	font-size: 32px;
+	margin-top: -40px;
+	margin-bottom: 40px;
+	font-family : YuMincho, '游明朝', serif;
+	font-weight: bold;
+	color: white;
+}
+
+#items {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+}
+
+#header{
+	font-family : YuMincho, '游明朝', serif;
+	font-size:42px;
+
+}
+.h3{
+	font-family : YuMincho, '游明朝', serif;
+	color:white;
+}
+.beerbrands{
+	font-family : YuMincho, '游明朝', serif;
+	padding-top:90px;
+}
+.row{
+	font-family : YuMincho, '游明朝', serif;
+	padding-top:20px;
+}
