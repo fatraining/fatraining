@@ -72,7 +72,7 @@ INSERT INTO `aquariumarea` (`id`, `area`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `area` (
-`id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `create_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -99,7 +99,7 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 --
 
 CREATE TABLE IF NOT EXISTS `baseballplayer` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `teamID` int(11) NOT NULL,
   `baseballplayer` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `comment` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
@@ -131,7 +131,7 @@ INSERT INTO `baseballplayer` (`ID`, `teamID`, `baseballplayer`, `comment`, `targ
 --
 
 CREATE TABLE IF NOT EXISTS `baseballteam` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `team` varchar(100) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
 
@@ -153,6 +153,33 @@ INSERT INTO `baseballteam` (`ID`, `team`) VALUES
 (11, '西武'),
 (12, '楽天'),
 (13, 'その他');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `beerbrands`
+--
+
+CREATE TABLE `beerbrands` (
+  `ID` int(11) NOT NULL,
+  `beerbrands` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `categories` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `countryID` int(11) NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- テーブルのデータのダンプ `beerbrands`
+--
+
+INSERT INTO `beerbrands` (`ID`, `beerbrands`, `categories`, `comment`, `countryID`, `country`) VALUES
+(1, 'Guiness', 'Ale', '', 1, NULL),
+(10, 'Mahou', 'Pilsner', '', 11, NULL),
+(11, 'Alhambra', 'Pilsner', '', 11, NULL),
+(12, 'Pils', 'Pilsner', '', 4, NULL),
+(13, 'Helles', 'Lager hell', '', 4, NULL),
+(14, 'ebis', 'Ale', 'aaa', 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,11 +214,43 @@ INSERT INTO `biketeam` (`ID`, `TeamName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `birthplace`
+--
+
+CREATE TABLE `birthplace` (
+  `ID` int(11) NOT NULL,
+  `country` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `birthplace`
+--
+
+INSERT INTO `birthplace` (`ID`, `country`) VALUES
+(1, 'Republic of Ireland'),
+(2, 'London'),
+(3, 'France'),
+(4, 'Germany'),
+(5, 'Italy'),
+(6, 'Belgium'),
+(7, 'United States'),
+(8, 'Brazil'),
+(9, '日本'),
+(10, 'China'),
+(11, 'Spain'),
+(12, 'Mexico'),
+(13, 'Thailand'),
+(14, 'Korea'),
+(15, 'Russia ');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `catarea`
 --
 
 CREATE TABLE IF NOT EXISTS `catarea` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `prefecture` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
@@ -212,7 +271,7 @@ INSERT INTO `catarea` (`ID`, `prefecture`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `catcafe` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `catcafename` varchar(100) COLLATE utf8_bin NOT NULL,
   `prefectureID` int(11) NOT NULL,
   `station` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -269,7 +328,7 @@ INSERT INTO `groupname` (`GroupID`, `GroupName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `guitarinfo` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `guitarMakerId` int(11) NOT NULL,
   `typeName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `price` int(11) NOT NULL,
@@ -316,7 +375,7 @@ INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`,
 --
 
 CREATE TABLE IF NOT EXISTS `guitarmaker` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10 ;
 
@@ -342,7 +401,7 @@ INSERT INTO `guitarmaker` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `iventcontents` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `GroupID` varchar(2) DEFAULT NULL,
   `Category` varchar(20) DEFAULT NULL,
   `IventName` varchar(100) DEFAULT NULL,
@@ -387,7 +446,7 @@ INSERT INTO `iventcontents` (`ID`, `GroupID`, `Category`, `IventName`, `Place`, 
 --
 
 CREATE TABLE IF NOT EXISTS `nail` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `date` char(20) COLLATE utf8_bin NOT NULL,
   `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
   `maincolor` char(20) COLLATE utf8_bin NOT NULL,
@@ -444,7 +503,7 @@ INSERT INTO `operator` (`ID`, `OperatorID`, `OperatorName`, `UserID`, `Date`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `phones` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `OperatorID` char(11) CHARACTER SET latin1 NOT NULL,
   `PhonesName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `Price` int(11) NOT NULL,
@@ -480,7 +539,7 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 --
 
 CREATE TABLE IF NOT EXISTS `player` (
-`playerID` int(11) NOT NULL,
+  `playerID` int(11) NOT NULL,
   `playername` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `teamID` int(11) DEFAULT NULL,
   `position` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -518,7 +577,7 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 --
 
 CREATE TABLE IF NOT EXISTS `restaurant` (
-`id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `stars` smallint(6) DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -547,7 +606,7 @@ INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_d
 --
 
 CREATE TABLE IF NOT EXISTS `rider` (
-`ID` int(10) NOT NULL,
+  `ID` int(10) NOT NULL,
   `Number` int(10) DEFAULT NULL,
   `RiderName` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `TeamID` int(10) DEFAULT NULL,
@@ -594,7 +653,7 @@ INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `B
 --
 
 CREATE TABLE IF NOT EXISTS `sakearea` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `area` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
@@ -617,7 +676,7 @@ INSERT INTO `sakearea` (`id`, `area`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sakeinfo` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `areaId` int(11) NOT NULL,
   `shopName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -673,7 +732,7 @@ INSERT INTO `season` (`KisetuID`, `Kisetu`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sim` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `simService` varchar(20) NOT NULL,
   `charge` float NOT NULL,
   `GB` double(10,1) NOT NULL,
@@ -782,85 +841,97 @@ ALTER TABLE `aquariumarea`
 -- Indexes for table `area`
 --
 ALTER TABLE `area`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `beerbrands`
+--
+ALTER TABLE `beerbrands`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `biketeam`
 --
 ALTER TABLE `biketeam`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `birthplace`
+--
+ALTER TABLE `birthplace`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catarea`
 --
 ALTER TABLE `catarea`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catcafe`
 --
 ALTER TABLE `catcafe`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `groupname`
 --
 ALTER TABLE `groupname`
- ADD PRIMARY KEY (`GroupID`);
+  ADD PRIMARY KEY (`GroupID`);
 
 --
 -- Indexes for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `nail`
 --
 ALTER TABLE `nail`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `phones`
 --
 ALTER TABLE `phones`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
- ADD PRIMARY KEY (`playerID`);
+  ADD PRIMARY KEY (`playerID`);
 
 --
 -- Indexes for table `restaurant`
@@ -872,37 +943,37 @@ ALTER TABLE `restaurant`
 -- Indexes for table `rider`
 --
 ALTER TABLE `rider`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `sakearea`
 --
 ALTER TABLE `sakearea`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sim`
 --
 ALTER TABLE `sim`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `simope`
 --
 ALTER TABLE `simope`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -922,82 +993,92 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `beerbrands`
+--
+ALTER TABLE `beerbrands`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `birthplace`
+--
+ALTER TABLE `birthplace`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `catarea`
 --
 ALTER TABLE `catarea`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `catcafe`
 --
 ALTER TABLE `catcafe`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `nail`
 --
 ALTER TABLE `nail`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
-MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `sakearea`
 --
 ALTER TABLE `sakearea`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- ダンプしたテーブルの制約
 --
@@ -1006,7 +1087,7 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- テーブルの制約 `restaurant`
 --
 ALTER TABLE `restaurant`
-ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
+  ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
