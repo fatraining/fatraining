@@ -16,6 +16,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "kasashima", value = "nailSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "aquariumSearch", value = "aquariumSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoBeerbrandsSearch", value = "beerbrandsSearch.action", type = ServletRedirectResult.class),
 })
 public class MenuAction extends AbstractAction {
@@ -116,7 +117,6 @@ public class MenuAction extends AbstractAction {
 		return "baseballSearch";
 	}
 
-
 	/**
 	 * 萩原
 	 *
@@ -142,6 +142,15 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String guitarSearch() {
 		return "guitarSearch";
+	}
+
+	/**
+	 * 柴田の水族館検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String aquariumSearch() {
+		return "aquariumSearch";
 	}
 
 	/**

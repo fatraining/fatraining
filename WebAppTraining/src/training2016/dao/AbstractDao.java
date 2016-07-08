@@ -138,7 +138,7 @@ public abstract class AbstractDao {
 		}
 		this.commit();
 	}
-	
+
 	/**
 	 * 渡されたモデルに対応するテーブルに、<br>
 	 * 渡された関数型インターフェースにより操作を行う
