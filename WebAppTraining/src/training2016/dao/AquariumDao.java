@@ -185,6 +185,7 @@ public class AquariumDao extends AbstractDao {
 		session.beginTransaction();
 
 		Aquarium a = new Aquarium();
+		//idはオートインクリメントなのでなくて大丈夫
 		a.setAquariumAreaId(Integer.parseInt(aquariumAreaId));
 		a.setName(name);
 		a.setPrice(price);
