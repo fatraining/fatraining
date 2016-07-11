@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+/*=================================
+全体的なスタイル
+==================================*/
+* {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+}
+
+body {
+	font-family: Helvetica , "游ゴシック" , "Yu Gothic" , sans-serif;
+	/*background : radial-gradient(#81BEF7, #CEE3F6); */
+	background-size: 100% auto;
+	/*背景画像横幅100%指定*/
+}
+
+.message {
+	display: none; /*最初は非表示にしておく*/
+	color: #FA5858;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.errorMessage {
+	display: none;
+	color: #FA5858;
+	font-weight:bold;
+	font-size:20px;
+}
+

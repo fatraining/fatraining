@@ -3,11 +3,19 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
+<head>
+<!-- ヘッダー -->
 <jsp:include page="header.jsp" />
-<link rel="stylesheet" type="text/css"
-	href="<s:url value="/assets/css/aquariumSearch.css"/>" />
-<link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css"> <!-- ふるえるcss -->
 
+<!-- css -->
+<link rel="stylesheet" type="text/css"
+	href="<s:url value="/assets/css/aquarium.css"/>" />
+<!-- ふるえるcss -->
+<link rel="stylesheet" type="text/css"
+	href="http://csshake.surge.sh/csshake.min.css">
+
+
+</head>
 
 <body>
 
@@ -25,12 +33,12 @@
 		<br>
 		<div class="text-right">
 			<s:property value="userId" />
-			<%--AquariumSearchAction.javaで生成したuserIdを画面に表示する --%>
+			<!--AquariumSearchAction.javaで生成したuserIdを画面に表示する -->
 			さん
 		</div>
 		<br>
 
-		<%--
+		<!--
  			<div class="form-group">
 				<label for="area" class="col-sm-2 control-label"> エリア: </label>
 				<div class="col-md-8">
@@ -42,7 +50,7 @@
 				</div>
 			</div>
 
---%>
+-->
 		<s:form cssClass="form-horizontal">
 			<div class="form-group">
 				<label for="area" class="col-sm-2 control-label">エリア：</label>
@@ -82,18 +90,20 @@
 						cssClass="btn btn-info btn-block " />
 				</div>
 			</div>
+			<br>
 
 			<div>
-				<div style="color: red; padding-left: 5%">
+				<div class="message">
 					<s:actionerror />
 					<s:property value="message" />
 				</div>
+				<br>
 				<s:if test="%{aquariumTable.size> 0}">
 					<table class="table table-striped table-bordered">
 						<thead>
-							<%-- テーブルヘッダー --%>
+							<!-- テーブルヘッダー -->
 							<tr>
-								<th class="per-12 center">エリア</th>
+								<th>エリア</th>
 								<th>水族館名</th>
 								<th>入場料</th>
 								<th>営業時間</th>
@@ -122,16 +132,19 @@
 				</s:if>
 				<s:if test="%{aquariumTable.size>0}">
 					<div class="text-right">
-					<div class ="shake shake-chunk">
-						<s:submit method="delete" value="削除" cssClass="btn btn-danger" />
-					</div>
+						<div class="shake shake-chunk">
+							<s:submit method="delete" value="削除" cssClass="btn btn-danger" />
+						</div>
 					</div>
 					<br>
 				</s:if>
 			</div>
 		</s:form>
 	</div>
+
+	<!-- javascript -->
 	<script type="text/javascript"
 		src="<s:url value="/assets/js/shibata.js" />"></script>
+
 </body>
 </html>
