@@ -5,9 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- ヘッダー -->
 <jsp:include page="header.jsp" />
+
+<!-- css -->
 <link rel="stylesheet" type="text/css"
-	href="<s:url value="/assets/css/aquariumSearch.css" />" />
+	href="<s:url value="/assets/css/aquarium.css" />" />
+
+<script>
+
+</script>
 </head>
 <body>
 	<div class="container">
@@ -26,8 +34,11 @@
 		</div>
 		<br>
 
-		<s:actionerror />
-		<s:property value="errorMessage" />
+		<div class="errorMessage">
+			<s:actionerror />
+			<s:property value="errorMessage" />
+		</div>
+		<br>
 
 		<s:form class="form-horizontal">
 			<s:hidden name="id"></s:hidden>
@@ -76,7 +87,9 @@
 		</s:form>
 	</div>
 
+	<!-- javascript -->
 	<script type="text/javascript"
 		src="<s:url value="/assets/js/shibata.js" />"></script>
+
 </body>
 </html>

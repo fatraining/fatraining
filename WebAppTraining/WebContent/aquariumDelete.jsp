@@ -5,7 +5,7 @@
 <html>
 <jsp:include page="header.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="<s:url value ="assets/css/aquariumSearch.css"/>" />
+	href="<s:url value ="assets/css/aquarium.css"/>" />
 <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css"> <!-- ふるえるcss -->
 <body>
 	<s:form class="form-horizontal">
@@ -52,10 +52,12 @@
 					</div>
 				</div>
 			</s:if>
-
-
 		</div>
 	</s:form>
+
+	<!-- javascript -->
+	<script type="text/javascript"
+		src="<s:url value="/assets/js/shibata.js" />"></script>
 
 </body>
 </html>
