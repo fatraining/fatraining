@@ -120,7 +120,7 @@
 									<td class="data" width="60"><s:property value="price" /></td>
 									<td class="data" width="150"><s:property value="hours" /></td>
 									<td class="data"><s:property value="comment" /></td>
-									<td><input type="button" name="updateBtn" value="更新"
+									<td><input type="button" name="updateBtn" id = "update" value="更新"
 										class="btn btn-primary" forUpdate="<s:property value ="id"/>" />
 									</td>
 									<td class="data" width="50"><input type="checkbox"

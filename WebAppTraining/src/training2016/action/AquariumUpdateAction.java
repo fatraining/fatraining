@@ -362,6 +362,8 @@ public class AquariumUpdateAction extends AbstractAction {
 	 */
 	public void setPriceMap() {
 		this.priceMap.put("", "");
+		this.priceMap.put("300", "300円");
+		this.priceMap.put("500", "500円");
 		this.priceMap.put("1000", "1000円");
 		this.priceMap.put("1200", "1200円");
 		this.priceMap.put("1400", "1400円");
