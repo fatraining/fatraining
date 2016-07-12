@@ -15,6 +15,7 @@ body {
 	/*背景画像横幅100%指定*/
 }
 
+/*メッセージ*/
 .message {
 	display: none; /*最初は非表示にしておく*/
 	color: #FA5858;
@@ -22,6 +23,7 @@ body {
 	font-size: 20px;
 }
 
+/*エラーメッセージ*/
 .errorMessage {
 	display: none;
 	color: #FA5858;

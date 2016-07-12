@@ -123,7 +123,7 @@ public class AquariumDao extends AbstractDao {
 		String where2 = "AND a.id in (";    //ANDが抜けてた
 		for (int i = 0; i < deleteId.length; i++) {
 			if (i > 0) {
-				where2 += " , ";
+				where2 += " , ";   //2個目からカンマ区切りにするｓ
 			}
 			where2 += deleteId[i];
 		}

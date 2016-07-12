@@ -3,10 +3,15 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- ヘッダー -->
 <jsp:include page="header.jsp" />
+
+<!-- CSS -->
 <link rel="stylesheet" type="text/css"
 	href="<s:url value ="assets/css/aquarium.css"/>" />
-<link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css"> <!-- ふるえるcss -->
+<!-- ふるえるcss -->
+<link rel="stylesheet" type="text/css"
+	href="http://csshake.surge.sh/csshake.min.css">
 <body>
 	<s:form class="form-horizontal">
 		<div class="container">
@@ -22,7 +27,7 @@
 				<br>
 			</div>
 
-  			<s:if test="%{aquariumTable.size!=0}">
+			<s:if test="%{aquariumTable.size!=0}">
 				<div>
 					<table class="table table-striped table-bordered">
 						<thead>
@@ -47,8 +52,10 @@
 						</tbody>
 					</table>
 					<!-- マウスポインタがのったら落ち着く -->
-					<div class = "shake shake-vertical-slow shake-constant shake-constant--hover">
-					<s:submit method="delete" value="ほんとに消しちゃうからね" class ="btn btn-primary" />
+					<div
+						class="shake shake-vertical-slow shake-constant shake-constant--hover">
+						<s:submit method="delete" value="ほんとに消しちゃうからね"
+							class="btn btn-primary" />
 					</div>
 				</div>
 			</s:if>
