@@ -310,7 +310,7 @@ public class AquariumUpdateAction extends AbstractAction {
 	 * コメントを返す
 	 * @return comment セットする comment
 	 */
-	public String gegtComment() {
+	public String getComment() {
 		return this.comment;
 	}
 
