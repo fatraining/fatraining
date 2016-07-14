@@ -180,7 +180,7 @@ public class AquariumUpdateAction extends AbstractAction {
 					   this.price,
 					   this.hours,
 					   this.comment);
-			this.message = "登録しました";
+			this.message = "追加しました";
 			this.sessionMap.put("message", this.message);
 		}
 
