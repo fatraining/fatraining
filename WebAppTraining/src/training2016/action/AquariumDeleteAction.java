@@ -82,7 +82,7 @@ public class AquariumDeleteAction extends AbstractAction {
 		this.delete = (String) this.sessionMap.get("deleteId");
 		AquariumDao dao = new AquariumDao();
 		dao.delete(this.delete);
-		this.message = "削除が完了しました";
+		this.message = "削除しました";
 		this.sessionMap.put("message", this.message);
 		return "aquariumSearch";
 	}
