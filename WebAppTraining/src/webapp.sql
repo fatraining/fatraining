@@ -18,7 +18,101 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `webapp`
+
+-- --------------------------------------------------------
+
 --
+-- テーブルの構造 `ths`
+--
+
+CREATE TABLE `ths` (
+  `id` int(11) NOT NULL,
+  `thssubjectID` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `level` varchar(10) DEFAULT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `subject` varchar(10) DEFAULT NULL,
+  `link` varchar(5000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `ths`
+--
+
+INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
+(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
+(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
+(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
+(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
+(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
+(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
+(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ths`
+--
+ALTER TABLE `ths`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ths`
+--
+ALTER TABLE `ths`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+
+--
+-- Database: `webapp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `thssubject`
+--
+
+CREATE TABLE `thssubject` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `thssubject`
+--
+
+INSERT INTO `thssubject` (`id`, `subject`) VALUES
+(1, '英語'),
+(2, '数学'),
+(3, '国語');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 -- --------------------------------------------------------
 
@@ -829,97 +923,6 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 (14, 'FC東京U-23'),
 (15, 'ガンバ大阪U-23'),
 (16, 'セレッソ大阪U-23');
-1111
-
---
--- テーブルの構造 `sneakers`
---
-
-CREATE TABLE `sneakers` (
-  `id` int(11) NOT NULL,
-  `sneakersMakerId` int(11) DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `series` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `sneakers`
---
-
-INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comment`, `maker`, `image`) VALUES
-(1, 1, 'AIR HUARACHE', 'NIKE / AIR HUARACHE', 1991, '近年復刻し再び大流行。HUARACHEの語源はメキシコの履物"ハラッチ"から。', 'NIKE', 'assets/images/temp/air_huarache.jpg'),
-(2, 2, 'DISC BLAZE', 'PUMA / DISC (TRINOMIC)', 1992, 'アッパーのディスクを回転させることでフィッティング。ハイテクスニーカーブームを牽引。', 'PUMA', 'assets/images/temp/disc_blaze.jpg'),
-(3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
-(4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
-(5, 1, 'AIR MAX 1', 'NIKE / AIR MAX', 1987, '記念すべきAIR MAXシリーズ第1号。ハイテクスニーカー時代の幕開け。', NULL, 'assets/images/temp/air_max1.jpg'),
-(6, 2, 'suede classic', '-', 1968, 'PUMA不朽の名作。1足以上持っておきたいクラシックスニーカー。', NULL, 'assets/images/temp/puma_suede.jpg'),
-(7, 3, 'STAN SMITH', '-', 1973, '世界一売れたスニーカー。名前は同名テニスプレーヤーに由来。', NULL, 'assets/images/temp/stan_smith.jpg'),
-(8, 1, 'AIR MAX 90', 'NIKE / AIR MAX', 1990, 'AIR MAXといったらこのモデルをイメージする人も多いはず。シリーズの代表作。', NULL, 'assets/images/temp/air_max90.jpg'),
-(9, 5, 'ERA', '-', 1975, 'VANSの名作。スケーター向けのクラシックスニーカー。', NULL, 'assets/images/temp/era.jpg'),
-(10, 1, 'AIR MAX 95', 'NIKE / AIR MAX', 1995, 'AIR MAXシリーズの中で根強い人気を誇る。', NULL, 'assets/images/temp/air_max95.jpg'),
-(11, 7, 'ALL STAR Hi', 'CONVERSE / ALL STAR', 1917, '1917年発売。スニーカーの歴史はここから始まった。', NULL, 'assets/images/temp/allstar_hi.jpg'),
-(12, 6, 'M996', '-', 1989, '歩き易い、履き易い、合わせ易い三拍子揃った美しいスニーカー。', NULL, 'assets/images/temp/nb_m996.jpg'),
-(13, 7, 'ALL STAR OX', 'CONVERSE / ALL STAR', 1957, 'ALL STARのローカットモデル。CONVERSEといえばこれと言えるほど色褪せない名スニーカー。', NULL, 'assets/images/temp/allstar_ox.jpg'),
-(14, 1, 'AIR FORCE 1', 'NIKE / AIR FORCE', 1982, 'スニーカーの王様。', NULL, 'assets/images/temp/airforce_1.jpg'),
-(15, 1, 'CORTEZ', '-', 1972, 'NIKEのクラシックランニングシューズ。ナイロン製やレザー製などがある。読み方は「コルテッツ」', NULL, 'assets/images/temp/cortez.jpg'),
-(16, 3, 'SUPERSTAR', '-', 1969, '「RUN DMC」が愛用。これを紐無しで履いている奴はかなりコアなHIPHOPファン。', NULL, 'assets/images/temp/superstar.jpg'),
-(17, 5, 'OLD SKOOL', '-', 1978, '元はBMXライダーの為に作られたがスケーターから支持を集める。', NULL, 'assets/images/temp/oldskool.jpg'),
-(18, 1, 'AIR HUARACHE LIGHT', 'NIKE / AIR HUARACHE', 1993, 'アッパー部分の網目が特徴。初代ハラチに劣らない人気作。', NULL, 'assets/images/temp/air_huarache_light.jpg'),
-(19, 8, 'GEL-LYTE Ⅲ', 'ASICS / GEL', 1990, '国内最高メーカー"ASICS"の名作。海外からも高い評価。', NULL, 'assets/images/temp/gel_lyte3.jpg'),
-(20, 4, 'VENTILATOR', '-', 1990, '機能性とデザイン性を兼ね備えたReebokのランニングシューズ。', NULL, 'assets/images/temp/ventilator.jpg'),
-(21, 3, 'CAMPUS', '-', 1983, '「ビースティ・ボーイズ」が愛用したことで有名なadidasのローテクスニーカー。', NULL, 'assets/images/temp/campus.jpg'),
-(22, 1, 'AIR ZOOM FRIGHT 96', 'NIKE / AIR ZOOM (FRIGHT)', 1996, '96年発売のハイテクバスケットボールシューズ。', NULL, 'assets/images/temp/air_zoom_fright.jpg'),
-(23, 1, 'AIR MORE UPTEMPO', 'NIKE / AIR', 1996, 'サイドの「AIR」ロゴのインパクトが絶大。新作発売日に抽選でも買えないほどの人気作。', NULL, 'assets/images/temp/air_more_uptempo.jpg'),
-(24, 1, 'AIR MAX 93', 'NIKE / AIR MAX (HUARACHE)', 1993, 'AIR MAXシリーズの93年モデル。270度のビジブルエアとハラチシステムが特徴。', NULL, 'assets/images/temp/air_max93.jpg'),
-(25, 3, 'ZX500', 'adidas / ZX', 1984, 'adidasZXシリーズの第1号。当時のランニングシューズ界を牽引。', NULL, 'assets/images/temp/zx500.jpg'),
-(26, 5, 'authentic', '-', 1966, 'VANS設立時に誕生。後のVANSの名作「ERA」の前身。ERAとの違いは履き口のパット部分。', NULL, 'assets/images/temp/authentic.jpg'),
-(27, 3, 'ZX700', 'adidas / ZX', 1985, 'ZXシリーズの隠れた人気作。', NULL, 'assets/images/temp/zx700.jpg'),
-(28, 6, 'M1400', '-', 1994, 'NBの最高傑作。元々高価格だがメイドインUSAだと更に高値。', NULL, 'assets/images/temp/nb_m1400.jpg\r\n'),
-(29, 4, 'PUMP GRAPHLITE', 'Reebok / PUMP', 1992, '「INSTA PUNP FURY」のシューレース版。色鮮やかな配色が特徴。', NULL, 'assets/images/temp/pump_graphlite.jpg'),
-(30, 3, 'GAZELLE	', '-', 1968, '細身のシルエットが特徴のadidasのクラシックスニーカー。読み方は「ガッツレー」', NULL, 'assets/images/temp/gazelle.jpg'),
-(31, 2, 'R698	', 'PUMA / TRINOMIC', 1990, 'PUMAのクッションシステム「TRINOMIC」を搭載した。ミッドテクランニングシューズ。', NULL, 'assets/images/temp/r698.jpg'),
-(42, 3, 'TORSION ALLEGRA', 'adidas / EQUIPMENT (TORSION)', 1992, 'adidasのクッション技術「TORSION」搭載。発売当時ランニングシューズにしてはデザインが近未来的と話題に。', NULL, 'assets/images/temp/torsion_allegra.jpg'),
-(43, 5, 'SLIP ON', '-', 1979, '「靴紐なしで脱ぎ履きできる靴＝スリッポン」というように代名詞化しているがそのオリジナルモデルは79年にVANSが発売したこの「SLIP ON」', NULL, 'assets/images/temp/slipon.jpg');
-
---
--- テーブルの構造 `sneakersmaker`
---
-
-CREATE TABLE `sneakersmaker` (
-  `id` int(11) NOT NULL,
-  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `sneakersmaker`
---
-
-INSERT INTO `sneakersmaker` (`id`, `maker`) VALUES
-(1, 'NIKE'),
-(2, 'PUMA'),
-(3, 'adidas'),
-(4, 'Reebok'),
-(5, 'VANS'),
-(6, 'NEW BALANCE'),
-(7, 'CONVERSE'),
-(8, 'ASICS(ASICS Tiger)');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sneakersmaker`
---
-ALTER TABLE `sneakersmaker`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`),
-  ADD KEY `id_3` (`id`);
 
 --
 -- Indexes for dumped tables
@@ -1075,15 +1078,6 @@ ALTER TABLE `simope`
 ALTER TABLE `team`
  ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `sneakers`
---
-ALTER TABLE `sneakers`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
 
 --
 -- AUTO_INCREMENT for table `aquarium`
@@ -1185,16 +1179,6 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 ALTER TABLE `sim`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `sneakers`
---
-ALTER TABLE `sneakers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT for table `sneakersmaker`
---
-ALTER TABLE `sneakersmaker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 -- ダンプしたテーブルの制約
 --
