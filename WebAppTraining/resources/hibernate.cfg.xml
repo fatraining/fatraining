@@ -66,6 +66,11 @@
 		<mapping class="training2016.model.AquariumArea" />
 		<mapping class="training2016.model.Birthplace" />
 		<mapping class="training2016.model.Beerbrands" />
+		<mapping class="training2016.model.Sneakers" />
+		<mapping class="training2016.model.SneakersMaker" />
+
+
+
 	</session-factory>
 
 </hibernate-configuration>
