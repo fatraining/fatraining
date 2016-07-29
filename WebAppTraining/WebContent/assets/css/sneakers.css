@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+/*-- 全体的なスタイル --*/
+* {font-family: "SimHei" , monospace;
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+}
+
+html{
+	 background-image: url("../images/temp/af1.jpg");
+}
+
+
+body {
+	background-color: rgba(51,255,255,0.1);
+
+}
+
+
+
+/*メッセージ*/
+.message {
+	display:none; /*最初は非表示*/
+	color: #FF0000;
+	font-weight: bolder;
+	font-size: 60px;
+}
+
+/*エラーメッセージ*/
+.errorMessage {
+	display:none;  /*最初は非表示*/
+	color: #FF0000;
+	font-weight:bolder;
+	font-size:40px;
+}
+
+
+/*タイトル*/
+h2{
+font-size:60px;
+color: white;
+background-color: #006699;
+}
+
+
+
+#btn {
+  /* ボタンの文字 */
+  font: bold 20px/1.7 "SimHei" , monospace;
+  color: #FFF;
+  text-decoration: none;
+
+  /* ボタンのレイアウト */
+  position:relative;
+  top: 45px;
+  left: 30px;
+  padding: 10px 20px;
+  background-color: #F00;
+
+  /* ボックスシャドウ */
+  box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+  -webkit-box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+  -moz-box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+
+  /* 角を丸くする */
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+
+  /* 変化に推移を与える */
+  transition: background-color 0.5s ease-in-out;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out;
+}
+
+#btn:hover {
+  /* マウスオーバーの状態 */
+  cursor: pointer;
+  background-color: #FD4;
+}
+
