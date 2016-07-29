@@ -28,18 +28,19 @@ public class AquariumSearchAction extends AbstractAction {
 	private String title = "水族館検索";
 
 	/**ブラウザからの入力項目*/
+
 	/*エリア*/
-
 	private String area;
+
 	/*水族館名*/
-
 	private String name;
-	/*入場料*/
 
+	/*入場料*/
 	private String price;
 
 	/*削除ID*/
 	private String delete;
+
 	/*更新ID*/
 	private String updateId;
 
