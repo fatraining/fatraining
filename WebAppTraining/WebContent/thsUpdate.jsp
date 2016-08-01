@@ -53,7 +53,7 @@
 						<p>
 							(残り: <span class="charsLeft1"></span>文字)
 						</p>
-						</p>
+
 						<s:textfield name="name" cssClass="form-control limited1"
 							maxlength="20" placeholder="講師名を入力" />
 						<p class="help-block">※漢字（20字以内）で入力してください。</p>
