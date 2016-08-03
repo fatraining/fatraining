@@ -18,7 +18,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "aquariumSearch", value = "aquariumSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoBeerbrandsSearch", value = "beerbrandsSearch.action", type = ServletRedirectResult.class),
-	@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class)
+	@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "sneakersSearch", value = "sneakersSearch.action", type = ServletRedirectResult.class),
 })
 public class MenuAction extends AbstractAction {
