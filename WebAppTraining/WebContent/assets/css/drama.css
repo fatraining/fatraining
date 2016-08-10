@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+/* 基本設定 */
+body {
+	font-family: 'arial black';
+	color: #99CCFF;
+	background-color: #000033;
+}
+
+
+/* 雪を降らせる */
+.snow {
+	position: fixed;
+	top: -5%;
+	/*　雪の大きさ　*/
+	font-size: 20px;
+	/* 雪の色 */
+	color: #FFFFFF;
+	/* 雪 */
+	text-shadow: 5vw -200px 0, 10vw -400px 0, 20vw -500px 0, 30vw -580px 0,
+		39vw -250px 0, 42vw -340px 0, 56vw -150px 0, 63vw -180px 0, 78vw
+		-220px 0, 86vw -320px 0, 94vw -170px 0;
+	animation: anim 5s linear infinite;
+}
+@keyframes anim { 100%{
+	top: 150%;
+	color: transparent;
+}
+
+}
+
+/* 画像を縮小して表示 */
+#sample12 p a {
+	background: url(../images/temp/yonsama.png);
+    background-size: cover;
+	width: 250px;
+	height: 180px;
+	display: block;
+	no-repeat
+	0
+	0;
+}
+
+img {
+	width: 250px;
+	height: 180px;
+}
+
+
+
+
+
+
+#button {
+	font-weight: bold;
+	font-size: 20px;
+	color: #000033;
+	width: 240px;
+	height: 50px;
+	margin: 40px 0;
+	background-color: #99CCFF;
+	border-style: none;
+	font-family: 'arial black';
+}
+
+#button:hover {
+	background-color: #33CCFF;
+}
+
+#block01 {
+	float: left;
+}
+
+#block02 {
+	float: left;
+	padding: 0 25px;
+}
+
+#block03 {
+	float: left;
+}
+
+#update {
+	color: #00CCFF;
+	background-color: #000033;
+	border-radius: 0px;
+}
+
+#delete {
+	color: #00CCFF;
+	background-color: #000033;
+	border-radius: 0px;
+}
+
+table {
+	font-family: 'MS Sans Serif';
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+}
+
+thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036; tbody th { padding : 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+td {
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+}
+.errorMessage {
+	display: none; /*最初は非表示にしておく*/
+	color: #FA5858;
+	font-weight: bold;
+	font-size: 20px;
+}
