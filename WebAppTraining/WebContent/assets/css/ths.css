@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+/*=================================
+全体的なスタイル
+==================================*/
+* {
+	font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro",
+		"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO",
+		"HGMaruGothicMPRO";
+}
+
+div.center-block {
+	margin-right: 50px;
+	text-align: right
+}
+
+body {
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url("../images/toshin.jpg");
+}
+
+.back {
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+h2{
+	margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:5px 0;
+	border-color: #15bef9;
+	border-style:solid;
+	background:#005bf0;
+	color:#ffffff;
+	line-height:140%;
+	font-weight:bold;
+	text-align:center;
+}
+
+p {
+	font-size:small
+}
+
+.form-group {
+	font-size:large
+}
+table tbody tr:hover {
+	background: #b7ffe8;
+	cursor: pointer;
+
+}
