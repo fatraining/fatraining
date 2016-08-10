@@ -21,6 +21,89 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+--
+-- テーブルの構造 `dramagenre`
+--
+
+CREATE TABLE `dramagenre` (
+  `id` int(11) DEFAULT NULL,
+  `genre` varchar(20) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `dramagenre`
+--
+
+INSERT INTO `dramagenre` (`id`, `genre`) VALUES
+(1, 'ラブコメ'),
+(2, '正統派ラブストーリー'),
+(3, 'サスペンス'),
+(4, 'ドロドロ'),
+(5, '復讐劇'),
+(6, 'ヒューマンドラマ'),
+(7, '時代劇');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- テーブルの構造 `drama`
+--
+
+CREATE TABLE `drama` (
+  `id` int(11) NOT NULL,
+  `dramaGenreId` int(11) DEFAULT NULL,
+  `name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `cast` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `tvStation` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `genre` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `drama`
+--
+
+INSERT INTO `drama` (`id`, `dramaGenreId`, `name`, `cast`, `tvStation`, `comment`, `genre`) VALUES
+(1, 2, '冬のソナタ', 'ペ・ヨンジュン', 'KBS', '日本での韓流ブームの火付け役!', NULL),
+(2, 1, '宮～love in palace～', 'ユン・ウネ', 'MBC', 'ラブコメの女王、ウネちゃん主演！現代版王宮ラブスーリー', NULL),
+(3, 3, 'IRIS-アイリス-', 'イ・ビョンホン', 'KBS', '我らがBIGBANGのTOPさんも出演！', NULL),
+(4, 1, '華麗なる遺産', 'イ・スンギ', 'SBS', '韓国ドラマのあるある詰まってます', NULL),
+(5, 4, '天国の階段', 'チェ・ジウ', 'SBS', 'ド定番記憶喪失と血のつながらない兄', NULL),
+(6, 7, 'トンイ', 'ハン・ヒョジュ', 'MBC', '歴史なんてわからなくても韓国ドラマは楽しめる', NULL),
+(7, 5, 'ミス・リプリー', 'パク・ユチョン', 'MBC', 'シリアスな演技のユチョンも素敵', NULL),
+(8, 6, '製パン王 キム・タック', 'ユン・シユン', 'KBS', '瞬間最高視聴率58％、どんだけテレビ見てるん韓国民', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `drama`
+--
+ALTER TABLE `drama`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `drama`
+--
+ALTER TABLE `drama`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+
 ----
 -- テーブルの構造 `sneakersmaker`
 --
