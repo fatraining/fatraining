@@ -18,6 +18,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "aquariumSearch", value = "aquariumSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "gotoBeerbrandsSearch", value = "beerbrandsSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "dramaSearch", value = "dramaSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "sneakersSearch", value = "sneakersSearch.action", type = ServletRedirectResult.class),
 })
@@ -164,6 +165,17 @@ public class MenuAction extends AbstractAction {
 		return "gotoBeerbrandsSearch";
 	}
 
+
+	/**
+	 * 菅原の韓国ドラマ検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String dramaSearch() {
+		return "dramaSearch";
+	}
+
+
 	/**
 	 * 藤川の講師検索へ遷移する
 	 *
@@ -180,6 +192,7 @@ public class MenuAction extends AbstractAction {
 	public String sneakersSearch() {
 		return "sneakersSearch";
 	}
+
 
 
 
