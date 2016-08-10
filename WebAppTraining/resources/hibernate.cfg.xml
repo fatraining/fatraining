@@ -66,11 +66,12 @@
 		<mapping class="training2016.model.AquariumArea" />
 		<mapping class="training2016.model.Birthplace" />
 		<mapping class="training2016.model.Beerbrands" />
+		<mapping class="training2016.model.Drama" />
+		<mapping class="training2016.model.DramaGenre" />
 		<mapping class="training2016.model.Ths" />
 		<mapping class="training2016.model.ThsSubject" />
 		<mapping class="training2016.model.Sneakers" />
 		<mapping class="training2016.model.SneakersMaker" />
-
 
 
 	</session-factory>
