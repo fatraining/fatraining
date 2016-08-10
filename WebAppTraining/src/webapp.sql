@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
+----
 -- テーブルの構造 `sneakersmaker`
 --
 
@@ -1044,7 +1044,7 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 (15, 'ガンバ大阪U-23'),
 (16, 'セレッソ大阪U-23');
 
---
+----
 -- Indexes for dumped tables
 --
 
