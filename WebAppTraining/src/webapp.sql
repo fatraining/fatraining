@@ -3,9 +3,19 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 8 朁E30 日 09:43
+<<<<<<< .mine
+
+-- Generation Time: 2016 年 8 朁E30 日 08:37
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
+
+-- Generation Time: 2016 年 8 朁E30 日 07:51
+=======
+-- Generation Time: 2016 年 8 朁E30 日 09:43
+
+-- サーバのバージョン： 10.1.13-MariaDB
+-- PHP Version: 5.6.23
+>>>>>>> .r1228
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,6 +24,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+<<<<<<< .mine
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -23,6 +34,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+=======
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `webapp`
+--
+
+-- --------------------------------------------------------
+
+--
+>>>>>>> .r1228
 -- テーブルの構造 `aquarium`
 --
 
@@ -1079,6 +1101,110 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 (15, 'ガンバ大阪U-23'),
 (16, 'セレッソ大阪U-23');
 
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `ths`
+--
+
+CREATE TABLE `ths` (
+  `id` int(11) NOT NULL,
+  `thssubjectID` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `level` varchar(10) DEFAULT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `subject` varchar(10) DEFAULT NULL,
+  `link` varchar(5000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `ths`
+--
+
+INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
+(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
+(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
+(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
+(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
+(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
+(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
+(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `thssubject`
+--
+
+CREATE TABLE `thssubject` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `thssubject`
+--
+
+INSERT INTO `thssubject` (`id`, `subject`) VALUES
+(1, '英語'),
+(2, '数学'),
+(3, '国語');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `yokai`
+--
+
+CREATE TABLE `yokai` (
+  `id` int(11) NOT NULL,
+  `yokaifromId` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(300) COLLATE utf8_bin DEFAULT NULL,
+  `link` varchar(300) COLLATE utf8_bin DEFAULT NULL,
+  `yokaifrom` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `yokai`
+--
+
+INSERT INTO `yokai` (`id`, `yokaifromId`, `name`, `type`, `comment`, `link`, `yokaifrom`) VALUES
+(1, 1, '鬼太郎', '無害', 'ゲゲゲの鬼太郎', NULL, NULL),
+(2, 1, '鬼太郎', '無害', 'かつて地上を支配していた幽霊族の唯一の末裔（原作「地獄篇」とアニメ第3作地獄篇のみ、幽霊族の父と人間の母との混血）。\r\n\r\n幽霊族とは人間が一般に考えている幽霊（人間の死霊）ではなく、人類誕生以前に栄えていた種族であり、糧を求めて地上をさまよう姿を目撃した人間が幽霊と誤認した。争いを好まない性格でそれ故に人類が発生、繁殖すると共に迫害され森の奥へ、次いで地下へと追いやられ衰退していった。「続ゲゲゲの鬼太郎」の目玉おやじの話によると、紀元前3800年頃には鬼太郎父子の先祖は幽霊族の帝位に就いていたという。\r', 'https://www.bing.com/images/search?q=%e9%ac%bc%e5%a4%aa%e9%83%8e&view=detailv2&&id=2A1D93261224761651AB5458CF651D8FD4BDDFAC&selectedIndex=16&ccid=YZ1rBimt&simid=608042236381563449&thid=OIP.M619d6b0629adc14c578d0f341b22dcc1o0&ajaxhist=0', NULL),
+(3, 1, '猫娘', '無害', '普段は人間の少女の姿だが、ネズミ（ねずみ男を含む）や魚を見たり怒ったりして興奮すると、眼が金色に染まり、裂けた口に鋭い牙をむきだした猫の形相になる。魚、鰹節、ネズミが大好物[1]。鬼太郎・目玉おやじ・ねずみ男同様に、水木しげるが創作したキャラクターでありつつ妖怪としても認知されている。鬼太郎にしおらしい恋心を抱いている。アニメ第5作から「ゲゲゲの鬼太郎」と「ビビビのねずみ男」に対して「ニャニャニャのネコ娘」という通称ができた。', 'https://www.bing.com/images/search?q=%e7%8c%ab%e5%a8%98&view=detailv2&&id=66BDDDF7506BAE5AEEE881BBB84269FDBD95661F&selectedIndex=22&ccid=14Xq34lH&simid=608009311151456707&thid=OIP.Md785eadf89472c326d664a43d5f60657o0&ajaxhist=0', NULL),
+(4, 1, 'オカリナ', '無害', 'すごくブサイク', 'https://www.bing.com/images/search?q=%E3%82%AA%E3%82%AB%E3%83%AA%E3%83%8A%20%E8%8A%B8%E4%BA%BA&qs=AS&form=QBIR&pq=%E3%82%AA%E3%82%AB%E3%83%AA%E3%83%8A&sc=8-4&sp=1&sk=', NULL),
+(5, 2, 'バックベアード', '危険', '西洋妖怪の総大将。アメリカの妖怪で、黒い球体に巨大な一つ目と多数の触手を備えた姿をしている。その巨大な目を見るだけで強力な催眠術にかかり、ベアードの言いなりになってしまう。他にも、目眩を引き起こしたり、強烈な眼光で目を眩ませたり、', 'https://www.bing.com/images/search?q=%E3%83%90%E3%83%83%E3%82%AF%E3%83%99%E3%82%A2%E3%83%BC%E3%83%89&qs=n&form=QBIDMH&pq=%E3%83%90%E3%83%83%E3%82%AF%E3%83%99%E3%82%A2%E3%83%BC%E3%83%89&sc=8-7&sp=-1&sk=', NULL),
+(6, 2, 'ゾンビ', '危険', '　一般的なゾンビは、上記の通り動きが緩慢だが、大抵の場合、個体数が非常に多く、上記のように凶暴化しているため、生者を見付けると群れをなして襲い掛かる。ただし、知性を備えた個体は少なく、大体は原始的かつ物理的な方法で、生者を追いかける。 \r\n 　嗅覚に関しては、自分たちの腐敗臭のために機能していないことが多いが、視覚や聴覚は生きている可能性が高く、音や光が原因で近寄ってきたり、音や光を発する道具で気を散らすことが出来るケースも多い。 ', 'https://www.bing.com/images/search?q=%E3%82%BE%E3%83%B3%E3%83%93&qs=n&form=QBIR&pq=%E3%82%BE%E3%83%B3%E3%83%93&sc=8-3&sp=-1&sk=', NULL),
+(7, 3, 'ドラゴン', '危険', 'ドラゴンは鱗に覆われた爬虫類を思わせる体、鋭い爪と牙を具え、しばしば口や鼻から炎や毒の息を吐く[8][9]。典型的なドラゴンは有翼で空を飛ぶことができるが、地を這う大蛇（サーペント）のような怪物もドラゴンに分類され、とくにゲルマン系の伝説ではしばしば地下の洞穴をすみかとしている。体色は緑色、黄金色、真紅、漆黒、濃青色[† 3]、白色[† 4]などさまざまである[10][† 5]。ドラゴンは炎を吐き、蛇の尾、鳥の翼と魚の鱗を有するハイブリッドな動物であり、四大元素を体現する存在でもあった。', 'https://www.bing.com/images/search?q=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3&qs=n&form=QBIR&pq=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3&sc=8-4&sp=-1&sk=', NULL),
+(8, 4, 'キョンシー', '無害', 'もともと中国においては、人が死んで埋葬する前に室内に安置しておくと、夜になって突然動きだし、人を驚かすことがあると昔から言われていた。それが僵尸（殭屍）である。「僵」という漢字は死体（＝尸）が硬直すると言う意味で、動いても、人に知られたり、何かの拍子ですぐまた元のように体がこわばることから名付けられた[1]。', 'https://www.bing.com/images/search?q=%E3%82%AD%E3%83%A7%E3%83%B3%E3%82%B7%E3%83%BC&qs=n&form=QBIR&pq=%E3%82%AD%E3%83%A7%E3%83%B3%E3%82%B7%E3%83%BC&sc=8-5&sp=-1&sk=', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `yokaifrom`
+--
+
+CREATE TABLE `yokaifrom` (
+  `id` int(10) NOT NULL,
+  `yokaifrom` varchar(20) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `yokaifrom`
+--
+
+INSERT INTO `yokaifrom` (`id`, `yokaifrom`) VALUES
+(1, '日本'),
+(2, 'アメリカ'),
+(3, 'ヨーロッパ'),
+(4, 'その他');
+
+--
+=======
 -- --------------------------------------------------------
 
 --
@@ -1268,6 +1394,7 @@ INSERT INTO `thssubject` (`id`, `subject`) VALUES
 (3, '国語');
 
 --
+
 -- Indexes for dumped tables
 --
 
@@ -1371,6 +1498,9 @@ ALTER TABLE `iventcontents`
 -- Indexes for table `nail`
 --
 ALTER TABLE `nail`
+
+  ADD PRIMARY KEY (`ID`);
+
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -1480,6 +1610,27 @@ ALTER TABLE `thssubject`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `yokai`
+--
+ALTER TABLE `yokai`
+  ADD PRIMARY KEY (`id`);
+
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `ths`
+--
+ALTER TABLE `ths`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  ADD PRIMARY KEY (`id`);
+
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1487,6 +1638,9 @@ ALTER TABLE `thssubject`
 -- AUTO_INCREMENT for table `aquarium`
 --
 ALTER TABLE `aquarium`
+
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `aquariumarea`
@@ -1557,6 +1711,9 @@ ALTER TABLE `iventcontents`
 -- AUTO_INCREMENT for table `nail`
 --
 ALTER TABLE `nail`
+
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `onsen`
@@ -1602,6 +1759,35 @@ ALTER TABLE `ship`
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
+
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `sneakers`
+--
+ALTER TABLE `sneakers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `sneakersmaker`
+--
+ALTER TABLE `sneakersmaker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `ths`
+--
+ALTER TABLE `ths`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `yokai`
+--
+ALTER TABLE `yokai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `sneakers`
@@ -1624,6 +1810,7 @@ ALTER TABLE `ths`
 ALTER TABLE `thssubject`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+
 -- ダンプしたテーブルの制約
 --
 

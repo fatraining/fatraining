@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+/*=================================
+全体的なスタイル
+==================================*/
+/**/
+
+/*divの設定*/
+div.center-block {
+	margin-right: 50px;
+	text-align: right
+}
+
+/*bodyの設定（背景画像）*/
+body {
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url("../images/temp/yokai.jpg");
+}
+
+/*.bodyの設定（背景画像前のぼかし）*/
+.back {
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+/*h2の設定（帯の設定）*/
+h2{
+margin:0 0 10px 0;
+	padding:2px 8px;
+	border-width:5px 0;
+	border-color: #CC0033;
+	border-style:solid;
+	background:#BA55D3;
+	color:#ffffff;
+	line-height:140%;
+	font-weight:bold;
+	text-align:center;
+
+}
+/*ｐの設定*/
+p {
+	font-size:small
+}
+/*.form-groupの設定*/
+.form-group {
+	font-size:large
+}
+/*tableの設定（カーソルが乗ると色が変わる）*/
+table tbody tr:hover {
+	background: #b7ffe8;
+	cursor: pointer;
+
+}
