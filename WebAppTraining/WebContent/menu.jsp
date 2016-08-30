@@ -97,6 +97,7 @@
 					<s:submit method="dramaSearch" value="韓国ドラマ検索"
 						cssClass="btn btn-warning" />
 				</div>
+
 			</div>
 
 
@@ -123,6 +124,15 @@
 			<div class="col-sm-offset-2 col-sm-10">
 				<s:submit method="maiwaifuSearch" value="お嫁さん探し" cssClass="btn btn-warning" />
 			</div>
+
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="yokaiSearch" value="妖怪を探せ" cssClass="btn btn-warning" />
+				</div>
+
+			</div>
+
 
 		</s:form>
 	</div>
