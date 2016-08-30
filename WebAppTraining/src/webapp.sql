@@ -3,19 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< .mine
-
--- Generation Time: 2016 年 8 朁E30 日 08:37
+-- Generation Time: 2016 年 8 朁E30 日 10:18
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
-
--- Generation Time: 2016 年 8 朁E30 日 07:51
-=======
--- Generation Time: 2016 年 8 朁E30 日 09:43
-
--- サーバのバージョン： 10.1.13-MariaDB
--- PHP Version: 5.6.23
->>>>>>> .r1228
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -24,7 +14,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-<<<<<<< .mine
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -34,17 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
-=======
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `webapp`
---
-
--- --------------------------------------------------------
-
---
->>>>>>> .r1228
 -- テーブルの構造 `aquarium`
 --
 
@@ -70,8 +48,7 @@ INSERT INTO `aquarium` (`id`, `aquariumAreaId`, `name`, `price`, `hours`, `comme
 (23, 1, '魚人島', 1400, '00：00～24：00', 'ぎょじんだらけ', NULL),
 (27, 6, 'グンマー帝国水族館', 1000, '10：00～21：00', 'ぐんまのやぼう', NULL),
 (28, 4, 'さいたま水族館', 300, '9：30～17：00', 'さいたま市は、3画目が離れた「さ」を許さない。', NULL),
-(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL),
-(30, 1, 'あ', 500, 'あ', 'あ', NULL);
+(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL);
 
 -- --------------------------------------------------------
 
@@ -548,6 +525,23 @@ INSERT INTO `iventcontents` (`ID`, `GroupID`, `Category`, `IventName`, `Place`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `maiwaifu`
+--
+
+CREATE TABLE `maiwaifu` (
+  `id` int(11) NOT NULL,
+  `maiwaifuAreaId` int(11) DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `genre` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `age` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `area` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `nail`
 --
 
@@ -583,55 +577,14 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 --
 
 CREATE TABLE `onsen` (
-  `id` int(100) NOT NULL,
-  `onsenAreaId` int(100) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `effect` varchar(100) DEFAULT NULL,
-  `comment` varchar(200) DEFAULT NULL,
-  `area` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `onsen`
---
-
-INSERT INTO `onsen` (`id`, `onsenAreaId`, `name`, `effect`, `comment`, `area`, `link`) VALUES
-(2, 2, '箱根湯本温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '肌に優しいアルカリ性の単純温泉から殺菌力が高く皮膚炎などに効果的な酸性泉・硫黄泉などなどバリエーションが豊富。', NULL, 'http://www.hakoneyumoto.com/'),
-(3, 6, '草津温泉', '皮膚病', '日本一の豊富な湯量と、強力な殺菌力を誇ります。', NULL, 'http://sainokawara.com/'),
-(4, 6, '伊香保温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '伊香保温泉は草津温泉と並び、群馬県を代表する温泉地。', NULL, 'http://www.ikaho-kankou.com/'),
-(5, 5, '鬼怒川温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾冷え性、病後回復期、健康増進', '江戸時代、日光を詣でる僧侶や大名だけが入ることを許されていた由緒正しい温泉です。', NULL, 'http://www.nikko-kankou.org/spot/51/'),
-(6, 2, '湯河原温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '豊かな自然に囲まれた湯河原温泉は、山海の幸に恵まれているため、さまざまなグルメが楽しめます。', NULL, 'http://www.yugawara.or.jp/'),
-(7, 5, '那須温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '那須温泉には1300年続く「鹿の湯」があり、かつて傷を負った鹿がこの湯に入って傷を癒したと言われています。', NULL, 'http://www.nasuonsen.com/'),
-(8, 3, '養老渓谷温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '老渓谷温泉は、こげ茶色をした「黒湯」と呼ばれる珍しい泉質の温泉です。', NULL, 'http://www.yorokeikoku.com/'),
-(9, 3, '鴨川温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '泉質は単純硫黄冷鉱泉です。', NULL, 'http://www.kamogawa-hotel.info/'),
-(10, 7, '袋田温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '久慈川の支流、滝川のほとりにある歴史を誇る温泉地です。', NULL, 'http://www.town.daigo.ibaraki.jp/page/page000016.html'),
-(11, 4, '名栗温泉', '痛風、動脈硬化症、高血圧症、慢性胆のう炎、胆石症、慢性皮膚病、慢性婦人病', '名栗温泉は鎌倉時代（約800年前）に猟師に発見されたと伝えられている古湯。', NULL, 'http://www.rurubu.com/onsen/detail.aspx?ID=SP301430'),
-(12, 1, '板橋温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '東京都板橋区（旧国武蔵国）にある温泉。', NULL, 'http://www.rurubu.com/season/special/higaeriyu/detail.aspx?SozaiNo=130028');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `onsenarea`
---
-
-CREATE TABLE `onsenarea` (
-  `id` int(100) NOT NULL,
-  `area` varchar(100) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- テーブルのデータのダンプ `onsenarea`
---
-
-INSERT INTO `onsenarea` (`id`, `area`) VALUES
-(1, '東京都'),
-(2, '神奈川県'),
-(3, '千葉県'),
-(4, '埼玉県'),
-(5, '栃木県'),
-(6, '群馬県'),
-(7, '茨城県');
+  `id` int(11) NOT NULL,
+  `onsenAreaId` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `effect` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `area` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -1101,7 +1054,6 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 (15, 'ガンバ大阪U-23'),
 (16, 'セレッソ大阪U-23');
 
-
 -- --------------------------------------------------------
 
 --
@@ -1202,63 +1154,6 @@ INSERT INTO `yokaifrom` (`id`, `yokaifrom`) VALUES
 (2, 'アメリカ'),
 (3, 'ヨーロッパ'),
 (4, 'その他');
-
---
-=======
--- --------------------------------------------------------
-
---
--- テーブルの構造 `ths`
---
-
-CREATE TABLE `ths` (
-  `id` int(11) NOT NULL,
-  `thssubjectID` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `level` varchar(10) DEFAULT NULL,
-  `comment` varchar(200) DEFAULT NULL,
-  `subject` varchar(10) DEFAULT NULL,
-  `link` varchar(5000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `ths`
---
-
-INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
-(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
-(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
-(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
-(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
-(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
-(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
-(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc'),
-(11, 1, 'あ', '普通', 'あああああ', NULL, 'あ');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `maiwaifuarea`
---
-
-CREATE TABLE `maiwaifuarea` (
-  `id` int(11) NOT NULL,
-  `area` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `maiwaifuarea`
---
-
-INSERT INTO `maiwaifuarea` (`id`, `area`) VALUES
-(1, '宇宙'),
-(2, '現代'),
-(3, '戦国'),
-(4, 'シュテルンビルト'),
-(5, '本能寺学園'),
-(6, 'その他'),
-(7, '荒川');
 
 --
 -- Indexes for dumped tables
@@ -1495,10 +1390,15 @@ ALTER TABLE `iventcontents`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `maiwaifu`
+--
+ALTER TABLE `maiwaifu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `nail`
 --
 ALTER TABLE `nail`
-
   ADD PRIMARY KEY (`ID`);
 
   ADD PRIMARY KEY (`ID`);
@@ -1507,12 +1407,6 @@ ALTER TABLE `nail`
 -- Indexes for table `onsen`
 --
 ALTER TABLE `onsen`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `onsenarea`
---
-ALTER TABLE `onsenarea`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1618,19 +1512,6 @@ ALTER TABLE `yokai`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `ths`
---
-ALTER TABLE `ths`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `thssubject`
---
-ALTER TABLE `thssubject`
-  ADD PRIMARY KEY (`id`);
-
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1638,7 +1519,6 @@ ALTER TABLE `thssubject`
 -- AUTO_INCREMENT for table `aquarium`
 --
 ALTER TABLE `aquarium`
-
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
@@ -1708,10 +1588,14 @@ ALTER TABLE `guitarmaker`
 ALTER TABLE `iventcontents`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
+-- AUTO_INCREMENT for table `maiwaifu`
+--
+ALTER TABLE `maiwaifu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `nail`
 --
 ALTER TABLE `nail`
-
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
@@ -1719,7 +1603,7 @@ ALTER TABLE `nail`
 -- AUTO_INCREMENT for table `onsen`
 --
 ALTER TABLE `onsen`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `phones`
 --
@@ -1759,7 +1643,6 @@ ALTER TABLE `ship`
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
-
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `sneakers`
