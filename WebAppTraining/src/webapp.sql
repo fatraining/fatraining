@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 7 朁E11 日 08:29
--- サーバのバージョン： 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: 2016 年 8 朁E30 日 07:12
+-- サーバのバージョン： 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,308 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `webapp`
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `dramagenre`
---
-
-CREATE TABLE `dramagenre` (
-  `id` int(11) DEFAULT NULL,
-  `genre` varchar(20) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `dramagenre`
---
-
-INSERT INTO `dramagenre` (`id`, `genre`) VALUES
-(1, 'ラブコメ'),
-(2, '正統派ラブストーリー'),
-(3, 'サスペンス'),
-(4, 'ドロドロ'),
-(5, '復讐劇'),
-(6, 'ヒューマンドラマ'),
-(7, '時代劇');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
---
--- テーブルの構造 `drama`
---
-
-CREATE TABLE `drama` (
-  `id` int(11) NOT NULL,
-  `dramaGenreId` int(11) DEFAULT NULL,
-  `name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `cast` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `tvStation` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `comment` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `genre` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `drama`
---
-
-INSERT INTO `drama` (`id`, `dramaGenreId`, `name`, `cast`, `tvStation`, `comment`, `genre`) VALUES
-(1, 2, '冬のソナタ', 'ペ・ヨンジュン', 'KBS', '日本での韓流ブームの火付け役!', NULL),
-(2, 1, '宮～love in palace～', 'ユン・ウネ', 'MBC', 'ラブコメの女王、ウネちゃん主演！現代版王宮ラブスーリー', NULL),
-(3, 3, 'IRIS-アイリス-', 'イ・ビョンホン', 'KBS', '我らがBIGBANGのTOPさんも出演！', NULL),
-(4, 1, '華麗なる遺産', 'イ・スンギ', 'SBS', '韓国ドラマのあるある詰まってます', NULL),
-(5, 4, '天国の階段', 'チェ・ジウ', 'SBS', 'ド定番記憶喪失と血のつながらない兄', NULL),
-(6, 7, 'トンイ', 'ハン・ヒョジュ', 'MBC', '歴史なんてわからなくても韓国ドラマは楽しめる', NULL),
-(7, 5, 'ミス・リプリー', 'パク・ユチョン', 'MBC', 'シリアスな演技のユチョンも素敵', NULL),
-(8, 6, '製パン王 キム・タック', 'ユン・シユン', 'KBS', '瞬間最高視聴率58％、どんだけテレビ見てるん韓国民', NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `drama`
---
-ALTER TABLE `drama`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `drama`
---
-ALTER TABLE `drama`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-
-
-----
--- テーブルの構造 `sneakersmaker`
---
-
-CREATE TABLE `sneakersmaker` (
-  `id` int(11) NOT NULL,
-  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `sneakersmaker`
---
-
-INSERT INTO `sneakersmaker` (`id`, `maker`) VALUES
-(1, 'NIKE'),
-(2, 'PUMA'),
-(3, 'adidas'),
-(4, 'Reebok'),
-(5, 'VANS'),
-(6, 'NEW BALANCE'),
-(7, 'CONVERSE'),
-(8, 'ASICS(ASICS Tiger)');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sneakersmaker`
---
-ALTER TABLE `sneakersmaker`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`),
-  ADD KEY `id_3` (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sneakersmaker`
---
-ALTER TABLE `sneakersmaker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- テーブルの構造 `sneakers`
---
-
-CREATE TABLE `sneakers` (
-  `id` int(11) NOT NULL,
-  `sneakersMakerId` int(11) DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `series` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- テーブルのデータのダンプ `sneakers`
---
-
-INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comment`, `maker`, `image`) VALUES
-(1, 1, 'AIR HUARACHE', 'NIKE / AIR HUARACHE', 1991, '近年復刻し再び大流行。HUARACHEの語源はメキシコの履物"ハラッチ"から。', 'NIKE', 'assets/images/temp/air_huarache.jpg'),
-(2, 2, 'DISC BLAZE', 'PUMA / DISC (TRINOMIC)', 1992, 'アッパーのディスクを回転させることでフィッティング。ハイテクスニーカーブームを牽引。', 'PUMA', 'assets/images/temp/disc_blaze.jpg'),
-(3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
-(4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
-(5, 1, 'AIR MAX 1', 'NIKE / AIR MAX', 1987, '記念すべきAIR MAXシリーズ第1号。ハイテクスニーカー時代の幕開け。', NULL, 'assets/images/temp/air_max1.jpg'),
-(6, 2, 'suede classic', '-', 1968, 'PUMA不朽の名作。1足以上持っておきたいクラシックスニーカー。', NULL, 'assets/images/temp/puma_suede.jpg'),
-(7, 3, 'STAN SMITH', '-', 1973, '世界一売れたスニーカー。名前は同名テニスプレーヤーに由来。', NULL, 'assets/images/temp/stan_smith.jpg'),
-(8, 1, 'AIR MAX 90', 'NIKE / AIR MAX', 1990, 'AIR MAXといったらこのモデルをイメージする人も多いはず。シリーズの代表作。', NULL, 'assets/images/temp/air_max90.jpg'),
-(9, 5, 'ERA', '-', 1975, 'VANSの名作。スケーター向けのクラシックスニーカー。', NULL, 'assets/images/temp/era.jpg'),
-(10, 1, 'AIR MAX 95', 'NIKE / AIR MAX', 1995, 'AIR MAXシリーズの中で根強い人気を誇る。', NULL, 'assets/images/temp/air_max95.jpg'),
-(11, 7, 'ALL STAR Hi', 'CONVERSE / ALL STAR', 1917, '1917年発売。スニーカーの歴史はここから始まった。', NULL, 'assets/images/temp/allstar_hi.jpg'),
-(12, 6, 'M996', '-', 1989, '歩き易い、履き易い、合わせ易い三拍子揃った美しいスニーカー。', NULL, 'assets/images/temp/nb_m996.jpg'),
-(13, 7, 'ALL STAR OX', 'CONVERSE / ALL STAR', 1957, 'ALL STARのローカットモデル。CONVERSEといえばこれと言えるほど色褪せない名スニーカー。', NULL, 'assets/images/temp/allstar_ox.jpg'),
-(14, 1, 'AIR FORCE 1', 'NIKE / AIR FORCE', 1982, 'スニーカーの王様。', NULL, 'assets/images/temp/airforce_1.jpg'),
-(15, 1, 'CORTEZ', '-', 1972, 'NIKEのクラシックランニングシューズ。ナイロン製やレザー製などがある。読み方は「コルテッツ」', NULL, 'assets/images/temp/cortez.jpg'),
-(16, 3, 'SUPERSTAR', '-', 1969, '「RUN DMC」が愛用。これを紐無しで履いている奴はかなりコアなHIPHOPファン。', NULL, 'assets/images/temp/superstar.jpg'),
-(17, 5, 'OLD SKOOL', '-', 1978, '元はBMXライダーの為に作られたがスケーターから支持を集める。', NULL, 'assets/images/temp/oldskool.jpg'),
-(18, 1, 'AIR HUARACHE LIGHT', 'NIKE / AIR HUARACHE', 1993, 'アッパー部分の網目が特徴。初代ハラチに劣らない人気作。', NULL, 'assets/images/temp/air_huarache_light.jpg'),
-(19, 8, 'GEL-LYTE Ⅲ', 'ASICS / GEL', 1990, '国内最高メーカー"ASICS"の名作。海外からも高い評価。', NULL, 'assets/images/temp/gel_lyte3.jpg'),
-(20, 4, 'VENTILATOR', '-', 1990, '機能性とデザイン性を兼ね備えたReebokのランニングシューズ。', NULL, 'assets/images/temp/ventilator.jpg'),
-(21, 3, 'CAMPUS', '-', 1983, '「ビースティ・ボーイズ」が愛用したことで有名なadidasのローテクスニーカー。', NULL, 'assets/images/temp/campus.jpg'),
-(22, 1, 'AIR ZOOM FRIGHT 96', 'NIKE / AIR ZOOM (FRIGHT)', 1996, '96年発売のハイテクバスケットボールシューズ。', NULL, 'assets/images/temp/air_zoom_fright.jpg'),
-(23, 1, 'AIR MORE UPTEMPO', 'NIKE / AIR', 1996, 'サイドの「AIR」ロゴのインパクトが絶大。新作発売日に抽選でも買えないほどの人気作。', NULL, 'assets/images/temp/air_more_uptempo.jpg'),
-(24, 1, 'AIR MAX 93', 'NIKE / AIR MAX (HUARACHE)', 1993, 'AIR MAXシリーズの93年モデル。270度のビジブルエアとハラチシステムが特徴。', NULL, 'assets/images/temp/air_max93.jpg'),
-(25, 3, 'ZX500', 'adidas / ZX', 1984, 'adidasZXシリーズの第1号。当時のランニングシューズ界を牽引。', NULL, 'assets/images/temp/zx500.jpg'),
-(26, 5, 'authentic', '-', 1966, 'VANS設立時に誕生。後のVANSの名作「ERA」の前身。ERAとの違いは履き口のパット部分。', NULL, 'assets/images/temp/authentic.jpg'),
-(27, 3, 'ZX700', 'adidas / ZX', 1985, 'ZXシリーズの隠れた人気作。', NULL, 'assets/images/temp/zx700.jpg'),
-(28, 6, 'M1400', '-', 1994, 'NBの最高傑作。元々高価格だがメイドインUSAだと更に高値。', NULL, 'assets/images/temp/nb_m1400.jpg\r\n'),
-(29, 4, 'PUMP GRAPHLITE', 'Reebok / PUMP', 1992, '「INSTA PUNP FURY」のシューレース版。色鮮やかな配色が特徴。', NULL, 'assets/images/temp/pump_graphlite.jpg'),
-(30, 3, 'GAZELLE	', '-', 1968, '細身のシルエットが特徴のadidasのクラシックスニーカー。読み方は「ガッツレー」', NULL, 'assets/images/temp/gazelle.jpg'),
-(31, 2, 'R698	', 'PUMA / TRINOMIC', 1990, 'PUMAのクッションシステム「TRINOMIC」を搭載した。ミッドテクランニングシューズ。', NULL, 'assets/images/temp/r698.jpg'),
-(42, 3, 'TORSION ALLEGRA', 'adidas / EQUIPMENT (TORSION)', 1992, 'adidasのクッション技術「TORSION」搭載。発売当時ランニングシューズにしてはデザインが近未来的と話題に。', NULL, 'assets/images/temp/torsion_allegra.jpg'),
-(43, 5, 'SLIP ON', '-', 1979, '「靴紐なしで脱ぎ履きできる靴＝スリッポン」というように代名詞化しているがそのオリジナルモデルは79年にVANSが発売したこの「SLIP ON」', NULL, 'assets/images/temp/slipon.jpg');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sneakers`
---
-ALTER TABLE `sneakers`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sneakers`
---
-ALTER TABLE `sneakers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- テーブルの構造 `ths`
---
-
-CREATE TABLE `ths` (
-  `id` int(11) NOT NULL,
-  `thssubjectID` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `level` varchar(10) DEFAULT NULL,
-  `comment` varchar(200) DEFAULT NULL,
-  `subject` varchar(10) DEFAULT NULL,
-  `link` varchar(5000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `ths`
---
-
-INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
-(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
-(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
-(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
-(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
-(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
-(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
-(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `ths`
---
-ALTER TABLE `ths`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `ths`
---
-ALTER TABLE `ths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `webapp`
 --
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `thssubject`
---
-
-CREATE TABLE `thssubject` (
-  `id` int(11) NOT NULL,
-  `subject` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `thssubject`
---
-
-INSERT INTO `thssubject` (`id`, `subject`) VALUES
-(1, '英語'),
-(2, '数学'),
-(3, '国語');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `thssubject`
---
-ALTER TABLE `thssubject`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `thssubject`
---
-ALTER TABLE `thssubject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 -- --------------------------------------------------------
 
@@ -323,15 +26,15 @@ ALTER TABLE `thssubject`
 -- テーブルの構造 `aquarium`
 --
 
-CREATE TABLE IF NOT EXISTS `aquarium` (
-`id` int(11) NOT NULL,
+CREATE TABLE `aquarium` (
+  `id` int(11) NOT NULL,
   `aquariumAreaId` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `area` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `aquarium`
@@ -353,10 +56,10 @@ INSERT INTO `aquarium` (`id`, `aquariumAreaId`, `name`, `price`, `hours`, `comme
 -- テーブルの構造 `aquariumarea`
 --
 
-CREATE TABLE IF NOT EXISTS `aquariumarea` (
-`id` int(11) NOT NULL,
+CREATE TABLE `aquariumarea` (
+  `id` int(11) NOT NULL,
   `area` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `aquariumarea`
@@ -377,15 +80,15 @@ INSERT INTO `aquariumarea` (`id`, `area`) VALUES
 -- テーブルの構造 `area`
 --
 
-CREATE TABLE IF NOT EXISTS `area` (
-`id` int(10) NOT NULL,
+CREATE TABLE `area` (
+  `id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `create_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `update_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `version` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `area`
@@ -404,8 +107,8 @@ INSERT INTO `area` (`id`, `name`, `create_date`, `create_user`, `update_date`, `
 -- テーブルの構造 `baseballplayer`
 --
 
-CREATE TABLE IF NOT EXISTS `baseballplayer` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `baseballplayer` (
+  `ID` int(11) NOT NULL,
   `teamID` int(11) NOT NULL,
   `baseballplayer` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `comment` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
@@ -413,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `baseballplayer` (
   `date` varchar(20) CHARACTER SET ujis COLLATE ujis_bin DEFAULT NULL,
   `note` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   `team` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `baseballplayer`
@@ -436,10 +139,10 @@ INSERT INTO `baseballplayer` (`ID`, `teamID`, `baseballplayer`, `comment`, `targ
 -- テーブルの構造 `baseballteam`
 --
 
-CREATE TABLE IF NOT EXISTS `baseballteam` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `baseballteam` (
+  `ID` int(11) NOT NULL,
   `team` varchar(100) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `baseballteam`
@@ -466,14 +169,14 @@ INSERT INTO `baseballteam` (`ID`, `team`) VALUES
 -- テーブルの構造 `beerbrands`
 --
 
-CREATE TABLE IF NOT EXISTS `beerbrands` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `beerbrands` (
+  `ID` int(11) NOT NULL,
   `beerbrands` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `categories` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `countryID` int(11) NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- テーブルのデータのダンプ `beerbrands`
@@ -493,7 +196,7 @@ INSERT INTO `beerbrands` (`ID`, `beerbrands`, `categories`, `comment`, `countryI
 -- テーブルの構造 `biketeam`
 --
 
-CREATE TABLE IF NOT EXISTS `biketeam` (
+CREATE TABLE `biketeam` (
   `ID` int(10) NOT NULL,
   `TeamName` varchar(300) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -523,10 +226,10 @@ INSERT INTO `biketeam` (`ID`, `TeamName`) VALUES
 -- テーブルの構造 `birthplace`
 --
 
-CREATE TABLE IF NOT EXISTS `birthplace` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `birthplace` (
+  `ID` int(11) NOT NULL,
   `country` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `birthplace`
@@ -555,10 +258,10 @@ INSERT INTO `birthplace` (`ID`, `country`) VALUES
 -- テーブルの構造 `catarea`
 --
 
-CREATE TABLE IF NOT EXISTS `catarea` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `catarea` (
+  `ID` int(11) NOT NULL,
   `prefecture` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `catarea`
@@ -576,8 +279,8 @@ INSERT INTO `catarea` (`ID`, `prefecture`) VALUES
 -- テーブルの構造 `catcafe`
 --
 
-CREATE TABLE IF NOT EXISTS `catcafe` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `catcafe` (
+  `ID` int(11) NOT NULL,
   `catcafename` varchar(100) COLLATE utf8_bin NOT NULL,
   `prefectureID` int(11) NOT NULL,
   `station` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -585,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `catcafe` (
   `closed` varchar(100) COLLATE utf8_bin NOT NULL,
   `comment` varchar(100) COLLATE utf8_bin NOT NULL,
   `prefecture` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `catcafe`
@@ -604,10 +307,84 @@ INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `country`
+--
+
+CREATE TABLE `country` (
+  `ID` int(10) NOT NULL,
+  `countryName` varchar(20) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `country`
+--
+
+INSERT INTO `country` (`ID`, `countryName`) VALUES
+(1, '日本'),
+(2, 'ドイツ'),
+(3, 'アメリカ');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `drama`
+--
+
+CREATE TABLE `drama` (
+  `id` int(11) NOT NULL,
+  `dramaGenreId` int(11) DEFAULT NULL,
+  `name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `cast` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `tvStation` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `genre` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `drama`
+--
+
+INSERT INTO `drama` (`id`, `dramaGenreId`, `name`, `cast`, `tvStation`, `comment`, `genre`) VALUES
+(1, 2, '冬のソナタ', 'ペ・ヨンジュン', 'KBS', '日本での韓流ブームの火付け役!', NULL),
+(2, 1, '宮～love in palace～', 'ユン・ウネ', 'MBC', 'ラブコメの女王、ウネちゃん主演！現代版王宮ラブスーリー', NULL),
+(3, 3, 'IRIS-アイリス-', 'イ・ビョンホン', 'KBS', '我らがBIGBANGのTOPさんも出演！', NULL),
+(4, 1, '華麗なる遺産', 'イ・スンギ', 'SBS', '韓国ドラマのあるある詰まってます', NULL),
+(5, 4, '天国の階段', 'チェ・ジウ', 'SBS', 'ド定番記憶喪失と血のつながらない兄', NULL),
+(6, 7, 'トンイ', 'ハン・ヒョジュ', 'MBC', '歴史なんてわからなくても韓国ドラマは楽しめる', NULL),
+(7, 5, 'ミス・リプリー', 'パク・ユチョン', 'MBC', 'シリアスな演技のユチョンも素敵', NULL),
+(8, 6, '製パン王 キム・タック', 'ユン・シユン', 'KBS', '瞬間最高視聴率58％、どんだけテレビ見てるん韓国民', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `dramagenre`
+--
+
+CREATE TABLE `dramagenre` (
+  `id` int(11) DEFAULT NULL,
+  `genre` varchar(20) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `dramagenre`
+--
+
+INSERT INTO `dramagenre` (`id`, `genre`) VALUES
+(1, 'ラブコメ'),
+(2, '正統派ラブストーリー'),
+(3, 'サスペンス'),
+(4, 'ドロドロ'),
+(5, '復讐劇'),
+(6, 'ヒューマンドラマ'),
+(7, '時代劇');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `groupname`
 --
 
-CREATE TABLE IF NOT EXISTS `groupname` (
+CREATE TABLE `groupname` (
   `GroupID` varchar(2) NOT NULL,
   `GroupName` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=sjis;
@@ -633,14 +410,14 @@ INSERT INTO `groupname` (`GroupID`, `GroupName`) VALUES
 -- テーブルの構造 `guitarinfo`
 --
 
-CREATE TABLE IF NOT EXISTS `guitarinfo` (
-`id` int(11) NOT NULL,
+CREATE TABLE `guitarinfo` (
+  `id` int(11) NOT NULL,
   `guitarMakerId` int(11) NOT NULL,
   `typeName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `price` int(11) NOT NULL,
   `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `guitarinfo`
@@ -680,10 +457,10 @@ INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`,
 -- テーブルの構造 `guitarmaker`
 --
 
-CREATE TABLE IF NOT EXISTS `guitarmaker` (
-`id` int(11) NOT NULL,
+CREATE TABLE `guitarmaker` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `guitarmaker`
@@ -706,8 +483,8 @@ INSERT INTO `guitarmaker` (`id`, `name`) VALUES
 -- テーブルの構造 `iventcontents`
 --
 
-CREATE TABLE IF NOT EXISTS `iventcontents` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `iventcontents` (
+  `ID` int(11) NOT NULL,
   `GroupID` varchar(2) DEFAULT NULL,
   `Category` varchar(20) DEFAULT NULL,
   `IventName` varchar(100) DEFAULT NULL,
@@ -715,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `iventcontents` (
   `Day` datetime DEFAULT NULL,
   `Comment` varchar(100) DEFAULT NULL,
   `groupName` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=sjis AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB DEFAULT CHARSET=sjis;
 
 --
 -- テーブルのデータのダンプ `iventcontents`
@@ -751,15 +528,15 @@ INSERT INTO `iventcontents` (`ID`, `GroupID`, `Category`, `IventName`, `Place`, 
 -- テーブルの構造 `nail`
 --
 
-CREATE TABLE IF NOT EXISTS `nail` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `nail` (
+  `ID` int(11) NOT NULL,
   `date` char(20) COLLATE utf8_bin NOT NULL,
   `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
   `maincolor` char(20) COLLATE utf8_bin NOT NULL,
   `handmodel` char(20) COLLATE utf8_bin NOT NULL,
   `comment` varchar(300) COLLATE utf8_bin NOT NULL,
   `imageFileName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `nail`
@@ -782,7 +559,7 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 -- テーブルの構造 `operator`
 --
 
-CREATE TABLE IF NOT EXISTS `operator` (
+CREATE TABLE `operator` (
   `ID` int(11) NOT NULL,
   `OperatorID` char(10) CHARACTER SET latin1 NOT NULL,
   `OperatorName` char(50) COLLATE utf8mb4_bin NOT NULL,
@@ -808,8 +585,8 @@ INSERT INTO `operator` (`ID`, `OperatorID`, `OperatorName`, `UserID`, `Date`) VA
 -- テーブルの構造 `phones`
 --
 
-CREATE TABLE IF NOT EXISTS `phones` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `phones` (
+  `ID` int(11) NOT NULL,
   `OperatorID` char(11) CHARACTER SET latin1 NOT NULL,
   `PhonesName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `Price` int(11) NOT NULL,
@@ -817,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `phones` (
   `Date` date NOT NULL,
   `Comment` text COLLATE utf8_bin NOT NULL,
   `operatorName` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `phones`
@@ -844,8 +621,8 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 -- テーブルの構造 `player`
 --
 
-CREATE TABLE IF NOT EXISTS `player` (
-`playerID` int(11) NOT NULL,
+CREATE TABLE `player` (
+  `playerID` int(11) NOT NULL,
   `playername` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `teamID` int(11) DEFAULT NULL,
   `position` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -853,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `teamName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `imagePath` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '画像へのパス'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- テーブルのデータのダンプ `player`
@@ -882,8 +659,8 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 -- テーブルの構造 `restaurant`
 --
 
-CREATE TABLE IF NOT EXISTS `restaurant` (
-`id` int(10) NOT NULL,
+CREATE TABLE `restaurant` (
+  `id` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `stars` smallint(6) DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -893,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `update_date` datetime DEFAULT NULL,
   `update_user` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `version` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `restaurant`
@@ -911,8 +688,8 @@ INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_d
 -- テーブルの構造 `rider`
 --
 
-CREATE TABLE IF NOT EXISTS `rider` (
-`ID` int(10) NOT NULL,
+CREATE TABLE `rider` (
+  `ID` int(10) NOT NULL,
   `Number` int(10) DEFAULT NULL,
   `RiderName` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `TeamID` int(10) DEFAULT NULL,
@@ -921,7 +698,7 @@ CREATE TABLE IF NOT EXISTS `rider` (
   `BirthDay` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `Comment` varchar(500) CHARACTER SET latin1 NOT NULL,
   `teamName` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `rider`
@@ -958,10 +735,10 @@ INSERT INTO `rider` (`ID`, `Number`, `RiderName`, `TeamID`, `Country`, `Age`, `B
 -- テーブルの構造 `sakearea`
 --
 
-CREATE TABLE IF NOT EXISTS `sakearea` (
-`id` int(11) NOT NULL,
+CREATE TABLE `sakearea` (
+  `id` int(11) NOT NULL,
   `area` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `sakearea`
@@ -981,8 +758,8 @@ INSERT INTO `sakearea` (`id`, `area`) VALUES
 -- テーブルの構造 `sakeinfo`
 --
 
-CREATE TABLE IF NOT EXISTS `sakeinfo` (
-`id` int(11) NOT NULL,
+CREATE TABLE `sakeinfo` (
+  `id` int(11) NOT NULL,
   `areaId` int(11) NOT NULL,
   `shopName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `hours` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -992,7 +769,7 @@ CREATE TABLE IF NOT EXISTS `sakeinfo` (
   `priceHigh` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `priceLow` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `area` varchar(255) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- テーブルのデータのダンプ `sakeinfo`
@@ -1016,7 +793,7 @@ INSERT INTO `sakeinfo` (`id`, `areaId`, `shopName`, `hours`, `price`, `recommend
 -- テーブルの構造 `season`
 --
 
-CREATE TABLE IF NOT EXISTS `season` (
+CREATE TABLE `season` (
   `KisetuID` char(2) COLLATE utf8_bin NOT NULL,
   `Kisetu` char(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -1034,18 +811,54 @@ INSERT INTO `season` (`KisetuID`, `Kisetu`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `ship`
+--
+
+CREATE TABLE `ship` (
+  `shipID` int(10) NOT NULL,
+  `shipName` varchar(20) DEFAULT NULL,
+  `countryID` int(10) DEFAULT NULL,
+  `shipClass` varchar(20) DEFAULT NULL,
+  `year` int(10) DEFAULT NULL,
+  `comment` varchar(300) DEFAULT NULL,
+  `countryName` varchar(300) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `imagePath` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '画像へのパス'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `ship`
+--
+
+INSERT INTO `ship` (`shipID`, `shipName`, `countryID`, `shipClass`, `year`, `comment`, `countryName`, `imagePath`) VALUES
+(9, 'ビスマルク', 2, '戦艦', 1940, 'ドイツが初めて建造した超弩級戦艦。<br />排水量は協定破りの４１７００トンとまさに弩級。<br />スペックとは裏腹にそこまでの戦績は残さず沈没してしまった。<br />ハイル〇トラー‼', NULL, '3bismarck.jpg_20160822115137.jpeg'),
+(10, 'アイオワ', 3, '戦艦', 1943, 'アメリカを代表する戦艦であるアイオワは排水量48000トンを誇る（協定守る気あんの？）<br />しかし、艦隊決戦の機械がなく専ら空母のお守となかなかの宝の持ち腐れっぷりである。<br />（別にアメリカが嫌いなわけではないよ）', NULL, '87797b67fd44e80bf66f631adcfafbdb80bdaff81456287050.jpg_20160822115733.jpeg'),
+(11, '大和', 1, '戦艦', 1920, '日本が誇る戦艦大和<br />この名を知らないものはいないであろう（知らないとかモグリなん？）<br />排水量は64000トンとまさに化け物級であり、46㎝3連装砲は他国ではマネの出来なかった<br />日本の英知の結晶である。（俺は長門の方が好きだけどね‼）', NULL, 'o-YAMATO-facebook.jpg_20160822120139.jpeg'),
+(12, '赤城', 1, '空母', 1927, '日本の空母と言えば赤城を置いてほかにはいないだろう（言い過ぎ、私は信濃が好き）<br />初期段階では三段甲板だった。<br />下段が大型機の発艦、中段は小型機の発艦と20連装砲を2基、最上段は着艦と、英空母フィーリアスに倣っている。<br />1935年に通常の平甲板型となった。', NULL, '227FIX.jpg_20160822120752.jpeg'),
+(13, 'グラーフ・ツェッペリン', 2, '空母', 1936, 'ドイツ空母の代表格？であり、初の空母だったため建造に2年かかったという。（作り上げたとは言ってない）<br />圧縮空気式のカタパルトや対空用の10.5㎝連装砲、対水上用の15㎝連装砲など飛ばす以外にも<br />充実した装備を持ち合わせている。<br />9割完成したところで建造中止（潜水艦を優先、Uボートつえええ）', NULL, '144898301930025529180_zeppeli7.jpg_20160822121618.jpeg'),
+(14, 'ミッドウェイ', 3, '空母', 1945, 'アメリカ空母といえばミッドウェイの名が出てくるのは仕方がないね。<br />1940年から計画されたにも関わらず、完成は戦後の1945年。<br />今までの空母とは一線を画すため、艦種記号はCVにBIGを追加されCVBとなった。<br />1973年より横須賀を母港とし活動していたが、1991年湾岸戦争に参加後退役した。<br />（2番艦の名はルーズベルト‼かっこ良いよね‼）', NULL, 'USS_Midway_CVA-41.jpg_20160822122401.jpeg'),
+(15, '古鷹', 1, '巡洋艦', 1926, '私が知っている中で最も美しくカッコイイと評判の古鷹。<br />英米の新型巡洋艦を凌駕する偵察巡洋艦、全てにおいての軽量化に成功。<br />しかし奇抜な設計ゆえに居住性は最悪だったとか（居住性大事‼よくわかんだね‼）<br />1939年に近代化改修され、艦容は青葉に似ている。<br />サボ島沖夜戦で沈没。', NULL, '14_0.11[1].29 ｸﾅﾂ・・｢･・JPG.jpg_20160822123050.jpeg'),
+(16, 'プリンツ・オイゲン', 2, '巡洋艦', 1939, 'ドイツ最後の重巡洋艦<br />20.3㎝砲8門、水線部装甲70㎜、最大32ノットと十分な攻防性能を追求したがために<br />基準排水量14050トンを大幅に上回った艦。（頭おかしいね‼）<br />かなりの性能を誇るプリンツあバルト海で活動し生き残った（すごいよね）<br />しかし、戦後アメリカへ引き渡され核実験の標的艦となり沈没', NULL, 'img_0.jpg_20160822123825.jpeg'),
+(17, 'クリーブランド', 3, '巡洋艦', 1942, 'ロンドン条約が失効したため自由な設計・建造できるようになり計画された軽巡洋艦<br />ブルックリンの後期型から流用<br />対空特化の巡洋艦である（アメリカの巡洋艦はあまり興味がないんだ、すまない）', NULL, 'uss_columbia.jpg_20160822124520.jpeg'),
+(18, '島風', 1, '駆逐艦', 1941, '「おっそーい‼」でも有名なあの島風である<br />なんといっても凄いのはその速力であり、なんと40ノット（早すぎー‼）<br />通常時は75000馬力だが短時間なら79240馬力を発生できた（もはや追いつけないよね）<br />しかし、サイズと排水量が高く大型駆逐艦のため一隻しか建造することが出来なかった（ボッチ...）<br />魚雷発射管は5連装魚雷と日本の駆逐艦としては唯一の例である。', NULL, 'b4cb3f1b.jpg_20160822125209.jpeg'),
+(19, 'Z1', 2, '駆逐艦', 1938, 'Z1とも呼ばれるが、1936型駆逐艦とも呼ばれているドイツの駆逐艦<br />1940年ノルウェー海軍と英海軍との交戦で5隻が沈没（6隻建造したから1隻しか怒らず）<br />1940年に建造されたZ3は改良型である', NULL, 'ea23fd40-s.jpg_20160822125815.jpeg'),
+(20, 'フレッチャー', 3, '駆逐艦', 1942, 'アイオワに随伴可能な艦隊型駆逐艦として計画され建造されたのがこのフレッチャーである<br />2100トン級の大型駆逐艦', NULL, 'img_3.jpg_20160822130204.jpeg'),
+(21, 'aaaaaaaaaaaaaaaaaaaa', 3, '駆逐艦', 1000, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `sim`
 --
 
-CREATE TABLE IF NOT EXISTS `sim` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `sim` (
+  `ID` int(11) NOT NULL,
   `simService` varchar(20) NOT NULL,
   `charge` float NOT NULL,
   `GB` double(10,1) NOT NULL,
   `comment` text NOT NULL,
   `simOpeID` varchar(255) DEFAULT NULL,
   `SimOpeName` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `sim`
@@ -1071,7 +884,7 @@ INSERT INTO `sim` (`ID`, `simService`, `charge`, `GB`, `comment`, `simOpeID`, `S
 -- テーブルの構造 `simope`
 --
 
-CREATE TABLE IF NOT EXISTS `simope` (
+CREATE TABLE `simope` (
   `ID` int(11) NOT NULL,
   `simOpeName` varchar(11) NOT NULL,
   `UserID` varchar(11) NOT NULL
@@ -1097,10 +910,90 @@ INSERT INTO `simope` (`ID`, `simOpeName`, `UserID`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `sneakers`
+--
+
+CREATE TABLE `sneakers` (
+  `id` int(11) NOT NULL,
+  `sneakersMakerId` int(11) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `series` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `sneakers`
+--
+
+INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comment`, `maker`, `image`) VALUES
+(1, 1, 'AIR HUARACHE', 'NIKE / AIR HUARACHE', 1991, '近年復刻し再び大流行。HUARACHEの語源はメキシコの履物"ハラッチ"から。', 'NIKE', 'assets/images/temp/air_huarache.jpg'),
+(2, 2, 'DISC BLAZE', 'PUMA / DISC (TRINOMIC)', 1992, 'アッパーのディスクを回転させることでフィッティング。ハイテクスニーカーブームを牽引。', 'PUMA', 'assets/images/temp/disc_blaze.jpg'),
+(3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
+(4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
+(5, 1, 'AIR MAX 1', 'NIKE / AIR MAX', 1987, '記念すべきAIR MAXシリーズ第1号。ハイテクスニーカー時代の幕開け。', NULL, 'assets/images/temp/air_max1.jpg'),
+(7, 3, 'STAN SMITH', '-', 1973, '世界一売れたスニーカー。名前は同名テニスプレーヤーに由来。', NULL, 'assets/images/temp/stan_smith.jpg'),
+(8, 1, 'AIR MAX 90', 'NIKE / AIR MAX', 1990, 'AIR MAXといったらこのモデルをイメージする人も多いはず。シリーズの代表作。', NULL, 'assets/images/temp/air_max90.jpg'),
+(9, 5, 'ERA', '-', 1975, 'VANSの名作。スケーター向けのクラシックスニーカー。', NULL, 'assets/images/temp/era.jpg'),
+(10, 1, 'AIR MAX 95', 'NIKE / AIR MAX', 1995, 'AIR MAXシリーズの中で根強い人気を誇る。', NULL, 'assets/images/temp/air_max95.jpg'),
+(11, 7, 'ALL STAR Hi', 'CONVERSE / ALL STAR', 1917, '1917年発売。スニーカーの歴史はここから始まった。', NULL, 'assets/images/temp/allstar_hi.jpg'),
+(12, 6, 'M996', '-', 1989, '歩き易い、履き易い、合わせ易い三拍子揃った美しいスニーカー。', NULL, 'assets/images/temp/nb_m996.jpg'),
+(13, 7, 'ALL STAR OX', 'CONVERSE / ALL STAR', 1957, 'ALL STARのローカットモデル。CONVERSEといえばこれと言えるほど色褪せない名スニーカー。', NULL, 'assets/images/temp/allstar_ox.jpg'),
+(14, 1, 'AIR FORCE 1', 'NIKE / AIR FORCE', 1982, 'スニーカーの王様。', NULL, 'assets/images/temp/airforce_1.jpg'),
+(15, 1, 'CORTEZ', '-', 1972, 'NIKEのクラシックランニングシューズ。ナイロン製やレザー製などがある。読み方は「コルテッツ」', NULL, 'assets/images/temp/cortez.jpg'),
+(16, 3, 'SUPERSTAR', '-', 1969, '「RUN DMC」が愛用。これを紐無しで履いている奴はかなりコアなHIPHOPファン。', NULL, 'assets/images/temp/superstar.jpg'),
+(17, 5, 'OLD SKOOL', '-', 1978, '元はBMXライダーの為に作られたがスケーターから支持を集める。', NULL, 'assets/images/temp/oldskool.jpg'),
+(18, 1, 'AIR HUARACHE LIGHT', 'NIKE / AIR HUARACHE', 1993, 'アッパー部分の網目が特徴。初代ハラチに劣らない人気作。', NULL, 'assets/images/temp/air_huarache_light.jpg'),
+(19, 8, 'GEL-LYTE Ⅲ', 'ASICS / GEL', 1990, '国内最高メーカー"ASICS"の名作。海外からも高い評価。', NULL, 'assets/images/temp/gel_lyte3.jpg'),
+(20, 4, 'VENTILATOR', '-', 1990, '機能性とデザイン性を兼ね備えたReebokのランニングシューズ。', NULL, 'assets/images/temp/ventilator.jpg'),
+(21, 3, 'CAMPUS', '-', 1983, '「ビースティ・ボーイズ」が愛用したことで有名なadidasのローテクスニーカー。', NULL, 'assets/images/temp/campus.jpg'),
+(22, 1, 'AIR ZOOM FRIGHT 96', 'NIKE / AIR ZOOM (FRIGHT)', 1996, '96年発売のハイテクバスケットボールシューズ。', NULL, 'assets/images/temp/air_zoom_fright.jpg'),
+(23, 1, 'AIR MORE UPTEMPO', 'NIKE / AIR', 1996, 'サイドの「AIR」ロゴのインパクトが絶大。新作発売日に抽選でも買えないほどの人気作。', NULL, 'assets/images/temp/air_more_uptempo.jpg'),
+(24, 1, 'AIR MAX 93', 'NIKE / AIR MAX (HUARACHE)', 1993, 'AIR MAXシリーズの93年モデル。270度のビジブルエアとハラチシステムが特徴。', NULL, 'assets/images/temp/air_max93.jpg'),
+(25, 3, 'ZX500', 'adidas / ZX', 1984, 'adidasZXシリーズの第1号。当時のランニングシューズ界を牽引。', NULL, 'assets/images/temp/zx500.jpg'),
+(26, 5, 'authentic', '-', 1966, 'VANS設立時に誕生。後のVANSの名作「ERA」の前身。ERAとの違いは履き口のパット部分。', NULL, 'assets/images/temp/authentic.jpg'),
+(27, 3, 'ZX700', 'adidas / ZX', 1985, 'ZXシリーズの隠れた人気作。', NULL, 'assets/images/temp/zx700.jpg'),
+(28, 6, 'M1400', '-', 1994, 'NBの最高傑作。元々高価格だがメイドインUSAだと更に高値。', NULL, 'assets/images/temp/nb_m1400.jpg\r\n'),
+(29, 4, 'PUMP GRAPHLITE', 'Reebok / PUMP', 1992, '「INSTA PUNP FURY」のシューレース版。色鮮やかな配色が特徴。', NULL, 'assets/images/temp/pump_graphlite.jpg'),
+(30, 3, 'GAZELLE	', '-', 1968, '細身のシルエットが特徴のadidasのクラシックスニーカー。読み方は「ガッツレー」', NULL, 'assets/images/temp/gazelle.jpg'),
+(31, 2, 'R698	', 'PUMA / TRINOMIC', 1990, 'PUMAのクッションシステム「TRINOMIC」を搭載した。ミッドテクランニングシューズ。', NULL, 'assets/images/temp/r698.jpg'),
+(42, 3, 'TORSION ALLEGRA', 'adidas / EQUIPMENT (TORSION)', 1992, 'adidasのクッション技術「TORSION」搭載。発売当時ランニングシューズにしてはデザインが近未来的と話題に。', NULL, 'assets/images/temp/torsion_allegra.jpg'),
+(43, 5, 'SLIP ON', '-', 1979, '「靴紐なしで脱ぎ履きできる靴＝スリッポン」というように代名詞化しているがそのオリジナルモデルは79年にVANSが発売したこの「SLIP ON」', NULL, 'assets/images/temp/slipon.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sneakersmaker`
+--
+
+CREATE TABLE `sneakersmaker` (
+  `id` int(11) NOT NULL,
+  `maker` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `sneakersmaker`
+--
+
+INSERT INTO `sneakersmaker` (`id`, `maker`) VALUES
+(1, 'NIKE'),
+(2, 'PUMA'),
+(3, 'adidas'),
+(4, 'Reebok'),
+(5, 'VANS'),
+(6, 'NEW BALANCE'),
+(7, 'CONVERSE'),
+(8, 'ASICS(ASICS Tiger)');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `team`
 --
 
-CREATE TABLE IF NOT EXISTS `team` (
+CREATE TABLE `team` (
   `ID` int(11) NOT NULL,
   `teamname` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1127,7 +1020,57 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 (15, 'ガンバ大阪U-23'),
 (16, 'セレッソ大阪U-23');
 
-----
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `ths`
+--
+
+CREATE TABLE `ths` (
+  `id` int(11) NOT NULL,
+  `thssubjectID` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `level` varchar(10) DEFAULT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `subject` varchar(10) DEFAULT NULL,
+  `link` varchar(5000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `ths`
+--
+
+INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
+(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
+(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
+(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
+(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
+(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
+(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
+(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `thssubject`
+--
+
+CREATE TABLE `thssubject` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `thssubject`
+--
+
+INSERT INTO `thssubject` (`id`, `subject`) VALUES
+(1, '英語'),
+(2, '数学'),
+(3, '国語');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -1135,254 +1078,338 @@ INSERT INTO `team` (`ID`, `teamname`) VALUES
 -- Indexes for table `aquarium`
 --
 ALTER TABLE `aquarium`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `aquariumarea`
 --
 ALTER TABLE `aquariumarea`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `area`
 --
 ALTER TABLE `area`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `beerbrands`
 --
 ALTER TABLE `beerbrands`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `biketeam`
 --
 ALTER TABLE `biketeam`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `birthplace`
 --
 ALTER TABLE `birthplace`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catarea`
 --
 ALTER TABLE `catarea`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `catcafe`
 --
 ALTER TABLE `catcafe`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `country`
+--
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `drama`
+--
+ALTER TABLE `drama`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `groupname`
 --
 ALTER TABLE `groupname`
- ADD PRIMARY KEY (`GroupID`);
+  ADD PRIMARY KEY (`GroupID`);
 
 --
 -- Indexes for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `nail`
 --
 ALTER TABLE `nail`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `phones`
 --
 ALTER TABLE `phones`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
- ADD PRIMARY KEY (`playerID`);
+  ADD PRIMARY KEY (`playerID`);
 
 --
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
- ADD PRIMARY KEY (`id`), ADD KEY `FK965A4B3DF35C8430` (`area_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK965A4B3DF35C8430` (`area_id`);
 
 --
 -- Indexes for table `rider`
 --
 ALTER TABLE `rider`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `sakearea`
 --
 ALTER TABLE `sakearea`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship`
+--
+ALTER TABLE `ship`
+  ADD PRIMARY KEY (`shipID`);
 
 --
 -- Indexes for table `sim`
 --
 ALTER TABLE `sim`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `simope`
 --
 ALTER TABLE `simope`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `sneakers`
+--
+ALTER TABLE `sneakers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sneakersmaker`
+--
+ALTER TABLE `sneakersmaker`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `id_2` (`id`),
+  ADD KEY `id_3` (`id`);
 
 --
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
- ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`);
 
+--
+-- Indexes for table `ths`
+--
+ALTER TABLE `ths`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
 --
 -- AUTO_INCREMENT for table `aquarium`
 --
 ALTER TABLE `aquarium`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `aquariumarea`
 --
 ALTER TABLE `aquariumarea`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `baseballplayer`
 --
 ALTER TABLE `baseballplayer`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `baseballteam`
 --
 ALTER TABLE `baseballteam`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `beerbrands`
 --
 ALTER TABLE `beerbrands`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `birthplace`
 --
 ALTER TABLE `birthplace`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `catarea`
 --
 ALTER TABLE `catarea`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `catcafe`
 --
 ALTER TABLE `catcafe`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `drama`
+--
+ALTER TABLE `drama`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `guitarinfo`
 --
 ALTER TABLE `guitarinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `guitarmaker`
 --
 ALTER TABLE `guitarmaker`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `iventcontents`
 --
 ALTER TABLE `iventcontents`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `nail`
 --
 ALTER TABLE `nail`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
-MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `sakearea`
 --
 ALTER TABLE `sakearea`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `sakeinfo`
 --
 ALTER TABLE `sakeinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `ship`
+--
+ALTER TABLE `ship`
+  MODIFY `shipID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
-
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `sneakers`
+--
+ALTER TABLE `sneakers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `sneakersmaker`
+--
+ALTER TABLE `sneakersmaker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `ths`
+--
+ALTER TABLE `ths`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `thssubject`
+--
+ALTER TABLE `thssubject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- ダンプしたテーブルの制約
 --
 
@@ -1390,7 +1417,7 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- テーブルの制約 `restaurant`
 --
 ALTER TABLE `restaurant`
-ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
+  ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
