@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 8 朁E30 日 07:51
+-- Generation Time: 2016 年 8 朁E30 日 07:12
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -48,8 +48,7 @@ INSERT INTO `aquarium` (`id`, `aquariumAreaId`, `name`, `price`, `hours`, `comme
 (23, 1, '魚人島', 1400, '00：00～24：00', 'ぎょじんだらけ', NULL),
 (27, 6, 'グンマー帝国水族館', 1000, '10：00～21：00', 'ぐんまのやぼう', NULL),
 (28, 4, 'さいたま水族館', 300, '9：30～17：00', 'さいたま市は、3画目が離れた「さ」を許さない。', NULL),
-(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL),
-(30, 1, 'あ', 500, 'あ', 'あ', NULL);
+(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL);
 
 -- --------------------------------------------------------
 
@@ -308,6 +307,26 @@ INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `country`
+--
+
+CREATE TABLE `country` (
+  `ID` int(10) NOT NULL,
+  `countryName` varchar(20) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `country`
+--
+
+INSERT INTO `country` (`ID`, `countryName`) VALUES
+(1, '日本'),
+(2, 'ドイツ'),
+(3, 'アメリカ');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `drama`
 --
 
@@ -533,63 +552,6 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 (7, '2016/02/22', 'wi', 'レッド', 'ひとみさん', 'バレンタインネイル', '7.jpg'),
 (8, '2016/12/24', 'wi', 'ピンク', 'じぶん', 'クリスマスネイル', '8.jpg'),
 (36, '2016/05/09', 'sp', 'ブルー', 'じぶん', 'ラメグラデネイル\r\n', '11695014_690307654434924_4673989754922144318_n.jpg');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `onsen`
---
-
-CREATE TABLE `onsen` (
-  `id` int(100) NOT NULL,
-  `onsenAreaId` int(100) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `effect` varchar(100) DEFAULT NULL,
-  `comment` varchar(200) DEFAULT NULL,
-  `area` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `onsen`
---
-
-INSERT INTO `onsen` (`id`, `onsenAreaId`, `name`, `effect`, `comment`, `area`, `link`) VALUES
-(2, 2, '箱根湯本温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '肌に優しいアルカリ性の単純温泉から殺菌力が高く皮膚炎などに効果的な酸性泉・硫黄泉などなどバリエーションが豊富。', NULL, 'http://www.hakoneyumoto.com/'),
-(3, 6, '草津温泉', '皮膚病', '日本一の豊富な湯量と、強力な殺菌力を誇ります。', NULL, 'http://sainokawara.com/'),
-(4, 6, '伊香保温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '伊香保温泉は草津温泉と並び、群馬県を代表する温泉地。', NULL, 'http://www.ikaho-kankou.com/'),
-(5, 5, '鬼怒川温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾冷え性、病後回復期、健康増進', '江戸時代、日光を詣でる僧侶や大名だけが入ることを許されていた由緒正しい温泉です。', NULL, 'http://www.nikko-kankou.org/spot/51/'),
-(6, 2, '湯河原温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '豊かな自然に囲まれた湯河原温泉は、山海の幸に恵まれているため、さまざまなグルメが楽しめます。', NULL, 'http://www.yugawara.or.jp/'),
-(7, 5, '那須温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '那須温泉には1300年続く「鹿の湯」があり、かつて傷を負った鹿がこの湯に入って傷を癒したと言われています。', NULL, 'http://www.nasuonsen.com/'),
-(8, 3, '養老渓谷温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '老渓谷温泉は、こげ茶色をした「黒湯」と呼ばれる珍しい泉質の温泉です。', NULL, 'http://www.yorokeikoku.com/'),
-(9, 3, '鴨川温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '泉質は単純硫黄冷鉱泉です。', NULL, 'http://www.kamogawa-hotel.info/'),
-(10, 7, '袋田温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '久慈川の支流、滝川のほとりにある歴史を誇る温泉地です。', NULL, 'http://www.town.daigo.ibaraki.jp/page/page000016.html'),
-(11, 4, '名栗温泉', '痛風、動脈硬化症、高血圧症、慢性胆のう炎、胆石症、慢性皮膚病、慢性婦人病', '名栗温泉は鎌倉時代（約800年前）に猟師に発見されたと伝えられている古湯。', NULL, 'http://www.rurubu.com/onsen/detail.aspx?ID=SP301430'),
-(12, 1, '板橋温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '東京都板橋区（旧国武蔵国）にある温泉。', NULL, 'http://www.rurubu.com/season/special/higaeriyu/detail.aspx?SozaiNo=130028');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `onsenarea`
---
-
-CREATE TABLE `onsenarea` (
-  `id` int(100) NOT NULL,
-  `area` varchar(100) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- テーブルのデータのダンプ `onsenarea`
---
-
-INSERT INTO `onsenarea` (`id`, `area`) VALUES
-(1, '東京都'),
-(2, '神奈川県'),
-(3, '千葉県'),
-(4, '埼玉県'),
-(5, '栃木県'),
-(6, '群馬県'),
-(7, '茨城県');
 
 -- --------------------------------------------------------
 
@@ -849,6 +811,42 @@ INSERT INTO `season` (`KisetuID`, `Kisetu`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `ship`
+--
+
+CREATE TABLE `ship` (
+  `shipID` int(10) NOT NULL,
+  `shipName` varchar(20) DEFAULT NULL,
+  `countryID` int(10) DEFAULT NULL,
+  `shipClass` varchar(20) DEFAULT NULL,
+  `year` int(10) DEFAULT NULL,
+  `comment` varchar(300) DEFAULT NULL,
+  `countryName` varchar(300) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `imagePath` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '画像へのパス'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `ship`
+--
+
+INSERT INTO `ship` (`shipID`, `shipName`, `countryID`, `shipClass`, `year`, `comment`, `countryName`, `imagePath`) VALUES
+(9, 'ビスマルク', 2, '戦艦', 1940, 'ドイツが初めて建造した超弩級戦艦。<br />排水量は協定破りの４１７００トンとまさに弩級。<br />スペックとは裏腹にそこまでの戦績は残さず沈没してしまった。<br />ハイル〇トラー‼', NULL, '3bismarck.jpg_20160822115137.jpeg'),
+(10, 'アイオワ', 3, '戦艦', 1943, 'アメリカを代表する戦艦であるアイオワは排水量48000トンを誇る（協定守る気あんの？）<br />しかし、艦隊決戦の機械がなく専ら空母のお守となかなかの宝の持ち腐れっぷりである。<br />（別にアメリカが嫌いなわけではないよ）', NULL, '87797b67fd44e80bf66f631adcfafbdb80bdaff81456287050.jpg_20160822115733.jpeg'),
+(11, '大和', 1, '戦艦', 1920, '日本が誇る戦艦大和<br />この名を知らないものはいないであろう（知らないとかモグリなん？）<br />排水量は64000トンとまさに化け物級であり、46㎝3連装砲は他国ではマネの出来なかった<br />日本の英知の結晶である。（俺は長門の方が好きだけどね‼）', NULL, 'o-YAMATO-facebook.jpg_20160822120139.jpeg'),
+(12, '赤城', 1, '空母', 1927, '日本の空母と言えば赤城を置いてほかにはいないだろう（言い過ぎ、私は信濃が好き）<br />初期段階では三段甲板だった。<br />下段が大型機の発艦、中段は小型機の発艦と20連装砲を2基、最上段は着艦と、英空母フィーリアスに倣っている。<br />1935年に通常の平甲板型となった。', NULL, '227FIX.jpg_20160822120752.jpeg'),
+(13, 'グラーフ・ツェッペリン', 2, '空母', 1936, 'ドイツ空母の代表格？であり、初の空母だったため建造に2年かかったという。（作り上げたとは言ってない）<br />圧縮空気式のカタパルトや対空用の10.5㎝連装砲、対水上用の15㎝連装砲など飛ばす以外にも<br />充実した装備を持ち合わせている。<br />9割完成したところで建造中止（潜水艦を優先、Uボートつえええ）', NULL, '144898301930025529180_zeppeli7.jpg_20160822121618.jpeg'),
+(14, 'ミッドウェイ', 3, '空母', 1945, 'アメリカ空母といえばミッドウェイの名が出てくるのは仕方がないね。<br />1940年から計画されたにも関わらず、完成は戦後の1945年。<br />今までの空母とは一線を画すため、艦種記号はCVにBIGを追加されCVBとなった。<br />1973年より横須賀を母港とし活動していたが、1991年湾岸戦争に参加後退役した。<br />（2番艦の名はルーズベルト‼かっこ良いよね‼）', NULL, 'USS_Midway_CVA-41.jpg_20160822122401.jpeg'),
+(15, '古鷹', 1, '巡洋艦', 1926, '私が知っている中で最も美しくカッコイイと評判の古鷹。<br />英米の新型巡洋艦を凌駕する偵察巡洋艦、全てにおいての軽量化に成功。<br />しかし奇抜な設計ゆえに居住性は最悪だったとか（居住性大事‼よくわかんだね‼）<br />1939年に近代化改修され、艦容は青葉に似ている。<br />サボ島沖夜戦で沈没。', NULL, '14_0.11[1].29 ｸﾅﾂ・・｢･・JPG.jpg_20160822123050.jpeg'),
+(16, 'プリンツ・オイゲン', 2, '巡洋艦', 1939, 'ドイツ最後の重巡洋艦<br />20.3㎝砲8門、水線部装甲70㎜、最大32ノットと十分な攻防性能を追求したがために<br />基準排水量14050トンを大幅に上回った艦。（頭おかしいね‼）<br />かなりの性能を誇るプリンツあバルト海で活動し生き残った（すごいよね）<br />しかし、戦後アメリカへ引き渡され核実験の標的艦となり沈没', NULL, 'img_0.jpg_20160822123825.jpeg'),
+(17, 'クリーブランド', 3, '巡洋艦', 1942, 'ロンドン条約が失効したため自由な設計・建造できるようになり計画された軽巡洋艦<br />ブルックリンの後期型から流用<br />対空特化の巡洋艦である（アメリカの巡洋艦はあまり興味がないんだ、すまない）', NULL, 'uss_columbia.jpg_20160822124520.jpeg'),
+(18, '島風', 1, '駆逐艦', 1941, '「おっそーい‼」でも有名なあの島風である<br />なんといっても凄いのはその速力であり、なんと40ノット（早すぎー‼）<br />通常時は75000馬力だが短時間なら79240馬力を発生できた（もはや追いつけないよね）<br />しかし、サイズと排水量が高く大型駆逐艦のため一隻しか建造することが出来なかった（ボッチ...）<br />魚雷発射管は5連装魚雷と日本の駆逐艦としては唯一の例である。', NULL, 'b4cb3f1b.jpg_20160822125209.jpeg'),
+(19, 'Z1', 2, '駆逐艦', 1938, 'Z1とも呼ばれるが、1936型駆逐艦とも呼ばれているドイツの駆逐艦<br />1940年ノルウェー海軍と英海軍との交戦で5隻が沈没（6隻建造したから1隻しか怒らず）<br />1940年に建造されたZ3は改良型である', NULL, 'ea23fd40-s.jpg_20160822125815.jpeg'),
+(20, 'フレッチャー', 3, '駆逐艦', 1942, 'アイオワに随伴可能な艦隊型駆逐艦として計画され建造されたのがこのフレッチャーである<br />2100トン級の大型駆逐艦', NULL, 'img_3.jpg_20160822130204.jpeg'),
+(21, 'aaaaaaaaaaaaaaaaaaaa', 3, '駆逐艦', 1000, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `sim`
 --
 
@@ -936,7 +934,6 @@ INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comm
 (3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
 (4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
 (5, 1, 'AIR MAX 1', 'NIKE / AIR MAX', 1987, '記念すべきAIR MAXシリーズ第1号。ハイテクスニーカー時代の幕開け。', NULL, 'assets/images/temp/air_max1.jpg'),
-(6, 2, 'suede classic', '-', 1968, 'PUMA不朽の名作。1足以上持っておきたいクラシックスニーカー。', NULL, 'assets/images/temp/puma_suede.jpg'),
 (7, 3, 'STAN SMITH', '-', 1973, '世界一売れたスニーカー。名前は同名テニスプレーヤーに由来。', NULL, 'assets/images/temp/stan_smith.jpg'),
 (8, 1, 'AIR MAX 90', 'NIKE / AIR MAX', 1990, 'AIR MAXといったらこのモデルをイメージする人も多いはず。シリーズの代表作。', NULL, 'assets/images/temp/air_max90.jpg'),
 (9, 5, 'ERA', '-', 1975, 'VANSの名作。スケーター向けのクラシックスニーカー。', NULL, 'assets/images/temp/era.jpg'),
@@ -1051,8 +1048,7 @@ INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, 
 (5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
 (7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
 (9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc'),
-(11, 1, 'あ', '普通', 'あああああ', NULL, 'あ');
+(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
 
 -- --------------------------------------------------------
 
@@ -1139,6 +1135,12 @@ ALTER TABLE `catcafe`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `country`
+--
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `drama`
 --
 ALTER TABLE `drama`
@@ -1173,18 +1175,6 @@ ALTER TABLE `iventcontents`
 --
 ALTER TABLE `nail`
   ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `onsen`
---
-ALTER TABLE `onsen`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `onsenarea`
---
-ALTER TABLE `onsenarea`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `operator`
@@ -1228,6 +1218,12 @@ ALTER TABLE `sakearea`
 --
 ALTER TABLE `sakeinfo`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship`
+--
+ALTER TABLE `ship`
+  ADD PRIMARY KEY (`shipID`);
 
 --
 -- Indexes for table `sim`
@@ -1282,7 +1278,7 @@ ALTER TABLE `thssubject`
 -- AUTO_INCREMENT for table `aquarium`
 --
 ALTER TABLE `aquarium`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `aquariumarea`
 --
@@ -1324,6 +1320,11 @@ ALTER TABLE `catarea`
 ALTER TABLE `catcafe`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `drama`
 --
 ALTER TABLE `drama`
@@ -1348,11 +1349,6 @@ ALTER TABLE `iventcontents`
 --
 ALTER TABLE `nail`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `onsen`
---
-ALTER TABLE `onsen`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `phones`
 --
@@ -1384,6 +1380,11 @@ ALTER TABLE `sakearea`
 ALTER TABLE `sakeinfo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
+-- AUTO_INCREMENT for table `ship`
+--
+ALTER TABLE `ship`
+  MODIFY `shipID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
 -- AUTO_INCREMENT for table `sim`
 --
 ALTER TABLE `sim`
@@ -1402,7 +1403,7 @@ ALTER TABLE `sneakersmaker`
 -- AUTO_INCREMENT for table `ths`
 --
 ALTER TABLE `ths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `thssubject`
 --
