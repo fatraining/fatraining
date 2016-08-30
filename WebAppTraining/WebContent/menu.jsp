@@ -100,11 +100,19 @@
 			</div>
 
 
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<s:submit method="thsSearch" value="講師検索" cssClass="btn btn-warning" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="thsSearch" value="講師検索"
+						cssClass="btn btn-warning" />
+				</div>
 			</div>
-		</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="onsenSearch" value="温泉検索"
+						cssClass="btn btn-warning" />
+				</div>
+			</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
