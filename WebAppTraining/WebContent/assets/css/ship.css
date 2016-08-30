@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+
+/*html, body {
+  width: 100%;
+  height: 100%;
+  margin:0;
+  padding:0;
+  color: white;
+}
+#wrapper {
+  width:500px;
+  height:100px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-100px;
+  margin-left:-250px;
+  text-align:center;
+  font-size:18px;
+  z-index:9999;
+}
+*/
+/*半透明のブラインド*/
+div#wrapper {
+	width: 850px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+	background-color: rgba(255,255,255,0.5);
+}
+/*文字をやや半透明にする*/
+h1 {
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+               text-align: center;
+}
+/*テーブルを揃える*/
+table.tbl th {
+	width: 150px;
+	padding: 0px;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+/*モーダル上書き?*/
+.modal-backdrop {
+    /* position: fixed; */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
+}

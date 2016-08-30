@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+/*背景画像表示*/
+body{
+	background-image: url("../images/yamato.jpg");
+	background-positioni: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #000000;
+}
+/*ボックス内に文字を入れる*/
+h1 {
+   font-style: oblique;
+   font-family: Impact,Charcoal;
+   font-codlor: white;
+}
