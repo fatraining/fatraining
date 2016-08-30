@@ -12,7 +12,7 @@
 
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
-<<<<<<< .mine
+
 
 -- Generation Time: 2016 年 8 朁E30 日 07:51
 
