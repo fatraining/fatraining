@@ -72,8 +72,9 @@
 		<mapping class="training2016.model.ThsSubject" />
 		<mapping class="training2016.model.Sneakers" />
 		<mapping class="training2016.model.SneakersMaker" />
-		<mapping class="training2016.model.Onsen" />
-		<mapping class="training2016.model.OnsenArea" />
+		<mapping class="training2016.model.Maiwaifu" />
+		<mapping class="training2016.model.MaiwaifuArea" />
+
 
 	</session-factory>
 
