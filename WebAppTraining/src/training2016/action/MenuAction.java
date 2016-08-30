@@ -21,9 +21,11 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "dramaSearch", value = "dramaSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "sneakersSearch", value = "sneakersSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "yokaiSearch", value = "yokaiSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "shipSearch", value = "shipFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "maiwaifuSearch", value = "maiwaifuSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "onsenSearch", value = "onsenSearch.action", type = ServletRedirectResult.class), })
+
 public class MenuAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -194,6 +196,19 @@ public class MenuAction extends AbstractAction {
 	public String sneakersSearch() {
 		return "sneakersSearch";
 	}
+
+
+	/**
+	 * 石津の妖怪検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String yokaiSearch() {
+		return "yokaiSearch";
+	}
+
+
+
 	/**
 	 * 横山の艦艇検索へ遷移する
 	 *
@@ -218,6 +233,7 @@ public class MenuAction extends AbstractAction {
 	public String onsenSearch() {
 		return "onsenSearch";
 }
+
 
 
 
