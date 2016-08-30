@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 8 朁E30 日 07:12
+-- Generation Time: 2016 年 8 朁E30 日 09:43
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -48,7 +48,8 @@ INSERT INTO `aquarium` (`id`, `aquariumAreaId`, `name`, `price`, `hours`, `comme
 (23, 1, '魚人島', 1400, '00：00～24：00', 'ぎょじんだらけ', NULL),
 (27, 6, 'グンマー帝国水族館', 1000, '10：00～21：00', 'ぐんまのやぼう', NULL),
 (28, 4, 'さいたま水族館', 300, '9：30～17：00', 'さいたま市は、3画目が離れた「さ」を許さない。', NULL),
-(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL);
+(29, 7, 'アクアワールド茨城県大洗水族館', 1800, '9：00～17：00', 'いばらぎ、じゃなくて、いばらき', NULL),
+(30, 1, 'あ', 500, 'あ', 'あ', NULL);
 
 -- --------------------------------------------------------
 
@@ -556,6 +557,63 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `onsen`
+--
+
+CREATE TABLE `onsen` (
+  `id` int(100) NOT NULL,
+  `onsenAreaId` int(100) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `effect` varchar(100) DEFAULT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `area` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `onsen`
+--
+
+INSERT INTO `onsen` (`id`, `onsenAreaId`, `name`, `effect`, `comment`, `area`, `link`) VALUES
+(2, 2, '箱根湯本温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '肌に優しいアルカリ性の単純温泉から殺菌力が高く皮膚炎などに効果的な酸性泉・硫黄泉などなどバリエーションが豊富。', NULL, 'http://www.hakoneyumoto.com/'),
+(3, 6, '草津温泉', '皮膚病', '日本一の豊富な湯量と、強力な殺菌力を誇ります。', NULL, 'http://sainokawara.com/'),
+(4, 6, '伊香保温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '伊香保温泉は草津温泉と並び、群馬県を代表する温泉地。', NULL, 'http://www.ikaho-kankou.com/'),
+(5, 5, '鬼怒川温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾冷え性、病後回復期、健康増進', '江戸時代、日光を詣でる僧侶や大名だけが入ることを許されていた由緒正しい温泉です。', NULL, 'http://www.nikko-kankou.org/spot/51/'),
+(6, 2, '湯河原温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '豊かな自然に囲まれた湯河原温泉は、山海の幸に恵まれているため、さまざまなグルメが楽しめます。', NULL, 'http://www.yugawara.or.jp/'),
+(7, 5, '那須温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '那須温泉には1300年続く「鹿の湯」があり、かつて傷を負った鹿がこの湯に入って傷を癒したと言われています。', NULL, 'http://www.nasuonsen.com/'),
+(8, 3, '養老渓谷温泉', '切り傷、火傷、慢性皮膚病、美肌効果', '老渓谷温泉は、こげ茶色をした「黒湯」と呼ばれる珍しい泉質の温泉です。', NULL, 'http://www.yorokeikoku.com/'),
+(9, 3, '鴨川温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '泉質は単純硫黄冷鉱泉です。', NULL, 'http://www.kamogawa-hotel.info/'),
+(10, 7, '袋田温泉', '神経痛、筋肉痛、関節痛、五十肩、運動麻痺、関節のこわばり、うちみ、くじき、慢性消化器病、痔疾、冷え性、病後回復期、健康増進', '久慈川の支流、滝川のほとりにある歴史を誇る温泉地です。', NULL, 'http://www.town.daigo.ibaraki.jp/page/page000016.html'),
+(11, 4, '名栗温泉', '痛風、動脈硬化症、高血圧症、慢性胆のう炎、胆石症、慢性皮膚病、慢性婦人病', '名栗温泉は鎌倉時代（約800年前）に猟師に発見されたと伝えられている古湯。', NULL, 'http://www.rurubu.com/onsen/detail.aspx?ID=SP301430'),
+(12, 1, '板橋温泉', '切り傷、火傷、慢性皮膚病、虚弱児童、慢性婦人病', '東京都板橋区（旧国武蔵国）にある温泉。', NULL, 'http://www.rurubu.com/season/special/higaeriyu/detail.aspx?SozaiNo=130028');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `onsenarea`
+--
+
+CREATE TABLE `onsenarea` (
+  `id` int(100) NOT NULL,
+  `area` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `onsenarea`
+--
+
+INSERT INTO `onsenarea` (`id`, `area`) VALUES
+(1, '東京都'),
+(2, '神奈川県'),
+(3, '千葉県'),
+(4, '埼玉県'),
+(5, '栃木県'),
+(6, '群馬県'),
+(7, '茨城県');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `operator`
 --
 
@@ -934,6 +992,7 @@ INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comm
 (3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
 (4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
 (5, 1, 'AIR MAX 1', 'NIKE / AIR MAX', 1987, '記念すべきAIR MAXシリーズ第1号。ハイテクスニーカー時代の幕開け。', NULL, 'assets/images/temp/air_max1.jpg'),
+(6, 2, 'suede classic', '-', 1968, 'PUMA不朽の名作。1足以上持っておきたいクラシックスニーカー。', NULL, 'assets/images/temp/puma_suede.jpg'),
 (7, 3, 'STAN SMITH', '-', 1973, '世界一売れたスニーカー。名前は同名テニスプレーヤーに由来。', NULL, 'assets/images/temp/stan_smith.jpg'),
 (8, 1, 'AIR MAX 90', 'NIKE / AIR MAX', 1990, 'AIR MAXといったらこのモデルをイメージする人も多いはず。シリーズの代表作。', NULL, 'assets/images/temp/air_max90.jpg'),
 (9, 5, 'ERA', '-', 1975, 'VANSの名作。スケーター向けのクラシックスニーカー。', NULL, 'assets/images/temp/era.jpg'),
@@ -1048,32 +1107,8 @@ INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, 
 (5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
 (7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
 (9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
-
-
-
-
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: 2016 年 8 朁E29 日 10:31
--- サーバのバージョン： 10.1.13-MariaDB
--- PHP Version: 5.6.23
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `webapp`
---
+(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc'),
+(11, 1, 'あ', '普通', 'あああああ', NULL, 'あ');
 
 -- --------------------------------------------------------
 
@@ -1339,6 +1374,18 @@ ALTER TABLE `nail`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `onsen`
+--
+ALTER TABLE `onsen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `onsenarea`
+--
+ALTER TABLE `onsenarea`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `operator`
 --
 ALTER TABLE `operator`
@@ -1440,7 +1487,7 @@ ALTER TABLE `thssubject`
 -- AUTO_INCREMENT for table `aquarium`
 --
 ALTER TABLE `aquarium`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `aquariumarea`
 --
@@ -1512,6 +1559,11 @@ ALTER TABLE `iventcontents`
 ALTER TABLE `nail`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
+-- AUTO_INCREMENT for table `onsen`
+--
+ALTER TABLE `onsen`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
@@ -1565,7 +1617,7 @@ ALTER TABLE `sneakersmaker`
 -- AUTO_INCREMENT for table `ths`
 --
 ALTER TABLE `ths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `thssubject`
 --
