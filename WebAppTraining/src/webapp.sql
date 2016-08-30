@@ -1395,3 +1395,163 @@ ADD CONSTRAINT `FK965A4B3DF35C8430` FOREIGN KEY (`area_id`) REFERENCES `area` (`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2016 年 8 朁E29 日 10:31
+-- サーバのバージョン： 10.1.13-MariaDB
+-- PHP Version: 5.6.23
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `webapp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `maiwaifuarea`
+--
+
+CREATE TABLE `maiwaifuarea` (
+  `id` int(11) NOT NULL,
+  `area` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `maiwaifuarea`
+--
+
+INSERT INTO `maiwaifuarea` (`id`, `area`) VALUES
+(1, '宇宙'),
+(2, '現代'),
+(3, '戦国'),
+(4, 'シュテルンビルト'),
+(5, '本能寺学園'),
+(6, 'その他'),
+(7, '荒川');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `maiwaifuarea`
+--
+ALTER TABLE `maiwaifuarea`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `maiwaifuarea`
+--
+ALTER TABLE `maiwaifuarea`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2016 年 8 朁E29 日 10:30
+-- サーバのバージョン： 10.1.13-MariaDB
+-- PHP Version: 5.6.23
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `webapp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `maiwaifu`
+--
+
+CREATE TABLE `maiwaifu` (
+  `id` int(11) NOT NULL,
+  `maiwaifuAreaId` int(11) DEFAULT NULL,
+  `image` varchar(300) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `genre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `age` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `comment` varchar(300) DEFAULT NULL,
+  `area` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `maiwaifu`
+--
+
+INSERT INTO `maiwaifu` (`id`, `maiwaifuAreaId`, `image`, `name`, `genre`, `age`, `comment`, `area`) VALUES
+(1, 1, 'assets/images/girls/ramu.jpg', 'ラム', 'cute', 'unknown', '『うる星やつら』\r\nうる星（ラム星、アニメでは鬼星）から地球侵略のためにやってきた鬼型宇宙人の娘。 \r\n語尾に「だっちゃ」または「～っちゃ」を付けて話すのが特徴。 世代を超えて絶大な人気を誇っておりほかのキャラに浮ついていてもラムちゃんの姿を見ると「なんだかんだ言ってもやっぱりラムちゃんだわ～～～」となるヲタクも少なくはない。', NULL),
+(2, 2, 'assets/images/girls/fujiko.jpg', '峰不二子', 'sexy', 'unknown', '『ルパン三世』\r\n身長167cm、バスト99.9、ウェスト55.5、ヒップ88.8センチのボイン悪女。 \r\nルパン同様、正体は不明で、ルパンからは「謎の女スパイ」とも評されている。\r\n金持ちの財産目当てに結婚や婚約したことは幾度となくあり、金さえもっていれば容姿にはあまり拘らない様子。 \r\nボン・キュ・ボンの代表でライダースーツ姿はかっこエロ良い。\r\n\r\n', NULL),
+(3, 4, 'assets/images/girls/bluerose.jpg', 'ブルーローズ', 'hero', 'teens', '『TIGER&BUNNY』\r\nヒーロー界のスーパーアイドル。タイタンインダストリー所属。 スポンサーはペプシ。\r\n正体はカリーナ・ライル。 \r\n女王様キャラで売り出し中だが、本来は快活で元気な女子高生。スポンサーの思惑から様々なキャラ作りを要求される事を本心では嫌っている。NEXTとしての特殊能力は「氷を操ること」。 そんな彼女の決め台詞は、 \r\n「私の氷はちょっぴりCOLD、アナタの悪事を完全HOLD！」', NULL),
+(4, 5, 'assets/images/girls/ryuko.JPG', '纏流子', 'cool', 'teens', '『キルラキル』\r\n殺された父の仇を探すために、鬼龍院皐月が支配する本能字学園へとやって来たスケバン転校生。 \r\n赤いメッシュが前髪に入った髪をしており、ぶっきらぼうな性格だが、根はやさしく情に厚い少女。 普段は「鮮血（制服）」を丈の短いセーラー服として着、スカートをサスペンダーで吊っている。 \r\n戦闘時には変形し鋼の服となる「鮮血」だが、露出が増えたその恰好は痴女同然。男勝りな彼女でも恥ずかしがる赤面モノである。（かわいい。）', NULL),
+(5, 5, 'assets/images/girls/satsuki.jpg', '鬼龍院皐月', 'cool', 'teens', '『キルラキル』\r\n本能字学園を武力と恐怖で支配している生徒会長。 母親は学園の理事長にして世界のアパレル産業の70％を支配しているREVOCS社のCEO鬼龍院羅暁。つまりはお嬢様でもある。 \r\n衆前に姿を見せる時は学園の頂上から眩しく光り輝き、地上に降り立つ際は謎の布階段が登場する。 その性格は王者らしく峻厳苛烈で威風堂々。愛刀「縛斬（ばくざん）」を常に帯刀し、生徒とその家族をあらゆる力で掌握している。普段はおっぱいのついたイケメンだが、たまに見せる照れた表情は可愛い。\r\n\r\n', NULL),
+(6, 2, 'assets/images/girls/shampoo.jpg', 'シャンプー', 'cute', 'teens', '『らんま1/2』\r\n中国奥地の村で暮らす武闘民族・女傑族の娘。恋愛に関しては非常に冷徹で、恋敵の抹殺すら厭わないという過激な面も持つため、恋敵には敵意剥き出しで、殺す気満々。アプローチは大胆かつ積極的。\r\n恋愛が絡まなければ誰にでも愛想が良い。CVの佐久間レイの喋る「いい加減な中国語」が大ハマリした事もこのキャラクターの人気の一因。', NULL),
+(8, 1, 'assets/images/girls/lanka.jpg', 'ランカ・リー', 'cute', 'teens', '『マクロスF』\r\n妖怪緑女。よくわからないモンスターを飼っていた。', NULL),
+(9, 1, 'assets/images/girls/mikumo.jpg', '美雲・ギンヌメール', 'beauty', 'teens', '『マクロスΔ』\r\n戦術音楽ユニット「ワルキューレ」のメンバー。 \r\n歌に対して人一倍真摯な姿勢を見せ、危機的状況に陥っても決して歌う事を諦めないチームのエースボーカル。 \r\n年齢、経歴、素性といったプロフィールの一切が不明だが、そのミステリアスさに惚れたファンも多く、身内からも「ミステリアスクイーン」と呼ばれている。 \r\n脱ぎたがりで考え込むシーンでは大体まっぱ。百合百合しさは満点。', NULL),
+(10, 1, 'assets/images/girls/fureia.jpg', 'フレイア・ヴィオン', 'cute', '14', '『マクロスΔ』\r\n戦術音楽ユニットワルキューレに憧れる14歳の少女。 \r\n銀河辺境の惑星の王政国家である「ウィンダミア王国出身であり、なまり口調で喋る田舎娘。 \r\n天真爛漫な性格で、一度決めた事を曲げない芯の強さを持ち、「ごりごり」など擬音で物事を表現する癖がある。 \r\n初見「卵食べたらひよこさんがかわいそぉだよぉ～～＞＜」ってタイプの養殖女かと思ったが、本当に天然のいなかっぺらしい。', NULL),
+(11, 2, 'assets/images/girls/sazae.JPG', 'フグ田サザエ', 'married woman', 'eternal 24', '『サザエさん』\r\nお魚咥えたどら猫を裸足で追っかける程のおっちょこちょい。独特の髪型（連載開始期に流行ったパーマ）をしている。性格は子供っぽく（というのか子供そのもの）元気で明るく嘘が全然つけないお人好しで、サッカーや野球等をカツオたちとやり合うほど快活なお姉さん。そのため身内は勿論、近隣や町内な人達からも大変好かれるいる。\r\n日本の良き嫁代表。\r\n', NULL),
+(12, 5, 'assets/images/girls/mako.JPG', '満艦飾マコ', 'mako', 'teens', '『キルラキル』\r\n主人公の纏流子が転校してきた本能字学園の2年甲組の女子生徒。明るく常にテンションが高く、極度のマイペース・ド天然思考で、いわゆるアホの子。 \r\n朝から悪事を働く弟をプロレス技で制裁し、授業が始まればすぐさま早弁を掻っ込んで居眠りするなど、非常に元気で破天荒。 \r\n妄想や思い込みが激しく、自分一人で突っ走って慌てふためいていることも多い。 \r\nしかし、その思考もまた、どこかズレている。アホの子かわいい。\r\n', NULL),
+(13, 6, 'assets/images/girls/marisa.JPG', '霧雨魔理沙', 'cute', 'unknown', '『東方Project』\r\n「弾幕は火力」をモットーとする普通の魔法使い。上海アリス幻樂団製作の同人ゲーム『東方Project』のキャラクター。 種族は人間で職業は魔法使い。魔法使いの宿命として、人々の生活から離れて暮らしている少女。基本的に、頭は切れるが、それを自分の生活に生かしていない。服装は基本的に全作品共通だが、デザインやカラーリングが作品によって多少異なっている。本人曰く魔法使いっぽい恰好を意識して選んでいるらしい。まあ何はともかく全部似合うし可愛い。', NULL),
+(14, 2, 'assets/images/girls/ranma.jpg', '早乙女乱馬', 'otokonoko', '16', '『らんま1/2』\r\n無差別格闘早乙女流二代目 \r\n元祖無差別格闘流後継者候補（他に候補がいないので実質後継者）。 呪泉郷の呪いで水を被ると女の子に変身する。一度で二度美味しいみたいな設定である。（タグに女体化って書かなくて済むね！）お湯を被ると元に戻る。苦手なものは猫とギャンブル（考えがすぐ顔に出るため）。得意なものはスポーツ全般と料理。 アニメでは好物がお好み焼き、たこ焼き。他にパフェという甘党の一面もある。 ', NULL),
+(15, 6, 'assets/images/girls/inori.JPG', '楪いのり', 'mysterious', 'unknown', '『ギルティクラウン』\r\nウェブアーティスト「EGOIST」のボーカルで、集の憧れの歌手で歌姫でもある。 \r\n無表情でミステリアスな雰囲気が漂い、出生不明。歌うことで自分の感情を解放する。 \r\n桜満集の『王の能力』によって出てくるヴォイドは剣である。 無口な美人。妖狐×僕のカルタちゃんに近しいものがある。基本露出度は高い。', NULL),
+(16, 2, 'assets/images/girls/makishima.jpg', '巻島裕介', 'makichan', 'teens', '『弱虫ペダル』\r\n\r\n\r\n\r\nショ。\r\n\r\n\r\n\r\n', NULL),
+(17, 2, 'assets/images/girls/ririchiyo.jpg', '白鬼院凜々蝶', 'cute', '15', '『妖狐×僕SS』\r\n鬼の先祖返り。 \r\n一人称は「僕」。ツンしゅん(ツンの後に落ち込む)なぶきっちょ系真心娘。 \r\n専属SSは御狐神双熾。人前で口を開くと、事あるごとに悪態をついてしまうという悪癖を持つ少女。 ニーハイ姿は控えめに言っても天使。', NULL),
+(18, 2, 'assets/images/girls/karuta.jpg', '髏々宮カルタ', 'cute', '15', '『妖狐×僕SS』\r\nがしゃどくろの先祖返り。 \r\n青鬼院蜻蛉の専属SS。cv.花澤香菜。しかし、蜻蛉自身とは、あまり深い交流や関わりはない様子。 cv.花澤香菜。\r\n物静かで口数が少ない大食い少女。食べることが大好きで、登場時には高確率で何かしら口にしている。 cv.花澤香菜。膜が貼ったようにぼんやりとした雰囲気を持ち、しばしばエキセントリックな行動をとるため、周囲からは変わり者だと思われがちだが、解りづらいだけで、実は行動には全てきちんと理由がある。cv.花澤香菜。 \r\n頭で物事を考えるよりも、第六感で判断するタイプ。 \r\n考えるよりも深い部分(本能)で何が正しいか解っている。', NULL),
+(19, 6, 'assets/images/girls/raimu.jpg', 'ライム', 'cute', 'unknown', '『セイバーマリオネット』\r\n乙女回路を持つ速度特化型セイバーマリオネット。廃棄されたジャポネス資料館の地下に眠っていた。外見年齢は中学1年生程度で精神は幼いが、銃弾発射を視認した後で回避したり、車をゴミのように薙ぎ倒して走り回るなど戦闘能力は高い。一人称は「ボク」。 あかほりさとる曰く「素直すぎて罪作り」。 幼稚園児のときこの娘に一目ぼれしてヲタクへの道に転がり落ちたといった人もいるらしい。', NULL),
+(20, 7, 'assets/images/girls/maria.jpg', 'マリア', 'sexy', 'unknown', '『荒川アンダーザブリッジ』\r\nマリア様。\r\n一見、穏やかで優しそうなお姉さんに見えるのだが、実際は人を苛めるのが大好きなサディスト。 女性に対しては温厚でお姉さんのような存在だが、男性に対して（特にシスター）は笑顔で毒舌を吐く荒川の女帝と化す。 動物にはやさしい。荒川の「牧場」兼「河川敷セコム」係。「貴方の足が蟻さんを踏んでしまったらどう落し前つけてくれるの？」 でキャラソンデビュー。', NULL),
+(21, 7, 'assets/images/girls/nino.jpg', 'ニノ', 'cute', 'unknown', '『荒川アンダーザブリッジ』\r\n荒川河川敷に住み、自らを金星人と名乗る謎のホームレス少女。 \r\nリクルート（リク/市ノ宮行）の恋人。　星に想いを寄せられている。 \r\n名前の由来は、彼女が着用しているジャージのゼッケン2-3から村長が付けたと思われる。 \r\n物忘れが激しく、１日会わないと恋人のリクルートの顔も忘れる。 \r\n夢遊病の気があり、睡眠中快適な場所を求め彷徨う事もあり危ない。 \r\nその為シスターが睡眠中の彼女にだけ合気道を仕込んだ。常識が通じない美人だが、ミステリアスな女性が好きな人はハマるかもしれない。', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `maiwaifu`
+--
+ALTER TABLE `maiwaifu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `maiwaifu`
+--
+ALTER TABLE `maiwaifu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
