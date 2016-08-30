@@ -33,11 +33,11 @@ public class Onsen implements Serializable {
 	@Column(name = "effect")
 	private String effect;
 
-	@Column(name = "comment")
-	private String comment;
-
 	@Column(name = "link")
 	private String link;
+
+	@Column(name = "comment")
+	private String comment;
 
 	private String area;
 
@@ -118,25 +118,6 @@ public class Onsen implements Serializable {
 	}
 
 	/**
-	 * linkを返す
-	 *
-	 * @return hours
-	 */
-	public String getLink() {
-		return this.link;
-	}
-
-	/**
-	 * linkをセットする
-	 *
-	 * @param link
-	 *            セットする link
-	 */
-	public void setLink(String link) {
-		this.link = link;
-	}
-
-	/**
 	 * commentを返す
 	 *
 	 * @return comment
@@ -151,7 +132,6 @@ public class Onsen implements Serializable {
 	 * @param comment
 	 *            セットする comment
 	 */
-
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
@@ -162,6 +142,14 @@ public class Onsen implements Serializable {
 
 	public void setArea(String area) {
 		this.area = area;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getLink() {
+		return this.link;
 	}
 
 }

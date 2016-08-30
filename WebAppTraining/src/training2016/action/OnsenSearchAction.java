@@ -15,11 +15,12 @@ import training2016.dao.OnsenDao;
 import training2016.model.Onsen;
 import training2016.model.OnsenArea;
 
+//Actionクラスのreturn値と出力先を設定する。
 @Results({ @Result(name = "update", value = "onsenUpdate.action", type = ServletRedirectResult.class),
 		@Result(name = "delete", value = "onsenDelete.action", type = ServletRedirectResult.class) })
 
 public class OnsenSearchAction extends AbstractAction {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; // シリアルバージョンUID
 
 	/* 画面タイトル */
 	private String title = "温泉検索";
@@ -38,7 +39,7 @@ public class OnsenSearchAction extends AbstractAction {
 	private String updateId;
 
 	/* エリアプルダウン用マップ */
-	private Map<String, String> onsenAreaMap = new HashMap<String, String>();
+	private Map<String, String> onsenAreaMap = new HashMap<String, String>();// マップを生成するときに使うもの
 
 	/* 検索リスト */
 	public ArrayList<Onsen> onsenTable = new ArrayList<Onsen>();
@@ -66,7 +67,7 @@ public class OnsenSearchAction extends AbstractAction {
 		return "";
 	}
 
-	/* executeメソッド */
+	/* executeメソッド→SQLTextプロパティに設定したSQL文をサーバプログラムに対して実行する １番最初に実行 */
 	@Override
 	public String execute() {
 		this.area = getDefaultArea();
@@ -90,11 +91,11 @@ public class OnsenSearchAction extends AbstractAction {
 	/* 検索ボタンを押したとき */
 	public String search() {
 		OnsenDao Dao = new OnsenDao();
-		List<?> resultTable = null; // ワイルドカード
+		List<?> resultTable = null; // ワイルドカード「参照するものならなんでも」何かの型のオブジェクトの格納が出来るリスト。その型が何かは分からない。
 		if (StringUtils.isEmpty(area) && StringUtils.isEmpty(name)) {
 			resultTable = Dao.onsenList(); // nullのとき
 		} else {
-			area = this.area.trim();
+			area = this.area.trim(); // trim入力時に先頭または後ろに空白がある場合はそれを取り除いて認識する
 			name = this.name.trim();
 
 			resultTable = Dao.resultList(area, name); // 条件あり
@@ -103,11 +104,10 @@ public class OnsenSearchAction extends AbstractAction {
 		this.onsenTable.addAll(resultTrans(resultTable));
 		this.setOnsenAreaMap();
 
-		this.setDelete("true"); // 消してみても大丈夫かも
 		return "success";
 	}
 
-	/* テーブルの作成 */
+	/* テーブルの作成 選択されたフォームのパラメータをセットして返す */
 	public ArrayList<Onsen> resultTrans(List<?> resultTable) {
 		ArrayList<Onsen> tempTable = new ArrayList<Onsen>();
 		Object[] obj;
@@ -122,8 +122,9 @@ public class OnsenSearchAction extends AbstractAction {
 				temp.setArea(aa.getArea());
 				temp.setName(a.getName());
 				temp.setEffect(a.getEffect());
-				temp.setComment(a.getComment());
 				temp.setLink(a.getLink());
+				temp.setComment(a.getComment());
+
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {
@@ -153,7 +154,7 @@ public class OnsenSearchAction extends AbstractAction {
 			return "error";
 		} else {
 			try {
-				this.response.sendRedirect("onsenDelete.action");
+				this.response.sendRedirect("onsenDelete.action"); // チェック項目があれば
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -264,7 +265,7 @@ public class OnsenSearchAction extends AbstractAction {
 	public void setOnsenAreaMap() {
 		OnsenDao dao = new OnsenDao();
 		List<?> resultTable = dao.getOnsenAreaList();
-		this.onsenAreaMap = tableTrans(resultTable);
+		this.onsenAreaMap = tableTrans(resultTable); // ListをMapに変換
 	}
 
 	/*------------------------------------------------*/

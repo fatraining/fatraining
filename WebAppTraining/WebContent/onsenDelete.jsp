@@ -18,8 +18,8 @@
 			<div class="text-center">
 				<jsp:include page="logo.jsp" />
 			</div>
-			<div class="sub-header">
-				<h2>さっきのデータを削除します</h2>
+			<div class="text-left">
+				<h2>データを削除します</h2>
 				<p class="text-right">
 					<s:property value="userId" />
 					さん <a href="onsenSearch.action">Back</a>
@@ -36,7 +36,7 @@
 								<th>温泉名</th>
 								<th>効能</th>
 								<th>コメント</th>
-								<th>リンク</th>
+
 							</tr>
 						</thead>
 						<tbody>
@@ -46,7 +46,7 @@
 									<td class="data" width="190"><s:property value="name" /></td>
 									<td class="data" width="60"><s:property value="effect" /></td>
 									<td class="data" width="150"><s:property value="comment" /></td>
-									<td class="data" width="190"><s:property value="link" /></td>
+
 								</tr>
 							</s:iterator>
 						</tbody>
@@ -54,7 +54,7 @@
 					<!-- マウスポインタがのったら落ち着く -->
 					<div
 						class="shake shake-vertical-slow shake-constant shake-constant--hover">
-						<s:submit method="delete" value="ほんとに消しちゃっていいの？"
+						<s:submit method="delete" value="消さないで～"
 							class="btn btn-primary" />
 					</div>
 				</div>

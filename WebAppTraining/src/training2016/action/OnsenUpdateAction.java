@@ -34,10 +34,12 @@ public class OnsenUpdateAction extends AbstractAction {
 	private String name;
 	/** 効能 */
 	private String effect;
-	/** コメント */
-	private String comment;
+
 	/** リンク */
 	private String link;
+	/** コメント */
+	private String comment;
+
 	/** メッセージ */
 	private String message;
 	/** エラーメッセージ */
@@ -46,7 +48,7 @@ public class OnsenUpdateAction extends AbstractAction {
 	/** エリアプルダウン用マップ */
 	private Map<String, String> onsenAreaMap = new HashMap<String, String>();
 
-	// イニシャライザ
+	// イニシャライザ 最初の入力項目をはずす
 	{
 		this.setOnsenAreaMap();
 	}
@@ -59,16 +61,17 @@ public class OnsenUpdateAction extends AbstractAction {
 		this.id = this.getValueFromSession("updateId");
 
 		OnsenDao dao = new OnsenDao();
-		Onsen target = null;
+		Onsen target = null; // 更新対象
 		// 更新対象idがあればデータの更新をする
 		if (StringUtils.isNotEmpty(this.id)) {
-			target = dao.select(Integer.parseInt(this.id), Onsen.class);
+			target = dao.select(Integer.parseInt(this.id), Onsen.class); // idを引数にして更新対象のobjectを持ってくる
 			if (target != null) {
-				this.onsenAreaId = String.valueOf(target.getOnsenAreaId());
+				this.onsenAreaId = String.valueOf(target.getOnsenAreaId()); // IDをStringに
 				this.name = target.getName();
 				this.effect = target.getEffect();
 				this.comment = target.getComment();
 				this.link = target.getLink();
+
 				this.updateBtnTitle = "更新"; // ボタンのvalueを追加→更新
 				this.title = "温泉を更新";
 			}
@@ -151,6 +154,7 @@ public class OnsenUpdateAction extends AbstractAction {
 		if (this.isEmptyParam(link)) {
 			addActionError("リンクを入力してください");
 		}
+
 		// 一つでもエラーがあればだめ
 		if (this.getActionErrors().size() > 0) {
 			return "error";
@@ -160,11 +164,12 @@ public class OnsenUpdateAction extends AbstractAction {
 		OnsenDao dao = new OnsenDao();
 		if (StringUtils.isNotEmpty(this.id)) {
 			Onsen target = dao.select(Integer.parseInt(this.id), Onsen.class);
+			// 更新したテーブルを上書き
 			dao.update(this.generateOnsenModel(target));
 			this.message = "更新しました";
 			this.sessionMap.put("message", this.message);
-		} else {
-			dao.insert(this.id, this.onsenAreaId, this.name, this.effect, this.comment, this.link);
+		} else { // 新規の場合
+			dao.insert(this.id, this.onsenAreaId, this.name, this.effect, this.link, this.comment);
 			this.message = "追加しました";
 			this.sessionMap.put("message", this.message);
 		}
@@ -182,7 +187,6 @@ public class OnsenUpdateAction extends AbstractAction {
 		target.setEffect(this.effect);
 		target.setComment(this.comment);
 		target.setLink(this.link);
-
 		return target;
 	}
 
@@ -304,7 +308,7 @@ public class OnsenUpdateAction extends AbstractAction {
 	 * リンクをセットする
 	 *
 	 * @param link
-	 *            セットする link
+	 *            セットする l
 	 */
 	public void setLink(String link) {
 		this.link = link;
@@ -313,7 +317,7 @@ public class OnsenUpdateAction extends AbstractAction {
 	/**
 	 * リンクを返す
 	 *
-	 * @return link セットする link
+	 * @return link
 	 */
 	public String getLink() {
 		return this.link;

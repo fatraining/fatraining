@@ -10,14 +10,14 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="<s:url value="/assets/css/onsen.css"/>" />
-<!-- ふるえるcss -->
-<link rel="stylesheet" type="text/css"
-	href="http://csshake.surge.sh/csshake.min.css">
+
 
 
 </head>
 
 <body>
+	<audio src=<s:url value="/assets/images/temp/sakai.mp3"/>
+		<s:property value="sakai.mp3" /> autoplay loop></audio>
 
 	<div class="container">
 		<div class="text-center">
@@ -27,8 +27,12 @@
 			<a href="menu.action">Back</a>
 		</p>
 		<br>
-		<div class="text-center">
-			<h1 class="shake-slow shake-constant shake-constant--hover">温泉検索</h1>
+
+
+		<div align="center">
+			<font size="7" color="#FF0000">♨</font><font size="7">温泉検索</font><font
+				size="7" color="#FF0000">♨</font>
+
 		</div>
 		<br>
 		<div class="text-right">
@@ -36,7 +40,13 @@
 			<!--OnsenSearchAction.javaで生成したuserIdを画面に表示する -->
 			さん
 		</div>
-		<br>
+
+		<div class="slideShow">
+			<img src="assets/images/onsen_saru1.jpg" width=440 height=440>
+			<img src="assets/images/onsen_kapibara1.jpg" width=440 height=440>
+			<img src="assets/images/onsen_saru2.jpg" width=440 height=440>
+
+		</div>
 
 		<!--
  			<div class="form-group">
@@ -51,7 +61,13 @@
 			</div>
 
 -->
+		<div class="message">
+			<s:actionerror />
+			<s:property value="message" />
+		</div>
+		<br>
 		<s:form cssClass="form-horizontal">
+			<!-- レスポンシブ水平フォーム -->
 			<div class="form-group">
 				<label for="area" class="col-sm-2 control-label">エリア：</label>
 				<div class="col-md-8">
@@ -88,45 +104,49 @@
 			<br>
 
 			<div>
-				<div class="message">
-					<s:actionerror />
-					<s:property value="message" />
-				</div>
+
 				<br>
 				<s:if test="%{onsenTable.size> 0}">
-					<table class="table table-striped table-bordered">
-						<thead>
-							<!-- テーブルヘッダー -->
-							<tr>
-								<th>エリア</th>
-								<th>温泉名</th>
-								<th>効能</th>
-								<th>コメント</th>
-								<th>リンク</th>
-								<th>更新</th>
-								<th>削除</th>
+					<div align="center">
+						<table class="table">
 
 
-							</tr>
-						</thead>
-						<tbody>
-
-							<s:iterator value="onsenTable">
+							<thead>
+								<!-- テーブルヘッダー -->
 								<tr>
-									<td class="data" width="75"><s:property value="area" /></td>
-									<td class="data" width="190"><s:property value="name" /></td>
-									<td class="data" width="60"><s:property value="effect" /></td>
-									<td class="data" width="150"><s:property value="comment" /></td>
-									<td class="data" width="190"><s:property value="link" /></td>
-									<td><input type="button" name="updateBtn" id="update"
-										value="更新" class="btn btn-primary"
-										forUpdate="<s:property value ="id"/>" /></td>
-									<td class="data" width="50"><input type="checkbox"
-										name="delete" value=<s:property value="id"/>></td>
+									<th>エリア</th>
+									<th>温泉名</th>
+									<th>効能</th>
+									<th>コメント</th>
+									<th>リンク</th>
+									<th>更新</th>
+									<th>削除</th>
+
+
 								</tr>
-							</s:iterator>
-						</tbody>
-					</table>
+
+							</thead>
+							<tbody>
+
+								<s:iterator value="onsenTable">
+									<tr>
+										<td class="data"><s:property value="area" /></td>
+										<td class="data"><s:property value="name" /></td>
+										<td class="data"><s:property value="effect" /></td>
+										<td class="data"><s:property value="comment" /></td>
+										<td><input type="button" name="link"
+											onclick="window.open('<s:property value ="link"/>')"
+											value="HP" class="btn btn-primary btn-sm" /></td>
+										<td><input type="button" name="updateBtn" id="update"
+											value="更新" class="btn btn-primary"
+											forUpdate=<s:property value ="id"/> /></td>
+										<td class="data" width="50"><input type="checkbox"
+											name="delete" value=<s:property value="id"/>></td>
+									</tr>
+								</s:iterator>
+							</tbody>
+						</table>
+					</div>
 				</s:if>
 				<s:if test="%{onsenTable.size>0}">
 					<div class="text-right">
@@ -143,6 +163,5 @@
 	<!-- javascript -->
 	<script type="text/javascript"
 		src="<s:url value="/assets/js/sakai.js" />"></script>
-
 </body>
 </html>

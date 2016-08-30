@@ -60,8 +60,9 @@ public class OnsenDeleteAction extends AbstractAction {
 				temp.setArea(aa.getArea());
 				temp.setName(a.getName());
 				temp.setEffect(a.getEffect());
-				temp.setComment(a.getComment());
 				temp.setLink(a.getLink());
+				temp.setComment(a.getComment());
+
 				tempTable.add(temp);
 			}
 		} catch (Exception e) {

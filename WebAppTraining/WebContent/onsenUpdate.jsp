@@ -13,12 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<s:url value="/assets/css/onsen.css" />" />
 
-<script>
 
-
-
-
-</script>
 </head>
 <body>
 	<div class="container">
@@ -27,7 +22,9 @@
 		</div>
 		<div class="text-left">
 			<h2>
+				<font size="6" color="#FF0000">♨</font>
 				<s:property value="title" />
+				<font size="6" color="#FF0000">♨</font>
 			</h2>
 		</div>
 		<br>
@@ -45,9 +42,9 @@
 
 		<s:form class="form-horizontal">
 			<s:hidden name="id"></s:hidden>
+
 			<div class="form-group">
-				<label class=" control-l
-				 abel col-sm-2">エリア：</label>
+				<label class=" control-label col-sm-2">エリア：</label>
 				<div class="col-md-6">
 					<s:select cssClass="form-control" name="onsenAreaId"
 						list="onsenAreaMap"></s:select>
@@ -71,17 +68,20 @@
 			<div class="form-group">
 				<label class=" control-label col-sm-2"> コメント: </label>
 				<div class="col-md-6">
-					<s:textfield name="comment" class="form-control" rows="3"
-						placeholder="" />
+					<s:textfield name="comment" class="form-control" placeholder="" />
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">リンク：</label>
+				<div class="col-md-6">
+					<s:textfield name="link" class="form-control" placeholder="" />
+				</div>
+
 			</div>
 
-			<div class="form-group">
-				<label class=" control-label col-sm-2"> リンク: </label>
-				<div class="col-md-6">
-					<s:textarea name="link" cssClass="form-control" placeholder="" />
-				</div>
-			</div>
+
+
+
 
 			<div class="form-group text-right">
 				<%-- <s:submit method="insert" value="追加" class="btn btn-info btn-lg" /> --%>

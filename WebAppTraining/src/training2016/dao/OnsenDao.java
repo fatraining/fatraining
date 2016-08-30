@@ -23,14 +23,14 @@ public class OnsenDao extends AbstractDao {
 		// データベース接続
 		Session session = this.getCurrentSession();
 		try {
-			// トランザクションを開始
+			// トランザクションを開始 整合性を保証するために1つの作業単位として処理する概念
 			session.beginTransaction();
-			resultTable = session.createSQLQuery("SELECT * FROM OnsenArea")
+			resultTable = session.createSQLQuery("SELECT * FROM OnsenArea") //SQL実行
 					// ResultTableにsql文をいれる
-					.addEntity("OnsenArea", OnsenArea.class).list();
+					.addEntity("OnsenArea", OnsenArea.class).list(); //温泉エリアのリストを取得
 		} catch (Exception e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
+			e.printStackTrace(); //例外が投げられた理由を簡単に取得できる
+			session.getTransaction().rollback(); //元のいい状態（エラーのない）に戻す
 		}
 		// トランザクション終了
 		session.getTransaction().commit(); // close
@@ -59,7 +59,7 @@ public class OnsenDao extends AbstractDao {
 			session.getTransaction().rollback();
 			System.out.println("停止");
 		}
-		session.getTransaction().commit();
+		session.getTransaction().commit();  //トランザクションclose
 		return resultTable;
 	}
 
@@ -166,7 +166,7 @@ public class OnsenDao extends AbstractDao {
 	 *
 	 */
 
-	public void insert(String id, String onsenAreaId, String name, String effect, String comment, String link) {
+	public void insert(String id, String onsenAreaId, String name, String effect, String link,String comment) {
 		Session session = this.getCurrentSession();
 		session.beginTransaction();
 
@@ -175,8 +175,9 @@ public class OnsenDao extends AbstractDao {
 		a.setOnsenAreaId(Integer.parseInt(onsenAreaId));
 		a.setName(name);
 		a.setEffect(effect);
-		a.setComment(comment);
 		a.setLink(link);
+		a.setComment(comment);
+
 
 		try {
 			session.save(a);
