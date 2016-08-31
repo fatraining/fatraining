@@ -3,19 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< .mine
+
 
 -- Generation Time: 2016 年 8 朁E30 日 08:37
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
 -- Generation Time: 2016 年 8 朁E30 日 07:51
-=======
+
 -- Generation Time: 2016 年 8 朁E30 日 09:43
 
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.6.23
->>>>>>> .r1228
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -24,7 +23,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-<<<<<<< .mine
+
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -34,7 +33,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
-=======
+
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -44,7 +43,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
->>>>>>> .r1228
+
 -- テーブルの構造 `aquarium`
 --
 
@@ -1204,37 +1203,7 @@ INSERT INTO `yokaifrom` (`id`, `yokaifrom`) VALUES
 (4, 'その他');
 
 --
-=======
--- --------------------------------------------------------
 
---
--- テーブルの構造 `ths`
---
-
-CREATE TABLE `ths` (
-  `id` int(11) NOT NULL,
-  `thssubjectID` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `level` varchar(10) DEFAULT NULL,
-  `comment` varchar(200) DEFAULT NULL,
-  `subject` varchar(10) DEFAULT NULL,
-  `link` varchar(5000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `ths`
---
-
-INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, `link`) VALUES
-(1, 1, '今井宏', '普通', '予備校界の大物講師。ズバリ的を射たフシギなほどわかる授業、心地よいスピード感と豊富な話題、あふれる知識で、受講生を魅了する。「何でこんなによく理解できるの？」という驚きでいっぱい。生徒の充実感は200%。成績アップはもちろん、英語にとどまらない話題豊富な授業内容に、君の見識が広がること間違いナシ。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=1'),
-(2, 1, '安河内哲也', '基礎', '「基礎から偏差値アップ」「有名大突破！」という超人気講座の名前どおり、数えきれないほどの受験生の偏差値を大改造、難関大へと送り込んでいる！授業は「英語が楽しくなる」と全レベルの受験生に大評判。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=8'),
-(3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
-(4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
-(5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
-(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
-(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc'),
-(11, 1, 'あ', '普通', 'あああああ', NULL, 'あ');
 
 -- --------------------------------------------------------
 
