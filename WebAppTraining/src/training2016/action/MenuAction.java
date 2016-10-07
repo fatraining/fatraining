@@ -24,7 +24,8 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 	@Result(name = "yokaiSearch", value = "yokaiSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "shipSearch", value = "shipFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "maiwaifuSearch", value = "maiwaifuSearch.action", type = ServletRedirectResult.class),
-	@Result(name = "onsenSearch", value = "onsenSearch.action", type = ServletRedirectResult.class), })
+	@Result(name = "onsenSearch", value = "onsenSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "meganeSearch", value = "meganeSearch.action", type = ServletRedirectResult.class), })
 
 public class MenuAction extends AbstractAction {
 
@@ -232,8 +233,15 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String onsenSearch() {
 		return "onsenSearch";
-}
-
+	}
+	/**
+	 * 中川のメガネ購入したりしなかったりへ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String meganeSearch() {
+		return "meganeSearch";
+	}
 
 
 

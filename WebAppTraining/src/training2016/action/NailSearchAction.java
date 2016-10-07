@@ -30,7 +30,7 @@ public class NailSearchAction extends AbstractAction {
 
 
 	public List<Nail> outputTable = new ArrayList<Nail>();
-//	private String setImageFileName;
+//	private String setFileName;
 	//Nailリストをアウトプットテーブルに引っ張ります
 
 
