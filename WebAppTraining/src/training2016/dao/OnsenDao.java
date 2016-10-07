@@ -8,7 +8,6 @@ import org.hibernate.Session;
 
 import training2016.model.Onsen;
 import training2016.model.OnsenArea;
-
 public class OnsenDao extends AbstractDao {
 
 	/**
@@ -41,6 +40,7 @@ public class OnsenDao extends AbstractDao {
 	 *
 	 * 検索結果(null)
 	 */
+
 	@SuppressWarnings("unchecked")
 	public List<Onsen> onsenList() {
 		List<Onsen> resultTable = null;

@@ -1344,23 +1344,6 @@ ALTER TABLE `maiwaifu`
 
 -- --------------------------------------------------------
 
---
--- テーブルの構造 `thssubject`
---
-
-CREATE TABLE `thssubject` (
-  `id` int(11) NOT NULL,
-  `subject` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `thssubject`
---
-
-INSERT INTO `thssubject` (`id`, `subject`) VALUES
-(1, '英語'),
-(2, '数学'),
-(3, '国語');
 
 --
 
@@ -1565,18 +1548,6 @@ ALTER TABLE `sneakersmaker`
 --
 ALTER TABLE `team`
   ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `ths`
---
-ALTER TABLE `ths`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `thssubject`
---
-ALTER TABLE `thssubject`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `yokai`
