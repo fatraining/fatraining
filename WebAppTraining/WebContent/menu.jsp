@@ -136,6 +136,11 @@
 					<s:submit method="meganeSearch" value="メガネ購入"
 						cssClass="btn btn-warning" />
 				</div>
+			</div><div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="norrisSearch" value="チャック・ノリス検索"
+						cssClass="btn btn-warning" />
+				</div>
 			</div>
 
 

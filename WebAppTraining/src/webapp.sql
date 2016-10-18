@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 10 朁E07 日 04:29
--- サーバのバージョン： 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Generation Time: 2016 年 10 朁E18 日 10:02
+-- サーバのバージョン： 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -672,6 +672,54 @@ INSERT INTO `nail` (`ID`, `date`, `KisetuID`, `maincolor`, `handmodel`, `comment
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `norris`
+--
+
+CREATE TABLE `norris` (
+  `id` int(5) NOT NULL,
+  `iine` int(255) DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `year` int(5) NOT NULL,
+  `seriesId` int(5) NOT NULL,
+  `comment` varchar(60) COLLATE utf8_bin NOT NULL,
+  `series` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `norris`
+--
+
+INSERT INTO `norris` (`id`, `iine`, `name`, `year`, `seriesId`, `comment`, `series`) VALUES
+(1, 9, '地獄のヒーロー!!!', 1111, 1, '地獄のヒーローシリーズ第一作!!!', NULL),
+(2, 0, 'デルタ・フォース', 1986, 3, 'デルタ・フォースシリーズ第一作', NULL),
+(3, 2, '炎のテキサスレンジャー', 1993, 2, 'テレビドラマシリーズ', NULL),
+(4, 14, '野獣捜査線', 1985, 0, '全米初登場1位', NULL),
+(5, 0, '地獄のコマンド', 1985, 0, '全米初登場1位', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `norrisseries`
+--
+
+CREATE TABLE `norrisseries` (
+  `id` int(5) NOT NULL,
+  `series` varchar(30) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `norrisseries`
+--
+
+INSERT INTO `norrisseries` (`id`, `series`) VALUES
+(0, 'なし'),
+(1, '地獄のヒーロー'),
+(2, '炎のテキサスレンジャー'),
+(3, 'デルタ・フォース');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `onsen`
 --
 
@@ -1317,6 +1365,12 @@ ALTER TABLE `megane`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `norris`
+--
+ALTER TABLE `norris`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1334,7 +1388,12 @@ ALTER TABLE `maiwaifuarea`
 -- AUTO_INCREMENT for table `megane`
 --
 ALTER TABLE `megane`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+--
+-- AUTO_INCREMENT for table `norris`
+--
+ALTER TABLE `norris`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
