@@ -1,0 +1,117 @@
+@CHARSET "UTF-8";
+/*=================================
+全体的なスタイル
+==================================*/
+//
+上下左右の余白を個別に指定する
+
+* {
+	margin: 0; /*外側の余白を上右下左で指定する*/
+	padding: 0; /*内側の余白を上右下左で指定する*/
+	line-height: 1.0; /*行の高さを指定する*/
+}
+body{
+	background-image: url("../images/norris02.jpg");
+	background-positioni: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #000000;
+}
+
+
+
+body {
+	font-family: Helvetica, "游ゴシック", "Yu Gothic", sans-serif;
+	/*背景画像横幅100％指定*/
+	background-size: 100% auto;
+}
+
+div.left{
+	width:600px;
+	float:left;
+	margin:5px;
+	padding: 0;
+}
+
+div.result{
+	width:750px;
+	float:left;
+	margin:5px;
+	padding: 0;
+}
+
+
+
+/*メッセージ*/
+.message {
+	display: none; /*最初は非表示にしておく*/
+	color: #8b0000;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/*エラーメッセージ*/
+.errorMessage {
+	display: none;
+	s color: #8b0000;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/*更新ボタンがマウスオーバー時に傾く
+  degは傾ける角度（時計回り）*/
+#update:hover {
+	-webkit-transform: rotate(-30deg);
+	-ms-transform: rotate(-30deg);
+	transform: rotate(-30deg);
+}
+
+/**テーブル
+ *
+ */
+table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border-right: 1px solid #999;
+	width: 750px;
+}
+
+th {
+	padding: 6px;
+	text-align: center;
+	vertical-align: top;
+	color: #000000;
+	background-color: #ffffff;
+	border-left: 1px solid #999;
+	border-top: 1px solid #999;
+	font-size: 1.2em;
+}
+
+th {
+	bacground-color: #fff;
+}
+
+tr {
+	background-color: #fff;
+}
+
+tr:hover {
+	background-color: #ffffff;
+}
+
+td {
+	padding: 6px;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	font-size: 1.0em;
+	text-align: center;
+}
+.a {
+  width: 30%;
+}
+.b {
+  width: 20%;
+}
+
+

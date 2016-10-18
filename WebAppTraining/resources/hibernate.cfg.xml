@@ -82,6 +82,9 @@
 		<mapping class="training2016.model.OnsenArea" />
 		<mapping class="training2016.model.Megane" />
 		<mapping class="training2016.model.MeganeArea" />
+		<mapping class="training2016.model.Norris" />
+		<mapping class="training2016.model.NorrisSeries" />
+
 
 
 
