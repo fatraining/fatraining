@@ -28,7 +28,7 @@
 		<!-- Enable Hibernate's automatic session context management -->
 		<property name="current_session_context_class">thread</property>
 
-		<!-- Disable the second-level cache  -->
+		<!-- Disable the second-level cache -->
 		<property name="cache.provider_class">
 			org.hibernate.cache.NoCacheProvider
 		</property>
@@ -40,28 +40,28 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<!-- ここに追加したmodelを完全修飾名で記載 -->
-		<mapping class="training2016.model.Area"/>
-		<mapping class="training2016.model.Restaurant"/>
+		<mapping class="training2016.model.Area" />
+		<mapping class="training2016.model.Restaurant" />
 		<mapping class="training2016.model.Operator" />
 		<mapping class="training2016.model.Phones" />
 		<mapping class="training2016.model.GroupName" />
-		<mapping class="training2016.model.Iventcontents"/>
+		<mapping class="training2016.model.Iventcontents" />
 		<mapping class="training2016.model.Season" />
 		<mapping class="training2016.model.Nail" />
-		<mapping class="training2016.model.Catarea"/>
-		<mapping class="training2016.model.Catcafe"/>
+		<mapping class="training2016.model.Catarea" />
+		<mapping class="training2016.model.Catcafe" />
 		<mapping class="training2016.model.Team" />
 		<mapping class="training2016.model.Players" />
 		<mapping class="training2016.model.Sakearea" />
 		<mapping class="training2016.model.Sakeinfo" />
-		<mapping class="training2016.model.BaseballPlayer"/>
-		<mapping class="training2016.model.BaseballTeam"/>
+		<mapping class="training2016.model.BaseballPlayer" />
+		<mapping class="training2016.model.BaseballTeam" />
 		<mapping class="training2016.model.BikeTeam" />
 		<mapping class="training2016.model.Rider" />
 		<mapping class="training2016.model.Sim" />
 		<mapping class="training2016.model.SimOpe" />
-		<mapping class="training2016.model.GuitarInfo"/>
-		<mapping class="training2016.model.GuitarMaker"/>
+		<mapping class="training2016.model.GuitarInfo" />
+		<mapping class="training2016.model.GuitarMaker" />
 		<mapping class="training2016.model.Aquarium" />
 		<mapping class="training2016.model.AquariumArea" />
 		<mapping class="training2016.model.Birthplace" />
@@ -74,12 +74,15 @@
 		<mapping class="training2016.model.SneakersMaker" />
 		<mapping class="training2016.model.Yokai" />
 		<mapping class="training2016.model.Yokaifrom" />
-		<mapping class="training2016.model.Ships"/>
-		<mapping class="training2016.model.Country"/>
+		<mapping class="training2016.model.Ships" />
+		<mapping class="training2016.model.Country" />
 		<mapping class="training2016.model.Maiwaifu" />
 		<mapping class="training2016.model.MaiwaifuArea" />
 		<mapping class="training2016.model.Onsen" />
 		<mapping class="training2016.model.OnsenArea" />
+		<mapping class="training2016.model.Chocolate" />
+		<mapping class="training2016.model.ChocolateCountry" />
+
 		<mapping class="training2016.model.Megane" />
 		<mapping class="training2016.model.MeganeArea" />
 		<mapping class="training2016.model.Norris" />
