@@ -4,28 +4,30 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-@Results({ @Result(name = "tosaka", value = "phoneFinder.action", type = ServletRedirectResult.class),
-		@Result(name = "harasan", value = "restaurantSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "matsufuji", value = "hpiventSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "yamazaki", value = "catcafeSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "yamamoto", value = "playerFinder.action", type = ServletRedirectResult.class),
-		@Result(name = "sakeSearch", value = "sakeSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "baseballSearch", value = "baseballSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "riderSearch", value = "riderSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
-		@Result(name = "kasashima", value = "nailSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "aquariumSearch", value = "aquariumSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "gotoBeerbrandsSearch", value = "beerbrandsSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "dramaSearch", value = "dramaSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "sneakersSearch", value = "sneakersSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "yokaiSearch", value = "yokaiSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "shipSearch", value = "shipFinder.action", type = ServletRedirectResult.class),
-		@Result(name = "maiwaifuSearch", value = "maiwaifuSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "onsenSearch", value = "onsenSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "meganeSearch", value = "meganeSearch.action", type = ServletRedirectResult.class),
-		@Result(name = "norrisSearch", value = "norrisSearch.action", type = ServletRedirectResult.class), })
+@Results({
+	@Result(name = "tosaka", value = "phoneFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "harasan", value = "restaurantSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "matsufuji", value = "hpiventSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "yamazaki", value = "catcafeSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "yamamoto", value = "playerFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "sakeSearch", value = "sakeSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "baseballSearch", value = "baseballSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "riderSearch", value = "riderSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "gotoSimSearch", value = "simFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "kasashima", value = "nailSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "guitarSearch", value = "guitarSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "aquariumSearch", value = "aquariumSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "gotoBeerbrandsSearch", value = "beerbrandsSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "dramaSearch", value = "dramaSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "thsSearch", value = "thsSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "sneakersSearch", value = "sneakersSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "yokaiSearch", value = "yokaiSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "shipSearch", value = "shipFinder.action", type = ServletRedirectResult.class),
+	@Result(name = "maiwaifuSearch", value = "maiwaifuSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "onsenSearch", value = "onsenSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "chocolateSearch", value = "chocolateSearch.action", type = ServletRedirectResult.class ),
+	@Result(name = "meganeSearch", value = "meganeSearch.action", type = ServletRedirectResult.class),
+	@Result(name = "norrisSearch", value = "norrisSearch.action", type = ServletRedirectResult.class), })
 
 public class MenuAction extends AbstractAction {
 
@@ -44,7 +46,8 @@ public class MenuAction extends AbstractAction {
 	}
 
 	/**
-	 * executeメソッド メソッド指定がなかった場合デフォルトで実行される
+	 * executeメソッド
+	 * メソッド指定がなかった場合デフォルトで実行される
 	 *
 	 * @return 結果
 	 */
@@ -79,6 +82,7 @@ public class MenuAction extends AbstractAction {
 		return "matsufuji";
 	}
 
+
 	/**
 	 * 山崎晴佳パン祭リ画面へ遷移する
 	 *
@@ -105,7 +109,6 @@ public class MenuAction extends AbstractAction {
 	public String gotoSakeSearch() {
 		return "sakeSearch";
 	}
-
 	/**
 	 * 新宮
 	 *
@@ -169,6 +172,7 @@ public class MenuAction extends AbstractAction {
 		return "gotoBeerbrandsSearch";
 	}
 
+
 	/**
 	 * 菅原の韓国ドラマ検索へ遷移する
 	 *
@@ -178,6 +182,7 @@ public class MenuAction extends AbstractAction {
 		return "dramaSearch";
 	}
 
+
 	/**
 	 * 藤川の講師検索へ遷移する
 	 *
@@ -186,7 +191,6 @@ public class MenuAction extends AbstractAction {
 	public String thsSearch() {
 		return "thsSearch";
 	}
-
 	/**
 	 * セキグチのスニーカー検索へ遷移する
 	 *
@@ -195,6 +199,7 @@ public class MenuAction extends AbstractAction {
 	public String sneakersSearch() {
 		return "sneakersSearch";
 	}
+
 
 	/**
 	 * 石津の妖怪検索へ遷移する
@@ -205,6 +210,8 @@ public class MenuAction extends AbstractAction {
 		return "yokaiSearch";
 	}
 
+
+
 	/**
 	 * 横山の艦艇検索へ遷移する
 	 *
@@ -213,7 +220,6 @@ public class MenuAction extends AbstractAction {
 	public String gotoShipSearch() {
 		return "shipSearch";
 	}
-
 	/**
 	 * 森のお嫁さん探しへ遷移する
 	 *
@@ -222,7 +228,6 @@ public class MenuAction extends AbstractAction {
 	public String maiwaifuSearch() {
 		return "maiwaifuSearch";
 	}
-
 	/**
 	 * 坂井の温泉検索へ遷移する
 	 *
@@ -230,7 +235,16 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String onsenSearch() {
 		return "onsenSearch";
-	}
+}
+
+	/**
+	 * 武藤のチョコレート検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String chocolateSearch() {
+		return "chocolateSearch";
+}
 
 	/**
 	 * 中川のメガネ購入したりしなかったりへ遷移する
@@ -244,5 +258,7 @@ public class MenuAction extends AbstractAction {
 	public String norrisSearch() {
 		return "norrisSearch";
 	}
+
+
 
 }
