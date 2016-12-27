@@ -19,7 +19,7 @@
 				<jsp:include page="logo.jsp" />
 			</div>
 			<div class="sub-header">
-				<h2>さっきのデータを削除します</h2>
+				<h2>さっきのデータを削除するよ</h2>
 				<p class="text-right">
 					<s:property value="userId" />
 					さん <a href="aquariumSearch.action">Back</a>
