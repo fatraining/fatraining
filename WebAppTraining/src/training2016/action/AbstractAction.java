@@ -148,18 +148,18 @@ public abstract class AbstractAction extends ActionSupport implements
 					}
 				}
 			});
-			// AbstractActionを処理し終えたらbreak
+			// After processing AbstractAction break
 			if (clazz.getName().equals("AbstractAction")) {
 				break;
 			}
 			clazz = clazz.getSuperclass();
 		}
-		// セッションマップに退避
+		// Evacuate to session map
 		this.putValueToSession("backUpFieldValue", this.fieldsMap);
 	}
 
 	/**
-	 * backUpメソッドで退避した値を復元する
+	 * Restore the value saved by backUp method
 	 *
 	 * @param action
 	 */
@@ -169,7 +169,7 @@ public abstract class AbstractAction extends ActionSupport implements
 		}
 		this.fieldsMap = this.getValueFromSession("backUpFieldValue");
 		Class<?> clazz = action.getClass();
-		// AbstractActionまで再帰的にクラスを取得して処理していく
+		// Recurrently acquire classes and process them until AbstractAction
 		while (clazz != null) {
 			Arrays.stream(clazz.getDeclaredFields()).forEach(f -> {
 				f.setAccessible(true);
@@ -179,17 +179,17 @@ public abstract class AbstractAction extends ActionSupport implements
 						f.set(action, this.fieldsMap.get(element.name()));
 					} catch (IllegalAccessException iae) {
 						iae.printStackTrace();
-						// ここでは特に何もしない
+						// Do not do anything in particular here
 					}
 				}
 			});
-			// AbstractActionを処理し終えたらbreak
+			// After processing AbstractAction break
 			if (clazz.getName().equals("AbstractAction")) {
 				break;
 			}
 			clazz = clazz.getSuperclass();
 		}
-		// 復元完了したらセッションマップから削除
+		// Delete from session map when restoration is completed
 		this.sessionMap.remove("backUpFieldValue");
 	}
 }
