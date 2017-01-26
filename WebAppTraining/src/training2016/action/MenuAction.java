@@ -5,6 +5,7 @@ import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 @Results({
+	@Result(name = "cryingMovieSearch", value = "cryingMovieSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "tosaka", value = "phoneFinder.action", type = ServletRedirectResult.class),
 	@Result(name = "harasan", value = "restaurantSearch.action", type = ServletRedirectResult.class),
 	@Result(name = "matsufuji", value = "hpiventSearch.action", type = ServletRedirectResult.class),
@@ -53,6 +54,15 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String execute() throws Exception {
 		return "sccess";
+	}
+
+	/**
+	 * 川村の標準的Webアプリ画面へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String cryingMovieSearch() {
+		return "cryingMovieSearch";
 	}
 
 	/**
@@ -210,8 +220,6 @@ public class MenuAction extends AbstractAction {
 		return "yokaiSearch";
 	}
 
-
-
 	/**
 	 * 横山の艦艇検索へ遷移する
 	 *
@@ -220,6 +228,7 @@ public class MenuAction extends AbstractAction {
 	public String gotoShipSearch() {
 		return "shipSearch";
 	}
+
 	/**
 	 * 森のお嫁さん探しへ遷移する
 	 *
@@ -228,6 +237,7 @@ public class MenuAction extends AbstractAction {
 	public String maiwaifuSearch() {
 		return "maiwaifuSearch";
 	}
+
 	/**
 	 * 坂井の温泉検索へ遷移する
 	 *
@@ -235,7 +245,7 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String onsenSearch() {
 		return "onsenSearch";
-}
+	}
 
 	/**
 	 * 武藤のチョコレート検索へ遷移する
@@ -244,7 +254,7 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String chocolateSearch() {
 		return "chocolateSearch";
-}
+	}
 
 	/**
 	 * 中川のメガネ購入したりしなかったりへ遷移する
@@ -254,6 +264,7 @@ public class MenuAction extends AbstractAction {
 	public String meganeSearch() {
 		return "meganeSearch";
 	}
+
     /**香下のチャック・ノリス検索へ遷移する*/
 	public String norrisSearch() {
 		return "norrisSearch";
