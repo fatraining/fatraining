@@ -7,6 +7,13 @@
 	<div class="container">
 		<jsp:include page="logo.jsp" />
 		<s:form cssClass="form-horizontal">
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="cryingMovieSearch" value="泣ける映画検索" cssClass="btn btn-warning" />
+				</div>
+			</div>
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<s:submit method="gotoPhoneSearch" value="携帯検索"
