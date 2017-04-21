@@ -87,6 +87,8 @@
 		<mapping class="training2016.model.MeganeArea" />
 		<mapping class="training2016.model.Norris" />
 		<mapping class="training2016.model.NorrisSeries" />
+		<mapping class="training2016.model.Title" />
+		<mapping class="training2016.model.Copy" />
 
 
 
