@@ -1,0 +1,179 @@
+@CHARSET "UTF-8";
+
+div.container {
+	max-width: 95%;
+	width: 95%;
+	margin: auto;
+}
+
+.btnspace {
+	padding: 1px;
+	width: 30%;
+}
+
+.updatebtn {
+	margin: 15px;
+}
+
+.insert {
+	background-color: #FFFFFF;
+	padding: 10%;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.inserttitle {
+	margin-right: 200px;
+}
+
+.upform {
+	width: 110%;
+}
+
+.delete {
+	margin-left: 50px;
+}
+
+div.search-menu {
+	margin-top: 20px;
+	background-color: #FFFFFF;
+	padding: 3%;
+}
+
+body {
+	background-color: #C0C0FF;
+	background-image: url("../images/temp/copyback.png");
+}
+
+table {
+	background-color: #FFFFFF;
+}
+
+@media ( min-width : 980px) {
+	div.search-menu {
+		height: 40vh;
+	}
+}
+
+div.search-menu .btn-group {
+	margin-top: 30px;
+}
+
+h1, .h1 {
+	font-size: 36px;
+}
+
+#resultTable {
+	margin-top: 20px;
+}
+
+#resultTable .center {
+	text-align: center;
+}
+
+#resultTable th.per-12 {
+	width: 12%;
+}
+
+#resultTable th.per-7 {
+	width: 7%;
+}
+
+#resultTable th.per-16 {
+	width: 16%;
+}
+
+
+.customUpload .file-upload {
+	display: none;
+}
+
+.customUpload {
+	margin: 10 0 20px;
+}
+
+input[type="number"] {
+	margin: 10x 0 20px;
+	width: 100%;
+}
+
+.tablewidth {
+	max-width: 70%;
+}
+
+.page-header {
+	margin: 0 0 23px;
+	padding: 10px;
+	border-bottom: 1px solid #666;
+	border-color: #e5e5e5;
+}
+
+.page-header>h1 {
+	margin-left: 40px;
+}
+
+.sub-header {
+	margin-up: auto;
+	margin-left: 50px;
+	margin-bottom: 20px;
+	width: 90%;
+	font-size: 34px;
+	line-height: 40px;
+}
+
+.sub-header-update{
+	margin-up: auto;
+	margin-bottom: 20px;
+	width: 90%;
+	font-size: 34px;
+	line-height: 40px;
+}
+
+.sub-header p {
+	font-size: 20px;
+	float: right;
+}
+
+.sub-header-update p {
+	font-size: 20px;
+	float: right;
+}
+
+
+.sub-header p a {
+	font-size: 15px;
+	margin: 0 20px;
+}
+
+.sub-header-update p a {
+	font-size: 15px;
+	margin: 0 20px;
+}
+
+.panel-half {
+	width: 48%;
+	float: left;
+	margin: 3px 10px;
+}
+
+.err {
+	color: #FF0000;
+	font-size: 200%;
+}
+
+.panel-clear {
+	position: absolute;
+	/* 画面をふさぐほう */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 25% 25%;
+	font-size: 50px;
+	background-color: #F00;
+	opacity: 0.4;
+	color: #FFF;
+	text-align: center;
+	z-index: 1000;
+	display: none;
+}
