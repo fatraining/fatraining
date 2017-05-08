@@ -128,9 +128,9 @@ public class RestaurantSearchController {
   @RequestMapping(value="", params="delete", method=RequestMethod.POST)
   public String delete(@ModelAttribute RestaurantSearchForm form, BindingResult result, Model model, RedirectAttributes attributes) {
     if (form.getDeleteId() == null || form.getDeleteId().length < 1) {
+      // 検索結果が消えないように再建策する
       List<Restaurant> restaurantList = restaurantService.findListByCondition(form);
       model.addAttribute("resultList", restaurantList);
-      model.addAttribute("deleteIdRequiredError", "削除時は必ず一つ以上チェックを入れてください。");
       result.reject("common.delete.required");
       return "harasan/restaurantSearch";
     }
