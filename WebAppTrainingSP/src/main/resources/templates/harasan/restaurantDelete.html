@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Webアプリ研修 | いらん店削除</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}"/>
+  </head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootswatch-paper.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/libs/raty/jquery.raty.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/harasan.css}"/>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1><a th:href="@{/}">研修Webアプリ</a><small>ver β</small></h1>
+      </div>
+      <div class="sub-header">
+        いらん店削除
+        <p class="text-right" th:text="|Hola! ${userBean.name} さん|"></p>
+        <a th:href="@{/restaurant}">Back</a>
+      </div>
+
+      <form id="restaurantDelete" action="#" th:action="@{/restaurant/delete}" th:object="${restaurantDeleteForm}" method="post">
+        <div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+          <table id="resultTable" class="table table-borderd table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="per-12 center">店舗名</th>
+                <th class="per-12 center">エリア名</th>
+                <th class="per-16 center">評価</th>
+                <th class="per-46 center">コメント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="result : ${resultList}" th:object="${result}">
+                <td class="data center" th:text="*{name}">四文屋</td>
+                <td class="data center" th:text="*{restaurantArea.name}">新宿</td>
+                <td class="data"><div class="stars-readOnly" th:value="*{stars}"></div></td>
+                <td class="data" th:text="*{comment}">安くて美味いです。アキバとかにもあります。隣のカレー屋がいつもいい匂いさせててつらい。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div align=right>
+            <input type="submit" id="deleteBtn" name="delete" value="削除したデータは二度と復元出来ないことを覚悟して削除" class="btn btn-danger"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript" src="/WebAppTraining/assets/libs/raty/jquery.raty.js"></script>
+    <script type="text/javascript" src="/WebAppTraining/assets/js/harasan.js"></script>
+  </body>
+</html>
