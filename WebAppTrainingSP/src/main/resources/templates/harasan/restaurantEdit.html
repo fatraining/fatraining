@@ -26,7 +26,6 @@
           <a th:href="@{/restaurant}">Back</a>
         </div>
 
-        <p class="err"></p>
         <form method="post" id="restaurantForm" action="#" th:action="@{/restaurant/edit}" th:object="${restaurantEditForm}" class="form-horizontal">
           <input type="hidden" th:field="*{updateId}" />
           <div class="form-group">
