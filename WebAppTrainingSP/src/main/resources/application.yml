@@ -1,0 +1,19 @@
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    encoding: UTF-8
+  datasource:
+    url: jdbc:mysql://localhost/webapp_sp
+    username: root
+    password: 
+    driverClassName: com.mysql.jdbc.Driver
+
+server:
+  contextPath: /training
+
+logging:
+  level:
+    root: WARN
+    org.hibernate: DEBUG
+    org.springframework.web: DEBUG

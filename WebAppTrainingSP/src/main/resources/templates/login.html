@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Webアプリ研修 | ログイン</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1><a th:href="@{/}">研修Webアプリ</a><small>ver β</small></h1>
+      </div>
+      <form method="post" action="#" th:action="@{/login}" th:object="${loginForm}">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">ID:</label>
+          <div class="col-sm-10">
+            <input type="text" th:field="*{id}" class="form-control" th:errorclass="has-error"/>
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="err">エラーメッセージ</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">PASSWORD:</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" th:value="*{password}" class="form-control" th:errorclass="has-error"/>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="err">エラーメッセージ</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" id="login" value="login" class="btn btn-primary"/>
+          </div>
+        </div>
+      </form>
+      <p class="err">
+      </p>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>

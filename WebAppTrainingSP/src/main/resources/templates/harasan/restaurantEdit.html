@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Webアプリ研修 | いい店だけ追加</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}"/>
+  </head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootswatch-paper.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/libs/raty/jquery.raty.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/harasan.css}"/>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>
+          <a th:href="@{/}">研修Webアプリ</a><small>ver β</small>
+        </h1>
+      </div>
+      <div
+        class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+        <div class="sub-header">
+          いい店だけ追加
+          <p class="text-right" th:text="|Hola! ${userBean.name} さん|"></p>
+          <a th:href="@{/restaurant}">Back</a>
+        </div>
+
+        <p class="err"></p>
+        <form method="post" id="restaurantForm" action="#" th:action="@{/restaurant/edit}" th:object="${restaurantEditForm}" class="form-horizontal">
+          <input type="hidden" th:field="*{updateId}" />
+          <div class="form-group">
+            <label for="name" class="control-label"> 店舗名:</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="店舗名" />
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="err">エラーメッセージ</p>
+          </div>
+          <div class="form-group">
+            <label for="area" class="control-label"> エリア:</label>
+            <select th:field="*{areaId}" id="searchCondition_area" class="form-control select">
+              <option th:each="item : ${areaMap}" th:value="${item.key}" th:text="${item.value}" th:selected="${item.key} == *{areaId}">pulldown</option>
+            </select>
+            <p th:if="${#fields.hasErrors('areaId')}" th:errors="*{areaId}" class="err">エラーメッセージ</p>
+          </div>
+          <div class="form-group">
+            <label for="stars" class="control-label"> 評価(クリックで確定、ダブルクリックで取消):</label>
+            <div class="stars" th:value="*{stars}"></div>
+            <p th:if="${#fields.hasErrors('stars')}" th:errors="*{stars}" class="err">エラーメッセージ</p>
+          </div>
+          <div class="form-group">
+            <label for="comment" class="control-label"> コメント:</label>
+            <textarea th:field="*{comment}" cols="" rows="5" class="form-control" placeholder="コメント"></textarea>
+          </div>
+          <div class="input-group customUpload">
+            <input type="file" name="image" value="" id="customUpload" class="file-upload" />
+            <input type="text" id="cu-imagePath" class="form-control" placeholder="画像（ダミーアップローダ）">
+            <span class="input-group-btn">
+              <button id="cu-button" type="button" class="btn btn-default">参照</button>
+            </span>
+          </div>
+          <input type="submit" id="update" name="update" value="追加" class="btn btn-success btn-block" />
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" th:src="@{/libs/raty/jquery.raty.js}"></script>
+    <script type="text/javascript" th:src="@{/js/harasan.js}"></script>
+  </body>
+</html>

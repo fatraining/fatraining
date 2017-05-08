@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Webアプリ研修 | お酒クレメンス</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}"/>
+  </head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootswatch-paper.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/libs/raty/jquery.raty.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/harasan.css}"/>
+  <body>
+    <div class="page-header">
+      <h1><a th:href="@{/}">研修Webアプリ</a><small>ver β</small></h1>
+    </div>
+    <div class="sub-header">
+    お酒クレメンス
+      <p class="text-right" th:text="|Hola! ${userBean.name} さん|"></p>
+      <a th:href="@{/menu}">Back</a>
+    </div>
+    <div class="container">
+      <p class="err text-right">
+      </p>
+      <div class="search-menu col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <form method="post" id="restaurantSearchForm" action="#" th:action="@{/restaurant}" th:object="${restaurantSearchForm}" class="form-horizontal">
+          <div class="form-group">
+            <label for="name" class="control-label">店舗名:</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="店舗名(一部でも可)"/>
+          </div>
+          <div class="form-group">
+            <label for="stars" class="control-label"> 評価(クリックで確定、ダブルクリックで取消):</label>
+            <div class="stars" th:value="*{stars}"></div>
+          </div>
+          <div class="form-group">
+            <label for="area" class="control-label">エリア:</label>
+            <select th:field="*{areaId}" id="searchCondition_area" class="form-control select">
+              <option th:each="item : ${areaMap}" th:value="${item.key}" th:text="${item.value}" th:selected="${item.key} == *{areaId}">pulldown</option>
+            </select>
+          </div>
+          <div class="btn-group btn-group-justified">
+            <input type="submit" id="searchButton" name="search" value="検索" class="btn btn-default"/>
+            <input type="submit" id="resetButton" name="reset" value="リセット" class="btn btn-danger"/>
+            <input type="submit" id="updateButton" name="update" value="追加" class="btn btn-primary"/>
+          </div>
+          <input type="button" id="ajaxJsonTest" value="ajax+json" class="btn btn-success" />
+        </form>
+      </div>
+      <div class="resultArea col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <p th:if="${deleteIdRequiredError != null}" th:text="${deleteIdRequiredError}" class="err">エラーメッセージ</p>
+        <form id="restaurantDeleteForm" name="restaurantDeleteForm" th:action="@{/restaurant}" method="post">
+          <table id="resultTable" class="table table-borderd table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="per-12 center">店舗名</th>
+                <th class="per-12 center">エリア名</th>
+                <th class="per-16 center">評価</th>
+                <th class="per-46 center">コメント</th>
+                <th class="per-7 center">更新</th>
+                <th class="per-7 center">削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="result : ${resultList}" th:object="${result}">
+                <td class="data center" th:text="*{name}">四文屋</td>
+                <td class="data center" th:text="*{restaurantArea.name}">新宿</td>
+                <td class="data"><div class="stars-readOnly" th:value="*{stars}"/></div></td>
+                <td class="data" th:text="*{comment}">安くて美味いです。アキバとかにもあります。隣のカレー屋がいつもいい匂いさせててつらい。</td>
+                <td class="data"><input name="updateBtn" value="更新" class="btn btn-primary" th:attr="forupdate=*{id}" type="button"></td>
+                <td class="data center"><input name="deleteId" th:value="*{id}" type="checkbox"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div align="right" th:if="${resultList != null}">
+            <input id="deleteButton" name="delete" value="削除" class="btn btn-danger" type="submit">
+          </div>
+        </form>
+      </div>
+
+      <!-- モーダル・ダイアログ -->
+      <div class="modal fade" id="sampleModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+              <h4 class="modal-title">タイトル</h4>
+            </div>
+            <div class="modal-body">
+                              本文
+            </div>
+            <img th:src="@{/assets/images/temp/hoo.jpg}">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+              <button type="button" class="btn btn-primary">ボタン</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bogoCount" class="panel-clear"></div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/libs/raty/jquery.raty.js}"></script>
+    <script type="text/javascript" th:src="@{/libs/shuffle/jquery.shuffle.js}"></script>
+    <script type="text/javascript" th:src="@{/js/harasan.js}"></script>
+  </body>
+</html>
