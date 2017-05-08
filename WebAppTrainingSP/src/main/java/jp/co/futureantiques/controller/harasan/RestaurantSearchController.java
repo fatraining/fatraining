@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -125,11 +126,12 @@ public class RestaurantSearchController {
    * @return
    */
   @RequestMapping(value="", params="delete", method=RequestMethod.POST)
-  public String delete(@ModelAttribute RestaurantSearchForm form, Model model, RedirectAttributes attributes) {
+  public String delete(@ModelAttribute RestaurantSearchForm form, BindingResult result, Model model, RedirectAttributes attributes) {
     if (form.getDeleteId() == null || form.getDeleteId().length < 1) {
       List<Restaurant> restaurantList = restaurantService.findListByCondition(form);
       model.addAttribute("resultList", restaurantList);
       model.addAttribute("deleteIdRequiredError", "削除時は必ず一つ以上チェックを入れてください。");
+      result.reject("common.delete.required");
       return "harasan/restaurantSearch";
     }
     attributes.addFlashAttribute("deleteId", form.getDeleteId());

@@ -46,7 +46,13 @@
         </form>
       </div>
       <div class="resultArea col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        <p th:if="${deleteIdRequiredError != null}" th:text="${deleteIdRequiredError}" class="err">エラーメッセージ</p>
+        <div th:object="${restaurantSearchForm}">
+          <ul>
+             <li th:each="error : ${#fields.detailedErrors()}">
+                <span th:text="${error.message}" class="err">Error message</span>
+            </li>
+          </ul>
+        </div>
         <form id="restaurantDeleteForm" name="restaurantDeleteForm" th:action="@{/restaurant}" method="post">
           <table id="resultTable" class="table table-borderd table-striped table-hover">
             <thead>
