@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017 年 4 朁E21 日 05:39
--- サーバのバージョン： 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: 2017 年 6 朁E06 日 07:52
+-- サーバのバージョン： 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -419,7 +419,8 @@ INSERT INTO `copy` (`id`, `name`, `image_path`, `appearance`, `title_id`, `creat
 (61, '虹の剣', 'Nodata.jpg', 1, 3, '2017-04-21 10:16:33', 'struts2', '2017-04-21 10:16:33', 'struts2', 0, 0),
 (62, 'ラブラブステッキ', 'Nodata.jpg', 1, 4, '2017-04-21 10:16:49', 'struts2', '2017-04-21 10:16:49', 'struts2', 0, 0),
 (63, 'トリプルスター', 'Nodata.jpg', 1, 8, '2017-04-21 10:17:04', 'struts2', '2017-04-21 10:17:04', 'struts2', 0, 0),
-(64, 'ああああ', 'Nodata.jpg', 1, 1, '2017-04-21 12:25:32', 'struts2', '2017-04-21 12:25:32', 'struts2', 1, 0);
+(64, 'ああああ', 'Nodata.jpg', 1, 1, '2017-04-21 12:25:32', 'struts2', '2017-04-21 12:25:32', 'struts2', 1, 0),
+(65, 'ｋｋｋ', '単体テストNo6-1 ケース1 検索画面マウス.png_20170605134254.png', 2, 3, '2017-06-05 13:42:54', 'ログインしろよ豚野郎！', '2017-06-05 13:42:54', 'ログインしろよ豚野郎！', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -545,8 +546,8 @@ INSERT INTO `guitarinfo` (`id`, `guitarMakerId`, `typeName`, `price`, `comment`,
 (2, 1, 'Classic Style-T', 222700, NULL, NULL),
 (3, 1, 'Classic Style-JM', 230900, NULL, NULL),
 (4, 2, 'Reunion', 340000, NULL, NULL),
-(5, 2, 'Ab\'s24[6-strings]', 398000, NULL, NULL),
-(6, 2, 'Ab\'s24[6-strings]', 438000, NULL, NULL),
+(5, 2, 'Ab''s24[6-strings]', 398000, NULL, NULL),
+(6, 2, 'Ab''s24[6-strings]', 438000, NULL, NULL),
 (7, 3, 'Arc-STD VS-100N', 490000, NULL, NULL),
 (8, 3, 'Arc-Hollow', 510000, NULL, NULL),
 (9, 3, 'DST Droptop Quilted Maple', 347000, NULL, NULL),
@@ -586,7 +587,7 @@ CREATE TABLE `guitarmaker` (
 INSERT INTO `guitarmaker` (`id`, `name`) VALUES
 (1, 'sago'),
 (2, 'Crews Maniac Sound'),
-(3, 'T\'s Guitars'),
+(3, 'T''s Guitars'),
 (4, 'Fujigen'),
 (5, 'dragonfly'),
 (6, 'Sugi'),
@@ -943,11 +944,8 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 (4, 'D', 'Xperia Acco', 32000, '6', '2012-11-05', '', NULL),
 (5, 'F', 'iPhone3', 120000, '3', '2015-07-15', '', NULL),
 (6, 'S', 'HONEY By', 24000, '3.5', '2015-08-31', 'てｓ\r\n初めて買った機種', NULL),
-(7, 'D', 'Galaxy', 56000, '5.5', '2016-04-01', 'test', NULL),
 (8, 'F', 'GR5', 38000, '5.5', '2016-02-01', '', NULL),
 (9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
-(12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
-(13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
 (32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
 (33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL);
 
@@ -988,6 +986,62 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 (13, '鈴木義宜', 11, 'DF', 24, '', NULL, NULL),
 (56, 'dorami', 6, 'DF', 5, 'オラァ！', NULL, '1462506571163.jpg'),
 (57, 'みんなの友達', 10, 'FW', 0, '俺を玩具にしてんじゃねえぞ', NULL, '1462509120132.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `potatomaker`
+--
+
+CREATE TABLE `potatomaker` (
+  `id` int(11) NOT NULL,
+  `makerName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `potatomaker`
+--
+
+INSERT INTO `potatomaker` (`id`, `makerName`) VALUES
+(1, '湖池屋'),
+(2, 'カルビー'),
+(3, 'プリングルズ'),
+(4, 'ヤマザキナビスコ'),
+(5, '山芳食品'),
+(6, 'ハウス食品'),
+(10, 'その他');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `potatoproduct`
+--
+
+CREATE TABLE `potatoproduct` (
+  `id` int(11) NOT NULL,
+  `makerId` int(11) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `volume` int(4) NOT NULL,
+  `price` int(5) NOT NULL,
+  `comment` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `makerName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `potatoproduct`
+--
+
+INSERT INTO `potatoproduct` (`id`, `makerId`, `name`, `type`, `volume`, `price`, `comment`, `makerName`) VALUES
+(24, 1, 'ポテトチップスのりしお', '通常販売', 60, 120, '王道の味。\r\nこれが最強のポテチと巷で噂になっている。', NULL),
+(25, 3, 'プリングルズうましお味', '通常販売', 110, 223, '海外産スナック菓子。\r\nひげのおじちゃんがトレードマーク', NULL),
+(26, 4, 'チップスターSうすしお', '通常販売', 50, 120, '筒状日本代表。\r\n食べたその日から味の虜になりました', NULL),
+(27, 5, 'わさビーフ', '通常販売', 55, 120, 'わさび味のポテチ。\r\nちなみにマスコットの名前はわさっち（Twitter応募）', NULL),
+(28, 6, 'オーザックあっさり塩', '通常販売', 60, 120, 'よくコラボするやつ。\r\nほかのポテチと比べてカスが落ちやすい', NULL),
+(29, 2, '堅あげポテト 飛騨みそ味', '地域限定', 120, 600, '中部（岐阜）限定の堅あげ。\r\n15g×8袋なのでお土産にどうぞ', NULL),
+(30, 2, 'ピザポテト', '通常販売', 63, 190, '厚切り+チーズがウリ。\r\n2017年6月現在、公式サイトがやかましい', NULL),
+(31, 2, '夏ポテト対馬の浜御塩', '期間限定', 65, 135, '夏季限定のポテチ。\r\n実は女性がターゲット', NULL),
+(32, 10, 'The world''s most exclusive potato chips', 'その他', 20, 6100, '名前の通り世界で一番高価なポテチ\r\n中身は5枚のみで世界一ビールと合うポテチである', NULL);
 
 -- --------------------------------------------------------
 
@@ -1265,7 +1319,7 @@ CREATE TABLE `sneakers` (
 --
 
 INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comment`, `maker`, `image`) VALUES
-(1, 1, 'AIR HUARACHE', 'NIKE / AIR HUARACHE', 1991, '近年復刻し再び大流行。HUARACHEの語源はメキシコの履物\"ハラッチ\"から。', 'NIKE', 'assets/images/temp/air_huarache.jpg'),
+(1, 1, 'AIR HUARACHE', 'NIKE / AIR HUARACHE', 1991, '近年復刻し再び大流行。HUARACHEの語源はメキシコの履物"ハラッチ"から。', 'NIKE', 'assets/images/temp/air_huarache.jpg'),
 (2, 2, 'DISC BLAZE', 'PUMA / DISC (TRINOMIC)', 1992, 'アッパーのディスクを回転させることでフィッティング。ハイテクスニーカーブームを牽引。', 'PUMA', 'assets/images/temp/disc_blaze.jpg'),
 (3, 3, 'ZX8000', 'adidas / ZX (TORSION,EQUIPMENT)', 1989, 'ZXシリーズの最高傑作。', NULL, 'assets/images/temp/zx8000.jpg'),
 (4, 4, 'INSTA PUMP FURY', 'Reebok / PUMP', 1994, 'ポンプで空気を送り込むことでフィッテング。ハイテクスニーカー界の屈指の人気作。', NULL, 'assets/images/temp/pump_fury.jpg'),
@@ -1283,7 +1337,7 @@ INSERT INTO `sneakers` (`id`, `sneakersMakerId`, `name`, `series`, `year`, `comm
 (16, 3, 'SUPERSTAR', '-', 1969, '「RUN DMC」が愛用。これを紐無しで履いている奴はかなりコアなHIPHOPファン。', NULL, 'assets/images/temp/superstar.jpg'),
 (17, 5, 'OLD SKOOL', '-', 1978, '元はBMXライダーの為に作られたがスケーターから支持を集める。', NULL, 'assets/images/temp/oldskool.jpg'),
 (18, 1, 'AIR HUARACHE LIGHT', 'NIKE / AIR HUARACHE', 1993, 'アッパー部分の網目が特徴。初代ハラチに劣らない人気作。', NULL, 'assets/images/temp/air_huarache_light.jpg'),
-(19, 8, 'GEL-LYTE Ⅲ', 'ASICS / GEL', 1990, '国内最高メーカー\"ASICS\"の名作。海外からも高い評価。', NULL, 'assets/images/temp/gel_lyte3.jpg'),
+(19, 8, 'GEL-LYTE Ⅲ', 'ASICS / GEL', 1990, '国内最高メーカー"ASICS"の名作。海外からも高い評価。', NULL, 'assets/images/temp/gel_lyte3.jpg'),
 (20, 4, 'VENTILATOR', '-', 1990, '機能性とデザイン性を兼ね備えたReebokのランニングシューズ。', NULL, 'assets/images/temp/ventilator.jpg'),
 (21, 3, 'CAMPUS', '-', 1983, '「ビースティ・ボーイズ」が愛用したことで有名なadidasのローテクスニーカー。', NULL, 'assets/images/temp/campus.jpg'),
 (22, 1, 'AIR ZOOM FRIGHT 96', 'NIKE / AIR ZOOM (FRIGHT)', 1996, '96年発売のハイテクバスケットボールシューズ。', NULL, 'assets/images/temp/air_zoom_fright.jpg'),
@@ -1529,10 +1583,29 @@ ALTER TABLE `megane`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `nail`
+--
+ALTER TABLE `nail`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `norris`
 --
 ALTER TABLE `norris`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `potatomaker`
+--
+ALTER TABLE `potatomaker`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `potatoproduct`
+--
+ALTER TABLE `potatoproduct`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `title`
@@ -1553,7 +1626,7 @@ ALTER TABLE `chocolate`
 -- AUTO_INCREMENT for table `copy`
 --
 ALTER TABLE `copy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT for table `maiwaifu`
 --
@@ -1570,10 +1643,20 @@ ALTER TABLE `maiwaifuarea`
 ALTER TABLE `megane`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
+-- AUTO_INCREMENT for table `nail`
+--
+ALTER TABLE `nail`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
 -- AUTO_INCREMENT for table `norris`
 --
 ALTER TABLE `norris`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `potatoproduct`
+--
+ALTER TABLE `potatoproduct`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- ダンプしたテーブルの制約
 --
