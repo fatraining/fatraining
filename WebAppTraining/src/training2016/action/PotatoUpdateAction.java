@@ -103,12 +103,16 @@ public class PotatoUpdateAction extends AbstractAction {
 		if (this.isEmpty(this.makerId) || this.isEmpty(this.name) || this.isEmpty(this.type)
 				|| this.isEmpty(this.volume) || this.isEmpty(this.price) || this.isEmpty(this.comment)) {
 			addActionError("全ての項目を入力してください");
+			this.title = "ポテトチップス更新";
+			this.btn = "更新";
 			return "error";
 		}
 
 		// 内容量と価格が数字であるかの判定
 		if (this.isNotNumber(this.volume) || this.isNotNumber(price)) {
 			addActionError("内容量と価格は数字で入力してください");
+			this.title = "ポテトチップス更新";
+			this.btn = "更新";
 			return "error";
 		}
 
