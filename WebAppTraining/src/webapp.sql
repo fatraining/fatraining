@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017 年 6 朁E12 日 05:34
--- サーバのバージョン： 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: 2017 年 6 朁E12 日 08:25
+-- サーバのバージョン： 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -782,10 +782,9 @@ CREATE TABLE `megane` (
 --
 
 INSERT INTO `megane` (`id`, `meganeAreaID`, `name`, `color`, `kingaku`, `area`, `link`, `gazou`, `syousai`) VALUES
-(1, 3, 'レイバン', 'ブラック', 24000, NULL, 'http://japan.ray-ban.com/sunglasses/wayfarer/clv', 'megane4.jpg', 'あぁ詳細かぁ'),
-(3, 1, 'カメマンネン', 'ゴールド', 30000, '[value-6]', 'http://kamemannen.com/', 'kamemannen.jpg', '来年で100周年のメガネ業界で1番古いブランドのやばいやつ！勝って損は無い！買え！'),
-(5, 2, 'パラサイト', 'ブラック', 54000, NULL, 'http://www.megane-murata1961.com/parasite-top.html', 'megane5.jpg', '奇抜なメガネといえばここ☆私も欲しい、、、'),
-(69, 2, '22228', '282', 828, NULL, '28', NULL, '828');
+(1, 3, 'レイバン', 'ブラック', 24000, NULL, 'http://japan.ray-ban.com/sunglasses/wayfarer/clv', NULL, 'あぁ詳細かぁ'),
+(3, 1, 'カメマンネン', 'ゴールド', 30000, '[value-6]', 'http://kamemannen.com/', NULL, '来年で100周年のメガネ業界で1番古いブランドのやばいやつ！勝って損は無い！買え！'),
+(5, 2, 'パラサイト', 'ブラック', 54000, NULL, 'http://www.megane-murata1961.com/parasite-top.html', 'megane5.jpg', '奇抜なメガネといえばここ☆私も欲しい、、、');
 
 -- --------------------------------------------------------
 
@@ -1434,6 +1433,63 @@ INSERT INTO `sneakersmaker` (`id`, `maker`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `tabaco`
+--
+
+CREATE TABLE `tabaco` (
+  `id` int(11) NOT NULL,
+  `tabacoAreaId` int(11) DEFAULT NULL,
+  `namephoto` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nicotine` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `area` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- テーブルのデータのダンプ `tabaco`
+--
+
+INSERT INTO `tabaco` (`id`, `tabacoAreaId`, `namephoto`, `name`, `tar`, `nicotine`, `price`, `comment`, `area`) VALUES
+(1, 1, 'm-2920.jpg', 'マールボロ', '12mg', '1mg', '460円', '男のたばこ', NULL),
+(2, 2, 'A5165_I1.jpg', 'セブンスター', '14mg', '1.2mg', '460円', 'チャコールフィルター', NULL),
+(3, 1, 'm-4145.jpg', 'アイスブラスト・メガ・８・ボックス', '8mg', '0.6mg', '460円', '日本最大級のメガカプセル', NULL),
+(4, 2, 'm-1626.jpg', 'メンソール･5･ボックス', '5mg', '0.5mg', '460円', '少し甘いメンソールらしい', NULL),
+(5, 3, 'm-1023.jpg', 'メビウス', '10mg', '0.8mg', '440円', '迷ったらこれ！！！', NULL),
+(6, 3, 'm-1688.jpg', 'プレミアムメンソール・オプション５', '5mg', '0.5mg', '440円', 'カプセルつぶすと香りが豊か', NULL),
+(7, 4, 'm-1200.jpg', 'キャスターホワイト・５', '5mg', '0.4mg', '420円', 'バニラの香りが心地いい？', NULL),
+(8, 4, 'm-1197.jpg', 'キャビン・レッド・8・ボックス', '8mg', '0.7mg', '420円', 'キャビンといえばこれでしょ！！！', NULL),
+(9, 5, 'l-2563.jpg', 'ｋｓ・ボックス', '12mg', '1mg', '420円', 'ほんの少しチョコレートの味した？', NULL),
+(10, 5, 'l-4328.jpg', 'アイス・ミント・5mg100ボックス', '5mg', '0.3mg', '420円', 'ラークがチョコだからチョコミントの味？？', NULL),
+(11, 1, '240_320.jpg', 'なにこいつ', '2000mg', '2000mg', '20000円', 'なにこいつ', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `tabacoarea`
+--
+
+CREATE TABLE `tabacoarea` (
+  `id` int(11) NOT NULL,
+  `area` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `tabacoarea`
+--
+
+INSERT INTO `tabacoarea` (`id`, `area`) VALUES
+(1, 'マルボロ'),
+(2, 'セブンスター'),
+(3, 'メビウス'),
+(4, 'ウィンストン'),
+(5, 'ラーク');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `team`
 --
 
@@ -1671,6 +1727,18 @@ ALTER TABLE `potatoproduct`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `tabaco`
+--
+ALTER TABLE `tabaco`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabacoarea`
+--
+ALTER TABLE `tabacoarea`
+  ADD UNIQUE KEY `ID` (`id`);
+
+--
 -- Indexes for table `title`
 --
 ALTER TABLE `title`
@@ -1725,6 +1793,11 @@ ALTER TABLE `norris`
 --
 ALTER TABLE `potatoproduct`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `tabaco`
+--
+ALTER TABLE `tabaco`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- ダンプしたテーブルの制約
 --
