@@ -91,6 +91,8 @@
 		<mapping class="training2016.model.Copy" />
 		<mapping class="training2016.model.PotatoProduct" />
 		<mapping class="training2016.model.PotatoMaker" />
+		<mapping class="training2016.model.CatFrom" />
+		<mapping class="training2016.model.CatInfo" />
 
 
 
