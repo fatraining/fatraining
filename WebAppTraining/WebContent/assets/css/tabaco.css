@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+/*=================================
+全体的なスタイル
+==================================*/
+
+
+
+
+/*
+上下左右の余白を個別に指定する*/
+
+*{
+	margin: 0; /*外側の余白を上下左右で指定する*/
+	padding: 0;/*内側の余白を上下左右で指定する*/
+	line-height: 1.0;/*行の高さ*/
+}
+
+/*背景色変更してる所*/
+html{
+	 background-image: url("../images/temp/tabaco.jpg");
+	 background-size: 33% auto;
+	 
+}
+body {
+	/*背景のみちょっと暗くしてる*/
+	background-color: rgba(0,0,0,0.4);
+	 background-size: contain;
+}
+/*スターウォーズみたいなやつ*/
+.type-pers-parent {
+	/*速さ？*/
+  perspective: 100px;
+  -webkit-perspective: 100px;
+  height: 200px;
+  font-size: 40px;
+
+  background-color:#none ;
+  overflow: hidden;
+}
+.type-pers-child {
+  text-align: center;
+  /*横幅？*/
+  padding: 5%;
+  -webkit-animation: typetext linear 13s infinite;
+  color: #ffffff;
+  letter-spacing: 20px;
+}
+/*角度*/
+@-webkit-keyframes typetext {
+   0% {transform: rotateX(15deg) translate(0,0);}
+  100% {transform: rotateX(15deg) translate(0,-500px);}
+}
+
+/*メッセージ*/
+.message {
+	display: none; /*最初は非表示にしておく*/
+	color: #ff00ff;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/*エラーメッセージ*/
+.errorMessage {
+	display: none;
+	color: #ff80ff;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/*更新ボタンがマウスオーバー時に傾く
+  degは傾ける角度（時計回り）*/
+#update:hover {
+	-webkit-transform: rotate(-30deg);
+	-ms-transform: rotate(-30deg);
+	transform: rotate(-30deg);
+}

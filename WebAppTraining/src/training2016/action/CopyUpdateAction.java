@@ -131,7 +131,7 @@ public class CopyUpdateAction extends AbstractAction {
 				String expansionName = this.imageContentType.split("/")[1];
 				String dateString = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 				String tempFileName = this.imageFileName + "_" + dateString + "." + expansionName;
-				//img_pathに格納用
+				//img_pathに格納用W
 				imgpath = tempFileName;
 				ImageIO.write(img, expansionName, new File(ServletActionContext.getServletContext().getRealPath("")
 						+ IMG_SAVE_BASE + "\\" + tempFileName));
