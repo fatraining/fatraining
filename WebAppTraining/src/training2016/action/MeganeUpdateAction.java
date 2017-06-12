@@ -1,4 +1,4 @@
-package training2016.action;
+ package training2016.action;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -30,7 +30,7 @@ public class AquariumSearchAction extends AbstractAction {
 	/**ブラウザからの入力項目*/
 
 	/*エリア*/
-	private String area;
+	private String area; 
 
 	/*水族館名*/
 	private String name;
