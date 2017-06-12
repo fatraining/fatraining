@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017 年 6 朁E06 日 07:52
+-- Generation Time: 2017 年 6 朁E12 日 05:34
 -- サーバのバージョン： 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -317,6 +317,59 @@ INSERT INTO `catcafe` (`ID`, `catcafename`, `prefectureID`, `station`, `hours`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `catfrom`
+--
+
+CREATE TABLE `catfrom` (
+  `id` int(11) NOT NULL,
+  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `catfrom`
+--
+
+INSERT INTO `catfrom` (`id`, `country`) VALUES
+(1, 'アメリカ'),
+(2, 'イギリス'),
+(3, '日本'),
+(4, 'ノルウェー'),
+(5, 'ロシア');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `catinfo`
+--
+
+CREATE TABLE `catinfo` (
+  `id` int(11) NOT NULL,
+  `fromid` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `catinfo`
+--
+
+INSERT INTO `catinfo` (`id`, `fromid`, `name`, `comment`, `country`) VALUES
+(1, 1, 'マンチカン', '足が短い・穏やかで人懐っこい', NULL),
+(2, 2, 'スコティッシュフォールド', '耳が折れている・穏やかで人懐っこい', NULL),
+(3, 1, 'ラグドール', '毛がふんわりとしていて瞳がブルー・大らかで人懐っこい', NULL),
+(4, 1, 'メインクーン', 'ワイルドなルックス・温和で優しい', NULL),
+(5, 5, 'ロシアンブルー', '毛がグレー・とても大人しい', NULL),
+(6, 1, 'エキゾチックショートヘア', '大きな目につぶれたような鼻・従順かつ好奇心が強い', NULL),
+(7, 1, 'アメリカンショートヘア', '毛の模様が美しい・好奇心が強い', NULL),
+(8, 4, 'ノルウェージャンフォレストキャット', '毛並みが豪華・穏やかで我慢強い', NULL),
+(9, 2, 'ソマリ', '毛並みが美しい・活発で人懐っこい', NULL),
+(10, 1, 'ベンガル', '毛の模様が豹のよう・大人しく温厚', NULL),
+(11, 3, '日本猫', '毛と尻尾が短い・警戒心が強い', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `chocolate`
 --
 
@@ -419,8 +472,7 @@ INSERT INTO `copy` (`id`, `name`, `image_path`, `appearance`, `title_id`, `creat
 (61, '虹の剣', 'Nodata.jpg', 1, 3, '2017-04-21 10:16:33', 'struts2', '2017-04-21 10:16:33', 'struts2', 0, 0),
 (62, 'ラブラブステッキ', 'Nodata.jpg', 1, 4, '2017-04-21 10:16:49', 'struts2', '2017-04-21 10:16:49', 'struts2', 0, 0),
 (63, 'トリプルスター', 'Nodata.jpg', 1, 8, '2017-04-21 10:17:04', 'struts2', '2017-04-21 10:17:04', 'struts2', 0, 0),
-(64, 'ああああ', 'Nodata.jpg', 1, 1, '2017-04-21 12:25:32', 'struts2', '2017-04-21 12:25:32', 'struts2', 1, 0),
-(65, 'ｋｋｋ', '単体テストNo6-1 ケース1 検索画面マウス.png_20170605134254.png', 2, 3, '2017-06-05 13:42:54', 'ログインしろよ豚野郎！', '2017-06-05 13:42:54', 'ログインしろよ豚野郎！', 1, 0);
+(64, 'ああああ', 'Nodata.jpg', 1, 1, '2017-04-21 12:25:32', 'struts2', '2017-04-21 12:25:32', 'struts2', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -807,7 +859,7 @@ CREATE TABLE `norris` (
 --
 
 INSERT INTO `norris` (`id`, `iine`, `name`, `year`, `seriesId`, `comment`, `series`) VALUES
-(1, 9, '地獄のヒーロー!!!', 1111, 1, '地獄のヒーローシリーズ第一作!!!', NULL),
+(1, 10, '地獄のヒーロー!!!', 1111, 1, '地獄のヒーローシリーズ第一作!!!', NULL),
 (2, 0, 'デルタ・フォース', 1986, 3, 'デルタ・フォースシリーズ第一作', NULL),
 (3, 2, '炎のテキサスレンジャー', 1993, 2, 'テレビドラマシリーズ', NULL),
 (4, 14, '野獣捜査線', 1985, 0, '全米初登場1位', NULL),
@@ -944,8 +996,11 @@ INSERT INTO `phones` (`ID`, `OperatorID`, `PhonesName`, `Price`, `Size`, `Date`,
 (4, 'D', 'Xperia Acco', 32000, '6', '2012-11-05', '', NULL),
 (5, 'F', 'iPhone3', 120000, '3', '2015-07-15', '', NULL),
 (6, 'S', 'HONEY By', 24000, '3.5', '2015-08-31', 'てｓ\r\n初めて買った機種', NULL),
+(7, 'D', 'Galaxy', 56000, '5.5', '2016-04-01', 'test', NULL),
 (8, 'F', 'GR5', 38000, '5.5', '2016-02-01', '', NULL),
 (9, 'A', 'AQUOS PHONE', 87000, '6.4', '2014-07-08', '000', NULL),
+(12, 'A', 'test', 11, '11.0', '2011-11-11', 'test', NULL),
+(13, 'F', 'test', 45000, '4.0', '2015-00-06', '', NULL),
 (32, 'F', 'High Five', 126000, '7.2', '2017-03-14', '', NULL),
 (33, 'A', 'AQUOS PHONE', 72000, '5.5', '2015-02-20', '', NULL);
 
@@ -984,8 +1039,7 @@ INSERT INTO `player` (`playerID`, `playername`, `teamID`, `position`, `age`, `co
 (11, '修行智仁', 11, 'GK', 32, '', NULL, NULL),
 (12, 'パウリーニョ', 11, 'FW', 34, '', NULL, NULL),
 (13, '鈴木義宜', 11, 'DF', 24, '', NULL, NULL),
-(56, 'dorami', 6, 'DF', 5, 'オラァ！', NULL, '1462506571163.jpg'),
-(57, 'みんなの友達', 10, 'FW', 0, '俺を玩具にしてんじゃねえぞ', NULL, '1462509120132.jpg');
+(56, 'dorami', 6, 'DF', 5, 'オラァ！', NULL, '1462506571163.jpg');
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1121,7 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id`, `name`, `stars`, `comment`, `area_id`, `create_date`, `create_user`, `update_date`, `update_user`, `version`) VALUES
-(1, '四文屋aaaaaaa', 4, '安くて美味いです。アキバとかにもあります。隣のカレー屋がいつもいい匂いさせててつらい。aaaaa', 1, '2015-12-05 08:24:51', 'struts2', '2017-04-17 11:13:56', 'struts2', 4),
+(1, '四文屋', 4, '安くて美味いです。アキバとかにもあります。隣のカレー屋がいつもいい匂いさせててつらい。', 1, '2015-12-05 08:24:51', 'struts2', '2017-06-05 16:54:05', 'struts2', 6),
 (2, 'てけてけ', 3, '割と安い。味はそこそこ。', 1, '2016-04-18 21:37:00', '豚野郎', '2016-04-18 21:37:00', '豚野郎', 0),
 (3, '四文屋', 4, '安くて美味いです。\r\n新宿とかにもあります。\r\nなんか外人の店員が多い気がする。', 3, '2016-04-19 20:33:09', 'Struts2', '2016-04-19 20:33:09', 'Struts2', 0),
 (5, '大衆居酒屋 いこい', 3, 'ハイボールが180円。でも食い物は別に安くない。ぶつ爆弾がうまかった。', 5, '2016-05-09 00:00:00', 'struts2', '2016-05-12 13:50:34', 'Struts2', 2);
@@ -1172,7 +1226,6 @@ INSERT INTO `sakeinfo` (`id`, `areaId`, `shopName`, `hours`, `price`, `recommend
 (4, 3, '萬安', '17:30-23:00', 5000, NULL, '常時40種類の最高の状態で日本酒を管理', NULL, NULL, NULL),
 (5, 5, 'うのさと', '17:00-23:30', 4000, NULL, '全国から厳選した地酒、焼酎を取り揃える', NULL, NULL, NULL),
 (6, 4, '風ぐるま', '17:30-24:00', 3000, NULL, 'この道30年の店主が営む居酒屋', NULL, NULL, NULL),
-(7, 2, '米心', '17:00-23:30', 4000, NULL, '新橋にある「野崎酒店」の姉妹店', NULL, NULL, NULL),
 (8, 2, 'サカノチカ', '15:00-24:00', 3000, NULL, '日本酒メニューを日替わりで提供', NULL, NULL, NULL),
 (9, 3, 'ぽつらぽつら', '18:00-24:00', 6000, NULL, '日本酒だけでなく国産のワインも充実', NULL, NULL, NULL),
 (10, 6, '高太郎', '18:00-02:00', 6000, NULL, '食べログランキングトップ500入りを果たし予約困難な人気店', NULL, NULL, NULL);
@@ -1437,9 +1490,7 @@ INSERT INTO `ths` (`id`, `thssubjectID`, `name`, `level`, `comment`, `subject`, 
 (3, 2, '志田晶', '応用', '東大、京大をはじめとする難関大合格へ受講者を導いた数学科実力講師は、わかりやすさを徹底的に追求する。「数学的な考え方」を身につける授業で、今まで何気なく使っていた公式や解法の一つ一つが、意味を伴った強力な武器となる。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=61'),
 (4, 3, '林修', '応用', '入試問題を研究し尽くした講義は、東大受験生から大絶賛。正統的解法の徹底追求で、分析的かつシステマティックに得点力、そして「考える力」を増強させてくれる。先生の博識に支えられたトークも人気で受講生に大きな勇気を与える。「いつやるか、今でしょ！」の名セリフはあまりにも有名。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=26'),
 (5, 2, '大吉巧馬', '普通', 'インパクトのある明解かつ丁寧な講義で、数多くの受験生を救ってきた救世主。どんな生徒でも「わからない」から「わかる」に大変貌させ、知的好奇心を刺激する講義を展開。毎年多くの受験生を第一志望校へと導く。公式や定理の暗記では終わらない本質をついた講義で、数学のおもしろさが発見できる!!（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=66'),
-(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19'),
-(9, 1, 'ああああああ', '基礎', 'あ', NULL, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-(10, 2, 'bb', '応用', 'bbbb', NULL, 'ccc');
+(7, 3, '板野博行', '普通', 'ムダがなく、誰が聞いてもわかる授業を展開すること。受験指導のプロとして受験生を鍛え上げること。そして何よりもやる気にさせること。そのためのノウハウを惜しまず、全力で皆さんに提供します。（東進HP引用）', NULL, 'http://www.toshin.com/teacher/detail.php?teacher_id=19');
 
 -- --------------------------------------------------------
 
@@ -1552,6 +1603,18 @@ INSERT INTO `yokaifrom` (`id`, `yokaifrom`) VALUES
 --
 
 --
+-- Indexes for table `catfrom`
+--
+ALTER TABLE `catfrom`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `catinfo`
+--
+ALTER TABLE `catinfo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `chocolate`
 --
 ALTER TABLE `chocolate`
@@ -1618,6 +1681,11 @@ ALTER TABLE `title`
 --
 
 --
+-- AUTO_INCREMENT for table `catinfo`
+--
+ALTER TABLE `catinfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT for table `chocolate`
 --
 ALTER TABLE `chocolate`
@@ -1626,7 +1694,7 @@ ALTER TABLE `chocolate`
 -- AUTO_INCREMENT for table `copy`
 --
 ALTER TABLE `copy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `maiwaifu`
 --
