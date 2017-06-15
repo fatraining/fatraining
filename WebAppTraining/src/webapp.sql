@@ -1352,6 +1352,62 @@ INSERT INTO `simope` (`ID`, `simOpeName`, `UserID`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `skylineage`
+--
+
+CREATE TABLE `skylineage` (
+  `id` int(11) NOT NULL,
+  `age` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `skylineage`
+--
+
+INSERT INTO `skylineage` (`id`, `age`) VALUES
+(1, 1950),
+(2, 1960),
+(3, 1970),
+(4, 1980),
+(5, 1990),
+(6, 2000),
+(7, 2010);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `skylinedata`
+--
+
+CREATE TABLE `skylinedata` (
+  `id` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  `model` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nickname` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ageid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `skylinedata`
+--
+
+INSERT INTO `skylinedata` (`id`, `date`, `model`, `nickname`, `ageid`) VALUES
+(1, 1957, 'ALSI型', 'プリンス スカイライン', 1),
+(2, 1963, 'S50型', '羊の皮を着た狼', 2),
+(3, 1968, 'C10型', '愛のスカイライン', 2),
+(4, 1972, 'C110型', 'ケンとメリーのスカイライン', 3),
+(5, 1977, 'C210型', 'SKYLINE JAPAN', 3),
+(6, 1981, 'R30型', 'ニューマン・スカイライン', 4),
+(7, 1985, 'R31型', '都市工学-7thスカイライン', 4),
+(8, 1989, 'R32型', '超感覚スカイライン', 4),
+(9, 1993, 'R33型', '日本のグランドツーリングカーGT9', 5),
+(10, 1998, 'R34型', 'DRIVING BODY', 5),
+(11, 2001, 'V35型', 'THE PREMIUM SPORTS', 6),
+(12, 2006, 'V36型', '日本のクルマに、ときめきが帰ってくる', 6);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `sneakers`
 --
 
@@ -1727,6 +1783,18 @@ ALTER TABLE `potatoproduct`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `skylineage`
+--
+ALTER TABLE `skylineage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `skylinedata`
+--
+ALTER TABLE `skylinedata`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tabaco`
 --
 ALTER TABLE `tabaco`
@@ -1793,6 +1861,11 @@ ALTER TABLE `norris`
 --
 ALTER TABLE `potatoproduct`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `skylinedata`
+--
+ALTER TABLE `skylinedata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tabaco`
 --
