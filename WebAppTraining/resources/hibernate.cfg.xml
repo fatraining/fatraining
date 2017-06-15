@@ -82,7 +82,6 @@
 		<mapping class="training2016.model.OnsenArea" />
 		<mapping class="training2016.model.Chocolate" />
 		<mapping class="training2016.model.ChocolateCountry" />
-
 		<mapping class="training2016.model.Megane" />
 		<mapping class="training2016.model.MeganeArea" />
 		<mapping class="training2016.model.Norris" />
@@ -95,6 +94,8 @@
 		<mapping class="training2016.model.CatInfo" />
 		<mapping class="training2016.model.Tabaco" />
 		<mapping class="training2016.model.TabacoArea" />
+		<mapping class="training2016.model.SkyLineAge" />
+		<mapping class="training2016.model.SkyLineData" />
 
 
 
