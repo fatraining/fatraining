@@ -1,0 +1,389 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #777 !important; /* !important 最優先時 特記*/
+	font-weight: bold;
+}
+
+div.container {
+	max-width: 95%;
+	width: 95%;
+	margin: auto;
+}
+
+.page-header {
+	margin: 0 0 0px;
+	padding: 10px;
+	border-bottom: 1px solid #666;
+	border-color: #e5e5e5;
+}
+
+.page-header>h1 {
+	margin-left: 20px;
+}
+
+.sub-header {
+	margin: auto;
+	width: 90%;
+	font-size: 15px;
+	line-height: 50px;
+	margin-left: 30px;
+}
+
+.sub-header p {
+	font-size: 20px;
+	float: right;
+}
+
+.sub-header p a {
+	font-size: 15px;
+	margin: 0 20px;
+}
+
+.form-group {
+	padding: 12px
+}
+
+.icon1 {
+	width: 20px;
+	height: 20px;
+	position: relative;
+	right: 17px;
+	bottom: 1px;
+}
+
+.icon2 {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	bottom: 3px;
+	left: 26px;
+}
+
+.icon3 {
+	width: 25px;
+	height: 25px;
+	position: relative;
+	right: 72px;
+	bottom: 1px;
+}
+
+.icon33 {
+	width: 25px;
+	height: 25px;
+	position: relative;
+	right: -20px;
+	bottom: 1px;
+}
+
+.icon4 {
+	width: 30px;
+	height: 30px;
+}
+
+.icon5 {
+	position: relative;
+	right: 22px;
+	width: 13px;
+}
+
+@font-face {
+	font-family: "IonIcons";
+	src:
+		url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1");
+	src:
+		url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix")
+		format("embedded-opentype"),
+		url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1")
+		format("truetype"),
+		url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1")
+		format("woff"),
+		url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons")
+		format("svg");
+	font-weight: normal;
+	font-style: normal
+}
+
+.pt20 {
+	padding-top: 20px;
+}
+
+.select-wrap {
+	position: absolute;
+}
+
+.select-wrap:before {
+	z-index: 1;
+	position: absolute;
+	left: 35px;
+	top: 0;
+	content: "\f123";
+	font-family: "IonIcons";
+	line-height: 37px;
+	color: #7F878C;
+	pointer-events: none;
+}
+
+select {
+	outline: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+	background: none transparent;
+	vertical-align: middle;
+	font-size: inherit;
+	color: inherit;
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	height: 30px;
+	padding: 3px 5px;
+	border: 1px solid #ddd;
+	color: #828c9a;
+	width: 60px;
+	border-radius: 3px;
+}
+
+select option {
+	background-color: #DCDCDC;
+	color: #333;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #828c9a;
+}
+
+.select-wrap.select-primary:before {
+	color: #DCDCDC;
+}
+
+.select-wrap.select-primary>select {
+	background: #0084B4;
+	color: #DCDCDC;
+	border-color: #0084B4;
+}
+
+.select-wrap.select-primary>select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #DCDCDC;
+}
+
+.select-wrap.select-inverse:before {
+	color: #DCDCDC;
+}
+
+.select-wrap.select-inverse>select {
+	color: #DCDCDC;
+	border-color: #DCDCDC;
+	width: 136%;
+	font-size: 125%;
+	height: 100%;
+	position: relative;
+	left: -16px;
+}
+
+.select-wrap.select-inverse>select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #DCDCDC;
+}
+
+.row-eq-height {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.return {
+	width: 25px;
+	height: 25px;
+	position: relative;
+	bottom: 5px;
+}
+
+.skyline a { /*aタグを画像の真ん中に*/
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	/*以下装飾*/
+	margin: 0; /*余計な隙間を除く*/
+	font-size: 26px; /*文字サイズ*/
+	padding: 7px; /*文字と線の間の余白*/
+	color: white; /*文字色*/
+	text-decoration: none; /*下線を表示させない*/
+	letter-spacing: 10px;
+}
+
+.example a:hover { /*カーソルを当てたとき*/
+	background: rgba(255, 255, 255, 0.3); /*背景を半透明に*/
+}
+
+.text-right {
+	right: -10px;
+}
+
+table {
+	border-collapse: collapse;
+	border: solid 2px #6088C6;
+	width: 70%;
+	margin-bottom: 20px;
+	margin: 0 15%;
+}
+
+table th, table td {
+	border: dashed 2px #AEC4E5; /**/
+	/*破線 1px */
+}
+
+table th {
+	background: #AEC4E5; /*背景色*/
+	padding: 10px;
+}
+
+table td {
+	padding: 3px 10px;
+}
+
+.f {
+	margin: 95px;
+	padding-left: 35%;
+	line-height: 100%;
+	margin-top: 50px;
+}
+
+.icon {
+	margin: 10px;
+}
+
+div.tableAll {
+	margin: 70px;
+	width: 70%;
+}
+
+span.home {
+	position: static;
+	left: 10%;
+	padding: 10%;
+	margin: 10%;;
+	color: #DCDCDC;
+	font-weight: bold;
+	padding: 10%;
+}
+
+.col .col-xs-1 {
+	padding-left: 10px;
+	top: 12px;
+}
+
+.col2 .col-xs-1 {
+	padding-right: 0px;
+	width: 83px;
+	top: 1px;
+}
+
+.co3 {
+	line-height: 13px;
+}
+
+.co4 {
+	line-height: 14px;
+}
+
+.add {
+	padding-left: 216px;
+}
+
+.de {
+	padding-left: 112%;
+}
+
+.action {
+	color: #EB8686;
+	text-align: center;
+	line-height: 450%;
+	font-size: 500%;
+	font-weight: 300;
+}
+
+.message {
+	color: #EB8686;
+	text-align: center;
+	line-height: 140px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.error {
+	color: #EB8686;
+	padding-left: 38%;
+	padding-top: 20px;
+}
+
+ol, ul {
+	list-style-type: none;
+}
+
+.form1 {
+	display: block;
+	padding: 0.8em;
+	width: 40%;
+	border: none;
+	border-radius: 0;
+	background: #fff;
+	-webkit-appearance: none;
+	outline: 0; /*フォーカス時の枠線*/
+	color: #333;
+}
+
+.line {
+	width: 275px;
+	height: 2px;
+	background: #6088C6;
+	margin: -10px;
+}
+
+.form2 {
+	border: 2px solid #6088C6;
+}
+
+ul.errorMessage {
+	padding-top: 82px;
+}
+
+.home {
+	color: #DCDCDC;
+	position: relative;
+	left: 23px;
+	top: -4px;
+}
+
+.add2 {
+	color: #DCDCDC;
+	letter-spacing: 0.4em;
+	position: relative;
+	right: 74px;
+	bottom: 0px;
+	font-size: 12px;
+}
+
+input[type=button] {
+	text-align: center;
+	background-color: white;
+	background-image: url(../images/reload.png);
+	background-repeat: no-repeat;
+	background-size: 25px 25px;
+	width: 27px;
+	height: 27px;
+	border: 0;
+}
