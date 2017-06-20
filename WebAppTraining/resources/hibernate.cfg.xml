@@ -96,6 +96,8 @@
 		<mapping class="training2016.model.TabacoArea" />
 		<mapping class="training2016.model.SkyLineAge" />
 		<mapping class="training2016.model.SkyLineData" />
+		<mapping class="training2016.model.EventStage" />
+		<mapping class="training2016.model.EventArea" />
 
 
 
