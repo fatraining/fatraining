@@ -551,6 +551,61 @@ INSERT INTO `dramagenre` (`id`, `genre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `eventarea`
+--
+
+CREATE TABLE `eventarea` (
+  `ID` int(11) NOT NULL,
+  `area` varchar(5) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- テーブルのデータのダンプ `eventarea`
+--
+
+INSERT INTO `eventarea` (`ID`, `area`) VALUES
+(1, '東京'),
+(2, '神奈川'),
+(3, '埼玉'),
+(4, '千葉');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `eventstage`
+--
+
+CREATE TABLE `eventstage` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `station` varchar(10) DEFAULT NULL,
+  `record` varchar(5) DEFAULT NULL,
+  `comment` varchar(40) DEFAULT NULL,
+  `areaID` int(11) DEFAULT NULL,
+  `area` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `eventstage`
+--
+
+INSERT INTO `eventstage` (`ID`, `name`, `station`, `record`, `comment`, `areaID`, `area`) VALUES
+(1, 'ららぽーと豊洲', '豊洲', 'HMV', '安定の豊洲！ステージ前が階段になっていて見やすい。観客が多くても比較的見れる。', 1, NULL),
+(2, 'ららぽーと横浜', '鴨居', 'HMV', 'いわゆる横浜エリアではないので注意。ステージがへこんでいるので微妙に見づらい。', 2, NULL),
+(3, 'ららぽーと新三郷', '新三郷', 'etc', '安定の豊洲！ステージ前が階段になっていて見やすい。観客が多くても比較的見れる。', 3, NULL),
+(4, 'ららぽーと柏の葉', '柏の葉キャンパス', 'HMV', '広場が広く全て階段なのでライブは絶対に見える。おすすめ会場！', 4, NULL),
+(5, 'ららぽーと立川立飛', '立飛', 'TW', '広場は広いがステージは低くて狭い。基本人が少なくて見やすいかも。', 1, NULL),
+(6, 'サンシャイン噴水広場', '池袋', 'SN', 'イベント広場の代表！室内で、上からでも見えて快適。色々なイベントが開催される。', 1, NULL),
+(7, 'ラゾーナ川崎', '川崎', 'HMV', '広場面積がおそらく最大！とにかく広い！ステージも低くないので遠くからでも見える。', 2, NULL),
+(8, 'ダイバーシティ東京', '東京テレポート', 'TW', 'ガンダム立像でお馴染み。高いステージか階段を使うので遠くからでも確実に見える。', 1, NULL),
+(9, '大宮ステラタウン', '土呂', 'etc', 'シャトルバスか徒歩12分なので交通は良くない。ステージは低めだが意外と見やすい。', 3, NULL),
+(10, '昭島モリタウン', '昭島', 'SN', 'ステージが高いのでほぼ確実に見える。屋根もあるので雨天でも安心。おすすめ会場！', 1, NULL),
+(11, 'ヴィーナスフォート', '青海', 'TW', '教会広場の名の通り厳かで綺麗。室内なので人混みになるがステージが高いので安心。', 1, NULL),
+(15, 'イクスピアリ', '舞浜', 'SN', '夢の国はもうすぐそこ！Dストアの前にあるステージはまるでパーク内のよう。', 4, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `groupname`
 --
 
@@ -1740,6 +1795,12 @@ ALTER TABLE `copy`
   ADD KEY `FK2EAF756D106BE4` (`title_id`);
 
 --
+-- Indexes for table `eventstage`
+--
+ALTER TABLE `eventstage`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `maiwaifu`
 --
 ALTER TABLE `maiwaifu`
@@ -1831,6 +1892,11 @@ ALTER TABLE `chocolate`
 --
 ALTER TABLE `copy`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+--
+-- AUTO_INCREMENT for table `eventstage`
+--
+ALTER TABLE `eventstage`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `maiwaifu`
 --
