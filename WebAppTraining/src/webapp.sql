@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017 年 6 朁E12 日 08:25
+-- Generation Time: 2017 年 7 朁E06 日 07:55
 -- サーバのバージョン： 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -1025,6 +1025,122 @@ INSERT INTO `operator` (`ID`, `OperatorID`, `OperatorName`, `UserID`, `Date`) VA
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `ozakialbum`
+--
+
+CREATE TABLE `ozakialbum` (
+  `id` int(11) NOT NULL,
+  `albumName` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `ozakialbum`
+--
+
+INSERT INTO `ozakialbum` (`id`, `albumName`) VALUES
+(1, '十七歳の地図'),
+(2, '回帰線'),
+(3, '壊れた扉から'),
+(4, '街路樹'),
+(5, '誕生'),
+(6, '放熱への証');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `ozakisong`
+--
+
+CREATE TABLE `ozakisong` (
+  `id` int(11) NOT NULL,
+  `songName` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `albumId` int(11) DEFAULT NULL,
+  `songWriting` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `age` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lyrics` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `albumName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `ozakisong`
+--
+
+INSERT INTO `ozakisong` (`id`, `songName`, `albumId`, `songWriting`, `age`, `lyrics`, `albumName`) VALUES
+(1, '街の風景', 1, '尾崎豊、尾崎豊', '1983.12.1', '街の風に引き裂かれ　舞い上がった夢くずが...', NULL),
+(2, 'はじまりさえ歌えない', 1, '尾崎豊、尾崎豊', '1983.12.1', 'ふと目を閉じればアスファルトの道端に...', NULL),
+(3, 'I LOVE YOU', 1, '尾崎豊、尾崎豊', '1983.12.1', 'I love you　今だけは悲しい歌聞きたくないよ...', NULL),
+(4, 'ハイスクール Rock\'n\'Roll', 1, '尾崎豊、尾崎豊', '1983.12.1', 'Oh！朝は目覚めても昨日の疲れひきずったまま...', NULL),
+(5, '15の夜', 1, '尾崎豊、尾崎豊', '1983.12.1', '落書きの教科書と外ばかり見てる俺...', NULL),
+(6, '十七歳の地図', 1, '尾崎豊、尾崎豊', '1983.12.1', '十七のしゃがれたブルースを聞きながら...', NULL),
+(7, '愛の消えた街', 1, '尾崎豊、尾崎豊', '1983.12.1', '道端に倒れた様に眠る人がいるよ...', NULL),
+(8, 'OH MY LITTLE GIRL', 1, '尾崎豊、尾崎豊', '1983.12.1', 'こんなにも騒がしい街並みに　たたずむ君は...', NULL),
+(9, '傷つけた人々へ', 1, '尾崎豊、尾崎豊', '1983.12.1', 'どれだけ言葉費し　君に話したろう...', NULL),
+(10, '僕が僕であるために', 1, '尾崎豊、尾崎豊', '1983.12.1', '心すれちがう悲しい生き様に...', NULL),
+(11, 'Scrambling Rock\'n\'Roll', 2, '尾崎豊、尾崎豊', '1985.3.21', '俺達何かを求めてわめく　うるさいRock\'n\'Roll Band...', NULL),
+(12, 'Bow!', 2, '尾崎豊、尾崎豊', '1985.3.21', '否が応でも社会に飲み込まれてしまうものさ...', NULL),
+(13, 'Scrap Alley', 2, '尾崎豊、尾崎豊', '1985.3.21', '二人で中古の車に乗り込み　ハイウェイを飛ばすおまえは...', NULL),
+(14, 'ダンスホール', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(15, '卒業', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(16, '存在', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(17, '坂の下に見えたあの街に', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(18, '群衆の中の猫', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(19, 'Teenage Blue', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(20, 'シェリー', 2, '尾崎豊、尾崎豊', '1985.3.21', NULL, NULL),
+(21, '路上のルール', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(22, '失くした1/2', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(23, 'Forget-me-not', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(24, '彼', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(25, '米軍キャンプ', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(26, 'Freeze Moon', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(27, 'Driving All Night', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(28, 'ドーナツ・ショップ', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(29, '誰かのクラクション', 3, '尾崎豊、尾崎豊', '1985.11.28', NULL, NULL),
+(30, '核 (CORE)', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(31, '・ISM', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(32, 'LIFE', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(33, '時', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(34, 'COLD WIND', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(35, '紙切れとバイブル', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(36, '遠い空', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(37, '理由', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(38, '街路樹', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(39, 'LOVE WAY', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(40, 'KISS', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(41, '黄昏ゆく街で', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(42, 'ロザーナ', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(43, 'RED SHOES STORY', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(44, '銃声の証明', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(45, 'LONELY ROSE', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(46, '置き去りの愛', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(47, 'COOKIE', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(48, '永遠の胸', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(49, 'FIRE', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(50, 'レガリテート', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(51, '虹', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(52, '禁猟区', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(53, 'COLD JAIL NIGHT', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(54, '音のない部屋', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(55, '風の迷路', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(56, 'きっと忘れない', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(57, 'MARRIAGE', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(58, '誕生', 5, '尾崎豊、尾崎豊', '1990.11.15', NULL, NULL),
+(59, '汚れた絆', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(60, '自由への扉', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(61, 'Get it down', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(62, '優しい陽射し', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(63, '贖罪', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(64, 'ふたつの心', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(65, '原色の孤独', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(66, '太陽の瞳', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(67, 'Monday morning', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(68, '闇の告白', 6, '尾崎豊、尾崎豊', '1992.5.10', '何ひとつ語れずに　うずくまる人々の　命が今日またひとつ...', NULL),
+(69, 'Mama, say good-bye', 6, '尾崎豊、尾崎豊', '1992.5.10', NULL, NULL),
+(70, '太陽の破片', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL),
+(71, '街角の風の中', 4, '尾崎豊、尾崎豊', '1988.9.1', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `phones`
 --
 
@@ -1831,6 +1947,18 @@ ALTER TABLE `norris`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ozakialbum`
+--
+ALTER TABLE `ozakialbum`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ozakisong`
+--
+ALTER TABLE `ozakisong`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `potatomaker`
 --
 ALTER TABLE `potatomaker`
@@ -1922,6 +2050,11 @@ ALTER TABLE `nail`
 --
 ALTER TABLE `norris`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `ozakisong`
+--
+ALTER TABLE `ozakisong`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `potatoproduct`
 --
