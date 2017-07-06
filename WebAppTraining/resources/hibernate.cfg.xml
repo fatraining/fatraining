@@ -98,6 +98,8 @@
 		<mapping class="training2016.model.SkyLineData" />
 		<mapping class="training2016.model.EventStage" />
 		<mapping class="training2016.model.EventArea" />
+		<mapping class="training2016.model.OzakiSong" />
+		<mapping class="training2016.model.OzakiAlbum" />
 
 
 

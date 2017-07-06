@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+/* 背景色 */
+body {
+	background-color: #999999;
+}
+
+h1 {
+	margin: 30px;
+}
+
+.form-group {
+	color: #ffffff;
+}
+
+.text-center {
+	color: #ffffff;
+}
+
+.text-right {
+	color: #ffffff;
+}
+
+/* カルーセル範囲 */
+.carousel {
+	width: 500px;
+	height: 500px;
+}
+
+/* カルーセル背景色 */
+.carousel .item {
+	background-color: #999999;
+}
+
+.carousel-control.left {
+	width: 0px;
+	height: 930px;
+	background-color: #f4f4f4;
+}
+
+.carousel-control.right {
+	width: 0px;
+	height: 930px;
+	background-color: #f4f4f4;
+}
+
+.carousel-indicators {
+	height: 10px;
+}
