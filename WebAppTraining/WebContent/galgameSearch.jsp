@@ -16,7 +16,7 @@
 
 	<!-- タイトル -->
 	<div class="text-center">
-		<h1>美少女ゲーム検索</h1>
+		<h2>〇□ゲー批評空間</h2>
 	</div>
 
 	<!-- 登録ユーザーID Back-->
@@ -54,19 +54,19 @@
 			</div>
 		</div>
 		<br />
-		
+
 		<br />
 		<div class="form-group">
 			<div class="btn-group col-sm-offset-2 col-sm-3">
-				<s:submit method="search" value="検索" />
+				<s:submit type ="image" method="search" src="assets/images/temp/search.gif" alt = "検索" value="検索" />
 			</div>
 
 			<div class="btn-group col-sm-3">
-				<s:submit method="reset" value="リセット" />
+				<s:submit type = "image" method="reset" src="assets/images/temp/reset.gif" alt = "リセット" value="リセット" />
 			</div>
 
 			<div class="btn-group col-sm-3">
-				<s:submit method="update" value="追加" />
+				<s:submit type = "image" method="update" src="assets/images/temp/add.gif" alt = "追加" value="追加" />
 			</div>
 		</div>
 		<br />
@@ -83,7 +83,7 @@
 		<!-- 検索結果テーブル -->
 		<div class="show">
 			<s:if test="%{galgameTable.size!= 0}">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="sample_02">
 					<!-- テーブルヘッダー -->
 					<thead>
 						<tr>
@@ -99,12 +99,12 @@
 					<tbody>
 						<s:iterator value="galgameTable">
 							<tr>
-								<td class="data" width="80"><s:property value="makerName" /></td>
-								<td class="data" width="150"><s:property value="name" /></td>
-								<td class="data" width="50"><s:property value="saleYear" /></td>
-								<td class="data" width="50"><s:property value="score" /></td>
-								<td class="data" width="100"><s:property value="comment" /></td>
-								<td class="data" width="10"><input type="button"
+								<td class="data"><s:property value="makerName" /></td>
+								<td class="data"><s:property value="name" /></td>
+								<td class="data"><s:property value="year" /></td>
+								<td class="data"><s:property value="score" /></td>
+								<td class="data"><s:property value="comment" /></td>
+								<td class="data"><input type="button" id="update"
 									name="updateBtn" value="更新" class="btn btn-info"
 									forUpdate="<s:property value ="id"/>" /></td>
 								<td class="data" width="5"><input type="checkbox"

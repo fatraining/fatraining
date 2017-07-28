@@ -22,8 +22,8 @@ public class GalgameDao extends AbstractDao {
 		try {
 			// トランザクション開始
 			session.beginTransaction();
-			resultTable = session.createSQLQuery("SELECT * FROM potatomaker ORDER BY id")
-					// 要素がPotatoMakerエンティティであるものを返す
+			resultTable = session.createSQLQuery("SELECT * FROM galgamemaker ORDER BY id")
+					// 要素がGalgameMakerエンティティであるものを返す
 					.addEntity("GalgameMaker", GalgameMaker.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,8 +48,8 @@ public class GalgameDao extends AbstractDao {
 		// トランザクション開始
 		session.beginTransaction();
 
-		String select = "SELECT {pp.*},{pm.*} FROM PotatoProduct pp, PotatoMaker pm";
-		String where1 = "WHERE pp.makerId = pm.id";
+		String select = "SELECT {gp.*},{gm.*} FROM GalgameProduct gp, GalgameMaker gm";
+		String where1 = "WHERE gp.makerId = gm.id ORDER BY makerId,year";
 		String sql = select + " " + where1;
 
 		try {
@@ -76,18 +76,19 @@ public class GalgameDao extends AbstractDao {
 		session.beginTransaction();
 
 		String select = "SELECT {gp.*},{gm.*} FROM GalgameProduct gp, GalgameMaker gm";
-		String where1 = "WHERE gp.makerId = gm.id";
+		String where1 = "WHERE gp.makerId = gm.id ";
+		String order = "ORDER BY makerId,year";
 		StringBuilder sb = new StringBuilder();
 		sb.append("");
 
 		if (!StringUtils.isEmpty(makerId)) {
-			sb.append("AND (pp.makerId = ").append(makerId).append(" )");
+			sb.append("AND (gp.makerId = ").append(makerId).append(" )");
 		}
 		if (!StringUtils.isEmpty(name)) {
-			sb.append("AND (pp.name LIKE '%").append(name).append("%' )");
+			sb.append("AND (gp.name LIKE '%").append(name).append("%' )");
 		}
 		String where2 = sb.toString();
-		String sql = select + " " + where1 + " " + where2;
+		String sql = select + " " + where1 + " " + where2 + " "+order;
 
 		try {
 			resultTable = session.createSQLQuery(sql).addEntity("gp", GalgameProduct.class)
@@ -116,9 +117,10 @@ public class GalgameDao extends AbstractDao {
 		// トランザクション開始
 		session.beginTransaction();
 
-		String select = "SELECT {pp.*},{pm.*} FROM GalgameProduct gp, GalgameMaker gm";
-		String where1 = "WHERE gp.makerId = gm.id";
+		String select = "SELECT {gp.*},{gm.*} FROM GalgameProduct gp, GalgameMaker gm";
+		String where1 = "WHERE gp.makerId = gm.id ";
 		String where2 = "AND gp.id in (";
+		String order = "ORDER BY makerId,year";
 
 		for (int i = 0; i < deleteId.length; i++) {
 			if (i > 0) {
@@ -127,7 +129,7 @@ public class GalgameDao extends AbstractDao {
 			where2 += deleteId[i];
 		}
 		where2 += ")";
-		String sql = select + " " + where1 + " " + where2;
+		String sql = select + " " + where1 + " " + where2 + " "+order;
 
 		try {
 			resultTable = session.createSQLQuery(sql).addEntity("gp",GalgameProduct.class)
