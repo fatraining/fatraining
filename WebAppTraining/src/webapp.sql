@@ -1269,6 +1269,85 @@ INSERT INTO `potatoproduct` (`id`, `makerId`, `name`, `type`, `volume`, `price`,
 
 -- --------------------------------------------------------
 
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `galgamemaker`
+--
+
+CREATE TABLE `galgamemaker` (
+  `id` int(11) NOT NULL,
+  `makerName` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `galgamemaker`
+--
+
+INSERT INTO `galgamemaker` (`id`, `makerName`) VALUES
+(1, 'PULLTOP'),
+(2, 'Key'),
+(3, 'ニトロプラス'),
+(4, 'オーガスト'),
+(5, 'Leaf'),
+(6, 'ライアーソフト'),
+(7, 'TYPE-MOON'),
+(8, 'フロントウイング'),
+(9, '戯画'),
+(10, 'ケロQ/枕'),
+(11, 'Navel'),
+(12, 'あかべぇそふとつぅ'),
+(13, 'その他');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `galgameproduct`
+--
+
+CREATE TABLE `galgameproduct` (
+  `id` int(11) NOT NULL,
+  `makerId` int(11) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `year` int(4) NOT NULL,
+  `score` int(3) NOT NULL,
+  `comment` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `makerName` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `galgameproduct`
+--
+
+INSERT INTO `galgameproduct` (`id`, `makerId`, `name`, `year`, `score`, `comment`, `makerName`) VALUES
+(1, 1, '遥かに仰ぎ、麗しの', 2006, 83, 'かにしの。「みやびちゃんぷりちー」', NULL),
+(2, 1, 'この大空に翼を広げて',2012, 90, 'ころげて。「夢を見ることは、誰にだってできる。けど、信じ抜くのは難しい」', NULL),
+(3, 2, 'Kanon',1999, 84, 'かのん。「ボクのこと、忘れてください」', NULL),
+(4, 2, 'AIR',  2001, 89, 'えあー。「もうゴールしてもいいよね？」', NULL),
+(5, 2, 'CLANNAD', 2004, 94, 'くらなど。「それと便座カバー」', NULL),
+(6, 2, 'リトルバスターズ！', 2007, 85, 'りとばす。「茶番だあああああ」')
+(7, 3, 'Phantom-phantom_of_inferno-', 2000 , 85 , 'ふぁんとむ。「この世界が無限の地獄じゃないとしたら、それはあなたが生きているからよ」', NULL),
+(8, 3, '装甲悪鬼村正', 2010, 92 , 'むらまさ。「鬼に逢うては鬼を斬り、仏に逢うては仏を斬る」', NULL),
+(9, 3, 'CHAOS;HEAD', 2008, 80, 'かおへ。「その目、だれの目」', NULL),
+(10, 3, 'STEINS;GATE', 2010, 91, 'しゅたげ。「エル・プサイ・コングルゥ」', NULL),
+(12, 4, '夜明け前より瑠璃色な', 2005, 80, 'けよりな。「戦争を起こすのは兵器ではないわ。戦争を起こすのは、人よ。」', NULL),
+(13, 5, 'ToHeart', 1999, 78, 'とうはと。「はわわーっ」', NULL),
+(14, 5, 'WHITE_ALBUM2', 2010, 91, 'ほわるばつー。「全てを取ろうとして、全てを失ってもいい。それでも私は、全てを求め続ける。」', NULL),
+(15, 7, 'Fate/Stay_Night', 2003, 92, 'ふぁて。「判らぬか、下郎。そのような物より、私はシロウが欲しいと言ったのだ」' NULL),
+(16, 7, '月姫', 1999, 88, 'つきひめ。「あなたを、犯人です」')
+(19, 8, 'グリザイアの果実', 2011, 90, 'ぐりかじ。「何かを守るためには、まずは自分を守れ。」', NULL),
+(20, 9, 'パルフェ', 2005, 93, 'ぱるふぇ。「お前の周りの世界は、お前が考えるよりもちょっとだけ優しいんだよ」', NULL),
+(21, 9, 'この青空に約束を―', 2007, 89, 'こんにゃく。「メインヒロインって一度でいいから やってみたかったんだよね～これが」', NULL),
+(24, 10, 'サクラノ詩', 2015, 98, 'さくらのうた。「Life imitating art......」', NULL),
+(25, 11, '俺たちに翼はない', 2009, 86, 'おれつば。「このっ……腐れぬんこおおおぉぉぉーーっ!!」', NULL),
+(26, 11, '月に寄り添う乙女の作法', 2014, 91, 'つりおつ。「自分の正義を貫くには、大きな力と、それを認める環境が必要だ。」', NULL),
+(27, 12, '車輪の国、向日葵の少女', 2005, 93, 'しゃりん。「義憤などではない、そんなもの……豚のひがみというのだ!!」', NULL),
+(28, 13, 'CROSS†CHANNEL', 2003, 97, 'くろちゃん。「友情は、見返りを、求めない」', NULL),
+(31, 5, '痕', 1996, 85, 'きずあと。「あなたを殺します。―――ごめんなさい」', NULL);
+
+
+-- --------------------------------------------------------
+
 --
 -- テーブルの構造 `restaurant`
 --
@@ -1972,6 +2051,19 @@ ALTER TABLE `potatoproduct`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `galgamemaker`
+--
+ALTER TABLE `galgamemaker`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `galgameproduct`
+--
+ALTER TABLE `galgameproduct`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `skylineage`
 --
 ALTER TABLE `skylineage`
@@ -2059,6 +2151,11 @@ ALTER TABLE `ozakisong`
 -- AUTO_INCREMENT for table `potatoproduct`
 --
 ALTER TABLE `potatoproduct`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT for table `galgameproduct`
+--
+ALTER TABLE `galgameproduct`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `skylinedata`

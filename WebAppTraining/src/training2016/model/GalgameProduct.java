@@ -12,7 +12,7 @@ import org.hibernate.annotations.Proxy;
 
 @Entity
 @Proxy(lazy = false) // おまじない程度で
-@Table(name = "potatoproduct")
+@Table(name = "galgameproduct")
 public class GalgameProduct implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -47,7 +47,7 @@
 		<br />
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label"> 商品名 </label>
+			<label class="col-sm-3 control-label"> 製品名 </label>
 			<div class="col-sm-7">
 				<s:textfield cssClass="form-control" name="name"
 					placeholder="例：ポテトチップスうすしお"></s:textfield>
@@ -55,13 +55,6 @@
 			</div>
 		</div>
 		<br />
-
-		<div class="form-group">
-			<label class="col-sm-3 control-label"> 商品タイプ </label>
-			<div class="col-sm-7">
-				<s:select cssClass="form-control" name="type" list="typeMap"></s:select>
-			</div>
-		</div>
 
 		<br />
 		<div class="form-group">
@@ -99,10 +92,9 @@
 					<thead>
 						<tr>
 							<th>メーカ名</th>
-							<th>商品名</th>
-							<th>商品タイプ</th>
-							<th>内容量(g)</th>
-							<th>価格</th>
+							<th>ゲーム名</th>
+							<th>発売年</th>
+							<th>評価点</th>
 							<th>コメント</th>
 							<th>更新</th>
 							<th>削除</th>
@@ -111,11 +103,10 @@
 					<tbody>
 						<s:iterator value="potatoTable">
 							<tr>
-								<td class="data" width="80"><s:property value="makerName" /></td>
-								<td class="data" width="100"><s:property value="name" /></td>
-								<td class="data" width="90"><s:property value="type" /></td>
-								<td class="data" width="80"><s:property value="volume" /></td>
-								<td class="data" width="50"><s:property value="price" /></td>
+								<td class="data" width="100"><s:property value="makerName" /></td>
+								<td class="data" width="150"><s:property value="name" /></td>
+								<td class="data" width="90"><s:property value="year" /></td>
+								<td class="data" width="80"><s:property value="score" /></td>
 								<td class="data" width="140"><s:property value="comment" /></td>
 								<td class="data" width="10"><input type="button"
 									name="updateBtn" value="更新" class="btn btn-info"
@@ -129,8 +120,8 @@
 			</s:if>
 			<s:if test="%{potatoTable.size!= 0}">
 				<div class="text-right">
-					<p>削除する場合食べきるを押してください</p>
-					<s:submit method="delete" value="食べきる" cssClass="btn btn-danger"></s:submit>
+					<p>削除する場合削除を押してください</p>
+					<s:submit method="delete" value="削除" cssClass="btn btn-danger"></s:submit>
 				</div>
 			</s:if>
 		</div>

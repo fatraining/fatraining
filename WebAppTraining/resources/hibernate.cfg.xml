@@ -100,6 +100,8 @@
 		<mapping class="training2016.model.EventArea" />
 		<mapping class="training2016.model.OzakiSong" />
 		<mapping class="training2016.model.OzakiAlbum" />
+		<mapping class="training2016.model.GalgameProduct"/>
+		<mapping class="training2016.model.GalgameMaker"/>
 
 
 

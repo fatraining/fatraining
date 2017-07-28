@@ -15,7 +15,7 @@ public class GalgameSearchAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	/* タイトル */
-	private String title = "エ〇ゲー批評空間";
+	private String title = "〇□ゲー批評空間";
 
 	// ブラウザからの入力項目
 	/*----------------------------------------------
@@ -59,7 +59,7 @@ public class GalgameSearchAction extends AbstractAction {
 	}
 
 	private String getDefaultName() {
-		return "例：月姫";
+		return "";
 	}
 
 
