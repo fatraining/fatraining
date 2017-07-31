@@ -1320,7 +1320,6 @@ CREATE TABLE `galgameproduct` (
 --
 
 INSERT INTO `galgameproduct` (`id`, `makerId`, `name`, `year`, `score`, `comment`, `makerName`) VALUES
-INSERT INTO `galgameproduct` (`id`, `makerId`, `name`, `year`, `score`, `comment`, `makerName`) VALUES
 (1, 1, '遥かに仰ぎ、麗しの', 2006, 84, 'かにしの。風祭みやび。2006年びしょげー大賞、健速乙', NULL),
 (2, 1, 'この大空に翼を広げて', 2012, 90, 'ころげて。望月天音。2012年びしょげー大賞、五行なずな　IS　GOD', NULL),
 (3, 2, 'Kanon', 1999, 84, 'かのん。月宮あゆ。業界に蔓延る奇声ヒロインのはしり、うぐぅ', NULL),
