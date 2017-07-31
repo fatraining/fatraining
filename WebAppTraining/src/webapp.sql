@@ -1364,8 +1364,6 @@ INSERT INTO `galgameproduct` (`id`, `makerId`, `name`, `year`, `score`, `comment
 --
 -- Indexes for table `galgameproduct`
 --
-ALTER TABLE `galgameproduct`
-  ADD PRIMARY KEY (`id`);
 
 -- --------------------------------------------------------
 
