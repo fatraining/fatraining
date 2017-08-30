@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+/*見出しの枠とか位置とか*/
+
+h3{
+	text-align:left;
+	color:#ff0000;
+}
+body{
+	background-color: #C0C0FF;
+	background-repeat:no-repeat;
+}
+
+div#imgContainer {
+  width:100%;
+  height: 200px;
+  position:relative;
+ overflow: hidden;
+
+}
+div#imgContainer img {
+  position:relative;
+  left:-165px;
+  top:-40px;
+
+
+}
+
+#page-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 80%;
+}
+#page-top a {
+    background: #666;
+    text-decoration: none;
+    color: #fff;
+    width: 100px;
+    padding: 30px 0;
+    text-align: center;
+    display: block;
+    border-radius: 50%;
+}
+#page-top a:hover {
+    text-decoration: none;
+    background: #999;
+}
+
+label[ data-icon ]{
+	position: relative;
+	display: inline-block;
+	width: 48px;
+	height: 52px;
+}
+label[ data-icon ] input{
+	position: absolute; z-index: 0;
+}
+label[ data-icon ] img{
+	position: absolute; left: 0px; top: 0px; z-index: 100;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color:  #C0C0FF;
+	cursor: pointer;
+}
+label[ data-icon="a1" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/8bdbfbd86875ae80a9b22ee1d1be2e64.jpg')}
+label[ data-icon="a2" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/95d763784b09b5e043cd3cfd3a2bd8c7.jpg')}
+label[ data-icon="a3" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/2a99f16c3abbd03961f23d660c37be50.jpg')}
+label[ data-icon="a4" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/f2c9084428f0cb74c9ad1667ff0055fb.jpg')}
+label[ data-icon="a5" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/e0dd55e05c7c943b9da7cfa04a3786d9.jpg')}
+label[ data-icon="a6" ] input:checked+img{ background-image: url('https://gamewith.akamaized.net/img/a9ac7f2c761b5d62738828569ffb57f5.jpg')}
+
+label[ data-icon="a1" ] img{ background-image: url('https://gamewith.akamaized.net/img/af9524e4630e5f6839a23a53d2ab0ebe.jpg') }
+label[ data-icon="a2" ] img{ background-image: url('https://gamewith.akamaized.net/img/c5a7441db579ba3f01758cd74d544020.jpg') }
+label[ data-icon="a3" ] img{ background-image: url('https://gamewith.akamaized.net/img/3afe2e5282c60dff9a15c153390f6d81.jpg') }
+label[ data-icon="a4" ] img{ background-image: url('https://gamewith.akamaized.net/img/67c1b4de20a1472fe7bf78ffa628b8bd.jpg') }
+label[ data-icon="a5" ] img{ background-image: url('https://gamewith.akamaized.net/img/d11547bd7a05aa80cdcf9fb40e7420ba.jpg') }
+label[ data-icon="a6" ] img{ background-image: url('https://gamewith.akamaized.net/img/66e391ad6b2ee9a5c8d4cf42e3cb9884.jpg') }
+

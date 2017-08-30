@@ -190,10 +190,16 @@
 				</div>
 
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<s:submit method="galgameSearch" value="批評空間" cssClass="btn btn-warning" />
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<s:submit method="guraburuCharacterSearch" value="グラブルキャラ検索" cssClass="btn btn-warning" />
 				</div>
 
 			</div>
