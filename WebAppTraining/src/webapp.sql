@@ -606,6 +606,79 @@ INSERT INTO `eventstage` (`ID`, `name`, `station`, `record`, `comment`, `areaID`
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `guraburu_character_info`
+--
+
+CREATE TABLE `guraburu_character_info` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SEX` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ATTRIBUTE` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RACEID` int(11) DEFAULT NULL,
+  `COMMENT` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `REGISTERDDATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `RACENAME` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DATAURL` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `guraburu_character_info`
+--
+
+INSERT INTO `guraburu_character_info` (`ID`, `NAME`, `SEX`, `ATTRIBUTE`, `RACEID`, `COMMENT`, `REGISTERDDATA`, `RACENAME`, `DATAURL`) VALUES
+(1, 'アンチラ', '女性', '風', 2, '例の返金騒動事件の元凶', '2017-08-22 06:45:33', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040071000_01_full.png'),
+(2, 'フィーナ', '女性', '風', 1, '超カワ', '2017-08-22 03:15:07', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=ssr3040061000_01.png'),
+(3, 'パーシヴァル', '男性', '火', 1, 'パー様', '2017-08-15 08:44:08', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040050000_01full.png'),
+(4, 'コルワ', '女性', '風', 2, '全属性バッファー（元）', '2017-08-15 08:49:45', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040081000_01_full.png'),
+(5, 'ゾーイ(水着ver)', '女性', '闇', 5, 'コンジャクション', '2017-08-16 03:10:32', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040092000_01_full.png'),
+(6, 'ヴェイン', '男性', '水', 1, NULL, '2017-08-15 02:47:12', NULL, NULL),
+(7, 'ロザミア', '女性', '光', 1, '仮面女子', '2017-08-22 03:41:53', NULL, ''),
+(8, 'リルル', '女性', '水', 4, NULL, '2017-08-15 02:48:31', NULL, NULL),
+(9, 'ラスティナ', '女性', '土', 3, NULL, '2017-08-15 02:49:15', NULL, NULL),
+(10, 'バザラガ', '男性', '闇', 3, NULL, '2017-08-16 03:19:25', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040029000_02fulll.png'),
+(11, 'セルエル', '男性', '光', 2, NULL, '2017-08-16 03:19:25', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040013000_01full.png'),
+(12, 'ガウェイン', '男性', '風', 1, NULL, '2017-08-16 03:19:25', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040000000_02full.png'),
+(13, 'ユーステス', '男性', '土', 2, NULL, '2017-08-16 03:19:25', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040069000_01_full.png'),
+(14, 'ユエル', '女性', '火', 2, NULL, '2017-08-16 03:19:25', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040006000_03.png'),
+(15, 'マキラ', '女性', '土', 4, '', '2017-08-22 08:17:26', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040107000_02_full.png'),
+(16, 'オクトー', '男性', '土', 3, '', '2017-08-21 06:03:33', NULL, NULL),
+(17, 'サラーサ', '女性', '土', 3, NULL, '2017-08-16 07:40:08', NULL, NULL),
+(18, 'アニラ', '女性', '火', 3, 'saf', '2017-08-21 05:13:17', NULL, NULL),
+(19, 'オイゲン', '男性', '土', 1, '', '2017-08-21 03:43:21', NULL, NULL),
+(20, 'ロゼッタ', '女性', '風', 5, '', '2017-08-21 08:44:30', NULL, ''),
+(22, 'アギエルバ', '男性', '火', 3, '', '2017-08-21 05:08:49', NULL, NULL),
+(23, 'ジャンヌダルク（闇堕ち）', '女性', '闇', 1, '闇堕ち', '2017-08-21 06:34:37', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040080000_01_full.png'),
+(34, 'ヴィーラ', '女性', '闇', 1, '', '2017-08-21 06:35:26', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040043000_03full.png'),
+(35, 'オーキス', '女性', '闇', 5, '', '2017-08-21 06:55:58', NULL, 'http://gbf-wiki.com/index.php?plugin=attach&refer=img&openfile=3040111000_01_full.png');
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `guraburu_race`
+--
+
+CREATE TABLE `guraburu_race` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `guraburu_race`
+--
+
+INSERT INTO `guraburu_race` (`ID`, `NAME`) VALUES
+(1, 'ヒューマン'),
+(2, 'エルーン'),
+(3, 'ドラフ'),
+(4, 'ハーヴィン'),
+(5, '不明'),
+(6, '未入力');
+
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `groupname`
 --
 
@@ -2082,6 +2155,12 @@ ALTER TABLE `galgameproduct`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `guraburu_character_info`
+--
+ALTER TABLE `guraburu_character_info`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `skylineage`
 --
 ALTER TABLE `skylineage`
@@ -2185,7 +2264,14 @@ ALTER TABLE `skylinedata`
 --
 ALTER TABLE `tabaco`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
+-- AUTO_INCREMENT for table `guraburu_character_info`
+--
+ALTER TABLE `guraburu_character_info`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+  --
 -- ダンプしたテーブルの制約
 --
 
