@@ -33,7 +33,8 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 		@Result(name = "tabacoSearch", value = "tabacoSearch.action", type = ServletRedirectResult.class),
 		@Result(name = "skyLineSearch", value = "skyLineSearch.action", type = ServletRedirectResult.class),
 		@Result(name = "eventStageSearch", value = "eventStageSearch.action", type = ServletRedirectResult.class),
-  		@Result(name = "galgameSearch", value = "galgameSearch.action", type = ServletRedirectResult.class),})
+  		@Result(name = "galgameSearch", value = "galgameSearch.action", type = ServletRedirectResult.class),
+  		@Result(name = "guraburuCharacterSearch", value = "guraburuCharacterSearch.action", type = ServletRedirectResult.class),})
 
 
 
@@ -325,6 +326,14 @@ public class MenuAction extends AbstractAction {
 	 */
 	public String galgameSearch() {
 		return "galgameSearch";
+	}
+	/**
+	 * 島田のグラブルキャラ検索へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String guraburuCharacterSearch() {
+		return "guraburuCharacterSearch";
 	}
 
 

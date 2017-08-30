@@ -102,7 +102,8 @@
 		<mapping class="training2016.model.OzakiAlbum" />
 		<mapping class="training2016.model.GalgameProduct"/>
 		<mapping class="training2016.model.GalgameMaker"/>
-
+		<mapping class="training2016.model.GuraburuCharacter" />
+		<mapping class="training2016.model.GuraburuRace" />
 
 
 	</session-factory>
