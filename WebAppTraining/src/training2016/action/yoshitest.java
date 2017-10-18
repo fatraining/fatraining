@@ -5,7 +5,7 @@ public class yoshitest {
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
 
-		System.out.println("やさしい佐藤");
+		System.out.println("うざ藤");
 	}
 
 }
