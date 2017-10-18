@@ -7,6 +7,7 @@ public class OgasanYasashi {
 		System.out.println("作ったのは辻です");
 
 		System.out.println("小川さんは優しい");
+		System.out.println("暮林");
 	}
 
 }
