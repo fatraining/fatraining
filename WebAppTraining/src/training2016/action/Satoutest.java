@@ -7,6 +7,7 @@ public class Satoutest {
 
 		System.out.println("岸田さんはかわいいと思う");
 
+		System.out.println("同意");
 
 	}
 
