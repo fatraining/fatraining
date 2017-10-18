@@ -6,7 +6,7 @@ public class AAA {
 		// TODO 自動生成されたメソッド・スタブ
 		System.out.println("AAA");
 		System.out.println("BBB");
-
+		System.out.println("I'm hungry");
 	}
 
 }
