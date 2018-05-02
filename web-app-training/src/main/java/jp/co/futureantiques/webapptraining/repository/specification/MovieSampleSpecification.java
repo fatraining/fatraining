@@ -50,6 +50,7 @@ public class MovieSampleSpecification {
 				if (!StringUtils.isEmpty(form.getMovieTitle())) {
 
 					// 映画名を条件に追加
+					form.setMovieTitle(form.getMovieTitle().trim());
 					Predicate newCondition = cb.like(root.get("movieTitle"), "%" + form.getMovieTitle() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
