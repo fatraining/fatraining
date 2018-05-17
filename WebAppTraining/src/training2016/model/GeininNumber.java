@@ -31,7 +31,7 @@ public class GeininNumber implements Serializable {
 	 * @return id
 	 */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class GeininNumber implements Serializable {
 	 * @return number
 	 */
 	public String getNumber() {
-		return number;
+		return this.number;
 	}
 
 	/**

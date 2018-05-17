@@ -28,7 +28,7 @@ public class GeininJimusho implements Serializable {
 	 * @return id
 	 */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class GeininJimusho implements Serializable {
 	 * @return jimusho
 	 */
 	public String getJimusho() {
-		return jimusho;
+		return this.jimusho;
 	}
 
 	/**

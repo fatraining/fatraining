@@ -44,6 +44,11 @@ public abstract class AbstractDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+//	有吉追記
+	public Session openSession() {
+		return sessionFactory.openSession();
+	}
+
 	/**
 	 * セッションを取得してトランザクションを開始する。
 	 */

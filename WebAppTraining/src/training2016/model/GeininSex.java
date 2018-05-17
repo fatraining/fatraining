@@ -33,7 +33,7 @@ public class GeininSex implements Serializable {
 	 * @return id
 	 */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class GeininSex implements Serializable {
 	 * @return sex
 	 */
 	public String getSex() {
-		return sex;
+		return this.sex;
 	}
 
 	/**
