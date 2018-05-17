@@ -5,6 +5,7 @@ import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
 @Results({ @Result(name = "cryingMovieSearch", value = "cryingMovieSearch.action", type = ServletRedirectResult.class),
+		@Result(name = "geininSearch", value = "geininSearch.action", type = ServletRedirectResult.class),
 		@Result(name = "tosaka", value = "phoneFinder.action", type = ServletRedirectResult.class),
 		@Result(name = "harasan", value = "restaurantSearch.action", type = ServletRedirectResult.class),
 		@Result(name = "matsufuji", value = "hpiventSearch.action", type = ServletRedirectResult.class),
@@ -34,7 +35,7 @@ import org.apache.struts2.dispatcher.ServletRedirectResult;
 		@Result(name = "skyLineSearch", value = "skyLineSearch.action", type = ServletRedirectResult.class),
 		@Result(name = "eventStageSearch", value = "eventStageSearch.action", type = ServletRedirectResult.class),
   		@Result(name = "galgameSearch", value = "galgameSearch.action", type = ServletRedirectResult.class),
-  		@Result(name = "guraburuCharacterSearch", value = "guraburuCharacterSearch.action", type = ServletRedirectResult.class),})
+  		@Result(name = "guraburuCharacterSearch", value = "guraburuCharacterSearch.action", type = ServletRedirectResult.class)})
 
 
 
@@ -56,11 +57,20 @@ public class MenuAction extends AbstractAction {
 
 	/**
 	 * executeメソッド メソッド指定がなかった場合デフォルトで実行される
-	 *
+	 * ★有吉修正(sccessになってた)
 	 * @return 結果
 	 */
 	public String execute() throws Exception {
-		return "sccess";
+		return "success";
+	}
+
+	/**
+	 * 有吉のWebアプリ画面へ遷移する
+	 *
+	 * @return 結果
+	 */
+	public String geininSearch() {
+		return "geininSearch";
 	}
 
 	/**

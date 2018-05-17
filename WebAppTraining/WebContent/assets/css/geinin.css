@@ -1,0 +1,112 @@
+@CHARSET "UTF-8";
+
+/*-- 全体的なスタイル --*/
+* {font-family: "SimHei" , monospace;
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+}
+
+
+body {
+  /* 画像ファイルの指定*/
+text-align: center;
+  background-attachment:fixed;
+  background-image: url(../images/obi.jpg);
+background-repeat:repeat;
+
+
+
+  /* 画像を常に天地左右の中央に配置
+  background-position: 40px 0px;
+
+   画像をタイル状に繰り返す
+  backgroun-repeat:repeat-y ;
+
+   コンテンツの高さが画像の高さより大きい時、動かないように固定
+  background-attachment: fixed;
+
+   表示するコンテナの大きさに基づいて、背景画像を調整
+  background-size: cover;*/
+
+  /* 背景画像が読み込まれる前に表示される背景のカラー */
+  background-color: #ffffff;
+}
+
+.container {
+	height: 100%;
+
+	width: 800px;/*中央の幅の指定*/
+	margin: 0 auto;
+	background: #fff;/*中央の背景を白にする指定*/
+}
+
+
+/*カーソル*/
+
+
+/*メッセージ*/
+.message {
+	display: none; /*最初は非表示にしておく*/
+	color: #FA5858;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/*エラーメッセージ*/
+.errorMessage {
+	display: none;
+	color: #FA5858;
+	font-weight:bold;
+	font-size:20px;
+}
+
+
+
+
+#btn {
+  /* ボタンの文字 */
+  font: bold 20px/1.7 "SimHei" , monospace;
+  color: #FFF;
+  text-decoration: none;
+
+  /* ボタンのレイアウト */
+  position:relative;
+  top: 45px;
+  left: 30px;
+  padding: 10px 20px;
+  background-color: #F00;
+
+  /* ボックスシャドウ */
+  box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+  -webkit-box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+  -moz-box-shadow: 0 5px 2px #871, 0 7px 10px #CCC;
+
+  /* 角を丸くする */
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+
+  /* 変化に推移を与える */
+  transition: background-color 0.5s ease-in-out;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out;
+}
+
+#btn:hover {
+  /* マウスオーバーの状態 */
+  cursor: pointer;
+  background-color: #FD4;
+}
+
+/*更新ボタンがマウスオーバー時に傾く
+  degは傾ける角度（時計回り）*/
+#update:hover {
+	-webkit-transform :rotate(-30deg);
+	-ms-transform:rotate(-30deg);
+	transform:rotate(-30deg);
+}
+
+
+/*ここからお試しゾーン*/
+
