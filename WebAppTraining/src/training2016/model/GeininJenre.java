@@ -28,7 +28,7 @@ public class GeininJenre implements Serializable {
 	 * @return id
 	 */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class GeininJenre implements Serializable {
 	 * @return jenre
 	 */
 	public String getJenre() {
-		return jenre;
+		return this.jenre;
 	}
 
 	/**

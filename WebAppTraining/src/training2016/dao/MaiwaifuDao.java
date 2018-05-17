@@ -25,6 +25,7 @@ public class MaiwaifuDao extends AbstractDao {
 		List<MaiwaifuArea> resultTable = null;
 		//データベース接続
 		Session session = this.getCurrentSession();
+//		Session session = this.openSession();
 		try {
 			//トランザクションを開始
 			session.beginTransaction();
