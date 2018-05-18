@@ -15,7 +15,7 @@ public class GeininDao extends AbstractDao {
 	/** ドライバークラス名 */
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	/** DBのURL */
-	private static final String URL = "jdbc:mysql://localhost/uhd_cms";
+	private static final String URL = "jdbc:mysql://localhost/webapp";
 	/** DBのユーザ名 */
 	private static final String USER = "root";
 	/** DBのパスワード */
@@ -41,11 +41,10 @@ public class GeininDao extends AbstractDao {
 		ArrayList<Geinin> list = new ArrayList<>();
 //		実行するsql詳細
 		String sql = "SELECT id,imabe,name,work FROM geinins "
-				+ "WHERE name LIKE %?% ORDER BY id";
+				+ "WHERE name LIKE %" + keyword + "% ORDER BY id";
 		try (Connection con = getConnection();
 				PreparedStatement pst = con.prepareStatement(sql) ) {
 			// SQL文の実行
-			pst.setString(1, keyword);
 			ResultSet rs = pst.executeQuery();
 			// ResultSetから結果の取得
 			while (rs.next()) {
@@ -75,7 +74,7 @@ public class GeininDao extends AbstractDao {
 		// 戻り値となるリスト
 		ArrayList<Geinin> list = new ArrayList<>();
 //		実行するsql詳細
-		String sql = "SELECT id,imabe,name,work FROM geinins "
+		String sql = "SELECT id,image,name,work FROM geinins "
 				+ "ORDER BY id";
 		try (Connection con = getConnection();
 				PreparedStatement pst = con.prepareStatement(sql) ) {
