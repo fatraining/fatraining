@@ -48,9 +48,6 @@
 
 
 
-
-
-
 		<div class="text-right">
 
 			<s:property value="userId" />
@@ -95,7 +92,7 @@
 					</div>
 				</div>
 			</div>
-
+		</div>
 			<br>
 			<br>
 
@@ -107,8 +104,8 @@
 					<s:property value="message" />
 				</div>
 				<br>
-				<!-- ★ -->
-			<!-- 	<s:if test="%{geininList.size > 0}"> -->
+				<!-- ★<s:if test="%{geininList.size > 0}"> -->
+				<s:if test="%{geininList.size > 0}">
 					<table class="table table-striped table-bordered">
 						<thead>
 							<!-- テーブルヘッダー -->
@@ -123,12 +120,12 @@
 						<tbody>
 							<s:iterator value="geininList">
 								<tr>
-									<td class="data" width="210">
-										<img src="assets/images/geinin/<s:property value="image"/>" alt="NO IMAGE!" width="200"></td>
-									<td class="data" width="150"><s:property value="name" /></td>
-									<td class="data"><s:property value="work" /></td>
+									<td class="data" width="120">
+										<img src="assets/images/geinin/<s:property value="image"/>" alt="NO IMAGE!" width="110" height="110"></td>
+									<td class="data" width="60"><s:property value="name" /></td>
+									<td class="data" width="75"><s:property value="work" /></td>
 
-									<td width="100"><input type="button" name="updateBtn" id="update"
+									<td><input type="button" name="updateBtn" id="update"
 										value="更新" class="btn btn-warning"
 										forUpdate="<s:property value ="id"/>" /></td>
 									<td class="data" width="50"><input type="checkbox"
@@ -137,7 +134,7 @@
 							</s:iterator>
 						</tbody>
 					</table>
-			<!-- </s:if> -->
+				</s:if>
 				<s:if test="%{geininList.size > 0}">
 					<div class="text-right">
 						<div class="shake shake-chunk">
