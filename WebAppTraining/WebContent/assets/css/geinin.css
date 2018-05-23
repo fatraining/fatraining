@@ -36,7 +36,7 @@ background-repeat:repeat;
 .container {
 	height: 100%;
 
-	width: 800px;/*中央の幅の指定*/
+	width: 70%;/*中央の幅の指定*/
 	margin: 0 auto;
 	background: #fff;/*中央の背景を白にする指定*/
 }
@@ -93,6 +93,7 @@ background-repeat:repeat;
   -moz-transition: background-color 0.5s ease-in-out;
 }
 
+<!--
 #btn:hover {
   /* マウスオーバーの状態 */
   cursor: pointer;
@@ -100,13 +101,14 @@ background-repeat:repeat;
 }
 
 /*更新ボタンがマウスオーバー時に傾く
-  degは傾ける角度（時計回り）*/
+  degは傾ける角度（時計回り）
 #update:hover {
 	-webkit-transform :rotate(-30deg);
 	-ms-transform:rotate(-30deg);
 	transform:rotate(-30deg);
 }
-
+*/
+-->
 
 /*ここからお試しゾーン*/
 

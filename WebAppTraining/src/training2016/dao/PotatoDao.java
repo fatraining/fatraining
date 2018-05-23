@@ -195,6 +195,7 @@ public class PotatoDao extends AbstractDao {
 		session.getTransaction().commit();
 	}
 
+
 	/* 更新の実行 */
 	public void updata(PotatoProduct model) {
 		Session session = this.getCurrentSession();

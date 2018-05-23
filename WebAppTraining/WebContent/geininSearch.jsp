@@ -29,31 +29,22 @@
 		<p class="text-right">
 			<a href="menu.action">Back</a>
 		</p>
-		<br>
-<div>
 
-<br>
-<br>
-<br>
+
+
 
 <div>
-タイトル
+<h1>若手芸人検索</h1>
+<img src="assets/images/geinin/top.png" alt="NO IMAGE!" width="300"></td>
 </div>
-
-
-
-</div>
-
-
-
-
-
-
+<br>
+<br>
+<br>
 
 
 		<div class="text-right">
 
-			<s:property value="userId" />
+	 	<s:property value="userId" />
 			様
 			<!--geininSearchAction.javaで生成したuserIdを画面に表示する -->
 
@@ -77,20 +68,20 @@
 <!--検索とかのボタン-->
 			<div class="search">
 				<div class="row">
-					<div class="col-md-2 col-md-offset-5">
+					<div class="col-md-4 col-md-offset-4">
 						<s:submit method="search" value="検索"
 							cssClass="btn btn-default btn-block" />
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-2 col-md-offset-5">
+					<div class="col-md-4 col-md-offset-4">
 						<s:submit method="reset" value="リセット"
 							cssClass="btn btn-danger btn-block" />
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-2 col-md-offset-5">
-						<s:submit method="update" value="追加"
+					<div class="col-md-4 col-md-offset-4">
+						<s:submit method="update" value="新規データ追加"
 							cssClass="btn btn-warning btn-block" />
 					</div>
 				</div>
@@ -107,13 +98,12 @@
 					<s:property value="message" />
 				</div>
 				<br>
-				<!-- ★ -->
-			<!-- 	<s:if test="%{geininList.size > 0}"> -->
-					<table class="table table-striped table-bordered">
+				<s:if test="%{geininList.size > 0}">
+					<table class="table table-hover table-bordered">
 						<thead>
 							<!-- テーブルヘッダー -->
 							<tr>
-								<th>写真</th>
+								<th align="center">写真</th>
 								<th>名前</th>
 								<th>代表ネタ</th>
 								<th>更新</th>
@@ -128,20 +118,38 @@
 									<td class="data" width="150"><s:property value="name" /></td>
 									<td class="data"><s:property value="work" /></td>
 
-									<td width="100"><input type="button" name="updateBtn" id="update"
-										value="更新" class="btn btn-warning"
-										forUpdate="<s:property value ="id"/>" /></td>
+									<td width="100">
+									<!--
+									<div class="col-md-2">
+										<input type="hidden" name="updateId" <s:property value="id"/> >
+										<s:submit method="update" value="データ更新"
+											cssClass="btn btn-warning" />
+									</div>
+
+									<form method="update">
+									<input type="hidden" name="updateId" <s:property value="id"/> >
+									<input type="button" name="updateBtn" value="更新" class="btn btn-warning">
+									</form>
+
+									 <input type="hidden" name="updateId" id="updateId" <s:property value="id" /> >
+									 forUpdate="<s:property value ="id"/>"
+									 -->
+
+									 <input type="button" name="updateBtn" value="データ更新" class="btn btn-warning"
+									 forUpdate="<s:property value ="id"/>" />
+
+									</td>
 									<td class="data" width="50"><input type="checkbox"
 										name="delete" value=<s:property value="id"/>></td>
 								</tr>
 							</s:iterator>
 						</tbody>
 					</table>
-			<!-- </s:if> -->
+			 </s:if>
 				<s:if test="%{geininList.size > 0}">
 					<div class="text-right">
 						<div class="shake shake-chunk">
-							<s:submit method="delete" value="さようなら▽" cssClass="btn btn-info" />
+							<s:submit method="delete" value="チェックしたデータを削除する" cssClass="btn btn-info" />
 						</div>
 					</div>
 					<br>
@@ -152,7 +160,7 @@
 	</div>
 
 	<!-- javascript -->
-<!-- 	<script type="text/javascript"
-		src="<s:url value="/assets/js/ariyoshi.js" />"></script> -->
+ 	<script type="text/javascript"
+		src="<s:url value="/assets/js/ariyoshi.js" />"></script>
 </body>
 </html>

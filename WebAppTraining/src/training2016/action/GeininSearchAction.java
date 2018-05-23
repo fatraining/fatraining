@@ -1,5 +1,6 @@
 package training2016.action;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,12 @@ public class GeininSearchAction extends AbstractAction {
 	private String work;
 
 	public String userId;
+
+	/*削除ID*/
+	private String delete;
+
+	/*更新ID*/
+	private String updateId;
 
 //	検索リスト
 	public ArrayList<Geinin> geininList = new ArrayList<>();
@@ -62,7 +69,6 @@ public class GeininSearchAction extends AbstractAction {
 
 
 //	はじめに実行される
-	@Override //★
 	public String execute() throws Exception{
 		this.id = getDefaultId();
 		this.image = getDefaultImage();
@@ -78,7 +84,8 @@ public class GeininSearchAction extends AbstractAction {
 		this.image = getDefaultImage();
 		this.name = getDefaultName();
 		this.work = getDefaultWork();
-		this.sessionMap.put("message", null);
+//		this.sessionMap.put("message", null);
+		System.out.println("reset()");
 		return "success";
 
 	}
@@ -87,59 +94,59 @@ public class GeininSearchAction extends AbstractAction {
 	//データベース生成。
 	public String search() {
 		GeininDao dao = new GeininDao();
-		ArrayList<Geinin> resultList = null;  //ワイルドカード(曖昧な文字列)
+		ArrayList<Geinin> resultList = null;
 
 		if(StringUtils.isEmpty(name)) {
 			resultList = dao.allGeininList(); //nullのとき
 		} else {
 //			★フォームに入ったnameを入れる
+			name = this.name.trim();
 			resultList = dao.searchByName(name);
 		}
 		//thisで準備してる。
 
 		this.sessionMap.put("message", null);
+		this.sessionMap.put("completeMessage", null);
 		this.geininList = resultList;
+		System.out.println("search()");
 		return "success";
 	}
 
 
-//	/*追加ボタンを押したとき*/
-//	public String update() {
-//		//セッションマップに指定されたキーでValueをputする
-//		this.putValueToSession("updateId", this.updateId);
-//		try {
-//			this.response.sendRedirect("maiwaifuUpdate.action");  //追加画面へ
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return "success";
-//	}
-//
-//	/*削除ボタンを押したとき チェックアリならmaiwaifuDelete.actionにとばす*/
-//	public String delete() {
-//		this.sessionMap.put("deleteId", this.delete);
-//		if (delete == null) {
-//			addActionError("削除する項目を選択してください");
-//			search();
-//			return "error";
-//		} else {
-//			try {
-//				this.response.sendRedirect("maiwaifuDelete.action");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			return "success";
-//		}
-//	}
+	/*追加ボタンを押したとき*/
+	public String update() {
+		//セッションマップに指定されたキーでValueをputする
+		this.putValueToSession("updateId", this.updateId);
+		System.out.println("update() updateId:" + this.updateId);
+		return "update";
+	}
+
+	/*削除ボタンを押したとき チェックアリならgeininDelete.actionにとばす*/
+	public String delete() {
+		this.sessionMap.put("deleteId", this.delete);
+		if (delete == null) {
+			addActionError("削除する項目を選択してください");
+			search();
+			return "error";
+		} else {
+			try {
+				this.response.sendRedirect("geininDelete.action");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println("delete() deleteId:" + this.delete);
+			return "success";
+		}
+	}
 
 
 
-
+//	setterやgetter
 	/**
 	 * @return title
 	 */
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 	/**
 	 * @param title セットする title
@@ -151,7 +158,7 @@ public class GeininSearchAction extends AbstractAction {
 	 * @return id
 	 */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 	/**
 	 * @param id セットする id
@@ -163,7 +170,7 @@ public class GeininSearchAction extends AbstractAction {
 	 * @return image
 	 */
 	public String getImage() {
-		return image;
+		return this.image;
 	}
 	/**
 	 * @param image セットする image
@@ -175,7 +182,7 @@ public class GeininSearchAction extends AbstractAction {
 	 * @return name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	/**
 	 * @param name セットする name
@@ -187,7 +194,7 @@ public class GeininSearchAction extends AbstractAction {
 	 * @return work
 	 */
 	public String getWork() {
-		return work;
+		return this.work;
 	}
 	/**
 	 * @param work セットする work
