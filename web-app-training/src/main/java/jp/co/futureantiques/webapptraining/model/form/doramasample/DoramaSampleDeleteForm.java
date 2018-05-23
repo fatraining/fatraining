@@ -7,9 +7,9 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 映画削除画面のFormクラス
+ * ドラマ削除画面のFormクラス
  *
- * @author future
+ * @author hiraoka
  */
 @Data
 public class DoramaSampleDeleteForm {
