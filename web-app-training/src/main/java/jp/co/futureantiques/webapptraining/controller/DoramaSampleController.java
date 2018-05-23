@@ -78,8 +78,6 @@ public class DoramaSampleController {
 	}
 
 
-
-
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 *
@@ -102,7 +100,6 @@ public class DoramaSampleController {
 		}
 		return "doramasample/search";
 	}
-
 
 
 	/**
@@ -136,7 +133,6 @@ public class DoramaSampleController {
 		final DoramaMain doramaMain = doramaSampleService.insertDorama(form);
 		return "redirect:/doramasample?result=insert&id=" + doramaMain.getId();
 	}
-
 
 
 	/**
@@ -185,7 +181,6 @@ public class DoramaSampleController {
 	}
 
 
-
 	/**
 	 * DoramaMainテーブルのレコードを論理削除して検索画面に遷移する
 	 *
@@ -219,8 +214,6 @@ public class DoramaSampleController {
 		model.addAttribute(doramaList);
 		return "doramasample/deletecomp";
 	}
-
-
 
 
 	/**
