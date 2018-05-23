@@ -14,13 +14,13 @@ public class DoramaSampleSearchForm {
 	/** ID */
 	private Integer id;
 
-	/** 映画名 */
+	/** ドラマタイトル */
 	private String doramaTitle;
 
 	/** ジャンルID */
 	private Integer genreId;
 
-	/** 俳優ID */
+	/** 放送局ID */
 	private Integer tvStationId;
 
 	/** 削除フラグON用 */
