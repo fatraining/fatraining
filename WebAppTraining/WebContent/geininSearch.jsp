@@ -18,37 +18,47 @@
 
 
 	<div class="container">
+
 		<div class="text-center">
 		<!-- 研修アプリVer.β -->
 			<jsp:include page="logo.jsp" />
 		</div>
 
 
+		<div class="text-right">
+<!-- Back、USERID -->
+		<h3><a href="menu.action">Back</a></h3>
+	 	<s:property value="userId" />
+			様
 
+		</div>
 
-		<p class="text-right">
-			<a href="menu.action">Back</a>
-		</p>
+<br>
 
+	<!-- 削除・更新・追加完了メッセージの表示 -->
 
-
+	<s:if test="%{!message.isEmpty()}">
+		<div class="alert alert-success alert-dismissible">
+			<s:property value="message" />
+		</div>
+	</s:if>
 
 <div>
-<h1>若手芸人検索</h1>
-<img src="assets/images/geinin/top.png" alt="NO IMAGE!" width="300"></td>
+
+	<h1>若手芸人検索</h1>
+	<a href="http://www.mygrffon.com/entry/2017/07/30/090058" target="_blank">
+		<img src="assets/images/geinin/top.png" alt="NO IMAGE!" width="300">
+	</a>
+
 </div>
 <br>
 <br>
+背景画像：<a href="https://twitter.com/inde_naito" target="_blank">インデペンデンスデイ内藤</a>が描いた
+「<a href="http://www.kdashstage.jp/profile/archives/4" target="_blank">ヤーレンズ</a>」の
+<a href="https://matome.naver.jp/odai/2149481948995296101" target="_blank">要素アート</a>
 <br>
-
-
-		<div class="text-right">
-
-	 	<s:property value="userId" />
-			様
-			<!--geininSearchAction.javaで生成したuserIdを画面に表示する -->
-
-		</div>
+<br>
+<br>
 
 
 
@@ -56,7 +66,7 @@
 <!--最初にformを指定する。テキストスタイル的な。-->
 <s:form cssClass="form-horizontal">
 
-<!--綺麗にまとめる。-->
+<!--入力欄-->
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label"> 名前: </label>
 				<div class="col-md-8">
@@ -103,7 +113,7 @@
 						<thead>
 							<!-- テーブルヘッダー -->
 							<tr>
-								<th align="center">写真</th>
+								<th>写真</th>
 								<th>名前</th>
 								<th>代表ネタ</th>
 								<th>更新</th>
@@ -148,9 +158,7 @@
 			 </s:if>
 				<s:if test="%{geininList.size > 0}">
 					<div class="text-right">
-						<div class="shake shake-chunk">
-							<s:submit method="delete" value="チェックしたデータを削除する" cssClass="btn btn-info" />
-						</div>
+						<s:submit method="delete" value="チェックしたデータを削除する" cssClass="btn btn-info" />
 					</div>
 					<br>
 				</s:if>
