@@ -20,6 +20,10 @@ public class GeininUpdateAction extends AbstractAction {
 	/* ボタン表示 */
 	private String btn = "追加";
 
+//	メッセージ
+	private String message;
+	private String errorMessage;
+
 	/* 追加する項目 */
 	private String id;
 	private String image;
@@ -64,7 +68,8 @@ public class GeininUpdateAction extends AbstractAction {
 		} else { //「追加」のとき
 			this.id = "";
 		}
-
+		this.message = getValueFromSession("message");
+		this.errorMessage = getValueFromSession("errorMessage");
 		return "success";
 	}
 
@@ -73,23 +78,23 @@ public class GeininUpdateAction extends AbstractAction {
 	/* 追加or更新ボタンクリック時 */
 	public String update() {
 
-//		// 全ての値が入っているかの判定
-//		if (this.isEmpty(this.image) || this.isEmpty(this.name) || this.isEmpty(this.work)) {
-//			addActionError("全ての項目を入力してください");
-//			this.title = "若手芸人データ更新";
-//			this.btn = "更新";
-//			System.out.println("updateError: すべての値が入っていない");
-//			return "error";
-//		}
-//
-//		// 画像の書き方が適切であるかの判定
-//		if (this.imageCheck(this.image)) {
-//			addActionError("画像アドレスが適切ではありません");
-//			this.title = "若手芸人データ更新";
-//			this.btn = "更新";
-//			System.out.println("updateError: 画像アドレスが適切ではない");
-//			return "error";
-//		}
+		// 全ての値が入っているかの判定
+		if (this.isEmpty(this.image) || this.isEmpty(this.name) || this.isEmpty(this.work)) {
+			this.sessionMap.put("errorMessage", "全ての項目を入力してください");
+			this.title = "若手芸人データ更新";
+			this.btn = "更新";
+			System.out.println("updateError: すべての値が入っていない");
+			return "error";
+		}
+
+		// 画像の書き方が適切であるかの判定
+		if (this.imageCheck(this.image)) {
+			this.sessionMap.put("errorMessage", "画像アドレスが適切ではありません");
+			this.title = "若手芸人データ更新";
+			this.btn = "更新";
+			System.out.println("updateError: 画像アドレスが適切ではない");
+			return "error";
+		}
 
 		GeininDao dao = new GeininDao();
 //		if (StringUtils.isNotEmpty(this.id)) {
@@ -101,7 +106,7 @@ public class GeininUpdateAction extends AbstractAction {
 //			データを追加する
 
 			dao.insert(this.image, this.name, this.work);
-//			this.sessionMap.put("completeMessage", "追加しました");
+			this.sessionMap.put("message", "追加しました");
 //		}
 //		this.sessionMap.put("from", "update");
 		return "geininSearch";
@@ -115,21 +120,173 @@ public class GeininUpdateAction extends AbstractAction {
 		return StringUtils.isEmpty(param);
 	}
 
-//	00.jpgの形をとっているか
+//	00.jpgの形をとっているか 形をとっていたらfalse
 	private boolean imageCheck(String address) {
+		boolean check = false;
 		String[] addressSplit = address.split("\\.");
-		if(addressSplit.length != 2) {
-			return false;
-		}else if(addressSplit[1].equals("jpg") || addressSplit[1].equals("png") || addressSplit[1].equals("gif")) {
-			return true;
-		}else {
-			return false;
-		}
 
+////		check
+//		for(int i = 0; i < addressSplit.length; i++) {
+//			System.out.println(addressSplit[i]);
+//		}
+
+		if(addressSplit.length == 2) {
+			if(addressSplit[1].equals("jpg") || addressSplit[1].equals("png") || addressSplit[1].equals("gif")) {
+				System.out.println("true");
+				check = true;
+			}
+		}
+		return !check;
 	}
 
 
-//	setter/getter
+
+//	setter/getters
+
+	/**
+	 * @return title
+	 */
+	public String getTitle() {
+		return this.title;
+	}
+
+
+
+	/**
+	 * @param title セットする title
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	/**
+	 * @return btn
+	 */
+	public String getBtn() {
+		return this.btn;
+	}
+
+
+
+	/**
+	 * @param btn セットする btn
+	 */
+	public void setBtn(String btn) {
+		this.btn = btn;
+	}
+
+
+
+	/**
+	 * @return id
+	 */
+	public String getId() {
+		return this.id;
+	}
+
+
+
+	/**
+	 * @param id セットする id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	/**
+	 * @return image
+	 */
+	public String getImage() {
+		return this.image;
+	}
+
+
+
+	/**
+	 * @param image セットする image
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+	/**
+	 * @return name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+
+
+	/**
+	 * @param name セットする name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	/**
+	 * @return work
+	 */
+	public String getWork() {
+		return this.work;
+	}
+
+
+
+	/**
+	 * @param work セットする work
+	 */
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+
+
+	/**
+	 * @return message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+
+
+	/**
+	 * @param message セットする message
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+
+	/**
+	 * @return errorMessage
+	 */
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+
+
+	/**
+	 * @param errorMessage セットする errorMessage
+	 */
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+
+
 
 
 

@@ -87,22 +87,24 @@ public class GeininDao extends AbstractDao {
 		Geinin geinin = new Geinin();
 //		実行するsql詳細
 		String sql = "SELECT id,image,name,work FROM geinins "
-				+ "WHERE id = '" + id + "' ORDER BY id";
+				+ "WHERE id = ? ORDER BY id";
 		Session session = this.getCurrentSession();
 		try (Connection con = getConnection();
 				PreparedStatement pst = con.prepareStatement(sql) ) {
 			//トランザクションを開始
 			session.beginTransaction();
 			// SQL文の実行
+			pst.setString(1, String.valueOf(id));
 			ResultSet rs = pst.executeQuery();
 			// ResultSetから結果の取得
-			System.out.println("searchById: " + sql);
-			// ResultSetから各列の値を取得
+			while (rs.next()) {
 			// Geininオブジェクトに値をセット
-			geinin.setId(rs.getString("id"));
-			geinin.setImage(rs.getString("image"));
-			geinin.setName(rs.getString("name"));
-			geinin.setWork(rs.getString("work"));
+				geinin.setId(rs.getString("id"));
+				geinin.setImage(rs.getString("image"));
+				geinin.setName(rs.getString("name"));
+				geinin.setWork(rs.getString("work"));
+				System.out.println("searchById: " + id);
+			}
 		} catch (SQLException | ClassNotFoundException e) {
 			this.rollback();
 			e.printStackTrace();
@@ -110,6 +112,17 @@ public class GeininDao extends AbstractDao {
 		//トランザクション終了
 		session.getTransaction().commit(); //close
 		return geinin;
+	}
+
+//	idの配列を引数に検索
+	public ArrayList<Geinin> searchById(String[] idArray){
+		// 戻り値となるリスト
+		ArrayList<Geinin> resultList = new ArrayList<>();
+//		データをリストに格納
+		for(int i = 0; i < idArray.length; i++) {
+			resultList.add(searchById(idArray[i]));
+		}
+		return resultList;
 	}
 
 
@@ -159,15 +172,7 @@ public class GeininDao extends AbstractDao {
 //	全てのパラメータは埋まっている前提
 	public void insert(String image, String name, String work) {
 //		実行するsql詳細
-		String sql = "INSERT INTO geinins VALUES(?)";
-
-		String value1 = "NULL,";
-		String value2 = image + ",";
-		String value3 = name + ",";
-		String value4 = work;
-		String values = value1 + value2 + value3 + value4;
-		System.out.println(values);
-//		IDはオートで決定
+		String sql = "INSERT INTO geinins VALUES (?,?,?,?)";
 
 //		Session session = this.getCurrentSession();
 		try (Connection con = getConnection();
@@ -175,13 +180,43 @@ public class GeininDao extends AbstractDao {
 			//トランザクションを開始
 //			session.beginTransaction();
 			// SQL文の実行
-			pst.setString(1, values);
+//			IDはオートで決定
+			pst.setInt(1, 0);
+			pst.setString(2, image);
+			pst.setString(3, name);
+			pst.setString(4, work);
 //			ResultSet rs =
 			pst.executeUpdate();
-			System.out.println("insert: " + sql + " " + values);
+			System.out.println("insert: " + sql);
 		} catch (SQLException | ClassNotFoundException e) {
 //			this.rollback();
 			e.printStackTrace();
+		}
+		//トランザクション終了
+//		session.getTransaction().commit(); //close
+	}
+
+
+	/* 削除の実行 */
+	public void delete(String[] idArray) {
+//		実行するsql詳細
+		String sql = "DELETE FROM geinins WHERE id = ?";
+
+//		Session session = this.getCurrentSession();
+		//トランザクションを開始
+//		session.beginTransaction();
+		for(int i = 0; i < idArray.length; i++) {
+			try (Connection con = getConnection();
+					PreparedStatement pst = con.prepareStatement(sql) ) {
+//				SQL文の実行
+				pst.setInt(1, Integer.parseInt(idArray[i]));
+//				ResultSet rs =
+				pst.executeUpdate();
+				System.out.println("deleteMethod deleteId: " + idArray[i]);
+			} catch (SQLException | ClassNotFoundException e) {
+//				this.rollback();
+				e.printStackTrace();
+			}
 		}
 		//トランザクション終了
 //		session.getTransaction().commit(); //close

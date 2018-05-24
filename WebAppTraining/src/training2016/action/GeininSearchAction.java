@@ -37,6 +37,9 @@ public class GeininSearchAction extends AbstractAction {
 	/*更新ID*/
 	private String updateId;
 
+//	メッセージ
+	private String message;
+
 //	検索リスト
 	public ArrayList<Geinin> geininList = new ArrayList<>();
 
@@ -67,6 +70,10 @@ public class GeininSearchAction extends AbstractAction {
 		return "";
 	}
 
+	private String getDefaultMessage() {
+		return "";
+	}
+
 
 //	はじめに実行される
 	public String execute() throws Exception{
@@ -74,6 +81,8 @@ public class GeininSearchAction extends AbstractAction {
 		this.image = getDefaultImage();
 		this.name = getDefaultName();
 		this.work = getDefaultWork();
+		this.userId = getUserID();
+		this.message = this.getValueFromSession("message");
 		return "success";
 	}
 
@@ -84,7 +93,8 @@ public class GeininSearchAction extends AbstractAction {
 		this.image = getDefaultImage();
 		this.name = getDefaultName();
 		this.work = getDefaultWork();
-//		this.sessionMap.put("message", null);
+		this.message = getDefaultMessage();
+		this.sessionMap.put("message", "");
 		System.out.println("reset()");
 		return "success";
 
@@ -104,9 +114,8 @@ public class GeininSearchAction extends AbstractAction {
 			resultList = dao.searchByName(name);
 		}
 		//thisで準備してる。
-
-		this.sessionMap.put("message", null);
-		this.sessionMap.put("completeMessage", null);
+		this.sessionMap.put("message", "検索しました");
+//		this.sessionMap.put("completeMessage", null);
 		this.geininList = resultList;
 		System.out.println("search()");
 		return "success";
@@ -118,6 +127,7 @@ public class GeininSearchAction extends AbstractAction {
 		//セッションマップに指定されたキーでValueをputする
 		this.putValueToSession("updateId", this.updateId);
 		System.out.println("update() updateId:" + this.updateId);
+		this.sessionMap.put("message", "");
 		return "update";
 	}
 
@@ -127,6 +137,7 @@ public class GeininSearchAction extends AbstractAction {
 		if (delete == null) {
 			addActionError("削除する項目を選択してください");
 			search();
+			System.out.println("Error: チェックされていない");
 			return "error";
 		} else {
 			try {
@@ -135,6 +146,7 @@ public class GeininSearchAction extends AbstractAction {
 				e.printStackTrace();
 			}
 			System.out.println("delete() deleteId:" + this.delete);
+			this.sessionMap.put("message", "");
 			return "success";
 		}
 	}
@@ -203,6 +215,68 @@ public class GeininSearchAction extends AbstractAction {
 		this.work = work;
 	}
 
+//	/**
+//	 * @return userId
+//	 */
+//	public String getUserId() {
+//		return this.userId;
+//	}
+
+	/**
+	 * @param userId セットする userId
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @return delete
+	 */
+	public String getDelete() {
+		return delete;
+	}
+
+	/**
+	 * @param delete セットする delete
+	 */
+	public void setDelete(String delete) {
+		this.delete = delete;
+	}
+
+	/**
+	 * @return updateId
+	 */
+	public String getUpdateId() {
+		return updateId;
+	}
+
+	/**
+	 * @param updateId セットする updateId
+	 */
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
+	}
+
+	/**
+	 * @return geininList
+	 */
+	public ArrayList<Geinin> getGeininList() {
+		return geininList;
+	}
+
+	/**
+	 * @param geininList セットする geininList
+	 */
+	public void setGeininList(ArrayList<Geinin> geininList) {
+		this.geininList = geininList;
+	}
+
+	/**
+	 * @param message セットする message
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 
 }

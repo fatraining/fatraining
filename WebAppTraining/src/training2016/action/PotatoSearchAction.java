@@ -165,7 +165,7 @@ public class PotatoSearchAction extends AbstractAction {
 		return table;
 	}
 
-	/* 食べきるボタンクリック時 */
+	/* 削除ボタンクリック時 */
 	public String delete() {
 		this.sessionMap.put("deleteId", this.delete);
 		if (delete == null) {

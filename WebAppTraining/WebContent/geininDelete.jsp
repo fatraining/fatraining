@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 <head>
 <!-- ヘッダー -->
@@ -9,87 +9,73 @@
 
 <%-- CSS --%>
 <link rel="stylesheet" type="text/css"
-	href="<s:url value ="assets/css/maiwaifu.css"/>" />
-<%-- JQuery --%>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<s:url value="/assets/js/jquery.mori.js"/>"></script>
+	href="<s:url value ="assets/css/geinin.css"/>" />
 
 </head>
 
 <body>
-	<s:form class="form-horizontal">
-		<div class="container">
-			<div class="text-center">
-				<jsp:include page="logo.jsp" />
-			</div>
-			<div class="sub-header">
-				<h2>お別れする？</h2>
-				<p class="text-right">
-					<s:property value="userId" />
-					様 <a href="maiwaifuSearch.action">Back</a>
-				</p>
-				<br>
-			</div>
 
-			<s:if test="%{maiwaifuTable.size!=0}">
-				<div>
-					<table class="table table-striped table-bordered">
-						<thead>
+<div class="container">
+
+	<!-- 研修Webアプリverβ -->
+	<div class="text-center">
+		<jsp:include page="logo.jsp"></jsp:include>
+	</div>
+
+		<div class="text-right">
+<!-- Back、USERID -->
+		<h3><a href="menu.action">Back</a></h3>
+	 	<s:property value="userId" />
+			様
+
+		</div>
+
+<!-- MESSAGE -->
+	<div class="text-center">
+		<h3>
+			<s:property value="message" />
+		</h3>
+	</div>
+
+	<!--最初にformを指定する。テキストスタイル的な。-->
+<s:form cssClass="form-horizontal">
+
+	<!-- 削除する検索結果を表示 -->
+	<s:form cssClass="form-horizontal">
+		<!-- 検索結果テーブル -->
+		<div class="show">
+			<s:if test="%{geininList.size > 0}">
+				<table class="table table-hover table-bordered">
+					<!-- テーブルヘッダー -->
+					<thead>
+						<tr>
+							<th>画像</th>
+							<th>名前</th>
+							<th>代表ネタ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<s:iterator value="geininList">
 							<tr>
-								<th>生息地</th>
-								<th>写真</th>
-								<th>名前</th>
-								<th>ジャンル</th>
-								<th>年齢</th>
-								<th>コメント</th>
-							</tr>
-						</thead>
-						<tbody>
-							<s:iterator value="maiwaifuTable">
-								<tr>
-									<td class="data" width="75"><s:property value="area" /></td>
-									<td class="data" width="120"><img
-										src="<s:property value="image"/>" alt="NO IMAGE!" width="110"
-										height="110"></td>
-									<td class="data" width="190"><s:property value="name" /></td>
-									<td class="data" width="60"><s:property value="genre" /></td>
-									<td class="data" width="180"><s:property value="age" /></td>
-									<td class="data"><s:property value="comment" /></td>
-								</tr>
-
-							</s:iterator>
-						</tbody>
-					</table>
-					<br>
-					<br>
-					<br>
-					<!-- マウスポインタがのったら落ち着く -->
-					<center>
-						<div
-							class="shake shake-vertical-slow shake-constant shake-constant--hover">
-							<s:submit type="image" src="assets/images/temp/byebye.png"
-								method="delete" value="ほんとに消しちゃうからね" />
-						</div>
-					</center>
-					<div>
-						<center>
-							<br>
-							<br>
-
-
-							<br> <img src="assets/images/temp/heartcut.gif">
-						</center>
-						<br>
-					</div>
+									<td class="data" width="210">
+										<img src="assets/images/geinin/<s:property value="image"/>" alt="NO IMAGE!" width="200"></td>
+									<td class="data" width="150"><s:property value="name" /></td>
+									<td class="data"><s:property value="work" /></td>							</tr>
+						</s:iterator>
+					</tbody>
+				</table>
+			</s:if>
+			<s:if test="%{geininList.size > 0}">
+				<div class="text-center">
+					<s:submit method="delete" value="削除する"
+						cssClass="btn btn-danger btn-lg"></s:submit>
+				</div>
 			</s:if>
 		</div>
 	</s:form>
 
-	<!-- javascript -->
-	<script type="text/javascript"
-		src="<s:url value="/assets/js/mori.js" />"></script>
+	</s:form>
 
+</div>
 </body>
 </html>
