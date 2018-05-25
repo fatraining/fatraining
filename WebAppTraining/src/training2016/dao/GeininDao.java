@@ -228,9 +228,9 @@ public class GeininDao extends AbstractDao {
 //		実行するsql詳細
 		String sql = "UPDATE geinins SET image = ?, name = ?, work = ? WHERE id = ?";
 
-//		Session session = this.getCurrentSession();
+		Session session = this.getCurrentSession();
 		//トランザクションを開始
-//		session.beginTransaction();
+		session.beginTransaction();
 		try (Connection con = getConnection();
 				PreparedStatement pst = con.prepareStatement(sql) ) {
 //			SQL文の実行
@@ -242,11 +242,11 @@ public class GeininDao extends AbstractDao {
 			pst.executeUpdate();
 			System.out.println("updateMethod updateId: " + id);
 		} catch (SQLException | ClassNotFoundException e) {
-//			this.rollback();
+			this.rollback();
 			e.printStackTrace();
 			}
 		//トランザクション終了
-//		session.getTransaction().commit(); //close
+		session.getTransaction().commit(); //close
 	}
 
 
