@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import training2016.model.Geinin;
@@ -174,11 +173,11 @@ public class GeininDao extends AbstractDao {
 //		実行するsql詳細
 		String sql = "INSERT INTO geinins VALUES (?,?,?,?)";
 
-//		Session session = this.getCurrentSession();
+		Session session = this.getCurrentSession();
 		try (Connection con = getConnection();
 				PreparedStatement pst = con.prepareStatement(sql) ) {
 			//トランザクションを開始
-//			session.beginTransaction();
+			session.beginTransaction();
 			// SQL文の実行
 //			IDはオートで決定
 			pst.setInt(1, 0);
@@ -189,11 +188,11 @@ public class GeininDao extends AbstractDao {
 			pst.executeUpdate();
 			System.out.println("insert: " + sql);
 		} catch (SQLException | ClassNotFoundException e) {
-//			this.rollback();
+			this.rollback();
 			e.printStackTrace();
 		}
 		//トランザクション終了
-//		session.getTransaction().commit(); //close
+		session.getTransaction().commit(); //close
 	}
 
 
@@ -202,9 +201,9 @@ public class GeininDao extends AbstractDao {
 //		実行するsql詳細
 		String sql = "DELETE FROM geinins WHERE id = ?";
 
-//		Session session = this.getCurrentSession();
+		Session session = this.getCurrentSession();
 		//トランザクションを開始
-//		session.beginTransaction();
+		session.beginTransaction();
 		for(int i = 0; i < idArray.length; i++) {
 			try (Connection con = getConnection();
 					PreparedStatement pst = con.prepareStatement(sql) ) {
@@ -214,33 +213,41 @@ public class GeininDao extends AbstractDao {
 				pst.executeUpdate();
 				System.out.println("deleteMethod deleteId: " + idArray[i]);
 			} catch (SQLException | ClassNotFoundException e) {
-//				this.rollback();
+				this.rollback();
 				e.printStackTrace();
 			}
 		}
 		//トランザクション終了
-//		session.getTransaction().commit(); //close
+		session.getTransaction().commit(); //close
 	}
 
 
 
-	/* 更新の実行 Hybernateを使っている・・・ */
-	public void updata(Geinin geinin) {
+	/* 更新の実行*/
+	public void update(String id, String image, String name, String work) {
+//		実行するsql詳細
+		String sql = "UPDATE geinins SET image = ?, name = ?, work = ? WHERE id = ?";
 
-		Session session = this.getCurrentSession();
-
-		// トランザクション開始
-		session.beginTransaction();
-
-		try {
-			session.update(geinin);
-		} catch (HibernateException e) {
+//		Session session = this.getCurrentSession();
+		//トランザクションを開始
+//		session.beginTransaction();
+		try (Connection con = getConnection();
+				PreparedStatement pst = con.prepareStatement(sql) ) {
+//			SQL文の実行
+			pst.setString(1, image);
+			pst.setString(2, name);
+			pst.setString(3, work);
+			pst.setString(4, id);
+//			ResultSet rs =
+			pst.executeUpdate();
+			System.out.println("updateMethod updateId: " + id);
+		} catch (SQLException | ClassNotFoundException e) {
+//			this.rollback();
 			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		session.getTransaction().commit();
-
-}
+			}
+		//トランザクション終了
+//		session.getTransaction().commit(); //close
+	}
 
 
 }

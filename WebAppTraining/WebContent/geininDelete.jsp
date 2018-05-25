@@ -30,10 +30,10 @@
 
 		</div>
 
-<!-- MESSAGE -->
+<!-- DELETE MESSAGE -->
 	<div class="text-center">
 		<h3>
-			<s:property value="message" />
+			<s:property value="deleteMessage" />
 		</h3>
 	</div>
 
@@ -41,9 +41,8 @@
 <s:form cssClass="form-horizontal">
 
 	<!-- 削除する検索結果を表示 -->
-	<s:form cssClass="form-horizontal">
 		<!-- 検索結果テーブル -->
-		<div class="show">
+		<div>
 			<s:if test="%{geininList.size > 0}">
 				<table class="table table-hover table-bordered">
 					<!-- テーブルヘッダー -->
@@ -74,8 +73,12 @@
 		</div>
 	</s:form>
 
-	</s:form>
 
 </div>
+
+	<!-- javascript
+ 	<script type="text/javascript"
+		src="<s:url value="/assets/js/ariyoshi.js" />"></script>
+ -->
 </body>
 </html>

@@ -97,17 +97,15 @@ public class GeininUpdateAction extends AbstractAction {
 		}
 
 		GeininDao dao = new GeininDao();
-//		if (StringUtils.isNotEmpty(this.id)) {
-////			データを更新する
-////			Geinin geinin = dao.select(Integer.parseInt(this.id), Geinin.class);
-////			geinin.setId(id);
-////			this.sessionMap.put("completeMessage", "更新しました");
-//		} else {
+		if (StringUtils.isNotEmpty(this.id)) {
+//			データを更新する
+			dao.update(this.id, this.image, this.name, this.work);
+			this.sessionMap.put("message", "更新しました");
+		} else {
 //			データを追加する
-
 			dao.insert(this.image, this.name, this.work);
 			this.sessionMap.put("message", "追加しました");
-//		}
+		}
 //		this.sessionMap.put("from", "update");
 		return "geininSearch";
 	}
@@ -132,7 +130,6 @@ public class GeininUpdateAction extends AbstractAction {
 
 		if(addressSplit.length == 2) {
 			if(addressSplit[1].equals("jpg") || addressSplit[1].equals("png") || addressSplit[1].equals("gif")) {
-				System.out.println("true");
 				check = true;
 			}
 		}
