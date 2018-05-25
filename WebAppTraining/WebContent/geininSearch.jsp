@@ -103,10 +103,10 @@
 
 
 			<div>
-				<div class="message">
+			<!-- 	<div class="message">
 					<s:actionerror />
 					<s:property value="message" />
-				</div>
+				</div> -->
 				<br>
 				<s:if test="%{geininList.size > 0}">
 					<table class="table table-hover table-bordered">

@@ -22,7 +22,7 @@ public class GeininDeleteAction extends AbstractAction {
 	private String delete;
 
 	/* メッセージ */
-	private String message;
+	private String deleteMessage;
 
 	private List<Geinin> geininList = new ArrayList<>();
 
@@ -59,9 +59,9 @@ public class GeininDeleteAction extends AbstractAction {
 
 		// 削除するデータが複数ある場合、表示する文を変更する
 		if (this.geininList.size() == 1) {
-			this.message = "このデータを削除します";
+			this.deleteMessage = "このデータを削除します";
 		} else {
-			this.message = "これらのデータを削除します";
+			this.deleteMessage = "これらのデータを削除します";
 		}
 
 		return "success";
@@ -139,11 +139,20 @@ public class GeininDeleteAction extends AbstractAction {
 	}
 
 	/**
-	 * @param message セットする message
+	 * @return deleteMessage
 	 */
-	public void setMessage(String message) {
-		this.message = message;
+	public String getDeleteMessage() {
+		return deleteMessage;
 	}
+
+	/**
+	 * @param deleteMessage セットする deleteMessage
+	 */
+	public void setDeleteMessage(String deleteMessage) {
+		this.deleteMessage = deleteMessage;
+	}
+
+
 
 
 
