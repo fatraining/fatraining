@@ -48,7 +48,6 @@ public class GeininUpdateAction extends AbstractAction {
 //	@Override
 	public String execute() {
 		// セッションマップから指定のキーでputされた更新対象のIDを取得
-//		★
 		this.id = this.getValueFromSession("updateId");
 
 		GeininDao dao = new GeininDao();
@@ -65,7 +64,7 @@ public class GeininUpdateAction extends AbstractAction {
 				this.title = "若手芸人データ更新";
 				this.btn = "更新";
 			}
-		} else { //「追加」のとき
+		} else { //つまり「追加」のとき
 			this.id = "";
 		}
 		this.message = getValueFromSession("message");
