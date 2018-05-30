@@ -40,6 +40,9 @@ public class Artist {
 	@Column(name = "update_date")
 	private String updateDate;
 
+	/**
+	 * 外部キー設定 アーティストID
+	 */
 	@Transient
 	@OneToMany(targetEntity = MusicKichiseMain.class, mappedBy = "artist")
 	@JoinColumn(name = "id", referencedColumnName = "artist_id")

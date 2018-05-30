@@ -47,31 +47,41 @@ public class MusicKichiseServiceImpl implements MusicKichiseService {
 		this.artistRepository = artistRepository;
 	}
 
-	//ArtistテーブルのレコードをID順に取得する
+	/**
+	 * ArtistテーブルのレコードをID順に取得する
+	 */
 	@Override
 	public List<Artist> getListArtist() {
 		return artistRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
-	//JanruテーブルのレコードをID順に取得する
+	/**
+	 * JanruテーブルのレコードをID順に取得する
+	 */
 	@Override
 	public List<Janru> getListJanru() {
 		return janruRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
-	//検索条件を生成し、MusicKichiseMainテーブルのレコードを取得する
+	/**
+	 * 検索条件を生成し、MusicKichiseMainテーブルのレコードを取得する
+	 */
 	@Override
 	public Page<MusicKichiseMain> getPageMusic(final MusicKichiseSearchForm form, final Pageable pageable) {
 		return musicKichiseMainRepository.findAll(MusicKichiseSpecification.generateMusicSpecification(form), pageable);
 	}
 
-	//検索条件を生成しMusicKichiseMainテーブルのレコードを取得する
+	/**
+	 * 検索条件を生成しMusicKichiseMainテーブルのレコードを取得する
+	 */
 	@Override
 	public List<MusicKichiseMain> getListMusic(final MusicKichiseSearchForm form) {
 		return musicKichiseMainRepository.findAll(MusicKichiseSpecification.generateMusicSpecification(form));
 	}
 
-	//MusicKichiseMainテーブルを主キー検索する
+	/**
+	 * MusicKichiseMainテーブルを主キー検索する
+	 */
 	@Override
 	public MusicKichiseMain getMusic(final long id) {
 		return musicKichiseMainRepository.findOne(id);

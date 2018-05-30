@@ -9,14 +9,19 @@ import lombok.Data;
  */
 @Data
 public class MusicKichiseSearchForm {
+
 	/** ID */
 	private Integer id;
+
 	/** 楽曲名 */
 	private String musicTitle;
+
 	/** アーティストID */
 	private Integer artistId;
+
 	/** ジャンルID */
 	private Integer janruId;
+
 	/** 削除フラグON */
 	private int isDelete;
 
