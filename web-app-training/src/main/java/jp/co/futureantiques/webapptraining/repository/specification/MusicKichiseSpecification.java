@@ -40,7 +40,6 @@ public class MusicKichiseSpecification {
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-				//楽曲名が空欄ではない場合
 				if (!StringUtils.isEmpty(form.getMusicTitle())) {
 
 					//楽曲名を条件に追加

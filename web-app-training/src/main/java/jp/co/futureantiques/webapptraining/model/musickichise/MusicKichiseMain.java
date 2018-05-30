@@ -66,6 +66,7 @@ public class MusicKichiseMain {
 	@JoinColumn(name = "janru_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Janru janru;
 
+	/** 外部キー設定：アーティスト */
 	@ManyToOne(targetEntity = Artist.class)
 	@JoinColumn(name = "artist_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Artist artist;
