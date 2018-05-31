@@ -112,10 +112,13 @@ h1, .h1 {
 }
 
 body {
-  background-image: url(/kichiseimage/zebra.jpg);
+  background-image: url(/kichiseimage/zebra2.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #464646;
+}
+.info-color{
+	color: #ff8040;
 }
