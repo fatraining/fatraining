@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+
+.font1{
+	font-family: "Commando";
+	font-size: 5em;
+	color: #ff0000;
+	line-height: 1em;
+
+}
+
+.font2{
+	font-family: "Commando";
+	font-size: 5em;
+	color: #800080;
+	line-height: 1em;
+
+}
+
+.font3{
+	font-family: "Commando";
+	font-size: 4em;
+	color: #ffff00;
+	line-height: 1em;
+	align: center;
+}
+
+.font4{
+	font-family: "HGS創英ﾌﾟﾚｾﾞﾝｽEB";
+	font-size: 4em;
+	color: #0080c0;
+	line-height: 1em;
+	align: center;
+}
+
+.font5{
+	font-family: "HGS創英ﾌﾟﾚｾﾞﾝｽEB";
+	color: #0080c0;
+}
+
+.ws{
+	word-spacing: 10px
+}
+
+.back{
+	background-image: url(/izawaimage/shutterstock_207950593.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #a7d8d8;
+}
+
+.page-header {
+	margin: 0 0 30px;
+	padding: 3px;
+	border-bottom: 3px solid #666;
+	border-color: #e5e5e5;
+
+}
+
+.a {
+	background-color: rgba( 0, 0, 0, 0.0 );
+}
+
+.box{
+	box-shadow: 0 0 7px #3498db;
+    border: 1px solid #3498db;
+    background-color: rgba( 204, 255, 204, 0.55 );
+    width: 100px;
+}
+
+.uback{
+	background-image: url(/izawaimage/muscleback.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.dback{
+	background-image: url(/izawaimage/114.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #a7d8d8;
+}
+
+.iback{
+	background-image: url(/izawaimage/114114514.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+
