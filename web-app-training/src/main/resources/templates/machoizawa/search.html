@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>MachoMan</title>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+
+
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/hero.css}" />
+<body class="back">
+
+	<div align="right">
+		<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+			th:text="#{login.text.version}">ver β</small>
+	</div>
+	<div align="left">
+		<span class="font1">Work out</span>
+		<div class="font2">Give it a try!</div>
+	</div>
+	<marquee>
+		<a href="https://jp.iherb.com/search?kw=WHEY">
+		<img width="200" height="154" alt="gif" src="/izawaimage/run2.gif"></img>
+		</a>
+	</marquee>
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 20px">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/machoman/deletecomp" th:object="${muscleSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/machoman/insert}"
+					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 検索条件 -->
+	<div align="left">
+		<form id="searchForm" method="post" action="/machoman/search"
+			th:object="${muscleSearchForm}">
+			<div class="form-group">
+				<div class="row">
+					<h3 for="menu" class="col-sm-2 control-label text-danger"
+						th:text="#{muscle.text.input.title}">Menu:</h3>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<input type="text" th:field="*{menu}" class="form-control"
+							id="inputMuscleMenu" th:placeholder="#{muscle.text.search.info}" />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<h3 for="bodyname" class="col-sm-2 control-label text-danger"
+						th:text="#{muscle.text.input.body}">BodyParts:</h3>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<select id="inputBody" name="body" class="form-control select">
+							<option th:each="bodyname : ${bodyIzawaList}"
+								th:value="${bodyname.id}" th:text="${bodyname.bodyname}"
+								th:selected="${bodyname.id == muscleSearchForm.body}">pulldown"</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-3">
+						<a class="btn btn-primary center-block"
+							onclick="$('#searchForm').submit()"
+							th:text="#{common.text.search}">Search </a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<a class="btn btn-warning center-block" th:href="@{/machoman}"
+							th:text="#{common.text.reset}">Reset </a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!-- 検索結果の表示 -->
+	<section id="resultArea" th:if="${muscleList != null}">
+		<table id="resultTable"
+			class="table table-borderd table-striped table-hover">
+			<thead>
+				<tr class="success">
+					<th th:text="#{muscle.text.photo}">Photo</th>
+					<th th:text="#{muscle.text.menu}">Menu</th>
+					<th th:text="#{muscle.text.bodyname}">BodyPart</th>
+					<th th:text="#{muscle.text.comment}">Comment</th>
+					<th th:text="#{common.text.update}">Update</th>
+					<th th:text="#{common.text.delete}">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="info" th:each="muscle : ${muscleList}">
+					<td class="data center"><img th:src="@{${muscle.photo}}"></img>
+					</td>
+					<td class="data center" th:text="${muscle.menu}">FLY</td>
+					<td class="data center"><label th:if="${muscle.body != null}"
+						th:text="${muscle.bodyIzawa.bodyname}" class="data center">Chest</label>
+					</td>
+					<td class="data center" th:text="${muscle.com}">comment</td>
+					<td class="data"><a class="btn btn-success"
+						th:href="@{/machoman/update(id=${muscle.id})}"
+						th:text="#{common.text.update}">Update</a></td>
+					<td class="data center"><a class="btn btn-danger"
+						style="margin-left: 5%" data-toggle="modal"
+						data-target="#deleteModal" th:text="#{common.text.delete}"
+						th:attr="data-id=${muscle.id}, data-title=${muscle.menu}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<!-- ページング用 -->
+	<div th:fragment='paginationbar'>
+		<p th:if="${page != null}">
+			<ul>
+			<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+				<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+				<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+				th:text="#{common.text.paging.lead}">←lead</a>
+			</li>
+			<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+				th:class="(${i}==${page.number})? 'active' : ''"
+				style="display: inline">
+				<form th:id="'pageForm'+${i}" method="post"
+					th:action="@{${url}(page=${i})}" th:object="${muscleSearchForm}"
+					style="display: inline">
+					<input type="hidden" th:field="*{menu}" />
+					<input type="hidden" th:field="*{body}" />
+				</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
+				th:if='${i}!=${page.number}'
+				th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
+					th:text='${i+1}'>1</span>
+			</a>
+			</li>
+			<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+				<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+				<a th:if="${not page.last}"
+				th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+				th:text="#{common.text.paging.end}">end➝</a>
+			</li>
+		</ul>
+		</p>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id" />
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{muscle.text.delete}">MuscleDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteMenu">Menu</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <span
+										th:text="#{common.text.warn.delete(#{menu.text.muscle})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete </a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.2.3.min.js">
+
+	</script>
+			<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var muscleId = button.data('id');
+			var menu = button.data('title');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", muscleId);
+			modal.find('#deleteMenu').text(menu);
+		});
+	</script>
+
+		</body>
+</html>
