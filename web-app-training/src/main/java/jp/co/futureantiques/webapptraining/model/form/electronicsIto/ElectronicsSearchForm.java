@@ -7,7 +7,6 @@ import lombok.Data;
  * 製品検索画面のFormクラス
  *
  * @author AIRI ITO
- *
  */
 @Data
 public class ElectronicsSearchForm {

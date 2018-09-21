@@ -17,7 +17,6 @@ import lombok.Data;
 /**
  * ElectricsMainテーブルと対応するエンティティ
  * @author user AIRI ITO
- *
  */
 @Data
 @Entity

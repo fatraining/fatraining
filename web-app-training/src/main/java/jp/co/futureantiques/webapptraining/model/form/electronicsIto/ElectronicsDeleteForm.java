@@ -10,7 +10,6 @@ import lombok.Data;
  * 製品削除画面のFormクラス
  *
  * @author AIRI ITO
- *
  */
 @Data
 public class ElectronicsDeleteForm {

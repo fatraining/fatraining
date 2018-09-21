@@ -17,7 +17,6 @@ import jp.co.futureantiques.webapptraining.model.Electronics.ElectronicsMainIto;
  * ElectronicsMainリポジトリのインターフェース
  *
  * @author AIRI ITO
- *
  */
 @Repository
 public interface ElectronicsMainItoRepository extends JpaRepository<ElectronicsMainIto, Long>, JpaSpecificationExecutor<ElectronicsMainIto>{

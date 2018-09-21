@@ -29,14 +29,12 @@ public interface ElectronicsItoService {
 	 */
 	List<CategoryIto> getListCategory();
 
-
 	/**
 	 * ブランドエンティティのリストを取得する
 	 *
 	 * @return Brandエンティティのリスト
 	 */
 	List<BrandIto> getListBrand();
-
 
 	/**
 	 * 検索条件を元にelectricsMainのレコードリストを取得する(Paging)
@@ -58,8 +56,8 @@ public interface ElectronicsItoService {
 
 	/**
 	 * IDをキーにElectronicsMainのレコードを取得する
-	 * @param id
-	 * @return
+	 * @param long id
+	 * @return ElectricsMain
 	 */
 	ElectronicsMainIto getProduct(final long id);
 

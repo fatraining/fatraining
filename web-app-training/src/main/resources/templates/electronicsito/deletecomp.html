@@ -57,27 +57,22 @@
 					<tbody>
 						<tr th:each="electronics : ${electronicsMainItoList}">
 							<td><label> <input type="checkbox"
-									style="margin-left: 50%" th:field="*{deleteIds}"
-									th:value="${electronics.id}" />
-							</label></td>
-							<td class="data center" th:text="${electronics.productName}">REGZA
-								40V31</td>
+								style="margin-left: 50%" th:field="*{deleteIds}"
+								th:value="${electronics.id}" />
+								</label></td>
+							<td class="data center" th:text="${electronics.productName}">REGZA 40V31</td>
 							<td class="data center"><label
-							th:if="${electronics.categoryIto != null}"
-							th:text="${electronics.categoryIto.category}" class="data center">テレビ</label>
-						</td>
+								th:if="${electronics.categoryIto != null}"
+								th:text="${electronics.categoryIto.category}" class="data center">テレビ</label></td>
 							<td class="data center"><label
-							th:if="${electronics.brandIto != null}"
-							th:text="${electronics.brandIto.brand}" class="data center">東芝</label>
-						</td>
+								th:if="${electronics.brandIto != null}"
+								th:text="${electronics.brandIto.brand}" class="data center">東芝</label></td>
 							<td class="data center"><label
 								th:if="${electronics.releaseYear != null}"
-								th:text="${electronics.releaseYear}+'年'" class="data center">2017年</label>
-							</td>
+								th:text="${electronics.releaseYear}+'年'" class="data center">2017年</label></td>
 							<td class="data center"><label
-							th:if="${electronics.price != null}"
-							th:text="${electronics.price}+'円'" class="data center">47680円</label>
-						</td>
+								th:if="${electronics.price != null}"
+								th:text="${electronics.price}+'円'" class="data center">47680円</label></td>
 							<td class="data center" th:text="${electronics.comment}">コスパ最高</td>
 						</tr>
 					</tbody>

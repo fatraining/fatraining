@@ -9,7 +9,6 @@ import jp.co.futureantiques.webapptraining.model.Electronics.BrandIto;
  * Electronicsリポジトリのインターフェース
  *
  * @author AIRI ITO
- *
  */
 @Repository
 public interface BrandItoRepository extends JpaRepository<BrandIto, Long>{

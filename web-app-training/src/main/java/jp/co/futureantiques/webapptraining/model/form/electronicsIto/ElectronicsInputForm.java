@@ -62,10 +62,7 @@ public class ElectronicsInputForm {
 		this.setCategoryId(electronicsMainIto.getCategoryId());
 		this.setBrandId(electronicsMainIto.getBrandId());
 		this.setReleaseYearStr(String.valueOf(electronicsMainIto.getReleaseYear()));
-		/*
-		 * Integerで取得したPriceが未入力の場合、DBから"0"という表記が出力される
-		 * "null"で返すためには未入力の場合Stringで、入力がある場合はintで値を渡す必要がある
-		 */
+
 		if (electronicsMainIto.getPrice() != null) {
 			this.setPriceStr(String.valueOf(electronicsMainIto.getPrice()));
 		}
@@ -109,9 +106,7 @@ public class ElectronicsInputForm {
 		electronicsMainIto.setCategoryId(this.categoryId);
 		electronicsMainIto.setBrandId(this.brandId);
 		electronicsMainIto.setReleaseYear(Integer.parseInt(this.releaseYearStr));
-		/*
-		 * Price入力・未入力の分岐によって入力値の型を変える
-		 */
+
 		if (!this.priceStr.isEmpty()) {
 
 			//価格が入力されていた場合

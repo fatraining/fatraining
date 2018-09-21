@@ -15,7 +15,6 @@ import lombok.Data;
 /**
  * Categoryテーブルと対応するエンティティ
  * @author AIRI ITO
- *
  */
 @Data
 @Entity

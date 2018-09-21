@@ -22,8 +22,7 @@
 					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
-		<div
-			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
 				<h1 align="center" th:text="#{electronics.text.insert}">ElectronicsInsert</h1>
 				<a th:href="@{/electronics}" th:text="#{common.text.back}">Back</a>
@@ -31,8 +30,8 @@
 
 			<!-- 入力欄 -->
 			<form method="post" id="electronicsInputForm"
-				th:action="@{/electronics/insert}"
-				th:object="${electronicsInputForm}" class="form-horizontal">
+					th:action="@{/electronics/insert}"
+					th:object="${electronicsInputForm}" class="form-horizontal">
 				<div class="form-group">
 					<label for="productName" class="control-label"
 						th:text="#{electronics.text.input.productName.require}"> ProductName(*):</label> <input
@@ -44,8 +43,8 @@
 				</div>
 				<div class="form-group">
 					<label for="category" class="control-label"
-						th:text="#{electronics.text.input.category}"> Category:</label> <select
-						name="categoryId" id="inputCategory" class="form-control select">
+						th:text="#{electronics.text.input.category}"> Category:</label>
+						<select	name="categoryId" id="inputCategory" class="form-control select">
 						<option th:each="category : ${categoryItoList}"
 							th:value="${category.id}" th:text="${category.category}"
 							th:selected="${category.id == electronicsInputForm.categoryId}">pulldown</option>
@@ -53,9 +52,9 @@
 				</div>
 				<div class="form-group">
 					<label for="brand" class="control-label"
-						th:text="#{electronics.text.input.brand}"> Brand:</label> <select
-						name="brandId" id="inputBrand" class="form-control">
-						<option th:each="brand : ${brandItoList}" th:value="${brand.id}"
+						th:text="#{electronics.text.input.brand}"> Brand:</label>
+					<select name="brandId" id="inputBrand" class="form-control">
+					<option th:each="brand : ${brandItoList}" th:value="${brand.id}"
 							th:text="${brand.brand}"
 							th:selected="${brand.id == electronicsInputForm.brandId}">pulldown</option>
 					</select>
@@ -63,9 +62,10 @@
 				<div class="form-group">
 					<label for="releaseYear" class="control-label"
 						th:text="#{electronics.text.input.releaseYear}">
-						ReleaseYear:</label> <input type="text" th:field="*{releaseYearStr}"
-						class="form-control" id="inputReleaseYear"
-						th:placeholder="#{electronics.text.releaseYear}" />
+						ReleaseYear:</label>
+						<input type="text" th:field="*{releaseYearStr}"
+								class="form-control" id="inputReleaseYear"
+								th:placeholder="#{electronics.text.releaseYear}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('releaseYearStr')}"
 						th:text="#{${err}(#{electronics.text.releaseYear})}"></p>

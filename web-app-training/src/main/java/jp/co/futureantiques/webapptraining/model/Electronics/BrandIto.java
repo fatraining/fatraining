@@ -16,7 +16,6 @@ import lombok.Data;
 /**
  * Brandテーブルと対応するエンティティ
  * @author AIRI ITO
- *
  */
 @Data
 @Entity

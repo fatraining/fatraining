@@ -38,11 +38,11 @@
 				<a class="btn btn-warning"
 					th:href="@{/electronics/insert}"
 					th:text="#{common.text.new}">New
-					</a>
-					<a class="btn btn-danger"
+				</a>
+				<a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData
-					</a>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -151,8 +151,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="electronics : ${productList}">
-						<td class="data center" th:text="${electronics.productName}">REGZA
-							40V31</td>
+						<td class="data center" th:text="${electronics.productName}">REGZA 40V31</td>
 						<td class="data center"><label
 							th:if="${electronics.categoryIto != null}"
 							th:text="${electronics.categoryIto.category}" class="data center">テレビ</label>
@@ -186,34 +185,34 @@
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
-			<ul>
-				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
-					th:text="#{common.text.paging.lead}">←lead</a>
-				</li>
-				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
-					th:class="(${i}==${page.number})? 'active' : ''"
-					style="display: inline">
-					<form th:id="'pageForm'+${i}" method="post"
-						th:action="@{${url}(page=${i})}"
-						th:object="${electronicsSearchForm}" style="display: inline">
-						<input type="hidden" th:field="*{productName}" /> <input
-							type="hidden" th:field="*{categoryId}" /> <input type="hidden"
-							th:field="*{brandId}" />
-					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-					th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-						th:text='${i+1}'>1</span>
-				</a>
-				</li>
-				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
-					<a th:if="${not page.last}"
-					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-					th:text="#{common.text.paging.end}">end➝</a>
-				</li>
-			</ul>
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+						th:class="(${i}==${page.number})? 'active' : ''"
+						style="display: inline">
+						<form th:id="'pageForm'+${i}" method="post"
+							th:action="@{${url}(page=${i})}"
+							th:object="${electronicsSearchForm}" style="display: inline">
+							<input type="hidden" th:field="*{productName}" /> <input
+								type="hidden" th:field="*{categoryId}" /> <input type="hidden"
+								th:field="*{brandId}" />
+						</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+							th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}"
+						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
 			</p>
 		</div>
 	</div>

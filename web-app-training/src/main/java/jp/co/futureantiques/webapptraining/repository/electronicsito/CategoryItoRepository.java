@@ -9,7 +9,6 @@ import jp.co.futureantiques.webapptraining.model.Electronics.CategoryIto;
  * Categoryリポジトリのインターフェース
  *
  * @author AIRI ITO
- *
  */
 @Repository
 public interface CategoryItoRepository extends JpaRepository<CategoryIto, Long> {

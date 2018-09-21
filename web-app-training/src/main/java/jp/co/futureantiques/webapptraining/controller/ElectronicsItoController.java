@@ -51,7 +51,6 @@ public class ElectronicsItoController {
 	 */
 	@ModelAttribute
 	public List<CategoryIto> getListCategory() {
-		List<CategoryIto> categories = electronicsItoService.getListCategory();
 		return electronicsItoService.getListCategory();
 	}
 
@@ -62,7 +61,6 @@ public class ElectronicsItoController {
 	 */
 	@ModelAttribute
 	public List<BrandIto> getListBrand() {
-		List<BrandIto> brands = electronicsItoService.getListBrand();
 		return electronicsItoService.getListBrand();
 	}
 
@@ -163,33 +161,33 @@ public class ElectronicsItoController {
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
-		//入力エラーがある場合次画面に戻る
-		return "electronicsito/update";
+			//入力エラーがある場合次画面に戻る
+			return "electronicsito/update";
+		}
+
+		//データを更新する
+		ElectronicsMainIto electronicsMainIto = electronicsItoService.updateProduct(form);
+		if (electronicsMainIto == null) {
+
+			//更新が失敗した場合、検索画面にメッセージを表示する
+			return "redirect:/electronics?result=updatefailed";
+		}
+		return "redirect:/electronics?result=update&id=" + electronicsMainIto.getId();
 	}
 
-	//データを更新する
-	ElectronicsMainIto electronicsMainIto = electronicsItoService.updateProduct(form);
-	if(electronicsMainIto == null){
+	/**
+	 * ElectronicsMainテーブルのレコードを論理削除して検索画面に遷移する
+	 *
+	 * @param long id
+	 * @return 検索画面のパス
+	 */
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteProduct(@RequestParam(name = "id") final long id) {
 
-		//更新が失敗した場合、検索画面にメッセージを表示する
-		return "redirect:/electronics?result=updatefailed";
+		//IDをキーにレコードを論理削除する
+		electronicsItoService.deleteProductById(id);
+		return "redirect:/electronics?result=delete&id=" + id;
 	}
-	return"redirect:/electronics?result=update&id=" + electronicsMainIto.getId();
-}
-
-/**
- * ElectronicsMainテーブルのレコードを論理削除して検索画面に遷移する
- *
- * @param long id
- * @return 検索画面のパス
- */
-@RequestMapping(value = "delete", method = RequestMethod.GET)
-public String deleteProduct(@RequestParam(name = "id") final long id) {
-
-	//IDをキーにレコードを論理削除する
-	electronicsItoService.deleteProductById(id);
-	return "redirect:/electronics?result=delete&id=" + id;
-}
 
 	/**
 	 * 完全削除画面に遷移する
@@ -199,7 +197,7 @@ public String deleteProduct(@RequestParam(name = "id") final long id) {
 	 * @param Model model
 	 * @return 完全削除画面のパス
 	 */
-	@RequestMapping(value="deletecomp",method=RequestMethod.GET)
+	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompProduct(final ElectronicsSearchForm form,
 			@ModelAttribute final ElectronicsDeleteForm electronicsDeleteForm, final Model model) {
 
@@ -209,7 +207,7 @@ public String deleteProduct(@RequestParam(name = "id") final long id) {
 		//Modelに検索結果を格納する
 		model.addAttribute(productList);
 		return "electronicsito/deletecomp";
-}
+	}
 
 	/**
 	 * Electronicsテーブルのデータを完全削除して検索画面に遷移する
