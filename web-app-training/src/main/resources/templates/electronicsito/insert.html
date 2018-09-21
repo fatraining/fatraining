@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|電化製品追加</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/electronics.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{electronics.text.insert}">ElectronicsInsert</h1>
+				<a th:href="@{/electronics}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="electronicsInputForm"
+				th:action="@{/electronics/insert}"
+				th:object="${electronicsInputForm}" class="form-horizontal">
+				<div class="form-group">
+					<label for="productName" class="control-label"
+						th:text="#{electronics.text.input.productName.require}"> ProductName(*):</label> <input
+						type="text" th:field="*{productName}" class="form-control"
+						th:placeholder="#{electronics.text.productName}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('productName')}"
+						th:text="#{${err}(#{electronics.text.productName})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="category" class="control-label"
+						th:text="#{electronics.text.input.category}"> Category:</label> <select
+						name="categoryId" id="inputCategory" class="form-control select">
+						<option th:each="category : ${categoryItoList}"
+							th:value="${category.id}" th:text="${category.category}"
+							th:selected="${category.id == electronicsInputForm.categoryId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="brand" class="control-label"
+						th:text="#{electronics.text.input.brand}"> Brand:</label> <select
+						name="brandId" id="inputBrand" class="form-control">
+						<option th:each="brand : ${brandItoList}" th:value="${brand.id}"
+							th:text="${brand.brand}"
+							th:selected="${brand.id == electronicsInputForm.brandId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{electronics.text.input.releaseYear}">
+						ReleaseYear:</label> <input type="text" th:field="*{releaseYearStr}"
+						class="form-control" id="inputReleaseYear"
+						th:placeholder="#{electronics.text.releaseYear}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{electronics.text.releaseYear})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="price" class="control-label"
+						th:text="#{electronics.text.input.price}"> Price:</label> <input
+						type="text" th:field="*{priceStr}" class="form-control"
+						id="inputPrice" th:placeholder="#{electronics.text.price}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('priceStr')}"
+						th:text="#{${err}(#{electronics.text.price})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{electronics.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{electronics.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#electronicsInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
