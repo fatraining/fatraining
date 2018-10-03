@@ -41,6 +41,9 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 	/** Locationレポジトリ */
 	private final LocationKataokaRepository locationKataokaRepository;
 
+	/** 定数：所在地1~8 */
+	private static final int LOCAION_NUMBER = 8;
+
 	/**
 	 * コンストラクタ
 	 *
@@ -77,20 +80,19 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 		//検索条件を生成しHeritageMainテーブルのレコードを取得する
 
 		// 検索条件を生成しMainテーブルの該当都道府県を取得する
-//		Page<HeritageMainKataoka> page = heritageMainKataokaRepository.findAll(
-//				HeritageKataokaSpecification.generateHeritageSpecification(form),
-//				pageable);
-//		List<HeritageMainKataoka> list = page.getContent();
-		List<HeritageMainKataoka> list = heritageMainKataokaRepository.findAll(HeritageKataokaSpecification.generateHeritageSpecification(form));
-//		List<HeritageMainKataoka> list = new ArrayList<>();
-//		list = page.getContent();
+		Page<HeritageMainKataoka> page = heritageMainKataokaRepository.findAll(
+				HeritageKataokaSpecification.generateHeritageSpecification(form), pageable);
+		List<HeritageMainKataoka> list = page.getContent();
+		//		List<HeritageMainKataoka> list = heritageMainKataokaRepository.findAll(HeritageKataokaSpecification.generateHeritageSpecification(form));
+		//		List<HeritageMainKataoka> list = new ArrayList<>();
+		//		list = page.getContent();
 
 		//エンティティの調整、該当都道府県を / 区切りでリストに格納する.
 
 		for (int j = 0; j < list.size(); j++) {
 			HeritageMainKataoka main = list.get(j);
 			String location = "";
-			for (int i = 1; i <= 8; i++) {
+			for (int i = 1; i <= LOCAION_NUMBER; i++) {
 				try {
 
 					Method method = main.getClass().getMethod("getLocationKataoka" + i);
@@ -104,6 +106,8 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 								LocationKataoka locationKataoka = (LocationKataoka) method.invoke(main);
 								location = locationKataoka.getLocation();
 							}
+						} else {
+							break;
 						}
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
@@ -122,11 +126,12 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 				// TODO: インデックスを利用して1~8までの名前があるプロパティのゲッターを使いたい
 
 			}
-		//	list.remove(0);
+			//	list.remove(0);
 			//list.set(0,locationKataoka1);
 			//list.add(main);
 		}
-		Page<HeritageMainKataoka> newPage = new PageImpl<HeritageMainKataoka>(list,pageable, list.size());
+		Page<HeritageMainKataoka> newPage = new PageImpl<HeritageMainKataoka>(list, pageable,
+				page.getTotalElements());
 
 		return newPage;
 
