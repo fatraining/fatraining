@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|世界遺産更新</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/electronics.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{heritage.text.update}">世界遺産更新</h1>
+				<a th:href="@{/heritage}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="heritageInputForm"
+				th:action="@{/heritage/update}"
+				th:object="${heritageInputForm}" class="form-horizontal">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{heritage.text.input.heritageName.require}">
+						登録名(*)（必須:</label> <input type="text" th:field="*{heritageName}"
+						class="form-control" th:placeholder="#{heritage.text.heritageName}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('heritageName')}"
+						th:text="#{${err}(#{heritage.text.heritageName})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="category" class="control-label"
+						th:text="#{heritage.text.input.genre}">ジャンル:</label> <select
+						name="genreId" id="inputGenre" class="form-control select">
+						<option th:each="genre: ${genreKataokaList}"
+							th:value="${genre.id}" th:text="${genre.genre}"
+							th:selected="${genre.id == heritageInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="registrationYear" class="control-label"
+						th:text="#{heritage.text.input.registrationYear}">更新年(*)（必須:</label>
+					<input type="text" th:field="*{registrationYearStr}"
+						class="form-control" id="inputRegistrationYear"
+						th:placeholder="#{electronics.text.releaseYear}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('registrationYearStr')}"
+						th:text="#{${err}(#{heritage.text.registrationYear})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="location" class="control-label"
+						th:text="#{location.text.input.location}">所在地1（必須：複数ある場合は下記を利用ください）:</label> <select
+						name="locationId1" id="inputLocationId1"class="form-control">
+						<option th:each="location : ${locationKataokaList}" th:value="${location.id}"
+							th:text="#${location.locationId1}"
+							th:selected="${location.id=heritageInputForm.locationId1}">pulldown</option>
+					</select>
+					
+				</div>
+
+				<div class="form-group">
+					<label for="location" class="control-label"
+						th:text="#{location.text.input.location}">所在地 2:</label> <select
+						name="locationId2" id="inputLocationId2" class="form-control">
+						<option th:each="location : ${locationKataokaList}" th:value="${location.id}"
+							th:text="#${location.locationId2}"
+							th:selected="${location.id ==heritageInputForm.locationId2}">pulldown</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="location" class="control-label"
+						th:text="#{location.text.input.location}">所在地 3:</label> <select
+						name="locationId3" id="inputLocationId3" class="form-control">
+						<option th:each="location : ${locationKataokaList}" th:value="${location.id}"
+							th:text="#${location.locationId3}"
+							th:selected="${location.id ==heritageInputForm.locationId3}">pulldown</option>
+					</select>
+				</div>
+
+
+				<div class="form-group">
+					<label for="remarks" class="control-label"
+						th:text="#{heritage.text.input.remarks}"> 備考:</label>
+					<textarea th:field="*{remarks}" cols="" rows="5"
+						class="form-control" id="inputRemarks"
+						th:placeholder="#{heritage.text.remarks}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#heritageInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
