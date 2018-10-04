@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -94,6 +95,9 @@ public class HeritageMainKataoka {
 	/** 更新日時 */
 	@Column(name = "update_date")
 	private Timestamp updateDate;
+
+	@Transient
+	private String locationDisp;
 
 	/** 外部キー設定：ジャンル */
 	@ManyToOne(targetEntity = GenreKataoka.class)

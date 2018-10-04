@@ -62,7 +62,6 @@ public class HeritageKataokaController {
 	 */
 	@ModelAttribute
 	public List<LocationKataoka> getListLocation() {
-		List<LocationKataoka> locations = heritageKataokaService.getListLocation();
 		return heritageKataokaService.getListLocation();
 	}
 

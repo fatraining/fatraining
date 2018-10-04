@@ -121,7 +121,7 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				}
-				main.getLocationKataoka1().setLocation(location);
+				main.setLocationDisp(location);
 
 				// TODO: インデックスを利用して1~8までの名前があるプロパティのゲッターを使いたい
 
@@ -132,7 +132,6 @@ public class HeritageKataokaServiceImpl implements HeritageKataokaService {
 		}
 		Page<HeritageMainKataoka> newPage = new PageImpl<HeritageMainKataoka>(list, pageable,
 				page.getTotalElements());
-
 		return newPage;
 
 	}
