@@ -4,6 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import jp.co.futureantiques.webapptraining.model.flowerNakai.ColorNakai;
 
-public interface ColorNakaiRepository extends JpaRepository<ColorNakai, Long>{
+/**
+ * ColorNakaiリポジトリのインターフェース
+ * @author Rieko Nakai
+ */
+public interface ColorNakaiRepository extends JpaRepository<ColorNakai, Long> {
 
 }

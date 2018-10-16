@@ -16,7 +16,6 @@ import jp.co.futureantiques.webapptraining.model.form.flowerNakai.FlowerSearchFo
  * FlowerMainの検索条件を生成するクラス
  * @author Rieko Nakai
  */
-
 public class FlowerNakaiSpecification {
 
 	/**
@@ -24,46 +23,45 @@ public class FlowerNakaiSpecification {
 	 * @param FlowerSearchForm form
 	 * @return FlowerMainのSpecification
 	 */
-
-	public static Specification<FlowerMainNakai> generateFlowerNakaiSpecification(final FlowerSearchForm form){
+	public static Specification<FlowerMainNakai> generateFlowerNakaiSpecification(final FlowerSearchForm form) {
 		return new Specification<FlowerMainNakai>() {
 			@Override
-			public Predicate toPredicate(Root<FlowerMainNakai> root,CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<FlowerMainNakai> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				//検索条件
 				Predicate condition = null;
 
 				//削除フラグON用が1かどうか判定
-				if(form.getIsDelete() == 1) {
+				if (form.getIsDelete() == 1) {
 
 					//削除フラグ ＝ 1を検索条件にする
-					return cb.equal(root.get("delFlg"),1);
+					return cb.equal(root.get("delFlg"), 1);
 				}
 
 				//条件が入力されている場合条件追加
-				if(form.getId() != null) {
+				if (form.getId() != null) {
 
 					//IDを条件に追加
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
 
-				if(!StringUtils.isEmpty(form.getFlowerName())) {
+				if (!StringUtils.isEmpty(form.getFlowerName())) {
 
 					//花の名前を条件に追加
 					form.setFlowerName(form.getFlowerName().trim());
-					Predicate newCondition = cb.like(root.get("flowerName"), "%" +form.getFlowerName() + "%");
+					Predicate newCondition = cb.like(root.get("flowerName"), "%" + form.getFlowerName() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
 
-				if(form.getMonthId() != null && form.getMonthId() != 0) {
+				if (form.getMonthId() != null && form.getMonthId() != 0) {
 
 					//見ごろの月を条件に追加
 					Predicate newCondition = cb.equal(root.get("monthId"), form.getMonthId());
-					condition = getPredicate(cb,condition, newCondition);
+					condition = getPredicate(cb, condition, newCondition);
 				}
 
-				if(form.getColorId() != null && form.getColorId() != 0) {
+				if (form.getColorId() != null && form.getColorId() != 0) {
 
 					//花の色を条件に追加
 					Predicate newCondition = cb.equal(root.get("colorId"), form.getColorId());
@@ -78,18 +76,17 @@ public class FlowerNakaiSpecification {
 
 			/**
 			 * 検索条件を結合する
-			 *
 			 * @param cb
 			 * @param condition
 			 * @param newCondition
 			 * @return Predicate
 			 */
 			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
-				if(condition != null) {
+				if (condition != null) {
 
 					//すでに条件がある場合ANDで結合する
 					condition = cb.and(condition, newCondition);
-				}else {
+				} else {
 
 					//条件がまだない場合先頭の条件になる
 					condition = newCondition;
@@ -97,7 +94,5 @@ public class FlowerNakaiSpecification {
 				return condition;
 			}
 		};
-
 	}
-
 }

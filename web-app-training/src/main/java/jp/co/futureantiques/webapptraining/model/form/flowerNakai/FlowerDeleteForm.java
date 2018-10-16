@@ -12,8 +12,8 @@ import lombok.Data;
  */
 @Data
 public class FlowerDeleteForm {
-	/* 削除ID */
-	@Size(min = 1,message = "common.text.error.require.check")
-	private ArrayList<Long> deleteIds;
 
+	/** 削除ID */
+	@Size(min = 1, message = "common.text.error.require.check")
+	private ArrayList<Long> deleteIds;
 }

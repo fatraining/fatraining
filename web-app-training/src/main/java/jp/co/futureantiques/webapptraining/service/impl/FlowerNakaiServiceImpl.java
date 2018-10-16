@@ -25,28 +25,24 @@ import jp.co.futureantiques.webapptraining.service.FlowerNakaiService;
  * @author Rieko Nakai
  *
  */
-
 @Service
-
 public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 
-	/* FlowerMainNakaiリポジトリ */
+	/** FlowerMainNakaiリポジトリ */
 	private final FlowerMainNakaiRepository flowerMainNakaiRepository;
 
-	/* MonthNakaiリポジトリ */
+	/** MonthNakaiリポジトリ */
 	private final MonthNakaiRepository monthNakaiRepository;
 
-	/* ColorNakaiリポジトリ */
+	/** ColorNakaiリポジトリ */
 	private final ColorNakaiRepository colorNakaiRepository;
 
 	/**
 	 * コンストラクタ
-	 *
 	 * @param FlowerMainNakaiRepository flowerMainNakaiRepository
 	 * @param MonthNakaiRepository monthNakaiRepository
 	 * @param ColorNakaiRepository colorNakaiRepository
 	 */
-
 	@Autowired
 	public FlowerNakaiServiceImpl(FlowerMainNakaiRepository flowerMainNakaiRepository,
 			MonthNakaiRepository monthNakaiRepository, ColorNakaiRepository colorNakaiRepository) {
@@ -56,35 +52,33 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 	}
 
 	@Override
-	public List<MonthNakai> getListMonthNakai(){
+	public List<MonthNakai> getListMonthNakai() {
 
 		//month_nakaiテーブルのリストをID順に取得する
 		return monthNakaiRepository.findAll(new Sort(Sort.Direction.ASC, "monthId"));
 	}
 
 	@Override
-	public List<ColorNakai> getListColorNakai(){
+	public List<ColorNakai> getListColorNakai() {
 
 		//color_nakaiテーブルのリストをID順番に取得する
 		return colorNakaiRepository.findAll(new Sort(Sort.Direction.ASC, "colorId"));
 	}
 
 	@Override
-	public Page<FlowerMainNakai> getPageFlower(final FlowerSearchForm form, final Pageable pageable){
+	public Page<FlowerMainNakai> getPageFlower(final FlowerSearchForm form, final Pageable pageable) {
 
 		//検索条件を生成し、flower_main_nakaiテーブルのリストを取得する(Paging)
 		return flowerMainNakaiRepository.findAll(
-				FlowerNakaiSpecification.generateFlowerNakaiSpecification(form),pageable
-				);
+				FlowerNakaiSpecification.generateFlowerNakaiSpecification(form), pageable);
 	}
 
 	@Override
-	public List<FlowerMainNakai> getListFlower(final FlowerSearchForm form){
+	public List<FlowerMainNakai> getListFlower(final FlowerSearchForm form) {
 
 		//検索条件を生成し、flower_main_nakaiテーブルのリストを取得する
 		return flowerMainNakaiRepository.findAll(
-				FlowerNakaiSpecification.generateFlowerNakaiSpecification(form)
-				);
+				FlowerNakaiSpecification.generateFlowerNakaiSpecification(form));
 	}
 
 	@Override
@@ -106,11 +100,11 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 	public FlowerMainNakai updateFlower(final FlowerInputForm form) {
 
 		//更新対象のレコードを取得
-		FlowerMainNakai flowerMainNakai = flowerMainNakaiRepository.findOne((long)form.getId());
-		if(flowerMainNakai != null) {
+		FlowerMainNakai flowerMainNakai = flowerMainNakaiRepository.findOne((long) form.getId());
+		if (flowerMainNakai != null) {
 
 			//更新対象のレコードをが存在する場合排他チェック
-			if(form.getUpdateDate().equals(String.valueOf(flowerMainNakai.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(flowerMainNakai.getUpdateDate()))) {
 
 				//チェックOKの場合、更新
 				flowerMainNakai = form.convertToFlowerMainNakaiForUpdate(flowerMainNakai);
@@ -122,9 +116,10 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 
 	@Override
 	public void deleteFlowerById(final long id) {
+
 		//更新対象のレコードを取得
 		FlowerMainNakai flowerMainNakai = flowerMainNakaiRepository.findOne(id);
-		if(flowerMainNakai != null) {
+		if (flowerMainNakai != null) {
 
 			//更新対象のレコードが存在した場合、削除フラグを1にする
 			flowerMainNakaiRepository.delete(id);
@@ -137,6 +132,4 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 		//対象のレコードを削除する
 		flowerMainNakaiRepository.deleteComp(ids);
 	}
-
-
 }

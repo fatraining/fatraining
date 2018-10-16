@@ -9,19 +9,20 @@ import lombok.Data;
  */
 @Data
 public class FlowerSearchForm {
-	/* ID */
+
+	/** ID */
 	private Integer id;
 
-	/* 花の名前 */
+	/** 花の名前 */
 	private String flowerName;
 
-	/* 月ID */
+	/** 月ID */
 	private Integer monthId;
 
-	/* 色ID */
+	/** 色ID */
 	private Integer colorId;
 
-	/* 削除フラグON用 */
+	/** 削除フラグON用 */
 	private int isDelete;
 
 	/**
@@ -34,5 +35,4 @@ public class FlowerSearchForm {
 		this.setMonthId(flowerMainNakai.getMonthId());
 		this.setColorId(flowerMainNakai.getColorId());
 	}
-
 }

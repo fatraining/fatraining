@@ -15,7 +15,8 @@ import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
  * FlowerMainNakaiリポジトリのインターフェース
  * @author Rieko Nakai
  */
-public interface FlowerMainNakaiRepository extends JpaRepository<FlowerMainNakai,Long>,JpaSpecificationExecutor<FlowerMainNakai> {
+public interface FlowerMainNakaiRepository
+		extends JpaRepository<FlowerMainNakai, Long>, JpaSpecificationExecutor<FlowerMainNakai> {
 
 	/**
 	 * 対象レコードの削除フラグを1にする
@@ -34,5 +35,4 @@ public interface FlowerMainNakaiRepository extends JpaRepository<FlowerMainNakai
 	@Modifying
 	@Query("delete from FlowerMainNakai where id in (:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

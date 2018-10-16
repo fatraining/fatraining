@@ -16,29 +16,30 @@ import lombok.Data;
  */
 @Data
 public class FlowerInputForm {
-	/* 花ID */
+
+	/** 花ID */
 	private int id;
 
-	/* 花の名前 */
+	/** 花の名前 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
 	private String flowerName;
 
-	/* 月ID */
+	/** 月ID */
 	private Integer monthId;
 
-	/* 色ID */
+	/** 色ID */
 	private Integer colorId;
 
-	/* 原産国 */
+	/** 原産国 */
 	@Size(max = 256)
 	private String country;
 
-	/* 花言葉 */
+	/** 花言葉 */
 	@Size(max = 256)
 	private String word;
 
-	/* 更新日時（排他制御用） */
+	/** 更新日時（排他制御用） */
 	private String updateDate;
 
 	/**
@@ -46,7 +47,7 @@ public class FlowerInputForm {
 	 * @param FlowerMainNakai flowerMainNakai
 	 */
 	public void initWithFlowerMainNakai(FlowerMainNakai flowerMainNakai) {
-		this.setId((int)flowerMainNakai.getId());
+		this.setId((int) flowerMainNakai.getId());
 		this.setFlowerName(flowerMainNakai.getFlowerName());
 		this.setMonthId(flowerMainNakai.getMonthId());
 		this.setColorId(flowerMainNakai.getColorId());
@@ -92,6 +93,4 @@ public class FlowerInputForm {
 		flowerMainNakai.setDelFlg("0");
 		return flowerMainNakai;
 	}
-
-
 }

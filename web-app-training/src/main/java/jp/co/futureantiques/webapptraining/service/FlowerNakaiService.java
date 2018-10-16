@@ -16,31 +16,26 @@ import jp.co.futureantiques.webapptraining.model.form.flowerNakai.FlowerSearchFo
  * FlowerNakaiサービスのインターフェース
  * @author Rieko Nakai
  */
-
 public interface FlowerNakaiService {
 
 	/**
 	 * MonthNakaiエンティティのリストを取得する
 	 * @return MonthNakaiエンティティのリスト
 	 */
-
 	List<MonthNakai> getListMonthNakai();
 
 	/**
 	 * ColorNakaiエンティティのリストを取得する
 	 * @return ColorNakaiエンティティのリスト
 	 */
-
 	List<ColorNakai> getListColorNakai();
 
 	/**
 	 * 検索条件を基にFlowerMainNakaiのレコードのリストを取得する（Paging)
-	 *
 	 * @param FlowerSearchForm form
 	 * @param Pageable pageable
 	 * @return FlowerMainNakaiのリスト
 	 */
-
 	Page<FlowerMainNakai> getPageFlower(final FlowerSearchForm form, final Pageable pageable);
 
 	/**
@@ -48,7 +43,6 @@ public interface FlowerNakaiService {
 	 * @param FlowerSearchForm form
 	 * @return FlowerMainNakaiのリスト
 	 */
-
 	List<FlowerMainNakai> getListFlower(final FlowerSearchForm form);
 
 	/**
@@ -57,16 +51,13 @@ public interface FlowerNakaiService {
 	 * @param long id
 	 * @return FlowerMainNakaiのレコード
 	 */
-
 	FlowerMainNakai getFlower(final long id);
 
 	/**
 	 * FlowerMainNakaiにレコードを新規登録する
-	 *
 	 * @param FlowerInputForm form
 	 * @return FlowerMainNakai
 	 */
-
 	FlowerMainNakai insertFlower(final FlowerInputForm form);
 
 	/**
@@ -74,7 +65,6 @@ public interface FlowerNakaiService {
 	 * @param FlowerInputForm form
 	 * @return FlowerMainNakai
 	 */
-
 	FlowerMainNakai updateFlower(final FlowerInputForm form);
 
 	/**
@@ -82,7 +72,6 @@ public interface FlowerNakaiService {
 	 * @param long id
 	 * @return FlowerMainNakai
 	 */
-
 	void deleteFlowerById(final long id);
 
 	/**
@@ -90,6 +79,5 @@ public interface FlowerNakaiService {
 	 * @param ArrayList<Long> ids
 	 * @return FlowerMainNakai
 	 */
-
 	void deleteFlowerComp(final ArrayList<Long> ids);
 }

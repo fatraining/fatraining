@@ -21,32 +21,33 @@ import lombok.Data;
 @Data
 @Entity
 public class MonthNakai {
-	/* 月ID */
+
+	/** 月ID */
 	@Id
 	@GeneratedValue
-	@Column(name="month_id")
+	@Column(name = "month_id")
 	private int monthId;
 
-	/* 月 */
-	@Column(name="month")
+	/** 月 */
+	@Column(name = "month")
 	@Size(max = 256)
 	private String month;
 
-	/* 削除フラグ */
-	@Column(name="del_flg")
+	/** 削除フラグ */
+	@Column(name = "del_flg")
 	private String delFlg;
 
-	/* 登録日時 */
-	@Column(name="create_date")
+	/** 登録日時 */
+	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	/* 更新日時 */
-	@Column(name="update_date")
+	/** 更新日時 */
+	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	/* 外部キー設定：月ID */
+	/** 外部キー設定：月ID */
 	@Transient
-	@OneToMany(targetEntity = FlowerMainNakai.class,mappedBy = "monthNakai")
-	@JoinColumn(name="month_id",referencedColumnName="month_id")
+	@OneToMany(targetEntity = FlowerMainNakai.class, mappedBy = "monthNakai")
+	@JoinColumn(name = "month_id", referencedColumnName = "month_id")
 	private List<FlowerMainNakai> flowerMainNakai;
 }
