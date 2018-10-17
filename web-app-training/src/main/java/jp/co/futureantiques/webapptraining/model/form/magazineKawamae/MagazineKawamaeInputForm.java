@@ -85,7 +85,10 @@ public class MagazineKawamaeInputForm {
 	private MagazineMainKawamae convertToMagazineMain(MagazineMainKawamae magazineMainKawamae) {
 		magazineMainKawamae.setMagazineName(this.magazineName);
 		magazineMainKawamae.setGenreId(this.genreId);
-		magazineMainKawamae.setSaledNumber(this.getSaledNumber());
+		if(this.getSaledNumber()!=null) {
+			magazineMainKawamae.setSaledNumber(this.getSaledNumber());
+		}
+
 		magazineMainKawamae.setDelFlg("0");
 		return magazineMainKawamae;
 	}
