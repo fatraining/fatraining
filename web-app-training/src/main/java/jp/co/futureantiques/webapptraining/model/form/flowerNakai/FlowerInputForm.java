@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
 import lombok.Data;
@@ -19,6 +20,9 @@ public class FlowerInputForm {
 
 	/** 花ID */
 	private int id;
+
+	/** 花の画像 */
+	private MultipartFile flowerImage;
 
 	/** 花の名前 */
 	@NotBlank(message = "common.text.error.require")
