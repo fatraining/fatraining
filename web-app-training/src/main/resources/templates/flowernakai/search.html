@@ -149,7 +149,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="flower :${flowerList}">
-						<td class="data center"><img th:src="@{${flower.flowerImage}}"></img></td>
+						<td class="data center"><img  class="image" th:src="@{${flower.flowerImage}}"></img></td>
 						<td class="data center" th:text="${flower.flowerName}">梅（ウメ）</td>
 						<td class="data center">
 							<label th:if="${flower.monthNakai != null}" th:text="${flower.monthNakai.month}" class="data center">
@@ -184,10 +184,10 @@
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
 				<ul>
-					<li th:class="${page.first} ? 'disabled' :''" style="display:inline">
-						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←Lead</span>
-						<a th:if="${not page.first}" onclick="$('#pageForm()').submit()"
-							th:text="#{common.text.paging.lead}">←Lead</a>
+					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+							th:text="#{common.text.paging.lead}">←lead</a>
 					</li>
 					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})?'active' : ''" style="display:inline">
 					 	<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
