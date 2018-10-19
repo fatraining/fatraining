@@ -33,6 +33,10 @@ h1, .h1 {
 	text-align: center;
 }
 
+#resultTable td img.image{
+	width: 300px;
+}
+
 #resultTable th.per-12 {
 	width: 12%;
 }
