@@ -25,15 +25,24 @@
 			<!-- 入力欄 -->
 			<form method="post" id="flowerInputForm"
 				th:action="@{/flower/update}" th:object="${flowerInputForm}"
-				class="form-horizontal">
+				class="form-horizontal" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<div>
+						<label for="photo" class="control-label"
+							th:text="#{flower.text.input.image}">PHOTO:</label>
+						<input type="file" th:field="*{flowerImage}" class="form-control"
+							th:placeholder="#{flower.text.image}" />
+						<span th:text="#{flower.text.input.image.attention}">※画像を変更しない場合は「ファイルを選択」ボタンを押さないでください。</span>
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="name" class="control-label"
 						th:text="#{flower.text.input.name.require}">Name(*):</label>
 					<input type="text" th:field="*{flowerName}" class="form-control"
 						th:placeholder="#{flower.text.name}" />
 					<p class="err alert-danger" th:each="err:${#fields.errors('flowerName')}"
-						th:text="#{${err}(#flower.text.name)}"></p>
+						th:text="#{${err}(#{flower.text.name})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="month" class="control-label"
