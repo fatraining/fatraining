@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.model.flowerNakai.ColorNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
@@ -58,14 +59,14 @@ public interface FlowerNakaiService {
 	 * @param FlowerInputForm form
 	 * @return FlowerMainNakai
 	 */
-	FlowerMainNakai insertFlower(final FlowerInputForm form);
+	FlowerMainNakai insertFlower(final FlowerInputForm form, MultipartFile flowerImage);
 
 	/**
 	 * FlowerMainNakaiのレコードを更新する
 	 * @param FlowerInputForm form
 	 * @return FlowerMainNakai
 	 */
-	FlowerMainNakai updateFlower(final FlowerInputForm form);
+	FlowerMainNakai updateFlower(final FlowerInputForm form, MultipartFile flowerImage);
 
 	/**
 	 * FlowerMainNakaiのレコードを論理削除する
