@@ -1,5 +1,13 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.model.flowerNakai.ColorNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
@@ -89,15 +98,38 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 	}
 
 	@Override
-	public FlowerMainNakai insertFlower(final FlowerInputForm form) {
+	public FlowerMainNakai insertFlower(final FlowerInputForm form, MultipartFile flowerImage) {
 
 		//flower_main_nakaiテーブルに新規でデータを登録する
 		final FlowerMainNakai flowerMainNakai = form.convertToFlowerMainNakaiForInsert();
+
+		//追加した画像ファイルのパス
+		Path path = Paths.get("/pleiades/workspace/web-app-training/static/FlowerNakai");
+
+		// この辺は新しくファイル名をつけるため拡張子や現在日時を取得している
+		int dot = flowerImage.getOriginalFilename().lastIndexOf(".");
+		String extention = "";
+		if (dot > 0) {
+			extention = flowerImage.getOriginalFilename().substring(dot).toLowerCase();
+		}
+		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+
+		//エンティティに画像のパスを入れる
+		flowerMainNakai.setFlowerImage("/FlowerNakai/" + filename + extention);
+
+		// 指定した場所にファイルを書き込んでいる
+		path = path.resolve(filename + extention);
+		try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
+			byte[] bytes = flowerImage.getBytes();
+			os.write(bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return flowerMainNakaiRepository.save(flowerMainNakai);
 	}
 
 	@Override
-	public FlowerMainNakai updateFlower(final FlowerInputForm form) {
+	public FlowerMainNakai updateFlower(final FlowerInputForm form, MultipartFile flowerImage) {
 
 		//更新対象のレコードを取得
 		FlowerMainNakai flowerMainNakai = flowerMainNakaiRepository.findOne((long) form.getId());
@@ -108,6 +140,41 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 
 				//チェックOKの場合、更新
 				flowerMainNakai = form.convertToFlowerMainNakaiForUpdate(flowerMainNakai);
+
+				if (flowerImage.isEmpty()) {
+
+					//今あるデータベースの画像パスを入れとく
+					String imageTemp = flowerMainNakai.getFlowerImage();
+
+					//エンティティに画像パスを入れなおす
+					flowerMainNakai.setFlowerImage(imageTemp);
+
+					return flowerMainNakaiRepository.saveAndFlush(flowerMainNakai);
+				}
+
+				//追加した画像ファイルのパス
+				Path path = Paths.get("/pleiades/workspace/web-app-training/static/FlowerNakai");
+
+				// この辺は新しくファイル名をつけるため拡張子や現在日時を取得している
+				int dot = flowerImage.getOriginalFilename().lastIndexOf(".");
+				String extention = "";
+				if (dot > 0) {
+					extention = flowerImage.getOriginalFilename().substring(dot).toLowerCase();
+				}
+				String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+
+				//エンティティに画像の値を入れる
+				flowerMainNakai.setFlowerImage("/FlowerNakai/" + filename + extention);
+
+				// 指定した場所にファイルを書き込んでいる
+				path = path.resolve(filename + extention);
+				try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
+					byte[] bytes = flowerImage.getBytes();
+					os.write(bytes);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 				return flowerMainNakaiRepository.saveAndFlush(flowerMainNakai);
 			}
 		}
