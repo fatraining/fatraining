@@ -2,7 +2,10 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.ColorNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.MonthNakai;
@@ -102,24 +108,49 @@ public class FlowerNakaiController {
 		return "flowernakai/insert";
 	}
 
+	// これらはわざわざDIしないといけない
+	@Autowired
+	ResourceLoader resourceLoader;
+	@Autowired
+	ServletContext context;
+	@Autowired
+	WebApplicationContext wac;
+
 	/**
 	 * flower_main_nakaiテーブルにデータを登録して検索画面に遷移する
 	 * @param FlowerInputForm form
 	 * @param BindingResult bindingResult
+	 * @param Model model
 	 * @return 入力エラーがある場合追加画面のパス、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertFlower(
 			@ModelAttribute @Validated final FlowerInputForm form,
-			final BindingResult bindingResult) {
+			final BindingResult bindingResult, Model model, MultipartFile flowerImage) {
+
 		if (bindingResult.hasErrors()) {
 
 			//入力エラーがある場合、戻る
 			return "flowernakai/insert";
 		}
 
+		/*画像ファイルが1MB以上の場合、自画面に戻る
+		 * ※MultiPartConfigureコミットしてないので動かないです。*/
+		if (CommonConst.uploadAllowableFileSize < flowerImage.getSize()) {
+
+			//入力エラーがある場合、戻る
+			return "flowernakai/insert";
+		}
+
+		// なんかよくわからないTomcatのパスが取れてしまう、Springだから？
+		String str1 = context.getRealPath("");
+
+		// パスを設定していないとNULLや空文字、設定していても設定した文字列しかとれない
+		String str2 = wac.getServletContext().getRealPath("");
+		String str3 = wac.getEnvironment().getProperty("server.contextPath");
+
 		//データを登録する
-		final FlowerMainNakai flowerMainNakai = flowerNakaiService.insertFlower(form);
+		final FlowerMainNakai flowerMainNakai = flowerNakaiService.insertFlower(form, flowerImage);
 		return "redirect:/flower?result=insert&id=" + flowerMainNakai.getId();
 	}
 
@@ -151,15 +182,23 @@ public class FlowerNakaiController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updateFlower(
 			@Validated final FlowerInputForm form,
-			final BindingResult bindingResult) {
+			final BindingResult bindingResult, MultipartFile flowerImage) {
 
 		//入力エラーがある場合、自画面に戻る
 		if (bindingResult.hasErrors()) {
 			return "flowernakai/update";
 		}
 
+		/*画像ファイルが1MB以上の場合、自画面に戻る
+		 * ※MultiPartConfigureコミットしてないので動かないです。*/
+		if (CommonConst.uploadAllowableFileSize < flowerImage.getSize()) {
+
+			//入力エラーがある場合、戻る
+			return "flowernakai/insert";
+		}
+
 		//データを更新する
-		FlowerMainNakai flowerMainNakai = flowerNakaiService.updateFlower(form);
+		FlowerMainNakai flowerMainNakai = flowerNakaiService.updateFlower(form, flowerImage);
 		if (flowerMainNakai == null) {
 
 			//更新が失敗した場合、検索画面にメッセージを表示する
