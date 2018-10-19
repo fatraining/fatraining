@@ -136,21 +136,14 @@ public class FlowerNakaiController {
 
 		/*画像ファイルが1MB以上の場合、自画面に戻る
 		 * ※MultiPartConfigureコミットしてないので動かないです。*/
-		if (CommonConst.uploadAllowableFileSize < flowerImage.getSize()) {
+		if (CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < flowerImage.getSize()) {
 
 			//入力エラーがある場合、戻る
 			return "flowernakai/insert";
 		}
 
-		// なんかよくわからないTomcatのパスが取れてしまう、Springだから？
-		String str1 = context.getRealPath("");
-
-		// パスを設定していないとNULLや空文字、設定していても設定した文字列しかとれない
-		String str2 = wac.getServletContext().getRealPath("");
-		String str3 = wac.getEnvironment().getProperty("server.contextPath");
-
 		//データを登録する
-		final FlowerMainNakai flowerMainNakai = flowerNakaiService.insertFlower(form, flowerImage);
+		final FlowerMainNakai flowerMainNakai = flowerNakaiService.insertFlower(form);
 		return "redirect:/flower?result=insert&id=" + flowerMainNakai.getId();
 	}
 
@@ -191,14 +184,14 @@ public class FlowerNakaiController {
 
 		/*画像ファイルが1MB以上の場合、自画面に戻る
 		 * ※MultiPartConfigureコミットしてないので動かないです。*/
-		if (CommonConst.uploadAllowableFileSize < flowerImage.getSize()) {
+		if (CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < flowerImage.getSize()) {
 
 			//入力エラーがある場合、戻る
 			return "flowernakai/insert";
 		}
 
 		//データを更新する
-		FlowerMainNakai flowerMainNakai = flowerNakaiService.updateFlower(form, flowerImage);
+		FlowerMainNakai flowerMainNakai = flowerNakaiService.updateFlower(form);
 		if (flowerMainNakai == null) {
 
 			//更新が失敗した場合、検索画面にメッセージを表示する

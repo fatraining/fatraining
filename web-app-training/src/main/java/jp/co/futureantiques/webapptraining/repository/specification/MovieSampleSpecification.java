@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.moviesample.MovieSampleSearchForm;
 import jp.co.futureantiques.webapptraining.model.moviesample.MovieMain;
 
@@ -37,7 +38,7 @@ public class MovieSampleSpecification {
 				if (form.getIsDelete() == 1) {
 
 					// 削除フラグ＝1を検索条件にする
-					return cb.equal(root.get("delFlg"), 1);
+					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
 				}
 
 				// 条件が入力されている場合条件追加
@@ -68,7 +69,7 @@ public class MovieSampleSpecification {
 				}
 
 				// 削除フラグを条件に追加
-				Predicate newCondition = cb.equal(root.get("delFlg"), 0);
+				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
 				condition = getPredicate(cb, condition, newCondition);
 				return condition;
 			}

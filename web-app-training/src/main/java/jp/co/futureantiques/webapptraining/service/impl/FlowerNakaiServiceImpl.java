@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.ColorNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.FlowerMainNakai;
 import jp.co.futureantiques.webapptraining.model.flowerNakai.MonthNakai;
@@ -98,38 +99,19 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 	}
 
 	@Override
-	public FlowerMainNakai insertFlower(final FlowerInputForm form, MultipartFile flowerImage) {
+	public FlowerMainNakai insertFlower(final FlowerInputForm form) {
 
 		//flower_main_nakaiテーブルに新規でデータを登録する
 		final FlowerMainNakai flowerMainNakai = form.convertToFlowerMainNakaiForInsert();
 
-		//追加した画像ファイルのパス
-		Path path = Paths.get("/pleiades/workspace/web-app-training/static/FlowerNakai");
+		// ファイルをアップロードする
+		uploadFile(flowerMainNakai, form.getFlowerImage());
 
-		// この辺は新しくファイル名をつけるため拡張子や現在日時を取得している
-		int dot = flowerImage.getOriginalFilename().lastIndexOf(".");
-		String extention = "";
-		if (dot > 0) {
-			extention = flowerImage.getOriginalFilename().substring(dot).toLowerCase();
-		}
-		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-
-		//エンティティに画像のパスを入れる
-		flowerMainNakai.setFlowerImage("/FlowerNakai/" + filename + extention);
-
-		// 指定した場所にファイルを書き込んでいる
-		path = path.resolve(filename + extention);
-		try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
-			byte[] bytes = flowerImage.getBytes();
-			os.write(bytes);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return flowerMainNakaiRepository.save(flowerMainNakai);
 	}
 
 	@Override
-	public FlowerMainNakai updateFlower(final FlowerInputForm form, MultipartFile flowerImage) {
+	public FlowerMainNakai updateFlower(final FlowerInputForm form) {
 
 		//更新対象のレコードを取得
 		FlowerMainNakai flowerMainNakai = flowerMainNakaiRepository.findOne((long) form.getId());
@@ -141,7 +123,7 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 				//チェックOKの場合、更新
 				flowerMainNakai = form.convertToFlowerMainNakaiForUpdate(flowerMainNakai);
 
-				if (flowerImage.isEmpty()) {
+				if (form.getFlowerImage().isEmpty()) {
 
 					//今あるデータベースの画像パスを入れとく
 					String imageTemp = flowerMainNakai.getFlowerImage();
@@ -152,28 +134,8 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 					return flowerMainNakaiRepository.saveAndFlush(flowerMainNakai);
 				}
 
-				//追加した画像ファイルのパス
-				Path path = Paths.get("/pleiades/workspace/web-app-training/static/FlowerNakai");
-
-				// この辺は新しくファイル名をつけるため拡張子や現在日時を取得している
-				int dot = flowerImage.getOriginalFilename().lastIndexOf(".");
-				String extention = "";
-				if (dot > 0) {
-					extention = flowerImage.getOriginalFilename().substring(dot).toLowerCase();
-				}
-				String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-
-				//エンティティに画像の値を入れる
-				flowerMainNakai.setFlowerImage("/FlowerNakai/" + filename + extention);
-
-				// 指定した場所にファイルを書き込んでいる
-				path = path.resolve(filename + extention);
-				try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
-					byte[] bytes = flowerImage.getBytes();
-					os.write(bytes);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				// ファイルをアップロードする
+				uploadFile(flowerMainNakai, form.getFlowerImage());
 
 				return flowerMainNakaiRepository.saveAndFlush(flowerMainNakai);
 			}
@@ -198,5 +160,37 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 
 		//対象のレコードを削除する
 		flowerMainNakaiRepository.deleteComp(ids);
+	}
+
+	/**
+	 * 選択したファイルを指定のパスにアップロードする
+	 *
+	 * @param flowerMainNakai
+	 * @param flowerImage
+	 */
+	private void uploadFile(FlowerMainNakai flowerMainNakai, MultipartFile flowerImage) {
+
+		//追加する画像ファイルのパス
+		Path path = Paths.get(CommonConst.STATIC_PATH + "FlowerNakai");
+
+		// ファイル名をつけるため拡張子や現在日時を取得
+		int dot = flowerImage.getOriginalFilename().lastIndexOf(".");
+		String extention = "";
+		if (dot > 0) {
+			extention = flowerImage.getOriginalFilename().substring(dot).toLowerCase();
+		}
+		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+
+		//エンティティに画像の値を入れる
+		flowerMainNakai.setFlowerImage("/FlowerNakai/" + filename + extention);
+
+		// 指定した場所にファイルを書き込む
+		path = path.resolve(filename + extention);
+		try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
+			byte[] bytes = flowerImage.getBytes();
+			os.write(bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

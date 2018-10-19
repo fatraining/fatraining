@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.moviesample.MovieSampleDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.moviesample.MovieSampleInputForm;
 import jp.co.futureantiques.webapptraining.model.form.moviesample.MovieSampleSearchForm;
@@ -224,7 +225,7 @@ public class MovieSampleController {
 
 			// 入力エラーがある場合、再検索して自画面に戻る
 			MovieSampleSearchForm movieSampleSearchForm = new MovieSampleSearchForm();
-			movieSampleSearchForm.setIsDelete(1);
+			movieSampleSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
 			final List<MovieMain> movieList = movieSampleService.getListMovie(movieSampleSearchForm);
 
 			// Modelに検索結果を格納する
