@@ -13,14 +13,16 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
+
 /**
  * IcecreamSakoMainテーブルと対応するEntity
  *
  * @author MINAMI SAKO
  */
-  @Data
+@Data
 @Entity
 public class IcecreamMainSako {
+
 	/** ID 主キーとなるので＠の表記が違う */
 	@Id
 	@Column(name = "id")
@@ -45,10 +47,10 @@ public class IcecreamMainSako {
 	/**  メーカーID */
 	@Column(name = "maker_id")
 	private Integer makerId;
-//
-//	/**  メーカー名 */
-//	@Column(name = "maker")
-//	private String maker;
+	//
+	//	/**  メーカー名 */
+	//	@Column(name = "maker")
+	//	private String maker;
 
 	/**  コメント */
 	@Column(name = "comment")
@@ -76,5 +78,4 @@ public class IcecreamMainSako {
 	@ManyToOne(targetEntity = MakerSako.class)
 	@JoinColumn(name = "maker_id", referencedColumnName = "maker_id", insertable = false, updatable = false)
 	private MakerSako makerSako;
-
 }

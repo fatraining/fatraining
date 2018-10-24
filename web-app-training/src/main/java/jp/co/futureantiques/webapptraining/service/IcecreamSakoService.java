@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.GenreSako;
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.IcecreamMainSako;
@@ -12,13 +13,12 @@ import jp.co.futureantiques.webapptraining.model.IcecreamSako.MakerSako;
 import jp.co.futureantiques.webapptraining.model.form.icecreamSako.IcecreamInputForm;
 import jp.co.futureantiques.webapptraining.model.form.icecreamSako.IcecreamSearchForm;
 
-
 /**
  * IcecreamSakoのサービスインターフェース
  *
  * @author MINAMI SAKO
  */
-
+@Service
 public interface IcecreamSakoService {
 
 	/**
@@ -42,7 +42,7 @@ public interface IcecreamSakoService {
 	 * @param Pageable pageable
 	 * @return IcecreamMainSakoのリスト
 	 */
-	Page<IcecreamMainSako> getPageIcecream(final IcecreamSearchForm form, final java.awt.print.Pageable pageable);
+	Page<IcecreamMainSako> getPageIcecream(final IcecreamSearchForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にIcecreamMainSakoのレコードのリストを取得する
@@ -51,7 +51,6 @@ public interface IcecreamSakoService {
 	 * @return IcecreamMainSakoのリスト
 	 */
 	List<IcecreamMainSako> getListIcecream(final IcecreamSearchForm form);
-
 
 	/**
 	 * IDをキーにIcecreamMainSakoのレコードを取得する
@@ -74,7 +73,6 @@ public interface IcecreamSakoService {
 	 *
 	 * @param IcecreamInputForm form
 	 * @return IcecreamMainSako
-	 *
 	 */
 	IcecreamMainSako updateIcecream(final IcecreamInputForm form);
 
@@ -91,7 +89,4 @@ public interface IcecreamSakoService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteIcecreamComp(final ArrayList<Long> ids);
-
-	Page<IcecreamMainSako> getPageIcecream(IcecreamSearchForm form, Pageable pageable);
-
 }

@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.repository.IcecreamSako;
 
-
 import java.util.ArrayList;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,7 +11,6 @@ import jp.co.futureantiques.webapptraining.model.IcecreamSako.IcecreamMainSako;
 import lombok.Data;
 
 /**
- *
  * アイスクリーム登録・更新画面用のFormクラス
  *
  * @author MINAMI SAKO

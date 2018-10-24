@@ -1,4 +1,5 @@
 package jp.co.futureantiques.webapptraining.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class IcecreamSakoController {
 	}
 
 	/**
-	 *ジャンルエンティティのリストを取得する
+	 * ジャンルエンティティのリストを取得する
 	 *
 	 * @return GenreEntityのリスト
 	 */
@@ -127,7 +128,7 @@ public class IcecreamSakoController {
 		// データを登録する
 		final IcecreamMainSako icecreamMainSako = icecreamSakoService.insertIcecream(form);
 		return "redirect:/icecream?result=insert&id=" + icecreamMainSako.getId();
-		}
+	}
 
 	/**
 	 * 更新画面に遷移する
@@ -146,7 +147,7 @@ public class IcecreamSakoController {
 		// フォームにレコードの値をセットする
 		icecreamInputForm.initWithIcecreamMain(icecreamMainSako);
 		return "icecreamSako/update";
-			}
+	}
 
 	/**
 	 * IcecreamMainSakoテーブルのデータを更新して検索画面に遷移する
@@ -172,7 +173,7 @@ public class IcecreamSakoController {
 			return "redirect:/icecream?result=updatefailed";
 		}
 		return "redirect:/icecream?result=update&id=" + icecreamMainSako.getId();
-			}
+	}
 
 	/**
 	 * IcecreamMainSakoテーブルのレコードを論理削除して検索画面に遷移する
@@ -206,7 +207,7 @@ public class IcecreamSakoController {
 		// Modelに検索結果を格納する
 		model.addAttribute(icecreamList);
 		return "icecreamSako/deletecomp";
-			}
+	}
 
 	/**
 	 * IcecreamMainSakoテーブルのデータを完全削除して検索画面に遷移する
@@ -234,5 +235,5 @@ public class IcecreamSakoController {
 		// データを完全削除する
 		icecreamSakoService.deleteIcecreamComp(form.getDeleteIds());
 		return "redirect:/icecream?result=deletecomp";
-			}
+	}
 }

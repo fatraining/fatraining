@@ -18,8 +18,8 @@
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-					th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
 		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
@@ -34,8 +34,8 @@
 					th:object="${icecreamInputForm}" class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{icecream.text.input.name.require}"> Name(*):</label> <input
-						type="text" th:field="*{name}" class="form-control"/>
+						th:text="#{icecream.text.input.name.require}"> Name(*):</label>
+					<input type="text" th:field="*{name}" class="form-control"/>
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('name')}"
 						th:text="#{${err}(#{icecream.text.icecream})}"></p>
@@ -43,8 +43,8 @@
 				<div class="form-group">
 					<label for="genreId" class="control-label"
 						th:text="#{icecream.text.input.genreId}"> Genre:</label>
-						<select	name="genreId" id="inputGenreSako" class="form-control select">
-						<option th:each="genre : ${genreSakoList}"
+					<select	name="genreId" id="inputGenreSako" class="form-control select">
+					<option th:each="genre : ${genreSakoList}"
 							th:value="${genre.genreId}" th:text="${genre.genre}"
 							th:selected="${genre.genreId == icecreamInputForm.genreId}">pulldown</option>
 					</select>

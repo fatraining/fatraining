@@ -13,4 +13,3 @@ import jp.co.futureantiques.webapptraining.model.IcecreamSako.GenreSako;
 @Repository
 public interface GenreSakoRepository extends JpaRepository<GenreSako, Long> {
 }
-

@@ -15,11 +15,10 @@ import lombok.Data;
 /**
  * MakerSakoテーブルと対応するEntity
  *
- *
+ * @author MINAMI SAKO
  */
 @Data
 @Entity
-
 public class MakerSako {
 
 	/** メーカーID */

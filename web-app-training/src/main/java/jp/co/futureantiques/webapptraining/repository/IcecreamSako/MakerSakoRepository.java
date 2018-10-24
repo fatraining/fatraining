@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.MakerSako;
 
-
 /**
  * MakerSakoリポジトリのインターフェース
  *
@@ -12,5 +11,4 @@ import jp.co.futureantiques.webapptraining.model.IcecreamSako.MakerSako;
  */
 @Repository
 public interface MakerSakoRepository extends JpaRepository<MakerSako, Long>{
-
 }

@@ -24,7 +24,6 @@ import jp.co.futureantiques.webapptraining.service.IcecreamSakoService;
  * IcecreamMainSakoのサービス実装クラス
  *
  * @author MINAMI SAKO
- *
  */
 @Service
 public class IcecreamSakoServiceImpl implements IcecreamSakoService {
@@ -45,7 +44,6 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 	 * @param GenreSakoRepository genreSakoRepository
 	 * @param MakerSakoRepository makerSakoRepository
 	 */
-
 	@Autowired
 	public IcecreamSakoServiceImpl(IcecreamMainSakoRepository icecreamMainSakoRepository,
 			GenreSakoRepository genreSakoRepository, MakerSakoRepository makerSakoRepository) {
@@ -69,10 +67,9 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 	}
 
 	@Override
-	public Page<IcecreamMainSako> getPageIcecream(final IcecreamSearchForm form, final Pageable pageable) {
-
+	public Page<IcecreamMainSako> getPageIcecream(IcecreamSearchForm form, Pageable pageable) {
 		//検索条件を生成しIcecreamMainテーブルのレコードを取得する
-		return icecreamMainSakoRepository.findAll(IcecreamSakoSpecification.generateIcecreamSpecification(form), pageable);
+		return icecreamMainSakoRepository.findAll(IcecreamSakoSpecification.generateIcecreamSpecification(form), (Pageable) pageable);
 	}
 
 	@Override
@@ -81,52 +78,6 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 		//検索条件を生成しIcecreamMainSakoテーブルのレコードを取得する
 		return icecreamMainSakoRepository.findAll(IcecreamSakoSpecification.generateIcecreamSpecification(form));
 	}
-
-	//	@Override
-	//	public IcecreamMainSako getProduct(final long id) {
-	//
-	//		//IcecreamMainテーブルを主キー検索する
-	//		return null;
-	//		//return IcecreamMainSakoRepository.findOne(id);
-	//	}
-	//
-	//	@Override
-	//	public IcecreamMainSako insertProduct(final IcecreamInputForm form) {
-	//
-	//		//IcecreamMainテーブルに新規でデータを登録する
-	//		final IcecreamMainSako IcecreamMainSako = form.convertToIcecreamMainForInsert();
-	//		return IcecreamMainSakoRepository.save(IcecreamMainSako);
-	//	}
-	//
-	//	@Override
-	//	public IcecreamMainSako updateProduct(final IcecreamInputForm form) {
-	//
-	//		//更新対象のレコードを取得する
-	//		IcecreamMainSako icecreamMainSako = IcecreamMainSakoRepository.findOne((long) form.getId());
-	//		if (icecreamMainSako != null) {
-	//
-	//			//更新対象のレコードが存在する場合排他チェック
-	//			if (form.getUpdateDate().equals(String.valueOf(icecreamMainSako.getUpdateDate()))) {
-	//
-	//				//チェックOKの場合、更新
-	//				IcecreamMainSako = form.convertToIcecreamMainForUpdate(icecreamMainSako);
-	//				return IcecreamMainSakoRepository.saveAndFlush(IcecreamMainSako);
-	//			}
-	//		}
-	//		return null;
-	//	}
-	//
-	//	@Override
-	//	public void deleteProductById(final long id) {
-	//
-	//		//更新対象のレコードを取得する
-	//		IcecreamMainSako icecreamMainSako = icecreamMainSakoRepository.findOne(id);
-	//		if (icecreamMainSako != null) {
-	//
-	//			//更新対象のレコードが存在する場合、削除フラグを1にする
-	//			icecreamMainSakoRepository.delete(id);
-	//		}
-	//	}
 
 	@Override
 	public IcecreamMainSako getIcecream(long id) {
@@ -137,6 +88,7 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 
 	@Override
 	public IcecreamMainSako insertIcecream(IcecreamInputForm form) {
+
 		//IcecreamMainテーブルに新規でデータを登録する
 		final IcecreamMainSako icecreamMainSako = form.convertToIcecreamMainForInsert();
 		return icecreamMainSakoRepository.save(icecreamMainSako);
@@ -158,7 +110,6 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 			}
 		}
 		return null;
-
 	}
 
 	@Override
@@ -178,13 +129,5 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 
 		//対象のレコードを削除する
 		icecreamMainSakoRepository.deleteComp(ids);
-
 	}
-
-	@Override
-	public Page<IcecreamMainSako> getPageIcecream(IcecreamSearchForm form, java.awt.print.Pageable pageable) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
 }

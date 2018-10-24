@@ -16,11 +16,10 @@ import lombok.Data;
 /**
  * GenreSakoテーブルと対応するEntityクラス
  *
- *
+ * @author MINAMI SAKO
  */
 @Data
 @Entity
-
 public class GenreSako {
 
 	/** ジャンルID */
@@ -39,13 +38,12 @@ public class GenreSako {
 	private String delFlg;
 
 	/** 登録日時 */
-	 @Column(name = "create_date")
+	@Column(name = "create_date")
 	private String createDate;
 
 	/** 更新日時 */
 	@Column(name = "update_date")
 	private String updateDate;
-
 
 	/** 外部キー設定：ジャンルID */
 	@Transient

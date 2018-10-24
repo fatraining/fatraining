@@ -8,15 +8,13 @@ import lombok.Data;
 
 /**
  * アイスクリーム削除画面のFormクラス
+ *
  * @author MINAMI SAKO
  */
-
 @Data
 public class IcecreamDeleteForm {
+
 	/**削除ID*/
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
-
 }
-
-

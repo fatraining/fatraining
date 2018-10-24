@@ -139,26 +139,24 @@
 				<tbody>
 					<tr th:each="icecream : ${icecreamList}">
 						<td class="data center" th:text="${icecream.name}">チョコモナカジャンボ</td>
-						<td class="data center"><label
-							th:if="${icecream.genreSako != null}"
-							th:text="${icecream.genreSako.genre}" class="data center">アイスミルク</label>
-						</td>
-
-						<td class="data center"><img th:src="@{${icecream.photo}}"></img>
-						</td>
-
-						<td class="data center"><label
-							th:if="${icecream.makerId != null}"
-							th:text="${icecream.makerSako.maker}" class="data center">森永製菓</label>
-						</td>
+						<td class="data center">
+						<label th:if="${icecream.genreSako != null}"
+							th:text="${icecream.genreSako.genre}" class="data center">アイスミルク</label></td>
+						<td class="data center"><img th:src="@{${icecream.photo}}"></img></td>
+						<td class="data center">
+						<label th:if="${icecream.makerId != null}"
+							th:text="${icecream.makerSako.maker}" class="data center">森永製菓</label></td>
 						<td class="data center" th:text="${icecream.comment}">真ん中にパリパリのチョコ！</td>
-						<td class="data"><a class="btn btn-success"
+						<td class="data">
+						<a class="btn btn-success"
 							th:href="@{/icecream/update(id=${icecream.id})}"
 							th:text="#{common.text.update}">Update</a></td>
-						<td class="data center"><a class="btn btn-danger"
+						<td class="data center">
+						<a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${id}, data-name=${icecream.Name}">Delete</a></td>
+							th:attr="data-id=${id}, data-name=${icecream.Name}">Delete</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -182,11 +180,11 @@
 						<input type="hidden" th:field="*{name}" /> <input type="hidden"
 							th:field="*{genreId}" /> <input type="hidden"
 							th:field="*{genreId}" />
-					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-					th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-						th:text='${i+1}'>1</span>
-				</a>
+					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+					<a th:if='${i}!=${page.number}'
+					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+					<span th:text='${i+1}'>1</span>
+					</a>
 				</li>
 				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
 					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
@@ -226,17 +224,16 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="alert alert-danger" role="alert">
-									<span class="glyphicon glyphicon-exclamation-sign"
-										aria-hidden="true"></span> <span
-										th:text="#{common.text.warn.delete(#{menu.text.icecream})}"></span>
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.icecream})}"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
-							onclick="$('#deleteForm').submit()"
+							data-dismiss="modal">Cancel </a>
+							<a class="btn btn-danger" onclick="$('#deleteForm').submit()"
 							th:text="#{common.text.delete}">Delete </a>
 					</div>
 				</div>
