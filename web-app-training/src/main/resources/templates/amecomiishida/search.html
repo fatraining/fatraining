@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>AmecomiIshidasearch</title>
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+	</head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/amecomiIshida.css}" />
+	<body>
+		<!-- Menu  -->
+		<div class="page-header">
+			<h4>
+				<a th:herf="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+
+		<div class="sub-header">
+			<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+			<h1 align="center" th:text="#{ameishi.text.search}">AmecomiSearch</h1>
+		</div>
+
+		<!-- 新規・削除ボタン  -->
+		<div style="position: relative; left: 30px">
+			<form class="form-horizontal" id="deleteCompForm"
+				method="get" action="/amecomiishida/deletecomp"
+				th:object="${amecomiIshidaSearchForm}">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="hidden" name="isDelete" th:value="1" />
+					</div>
+				</div>
+			</form>
+			<div class="form-group">
+				<div class="">
+					<a class="btn btn-warning"
+					th:href="@{/amecomiishida/insert}"
+					th:text="#{ameishi.text.new}">新規登録</a>
+					<a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{ameishi.text.delete}">データ削除</a>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+
+			<!-- メッセージ  -->
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-7">
+
+					<!-- 検索結果なし -->
+					<div class="alert alert-info text-center" role="alert"
+					th:if="${(amecomiIshidaSearchForm.charName != null or
+					amecomiIshidaSearchForm.companyId != null or
+					amecomiIshidaSearchForm.sideId != null) and
+					amecomiCharList == null}"
+					th:text="#{common.text.info.search}">No Result
+					</div>
+
+					<!-- DB操作後 -->
+					<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result != null}">
+						<div th:switch="${param.result[0]}">
+							<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+							<p th:case="update" th:text="#{common.text.info.update} + ':ID='+ ${param.id[0]}"></p>
+							<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+							<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+							<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 検索条件  -->
+			<form class="form-horizontal" id="searchForm" action="/amecomiishida/search"
+				method="post" th:object="${amecomiIshidaSearchForm}" >
+
+				<!-- キャラ名で検索 -->
+				<div class="form-group">
+					<label for="charName" class="col-sm-4 control-label" th:text="#{ameishi.text.input.name}">Name:</label>
+					<div class="col-sm-4">
+						<input type="text" th:field="*{charName}" class="form-control"
+							id="inputCharName" th:placeholder="#{ameishi.text.search.info}" />
+					</div>
+				</div>
+
+				<!-- 出版社で検索 -->
+				<div class="form-group">
+					<label for="companyIshida" class="col-sm-4 control-label"
+					th:text="#{ameishi.text.input.company}">Company:</label>
+					<div class="col-sm-4">
+						<select
+							id="inputCompanyIshida"
+							name="companyId"
+							class="form-control select">
+							<option th:each="companyIshida : ${companyIshidaList}"
+								th:value="${companyIshida.id}"
+								th:text="${companyIshida.company}"
+								th:selected="${companyIshida.id == amecomiIshidaSearchForm.companyId}">pulldown</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- 敵味方で検索 -->
+				<div class="form-group  control-label">
+					<label for="sideIshida" class="col-sm-4" th:text="#{ameishi.text.input.side}">Side:</label>
+					<div class="col-sm-4">
+						<select
+							id="inputSideIshida"
+							name="sideId"
+							class="form-control select">
+							<option th:each="sideIshida : ${sideIshidaList}"
+									th:value="${sideIshida.id}"
+									th:text="${sideIshida.side}"
+									th:selected="${sideIshida.id == amecomiIshidaSearchForm.sideId}">pulldown
+							</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- 検索・リセットボタン -->
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-1">
+						<a class="btn btn-primary center-block"
+							onclick="$('#searchForm').submit()"
+							th:text="#{common.text.search}">検索
+						</a>
+					</div>
+					<div class="col-sm-1">
+						<a class="btn btn-danger center-block"
+							th:href="@{/amecomiishida}"
+							th:text="#{common.text.reset}">リセット
+						</a>
+					</div>
+				</div>
+			</form>
+
+			<!-- 検索結果の表示  -->
+			<section id="resultArea" th:if="${amecomiCharList != null}">
+				<table id="resultTable" class="table table-borderd table-striped table-hover">
+					<thead>
+						<tr>
+							<th class="per-16 center" th:text="#{ameishi.text.charname}">CharName</th>
+							<th class="per-12 center" th:text="#{ameishi.text.company}">Company</th>
+							<th class="per-12 center" th:text="#{ameishi.text.side}">Side</th>
+							<th class="per-12 center" th:text="#{ameishi.text.debutyear}">DebutYear</th>
+							<th class="per-45 center" th:text="#{ameishi.text.coment}">Comment</th>
+							<th class="per-7 center" th:text="#{ameishi.text.update}">Update</th>
+							<th class="per-7 center" th:text="#{ameishi.text.delete}">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="amecomi : ${amecomiCharList}">
+							<td class="data center" th:text="${amecomi.charName}">キャラ名</td>
+							<td class="data center" >
+								<label th:if="${amecomi.companyIshida != null}"
+								th:text="${amecomi.companyIshida.company}" class="data center">出版社</label>
+							</td>
+							<td class="data center">
+								<label th:if="${amecomi.sideIshida != null}"
+								th:text="${amecomi.sideIshida.side}" class="data center">サイド</label>
+							</td>
+							<td class="data center">
+								<label th:if="${amecomi.debutYear != null}"
+								th:text="${amecomi.debutYear}" class="data center">初登場年</label>
+							</td>
+							<td class="data center">
+								<label th:if="${amecomi.comment != null}"
+								th:text="${amecomi.comment}" class="data center">コメント</label>
+							</td>
+							<td class="data center">
+								<a class="btn btn-primary" style="margin-left: 5%"
+								th:text="#{common.text.update}" >Update</a>
+							</td>
+							<td class="data center">
+								<a class="btn btn-danger" style="margin-left: 5%"
+								data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${id}, data-charName=${amecomi.charName}">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<!-- ページング用 -->
+			<div th:fragment="paginationbar">
+				<p th:if="${page != null}">
+					<ul>
+						<li th:class="${page.first} ? 'disabled':''" style="display:inline">
+							<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+							<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+								th:text="#{common.text.paging.lead}">←lead</a>
+						</li>
+						<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline" >
+							<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
+								th:object="${amecomiIshidaSearchForm}" style="display:inline" >
+								<input type="hidden" th:field="*{charName}" />
+								<input type="hidden" th:field="*{companyId}" />
+								<input type="hidden" th:field="*{sideId}" />
+							</form>
+							<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+							<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+								<span th:text='${i+1}'>1</span>
+							</a>
+						</li>
+						<li th:class="${page.last} ? 'disabled':''" style="display:inline">
+							<span th:if="${page.last}" th:text="#{common.text.paging.end}">end→</span>
+							<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+							th:text="#{common.text.paging.end}">end→</a>
+						</li>
+					</ul>
+				</p>
+			</div>
+
+		</div>
+		<div id="bogoCount" class="panel-clear"></div>
+		<script type="text/javascript" src="http://code.jqery.com/jquery-2.2.3.min.js"></script>
+		<script th:src="@{/libs/jquery/jquery.js}"></script>
+		<script th:src="@{/libs/bootstarap/js/bootstrap.js}"></script>
+
+	</body>
+</html>
