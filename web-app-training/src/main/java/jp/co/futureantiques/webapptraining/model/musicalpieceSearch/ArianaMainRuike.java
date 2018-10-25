@@ -21,29 +21,29 @@ import lombok.Data;
 @Data
 @Entity
 public class ArianaMainRuike {
-	//シングルID
+	/** シングルID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
 	private Integer singleId;
 
-	//シングル名
+	/** シングル名 */
 	@Column(name = "single_title")
 	private String singleTitle;
 
-	//アルバムID
+	/** アルバムID */
 	@Column(name = "album_id")
 	private Integer albumId;
 
-	//コラボアーティストID
+	/** 削除フラグ */
 	@Column(name = "colabo_id")
 	private Integer colaboId;
 
-	//再生時間
+	/** 再生時間 */
 	@Column(name = "play_time")
 	private Integer playTime;
 
-	//発売年
+	/** 発売年 */
 	@Column(name = "release_year")
 	private Integer releaseYear;
 
@@ -59,12 +59,12 @@ public class ArianaMainRuike {
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	/** 外部キー設定： アルバム  album_ruike*/
+	/** 外部キー設定： アルバムID */
 	@ManyToOne(targetEntity = AlbumRuike.class)
 	@JoinColumn(name = "album_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private AlbumRuike albumRuike;
 
-	/** 外部キー設定： コラボアーティスト colabo_ruike */
+	/** 外部キー設定： コラボアーティストID */
 	@ManyToOne(targetEntity = ColaboRuike.class)
 	@JoinColumn(name = "colabo_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private ColaboRuike colaboRuike;

@@ -17,19 +17,29 @@ import jp.co.futureantiques.webapptraining.repository.MusicalpieceSearch.ArianaM
 import jp.co.futureantiques.webapptraining.repository.MusicalpieceSearch.ColaboNameRepository;
 import jp.co.futureantiques.webapptraining.repository.specification.MusicalpieceSpecification;
 import jp.co.futureantiques.webapptraining.service.MusicalpieceSearchService;
-//サービスの実装クラス
 
+/**
+ * MusicalpieceSearchのサービスの実装クラス
+ *
+ * @author future
+ */
 @Service
 public class MusicalpieceSearchServiceImpl implements MusicalpieceSearchService {
 
-	//検索面のリポジトリー
-	//ArianaMainRepository ,AlbumNameRepository,ColaboNameRepository
-
+	/** ArianaMainRepository */
 	private final ArianaMainRepository arianaMainRepository;
+	/** AlbumNameRepository */
 	private final AlbumNameRepository albumNameRepository;
+	/** ColaboNameRepository */
 	private final ColaboNameRepository colaboNameRepository;
 
-	//コンストラクター
+	/**
+	 * コンストラクター
+	 *
+	 * @param arianaMainRepository arianaMainRepository
+	 * @param albumRuikeRepository albumNameRepository
+	 * @param colaboNameRepository colaboNameRepository
+	 */
 	@Autowired
 	public MusicalpieceSearchServiceImpl(ArianaMainRepository arianaMainRepository,
 			AlbumNameRepository albumRuikeRepository, ColaboNameRepository colaboNameRepository) {
@@ -39,34 +49,39 @@ public class MusicalpieceSearchServiceImpl implements MusicalpieceSearchService 
 	}
 
 	@Override
-	//アルバム名のリストをレコード順に取得
 	public List<AlbumRuike> getListAlbumRuike() {
+
+		//albumruikeテーブルのレコードをID順に取得
 		return albumNameRepository.findAll(new Sort(Sort.Direction.ASC, "albumId"));
 	}
 
 	@Override
-	//アルバム名のリストをレコード順に取得
 	public List<ColaboRuike> getListColaboRuike() {
+
+		//colaboruikeテーブルのレコードをID順に取得
 		return colaboNameRepository.findAll(new Sort(Sort.Direction.ASC, "colaboId"));
 	}
 
 	@Override
-	//rianaMainRuikeのレコードを取得する
 	public Page<ArianaMainRuike> getPageArianaMainRuike(final MusicalpieceSearchMainForm form,
+
+			//検索条件を生成しarianaMainRuikeのレコードを取得する
 			final Pageable pageable) {
 		return arianaMainRepository.findAll(MusicalpieceSpecification.generateArianaSpecification(form), pageable);
 
 	}
 
 	@Override
-	//検索条件を生成し、ArianaMainRuikeのレコードを取得する
 	public List<ArianaMainRuike> getListAriana(final MusicalpieceSearchMainForm form) {
+
+		//検索条件を生成し、ArianaMainRuikeのレコードを取得する
 		return arianaMainRepository.findAll(MusicalpieceSpecification.generateArianaSpecification(form));
 	}
 
 	@Override
-	//ArianaMainRuikeテーブルを主キーにして検索する
 	public ArianaMainRuike getAriana(final long single_Id) {
+
+		//ArianaMainRuikeテーブルを主キーにして検索する
 		return arianaMainRepository.findOne(single_Id);
 	}
 }

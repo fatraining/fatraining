@@ -6,6 +6,8 @@ import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.AlbumRuike;
 
 /**
  * AlbumRuikeリポジトリのインターフェース
+ *
+ * @author future
  */
 
 public interface AlbumNameRepository extends JpaRepository<AlbumRuike, Long> {

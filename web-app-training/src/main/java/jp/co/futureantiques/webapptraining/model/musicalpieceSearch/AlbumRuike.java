@@ -12,19 +12,23 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-
+/**
+ * AlbumRuikeに対応するエンティティ
+ *
+ * @author future
+ */
 @Data
 @Entity
 public class AlbumRuike {
-	//AlbumRuikeに対応するエンティティ
 
-	//アルバム
+
+	/** アルバムID */
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int albumId;
 
-	//アルバム名
+	/** アルバム名 */
 	@Column(name = "album_name")
 	@Size(max = 256)
 	private String albumName;
@@ -41,7 +45,7 @@ public class AlbumRuike {
 	@Column(name = "update_date")
 	private String updateDate;
 
-	//外部キー設定  コラボアーティスト名
+	/** 外部キー設定：  コラボアーティストID */
 	@Transient
 	@OneToMany(targetEntity = ArianaMainRuike.class, mappedBy = "albumRuike")
 	@JoinColumn(name = "id", referencedColumnName = "album_id")

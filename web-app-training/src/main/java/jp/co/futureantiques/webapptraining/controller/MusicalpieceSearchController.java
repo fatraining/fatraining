@@ -17,7 +17,7 @@ import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ArianaMainRu
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ColaboRuike;
 import jp.co.futureantiques.webapptraining.service.MusicalpieceSearchService;
 
-/*
+/**
  * musicalpieceSearchのコントローラークラス
  *
  * @author future
@@ -28,10 +28,13 @@ import jp.co.futureantiques.webapptraining.service.MusicalpieceSearchService;
 public class MusicalpieceSearchController {
 
 	/** 楽曲検索のサービスを呼ぶ */
-
 	private final MusicalpieceSearchService musicalpieceSearchService;
 
-	/** コンストラクタ */
+	/**
+	 * コンストラクタ
+	 *
+	 * @param MusicalpieceSearchService musicalpieceSearchService
+	 **/
 	@Autowired
 	public MusicalpieceSearchController(final MusicalpieceSearchService musicalpieceSearchService) {
 		this.musicalpieceSearchService = musicalpieceSearchService;

@@ -12,18 +12,22 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-
+/**
+ * colabo_ruike テーブルと対応するエンティティ
+ *
+ * @author future
+ */
 @Data
 @Entity
 public class ColaboRuike {
 
-	//コラボアーティストIDを
+	/** コラボアーティストID */
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int colaboId;
 
-	//コラボアーティスト名
+	/** コラボアーティスト名 */
 	@Column(name = "colabo_name")
 	@Size(max = 256)
 	private String colaboName;
@@ -40,7 +44,7 @@ public class ColaboRuike {
 	@Column(name = "update_date")
 	private String updateDate;
 
-	//外部キー
+	/** 外部キー： コラボアーティストID */
 	@Transient
 	@OneToMany(targetEntity = ArianaMainRuike.class, mappedBy = "colaboRuike")
 	@JoinColumn(name = "id", referencedColumnName = "colabo_id")

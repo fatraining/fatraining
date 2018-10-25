@@ -10,10 +10,15 @@ import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.AlbumRuike;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ArianaMainRuike;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ColaboRuike;
 
+/**
+ * MusicalpieceSearchのサービスインターフェース
+ *
+ * @author future
+ */
 public interface MusicalpieceSearchService {
 
 	/**
-	 * 	アルバムエンティティのリストを取得する
+	 * アルバムエンティティのリストを取得する
 	 *
 	 * @return AlbumRuikeのリスト
 	 */
@@ -28,10 +33,9 @@ public interface MusicalpieceSearchService {
 	List<ColaboRuike> getListColaboRuike();
 
 	/**
-	/**
 	 * 検索条件を元にArianaMainRuikeのレコードのリストを取得する(Paging)
 	 *
-	 * @param MusicalpieceSearchMainForm
+	 * @param MusicalpieceSearchMainForm form
 	 * @param Pageable pageable
 	 * @return ArianaMainRuikeのリスト
 	 */
@@ -40,7 +44,7 @@ public interface MusicalpieceSearchService {
 	/**
 	 * 検索条件を元にArianaMainRuikeのレコードのリストを取得する
 	 *
-	 * @param MusicalpieceSearchMainForm
+	 * @param MusicalpieceSearchMainForm form
 	 * @return ArianaMainRuikeのリスト
 	 */
 	List<ArianaMainRuike> getListAriana(final MusicalpieceSearchMainForm form);
