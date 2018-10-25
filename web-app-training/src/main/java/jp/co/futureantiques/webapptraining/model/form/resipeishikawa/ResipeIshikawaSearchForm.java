@@ -18,6 +18,9 @@ public class ResipeIshikawaSearchForm {
 	/**レシピ名*/
 	private String resipeTitle;
 
+	/**レシピ名(ひらがな)*/
+	private String resipeTitle2;
+
 	/**野菜ID1*/
 	private Integer vegetableId1;
 
@@ -39,6 +42,7 @@ public class ResipeIshikawaSearchForm {
 	public void setValues(ResipeMainIshikawa resipeMainIshikawa) {
 		this.setId((int)resipeMainIshikawa.getId());
 		this.setResipeTitle(resipeMainIshikawa.getResipeTitle());
+		this.setResipeTitle2(resipeMainIshikawa.getResipeTitle2());
 		this.setVegetableId1(resipeMainIshikawa.getVegetableId1());
 		this.setVegetableId2(resipeMainIshikawa.getVegetableId2());
 		this.setGenreId(resipeMainIshikawa.getGenreId());

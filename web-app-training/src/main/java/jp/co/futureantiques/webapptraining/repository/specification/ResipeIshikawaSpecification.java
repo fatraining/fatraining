@@ -51,19 +51,33 @@ public class ResipeIshikawaSpecification {
 
 					//レシピ名を条件に追加
 					form.setResipeTitle(form.getResipeTitle().trim());
-					Predicate newCondition = cb.like(root.get("resipeTitle"),"%" + form.getResipeTitle() + "%");
-					condition = getPredicate(cb,condition,newCondition);
+					final String space = " ";
+
+					// 半角スペースと全角スペースの組み合わせのパターンを表す
+					final String spacesPattern = "[\\s　]+";
+
+					// 以上のパターンにマッチした部分を単一の半角スペースに変換する
+					final String monoSpaceQuery = form.getResipeTitle().replaceAll(spacesPattern, space);
+
+					// 半角スペースでクエリをsplitする
+					String[] resipeTitles = monoSpaceQuery.split("\\s");
+					String resipeTitle = "";
+					for(int i = 0;i < resipeTitles.length;i++ ) {
+						resipeTitle = resipeTitle + resipeTitles[i];
+						Predicate newCondition = cb.or(cb.like(root.get("resipeTitle"),"%" + resipeTitle + "%"), cb.like(root.get("resipeTitle2"),"%" + resipeTitle + "%"));
+						condition = getPredicate(cb,condition,newCondition);
+					}
 				}
 				if(form.getVegetableId1() != null && form.getVegetableId1() != 0) {
 
 					//野菜1を条件に追加
-					Predicate newCondition = cb.equal(root.get("vegetableId1"),form.getVegetableId1());
+					Predicate newCondition =  cb.or(cb.equal(root.get("vegetableId1"),form.getVegetableId1()),cb.equal(root.get("vegetableId2"),form.getVegetableId1()));
 					condition = getPredicate(cb,condition,newCondition);
 				}
 				if(form.getVegetableId2() != null && form.getVegetableId2() != 0) {
 
 					//野菜2を条件に追加
-					Predicate newCondition = cb.equal(root.get("vegetableId2"),form.getVegetableId2());
+					Predicate newCondition = cb.or(cb.equal(root.get("vegetableId2"),form.getVegetableId2()),cb.equal(root.get("vegetableId1"),form.getVegetableId2()));
 					condition = getPredicate(cb,condition,newCondition);
 				}
 				if(form.getGenreId() != null && form.getGenreId() != 0) {

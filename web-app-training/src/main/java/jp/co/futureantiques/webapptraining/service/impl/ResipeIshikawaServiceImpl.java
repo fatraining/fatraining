@@ -71,8 +71,6 @@ public class ResipeIshikawaServiceImpl implements ResipeIshikawaService {
 		return resipeIshikawaMainRepository.findAll(ResipeIshikawaSpecification.generateResipeIshiawaSpecification(form),pageable);
 	}
 
-
-
 	@Override
 	public List<ResipeMainIshikawa> getListResipe(final ResipeIshikawaSearchForm form){
 
@@ -86,6 +84,4 @@ public class ResipeIshikawaServiceImpl implements ResipeIshikawaService {
 		//ResipeIshikawaMainテーブルを主キー検索する
 		return resipeIshikawaMainRepository.findOne(id);
 	}
-
-
 }

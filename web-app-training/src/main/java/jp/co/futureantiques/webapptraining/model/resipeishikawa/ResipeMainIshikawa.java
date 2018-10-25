@@ -15,8 +15,8 @@ import lombok.Data;
 
 /**
  * ResipeMainテーブルと対応するEntity
- * @author t.ishikawa
  *
+ * @author t.ishikawa
  */
 @Data
 @Entity
@@ -31,6 +31,10 @@ public class ResipeMainIshikawa {
 	/**レシピ名*/
 	@Column(name = "resipe_title")
 	private String resipeTitle;
+
+	/**レシピ名(ひらがな)*/
+	@Column(name = "resipe_title2")
+	private String resipeTitle2;
 
 	/**野菜ID1*/
 	@Column(name = "vegetable_id1")

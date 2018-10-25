@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import jp.co.futureantiques.webapptraining.model.resipeishikawa.GenreIshikawa;
 
 /**
- *  genreIshikawa
+ *  Genreリポジトリのインターフェース
  *
  * @author t.ishikawa
  */
