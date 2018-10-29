@@ -34,7 +34,6 @@ public class AmecomiIshidaServiceImpl implements AmecomiIshidaService {
 	/** SideIshidaのリポジトリ */
 	private final SideIshidaRepository sideIshidaRepository;
 
-
 	/**
 	 * コンストラクタ
 	 * @param AmecomiCharIshidaRepository amecomiCharIshidaRepository
@@ -52,31 +51,35 @@ public class AmecomiIshidaServiceImpl implements AmecomiIshidaService {
 
 	@Override
 	public List<CompanyIshida> getListCompanyIshida(){
+
 		// CompanyIshidaテーブルのレコードをID順に取得する
 		return companyIshidaRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
 	}
 
 	@Override
 	public List<SideIshida> getListSideIshida(){
+
 		// SideIshidaテーブルのレコードをID順に取得する
 		return sideIshidaRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
 	}
 
 	@Override
 	public Page<AmecomiCharIshida> getPageAmecomiIshida(final AmecomiIshidaSearchForm form,final Pageable pageable){
+
 		// 検索条件を生成しAmecomiCharIshidaテーブルのレコードを取得する
 		return amecomiCharIshidaRepository.findAll(AmecomiIshidaSpecification.generateAmecomiIshidaSpecification(form), pageable);
 	}
 
 	@Override
 	public List<AmecomiCharIshida> getListAmecomiIshida(final AmecomiIshidaSearchForm form){
+
 		// 検索条件を生成しAmecomiCharIshidaテーブルのレコードを取得する
 		return amecomiCharIshidaRepository.findAll(AmecomiIshidaSpecification.generateAmecomiIshidaSpecification(form));
-
 	}
 
 	@Override
 	public AmecomiCharIshida getAmecomiIshida(final long id) {
+
 		// AmecomiCharIshidaテーブルを主キー検索する
 		return amecomiCharIshidaRepository.findOne(id);
 	}

@@ -17,6 +17,10 @@ import jp.co.futureantiques.webapptraining.model.amecomiishida.SideIshida;
 import jp.co.futureantiques.webapptraining.model.form.amecomiIshida.AmecomiIshidaSearchForm;
 import jp.co.futureantiques.webapptraining.service.AmecomiIshidaService;
 
+/**
+ * AmecomiIshidaのコントローラクラス
+ * @author ishida
+ */
 @Controller
 @RequestMapping(value = "/amecomiishida")
 public class AmecomiIshidaController {
@@ -59,7 +63,6 @@ public class AmecomiIshidaController {
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String showSearchAmecomiIshida(@ModelAttribute final AmecomiIshidaSearchForm amecomiIshidaSearchForm) {
 		return "amecomiishida/search";
-
 	}
 
 	/**

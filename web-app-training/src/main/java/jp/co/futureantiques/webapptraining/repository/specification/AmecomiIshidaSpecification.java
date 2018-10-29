@@ -26,6 +26,7 @@ public class AmecomiIshidaSpecification {
 	 */
 	public static Specification<AmecomiCharIshida> generateAmecomiIshidaSpecification(final AmecomiIshidaSearchForm form){
 		return new Specification<AmecomiCharIshida>() {
+
 			@Override
 			public Predicate toPredicate(Root<AmecomiCharIshida> root, CriteriaQuery<?> query, CriteriaBuilder cd) {
 
@@ -41,7 +42,6 @@ public class AmecomiIshidaSpecification {
 
 				// IDが入力されている場合条件に追加
 				if(form.getId() != null) {
-
 					Predicate newCondition =cd.equal(root.get("id"), form.getId());
 					condition = getPredicate(cd, condition, newCondition);
 				}
@@ -55,7 +55,6 @@ public class AmecomiIshidaSpecification {
 
 				// 出版社が入力されている場合条件に追加
 				if(form.getCompanyId() !=null && form.getCompanyId() != 0) {
-
 					Predicate newCondition = cd.equal(root.get("companyId"), form.getCompanyId());
 					condition = getPredicate(cd, condition, newCondition);
 				}
@@ -85,6 +84,7 @@ public class AmecomiIshidaSpecification {
 					//既に条件がある場合、ANDで結合する
 					condition = cd.and(condition,newCondition);
 				}else {
+
 					//まだ条件がない場合先頭の条件になる
 					condition = newCondition;
 				}

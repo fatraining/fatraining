@@ -23,7 +23,6 @@ public class AmecomiIshidaSearchForm {
 	/** ID */
 	private Integer id;
 
-
 	/** 削除フラグON用 */
 	private int isDelete;
 
@@ -37,7 +36,5 @@ public class AmecomiIshidaSearchForm {
 		this.setSideId(amecomiCharIshida.getSideId());
 		this.setId((int) amecomiCharIshida.getId());
 
-
 	}
-
 }
