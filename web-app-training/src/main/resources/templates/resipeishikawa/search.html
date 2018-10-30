@@ -179,6 +179,16 @@
 							class="data center">
 						</label>
 						</td>
+							<td class="data">
+							<a class="btn btn-success"
+								th:href="@{/resipeIshikawa/update(id=${resipe.id})}"
+                       			th:text="#{common.text.update}">Update</a></td>
+						<td class="data center">
+							<a class="btn btn-danger" style="margin-left: 5%"
+								data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${resipe.id}, data-title=${resipe.resipeTitle}">Delete</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

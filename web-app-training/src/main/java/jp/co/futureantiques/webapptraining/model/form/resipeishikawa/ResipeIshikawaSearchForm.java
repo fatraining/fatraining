@@ -37,7 +37,7 @@ public class ResipeIshikawaSearchForm {
 	 *
 	 * 各フィールドに値を設定する
 	 *
-	 * @param resipeMain
+	 * @param resipeMainIshikawa
 	 */
 	public void setValues(ResipeMainIshikawa resipeMainIshikawa) {
 		this.setId((int)resipeMainIshikawa.getId());

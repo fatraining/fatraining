@@ -50,5 +50,5 @@ public class GenreIshikawa {
 	@Transient
 	@OneToMany(targetEntity = ResipeMainIshikawa.class,mappedBy = "genre")
 	@JoinColumn(name = "id",referencedColumnName = "genre_id")
-	private List<ResipeMainIshikawa>resipeIshikawaMainList;
+	private List<ResipeMainIshikawa>resipeMainIshikawaList;
 }

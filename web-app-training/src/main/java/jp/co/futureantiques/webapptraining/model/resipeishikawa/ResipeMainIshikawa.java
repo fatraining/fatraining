@@ -14,12 +14,13 @@ import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
 /**
- * ResipeMainテーブルと対応するEntity
+ * ResipeMainIshikawaテーブルと対応するEntity
  *
  * @author t.ishikawa
  */
-@Data
+
 @Entity
+@Data
 public class ResipeMainIshikawa {
 
 	/**レシピID*/

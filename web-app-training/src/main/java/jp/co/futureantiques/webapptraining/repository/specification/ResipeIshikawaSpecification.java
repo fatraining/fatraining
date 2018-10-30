@@ -13,7 +13,7 @@ import jp.co.futureantiques.webapptraining.model.form.resipeishikawa.ResipeIshik
 import jp.co.futureantiques.webapptraining.model.resipeishikawa.ResipeMainIshikawa;
 
 /**
- *  ResipeIshikawaMainの検索条件を生成するクラス
+ *  ResipeMainIshikawaの検索条件を生成するクラス
  *
  * @author t.ishikawa
  */
@@ -23,7 +23,7 @@ public class ResipeIshikawaSpecification {
 	 *検索条件生成の実装
 	 *
 	 * @param ResipeIshikawaSearchForm form
-	 * @return ResipeIshikawaMainのSpecification
+	 * @return ResipeMainIshikawaのSpecification
 	 */
 	public static Specification<ResipeMainIshikawa> generateResipeIshiawaSpecification(final ResipeIshikawaSearchForm form){
 		return new Specification<ResipeMainIshikawa>() {

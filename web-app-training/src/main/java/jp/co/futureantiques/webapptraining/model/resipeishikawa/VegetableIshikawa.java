@@ -47,13 +47,13 @@ public class VegetableIshikawa {
 
 	/**外部キー設定：野菜1*/
 	@Transient
-	@OneToMany(targetEntity = ResipeMainIshikawa.class,mappedBy = "vegetable")
+	@OneToMany(targetEntity = ResipeMainIshikawa.class,mappedBy = "vegetable1")
 	@JoinColumn(name = "id",referencedColumnName = "vegetable_id1")
 	private List<ResipeMainIshikawa>resipeMainIshikawaList;
 
 	/**外部キー設定：野菜2*/
 	@Transient
-	@OneToMany(targetEntity = ResipeMainIshikawa.class,mappedBy = "vegetable")
+	@OneToMany(targetEntity = ResipeMainIshikawa.class,mappedBy = "vegetable2")
 	@JoinColumn(name = "id",referencedColumnName = "vegetable_id2")
 	private List<ResipeMainIshikawa>resipeMainList;
 }
