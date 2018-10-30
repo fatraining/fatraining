@@ -2,7 +2,10 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.GenreSako;
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.IcecreamMainSako;
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.MakerSako;
@@ -109,6 +115,14 @@ public class IcecreamSakoController {
 		return "IcecreamSako/insert";
 	}
 
+	//これらはわざわざDIしないといけない
+	@Autowired
+	ResourceLoader resourceLoader;
+	@Autowired
+	ServletContext context;
+	@Autowired
+	WebApplicationContext wac;
+
 	/**
 	 * IcecreamMainSakoテーブルにデータを登録して検索画面に遷移する
 	 *
@@ -138,14 +152,15 @@ public class IcecreamSakoController {
 	 * @return 更新画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String showUpdateIcecream(@RequestParam(name = "id") final long id,
+	public String showUpdateIcecream(
+			@RequestParam(name = "id") final long id,
 			@ModelAttribute final IcecreamInputForm icecreamInputForm) {
 
 		// IDをキーにIcecreamMainSakoテーブルを検索する
 		IcecreamMainSako icecreamMainSako = icecreamSakoService.getIcecream(id);
 
 		// フォームにレコードの値をセットする
-		icecreamInputForm.initWithIcecreamMain(icecreamMainSako);
+		icecreamInputForm.initWithIcecreamMainSako(icecreamMainSako);
 		return "icecreamSako/update";
 	}
 
@@ -157,12 +172,21 @@ public class IcecreamSakoController {
 	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateIcecream(@Validated final IcecreamInputForm form,
-			final BindingResult bindingResult) {
+	public String updateIcecream(
+			@Validated final IcecreamInputForm form,
+			final BindingResult bindingResult , MultipartFile photo) {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合次画面に戻る
 			return "icecreamSako/update";
+		}
+
+		// 画像ファイルが自画面に戻る
+		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < photo.getSize() ){
+			//入力エラーがある場合、自画面に戻る
+			if(bindingResult.hasErrors()) {
+				return "icecreamSako/insert";
+			}
 		}
 
 		// データを更新する

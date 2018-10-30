@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.model.IcecreamSako.IcecreamMainSako;
 import lombok.Data;
@@ -29,6 +30,9 @@ public class IcecreamInputForm {
 	/** ジャンルID */
 	private Integer genreId;
 
+	/** 写真*/
+	private MultipartFile photo;
+
 	/** メーカーID */
 	private Integer makerId;
 
@@ -44,7 +48,7 @@ public class IcecreamInputForm {
 	 *
 	 * @param icecreamMainSako
 	 */
-	public void initWithIcecreamMain(IcecreamMainSako icecreamMainSako) {
+	public void initWithIcecreamMainSako(IcecreamMainSako icecreamMainSako) {
 		this.setId((int) icecreamMainSako.getId());
 		this.setName(icecreamMainSako.getName());
 		this.setGenreId(icecreamMainSako.getGenreId());
@@ -58,9 +62,9 @@ public class IcecreamInputForm {
 	 *
 	 * @return IcecreamMain
 	 */
-	public IcecreamMainSako convertToIcecreamMainForInsert() {
+	public IcecreamMainSako convertToIcecreamMainSakoForInsert() {
 		IcecreamMainSako icecreamMainSako = new IcecreamMainSako();
-		icecreamMainSako = convertToIcecreamMain(icecreamMainSako);
+		icecreamMainSako = convertToIcecreamMainSako(icecreamMainSako);
 		icecreamMainSako.setCreateDate(new Timestamp(new Date().getTime()));
 		icecreamMainSako.setUpdateDate(icecreamMainSako.getCreateDate());
 		return icecreamMainSako;
@@ -72,9 +76,9 @@ public class IcecreamInputForm {
 	 * @param IcecreamMainSako icecreamMain
 	 * @return IcecreamMain
 	 */
-	public IcecreamMainSako convertToIcecreamMainForUpdate(IcecreamMainSako icecreamMainSako) {
-		icecreamMainSako = convertToIcecreamMain(icecreamMainSako);
-		icecreamMainSako.setUpdateDate(new Timestamp(new Date().getTime()));
+	public IcecreamMainSako convertToIcecreamMainSakoForUpdate(IcecreamMainSako icecreamMainSako) {
+		icecreamMainSako = convertToIcecreamMainSako(icecreamMainSako);
+		icecreamMainSako.setUpdateDate(icecreamMainSako.getUpdateDate());
 		return icecreamMainSako;
 	}
 
@@ -84,7 +88,7 @@ public class IcecreamInputForm {
 	 * @param IcecreamMainSako IcecreamMain
 	 * @return IcecreamMain
 	 */
-	private IcecreamMainSako convertToIcecreamMain(IcecreamMainSako icecreamMainSako) {
+	private IcecreamMainSako convertToIcecreamMainSako(IcecreamMainSako icecreamMainSako) {
 		icecreamMainSako.setId(this.id);
 		icecreamMainSako.setName(this.name);
 		icecreamMainSako.setGenreId(this.genreId);

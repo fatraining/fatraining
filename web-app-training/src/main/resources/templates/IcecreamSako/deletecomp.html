@@ -45,7 +45,7 @@
 					<thead>
 						<tr>
 							<th><input type="checkbox" id="allCheck" /></th>
-							<th class="per-19 center" th:text="#{icecream.text.name}">名前</th>
+							<th class="per-19 center" th:text="#{icecream.text.icecream}">名前</th>
 							<th class="per-12 center" th:text="#{icecream.text.genreId}">ジャンル</th>
 							<th class="per-17 center" th:text="#{icecream.text.makerId}">メーカー</th>
 							<th class="per-40 center" th:text="#{icecream.text.comment}">コメント</th>
@@ -60,8 +60,8 @@
 							</label></td>
 							<td class="data center" th:text="${icecream.name}">チョコモナカジャンボ</td>
 							<td class="data center">
-							<label th:if="${icecream.genre != null}"
-								th:text="${icecream.genreSako}" class="data center">アイスミルク</label></td>
+							<label th:if="${icecream.genreSako != null}"
+								th:text="${icecream.genreSako.genre}" class="data center">アイスミルク</label></td>
 							<td class="data center">
 							<label th:if="${icecream.makerSako != null}"
 								th:text="${icecream.makerSako.maker}" class="data center">森永製菓</label></td>

@@ -29,10 +29,19 @@
 			</div>
 
 			<!-- 入力欄 -->
+
 			<form method="post" id="icecreamInputForm"
-					th:action="@{/icecream/insert}"
-					th:object="${icecreamInputForm}" class="form-horizontal">
-				<div class="form-group">
+			th:action="@{/icecream/insert}" th:object="${icecreamInputForm}"
+			class="form-horizontal" enctype="multipart/form-data">
+
+			<div class="form-group">
+				<div>
+				<label for="photo" class="control-label"
+					th:text="#{icecream.text.input.photo}"> Photo:</label>
+					<input type="file" id="file" th:field="*{photo}" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
 					<label for="name" class="control-label"
 						th:text="#{icecream.text.input.name.require}"> Name(*):</label>
 					<input type="text" th:field="*{name}" class="form-control"/>
@@ -73,5 +82,19 @@
 			</form>
 		</div>
 	</div>
+	<!-- Photoスクリプト -->
+			<script>
+			var obj = document.getElementById("file");
+
+			obj.addEventListener("change",function (evt){
+				var file = evt.target.files;
+
+				if(file[0].size > 1000000){
+
+					alert("サイズが大きすぎます。1MG以下のものを選択してください。");
+					document.getElementById('file').value="";
+				}
+			},false);
+			</script>
 </body>
 </html>

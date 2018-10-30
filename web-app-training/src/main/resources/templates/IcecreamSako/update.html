@@ -32,15 +32,22 @@
 			<!-- 入力欄 -->
 			<form method="post" id="icecreamInputForm"
 				th:action="@{/icecream/update}" th:object="${icecreamInputForm}"
-				class="form-horizontal">
+				class="form-horizontal" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<div>
+						<label for="photo" class="control-label"
+							th:text="#{icecream.text.input.photo}">Photo:</label>
+						<input type="file" id="file" th:field="*{photo}" class="form-control" />
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="name" class="control-label"
 						th:text="#{icecream.text.input.name.require}"> Name(*):</label>
 						<input type="text" th:field="*{name}" class="form-control"/>
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('name')}"
-						th:text="#{${err}(#{icecream.input.text.name})}"></p>
+						th:text="#{${err}(#{icecream.input.text.icecream})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="genreId" class="control-label"
@@ -80,5 +87,18 @@
 			</form>
 		</div>
 	</div>
+	<!-- Photoスクリプト -->
+				<script>
+				var obj = document.getElementById("file");
+
+				obj.addEventListener("change",function(evt){
+				var file = evt.target.files;
+
+				if(file[0].size > 1000000){
+				alert("サイズが大きすぎます。１MG以下のものを選択してください。");
+				document.getElementById('file').value="";
+				}
+				},false);
+				</script>
 </body>
 </html>
