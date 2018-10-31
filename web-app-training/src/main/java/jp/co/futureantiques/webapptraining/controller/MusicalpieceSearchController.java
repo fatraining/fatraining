@@ -7,10 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchInputForm;
 import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.AlbumRuike;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ArianaMainRuike;
@@ -94,12 +98,48 @@ public class MusicalpieceSearchController {
 		return "musicalpieceSearch/musicalpieceSearchmain";
 	}
 
-	//追加画面に推移
-	// MusicalpieceSearchMainForm musicalpieceSearchmainForm
-	//追加のパス
-	//@RequestMapping(value = "insert", method = RequestMethod.GET)
-	//public String showInsertAriana(@ModelAttribute final MusicalpieceSearchMainForm musicalpieceSearchmainForm){
-	//return "musicalpieceSearch/search";
-	//}
+	/**
+	 * 更新画面に遷移する
+	 *
+	 * @param long id
+	 * @param MusicalpieceSearchMainForm musicalpieceSearchMainForm
+	 * @return 更新画面のパス
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String showUpdateAriana(@RequestParam(name = "id") final long id,
+			@ModelAttribute final MusicalpieceSearchInputForm musicalpieceSearchInputForm) {
 
+		// IDをキーにArianaMainRuikeテーブルを検索する
+		ArianaMainRuike arianaMainRuike = musicalpieceSearchService.getAriana(id);
+
+		// フォームにレコードの値をセットする
+		musicalpieceSearchInputForm.initWithArianaMainRuike(arianaMainRuike);
+		return "musicalpieceSearch/MusicalpieceSearchUpdate";
+	}
+
+	/**
+	 * アリアナメインテーブルのデータを更新して検索画面に遷移する
+	 *
+	 * @param MusicalpieceSearchInputForm form
+	 * @param BindingResult bindingResult
+	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateArianaMainRuike(@Validated final MusicalpieceSearchInputForm form,
+			final BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
+
+			// 入力エラーがある場合自画面に戻る
+			return "musicalpieceSearch/MusicalpieceSearchUpdate";
+		}
+
+		    // データを更新する
+		ArianaMainRuike arianaRuikeMain = musicalpieceSearchService.updateArianaMainRuike(form);
+		if (arianaRuikeMain == null) {
+
+			// 更新が失敗した場合、検索画面にメッセージを表示する
+			return "redirect:/musicalpieceSearch?result=updatefailed";
+		}
+		return "redirect:/musicalpieceSearch?result=update&id=" + arianaRuikeMain.getSingleId();
+	}
 }

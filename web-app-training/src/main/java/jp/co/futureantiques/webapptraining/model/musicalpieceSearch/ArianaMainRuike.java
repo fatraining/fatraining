@@ -21,11 +21,12 @@ import lombok.Data;
 @Data
 @Entity
 public class ArianaMainRuike {
+
 	/** シングルID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
-	private Integer singleId;
+	private long singleId;
 
 	/** シングル名 */
 	@Column(name = "single_title")
@@ -51,7 +52,7 @@ public class ArianaMainRuike {
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	/** 発売年 */
+	/** 再生時間 */
 	@Column(name = "create_date")
 	private Timestamp createDate;
 

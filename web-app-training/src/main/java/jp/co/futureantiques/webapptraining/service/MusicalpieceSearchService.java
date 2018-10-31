@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchInputForm;
 import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.AlbumRuike;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ArianaMainRuike;
@@ -57,4 +58,16 @@ public interface MusicalpieceSearchService {
 	 */
 	ArianaMainRuike getAriana(final long single_Id);
 
-}
+	/**
+	 *  Ariana Ruike Mainのレコードを更新する
+	 *
+	 * @param MusicalpieceSearchMainForm
+	 * @return ArianaMainRuike
+	 */
+	ArianaMainRuike updateArianaMainRuike(final MusicalpieceSearchInputForm form);
+
+	
+	}
+
+
+

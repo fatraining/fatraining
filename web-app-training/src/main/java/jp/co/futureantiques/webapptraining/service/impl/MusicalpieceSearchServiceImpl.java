@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchInputForm;
 import jp.co.futureantiques.webapptraining.model.form.musicalpieceSearch.MusicalpieceSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.AlbumRuike;
 import jp.co.futureantiques.webapptraining.model.musicalpieceSearch.ArianaMainRuike;
@@ -84,6 +85,25 @@ public class MusicalpieceSearchServiceImpl implements MusicalpieceSearchService 
 		//ArianaMainRuikeテーブルを主キーにして検索する
 		return arianaMainRepository.findOne(single_Id);
 	}
+
+	@Override
+	public ArianaMainRuike updateArianaMainRuike(final MusicalpieceSearchInputForm form) {
+
+		//更新対象のレコードを取得する
+		ArianaMainRuike arianaMainRuike = arianaMainRepository.findOne((long) form.getSingleId());
+		if (arianaMainRuike != null) {
+
+			//更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(arianaMainRuike.getUpdateDate()))) {
+
+				//チェックOKの場合更新
+				arianaMainRuike = form.convertToArianaMainRuikeForUpdate(arianaMainRuike);
+				return arianaMainRepository.saveAndFlush(arianaMainRuike);
+
+			}
+		}
+		return null;
+	}
 }
 
 //
@@ -93,24 +113,6 @@ public class MusicalpieceSearchServiceImpl implements MusicalpieceSearchService 
 //		// MovieMainテーブルに新規でデータを登録する
 //		final MovieMain movieMain = form.convertToMovieMainForInsert();
 //		return movieMainRepository.save(movieMain);
-//	}
-//
-//	@Override
-//	public MovieMain updateMovie(final MovieSampleInputForm form) {
-//
-//		// 更新対象のレコードを取得する
-//		MovieMain movieMain = movieMainRepository.findOne((long) form.getId());
-//		if (movieMain != null) {
-//
-//			// 更新対象のレコードが存在する場合排他チェック
-//			if (form.getUpdateDate().equals(String.valueOf(movieMain.getUpdateDate()))) {
-//
-//				// チェックOKの場合、更新
-//				movieMain = form.convertToMovieMainForUpdate(movieMain);
-//				return movieMainRepository.saveAndFlush(movieMain);
-//			}
-//		}
-//		return null;
 //	}
 //
 //	@Override
