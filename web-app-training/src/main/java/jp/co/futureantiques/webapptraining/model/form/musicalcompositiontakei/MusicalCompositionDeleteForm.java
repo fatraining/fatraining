@@ -1,4 +1,4 @@
-package jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei;
+package jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,10 @@ import lombok.Data;
  *
  * @author takei
  */
-
 @Data
 public class MusicalCompositionDeleteForm {
 
 	/** 削除ID */
 	@Size(min=1,message="common.text.error.require.check")
 	private ArrayList<Long>  deleteIds;
-
 }

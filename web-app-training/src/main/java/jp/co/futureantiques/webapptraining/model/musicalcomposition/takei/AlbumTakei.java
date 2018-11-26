@@ -16,7 +16,7 @@ import lombok.Data;
 /**
  * AlbumTakeiテーブルと対応するEntity
  *
- * @author future
+ * @author takei
  */
 @Data
 @Entity

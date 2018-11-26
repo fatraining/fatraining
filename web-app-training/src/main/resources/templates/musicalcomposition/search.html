@@ -3,18 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|楽曲検索</title>
-<link rel="stylesheet" type="text/css"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css"
-      th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
 </head>
-<link rel="stylesheet" type="text/css"
-      th:href="@{/css/musicl.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/musicl.css}" />
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
-			<small th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
@@ -74,25 +70,20 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm"
 			method="post" action="/musicalComposition/search"
 			th:object="${musicalCompositionSearchMainForm}" >
 			<div class="form-group">
-				<label for="title" class="col-sm-2 control-label"
-				       th:text="#{musicalComposition.text.input.title}">曲名:</label>
+				<label for="title" class="col-sm-2 control-label" th:text="#{musicalComposition.text.input.title}">曲名:</label>
 				<div class="col-sm-8">
-					<input type="text"
-					 th:field="*{title}"
-					 class="form-control"
-						id="inputTitle"
-						th:placeholder="#{musicalComposition.text.search.info}" />
+					<input type="text" th:field="*{title}" class="form-control"
+						id="inputTitle" th:placeholder="#{musicalComposition.text.search.info}" />
 				</div>
 			</div>
-
 			<div class="form-group">
-				<label for="genreId" class="control-label col-sm-2"
-				       th:text="#{musicalComposition.text.input.genre}">ジャンル:</label>
+				<label for="genreId" class="control-label col-sm-2" th:text="#{musicalComposition.text.input.genre}">ジャンル:</label>
 				<div class="col-sm-8">
 					<select
 						id="inputGenreTakei"
@@ -106,8 +97,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="albumId" class="control-label col-sm-2"
-				       th:text="#{musicalComposition.text.input.albumn}">アルバム名:</label>
+				<label for="albumId" class="control-label col-sm-2" th:text="#{musicalComposition.text.input.albumn}">アルバム名:</label>
 				<div class="col-sm-8">
 					<select
 						id="inputAlbumTakei"
@@ -116,8 +106,7 @@
 						<option th:each="albumTakei : ${albumTakeiList}"
 							th:value="${albumTakei.albumId}"
 							th:text="${albumTakei.album}"
-							th:selected="${albumTakei.albumId == musicalCompositionSearchMainForm.albumId}">
-						</option>
+							th:selected="${albumTakei.albumId == musicalCompositionSearchMainForm.albumId}"></option>
 					</select>
 				</div>
 			</div>
@@ -154,21 +143,18 @@
 	           <tbody>
 					<tr th:each="musicalComposition : ${musicalCompositionList}">
 						<td class="data center" th:text="${musicalComposition.title}"></td>
-
 						<td class="data center">
-							<label th:if="${musicalComposition.genreId != null}"
-							       th:text="${musicalComposition.genreTakei.genre}" class="data center"></label>
+							<label th:if="${musicalComposition.genreId != null}" th:text="${musicalComposition.genreTakei.genre}"
+							        class="data center"></label>
 						</td>
 						<td class="data center">
-							<label th:if="${musicalComposition.albumTakei != null}"
-							       th:text="${musicalComposition.albumTakei.album}"
+							<label th:if="${musicalComposition.albumTakei != null}" th:text="${musicalComposition.albumTakei.album}"
 									class="data center"></label>
 						</td>
 						<td class="data center">
 							<label th:if="${musicalComposition.theNumberOfEconds != null}"
 							       th:text="${musicalComposition.theNumberOfEconds}+'分/'+${musicalComposition.releaseDay}"
 									class="data center"></label>
-
 							<label th:if="${musicalComposition.theNumberOfEconds == null}"  th:text="${musicalComposition.releaseDay}+'年'"
 									class="data center"></label>
 						</td>
@@ -203,7 +189,6 @@
 							<input type="hidden" th:field="*{title}"/>
 							<input type="hidden" th:field="*{genreId}"/>
 							<input type="hidden" th:field="*{albumId}"/>
-
 						</form>
 						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
 						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
@@ -231,13 +216,13 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
-							th:text="#{musicalComposition.text.delete}">楽曲削除</h4>
+							th:text="#{musicalComposition.text.delete}"></h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteTitle">楽曲</span>
+									<span id="deleteTitle"></span>
 								</p>
 							</div>
 						</div>

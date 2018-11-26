@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionInputForm;
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionSearchMainForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionInputForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.AlbumTakei;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.GenreTakei;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.MusicalCompositionMainTakei;
@@ -33,8 +33,6 @@ public interface MusicalCompositionSearchService {
 	 */
 	List<AlbumTakei> getListAlbumTakei();
 
-
-
 	/**
 	 * 検索条件を元にMusicalCompositionSearchMainのレコードのリストを取得する(Paging)
 	 *
@@ -42,9 +40,7 @@ public interface MusicalCompositionSearchService {
 	 * @return MusicalCompositionSearchMainのリスト
 	 */
 
-	Page<MusicalCompositionMainTakei> getPageMusicalComposition
-	                                   (final MusicalCompositionSearchMainForm form, final Pageable pageable);
-
+	Page<MusicalCompositionMainTakei> getPageMusicalComposition(final MusicalCompositionSearchMainForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にMusicalCompositionSearchMainのレコードのリストを取得する
@@ -54,7 +50,6 @@ public interface MusicalCompositionSearchService {
 	 */
 
 	List<MusicalCompositionMainTakei> getListMusicalComposition(MusicalCompositionSearchMainForm form);
-
 
 	/**
 	 * IDをキーにMusicalCompositionSearchMainのレコードを取得する
@@ -70,9 +65,7 @@ public interface MusicalCompositionSearchService {
 	 * @param MusicalCompositionInputForm form
 	 * @return MusicalCompositionSearchMain
 	 */
-
-	MusicalCompositionMainTakei insertMusicalComposition
-	                             (final MusicalCompositionInputForm form);
+	MusicalCompositionMainTakei insertMusicalComposition(final MusicalCompositionInputForm form);
 
 	/**
 	 *MusicalCompositionSearchMainのレコードを更新する
@@ -80,18 +73,13 @@ public interface MusicalCompositionSearchService {
 	 * @param MusicalCompositionInputForm form
 	 * @return MusicalCompositionSearchMain
 	 */
-
-
-	MusicalCompositionMainTakei updateMusicalComposition
-	                             (final MusicalCompositionInputForm form);
-
+	MusicalCompositionMainTakei updateMusicalComposition(final MusicalCompositionInputForm form);
 
 	/**
 	 * MusicalCompositionSearchMainのレコードを論理削除する
 	 *
 	 * @param long id
 	 */
-
 	void deleteMusicalCompositionById(final long id);
 
 	/**
@@ -99,7 +87,5 @@ public interface MusicalCompositionSearchService {
 	 *
 	 * @param ArrayList<Long> ids
 	 */
-
-	void deleteMusicalCompositionComp(final  ArrayList<Long> ids);
-
+	void deleteMusicalCompositionComp(final ArrayList<Long> ids);
 }

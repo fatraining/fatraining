@@ -32,8 +32,8 @@
 			<div th:if="${musicalCompositioniList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
-			<div th:if="${musicalCompositionMainList != null}" 
-			     class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div th:if="${musicalCompositionMainList != null}"
+			      class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 				<table id="resultTable" class="table table-borderd table-striped table-hover">
 					<thead>
 						<tr>
@@ -55,19 +55,15 @@
 							</td>
 							<td class="data center" th:text="${musicalComposition.title}"></td>
 							<td class="data center">
-								<label th:if="${musicalComposition.genre != null}" th:text="${musicalComposition.genre.genreId}" 
+								<label th:if="${musicalComposition.genre != null}" th:text="${musicalComposition.genre.genreId}"
 								class="data center"></label>
 							</td>
 							<td class="data center">
-								<label th:if="${musicalComposition.album != null}" th:text="${musicalComposition.album.albumId}" 
-								class="data center"></label>
+								<label th:if="${musicalComposition.album != null}" th:text="${musicalComposition.album.albumId}" class="data center"></label>
 							</td>
 							<td class="data center">
-								<label th:if="${musicalComposition.theNumberOfEconds != null}" 
-								       th:text="${musicalComposition.theNumberOfEconds}+'分/'+${{musicalComposition.releaseDay}" 
-								       class="data center"></label>
-								<label th:if="${musicalComposition.theNumberOfEconds == null}"
-								       th:text="${musicalComposition.releaseDay}" class="data center"></label>
+								<label th:if="${musicalComposition.theNumberOfEconds != null}" th:text="${musicalComposition.theNumberOfEconds}+'分/'+${{musicalComposition.releaseDay}" class="data center"></label>
+								<label th:if="${musicalComposition.theNumberOfEconds == null}" th:text="${musicalComposition.releaseDay}" class="data center"></label>
 							</td>
 							<td class="data center" th:text="${musicalComposition.comment}"></td>
 						</tr>

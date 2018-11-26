@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionSearchMainForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.MusicalCompositionMainTakei;
 
 /**

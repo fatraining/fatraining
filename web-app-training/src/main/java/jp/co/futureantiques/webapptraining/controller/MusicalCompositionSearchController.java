@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionDeleteForm;
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionInputForm;
-import jp.co.futureantiques.webapptraining.model.from.musicalcomposition.takei.MusicalCompositionSearchMainForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionDeleteForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionInputForm;
+import jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei.MusicalCompositionSearchMainForm;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.AlbumTakei;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.GenreTakei;
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.MusicalCompositionMainTakei;
@@ -37,204 +37,207 @@ public class MusicalCompositionSearchController {
 	//サービス名
 	private final MusicalCompositionSearchService musicalCompositionSearchService;
 
+	/**
+	 * コンストラクタ
+	 *
+	 * @param MusicalCompositionSearchService musicalCompositionSearchService
+	 */
 	@Autowired
 	public MusicalCompositionSearchController(final MusicalCompositionSearchService musicalCompositionSearchService) {
 		this.musicalCompositionSearchService=musicalCompositionSearchService;
 	}
 
-		//ジャンルのエンティティのリストを取得
-
-
-		@ModelAttribute
-		public List<GenreTakei> getListGenreTakei(){
-			return musicalCompositionSearchService.getListGenreTakei();
-
+	/**
+	 * ジャンルエンティティのリストを取得する
+	 *
+	 * @return GenreTakeiEntityのリスト
+	 *
+	 */
+	@ModelAttribute
+	public List<GenreTakei> getListGenreTakei(){
+		return musicalCompositionSearchService.getListGenreTakei();
 		}
 
-		@ModelAttribute
-		public List<AlbumTakei> getListAlbumTakei(){
-			return musicalCompositionSearchService.getListAlbumTakei();
+	@ModelAttribute
+	public List<AlbumTakei> getListAlbumTakei(){
+		return musicalCompositionSearchService.getListAlbumTakei();
+		}
+	/**検索画面に遷移する
+	 *
+	 * @param MusicalCompositionSearchMainForm musicalCompositionSearchMainForm
+	 * @return 検索画面のパス
+	 *
+	 */
 
+    @RequestMapping(value="",method=RequestMethod.GET)
+	public String searchMusicalComposition(@ModelAttribute final  MusicalCompositionSearchMainForm  musicalCompositionSearchMainForm) {
+		return "musicalComposition/search";
 		}
 
-		/**検索画面に遷移する
-		 *
-		 * @param MusicalCompositionSearchMainForm musicalCompositionSearchMainForm
-	     * @return 検索画面のパス
-		 */
+	/**
+	 * MovieMainテーブルにデータを登録して検索画面に遷移する
+	 *
+	 * @param MovieSampleInputForm form
+	 * @param BindingResult bindingResult
+	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
+	 */
 
-		@RequestMapping(value="",method=RequestMethod.GET)
-		public String searchMusicalComposition(@ModelAttribute final  MusicalCompositionSearchMainForm  musicalCompositionSearchMainForm) {
-			return "musicalComposition/search";
+	@RequestMapping(value="search",method= RequestMethod.POST)
+	public String searchMusicalComposition(final MusicalCompositionSearchMainForm form,final Model model,final Pageable pageable) {
 
+		// 入力された検索条件を元にレコードを取得する
+		final Page<MusicalCompositionMainTakei>musicalCompositionList=musicalCompositionSearchService.getPageMusicalComposition(form, pageable);
+		if(musicalCompositionList.getTotalElements() !=0) {
+
+		// 検索結果がある場合、Modelに結果をセットする
+			model.addAttribute("page", musicalCompositionList);
+			model.addAttribute("musicalCompositionList",musicalCompositionList.getContent());
+			model.addAttribute("url","search");
 		}
-		/**
-		 * MovieMainテーブルにデータを登録して検索画面に遷移する
-		 *
-		 * @param MovieSampleInputForm form
-		 * @param BindingResult bindingResult
-		 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
-		 */
+		return "musicalComposition/search";
+	}
 
-		@RequestMapping(value="search",method= RequestMethod.POST)
-		public String searchMusicalComposition(final MusicalCompositionSearchMainForm form,final Model model,final Pageable pageable) {
+	/**
+	 * 追加画面に遷移する
+	 *
+	 * @param MusicalCompositionInputForm musicalCompositionInputForm
+	 * @return 追加画面のパス
+	 */
 
+	@RequestMapping(value="insert",method=RequestMethod.GET)
+	public String insertMusicalComposition(@ModelAttribute @Validated final MusicalCompositionInputForm form) {
+		return "musicalComposition/insert";
+	}
 
-			// 入力された検索条件を元にレコードを取得する
-			final Page<MusicalCompositionMainTakei>musicalCompositionList
-			=musicalCompositionSearchService.getPageMusicalComposition(form, pageable);
+	/**
+	 * MusicalCompositionMainTakeiテーブルにデータを登録して検索画面に遷移する
+	 *
+	 * @param MusicalCompositionInputForm form
+	 * @param BindingResult bindingResult
+	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
+	 */
 
-			if(musicalCompositionList.getTotalElements() !=0) {
+	@RequestMapping(value="insert",method=RequestMethod.POST)
+	public String insertMusicalcomposition(@ModelAttribute @Validated final MusicalCompositionInputForm form,
+			final BindingResult bindingResult) {
+		if(bindingResult.hasFieldErrors()) {
 
-
-				// 検索結果がある場合、Modelに結果をセットする
-				model.addAttribute("page", musicalCompositionList);
-				model.addAttribute("musicalCompositionList",musicalCompositionList.getContent());
-				model.addAttribute("url","search");
-			}
-			return "musicalComposition/search";
-			}
-		/**
-		 * 追加画面に遷移する
-		 *
-		 * @param MusicalCompositionInputForm musicalCompositionInputForm
-		 * @return 追加画面のパス
-		 */
-
-		@RequestMapping(value="insert",method=RequestMethod.GET)
-		public String insertMusicalComposition(@ModelAttribute @Validated final MusicalCompositionInputForm form) {
-				return "musicalComposition/insert";
+			// 入力エラーがある場合自画面に戻る
+			return "musicalComposition/insert";
 		}
 
-		@RequestMapping(value="insert",method=RequestMethod.POST)
-		public String insertMusicalcomposition(@ModelAttribute @Validated final MusicalCompositionInputForm form,final BindingResult bindingResult) {
-			if(bindingResult.hasFieldErrors()) {
+		// データを登録する
+		final MusicalCompositionMainTakei musicalCompositionSearchMain=musicalCompositionSearchService.insertMusicalComposition(form);
+		return "redirect:/musicalComposition?result=insert&id="+musicalCompositionSearchMain.getId();
+	}
 
-				return "musicalComposition/insert";
-		}
-			// データを登録する
-			final MusicalCompositionMainTakei musicalCompositionSearchMain
-			       =musicalCompositionSearchService.insertMusicalComposition(form);
-			return "redirect:/musicalComposition?result=insert&id="+musicalCompositionSearchMain.getId();
+	/**
+	 * 更新画面に遷移する
+	 *
+	 * @param long id
+	 * @param MusicalCompositionInputForm musicalCompositionInputForm
+	 * @return 更新画面のパス
+	 */
+	@RequestMapping(value="update",method=RequestMethod.GET)
+	public String showUpdateMusicalComposition(@RequestParam(name="id")final long id,
+			@ModelAttribute final MusicalCompositionInputForm musicalCompositionInputForm){
 
-		}
-		/**
-		 * 更新画面に遷移する
-		 *
-		 * @param long id
-		 * @param MusicalCompositionInputForm musicalCompositionInputForm
-		 * @return 更新画面のパス
-		 */
+		// IDをキーにMusicalCompositionMainTakeiテーブルを検索する
+		MusicalCompositionMainTakei musicalCompositionSearchMain=musicalCompositionSearchService.getMusicalComposition(id);
 
-		@RequestMapping(value="update",method=RequestMethod.GET)
-		public String showUpdateMusicalComposition(@RequestParam(name="id")final long id,
-		       @ModelAttribute final MusicalCompositionInputForm musicalCompositionInputForm){
+		// フォームにレコードの値をセットする
+		musicalCompositionInputForm.intiWithMusicalCompositionSearchMain(musicalCompositionSearchMain);
+		return "musicalComposition/update";
+	}
 
-			// IDをキーにMovieMainテーブルを検索する
-			MusicalCompositionMainTakei musicalCompositionSearchMain
-			=musicalCompositionSearchService.getMusicalComposition(id);
+	/**
+	 * MusicalCompositionSearchMainテーブルのデータを更新して検索画面に遷移する
+	 *
+	 * @param MusicalCompositionInputForm form
+	 * @param BindingResult bindingResult
+	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
+	 */
 
-			musicalCompositionInputForm.intiWithMusicalCompositionSearchMain(musicalCompositionSearchMain);
+	@RequestMapping(value="update",method=RequestMethod.POST)
+	public String UpdateMusicalComposition(@Validated final  MusicalCompositionInputForm form,
+			final BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+
+			// 入力エラーがある場合自画面に戻る
 			return "musicalComposition/update";
 		}
+		// データを更新する
+		MusicalCompositionMainTakei musicalCompositionSearchMain=musicalCompositionSearchService.updateMusicalComposition(form);
+		if(musicalCompositionSearchMain==null) {
 
-		/**
-		 * MusicalCompositionSearchMainテーブルのデータを更新して検索画面に遷移する
-		 *
-		 * @param MusicalCompositionInputForm form
-		 * @param BindingResult bindingResult
-		 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
-		 */
-
-		@RequestMapping(value="update",method=RequestMethod.POST)
-		public String UpdateMusicalComposition(@Validated final  MusicalCompositionInputForm form,
-				final BindingResult bindingResult) {
-			if(bindingResult.hasErrors()) {
-				// 入力エラーがある場合自画面に戻る
-				return "musicalComposition/update";
-			}
-			// データを更新する
-			MusicalCompositionMainTakei musicalCompositionSearchMain
-			=musicalCompositionSearchService.updateMusicalComposition(form);
-			if(musicalCompositionSearchMain==null) {
-
-				return "redirect:/musicalComposition?result=updatefailed";
-			}
-
-			return "redirect:/musicalComposition?result=updatefailed"
-			         +musicalCompositionSearchMain.getId();
-
+			// 更新が失敗した場合、検索画面にメッセージを表示する
+			return "redirect:/musicalComposition?result=updatefailed";
 		}
+			return "redirect:/musicalComposition?result=updatefailed"+musicalCompositionSearchMain.getId();
+	}
 
-		/**
-		 * MusicalCompositionSearchMainテーブルのレコードを論理削除して検索画面に遷移する
-		 *
-		 * @param long id
-		 * @return 検索画面のパス
-		 */
+	/**
+	 * MusicalCompositionSearchMainテーブルのレコードを論理削除して検索画面に遷移する
+	 *
+	 * @param long id
+	 * @return 検索画面のパス
+	 */
 
-		@RequestMapping(value="delete",method=RequestMethod.GET)
-		public String deleteMusicalComposition(@RequestParam(name="id")final long id) {
+	@RequestMapping(value="delete",method=RequestMethod.GET)
+	public String deleteMusicalComposition(@RequestParam(name="id")final long id) {
 
-			// IDをキーにレコードを論理削除する
-			musicalCompositionSearchService.deleteMusicalCompositionById(id);
-			return "redirect:/musicalComposition?result=delete&id="+id;
-			}
+		// IDをキーにレコードを論理削除する
+		musicalCompositionSearchService.deleteMusicalCompositionById(id);
+		return "redirect:/musicalComposition?result=delete&id="+id;
+	}
 
-		/**
-		 * 完全削除画面に遷移する
-		 *
-		 * @param MusicalCompositionSearchMainForm form
-		 * @param MusicalCompositionDeleteForm musicalCompositionDeleteForm.java
-		 * @param Model model
-		 * @return 完全削除画面のパス
-		 */
+	/**
+	 * 完全削除画面に遷移する
+	 *
+	 * @param MusicalCompositionSearchMainForm form
+	 * @param MusicalCompositionDeleteForm musicalCompositionDeleteForm.java
+	 * @param Model model
+	 * @return 完全削除画面のパス
+	 */
 
-		@RequestMapping(value="deletcomp",method=RequestMethod.GET)
-		public String showDeleteCompMusicalComposition(final MusicalCompositionSearchMainForm form,
-				@ModelAttribute final MusicalCompositionDeleteForm musicalCompositionDeleteForm,final Model model) {
+	@RequestMapping(value="deletcomp",method=RequestMethod.GET)
+	public String showDeleteCompMusicalComposition(final MusicalCompositionSearchMainForm form,
+			@ModelAttribute final MusicalCompositionDeleteForm musicalCompositionDeleteForm,final Model model) {
 
-			// MusicalCompositionSearchMainテーブルから削除フラグが1のレコードを検索する
-			final List<MusicalCompositionMainTakei> musicalCompositionList
-			       =musicalCompositionSearchService.getListMusicalComposition(form);
+		// MusicalCompositionSearchMainテーブルから削除フラグが1のレコードを検索する
+		final List<MusicalCompositionMainTakei> musicalCompositionList=musicalCompositionSearchService.getListMusicalComposition(form);
+
+		// Modelに検索結果を格納する
+		model.addAttribute(musicalCompositionList);
+		return "musicalComposition/deletcomp";
+	}
+
+	/**
+	 * MusicalCompositionSearchMainテーブルのデータを完全削除して検索画面に遷移する
+	 *
+	 * @param MusicalCompositionDeleteForm form
+	 * @param BindingResult bindingResult
+	 * @param Model model
+	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
+	 */
+
+	@RequestMapping(value="deletcomp",method=RequestMethod.POST)
+	public String deleteCompMusicalComposition(@Validated final MusicalCompositionDeleteForm form,
+			final BindingResult bindingResult,final Model model) {
+		if(bindingResult.hasFieldErrors()) {
+
+			// 入力エラーがある場合、再検索して自画面に戻る
+			MusicalCompositionSearchMainForm musicalCompositionSearchMainForm=new MusicalCompositionSearchMainForm();
+			musicalCompositionSearchMainForm.setIsDelete(CommonConst.DELETE_FLG_ON);
+			final List<MusicalCompositionMainTakei>musicalCompositionList=musicalCompositionSearchService.getListMusicalComposition(musicalCompositionSearchMainForm);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(musicalCompositionList);
-			return "musicalComposition/deletcomp";
-		}
-		/**
-		 * MusicalCompositionSearchMainテーブルのデータを完全削除して検索画面に遷移する
-		 *
-		 * @param MusicalCompositionDeleteForm form
-		 * @param BindingResult bindingResult
-		 * @param Model model
-		 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
-		 */
-
-		@RequestMapping(value="deletcomp",method=RequestMethod.POST)
-		public String deleteCompMusicalComposition
-		        (@Validated final MusicalCompositionDeleteForm form,
-		         final BindingResult bindingResult,final Model model) {
-			if(bindingResult.hasFieldErrors()) {
-
-				// 入力エラーがある場合、再検索して自画面に戻る
-				MusicalCompositionSearchMainForm musicalCompositionSearchMainForm=new MusicalCompositionSearchMainForm();
-				musicalCompositionSearchMainForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-				final List<MusicalCompositionMainTakei>musicalCompositionList=musicalCompositionSearchService.getListMusicalComposition(musicalCompositionSearchMainForm);
-
-				// Modelに検索結果を格納する
-				model.addAttribute(musicalCompositionList);
-				return  "musicalComposition/deletecomp";
-
-
-			}
-			// データを完全削除する
-			musicalCompositionSearchService.deleteMusicalCompositionComp(form.getDeleteIds());
-			return "redirect:musicalComposition/?result=deletecomp";
-
+			return  "musicalComposition/deletecomp";
 		}
 
+		// データを完全削除する
+		musicalCompositionSearchService.deleteMusicalCompositionComp(form.getDeleteIds());
+		return "redirect:musicalComposition/?result=deletecomp";
+	}
 }
-
-
-
