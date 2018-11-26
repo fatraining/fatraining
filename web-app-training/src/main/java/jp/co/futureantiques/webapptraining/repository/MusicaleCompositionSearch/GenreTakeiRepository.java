@@ -9,6 +9,5 @@ import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.GenreT
  *
  * @author takei
  */
-
-public interface GenreTakeiRepository extends  JpaRepository<GenreTakei, Long>{
+public interface GenreTakeiRepository extends JpaRepository<GenreTakei, Long> {
 }

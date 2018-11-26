@@ -9,6 +9,5 @@ import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.AlbumT
  *
  * @author takei
  */
-
-public interface AlbumTakeiRepository extends JpaRepository<AlbumTakei, Long>{
+public interface AlbumTakeiRepository extends JpaRepository<AlbumTakei, Long> {
 }

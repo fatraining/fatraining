@@ -8,7 +8,6 @@ import lombok.Data;
  *
  * @author takei
  */
-
 @Data
 public class MusicalCompositionSearchMainForm {
 
@@ -24,7 +23,7 @@ public class MusicalCompositionSearchMainForm {
 	/**アルバムID*/
 	private Integer albumId;
 
-    /** 削除フラグON用 */
+	/** 削除フラグON用 */
 	private int isDelete;
 
 	/**

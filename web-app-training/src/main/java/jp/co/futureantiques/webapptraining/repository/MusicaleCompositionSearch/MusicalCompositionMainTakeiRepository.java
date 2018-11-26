@@ -12,21 +12,24 @@ import org.springframework.data.repository.query.Param;
 
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.MusicalCompositionMainTakei;
 
-public interface MusicalCompositionMainTakeiRepository extends JpaRepository
-                  <MusicalCompositionMainTakei, Long>, JpaSpecificationExecutor<MusicalCompositionMainTakei>{
+public interface MusicalCompositionMainTakeiRepository extends JpaRepository<MusicalCompositionMainTakei, Long>,
+		JpaSpecificationExecutor<MusicalCompositionMainTakei> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする
 	 *
 	 * @param long id
 	 */
-
 	@Transactional
 	@Modifying
 	@Query("UPDATE MusicalCompositionMainTakei SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
 
-
+	/**
+	 * 対象のレコードを削除する
+	 *
+	 * @param ArrayList<Long> ids
+	 */
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM MusicalCompositionMainTakei WHERE id IN(:ids)")

@@ -23,67 +23,65 @@ public interface MusicalCompositionSearchService {
 	 *
 	 * @return GenreTakeiEntityのリスト
 	 */
-
 	List<GenreTakei> getListGenreTakei();
 
 	/**
 	 * 楽曲アルバムエンティティのリストを取得する
 	 *
-	 * @return albumTakeEntityのリスト
+	 * @return AlbumTakeEntityのリスト
 	 */
 	List<AlbumTakei> getListAlbumTakei();
 
 	/**
-	 * 検索条件を元にMusicalCompositionSearchMainのレコードのリストを取得する(Paging)
+	 * 検索条件を元にMusicalCompositionMainTakeiのレコードのリストを取得する(Paging)
 	 *
 	 * @param MusicalCompositionSearchMainForm form
-	 * @return MusicalCompositionSearchMainのリスト
+	 * @return MusicalCompositionMainTakeiのリスト
 	 */
-
-	Page<MusicalCompositionMainTakei> getPageMusicalComposition(final MusicalCompositionSearchMainForm form, final Pageable pageable);
+	Page<MusicalCompositionMainTakei> getPageMusicalComposition(final MusicalCompositionSearchMainForm form,
+			final Pageable pageable);
 
 	/**
-	 * 検索条件を元にMusicalCompositionSearchMainのレコードのリストを取得する
+	 * 検索条件を元にMusicalCompositionMainTakeiのレコードのリストを取得する
 	 *
 	 * @param MusicalCompositionSearchMainForm form
-	 * @return MusicalCompositionSearchMainのリスト
+	 * @return MusicalCompositionMainTakeiのリスト
 	 */
-
 	List<MusicalCompositionMainTakei> getListMusicalComposition(MusicalCompositionSearchMainForm form);
 
 	/**
-	 * IDをキーにMusicalCompositionSearchMainのレコードを取得する
+	 * IDをキーにMusicalCompositionMainTakeiのレコードを取得する
 	 *
 	 * @param long id
-	 * @return MusicalCompositionSearchMainのレコード
+	 * @return MusicalCompositionMainTakeiのレコード
 	 */
 	MusicalCompositionMainTakei getMusicalComposition(final long id);
 
 	/**
-	 * MusicalCompositionSearchMainにレコードを新規登録する
+	 * MusicalCompositionMainTakeiにレコードを新規登録する
 	 *
 	 * @param MusicalCompositionInputForm form
-	 * @return MusicalCompositionSearchMain
+	 * @return MusicalCompositionMainTakei
 	 */
 	MusicalCompositionMainTakei insertMusicalComposition(final MusicalCompositionInputForm form);
 
 	/**
-	 *MusicalCompositionSearchMainのレコードを更新する
+	 * MusicalCompositionMainTakeiのレコードを更新する
 	 *
 	 * @param MusicalCompositionInputForm form
-	 * @return MusicalCompositionSearchMain
+	 * @return MusicalCompositionMainTakei
 	 */
 	MusicalCompositionMainTakei updateMusicalComposition(final MusicalCompositionInputForm form);
 
 	/**
-	 * MusicalCompositionSearchMainのレコードを論理削除する
+	 * MusicalCompositionMainTakeiのレコードを論理削除する
 	 *
 	 * @param long id
 	 */
 	void deleteMusicalCompositionById(final long id);
 
 	/**
-	 * MusicalCompositionSearchMainのレコードを物理削除する
+	 * MusicalCompositionMainTakeiのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
 	 */

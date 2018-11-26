@@ -1,44 +1,44 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|楽曲検索</title>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/musicl.css}" />
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+				th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
-		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
 		<h1 align="center" th:text="#{musicalComposition.text.search}">楽曲検索</h1>
 	</div>
 
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px">
-		<form class="form-horizontal" id="deleteCompForm"
-			method="get" action="/musicalComposition/deletcomp"
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/musicalComposition/deletcomp"
 			th:object="${musicalCompositionSearchMainForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
-					<input type="hidden" name="isDelete" th:value="1"  />
+					<input type="hidden" name="isDelete" th:value="1" />
 				</div>
 			</div>
 		</form>
 		<div class="form-group">
-			<div class="" >
-				<a class="btn btn-warning"
-					th:href="@{/musicalComposition/insert}"
-					th:text="#{common.text.new}" >New
-				</a>
-				<a class="btn btn-danger"
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/musicalComposition/insert}"
+					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData
-				</a>
+					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
 			</div>
 		</div>
 	</div>
@@ -54,17 +54,20 @@
 							musicalCompositionSearchMainForm.genreId != null or
 							musicalCompositionSearchMainForm.albumId != null) and
 							musicalCompositionList == null}"
-                     th:text="#{common.text.info.search}">No Result
-				</div>
+					th:text="#{common.text.info.search}">No Result</div>
 
 				<!-- DB操作後 -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${param.result != null}">
 					<div th:switch="${param.result[0]}">
-						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
-						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
-						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
-						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="insert"
+							th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update"
+							th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed"
+							th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete"
+							th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
 					</div>
 				</div>
@@ -72,102 +75,102 @@
 		</div>
 
 		<!-- 検索条件 -->
-		<form class="form-horizontal" id="searchForm"
-			method="post" action="/musicalComposition/search"
-			th:object="${musicalCompositionSearchMainForm}" >
+		<form class="form-horizontal" id="searchForm" method="post"
+			action="/musicalComposition/search"
+			th:object="${musicalCompositionSearchMainForm}">
 			<div class="form-group">
-				<label for="title" class="col-sm-2 control-label" th:text="#{musicalComposition.text.input.title}">曲名:</label>
+				<label for="title" class="col-sm-2 control-label"
+					th:text="#{musicalComposition.text.input.title}">曲名:</label>
 				<div class="col-sm-8">
 					<input type="text" th:field="*{title}" class="form-control"
-						id="inputTitle" th:placeholder="#{musicalComposition.text.search.info}" />
+						id="inputTitle"
+						th:placeholder="#{musicalComposition.text.search.info}" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="genreId" class="control-label col-sm-2" th:text="#{musicalComposition.text.input.genre}">ジャンル:</label>
+				<label for="genreId" class="control-label col-sm-2"
+					th:text="#{musicalComposition.text.input.genre}">ジャンル:</label>
 				<div class="col-sm-8">
-					<select
-						id="inputGenreTakei"
-						name="genreId"
+					<select id="inputGenreTakei" name="genreId"
 						class="form-control select">
-					<option th:each="genreTakei : ${genreTakeiList}"
-						th:value="${genreTakei.genreId}"
-						th:text="${genreTakei.genre}"
-						th:selected="${genreTakei.genreId == musicalCompositionSearchMainForm.genreId}">pulldown</option>
+						<option th:each="genreTakei : ${genreTakeiList}"
+							th:value="${genreTakei.genreId}" th:text="${genreTakei.genre}"
+							th:selected="${genreTakei.genreId == musicalCompositionSearchMainForm.genreId}">pulldown</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="albumId" class="control-label col-sm-2" th:text="#{musicalComposition.text.input.albumn}">アルバム名:</label>
+				<label for="albumId" class="control-label col-sm-2"
+					th:text="#{musicalComposition.text.input.albumn}">アルバム名:</label>
 				<div class="col-sm-8">
-					<select
-						id="inputAlbumTakei"
-						name="albumId"
+					<select id="inputAlbumTakei" name="albumId"
 						class="form-control select">
 						<option th:each="albumTakei : ${albumTakeiList}"
-							th:value="${albumTakei.albumId}"
-							th:text="${albumTakei.album}"
+							th:value="${albumTakei.albumId}" th:text="${albumTakei.album}"
 							th:selected="${albumTakei.albumId == musicalCompositionSearchMainForm.albumId}"></option>
 					</select>
 				</div>
 			</div>
-            </form>
-			<div class="form-group">
-				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
-					<a class="btn btn-primary center-block"
-						onclick="$('#searchForm').submit()"
-						th:text="#{common.text.search}">Search
-					</a>
-				</div>
-				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-warning center-block"
-						th:href="@{/musicalComposition}"
-						th:text="#{common.text.reset}">Reset
-					</a>
-				</div>
+		</form>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+				<a class="btn btn-primary center-block"
+					onclick="$('#searchForm').submit()" th:text="#{common.text.search}">Search
+				</a>
 			</div>
+			<div class="col-xs-3 col-sm-2">
+				<a class="btn btn-warning center-block"
+					th:href="@{/musicalComposition}" th:text="#{common.text.reset}">Reset
+				</a>
+			</div>
+		</div>
 
 		<!-- 検索結果の表示 -->
 		<section id="resultArea" th:if="${musicalCompositionList != null}">
-			<table id="resultTable" class="table table-borderd table-striped table-hover">
+			<table id="resultTable"
+				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="per-12 center" th:text="#{musicalComposition.text.title}">曲名</th>
-						<th class="per-12 center" th:text="#{musicalComposition.text.genre}">ジャンル</th>
-						<th class="per-16 center" th:text="#{musicalComposition.text.album}">収録アルバム</th>
-						<th class="per-16 center" th:text="#{musicalComposition.text.thenumberofeconds/releaseday}">分数/発売日</th>
-						<th class="per-16 center" th:text="#{musicalComposition.text.comment}">コメント</th>
+						<th class="per-12 center"
+							th:text="#{musicalComposition.text.title}">曲名</th>
+						<th class="per-12 center"
+							th:text="#{musicalComposition.text.genre}">ジャンル</th>
+						<th class="per-16 center"
+							th:text="#{musicalComposition.text.album}">収録アルバム</th>
+						<th class="per-16 center"
+							th:text="#{musicalComposition.text.thenumberofeconds/releaseday}">分数/発売日</th>
+						<th class="per-16 center"
+							th:text="#{musicalComposition.text.comment}">コメント</th>
 						<th class="per-7 center" th:text="#{common.text.update}">更新</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">削除</th>
 					</tr>
 				</thead>
-	           <tbody>
+				<tbody>
 					<tr th:each="musicalComposition : ${musicalCompositionList}">
-						<td class="data center" th:text="${musicalComposition.title}"></td>
-						<td class="data center">
-							<label th:if="${musicalComposition.genreId != null}" th:text="${musicalComposition.genreTakei.genre}"
-							        class="data center"></label>
-						</td>
-						<td class="data center">
-							<label th:if="${musicalComposition.albumTakei != null}" th:text="${musicalComposition.albumTakei.album}"
-									class="data center"></label>
-						</td>
-						<td class="data center">
-							<label th:if="${musicalComposition.theNumberOfEconds != null}"
-							       th:text="${musicalComposition.theNumberOfEconds}+'分/'+${musicalComposition.releaseDay}"
-									class="data center"></label>
-							<label th:if="${musicalComposition.theNumberOfEconds == null}"  th:text="${musicalComposition.releaseDay}+'年'"
-									class="data center"></label>
-						</td>
+						<td class="data center" th:text="${musicalComposition.title}">インスト</td>
+						<td class="data center"><label
+							th:if="${musicalComposition.genreId != null}"
+							th:text="${musicalComposition.genreTakei.genre}"
+							class="data center">ジャンル</label></td>
+						<td class="data center"><label
+							th:if="${musicalComposition.albumTakei != null}"
+							th:text="${musicalComposition.albumTakei.album}"
+							class="data center">アルバム名</label></td>
+						<td class="data center"><label
+							th:if="${musicalComposition.theNumberOfEconds != null}"
+							th:text="${musicalComposition.theNumberOfEconds}+'分/'+${musicalComposition.releaseDay}"
+							class="data center">1.00分/2012年4月4日</label> <label
+							th:if="${musicalComposition.theNumberOfEconds == null}"
+							th:text="${musicalComposition.releaseDay}+'年'"
+							class="data center">1.00分/2012年4月4日</label></td>
 						<td class="data center" th:text="${musicalComposition.comment}"></td>
-						<td class="data">
-							<a class="btn btn-success"
-								th:href="@{/musicalComposition/update(id=${musicalComposition.id})}"
-                       			th:text="#{common.text.update}">Update</a></td>
-						<td class="data center">
-							<a class="btn btn-danger" style="margin-left: 5%"
-								data-toggle="modal" data-target="#deleteModal"
-								th:text="#{common.text.delete}"
-								th:attr="data-id=${musicalComposition.id}, data-title=${musicalComposition.title}">Delete</a>
+						<td class="data"><a class="btn btn-success"
+							th:href="@{/musicalComposition/update(id=${musicalComposition.id})}"
+							th:text="#{common.text.update}">Update</a></td>
+						<td class="data center"><a class="btn btn-danger"
+							style="margin-left: 5%" data-toggle="modal"
+							data-target="#deleteModal" th:text="#{common.text.delete}"
+							th:attr="data-id=${musicalComposition.id}, data-title=${musicalComposition.title}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -177,42 +180,50 @@
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
-				<ul>
-					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
-						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
-							th:text="#{common.text.paging.lead}">←lead</a>
-					</li>
-					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
-						<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
-							th:object="${musicalCompositionSearchMainForm}" style="display:inline" >
-							<input type="hidden" th:field="*{title}"/>
-							<input type="hidden" th:field="*{genreId}"/>
-							<input type="hidden" th:field="*{albumId}"/>
-						</form>
-						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
-						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
-							<span th:text='${i+1}'>1</span>
-						</a>
-					</li>
-					<li th:class="${page.last} ? 'disabled':''" style="display:inline">
-						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
-						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-							th:text="#{common.text.paging.end}">end➝</a>
-					</li>
-				</ul>
+			<ul>
+				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+					th:text="#{common.text.paging.lead}">←lead</a>
+				</li>
+				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					th:class="(${i}==${page.number})? 'active' : ''"
+					style="display: inline">
+					<form th:id="'pageForm'+${i}" method="post"
+						th:action="@{${url}(page=${i})}"
+						th:object="${musicalCompositionSearchMainForm}"
+						style="display: inline">
+						<input type="hidden" th:field="*{title}" /> <input type="hidden"
+							th:field="*{genreId}" /> <input type="hidden"
+							th:field="*{albumId}" />
+					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
+					th:if='${i}!=${page.number}'
+					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
+						th:text='${i+1}'>1</span>
+				</a>
+				</li>
+				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+					<a th:if="${not page.last}"
+					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+					th:text="#{common.text.paging.end}">end➝</a>
+				</li>
+			</ul>
 			</p>
 		</div>
 	</div>
 
 	<!-- 削除モーダル -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
 		<div class="modal-dialog" role="document">
-			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
 				<div class="modal-content">
-					<input type="hidden" id="deleteId" name="id"/>
+					<input type="hidden" id="deleteId" name="id" />
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
@@ -229,17 +240,17 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="alert alert-danger" role="alert">
-									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-									<span th:text="#{common.text.warn.delete(#{menu.text.musicalComposition})}"></span>
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <span
+										th:text="#{common.text.warn.delete(#{menu.text.musicalComposition})}"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a class="btn btn-default"
-							th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel
-						</a> <a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()"
 							th:text="#{common.text.delete}">Delete </a>
 					</div>
 				</div>
@@ -248,13 +259,14 @@
 	</div>
 	<div id="bogoCount" class="panel-clear"></div>
 
-	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script th:src="@{/libs/jquery/jquery.js}"></script>
 	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
 
 	<!-- 削除モーダル用スクリプト -->
 	<script>
-		$('#deleteModal').on('show.bs.modal', function (event) {
+		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var musicalCompositionId = button.data('id');
 			var musicalCompositionTitle = button.data('title');

@@ -19,11 +19,15 @@ import jp.co.futureantiques.webapptraining.repository.MusicaleCompositionSearch.
 import jp.co.futureantiques.webapptraining.repository.MusicaleCompositionSearch.MusicalCompositionMainTakeiRepository;
 import jp.co.futureantiques.webapptraining.service.MusicalCompositionSearchService;
 
-
+/**
+ * MusicalCompositionSearchのサービス実装クラス
+ *
+ * @author takei
+ */
 @Service
-public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSearchService{
+public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSearchService {
 
-/**  MusicalCompositionSearchMainリポジトリ */
+	/**  MusicalCompositionMainTakeiリポジトリ */
 	private final MusicalCompositionMainTakeiRepository musicalCompositionMainTakeiRepository;
 
 	/**  GenreTakeiリポジトリ */
@@ -35,84 +39,94 @@ public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSe
 	/**
 	 * コンストラクタ
 	 *
-	 * @param MusicalCompositionMainTakeiRepository musicalCompositionSearchMainRepository
+	 * @param MusicalCompositionMainTakeiRepository musicalCompositionMainTakeiRepository
 	 * @param GenreRepository genreRepository
 	 * @param AlbumTakeiRepository  albumTakeiRepository
 	 */
 	@Autowired
-	public MusicalCompositionSearchServiceImpl (MusicalCompositionMainTakeiRepository musicalCompositionMainTakeiRepository,
-			GenreTakeiRepository genreTakeiRepository,AlbumTakeiRepository  albumTakeiRepository){
-		this.musicalCompositionMainTakeiRepository=musicalCompositionMainTakeiRepository;
-		this.genreTakeiRepository=genreTakeiRepository;
-		this.albumTakeiRepository=albumTakeiRepository;
+	public MusicalCompositionSearchServiceImpl(
+			MusicalCompositionMainTakeiRepository musicalCompositionMainTakeiRepository,
+			GenreTakeiRepository genreTakeiRepository, AlbumTakeiRepository albumTakeiRepository) {
+		this.musicalCompositionMainTakeiRepository = musicalCompositionMainTakeiRepository;
+		this.genreTakeiRepository = genreTakeiRepository;
+		this.albumTakeiRepository = albumTakeiRepository;
 	}
 
 	@Override
 	public List<GenreTakei> getListGenreTakei() {
 
-		//genretakeiテーブルにID取得
+		//GenreTakeiテーブルにID取得
 		return genreTakeiRepository.findAll(new Sort(Sort.Direction.ASC, "genreId"));
 	}
 
 	@Override
-	public List<AlbumTakei> getListAlbumTakei(){
+	public List<AlbumTakei> getListAlbumTakei() {
 
-		//albumtakeiテーブルにID取得
-		return albumTakeiRepository.findAll(new Sort(Sort.Direction.ASC,"albumId"));
+		//AlbumTakeiテーブルにID取得
+		return albumTakeiRepository.findAll(new Sort(Sort.Direction.ASC, "albumId"));
 	}
 
 	@Override
-	public Page<MusicalCompositionMainTakei> getPageMusicalComposition(final MusicalCompositionSearchMainForm form, final Pageable pageable){
+	public Page<MusicalCompositionMainTakei> getPageMusicalComposition(final MusicalCompositionSearchMainForm form,
+			final Pageable pageable) {
 
-		// 検索条件を生成しMusicalCompositionSearchMainテーブルのレコードを取得する
-		return musicalCompositionMainTakeiRepository.findAll(jp.co.futureantiques.webapptraining.repository.specification.MusicalCompositionSpecification.generateMusicalCompositionSpecification(form), pageable);
-		}
+		// 検索条件を生成しMusicalCompositionMainTakeiテーブルのレコードを取得する
+		return musicalCompositionMainTakeiRepository
+				.findAll(jp.co.futureantiques.webapptraining.repository.specification.MusicalCompositionSpecification
+						.generateMusicalCompositionSpecification(form), pageable);
+	}
 
 	@Override
-	public List<MusicalCompositionMainTakei> getListMusicalComposition(final MusicalCompositionSearchMainForm form){
+	public List<MusicalCompositionMainTakei> getListMusicalComposition(final MusicalCompositionSearchMainForm form) {
 
-		// 検索条件を生成しMusicalCompositionSearchMainテーブルのレコードを取得する
-		return musicalCompositionMainTakeiRepository.findAll(jp.co.futureantiques.webapptraining.repository.specification.MusicalCompositionSpecification.generateMusicalCompositionSpecification(form));
+		// 検索条件を生成しMusicalCompositionMainTakeiテーブルのレコードを取得する
+		return musicalCompositionMainTakeiRepository
+				.findAll(jp.co.futureantiques.webapptraining.repository.specification.MusicalCompositionSpecification
+						.generateMusicalCompositionSpecification(form));
 	}
 
 	@Override
 	public MusicalCompositionMainTakei getMusicalComposition(final long id) {
 
-		// MusicalCompositionSearchMainテーブルを主キー検索する
+		// MusicalCompositionMainTakeiテーブルを主キー検索する
 		return musicalCompositionMainTakeiRepository.findOne(id);
-		}
+	}
 
 	@Override
 	public MusicalCompositionMainTakei insertMusicalComposition(final MusicalCompositionInputForm form) {
 
 		// MusicalCompositionMainTakeiテーブルに新規でデータを登録する
-		final MusicalCompositionMainTakei musicalCompositionSearchMain=form.convertToMusicalCompositionSearchMainForInsert();
+		final MusicalCompositionMainTakei musicalCompositionSearchMain = form
+				.convertToMusicalCompositionSearchMainForInsert();
 		return musicalCompositionMainTakeiRepository.save(musicalCompositionSearchMain);
 	}
 
 	@Override
-	public MusicalCompositionMainTakei updateMusicalComposition(final  MusicalCompositionInputForm form) {
+	public MusicalCompositionMainTakei updateMusicalComposition(final MusicalCompositionInputForm form) {
 
 		// 更新対象のレコードを取得する
-		MusicalCompositionMainTakei musicalCompositionSearchMain=musicalCompositionMainTakeiRepository.findOne((long) form.getId());
-		if(musicalCompositionSearchMain!=null) {
+		MusicalCompositionMainTakei musicalCompositionSearchMain = musicalCompositionMainTakeiRepository
+				.findOne((long) form.getId());
+		if (musicalCompositionSearchMain != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if(form.getUpdateDate().equals(String.valueOf(musicalCompositionSearchMain.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(musicalCompositionSearchMain.getUpdateDate()))) {
 
-				musicalCompositionSearchMain=form.convertToMusicalCompositionSearchMainForUpdate(musicalCompositionSearchMain);
+				// チェックOKの場合、更新
+				musicalCompositionSearchMain = form
+						.convertToMusicalCompositionSearchMainForUpdate(musicalCompositionSearchMain);
 				return musicalCompositionMainTakeiRepository.saveAndFlush(musicalCompositionSearchMain);
 			}
 		}
 		return null;
-		}
+	}
 
 	@Override
 	public void deleteMusicalCompositionById(final long id) {
 
 		// 更新対象のレコードを取得する
-		MusicalCompositionMainTakei musicalCompositionSearchMain=musicalCompositionMainTakeiRepository.findOne(id);
-		if(musicalCompositionSearchMain!=null) {
+		MusicalCompositionMainTakei musicalCompositionSearchMain = musicalCompositionMainTakeiRepository.findOne(id);
+		if (musicalCompositionSearchMain != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
 			musicalCompositionMainTakeiRepository.delete(id);
@@ -121,6 +135,8 @@ public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSe
 
 	@Override
 	public void deleteMusicalCompositionComp(final ArrayList<Long> ids) {
+
+		// 対象のレコードを削除する
 		musicalCompositionMainTakeiRepository.deleteComp(ids);
-		}
+	}
 }

@@ -18,7 +18,6 @@ import lombok.Data;
  *
  * @author takei
 **/
-
 @Data
 @Entity
 public class GenreTakei {
@@ -50,5 +49,5 @@ public class GenreTakei {
 	@Transient
 	@OneToMany(targetEntity = MusicalCompositionMainTakei.class, mappedBy = "genreTakei")
 	@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")
-	private List<MusicalCompositionMainTakei>  musicalCompositionSearchMainList;
+	private List<MusicalCompositionMainTakei> musicalCompositionSearchMainList;
 }

@@ -52,4 +52,3 @@ public class AlbumTakei {
 	private List<MusicalCompositionMainTakei> musicalCompositionSearchMainList;
 }
 
-

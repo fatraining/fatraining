@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修 | 楽曲完全削除</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/musicl.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
 		<div class="sub-header">
@@ -22,67 +28,76 @@
 		</div>
 
 		<!-- 削除対象データ -->
-		<form class="form-horizontal" id="musicalCompositionDeleteForm" action="/musicalComposition/deletecomp"
+		<form class="form-horizontal" id="musicalCompositionDeleteForm"
+			action="/musicalComposition/deletecomp"
 			th:object="${musicalCompositionDeleteForm}" method="post">
 			<div th:if="${musicalCompositionList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
-				<h4 th:each="err : ${#fields.errors('deleteIds')}" th:text="#{${err}}"
-					class="err alert-danger">error message</h4>
+				<h4 th:each="err : ${#fields.errors('deleteIds')}"
+					th:text="#{${err}}" class="err alert-danger">error message</h4>
 			</div>
 			<div th:if="${musicalCompositioniList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
 			<div th:if="${musicalCompositionMainList != null}"
-			      class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-				<table id="resultTable" class="table table-borderd table-striped table-hover">
+				class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+				<table id="resultTable"
+					class="table table-borderd table-striped table-hover">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="allCheck"/></th>
-							<th class="per-19 center" th:text="#{musicalComposition.text.title}">楽曲名</th>
-							<th class="per-12 center" th:text="#{musicalComposition.text.genre}">ジャンル</th>
-							<th class="per-17 center" th:text="#{musicalComposition.text.album}">収録アルバム名</th>
-							<th class="per-16 center" th:text="#{musicalComposition.text.thenumberofeconds/releaseday}">分数/発売日</th>
-							<th class="per-40 center" th:text="#{musicalComposition.text.comment}">Comment</th>
+							<th><input type="checkbox" id="allCheck" /></th>
+							<th class="per-19 center"
+								th:text="#{musicalComposition.text.title}">楽曲名</th>
+							<th class="per-12 center"
+								th:text="#{musicalComposition.text.genre}">ジャンル</th>
+							<th class="per-17 center"
+								th:text="#{musicalComposition.text.album}">収録アルバム名</th>
+							<th class="per-16 center"
+								th:text="#{musicalComposition.text.thenumberofeconds/releaseday}">分数/発売日</th>
+							<th class="per-40 center"
+								th:text="#{musicalComposition.text.comment}">Comment</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="musicalComposition : ${musicalCompositionMainList}">
-							<td>
-								<label>
-									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"
-										th:value="${musicalComposition.id}"/>
-								</label>
+							<td><label> <input type="checkbox"
+									style="margin-left: 50%" th:field="*{deleteIds}"
+									th:value="${musicalComposition.id}" />
+							</label></td>
+							<td class="data center" th:text="${musicalComposition.title}">Institution</td>
+							<td class="data center"><label
+								th:if="${musicalComposition.genre != null}"
+								th:text="${musicalComposition.genre.genreId}"
+								class="data center">インスト</label></td>
+							<td class="data center"><label
+								th:if="${musicalComposition.album != null}"
+								th:text="${musicalComposition.album.albumId}"
+								class="data center">MY FIRST STORY</label></td>
+							<td class="data center"><label
+								th:if="${musicalComposition.theNumberOfEconds != null}"
+								th:text="${musicalComposition.theNumberOfEconds}+'分/'+${{musicalComposition.releaseDay}"
+								class="data center"></label>1.00分/2012年4月4日<label
+								th:if="${musicalComposition.theNumberOfEconds == null}"
+								th:text="${musicalComposition.releaseDay}" class="data center">1.00分/2012年4月4日</label>
 							</td>
-							<td class="data center" th:text="${musicalComposition.title}"></td>
-							<td class="data center">
-								<label th:if="${musicalComposition.genre != null}" th:text="${musicalComposition.genre.genreId}"
-								class="data center"></label>
-							</td>
-							<td class="data center">
-								<label th:if="${musicalComposition.album != null}" th:text="${musicalComposition.album.albumId}" class="data center"></label>
-							</td>
-							<td class="data center">
-								<label th:if="${musicalComposition.theNumberOfEconds != null}" th:text="${musicalComposition.theNumberOfEconds}+'分/'+${{musicalComposition.releaseDay}" class="data center"></label>
-								<label th:if="${musicalComposition.theNumberOfEconds == null}" th:text="${musicalComposition.releaseDay}" class="data center"></label>
-							</td>
-							<td class="data center" th:text="${musicalComposition.comment}"></td>
+							<td class="data center" th:text="${musicalComposition.comment}">インスト</td>
 						</tr>
 					</tbody>
 				</table>
 				<div>
 					<a class="btn btn-danger center-block"
 						onclick="$('#deleteForm').submit()"
-						th:text="#{common.text.delete}">
-					</a>
+						th:text="#{common.text.delete}"> </a>
 				</div>
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script th:src="@{/libs/jquery/jquery.js}"></script>
 	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
 	<script>
-		$('#allCheck').on('change', function(){
+		$('#allCheck').on('change', function() {
 			$('input[name=deleteIds]').prop('checked', this.checked);
 		});
 	</script>

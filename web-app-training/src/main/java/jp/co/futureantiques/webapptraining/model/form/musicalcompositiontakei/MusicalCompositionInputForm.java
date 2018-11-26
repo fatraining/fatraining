@@ -14,7 +14,6 @@ import lombok.Data;
  *
  * @author takei
  */
-
 @Data
 public class MusicalCompositionInputForm {
 
@@ -52,9 +51,8 @@ public class MusicalCompositionInputForm {
 	 *
 	 * @param MusicalCompositionMainTakei
 	 */
-
 	public void intiWithMusicalCompositionSearchMain(MusicalCompositionMainTakei musicalCompositionSearchMain) {
-		this.setId((int)musicalCompositionSearchMain.getId());
+		this.setId((int) musicalCompositionSearchMain.getId());
 		this.setTitle(musicalCompositionSearchMain.getTitle());
 		this.setGenreId(musicalCompositionSearchMain.getGenreId());
 		this.setAlbumId(musicalCompositionSearchMain.getAlbumId());
@@ -64,46 +62,48 @@ public class MusicalCompositionInputForm {
 		this.setUpdateDate(String.valueOf(musicalCompositionSearchMain.getUpdateDate()));
 	}
 
-    /**
-    * MusicalCompositionSearchMainエンティティに登録値を入れる
-    *
-    * @return MusicalCompositionSearchMain
-    *
-    */
-    public MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForInsert() {
-    	MusicalCompositionMainTakei musicalCompositionSearchMain = new MusicalCompositionMainTakei();
-    	musicalCompositionSearchMain =convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
-    	musicalCompositionSearchMain .setCreateDate(new Timestamp(new Date().getTime()));
-    	musicalCompositionSearchMain .setUpdateDate(musicalCompositionSearchMain.getCreateDate());
-    	return musicalCompositionSearchMain;
-    }
+	/**
+	 * MusicalCompositionMainTakeiエンティティに登録値を入れる
+	 *
+	 * @return MusicalCompositionMainTakei
+	 *
+	 */
+	public MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForInsert() {
+		MusicalCompositionMainTakei musicalCompositionSearchMain = new MusicalCompositionMainTakei();
+		musicalCompositionSearchMain = convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
+		musicalCompositionSearchMain.setCreateDate(new Timestamp(new Date().getTime()));
+		musicalCompositionSearchMain.setUpdateDate(musicalCompositionSearchMain.getCreateDate());
+		return musicalCompositionSearchMain;
+	}
 
-    /**
-     *  MusicalCompositionSearchMainエンティティに更新値を入れる
-     *
-     * @param MovieMain movieMain
-     * @return MovieMain
-     */
-    public  MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForUpdate(MusicalCompositionMainTakei musicalCompositionSearchMain) {
-    	musicalCompositionSearchMain=convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
-    	musicalCompositionSearchMain.setUpdateDate(new Timestamp(new Date().getTime()));
-    	return  musicalCompositionSearchMain;
-    }
+	/**
+	 *  MusicalCompositionMainTakeiエンティティに更新値を入れる
+	 *
+	 * @param MusicalCompositionMainTakei musicalCompositionMainTakei
+	 * @return MusicalCompositionMainTakei
+	 */
+	public MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForUpdate(
+			MusicalCompositionMainTakei musicalCompositionSearchMain) {
+		musicalCompositionSearchMain = convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
+		musicalCompositionSearchMain.setUpdateDate(new Timestamp(new Date().getTime()));
+		return musicalCompositionSearchMain;
+	}
 
-    /**
-     * MusicalCompositionSearchMainエンティティに入力値を入れる
-     *
-     * @param MusicalCompositionMainTakei musicalCompositionSearchMain
-     * @return MusicalCompositionSearchMain
-     */
-    private MusicalCompositionMainTakei convertToMusicalCompositionSearchMain(MusicalCompositionMainTakei musicalCompositionSearchMain) {
-    	musicalCompositionSearchMain.setTitle(this.title);
-    	musicalCompositionSearchMain.setGenreId(this.genreId);
-    	musicalCompositionSearchMain.setAlbumId(this.albumId);
-    	musicalCompositionSearchMain.setTheNumberOfEconds(this.theNumberOfEconds);
-    	musicalCompositionSearchMain.setReleaseDay(this.releaseDay);
-    	musicalCompositionSearchMain.setComment(this.comment);
-    	musicalCompositionSearchMain.setDelFlg("0");
-    	return musicalCompositionSearchMain;
+	/**
+	 * MusicalCompositionMainTakeiエンティティに入力値を入れる
+	 *
+	 * @param MusicalCompositionMainTakei musicalCompositionMainTakei
+	 * @return MusicalCompositionMainTakei
+	 */
+	private MusicalCompositionMainTakei convertToMusicalCompositionSearchMain(
+			MusicalCompositionMainTakei musicalCompositionSearchMain) {
+		musicalCompositionSearchMain.setTitle(this.title);
+		musicalCompositionSearchMain.setGenreId(this.genreId);
+		musicalCompositionSearchMain.setAlbumId(this.albumId);
+		musicalCompositionSearchMain.setTheNumberOfEconds(this.theNumberOfEconds);
+		musicalCompositionSearchMain.setReleaseDay(this.releaseDay);
+		musicalCompositionSearchMain.setComment(this.comment);
+		musicalCompositionSearchMain.setDelFlg("0");
+		return musicalCompositionSearchMain;
 	}
 }
