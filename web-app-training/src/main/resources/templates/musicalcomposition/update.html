@@ -33,7 +33,7 @@
 			<form method="post" id="musicalCompositionInputForm"
 				th:action="@{/musicalComposition/update}"
 				th:object="${musicalCompositionInputForm}" class="form-horizontal">
-				<input type="hidden" th:field="*{title}" />
+				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 					<label for="title" class="control-label"
 						th:text="#{musicalComposition.text.input.title.riquire}">Title(*):</label> <input type="text" th:field="*{title}"
@@ -63,8 +63,8 @@
 				</div>
 				<div class="form-group">
 					<label for="theNumberOfEconds" class="control-label"
-						th:text="#{musicalComposition.text.input.thenumberofeconds}">分数:</label> <input type="text" th:field="*{theNumberOfEconds}"
-						class="form-control" id="inputTheNumberOfEconds"
+						th:text="#{musicalComposition.text.input.thenumberofeconds}">分数:</label>
+						<input type="text" th:field="*{theNumberOfEconds}" class="form-control" id="inputTheNumberOfEconds"
 						th:placeholder="#{musicalComposition.text.theNumberOfEconds}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('theNumberOfEconds')}"
@@ -89,7 +89,7 @@
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
-						onclick="$('#SmusicalCompositionInputForm').submit()"
+						onclick="$('#musicalCompositionInputForm').submit()"
 						th:text="#{common.text.update}">Update</a>
 				</div>
 				<input type="hidden" th:field="*{updateDate}" />

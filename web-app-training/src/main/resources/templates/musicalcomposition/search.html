@@ -53,7 +53,7 @@
 					th:if="${(musicalCompositionSearchMainForm.title != null or
 							musicalCompositionSearchMainForm.genreId != null or
 							musicalCompositionSearchMainForm.albumId != null) and
-							musicalCompositionList == null}"
+							musicalCompositionMainTakeiList == null}"
 					th:text="#{common.text.info.search}">No Result</div>
 
 				<!-- DB操作後 -->
@@ -126,7 +126,7 @@
 		</div>
 
 		<!-- 検索結果の表示 -->
-		<section id="resultArea" th:if="${musicalCompositionList != null}">
+		<section id="resultArea" th:if="${musicalCompositionMainTakeiList != null}">
 			<table id="resultTable"
 				class="table table-borderd table-striped table-hover">
 				<thead>
@@ -146,7 +146,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="musicalComposition : ${musicalCompositionList}">
+					<tr th:each="musicalComposition : ${musicalCompositionMainTakeiList}">
 						<td class="data center" th:text="${musicalComposition.title}">インスト</td>
 						<td class="data center"><label
 							th:if="${musicalComposition.genreId != null}"

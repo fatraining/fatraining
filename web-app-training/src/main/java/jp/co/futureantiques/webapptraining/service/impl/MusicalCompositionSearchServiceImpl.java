@@ -96,26 +96,26 @@ public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSe
 	public MusicalCompositionMainTakei insertMusicalComposition(final MusicalCompositionInputForm form) {
 
 		// MusicalCompositionMainTakeiテーブルに新規でデータを登録する
-		final MusicalCompositionMainTakei musicalCompositionSearchMain = form
+		final MusicalCompositionMainTakei musicalCompositionMainTakei = form
 				.convertToMusicalCompositionSearchMainForInsert();
-		return musicalCompositionMainTakeiRepository.save(musicalCompositionSearchMain);
+		return musicalCompositionMainTakeiRepository.save(musicalCompositionMainTakei);
 	}
 
 	@Override
 	public MusicalCompositionMainTakei updateMusicalComposition(final MusicalCompositionInputForm form) {
 
 		// 更新対象のレコードを取得する
-		MusicalCompositionMainTakei musicalCompositionSearchMain = musicalCompositionMainTakeiRepository
+		MusicalCompositionMainTakei musicalCompositionMainTakei = musicalCompositionMainTakeiRepository
 				.findOne((long) form.getId());
-		if (musicalCompositionSearchMain != null) {
+		if (musicalCompositionMainTakei != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(musicalCompositionSearchMain.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(musicalCompositionMainTakei.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
-				musicalCompositionSearchMain = form
-						.convertToMusicalCompositionSearchMainForUpdate(musicalCompositionSearchMain);
-				return musicalCompositionMainTakeiRepository.saveAndFlush(musicalCompositionSearchMain);
+				musicalCompositionMainTakei = form
+						.convertTomusicalCompositionMainTakeiForUpdate(musicalCompositionMainTakei);
+				return musicalCompositionMainTakeiRepository.saveAndFlush(musicalCompositionMainTakei);
 			}
 		}
 		return null;
@@ -125,8 +125,8 @@ public class MusicalCompositionSearchServiceImpl implements MusicalCompositionSe
 	public void deleteMusicalCompositionById(final long id) {
 
 		// 更新対象のレコードを取得する
-		MusicalCompositionMainTakei musicalCompositionSearchMain = musicalCompositionMainTakeiRepository.findOne(id);
-		if (musicalCompositionSearchMain != null) {
+		MusicalCompositionMainTakei musicalCompositionMainTakei = musicalCompositionMainTakeiRepository.findOne(id);
+		if (musicalCompositionMainTakei != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
 			musicalCompositionMainTakeiRepository.delete(id);

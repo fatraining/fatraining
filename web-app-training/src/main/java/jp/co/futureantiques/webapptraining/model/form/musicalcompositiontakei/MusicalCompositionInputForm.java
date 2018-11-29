@@ -3,7 +3,6 @@ package jp.co.futureantiques.webapptraining.model.form.musicalcompositiontakei;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import jp.co.futureantiques.webapptraining.model.musicalcomposition.takei.MusicalCompositionMainTakei;
@@ -31,8 +30,7 @@ public class MusicalCompositionInputForm {
 	private Integer albumId;
 
 	/** 時間 */
-	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	@Size(min = 0, max = 4)
 	private String theNumberOfEconds;
 
 	/** 発売日 */
@@ -51,15 +49,15 @@ public class MusicalCompositionInputForm {
 	 *
 	 * @param MusicalCompositionMainTakei
 	 */
-	public void intiWithMusicalCompositionSearchMain(MusicalCompositionMainTakei musicalCompositionSearchMain) {
-		this.setId((int) musicalCompositionSearchMain.getId());
-		this.setTitle(musicalCompositionSearchMain.getTitle());
-		this.setGenreId(musicalCompositionSearchMain.getGenreId());
-		this.setAlbumId(musicalCompositionSearchMain.getAlbumId());
-		this.setTheNumberOfEconds(musicalCompositionSearchMain.getTheNumberOfEconds());
-		this.setReleaseDay(musicalCompositionSearchMain.getReleaseDay());
-		this.setComment(musicalCompositionSearchMain.getComment());
-		this.setUpdateDate(String.valueOf(musicalCompositionSearchMain.getUpdateDate()));
+	public void intiWithmusicalCompositionMainTakei(MusicalCompositionMainTakei musicalCompositionMainTakei) {
+		this.setId((int) musicalCompositionMainTakei.getId());
+		this.setTitle(musicalCompositionMainTakei.getTitle());
+		this.setGenreId(musicalCompositionMainTakei.getGenreId());
+		this.setAlbumId(musicalCompositionMainTakei.getAlbumId());
+		this.setTheNumberOfEconds(musicalCompositionMainTakei.getTheNumberOfEconds());
+		this.setReleaseDay(musicalCompositionMainTakei.getReleaseDay());
+		this.setComment(musicalCompositionMainTakei.getComment());
+		this.setUpdateDate(String.valueOf(musicalCompositionMainTakei.getUpdateDate()));
 	}
 
 	/**
@@ -69,11 +67,11 @@ public class MusicalCompositionInputForm {
 	 *
 	 */
 	public MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForInsert() {
-		MusicalCompositionMainTakei musicalCompositionSearchMain = new MusicalCompositionMainTakei();
-		musicalCompositionSearchMain = convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
-		musicalCompositionSearchMain.setCreateDate(new Timestamp(new Date().getTime()));
-		musicalCompositionSearchMain.setUpdateDate(musicalCompositionSearchMain.getCreateDate());
-		return musicalCompositionSearchMain;
+		MusicalCompositionMainTakei musicalCompositionMainTakei = new MusicalCompositionMainTakei();
+		musicalCompositionMainTakei = convertTomusicalCompositionMainTakei(musicalCompositionMainTakei);
+		musicalCompositionMainTakei.setCreateDate(new Timestamp(new Date().getTime()));
+		musicalCompositionMainTakei.setUpdateDate(musicalCompositionMainTakei.getCreateDate());
+		return musicalCompositionMainTakei;
 	}
 
 	/**
@@ -82,11 +80,11 @@ public class MusicalCompositionInputForm {
 	 * @param MusicalCompositionMainTakei musicalCompositionMainTakei
 	 * @return MusicalCompositionMainTakei
 	 */
-	public MusicalCompositionMainTakei convertToMusicalCompositionSearchMainForUpdate(
-			MusicalCompositionMainTakei musicalCompositionSearchMain) {
-		musicalCompositionSearchMain = convertToMusicalCompositionSearchMain(musicalCompositionSearchMain);
-		musicalCompositionSearchMain.setUpdateDate(new Timestamp(new Date().getTime()));
-		return musicalCompositionSearchMain;
+	public MusicalCompositionMainTakei convertTomusicalCompositionMainTakeiForUpdate(
+			MusicalCompositionMainTakei musicalCompositionMainTakei) {
+		musicalCompositionMainTakei = convertTomusicalCompositionMainTakei(musicalCompositionMainTakei);
+		musicalCompositionMainTakei.setUpdateDate(new Timestamp(new Date().getTime()));
+		return musicalCompositionMainTakei;
 	}
 
 	/**
@@ -95,15 +93,15 @@ public class MusicalCompositionInputForm {
 	 * @param MusicalCompositionMainTakei musicalCompositionMainTakei
 	 * @return MusicalCompositionMainTakei
 	 */
-	private MusicalCompositionMainTakei convertToMusicalCompositionSearchMain(
-			MusicalCompositionMainTakei musicalCompositionSearchMain) {
-		musicalCompositionSearchMain.setTitle(this.title);
-		musicalCompositionSearchMain.setGenreId(this.genreId);
-		musicalCompositionSearchMain.setAlbumId(this.albumId);
-		musicalCompositionSearchMain.setTheNumberOfEconds(this.theNumberOfEconds);
-		musicalCompositionSearchMain.setReleaseDay(this.releaseDay);
-		musicalCompositionSearchMain.setComment(this.comment);
-		musicalCompositionSearchMain.setDelFlg("0");
-		return musicalCompositionSearchMain;
+	private MusicalCompositionMainTakei convertTomusicalCompositionMainTakei(
+			MusicalCompositionMainTakei musicalCompositionMainTakei) {
+		musicalCompositionMainTakei.setTitle(this.title);
+		musicalCompositionMainTakei.setGenreId(this.genreId);
+		musicalCompositionMainTakei.setAlbumId(this.albumId);
+		musicalCompositionMainTakei.setTheNumberOfEconds(this.theNumberOfEconds);
+		musicalCompositionMainTakei.setReleaseDay(this.releaseDay);
+		musicalCompositionMainTakei.setComment(this.comment);
+		musicalCompositionMainTakei.setDelFlg("0");
+		return musicalCompositionMainTakei;
 	}
 }

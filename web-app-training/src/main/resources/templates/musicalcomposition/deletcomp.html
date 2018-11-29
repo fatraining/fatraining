@@ -28,18 +28,18 @@
 		</div>
 
 		<!-- 削除対象データ -->
-		<form class="form-horizontal" id="musicalCompositionDeleteForm"
-			action="/musicalComposition/deletecomp"
+		<form class="form-horizontal" id="deleteForm"
+			action="/musicalComposition/deletcomp"
 			th:object="${musicalCompositionDeleteForm}" method="post">
-			<div th:if="${musicalCompositionList != null}">
+			<div th:if="${musicalCompositionMainTakeiList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
 				<h4 th:each="err : ${#fields.errors('deleteIds')}"
 					th:text="#{${err}}" class="err alert-danger">error message</h4>
 			</div>
-			<div th:if="${musicalCompositioniList == null}">
+			<div th:if="${musicalCompositionMainTakeiList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
-			<div th:if="${musicalCompositionMainList != null}"
+			<div th:if="${musicalCompositionMainTakeiList != null}"
 				class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 				<table id="resultTable"
 					class="table table-borderd table-striped table-hover">
@@ -59,27 +59,29 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="musicalComposition : ${musicalCompositionMainList}">
+						<tr
+							th:each="musicalComposition : ${musicalCompositionMainTakeiList}">
 							<td><label> <input type="checkbox"
 									style="margin-left: 50%" th:field="*{deleteIds}"
 									th:value="${musicalComposition.id}" />
 							</label></td>
 							<td class="data center" th:text="${musicalComposition.title}">Institution</td>
 							<td class="data center"><label
-								th:if="${musicalComposition.genre != null}"
-								th:text="${musicalComposition.genre.genreId}"
+								th:if="${musicalComposition.genreId != null}"
+								th:text="${musicalComposition.genreTakei.genreId}"
 								class="data center">インスト</label></td>
 							<td class="data center"><label
-								th:if="${musicalComposition.album != null}"
-								th:text="${musicalComposition.album.albumId}"
+								th:if="${musicalComposition.albumId != null}"
+								th:text="${musicalComposition.albumTakei.albumId}"
 								class="data center">MY FIRST STORY</label></td>
 							<td class="data center"><label
 								th:if="${musicalComposition.theNumberOfEconds != null}"
-								th:text="${musicalComposition.theNumberOfEconds}+'分/'+${{musicalComposition.releaseDay}"
-								class="data center"></label>1.00分/2012年4月4日<label
+								th:text="${musicalComposition.theNumberOfEconds}+'分/'+${musicalComposition.releaseDay}"
+								class="data center">1.00分/2012年4月4日</label>
+								<label
 								th:if="${musicalComposition.theNumberOfEconds == null}"
-								th:text="${musicalComposition.releaseDay}" class="data center">1.00分/2012年4月4日</label>
-							</td>
+								th:text="${musicalComposition.releaseDay}+'年'"
+								class="data center">1.00分/2012年4月4日</label></td>
 							<td class="data center" th:text="${musicalComposition.comment}">インスト</td>
 						</tr>
 					</tbody>

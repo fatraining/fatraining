@@ -49,5 +49,5 @@ public class GenreTakei {
 	@Transient
 	@OneToMany(targetEntity = MusicalCompositionMainTakei.class, mappedBy = "genreTakei")
 	@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")
-	private List<MusicalCompositionMainTakei> musicalCompositionSearchMainList;
+	private List<MusicalCompositionMainTakei> MusicalCompositionMainTakeiList;
 }

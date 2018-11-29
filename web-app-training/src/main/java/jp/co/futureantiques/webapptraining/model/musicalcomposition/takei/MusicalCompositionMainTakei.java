@@ -43,6 +43,7 @@ public class MusicalCompositionMainTakei {
 	private Integer albumId;
 
 	/** 時間 */
+	@Size(max = 5)
 	@Column(name = "the_number_of_econds")
 	private String theNumberOfEconds;
 

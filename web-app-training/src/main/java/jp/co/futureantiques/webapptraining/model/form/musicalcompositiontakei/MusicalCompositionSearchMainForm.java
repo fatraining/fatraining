@@ -31,10 +31,10 @@ public class MusicalCompositionSearchMainForm {
 	 *
 	 * @param MusicalCompositionMainTakei
 	 */
-	public void setValues(MusicalCompositionMainTakei musicalCompositionSearchMain) {
-		this.setId((int) musicalCompositionSearchMain.getId());
-		this.setTitle(musicalCompositionSearchMain.getTitle());
-		this.setGenreId(musicalCompositionSearchMain.getGenreId());
-		this.setAlbumId(musicalCompositionSearchMain.getAlbumId());
+	public void setValues(MusicalCompositionMainTakei musicalCompositionMainTakei) {
+		this.setId((int) musicalCompositionMainTakei.getId());
+		this.setTitle(musicalCompositionMainTakei.getTitle());
+		this.setGenreId(musicalCompositionMainTakei.getGenreId());
+		this.setAlbumId(musicalCompositionMainTakei.getAlbumId());
 	}
 }
