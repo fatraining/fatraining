@@ -50,9 +50,8 @@
 
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
-					th:if="${(attractionIwaseSearchForm.movieTitle != null or
-							attractionIwaseSearchForm.genreId != null or
-							attractionIwaseSearchForm.actorId != null) and
+					th:if="${(attractionIwaseSearchForm.attractionName != null or
+							attractionIwaseSearchForm.themeparkId != null or
 							attractionList == null}"
                      th:text="#{common.text.info.search}">No Result
 				</div>
@@ -232,7 +231,7 @@
 			var attractionName = button.data('title');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", attractionId);
-			modal.find('#deleteTitle').text(attractionName);
+			modal.find('#deleteName').text(attractionName);
 		});
 	</script>
 </body>
