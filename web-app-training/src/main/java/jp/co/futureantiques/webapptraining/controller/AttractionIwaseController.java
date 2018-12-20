@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
+import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
-import jp.co.futureantiques.webapptraining.model.form.moviesample.MovieSampleDeleteForm;
 import jp.co.futureantiques.webapptraining.service.AttractionIwaseService;
 /**
  * AttractionIwase
@@ -84,7 +84,7 @@ public class AttractionIwaseController {
 
 			// 検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", attractionList);
-			model.addAttribute("movieList", attractionList.getContent());
+			model.addAttribute("attractionList", attractionList.getContent());
 			model.addAttribute("url", "search");
 		}
 		return "attractioniwase/search";
@@ -104,7 +104,7 @@ public class AttractionIwaseController {
 	/**
 	 * MovieMainテーブルにデータを登録して検索画面に遷移する
 	 *
-	 * @param MovieSampleInputForm form
+	 * @param AttractionIwaseInputForm form
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
@@ -114,7 +114,7 @@ public class AttractionIwaseController {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合自画面に戻る
-			return "moviesample/insert";
+			return "attractioniwase/insert";
 		}
 
 		// データを登録する
@@ -126,11 +126,11 @@ public class AttractionIwaseController {
 	 * 更新画面に遷移する
 	 *
 	 * @param long id
-	 * @param MovieSampleInputForm movieSampleInputForm
+	 * @param AttractionIwaseInputForm attractionIwaseInputForm
 	 * @return 更新画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String showUpdateMovie(@RequestParam(name = "id") final long id,
+	public String showUpdateAttraction(@RequestParam(name = "id") final long id,
 			@ModelAttribute final AttractionIwaseInputForm attractionIwaseInputForm) {
 
 		// IDをキーにAttractionMainテーブルを検索する
@@ -162,9 +162,9 @@ public class AttractionIwaseController {
 		if (attractionMain == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する
-			return "redirect:/moviesample?result=updatefailed";
+			return "redirect:/attractioniwase?result=updatefailed";
 		}
-		return "redirect:/attractionowase?result=update&id=" + attractionMain.getId();
+		return "redirect:/attractioniwase?result=update&id=" + attractionMain.getId();
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class AttractionIwaseController {
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompAttraction(final AttractionIwaseSearchForm form,
-			@ModelAttribute final MovieSampleDeleteForm movieSampleDeleteForm, final Model model) {
+			@ModelAttribute final AttractionIwaseDeleteForm attractionIwaseDeleteForm, final Model model) {
 
 		// AttractionMainテーブルから削除フラグが1のレコードを検索する
 		final List<AttractionMain> attractionList = attractionIwaseService.getListAttraction(form);
@@ -204,13 +204,13 @@ public class AttractionIwaseController {
 	/**
 	 * AttractionMainテーブルのデータを完全削除して検索画面に遷移する
 	 *
-	 * @param AttractionSampleDeleteForm form
+	 * @param AttractionIwaseDeleteForm form
 	 * @param BindingResult bindingResult
 	 * @param Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
-	public String deleteCompMovie(@Validated final MovieSampleDeleteForm form,
+	public String deleteCompAttraction(@Validated final AttractionIwaseDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
@@ -221,7 +221,7 @@ public class AttractionIwaseController {
 
 			// Modelに検索結果を格納する
 			model.addAttribute(attractionList);
-			return "attractionsample/deletecomp";
+			return "attractioniwase/deletecomp";
 		}
 
 		// データを完全削除する
@@ -229,6 +229,3 @@ public class AttractionIwaseController {
 		return "redirect:/attractioniwase?result=deletecomp";
 	}
 }
-
-
-
