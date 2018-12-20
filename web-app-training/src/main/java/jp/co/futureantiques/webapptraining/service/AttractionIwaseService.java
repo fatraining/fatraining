@@ -30,6 +30,7 @@ public interface AttractionIwaseService {
 	 *
 	 * @param AttractionIwaseSearchForm form
 	 * @param Pageable pageable
+	 *
 	 * @return AttractionMainのリスト
 	 */
 	Page<AttractionMain> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable);
