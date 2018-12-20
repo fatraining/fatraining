@@ -79,7 +79,7 @@ public class AttractionIwaseController {
 	public String searchAttraction(final AttractionIwaseSearchForm form, final Model model, final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得する
-		final Page<AttractionMain> attractionList = attractionIwaseService.getPageMovie(form, pageable);
+		final Page<AttractionMain> attractionList = attractionIwaseService.getPageAttraction(form, pageable);
 		if (attractionList.getTotalElements() != 0) {
 
 			// 検索結果がある場合、Modelに結果をセットする
