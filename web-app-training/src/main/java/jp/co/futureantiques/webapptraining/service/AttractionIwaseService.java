@@ -33,7 +33,7 @@ public interface AttractionIwaseService {
 	 * @param Pageable pageable
 	 * @return AttractionMainのリスト
 	 */
-	Page<AttractionMain> getPageMovie(final AttractionIwaseSearchForm form, final Pageable pageable);
+	Page<AttractionMain> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にAttractionMainのレコードのリストを取得する
