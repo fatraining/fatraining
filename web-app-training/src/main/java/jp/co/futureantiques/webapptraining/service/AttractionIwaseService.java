@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
