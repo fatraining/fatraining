@@ -58,5 +58,5 @@ public class AttractionMain {
 
 	@ManyToOne(targetEntity = Themeparkiwase.class)
 	@JoinColumn(name = "themepark_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Themeparkiwase themepark;
+	private Themeparkiwase themeparkiwase;
 }
