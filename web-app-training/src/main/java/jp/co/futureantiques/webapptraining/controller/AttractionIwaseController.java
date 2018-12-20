@@ -64,7 +64,7 @@ public class AttractionIwaseController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchAttraction(@ModelAttribute final AttractionIwaseSearchForm attractionIwaseSearchForm) {
-		return "attractionIwase/search";
+		return "attractioniwase/search";
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class AttractionIwaseController {
 	}
 
 	/**
-	 * MovieMainテーブルにデータを登録して検索画面に遷移する
+	 * AttractionMainテーブルにデータを登録して検索画面に遷移する
 	 *
 	 * @param AttractionIwaseInputForm form
 	 * @param BindingResult bindingResult
