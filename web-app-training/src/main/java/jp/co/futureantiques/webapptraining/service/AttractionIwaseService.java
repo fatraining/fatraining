@@ -14,7 +14,7 @@ import jp.co.futureantiques.webapptraining.model.form.attractioniwase.Attraction
 /**
  * AtrractionIwaseのサービスインターフェース
  *
- * @author future
+ * @author iwase
  */
 public interface AttractionIwaseService {
 
