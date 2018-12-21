@@ -56,7 +56,7 @@ public class AttractionMain {
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	@ManyToOne(targetEntity = Themeparkiwase.class)
+	@ManyToOne(targetEntity = ThemeparkIwase.class)
 	@JoinColumn(name = "themepark_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Themeparkiwase themeparkiwase;
+	private ThemeparkIwase themeparkiwase;
 }
