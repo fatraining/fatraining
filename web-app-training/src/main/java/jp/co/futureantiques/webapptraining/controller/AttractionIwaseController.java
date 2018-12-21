@@ -21,12 +21,7 @@ import jp.co.futureantiques.webapptraining.model.form.attractioniwase.Attraction
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
 import jp.co.futureantiques.webapptraining.service.AttractionIwaseService;
-/**
- * AttractionIwase
- * のコントローラークラス
- *
- * @author future
- */
+
 
 @Controller
 @RequestMapping(value = "/attractioniwase")
@@ -35,18 +30,14 @@ public class AttractionIwaseController {
 	/** アトラクションのサービス */
 	private final AttractionIwaseService attractionIwaseService;
 
-	/**
-	 * コンストラクタ
-	 *
-	 * @param AttractionIwaseService attractionIwaseService
-	 */
+	/**コンストラクタ*/
 	@Autowired
 	public AttractionIwaseController(final AttractionIwaseService attractionIwaseService) {
 		this.attractionIwaseService = attractionIwaseService;
 	}
 
 	/**
-	 * テーマパークエンティティのリストを取得する
+	 * テーマパークエンティティのリストを取得
 	 *
 	 * @return ThemeparkEntityのリスト
 	 */
@@ -56,20 +47,15 @@ public class AttractionIwaseController {
 	}
 
 
-	/**
-	 * 検索画面に遷移する
-	 *
+	/**検索画面に遷移
 	 * @param AttractionIwaseSearchForm attractionIwaseSearchForm
-	 * @return 検索画面のパス
-	 */
+	 * @return 検索画面のパス*/
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchAttraction(@ModelAttribute final AttractionIwaseSearchForm attractionIwaseSearchForm) {
 		return "attractioniwase/search";
 	}
 
-	/**
-	 * 検索結果を取得して検索画面に遷移する
-	 *
+	/**検索結果を取得→検索画面に遷移
 	 * @param AttractionIwaseSearchForm form
 	 * @param Model model
 	 * @param Pageable pageable
@@ -78,11 +64,11 @@ public class AttractionIwaseController {
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchAttraction(final AttractionIwaseSearchForm form, final Model model, final Pageable pageable) {
 
-		// 入力された検索条件を元にレコードを取得する
+		// 入力された検索条件を元にレコードを取得
 		final Page<AttractionMain> attractionList = attractionIwaseService.getPageAttraction(form, pageable);
 		if (attractionList.getTotalElements() != 0) {
 
-			// 検索結果がある場合、Modelに結果をセットする
+			// 検索結果がある場合、Modelに結果をセット
 			model.addAttribute("page", attractionList);
 			model.addAttribute("attractionList", attractionList.getContent());
 			model.addAttribute("url", "search");
@@ -91,7 +77,7 @@ public class AttractionIwaseController {
 	}
 
 	/**
-	 * 追加画面に遷移する
+	 * 追加画面に遷移
 	 *
 	 * @param AttractionIwaseInputForm attractionIwaseInputForm
 	 * @return 追加画面のパス
