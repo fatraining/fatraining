@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * アトラクション検索画面のFormクラス
  *
- * @author future
+ * @author iwase
  */
 @Data
 public class AttractionIwaseSearchForm {
