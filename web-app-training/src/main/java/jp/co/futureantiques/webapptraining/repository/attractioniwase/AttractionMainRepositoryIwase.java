@@ -14,7 +14,7 @@ import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
 /**
  * AttractionMainリポジトリのインターフェース
  *
- * @author future
+ * @author iwase
  */
 public interface AttractionMainRepositoryIwase extends JpaRepository<AttractionMain, Long>,
 JpaSpecificationExecutor<AttractionMain> {
