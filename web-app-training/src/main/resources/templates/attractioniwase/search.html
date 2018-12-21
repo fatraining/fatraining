@@ -228,7 +228,7 @@
 		$('#deleteModal').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget);
 			var attractionId = button.data('id');
-			var attractionName = button.data('title');
+			var attractionName = button.data('name');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", attractionId);
 			modal.find('#deleteName').text(attractionName);
