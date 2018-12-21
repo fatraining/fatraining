@@ -82,7 +82,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="themepark" class="control-label col-sm-2" th:text="#{attraction.text.input.genre}">Themepark:</label>
+				<label for="themepark" class="control-label col-sm-2" th:text="#{attraction.text.input.themepark}">Themepark:</label>
 				<div class="col-sm-8">
 					<select
 						id="inputThemepark"
@@ -130,7 +130,7 @@
 						<td class="data center">
 							<label th:if="${attraction.themepark != null}"  th:text="${attraction.themepark.themepark}" class="data center"></label>
 						</td>
-						<td class="data center" th:text="${attraction.comment}"></td>
+						<td class="data center" th:text="${attraction.comment}">bb</td>
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/attractioniwase/update(id=${attraction.id})}"
@@ -193,7 +193,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteTitle">Movie Title</span>
+									<span id="deleteName">Attraction Name</span>
 								</p>
 							</div>
 						</div>
