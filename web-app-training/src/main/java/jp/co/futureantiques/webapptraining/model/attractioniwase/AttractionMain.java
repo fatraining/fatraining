@@ -17,7 +17,7 @@ import lombok.Data;
 /**
  * AttractionMainテーブルと対応するEntity
  *
- * @author future
+ * @author iwase
  */
 @Data
 @Entity
