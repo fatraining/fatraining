@@ -51,7 +51,7 @@
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${(attractionIwaseSearchForm.attractionName != null or
-							attractionIwaseSearchForm.themeparkId != null or
+							attractionIwaseSearchForm.themeparkId != null )and
 							attractionList == null}"
                      th:text="#{common.text.info.search}">No Result
 				</div>
