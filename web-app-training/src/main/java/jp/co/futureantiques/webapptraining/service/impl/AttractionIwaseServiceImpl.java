@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
-import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
 import jp.co.futureantiques.webapptraining.repository.attractioniwase.AttractionMainRepositoryIwase;
@@ -46,7 +46,7 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	}
 
 	@Override
-	public List<Themeparkiwase> getListThemepark() {
+	public List<ThemeparkIwase> getListThemepark() {
 
 		// ThemeparkテーブルのレコードをID順に取得する
 		return themeparkRepositoryIwase.findAll(new Sort(Sort.Direction.ASC, "id"));

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
-import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
@@ -42,7 +42,7 @@ public class AttractionIwaseController {
 	 * @return ThemeparkEntityのリスト
 	 */
 	@ModelAttribute
-	public List<Themeparkiwase> getListThemepark() {
+	public List<ThemeparkIwase> getListThemepark() {
 		return attractionIwaseService.getListThemepark();
 	}
 

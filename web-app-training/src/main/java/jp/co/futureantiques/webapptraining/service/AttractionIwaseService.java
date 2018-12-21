@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
-import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
 
@@ -23,7 +23,7 @@ public interface AttractionIwaseService {
 	 *
 	 * @return ThemeparkEntityのリスト
 	 */
-	List<Themeparkiwase> getListThemepark();
+	List<ThemeparkIwase> getListThemepark();
 
 	/**
 	 * 検索条件を元にAttractionMainのレコードのリストを取得する(Paging)

@@ -2,7 +2,7 @@ package jp.co.futureantiques.webapptraining.repository.attractioniwase;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 
 
 /**
@@ -10,5 +10,5 @@ import jp.co.futureantiques.webapptraining.model.attractioniwase.Themeparkiwase;
  *
  * @author future
  */
-public interface ThemeparkRepositoryIwase extends JpaRepository<Themeparkiwase, Long> {
+public interface ThemeparkRepositoryIwase extends JpaRepository<ThemeparkIwase, Long> {
 }
