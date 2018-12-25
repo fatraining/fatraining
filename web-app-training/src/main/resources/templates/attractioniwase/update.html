@@ -18,7 +18,7 @@
 		</div>
 		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
-				<h1 align="center" th:text="#{movie.text.update}">アトラクション更新</h1>
+				<h1 align="center" th:text="#{attraction.text.update}">アトラクション更新</h1>
 				<a th:href="@{/attractioniwase}" th:text="#{common.text.back}">Back</a>
 			</div>
 
@@ -29,11 +29,11 @@
 				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{attraction.text.input.title.riquire}"> Title(*):</label>
+						th:text="#{attraction.text.input.name.riquire}"> Name(*):</label>
 					<input type="text" th:field="*{attractionName}" class="form-control"
-						th:placeholder="#{attraction.text.title}" />
+						th:placeholder="#{attraction.text.name}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('attractionName')}"
-						th:text="#{${err}(#{attraction.text.title})}"></p>
+						th:text="#{${err}(#{attraction.text.name})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="themepark" class="control-label"
