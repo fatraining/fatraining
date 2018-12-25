@@ -88,7 +88,7 @@ public class AttractionIwaseController {
 	}
 
 	/**
-	 * AttractionMainテーブルにデータを登録して検索画面に遷移する
+	 * AttractionMainIwaseテーブルにデータを登録して検索画面に遷移する
 	 *
 	 * @param AttractionIwaseInputForm form
 	 * @param BindingResult bindingResult
@@ -104,8 +104,8 @@ public class AttractionIwaseController {
 		}
 
 		// データを登録する
-		final AttractionMainIwase attractionMain = attractionIwaseService.insertAttraction(form);
-		return "redirect:/attractioniwase?result=insert&id=" + attractionMain.getId();
+		final AttractionMainIwase attractionMainIwase = attractionIwaseService.insertAttraction(form);
+		return "redirect:/attractioniwase?result=insert&id=" + attractionMainIwase.getId();
 	}
 
 	/**
@@ -120,10 +120,10 @@ public class AttractionIwaseController {
 			@ModelAttribute final AttractionIwaseInputForm attractionIwaseInputForm) {
 
 		// IDをキーにAttractionMainテーブルを検索する
-		AttractionMainIwase attractionMain = attractionIwaseService.getAttraction(id);
+		AttractionMainIwase attractionMainIwase = attractionIwaseService.getAttraction(id);
 
 		// フォームにレコードの値をセットする
-		attractionIwaseInputForm.initWithAttractionMain(attractionMain);
+		attractionIwaseInputForm.initWithAttractionMain(attractionMainIwase);
 		return "attractioniwase/update";
 	}
 
@@ -144,17 +144,17 @@ public class AttractionIwaseController {
 		}
 
 		// データを更新する
-		AttractionMainIwase attractionMain = attractionIwaseService.updateAttraction(form);
-		if (attractionMain == null) {
+		AttractionMainIwase attractionMainIwase = attractionIwaseService.updateAttraction(form);
+		if (attractionMainIwase == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/attractioniwase?result=updatefailed";
 		}
-		return "redirect:/attractioniwase?result=update&id=" + attractionMain.getId();
+		return "redirect:/attractioniwase?result=update&id=" + attractionMainIwase.getId();
 	}
 
 	/**
-	 * AttractionMainテーブルのレコードを論理削除して検索画面に遷移する
+	 * AttractionMainIwaseテーブルのレコードを論理削除して検索画面に遷移する
 	 *
 	 * @param long id
 	 * @return 検索画面のパス

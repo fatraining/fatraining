@@ -55,45 +55,45 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	@Override
 	public Page<AttractionMainIwase> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable) {
 
-		// 検索条件を生成しAttractionMainテーブルのレコードを取得する
+		// 検索条件を生成しAttractionMainIwaseテーブルのレコードを取得する
 		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form), pageable);
 	}
 
 	@Override
 	public List<AttractionMainIwase> getListAttraction(final AttractionIwaseSearchForm form) {
 
-		// 検索条件を生成しMovieMainテーブルのレコードを取得する
+		// 検索条件を生成しAttractionMainIwaseテーブルのレコードを取得する
 		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form));
 	}
 
 	@Override
 	public AttractionMainIwase getAttraction(final long id) {
 
-		// AttractionMainテーブルを主キー検索する
+		// AttractionMainIwaseテーブルを主キー検索する
 		return attractionMainRepositoryIwase.findOne(id);
 	}
 
 	@Override
 	public AttractionMainIwase insertAttraction(final AttractionIwaseInputForm form) {
 
-		// AttractionMainテーブルに新規でデータを登録する
-		final AttractionMainIwase attractionMain = form.convertToAttractionMainForInsert();
-		return attractionMainRepositoryIwase.save(attractionMain);
+		// AttractionMainIwaseテーブルに新規でデータを登録する
+		final AttractionMainIwase attractionMainIwase = form.convertToAttractionMainForInsert();
+		return attractionMainRepositoryIwase.save(attractionMainIwase);
 	}
 
 	@Override
 	public AttractionMainIwase updateAttraction(final AttractionIwaseInputForm form) {
 
 		// 更新対象のレコードを取得する
-		AttractionMainIwase attractionMain = attractionMainRepositoryIwase.findOne((long) form.getId());
-		if (attractionMain != null) {
+		AttractionMainIwase attractionMainIwase = attractionMainRepositoryIwase.findOne((long) form.getId());
+		if (attractionMainIwase != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(attractionMain.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(attractionMainIwase.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
-				attractionMain = form.convertToAttractionMainForUpdate(attractionMain);
-				return attractionMainRepositoryIwase.saveAndFlush(attractionMain);
+				attractionMainIwase = form.convertToAttractionMainForUpdate(attractionMainIwase);
+				return attractionMainRepositoryIwase.saveAndFlush(attractionMainIwase);
 			}
 		}
 		return null;
@@ -103,8 +103,8 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	public void deleteAttractionById(final long id) {
 
 		// 更新対象のレコードを取得する
-		AttractionMainIwase attractionMain = attractionMainRepositoryIwase.findOne(id);
-		if (attractionMain != null) {
+		AttractionMainIwase attractionMainIwase = attractionMainRepositoryIwase.findOne(id);
+		if (attractionMainIwase != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
 			attractionMainRepositoryIwase.delete(id);
