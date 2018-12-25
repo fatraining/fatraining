@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
@@ -53,39 +53,39 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	}
 
 	@Override
-	public Page<AttractionMain> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable) {
+	public Page<AttractionMainIwase> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable) {
 
 		// 検索条件を生成しAttractionMainテーブルのレコードを取得する
 		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form), pageable);
 	}
 
 	@Override
-	public List<AttractionMain> getListAttraction(final AttractionIwaseSearchForm form) {
+	public List<AttractionMainIwase> getListAttraction(final AttractionIwaseSearchForm form) {
 
 		// 検索条件を生成しMovieMainテーブルのレコードを取得する
 		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form));
 	}
 
 	@Override
-	public AttractionMain getAttraction(final long id) {
+	public AttractionMainIwase getAttraction(final long id) {
 
 		// AttractionMainテーブルを主キー検索する
 		return attractionMainRepositoryIwase.findOne(id);
 	}
 
 	@Override
-	public AttractionMain insertAttraction(final AttractionIwaseInputForm form) {
+	public AttractionMainIwase insertAttraction(final AttractionIwaseInputForm form) {
 
 		// AttractionMainテーブルに新規でデータを登録する
-		final AttractionMain attractionMain = form.convertToAttractionMainForInsert();
+		final AttractionMainIwase attractionMain = form.convertToAttractionMainForInsert();
 		return attractionMainRepositoryIwase.save(attractionMain);
 	}
 
 	@Override
-	public AttractionMain updateAttraction(final AttractionIwaseInputForm form) {
+	public AttractionMainIwase updateAttraction(final AttractionIwaseInputForm form) {
 
 		// 更新対象のレコードを取得する
-		AttractionMain attractionMain = attractionMainRepositoryIwase.findOne((long) form.getId());
+		AttractionMainIwase attractionMain = attractionMainRepositoryIwase.findOne((long) form.getId());
 		if (attractionMain != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
@@ -103,7 +103,7 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	public void deleteAttractionById(final long id) {
 
 		// 更新対象のレコードを取得する
-		AttractionMain attractionMain = attractionMainRepositoryIwase.findOne(id);
+		AttractionMainIwase attractionMain = attractionMainRepositoryIwase.findOne(id);
 		if (attractionMain != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする

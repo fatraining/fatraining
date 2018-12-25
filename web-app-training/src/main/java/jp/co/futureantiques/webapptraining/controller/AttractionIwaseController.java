@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
@@ -65,7 +65,7 @@ public class AttractionIwaseController {
 	public String searchAttraction(final AttractionIwaseSearchForm form, final Model model, final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得
-		final Page<AttractionMain> attractionList = attractionIwaseService.getPageAttraction(form, pageable);
+		final Page<AttractionMainIwase> attractionList = attractionIwaseService.getPageAttraction(form, pageable);
 		if (attractionList.getTotalElements() != 0) {
 
 			// 検索結果がある場合、Modelに結果をセット
@@ -104,7 +104,7 @@ public class AttractionIwaseController {
 		}
 
 		// データを登録する
-		final AttractionMain attractionMain = attractionIwaseService.insertAttraction(form);
+		final AttractionMainIwase attractionMain = attractionIwaseService.insertAttraction(form);
 		return "redirect:/attractioniwase?result=insert&id=" + attractionMain.getId();
 	}
 
@@ -120,7 +120,7 @@ public class AttractionIwaseController {
 			@ModelAttribute final AttractionIwaseInputForm attractionIwaseInputForm) {
 
 		// IDをキーにAttractionMainテーブルを検索する
-		AttractionMain attractionMain = attractionIwaseService.getAttraction(id);
+		AttractionMainIwase attractionMain = attractionIwaseService.getAttraction(id);
 
 		// フォームにレコードの値をセットする
 		attractionIwaseInputForm.initWithAttractionMain(attractionMain);
@@ -144,7 +144,7 @@ public class AttractionIwaseController {
 		}
 
 		// データを更新する
-		AttractionMain attractionMain = attractionIwaseService.updateAttraction(form);
+		AttractionMainIwase attractionMain = attractionIwaseService.updateAttraction(form);
 		if (attractionMain == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する
@@ -180,7 +180,7 @@ public class AttractionIwaseController {
 			@ModelAttribute final AttractionIwaseDeleteForm attractionIwaseDeleteForm, final Model model) {
 
 		// AttractionMainテーブルから削除フラグが1のレコードを検索する
-		final List<AttractionMain> attractionList = attractionIwaseService.getListAttraction(form);
+		final List<AttractionMainIwase> attractionList = attractionIwaseService.getListAttraction(form);
 
 		// Modelに検索結果を格納する
 		model.addAttribute(attractionList);
@@ -203,7 +203,7 @@ public class AttractionIwaseController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			AttractionIwaseSearchForm attractionIwaseSearchForm = new AttractionIwaseSearchForm();
 			attractionIwaseSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<AttractionMain> attractionList = attractionIwaseService.getListAttraction(attractionIwaseSearchForm);
+			final List<AttractionMainIwase> attractionList = attractionIwaseService.getListAttraction(attractionIwaseSearchForm);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(attractionList);

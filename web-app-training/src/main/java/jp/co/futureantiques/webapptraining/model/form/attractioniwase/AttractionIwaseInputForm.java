@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import lombok.Data;
 
 /**
@@ -46,11 +46,11 @@ public class AttractionIwaseInputForm {
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 *
-	 * @param AttractionMain
+	 * @param AttractionMainIwase
 	 */
-	public void initWithAttractionMain(AttractionMain attractionMain) {
+	public void initWithAttractionMain(AttractionMainIwase attractionMain) {
 		this.setId((int) attractionMain.getId());
-		this.setAttractionName(attractionMain.getAttractionName());
+		this.setAttractionName(attractionMain.getAttractionNameIwase());
 		this.setThemeparkId(attractionMain.getThemeparkId());
 		this.setOpenDateStr(String.valueOf(attractionMain.getOpenDate()));
 		this.setComment(attractionMain.getComment());
@@ -62,8 +62,8 @@ public class AttractionIwaseInputForm {
 	 *
 	 * @return AttractionMain
 	 */
-	public AttractionMain convertToAttractionMainForInsert() {
-		AttractionMain attractionMain = new AttractionMain();
+	public AttractionMainIwase convertToAttractionMainForInsert() {
+		AttractionMainIwase attractionMain = new AttractionMainIwase();
 		attractionMain = convertToAttractionMain(attractionMain);
 		attractionMain.setCreateDate(new Timestamp(new Date().getTime()));
 		attractionMain.setUpdateDate(attractionMain.getCreateDate());
@@ -73,10 +73,10 @@ public class AttractionIwaseInputForm {
 	/**
 	 * AttractionMainエンティティに更新値を入れる
 	 *
-	 * @param AttractionMain attractionMain
+	 * @param AttractionMainIwase attractionMain
 	 * @return AttractionMain
 	 */
-	public AttractionMain convertToAttractionMainForUpdate(AttractionMain attractionMain) {
+	public AttractionMainIwase convertToAttractionMainForUpdate(AttractionMainIwase attractionMain) {
 		attractionMain = convertToAttractionMain(attractionMain);
 		attractionMain.setUpdateDate(new Timestamp(new Date().getTime()));
 		return attractionMain;
@@ -85,11 +85,11 @@ public class AttractionIwaseInputForm {
 	/**
 	 * AttractionMainエンティティに入力値を入れる
 	 *
-	 * @param AttractionMain attractionMain
+	 * @param AttractionMainIwase attractionMain
 	 * @return AttractionMain
 	 */
-	private AttractionMain convertToAttractionMain(AttractionMain attractionMain) {
-		attractionMain.setAttractionName(this.attractionName);
+	private AttractionMainIwase convertToAttractionMain(AttractionMainIwase attractionMain) {
+		attractionMain.setAttractionNameIwase(this.attractionName);
 		attractionMain.setThemeparkId(this.themeparkId);
 		attractionMain.setOpenDate(Integer.parseInt(this.openDateStr));
 		attractionMain.setComment(this.comment);

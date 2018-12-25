@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
 
 /**
@@ -26,10 +26,10 @@ public class AttractionIwaseSpecification {
 	 * @param AttractionIwaseSearchForm form
 	 * @return AttractionMainのSpecification
 	 */
-	public static Specification<AttractionMain> generateAttractionSpecification(final AttractionIwaseSearchForm form) {
-		return new Specification<AttractionMain>() {
+	public static Specification<AttractionMainIwase> generateAttractionSpecification(final AttractionIwaseSearchForm form) {
+		return new Specification<AttractionMainIwase>() {
 			@Override
-			public Predicate toPredicate(Root<AttractionMain> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<AttractionMainIwase> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				// 検索条件
 				Predicate condition = null;

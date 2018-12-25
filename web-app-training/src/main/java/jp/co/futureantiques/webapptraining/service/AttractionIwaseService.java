@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
@@ -33,7 +33,7 @@ public interface AttractionIwaseService {
 	 *
 	 * @return AttractionMainのリスト
 	 */
-	Page<AttractionMain> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable);
+	Page<AttractionMainIwase> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にAttractionMainのレコードのリストを取得する
@@ -41,7 +41,7 @@ public interface AttractionIwaseService {
 	 * @param AttractionIwaseSearchForm form
 	 * @return AttractionMainのリスト
 	 */
-	 List<AttractionMain> getListAttraction(final AttractionIwaseSearchForm form) ;
+	 List<AttractionMainIwase> getListAttraction(final AttractionIwaseSearchForm form) ;
 
 	/**
 	 * IDをキーにAttractionMainのレコードを取得する
@@ -49,7 +49,7 @@ public interface AttractionIwaseService {
 	 * @param long id
 	 * @return AttractionMainのレコード
 	 */
-	AttractionMain getAttraction(final long id);
+	AttractionMainIwase getAttraction(final long id);
 
 	/**
 	 * AttractionMainにレコードを新規登録する
@@ -57,7 +57,7 @@ public interface AttractionIwaseService {
 	 * @param AttractionIwaseInputForm form
 	 * @return AttractionMain
 	 */
-	AttractionMain insertAttraction(final AttractionIwaseInputForm form);
+	AttractionMainIwase insertAttraction(final AttractionIwaseInputForm form);
 
 	/**
 	 * AttractionMainのレコードを更新する
@@ -65,7 +65,7 @@ public interface AttractionIwaseService {
 	 * @param AttractionIwaseInputForm form
 	 * @return AttractionMain
 	 */
-	AttractionMain updateAttraction(final AttractionIwaseInputForm form);
+	AttractionMainIwase updateAttraction(final AttractionIwaseInputForm form);
 
 	/**
 	 * AttractionMainのレコードを論理削除する

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Themeparkテーブルと対応するEntityクラス
+ * ThemeparkIwaseテーブルと対応するEntityクラス
  *
  * @author iwase
  */
@@ -47,7 +47,7 @@ public class ThemeparkIwase {
 
 	/** 外部キー設定：ジャンルID */
 	@Transient
-	@OneToMany(targetEntity = AttractionMain.class, mappedBy = "themepark")
+	@OneToMany(targetEntity = AttractionMainIwase.class, mappedBy = "themepark")
 	@JoinColumn(name = "id", referencedColumnName = "themepark_id")
-	private List<AttractionMain> attractionMainList;
+	private List<AttractionMainIwase> attractionMainList;
 }

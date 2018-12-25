@@ -15,14 +15,14 @@ import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
 /**
- * AttractionMainテーブルと対応するEntity
+ * AttractionMainIwaseテーブルと対応するEntity
  *
  * @author iwase
  */
 @Data
 @Entity
 
-public class AttractionMain {
+public class AttractionMainIwase {
 
 
 	@Id
@@ -30,9 +30,9 @@ public class AttractionMain {
 	@GeneratedValue(generator = "gen")
 	private long id;
 
-	@Column(name = "attraction_name")
+	@Column(name = "attraction_name_iwase")
 	@Size(max = 256)
-	private String attractionName;
+	private String attractionNameIwase;
 
 	@Column(name = "themepark_id")
 	@Size(max = 2)

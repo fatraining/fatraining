@@ -1,6 +1,6 @@
 package jp.co.futureantiques.webapptraining.model.form.attractioniwase;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 import lombok.Data;
 
 /**
@@ -28,9 +28,9 @@ public class AttractionIwaseSearchForm {
 	 *
 	 * @param attractionMain
 	 */
-	public void setValues(AttractionMain attractionMain) {
+	public void setValues(AttractionMainIwase attractionMain) {
 		this.setId((int) attractionMain.getId());
-		this.setAttractionName(attractionMain.getAttractionName());
+		this.setAttractionName(attractionMain.getAttractionNameIwase());
 		this.setThemeparkId(attractionMain.getThemeparkId());
 	}
 }

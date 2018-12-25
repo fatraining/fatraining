@@ -9,15 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMain;
+import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainIwase;
 
 /**
  * AttractionMainリポジトリのインターフェース
  *
  * @author iwase
  */
-public interface AttractionMainRepositoryIwase extends JpaRepository<AttractionMain, Long>,
-JpaSpecificationExecutor<AttractionMain> {
+public interface AttractionMainRepositoryIwase extends JpaRepository<AttractionMainIwase, Long>,
+JpaSpecificationExecutor<AttractionMainIwase> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする
