@@ -48,7 +48,7 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	@Override
 	public List<ThemeparkIwase> getListThemepark() {
 
-		// ThemeparkテーブルのレコードをID順に取得する
+		// ThemeparkIwaseテーブルのレコードをID順に取得する
 		return themeparkRepositoryIwase.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
