@@ -16,7 +16,7 @@ import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainI
  *
  * @author iwase
  */
-public interface AttractionMainRepositoryIwase extends JpaRepository<AttractionMainIwase, Long>,
+public interface AttractionMainIwaseRepository extends JpaRepository<AttractionMainIwase, Long>,
 JpaSpecificationExecutor<AttractionMainIwase> {
 
 	/**
@@ -26,7 +26,7 @@ JpaSpecificationExecutor<AttractionMainIwase> {
 	 */
 	@Transactional
 	@Modifying
-	@Query("UPDATE AttractionMain SET delFlg = 1 WHERE id = :id")
+	@Query("UPDATE AttractionMainIwase SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
 
 	/**
@@ -36,6 +36,6 @@ JpaSpecificationExecutor<AttractionMainIwase> {
 	 */
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM AttractionMain WHERE id IN(:ids)")
+	@Query("DELETE FROM AttractionMainIwase WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 }

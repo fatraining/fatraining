@@ -26,11 +26,11 @@ public class AttractionIwaseSearchForm {
 	/**
 	 * 各フィールドに値を設定する
 	 *
-	 * @param attractionMain
+	 * @param attractionMainIwase
 	 */
-	public void setValues(AttractionMainIwase attractionMain) {
-		this.setId((int) attractionMain.getId());
-		this.setAttractionName(attractionMain.getAttractionNameIwase());
-		this.setThemeparkId(attractionMain.getThemeparkId());
+	public void setValues(AttractionMainIwase attractionMainIwase) {
+		this.setId((int) attractionMainIwase.getId());
+		this.setAttractionName(attractionMainIwase.getAttractionName());
+		this.setThemeparkId(attractionMainIwase.getThemeparkId());
 	}
 }

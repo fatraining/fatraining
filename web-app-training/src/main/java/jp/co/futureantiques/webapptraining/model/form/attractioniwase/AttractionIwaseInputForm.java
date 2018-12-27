@@ -3,7 +3,6 @@ package jp.co.futureantiques.webapptraining.model.form.attractioniwase;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -14,7 +13,7 @@ import lombok.Data;
 /**
  * アトラクション登録・更新画面用のFormクラス
  *
- * @author future
+ * @author iwase
  */
 @Data
 public class AttractionIwaseInputForm {
@@ -31,10 +30,7 @@ public class AttractionIwaseInputForm {
 	private Integer themeparkId;
 
 	/** 開設年月 */
-	@NotBlank(message = "common.text.error.require")
-	@Size(max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
-	private String openDateStr;
+	private Integer openDateInt;
 
 	/** コメント */
 	@Size(max = 255)
@@ -48,52 +44,52 @@ public class AttractionIwaseInputForm {
 	 *
 	 * @param AttractionMainIwase
 	 */
-	public void initWithAttractionMain(AttractionMainIwase attractionMain) {
-		this.setId((int) attractionMain.getId());
-		this.setAttractionName(attractionMain.getAttractionNameIwase());
-		this.setThemeparkId(attractionMain.getThemeparkId());
-		this.setOpenDateStr(String.valueOf(attractionMain.getOpenDate()));
-		this.setComment(attractionMain.getComment());
-		this.setUpdateDate(String.valueOf(attractionMain.getUpdateDate()));
+	public void initWithAttractionMain(AttractionMainIwase attractionMainIwase) {
+		this.setId((int) attractionMainIwase.getId());
+		this.setAttractionName(attractionMainIwase.getAttractionName());
+		this.setThemeparkId(attractionMainIwase.getThemeparkId());
+		this.setOpenDateInt(attractionMainIwase.getOpenDate());
+		this.setComment(attractionMainIwase.getComment());
+		this.setUpdateDate(String.valueOf(attractionMainIwase.getUpdateDate()));
 	}
 
 	/**
-	 * AttractionMainエンティティに登録値を入れる
+	 * AttractionMainIwaseエンティティに登録値を入れる
 	 *
 	 * @return AttractionMain
 	 */
 	public AttractionMainIwase convertToAttractionMainForInsert() {
-		AttractionMainIwase attractionMain = new AttractionMainIwase();
-		attractionMain = convertToAttractionMain(attractionMain);
-		attractionMain.setCreateDate(new Timestamp(new Date().getTime()));
-		attractionMain.setUpdateDate(attractionMain.getCreateDate());
-		return attractionMain;
+		AttractionMainIwase attractionMainIwase = new AttractionMainIwase();
+		attractionMainIwase = convertToAttractionMain(attractionMainIwase);
+		attractionMainIwase.setCreateDate(new Timestamp(new Date().getTime()));
+		attractionMainIwase.setUpdateDate(attractionMainIwase.getCreateDate());
+		return attractionMainIwase;
 	}
 
 	/**
-	 * AttractionMainエンティティに更新値を入れる
+	 * AttractionMainIwaseエンティティに更新値を入れる
 	 *
-	 * @param AttractionMainIwase attractionMain
-	 * @return AttractionMain
+	 * @param AttractionMainIwase attractionMainIwase
+	 * @return AttractionMainIwase
 	 */
-	public AttractionMainIwase convertToAttractionMainForUpdate(AttractionMainIwase attractionMain) {
-		attractionMain = convertToAttractionMain(attractionMain);
-		attractionMain.setUpdateDate(new Timestamp(new Date().getTime()));
-		return attractionMain;
+	public AttractionMainIwase convertToAttractionMainForUpdate(AttractionMainIwase attractionMainIwase) {
+		attractionMainIwase = convertToAttractionMain(attractionMainIwase);
+		attractionMainIwase.setUpdateDate(new Timestamp(new Date().getTime()));
+		return attractionMainIwase;
 	}
 
 	/**
-	 * AttractionMainエンティティに入力値を入れる
+	 * AttractionMainIwaseエンティティに入力値を入れる
 	 *
-	 * @param AttractionMainIwase attractionMain
-	 * @return AttractionMain
+	 * @param AttractionMainIwase attractionMainIwase
+	 * @return AttractionMainIwase
 	 */
-	private AttractionMainIwase convertToAttractionMain(AttractionMainIwase attractionMain) {
-		attractionMain.setAttractionNameIwase(this.attractionName);
-		attractionMain.setThemeparkId(this.themeparkId);
-		attractionMain.setOpenDate(Integer.parseInt(this.openDateStr));
-		attractionMain.setComment(this.comment);
-		attractionMain.setDelFlg("0");
-		return attractionMain;
+	private AttractionMainIwase convertToAttractionMain(AttractionMainIwase attractionMainIwase) {
+		attractionMainIwase.setAttractionName(this.attractionName);
+		attractionMainIwase.setThemeparkId(this.themeparkId);
+		attractionMainIwase.setOpenDate(this.openDateInt);
+		attractionMainIwase.setComment(this.comment);
+		attractionMainIwase.setDelFlg("0");
+		return attractionMainIwase;
 	}
 }

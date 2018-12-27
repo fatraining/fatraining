@@ -10,5 +10,5 @@ import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
  *
  * @author future
  */
-public interface ThemeparkRepositoryIwase extends JpaRepository<ThemeparkIwase, Long> {
+public interface ThemeparkIwaseRepository extends JpaRepository<ThemeparkIwase, Long> {
 }

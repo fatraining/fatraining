@@ -52,7 +52,7 @@
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${(attractionIwaseSearchForm.attractionName != null or
 							attractionIwaseSearchForm.themeparkId != null )and
-							attractionList == null}"
+							attractionMainIwaseList == null}"
                      th:text="#{common.text.info.search}">No Result
 				</div>
 
@@ -88,10 +88,10 @@
 						id="inputThemepark"
 						name="themeparkId"
 						class="form-control select">
-					<option th:each="themepark : ${themeparkList}"
-						th:value="${themepark.id}"
-						th:text="${themepark.themepark}"
-						th:selected="${themepark.id == attractionIwaseSearchForm.themeparkId}">pulldown</option>
+						<option th:each="themepark : ${themeparkIwaseList}"
+							th:value="${themepark.id}"
+							th:text="${themepark.themepark}"
+							th:selected="${themepark.id == attractionIwaseSearchForm.themeparkId}">pulldown</option>
 					</select>
 				</div>
 			</div>
@@ -112,25 +112,29 @@
 		</form>
 
 		<!-- 検索結果の表示 -->
-		<section id="resultArea" th:if="${attractionList != null}">
+		<section id="resultArea" th:if="${attractionMainIwaseList != null}">
 			<table id="resultTable" class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
 						<th class="per-12 center" th:text="#{attraction.text.name}">Name</th>
 						<th class="per-12 center" th:text="#{attraction.text.themepark}">Themepark</th>
-						<th class="per-16 center" th:text="#{attraction.text.date}">Opendate</th>
+						<th class="per-16 center" th:text="#{attraction.text.opendate}">Opendate</th>
 						<th class="per-45 center" th:text="#{attraction.text.comment}">Comment</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="attraction : ${attractionList}">
-						<td class="data center" th:text="${attraction.attractionName}">aa</td>
+					<tr th:each="attraction : ${attractionMainIwaseList}">
+						<td class="data center" th:text="${attraction.attractionName}">ペニーアーケード</td>
 						<td class="data center">
-							<label th:if="${attraction.themepark != null}"  th:text="${attraction.themepark.themepark}" class="data center"></label>
+							<label th:if="${attraction.themeparkId != null}"  th:text="${attraction.themeparkIwase.themepark}" class="data center">ワールドバザール</label>
 						</td>
-						<td class="data center" th:text="${attraction.comment}">bb</td>
+						<td class="data center">
+							<label th:if="${attraction.openDate != null}"  th:text="${attraction.openDate}"
+									class="data center">1964年</label>
+						</td>
+						<td class="data center" th:text="${attraction.comment}">古き良きアメリカのゲーム場。</td>
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/attractioniwase/update(id=${attraction.id})}"
@@ -139,7 +143,7 @@
 							<a class="btn btn-danger" style="margin-left: 5%"
 								data-toggle="modal" data-target="#deleteModal"
 								th:text="#{common.text.delete}"
-								th:attr="data-id=${attraction.id}, data-title=${attraction.attractionName}">Delete</a>
+								th:attr="data-id=${attraction.id}, data-name=${attraction.attractionName}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -187,7 +191,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
-							th:text="#{attraction.text.delete}">MovieDelete</h4>
+							th:text="#{attraction.text.delete}">AttractionDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">

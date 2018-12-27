@@ -16,7 +16,7 @@ import jp.co.futureantiques.webapptraining.model.form.attractioniwase.Attraction
 /**
  * AttractionMainの検索条件を生成するクラス
  *
- * @author future
+ * @author iwase
  */
 public class AttractionIwaseSpecification {
 
@@ -50,14 +50,14 @@ public class AttractionIwaseSpecification {
 				}
 				if (!StringUtils.isEmpty(form.getAttractionName())) {
 
-					// 映画名を条件に追加
+					// アトラクション名を条件に追加
 					form.setAttractionName(form.getAttractionName().trim());
 					Predicate newCondition = cb.like(root.get("attractionName"), "%" + form.getAttractionName() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
-				if (form.getId() != null && form.getThemeparkId() != 0) {
+				if (form.getThemeparkId() != 0) {
 
-					// ジャンルを条件に追加
+					// テーマパークを条件に追加
 					Predicate newCondition = cb.equal(root.get("themeparkId"), form.getThemeparkId());
 					condition = getPredicate(cb, condition, newCondition);
 				}

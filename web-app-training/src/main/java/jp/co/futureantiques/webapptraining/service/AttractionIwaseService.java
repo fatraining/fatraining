@@ -19,27 +19,27 @@ import jp.co.futureantiques.webapptraining.model.form.attractioniwase.Attraction
 public interface AttractionIwaseService {
 
 	/**
-	 * ジャンルエンティティのリストを取得する
+	 * テーマパークエンティティのリストを取得する
 	 *
 	 * @return ThemeparkEntityのリスト
 	 */
 	List<ThemeparkIwase> getListThemepark();
 
 	/**
-	 * 検索条件を元にAttractionMainのレコードのリストを取得する(Paging)
+	 * 検索条件を元にAttractionMainIwaseのレコードのリストを取得する(Paging)
 	 *
 	 * @param AttractionIwaseSearchForm form
 	 * @param Pageable pageable
 	 *
-	 * @return AttractionMainのリスト
+	 * @return AttractionMainIwaseのリスト
 	 */
 	Page<AttractionMainIwase> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable);
 
 	/**
-	 * 検索条件を元にAttractionMainのレコードのリストを取得する
+	 * 検索条件を元にAttractionMainIwaseのレコードのリストを取得する
 	 *
 	 * @param AttractionIwaseSearchForm form
-	 * @return AttractionMainのリスト
+	 * @return AttractionMainIwaseのリスト
 	 */
 	 List<AttractionMainIwase> getListAttraction(final AttractionIwaseSearchForm form) ;
 
@@ -47,7 +47,7 @@ public interface AttractionIwaseService {
 	 * IDをキーにAttractionMainのレコードを取得する
 	 *
 	 * @param long id
-	 * @return AttractionMainのレコード
+	 * @return AttractionMainIwaseのレコード
 	 */
 	AttractionMainIwase getAttraction(final long id);
 
@@ -55,7 +55,7 @@ public interface AttractionIwaseService {
 	 * AttractionMainにレコードを新規登録する
 	 *
 	 * @param AttractionIwaseInputForm form
-	 * @return AttractionMain
+	 * @return AttractionMainIwase
 	 */
 	AttractionMainIwase insertAttraction(final AttractionIwaseInputForm form);
 
@@ -63,7 +63,7 @@ public interface AttractionIwaseService {
 	 * AttractionMainのレコードを更新する
 	 *
 	 * @param AttractionIwaseInputForm form
-	 * @return AttractionMain
+	 * @return AttractionMainIwase
 	 */
 	AttractionMainIwase updateAttraction(final AttractionIwaseInputForm form);
 
@@ -75,7 +75,7 @@ public interface AttractionIwaseService {
 	void deleteAttractionById(final long id);
 
 	/**
-	 * AttractionMainのレコードを物理削除する
+	 * AttractionMainIwaseのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
 	 */

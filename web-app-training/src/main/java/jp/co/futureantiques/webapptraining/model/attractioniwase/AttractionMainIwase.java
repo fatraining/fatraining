@@ -30,17 +30,15 @@ public class AttractionMainIwase {
 	@GeneratedValue(generator = "gen")
 	private long id;
 
-	@Column(name = "attraction_name_iwase")
+	@Column(name = "attraction_name")
 	@Size(max = 256)
-	private String attractionNameIwase;
+	private String attractionName;
 
 	@Column(name = "themepark_id")
-	@Size(max = 2)
 	private Integer themeparkId;
 
 	@Column(name = "open_date")
-	@Size(max = 20)
-	private int openDate;
+	private Integer openDate;
 
 	@Column(name = "comment")
 	@Size(max = 256)
@@ -58,5 +56,5 @@ public class AttractionMainIwase {
 
 	@ManyToOne(targetEntity = ThemeparkIwase.class)
 	@JoinColumn(name = "themepark_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private ThemeparkIwase themeparkiwase;
+	private ThemeparkIwase themeparkIwase;
 }

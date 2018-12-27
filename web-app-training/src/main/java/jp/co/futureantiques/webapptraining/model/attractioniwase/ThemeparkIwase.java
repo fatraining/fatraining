@@ -49,5 +49,5 @@ public class ThemeparkIwase {
 	@Transient
 	@OneToMany(targetEntity = AttractionMainIwase.class, mappedBy = "themepark")
 	@JoinColumn(name = "id", referencedColumnName = "themepark_id")
-	private List<AttractionMainIwase> attractionMainList;
+	private List<AttractionMainIwase> attractionMainIwaseList;
 }

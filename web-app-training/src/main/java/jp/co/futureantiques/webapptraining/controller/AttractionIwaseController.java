@@ -43,6 +43,7 @@ public class AttractionIwaseController {
 	 */
 	@ModelAttribute
 	public List<ThemeparkIwase> getListThemepark() {
+		List<ThemeparkIwase> iwases = attractionIwaseService.getListThemepark();
 		return attractionIwaseService.getListThemepark();
 	}
 
@@ -65,12 +66,12 @@ public class AttractionIwaseController {
 	public String searchAttraction(final AttractionIwaseSearchForm form, final Model model, final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得
-		final Page<AttractionMainIwase> attractionList = attractionIwaseService.getPageAttraction(form, pageable);
-		if (attractionList.getTotalElements() != 0) {
+		final Page<AttractionMainIwase> attractionMainIwaseList = attractionIwaseService.getPageAttraction(form, pageable);
+		if (attractionMainIwaseList.getTotalElements() != 0) {
 
 			// 検索結果がある場合、Modelに結果をセット
-			model.addAttribute("page", attractionList);
-			model.addAttribute("attractionList", attractionList.getContent());
+			model.addAttribute("page", attractionMainIwaseList);
+			model.addAttribute("attractionMainIwaseList", attractionMainIwaseList.getContent());
 			model.addAttribute("url", "search");
 		}
 		return "attractioniwase/search";
@@ -180,10 +181,10 @@ public class AttractionIwaseController {
 			@ModelAttribute final AttractionIwaseDeleteForm attractionIwaseDeleteForm, final Model model) {
 
 		// AttractionMainテーブルから削除フラグが1のレコードを検索する
-		final List<AttractionMainIwase> attractionList = attractionIwaseService.getListAttraction(form);
+		final List<AttractionMainIwase> attractionMainIwaseList = attractionIwaseService.getListAttraction(form);
 
 		// Modelに検索結果を格納する
-		model.addAttribute(attractionList);
+		model.addAttribute(attractionMainIwaseList);
 		return "attractioniwase/deletecomp";
 	}
 
@@ -203,10 +204,10 @@ public class AttractionIwaseController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			AttractionIwaseSearchForm attractionIwaseSearchForm = new AttractionIwaseSearchForm();
 			attractionIwaseSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<AttractionMainIwase> attractionList = attractionIwaseService.getListAttraction(attractionIwaseSearchForm);
+			final List<AttractionMainIwase> attractionMainIwaseList = attractionIwaseService.getListAttraction(attractionIwaseSearchForm);
 
 			// Modelに検索結果を格納する
-			model.addAttribute(attractionList);
+			model.addAttribute(attractionMainIwaseList);
 			return "attractioniwase/deletecomp";
 		}
 

@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * アトラクション削除画面のFormクラス
  *
- * @author future
+ * @author iwase
  */
 @Data
 public class AttractionIwaseDeleteForm {

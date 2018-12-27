@@ -13,64 +13,64 @@ import jp.co.futureantiques.webapptraining.model.attractioniwase.AttractionMainI
 import jp.co.futureantiques.webapptraining.model.attractioniwase.ThemeparkIwase;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseInputForm;
 import jp.co.futureantiques.webapptraining.model.form.attractioniwase.AttractionIwaseSearchForm;
-import jp.co.futureantiques.webapptraining.repository.attractioniwase.AttractionMainRepositoryIwase;
-import jp.co.futureantiques.webapptraining.repository.attractioniwase.ThemeparkRepositoryIwase;
+import jp.co.futureantiques.webapptraining.repository.attractioniwase.AttractionMainIwaseRepository;
+import jp.co.futureantiques.webapptraining.repository.attractioniwase.ThemeparkIwaseRepository;
 import jp.co.futureantiques.webapptraining.repository.specification.AttractionIwaseSpecification;
 import jp.co.futureantiques.webapptraining.service.AttractionIwaseService;
 
 /**
  * AttractionIwaseのサービス実装クラス
  *
- * @author future
+ * @author iwase
  */
 @Service
 public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 
-	/** AttractionMainリポジトリ */
-	private final AttractionMainRepositoryIwase attractionMainRepositoryIwase;
+	/** AttractionMainIwaseリポジトリ */
+	private final AttractionMainIwaseRepository attractionMainIwaseRepository;
 
-	/** Themeparkリポジトリ */
-	private final ThemeparkRepositoryIwase themeparkRepositoryIwase;
+	/** ThemeparkIwaseリポジトリ */
+	private final ThemeparkIwaseRepository themeparkIwaseRepository;
 
 	/**
 	 * コンストラクタ
 	 *
-	 * @param AttractionMainRepositoryIwase attractionMainRepositoryIwase
-	 * @param ThemeparkRepositoryIwase themeparkRepositoryIwase
+	 * @param AttractionMainIwaseRepository attractionMainRepositoryIwase
+	 * @param ThemeparkIwaseRepository themeparkRepositoryIwase
 	 */
 	@Autowired
-	public AttractionIwaseServiceImpl(AttractionMainRepositoryIwase attractionMainRepositoryIwase, ThemeparkRepositoryIwase themeparkRepositoryIwase
+	public AttractionIwaseServiceImpl(AttractionMainIwaseRepository attractionMainIwaseRepository, ThemeparkIwaseRepository themeparkIwaseRepository
 			) {
-		this.attractionMainRepositoryIwase = attractionMainRepositoryIwase;
-		this.themeparkRepositoryIwase = themeparkRepositoryIwase;
+		this.attractionMainIwaseRepository = attractionMainIwaseRepository;
+		this.themeparkIwaseRepository= themeparkIwaseRepository;
 	}
 
 	@Override
 	public List<ThemeparkIwase> getListThemepark() {
 
 		// ThemeparkIwaseテーブルのレコードをID順に取得する
-		return themeparkRepositoryIwase.findAll(new Sort(Sort.Direction.ASC, "id"));
+		return themeparkIwaseRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public Page<AttractionMainIwase> getPageAttraction(final AttractionIwaseSearchForm form, final Pageable pageable) {
 
 		// 検索条件を生成しAttractionMainIwaseテーブルのレコードを取得する
-		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form), pageable);
+		return attractionMainIwaseRepository.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form), pageable);
 	}
 
 	@Override
 	public List<AttractionMainIwase> getListAttraction(final AttractionIwaseSearchForm form) {
 
 		// 検索条件を生成しAttractionMainIwaseテーブルのレコードを取得する
-		return attractionMainRepositoryIwase.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form));
+		return attractionMainIwaseRepository.findAll(AttractionIwaseSpecification.generateAttractionSpecification(form));
 	}
 
 	@Override
 	public AttractionMainIwase getAttraction(final long id) {
 
 		// AttractionMainIwaseテーブルを主キー検索する
-		return attractionMainRepositoryIwase.findOne(id);
+		return attractionMainIwaseRepository.findOne(id);
 	}
 
 	@Override
@@ -78,14 +78,14 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 
 		// AttractionMainIwaseテーブルに新規でデータを登録する
 		final AttractionMainIwase attractionMainIwase = form.convertToAttractionMainForInsert();
-		return attractionMainRepositoryIwase.save(attractionMainIwase);
+		return attractionMainIwaseRepository.save(attractionMainIwase);
 	}
 
 	@Override
 	public AttractionMainIwase updateAttraction(final AttractionIwaseInputForm form) {
 
 		// 更新対象のレコードを取得する
-		AttractionMainIwase attractionMainIwase = attractionMainRepositoryIwase.findOne((long) form.getId());
+		AttractionMainIwase attractionMainIwase = attractionMainIwaseRepository.findOne((long) form.getId());
 		if (attractionMainIwase != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
@@ -93,7 +93,7 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 
 				// チェックOKの場合、更新
 				attractionMainIwase = form.convertToAttractionMainForUpdate(attractionMainIwase);
-				return attractionMainRepositoryIwase.saveAndFlush(attractionMainIwase);
+				return attractionMainIwaseRepository.saveAndFlush(attractionMainIwase);
 			}
 		}
 		return null;
@@ -103,11 +103,11 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	public void deleteAttractionById(final long id) {
 
 		// 更新対象のレコードを取得する
-		AttractionMainIwase attractionMainIwase = attractionMainRepositoryIwase.findOne(id);
+		AttractionMainIwase attractionMainIwase = attractionMainIwaseRepository.findOne(id);
 		if (attractionMainIwase != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
-			attractionMainRepositoryIwase.delete(id);
+			attractionMainIwaseRepository.delete(id);
 		}
 	}
 
@@ -115,6 +115,6 @@ public class AttractionIwaseServiceImpl implements AttractionIwaseService {
 	public void deleteAttractionComp(final ArrayList<Long> ids) {
 
 		// 対象のレコードを削除する
-		attractionMainRepositoryIwase.deleteComp(ids);
+		attractionMainIwaseRepository.deleteComp(ids);
 	}
 }

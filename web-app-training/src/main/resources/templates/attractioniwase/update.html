@@ -40,23 +40,23 @@
 						th:text="#{attraction.text.input.themepark}">Themepark:</label>
 					<select name="themeparkId" id="inputThemepark"
 						class="form-control select">
-						<option th:each="themepark : ${themeparkList}"
+						<option th:each="themepark : ${themeparkIwaseList}"
 								th:value="${themepark.id}"
 								th:text="${themepark.themepark}"
-								th:selected="${themepark.id == attractionIwaseInputForm.genreId}">pulldown</option>
+								th:selected="${themepark.id == attractionIwaseInputForm.themeparkId}">pulldown</option>
 					</select>
 				</div>
 					<div class="form-group">
 					<label for="openDate" class="control-label"
 						th:text="#{attraction.text.input.opendate}">OpenDate(*):</label>
-					<input type="text" th:field="*{openDateStr}" class="form-control" id="inputOpenDate"
+					<input type="text" th:field="*{openDateInt}" class="form-control" id="inputOpenDate"
 						th:placeholder="#{attraction.text.opendate}"/>
-					<p class="err alert-danger" th:each="err : ${#fields.errors('openDateStr')}"
+					<p class="err alert-danger" th:each="err : ${#fields.errors('openDateInt')}"
 						th:text="#{${err}(#{attraction.text.opendate})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="comment" class="control-label"
-						th:text="#{movie.text.input.comment}"> Comment:</label>
+						th:text="#{attraction.text.input.comment}"> Comment:</label>
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{attraction.text.comment}"></textarea>
