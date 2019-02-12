@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.futureantiques.webapptraining.model.form.tennisTominaga.PlayerMainInputForm;
 import jp.co.futureantiques.webapptraining.model.form.tennisTominaga.PlayerMainSearchForm;
 import jp.co.futureantiques.webapptraining.model.tennisTominaga.NationalityTominaga;
 import jp.co.futureantiques.webapptraining.model.tennisTominaga.PlayerMainTominaga;
@@ -52,21 +51,6 @@ public interface TennisTominagaService {
 	 */
 	PlayerMainTominaga getPlayer(final long id);
 
-	/**
-	 * PlayerMainにレコードを新規登録する
-	 *
-	 * @param PlayerMainInputForm form
-	 * @return PlayerMain
-	 */
-	PlayerMainTominaga insertPlayer(final PlayerMainInputForm form);
-
-	/**
-	 * PlayerMainのレコードを更新する
-	 *
-	 * @param PlayerMainInputForm form
-	 * @return PlayerMain
-	 */
-	PlayerMainTominaga updatePlayer(final PlayerMainInputForm form);
 
 	/**
 	 * PlayerMainのレコードを論理削除する

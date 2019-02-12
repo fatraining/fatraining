@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import jp.co.futureantiques.webapptraining.model.form.tennisTominaga.PlayerMainInputForm;
 import jp.co.futureantiques.webapptraining.model.form.tennisTominaga.PlayerMainSearchForm;
 import jp.co.futureantiques.webapptraining.model.tennisTominaga.NationalityTominaga;
 import jp.co.futureantiques.webapptraining.model.tennisTominaga.PlayerMainTominaga;
@@ -52,6 +51,7 @@ public class TennisTominagaServiceImpl implements TennisTominagaService {
 
 		// NationalityテーブルのレコードをID順に取得する
 		//TODO ここをぬるにしてた
+		//TODO 
 //		return nationalityTominagaRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 		return nationalityTominagaRepository.findAll(new Sort(Sort.Direction.ASC, "nationalityId"));
 
@@ -80,32 +80,6 @@ public class TennisTominagaServiceImpl implements TennisTominagaService {
 		return playerMainTominagaRepository.findOne(id);
 	}
 
-	@Override
-	public PlayerMainTominaga insertPlayer(final PlayerMainInputForm form) {
-
-		// PlayerMainテーブルに新規でデータを登録する
-		final PlayerMainTominaga playerMain = form.convertToPlayerMainForInsert();
-		return playerMainTominagaRepository.save(playerMain);
-	}
-
-	@Override
-	public PlayerMainTominaga updatePlayer(final PlayerMainInputForm form) {
-
-		// 更新対象のレコードを取得する
-		PlayerMainTominaga playerMain = playerMainTominagaRepository.findOne((long) form.getId());
-		if (playerMain != null) {
-
-			// 更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(playerMain.getUpdateDate()))) {
-
-				// チェックOKの場合、更新
-				playerMain = form.convertToPlayerMainForUpdate(playerMain);
-				return playerMainTominagaRepository.saveAndFlush(playerMain);
-
-			}
-		}
-		return null;
-	}
 
 	@Override
 	public void deletePlayerById(final long id) {
