@@ -1,3 +1,5 @@
+package jp.co.futureantiques.webapptraining.service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,12 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import jp.co.futureantiques.webapptraining.model.eggsekine.EggMain;
 
-/**
- * eggSampleのサービスインターフェース
- *
- * @author future
- */
-public class EggSekineService {
+public interface EggSekineService {
 
 	/**
 	 * ジャンルエンティティのリストを取得する
@@ -81,4 +78,5 @@ public class EggSekineService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteeggComp(final ArrayList<Long> ids);
+
 }
