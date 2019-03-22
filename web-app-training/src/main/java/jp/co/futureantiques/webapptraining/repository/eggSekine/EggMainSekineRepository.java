@@ -7,12 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * eggMainリポジトリのインターフェース
- *
- * @author future
- */
-public class EggMainSekineRepository {
+public interface EggMainSekineRepository {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする
@@ -31,8 +26,9 @@ public class EggMainSekineRepository {
 	 */
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM eggMain WHERE id IN(:ids)")
+	@Query("DELETE FROM EggMain WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
+
 
 
 }
