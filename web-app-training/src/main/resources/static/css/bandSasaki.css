@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>背景画像</title>
+</head>
+body{
+	background-image: url(C:\Users\sakurai\Pictures\Saved Pictures\band4.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
+</body>
+</html>
