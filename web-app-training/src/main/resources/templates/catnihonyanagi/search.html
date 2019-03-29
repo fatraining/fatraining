@@ -126,10 +126,10 @@
 							th:value="${character.id}"
 							th:text="${character.character}"
 							th:selected="${character.id == catSearchForm.characterId}">pulldown</option>
+
 					</select>
 				</div>
 			</div>
-
 
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
@@ -182,7 +182,7 @@
 							<a class="btn btn-danger" style="margin-left: 5%"
 								data-toggle="modal" data-target="#deleteModal"
 								th:text="#{common.text.delete}"
-								th:attr="data-id=${cat.id}, data-title=${cat.catName}">Delete</a>
+								th:attr="data-id=${cat.id}, data-name=${cat.catName}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -224,7 +224,8 @@
 	<!-- 削除モーダル -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
 		<div class="modal-dialog" role="document">
-			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
 				<div class="modal-content">
 					<input type="hidden" id="deleteId" name="id"/>
 					<div class="modal-header">

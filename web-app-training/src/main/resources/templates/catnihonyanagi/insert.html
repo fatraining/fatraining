@@ -32,7 +32,7 @@
 					<input type="text" th:field="*{catName}" class="form-control"
 						th:placeholder="#{cat.text.name}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('catName')}"
-						th:text="#{${err}(#cat.text.name})}"></p>
+						th:text="#{${err}(#{cat.text.name})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="hair" class="control-label"

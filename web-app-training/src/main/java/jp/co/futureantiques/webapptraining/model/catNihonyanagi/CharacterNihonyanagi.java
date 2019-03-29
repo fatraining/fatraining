@@ -26,7 +26,7 @@ public class CharacterNihonyanagi {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private String id;
+	private int id;
 
 	/** 性格 */
 	@Column(name = "cat_character")
