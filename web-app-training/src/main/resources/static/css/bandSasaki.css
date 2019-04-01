@@ -1,11 +1,9 @@
-<html>
-<head>
-<title>背景画像</title>
-</head>
-body{
-	background-image: url(C:\Users\sakurai\Pictures\Saved Pictures\band4.jpg);
-	background-attachment: fixed;
-	background-size: cover;
+@CHARSET "UTF-8";
+
+.back{
+	background-image: url(/bandimage/band4.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
-</body>
-</html>
