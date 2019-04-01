@@ -2,22 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|バンド検索</title>
 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/bandSasaki.css}" />
-<body background="\C:\Users\sakurai\Pictures\Saved Pictures\band4.jpg">
-	<div class="page-header">
-		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
-				th:text="#{login.text.version}">ver β</small>
-		</h4>
-	</div>
+<body>
+	<h4>
+		<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
+			th:text="#{login.text.version}">ver β</small>
+	</h4>
 	<div class="sub-header">
-		<a th:href="@{/http://localhost.8080/menu}" th:text="#{common.text.back}">Back</a><br>
+		<a th:href="@{/http://localhost.8080/menu}"
+			th:text="#{common.text.back}">Back</a>
 		<h1 align="center" th:text="#{band.text.search}">BandSearch</h1>
 	</div>
 
@@ -51,15 +52,15 @@
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${(bandSasakiSearchForm.bandName !=null or
-bandSasakiSearchForm.memberId !=null or
-bandSasakiSearchForm.birthplaceId !=null) and
-bandList==null}"
+					bandSasakiSearchForm.memberId !=null or
+					bandSasakiSearchForm.birthplaceId !=null) and
+					bandList==null}"
 					th:text="#{common.text.info.search}">No Result</div>
 
 				<!-- DB操作後 -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${param.result !=null}">
-					<div th:switch="${param.ruselt[0]}">
+					<div th:switch="${param.result[0]}">
 						<p th:case="insert"
 							th:text="#{common.text.info.insert}+':ID=' +${param.id[0]}"></p>
 						<p th:case="update"
@@ -103,8 +104,8 @@ bandList==null}"
 				<div class="col-sm-8">
 					<select id="inputBirthplace" name="birthplaceId"
 						class="form-control select">
-						<option th:each="birthplace:${bandBirthplaceList}"
-							th:value="${birthplace.id}" th:text="${birthplace.name}"
+						<option th:each="birthplace:${birthplaceList}"
+							th:value="${birthplace.id}" th:text="${birthplace.birthplace}"
 							th:selected="${birthplace.id==bandSasakiSearchForm.birthplaceId}">pulldown</option>
 					</select>
 				</div>
@@ -116,8 +117,8 @@ bandList==null}"
 						th:text="#{common.text.search}">Search</a>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-warning center-block"
-						onclick="$('#searchForm').submit()" th:text="#{common.text.reset}">Reset</a>
+					<a class="btn btn-warning center-block" th:href="@{/bandsasaki}"
+						th:text="#{common.text.reset}">Reset</a>
 				</div>
 			</div>
 		</form>
@@ -128,11 +129,12 @@ bandList==null}"
 				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
+						<th class="per-16 center" th:text="#{band.text.photo}">Photo</th>
 						<th class="per-12 center" th:text="#{band.text.name}">Name</th>
 						<th class="per-5 center" th:text="#{band.text.member}">Member</th>
 						<th class="per-7 center" th:text="#{band.text.birthplace}">Birthplace</th>
-						<th class="per-16 center"
-							th:text="#{band.text.formationYear.and.releaseNum}">FormationYear/ReleaseNum</th>
+						<th class="per-16 center" th:text="#{band.text.formationyear}">FormationYear</th>
+						<th class="per-16 center" th:text="#{band.text.releasenum}">ReleaseNum</th>
 						<th class="per-45 center" th:text="#{band.text.comment}">Comment</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
@@ -140,6 +142,7 @@ bandList==null}"
 				</thead>
 				<tbody>
 					<tr th:each="band : ${bandList}">
+						<td class="data center"><img th:src="@{${band.photo}}"></img></td>
 						<td class="data center" th:text="${band.bandName}">ハンブレッダーズ</td>
 						<td class="data center"><label th:if="${band.member!=null}"
 							th:text="${band.member.member}" class="data center">4</label></td>
@@ -147,13 +150,8 @@ bandList==null}"
 							th:if="${band.Birthplace!=null}"
 							th:text="${band.birthplace.birthplace}" class="data center">大阪</label>
 						</td>
-						<td class="data center"><label
-							th:if="${band.formationYear!=null}"
-							th:text="${band.formationYear}+'年/'+${band.releaseNum}+'枚'"
-							class="data center">2009年/3枚</label> <label
-							th:if="${band.formationYear==null}"
-							th:text="${band.formationYear}+'年'" class="data center">2009年</label>
-						</td>
+						<td class="data center" th:text="${band.formationYear}">2009年</td>
+						<td class="data center" th:text="${band.releaseNum}">3枚</td>
 						<td class="data center" th:text="${band.comment}">そろそろ売れてくるであろうバンド。</td>
 						<td class="data"><a class="btn btn-success"
 							th:href="@{/bandsasaki/update(id=${band.id})}"
@@ -184,8 +182,8 @@ bandList==null}"
 						th:action="@{${url}(page=${i})}"
 						th:object="${bandSasakiSearchForm}" style="display: inline">
 						<input type="hidden" th:field="*{bandName}" /> <input
-							type="hidden" th:field="*{member}" /> <input type="hidden"
-							th:field="*{birthplace}" />
+							type="hidden" th:field="*{memberId}" /> <input type="hidden"
+							th:field="*{birthplaceId}" />
 					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
 					th:if='${i}!=${page.number}'
 					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
@@ -197,7 +195,7 @@ bandList==null}"
 					<a th:if="${not page.last}"
 					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
 					th:text="#{common.text.paging.end}">end→</a>
-				<li>
+				</li>
 			</ul>
 			</p>
 		</div>
@@ -255,14 +253,14 @@ bandList==null}"
 
 	<!-- 削除モーダル用スクリプト -->
 	<script>
-$('#deleteModal').on('show.bs.modal', function (event){
-var button=$(event.relatedTarget);
-var bandId=button.data('id');
-var bandTitle=button.data('title');
-var modal=$(this);
-modal.find('#deleteId').attr("value", bandId);
-modal.find('#deleteName).text(bandName);
-});
-</script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var bandId = button.data('id');
+			var bandName = button.data('name');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", bandId);
+			modal.find('#deleteName').text(bandName);
+		});
+	</script>
 </body>
 </html>
