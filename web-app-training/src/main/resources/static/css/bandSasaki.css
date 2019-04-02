@@ -1,7 +1,23 @@
 @CHARSET "UTF-8";
 
-.back{
-	background-image: url(/bandimage/band4.jpg);
+.sback{
+	background-image: url(/bandimage/bandsearch.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.iback{
+	background-image: url(/bandimage/bandinput.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.dback{
+	background-image: url(/bandimage/banddelete.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
