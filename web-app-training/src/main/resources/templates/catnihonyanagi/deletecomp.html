@@ -66,11 +66,12 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<!-- 削除ボタン -->
 				<div>
-					<a class="btn btn-danger center-block"
-						onclick="$('#deleteForm').submit()"
-						th:text="#{common.text.delete}">
-					</a>
+					<a class="btn btn-danger" style="margin-left: 5%"
+								data-toggle="modal" data-target="#deleteCompModal"
+								th:text="#{common.text.delete}">Delete</a>
 				</div>
 			</div>
 		</form>
@@ -81,6 +82,53 @@
 	<script>
 		$('#allCheck').on('change', function(){
 			$('input[name=deleteIds]').prop('checked', this.checked);
+		});
+	</script>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteCompModal" tabindex="-1" role="dialog" aria-labelledby="deleteCompModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id"/>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteCompModalLabel"
+							th:text="#{cat.text.deletecompb}">CatDelete</h4>
+					</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{cat.text.kakunin(#{menu.text.cat})}"></span>
+								</div>
+							</div>
+						</div>
+
+					<div class="modal-footer">
+						<a class="btn btn-default"
+							th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel
+						</a> <a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete </a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteCompModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+
+			var modal = $(this);
+
 		});
 	</script>
 
