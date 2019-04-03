@@ -1,4 +1,5 @@
 package jp.co.futureantiques.webapptraining.model.bandSasaki;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -12,49 +13,54 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
+
 @Data
 @Entity
-public class BandMain {
+public class BandMainSasaki {
 
-@Id
-@GenericGenerator(name="gen", strategy="increment")
-@GeneratedValue(generator="gen")
-private long id;
+	@Id
+	@GenericGenerator(name = "gen", strategy = "increment")
+	@GeneratedValue(generator = "gen")
+	private long id;
 
-	@Column(name="band_name")
+	@Column(name = "photo")
+	@Size(max = 256)
+	private String photo;
+
+	@Column(name = "band_name")
 	private String bandName;
 
-	@Column(name="member_id")
+	@Column(name = "member_id")
 	private Integer memberId;
 
-	@Column(name="birthplace_id")
+	@Column(name = "birthplace_id")
 	private Integer birthplaceId;
 
-	@Column(name="formation_year")
+	@Column(name = "formation_year")
 	private Integer formationYear;
 
-	@Column(name="release_num")
+	@Column(name = "release_num")
 	private Integer releaseNum;
 
-	@Column(name="comment")
-	@Size(max=255)
+	@Column(name = "comment")
+	@Size(max = 255)
 	private String comment;
 
-	@Column(name="del_flg")
+	@Column(name = "del_flg")
 	private String delFlg;
 
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	@Column(name="update_date")
+	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	@ManyToOne(targetEntity = Member.class)
+	@ManyToOne(targetEntity = MemberSasaki.class)
 	@JoinColumn(name = "member_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Member member;
+	private MemberSasaki memberSasaki;
 
-	@ManyToOne(targetEntity = Birthplace.class)
+	@ManyToOne(targetEntity = BirthplaceSasaki.class)
 	@JoinColumn(name = "birthplace_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Birthplace birthplace;
+	private BirthplaceSasaki birthplaceSasaki;
 
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 @Data
 @Entity
-public class Birthplace {
+public class BirthplaceSasaki {
 
 	@Id
 	@GeneratedValue
@@ -35,7 +35,7 @@ public class Birthplace {
 	private String updateDate;
 
 	@Transient
-	@OneToMany(targetEntity=BandMain.class, mappedBy="birthplace")
+	@OneToMany(targetEntity=BandMainSasaki.class, mappedBy="birthplace")
 	@JoinColumn(name="id", referencedColumnName="birthplace_id")
-	private List<BandMain> bandMainList;
+	private List<BandMainSasaki> bandMainSasakiList;
 }

@@ -13,14 +13,14 @@ import javax.persistence.Transient;
 import lombok.Data;
 @Data
 @Entity
-public class Member {
+public class MemberSasaki {
 @Id
 @GeneratedValue
 @Column(name="id")
 private int id;
 
 @Column(name="member")
-private int member;
+private String member;
 
 @Column(name="del_flg")
 private String delFlg;
@@ -32,7 +32,7 @@ private String createDate;
 private String updateDate;
 
 @Transient
-@OneToMany(targetEntity=BandMain.class, mappedBy="member")
+@OneToMany(targetEntity=BandMainSasaki.class, mappedBy="member")
 @JoinColumn(name="id", referencedColumnName="member_id")
-private List<BandMain> bandMainList;
+private List<BandMainSasaki> bandMainSasakiList;
 }
