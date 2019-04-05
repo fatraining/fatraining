@@ -10,15 +10,15 @@ import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMain;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMainSasaki;
 import jp.co.futureantiques.webapptraining.model.form.bandSasaki.BandSasakiSearchForm;
 
 public class BandSasakiSpecification {
 
-	public static Specification<BandMain> generateBandSpecification(final BandSasakiSearchForm form){
-		return new Specification<BandMain>() {
+	public static Specification<BandMainSasaki> generateBandSpecification(final BandSasakiSearchForm form){
+		return new Specification<BandMainSasaki>() {
 			@Override
-			public Predicate toPredicate(Root<BandMain> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<BandMainSasaki> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate condition=null;
 				if(form.getIsDelete()==1) {
 					return  cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);

@@ -6,26 +6,26 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMain;
-import jp.co.futureantiques.webapptraining.model.bandSasaki.Birthplace;
-import jp.co.futureantiques.webapptraining.model.bandSasaki.Member;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMainSasaki;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BirthplaceSasaki;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.MemberSasaki;
 import jp.co.futureantiques.webapptraining.model.form.bandSasaki.BandSasakiInputForm;
 import jp.co.futureantiques.webapptraining.model.form.bandSasaki.BandSasakiSearchForm;
 
 public interface BandSasakiService {
 
-	List<Member> getListMember();
-	List<Birthplace> getListBirthplace();
+	List<MemberSasaki> getListMember();
+	List<BirthplaceSasaki> getListBirthplace();
 
-	Page<BandMain> getPageBand(final BandSasakiSearchForm form, final Pageable pageable);
+	Page<BandMainSasaki> getPageBand(final BandSasakiSearchForm form, final Pageable pageable);
 
-	List<BandMain> getListBand(final BandSasakiSearchForm form);
+	List<BandMainSasaki> getListBand(final BandSasakiSearchForm form);
 
-	BandMain getBand(final long id);
+	BandMainSasaki getBand(final long id);
 
-	BandMain insertBand(final BandSasakiInputForm form);
+	BandMainSasaki insertBand(final BandSasakiInputForm form);
 
-	BandMain updateBand(final BandSasakiInputForm form);
+	BandMainSasaki updateBand(final BandSasakiInputForm form);
 
 	void deleteBandById(final long id);
 

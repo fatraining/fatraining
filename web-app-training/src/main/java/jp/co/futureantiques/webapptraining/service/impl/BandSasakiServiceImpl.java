@@ -9,69 +9,69 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMain;
-import jp.co.futureantiques.webapptraining.model.bandSasaki.Birthplace;
-import jp.co.futureantiques.webapptraining.model.bandSasaki.Member;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMainSasaki;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BirthplaceSasaki;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.MemberSasaki;
 import jp.co.futureantiques.webapptraining.model.form.bandSasaki.BandSasakiInputForm;
 import jp.co.futureantiques.webapptraining.model.form.bandSasaki.BandSasakiSearchForm;
-import jp.co.futureantiques.webapptraining.repository.bandSasaki.BandMainRepository;
-import jp.co.futureantiques.webapptraining.repository.bandSasaki.BirthplaceRepository;
-import jp.co.futureantiques.webapptraining.repository.bandSasaki.MemberRepository;
+import jp.co.futureantiques.webapptraining.repository.bandSasaki.BandMainSasakiRepository;
+import jp.co.futureantiques.webapptraining.repository.bandSasaki.BirthplaceSasakiRepository;
+import jp.co.futureantiques.webapptraining.repository.bandSasaki.MemberSasakiRepository;
 import jp.co.futureantiques.webapptraining.repository.specification.BandSasakiSpecification;
 import jp.co.futureantiques.webapptraining.service.BandSasakiService;
 
 @Service
 public class BandSasakiServiceImpl implements BandSasakiService{
-	private final BandMainRepository bandMainRepository;
-	private final MemberRepository memberRepository;
-	private final BirthplaceRepository birthplaceRepository;
+	private final BandMainSasakiRepository bandMainSasakiRepository;
+	private final MemberSasakiRepository memberSasakiRepository;
+	private final BirthplaceSasakiRepository birthplaceSasakiRepository;
 
 	@Autowired
-	public BandSasakiServiceImpl(BandMainRepository bandMainRepository, MemberRepository memberRepository,
-			BirthplaceRepository birthplaceRepository) {
-		this.bandMainRepository=bandMainRepository;
-		this.memberRepository=memberRepository;
-		this.birthplaceRepository=birthplaceRepository;
+	public BandSasakiServiceImpl(BandMainSasakiRepository bandMainSasakiRepository, MemberSasakiRepository memberSasakiRepository,
+			BirthplaceSasakiRepository birthplaceSasakiRepository) {
+		this.bandMainSasakiRepository=bandMainSasakiRepository;
+		this.memberSasakiRepository=memberSasakiRepository;
+		this.birthplaceSasakiRepository=birthplaceSasakiRepository;
 	}
 
 	@Override
-	public List<Member> getListMember(){
-		return memberRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+	public List<MemberSasaki> getListMember(){
+		return memberSasakiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public List<Birthplace> getListBirthplace(){
-		return birthplaceRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+	public List<BirthplaceSasaki> getListBirthplace(){
+		return birthplaceSasakiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public Page<BandMain> getPageBand(final BandSasakiSearchForm form, final Pageable pageable){
-		return bandMainRepository.findAll(BandSasakiSpecification.generateBandSpecification(form), pageable);
+	public Page<BandMainSasaki> getPageBand(final BandSasakiSearchForm form, final Pageable pageable){
+		return bandMainSasakiRepository.findAll(BandSasakiSpecification.generateBandSpecification(form), pageable);
 	}
 
 	@Override
-	public List<BandMain> getListBand(final BandSasakiSearchForm form){
-		return bandMainRepository.findAll(BandSasakiSpecification.generateBandSpecification(form));
+	public List<BandMainSasaki> getListBand(final BandSasakiSearchForm form){
+		return bandMainSasakiRepository.findAll(BandSasakiSpecification.generateBandSpecification(form));
 	}
 
 	@Override
-	public BandMain getBand(final long id) {
-		return bandMainRepository.findOne(id);
+	public BandMainSasaki getBand(final long id) {
+		return bandMainSasakiRepository.findOne(id);
 	}
 
 	@Override
-	public BandMain insertBand(final BandSasakiInputForm form) {
-		final BandMain bandMain=form.convertToBandMainForInsert();
-		return bandMainRepository.save(bandMain);
+	public BandMainSasaki insertBand(final BandSasakiInputForm form) {
+		final BandMainSasaki bandMainSasaki=form.convertToBandMainSasakiForInsert();
+		return bandMainSasakiRepository.save(bandMainSasaki);
 	}
 
 	@Override
-	public BandMain updateBand(final BandSasakiInputForm form) {
-		BandMain bandMain=bandMainRepository.findOne((long) form.getId());
-		if(bandMain!=null) {
-			if(form.getUpdateDate().equals(String.valueOf(bandMain.getUpdateDate()))) {
-				bandMain=form.convertToBandMainForInsert();
-				return bandMainRepository.saveAndFlush(bandMain);
+	public BandMainSasaki updateBand(final BandSasakiInputForm form) {
+		BandMainSasaki bandMainSasaki=bandMainSasakiRepository.findOne((long) form.getId());
+		if(bandMainSasaki!=null) {
+			if(form.getUpdateDate().equals(String.valueOf(bandMainSasaki.getUpdateDate()))) {
+				bandMainSasaki=form.convertToBandMainSasakiForInsert();
+				return bandMainSasakiRepository.saveAndFlush(bandMainSasaki);
 			}
 		}
 		return null;
@@ -79,13 +79,13 @@ public class BandSasakiServiceImpl implements BandSasakiService{
 
 	@Override
 	public void deleteBandById(final long id) {
-		BandMain bandMain=bandMainRepository.findOne(id);
-		if(bandMain!=null) {
-			bandMainRepository.delete(id);
+		BandMainSasaki bandMainSasaki=bandMainSasakiRepository.findOne(id);
+		if(bandMainSasaki!=null) {
+			bandMainSasakiRepository.delete(id);
 		}
 	}
 @Override
 public void deleteBandComp(final ArrayList<Long> ids) {
-	bandMainRepository.deleteComp(ids);
+	bandMainSasakiRepository.deleteComp(ids);
 }
 }

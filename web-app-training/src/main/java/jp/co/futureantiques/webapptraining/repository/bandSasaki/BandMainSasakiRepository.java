@@ -9,17 +9,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMain;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMainSasaki;
 
-public interface BandMainRepository extends JpaRepository<BandMain, Long>, JpaSpecificationExecutor<BandMain>{
+public interface BandMainSasakiRepository extends JpaRepository<BandMainSasaki, Long>, JpaSpecificationExecutor<BandMainSasaki>{
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE BandMain SET delFlg=1 WHERE id=:id")
+	@Query("UPDATE BandMainSasaki SET delFlg=1 WHERE id=:id")
 	void delete(@Param("id") final long id);
 
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM BandMain WHERE id IN(:ids)")
+	@Query("DELETE FROM BandMainSasaki WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 }

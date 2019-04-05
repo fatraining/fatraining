@@ -1,6 +1,6 @@
 package jp.co.futureantiques.webapptraining.model.form.bandSasaki;
 
-import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMain;
+import jp.co.futureantiques.webapptraining.model.bandSasaki.BandMainSasaki;
 import lombok.Data;
 
 @Data
@@ -13,11 +13,11 @@ public class BandSasakiSearchForm{
 	private int isDelete;
 
 
-	public void setValues(BandMain bandMain) {
-		this.setId((int)bandMain.getId());
-		this.setBandName(bandMain.getBandName());
-		this.setMemberId(bandMain.getMemberId());
-		this.setBirthplaceId(bandMain.getBirthplaceId());
+	public void setValues(BandMainSasaki bandMainSasaki) {
+		this.setId((int)bandMainSasaki.getId());
+		this.setBandName(bandMainSasaki.getBandName());
+		this.setMemberId(bandMainSasaki.getMemberId());
+		this.setBirthplaceId(bandMainSasaki.getBirthplaceId());
 
 	}
 }
