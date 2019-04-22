@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|映画追加</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{yuru.text.insert}">MovieInsert</h1>
+				<a th:href="@{/yuruYokoyama}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="yuruInputForm"
+				th:action="@{/yuruYokoyama/insert}" th:object="${yuruYokoyamaInputForm}"
+				class="form-horizontal">
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{yuru.text.input.name.riquire}"> Name(*):</label>
+					<input type="text" th:field="*{name}" class="form-control"
+						th:placeholder="#{yuru.text.name}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
+						th:text="#{${err}(#{yuru.text.name})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="belong" class="control-label"
+						th:text="#{yuru.text.input.belong}"> Belong:</label>
+					<select name="belongId" id="inputBelong"
+						class="form-control select">
+						<option th:each="belong : ${belongList}"
+								th:value="${belong.id}"
+								th:text="${belong.belong}"
+								th:selected="${belong.id == yuruInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="from" class="control-label"
+						th:text="#{yuru.text.input.from}"> From:</label>
+					<select name="fromId" id="inputFrom"
+						class="form-control">
+						<option th:each="from : ${fromList}"
+								th:value="${from.id}"
+								th:text="${feom.name}"
+								th:selected="${from.id == yuruInputForm.fromId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{yuru.text.input.releaseyear}"> ReleaseYear(必須):</label>
+					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
+						th:placeholder="#{yuru.text.releaseyear}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{yuru.text.releaseyear})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="runTime" class="control-label"
+						th:text="#{yuru.text.input.runtime}"> RunTime:</label>
+					<input type="text" th:field="*{runTimeStr}" class="form-control" id="inputRunTime"
+						th:placeholder="#{yuru.text.runtime}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('runTimeStr')}"
+						th:text="#{${err}(#{yuru.text.runtime})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="point" class="control-label"
+						th:text="#{yuru.text.input.point}"> Point:</label>
+					<textarea th:field="*{pointt}" cols="" rows="5"
+						class="form-control" id="inputPoint"
+						th:placeholder="#{yuru.text.point}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#yuruInputForm').submit()"
+                       th:text="#{common.text.insert}">Insert</a>
+                </div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
