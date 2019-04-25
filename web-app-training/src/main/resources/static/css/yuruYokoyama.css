@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.img {
+    width: 200px;  /* 横幅を200pxに */
+}
+
 div.container {
 	max-width: 95%;
 	width: 95%;

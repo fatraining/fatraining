@@ -39,9 +39,8 @@
 							<th><input type="checkbox" id="allCheck"/></th>
 							<th class="per-19 center" th:text="#{yuru.text.name}">Name</th>
 							<th class="per-12 center" th:text="#{yuru.text.belong}">Belong</th>
-							<th class="per-17 center" th:text="#{yuru.text.from}">From</th>
+							<th class="per-17 center" th:text="#{yuru.text.place}">From</th>
 
-<!-- 							<th class="per-16 center" th:text="#{yuru.text.year.and.time}">ReleasYear/RunTime</th> -->
 
 							<th class="per-40 center" th:text="#{yuru.text.point}">Point</th>
 						</tr>
@@ -54,16 +53,12 @@
 										th:value="${yuru.id}"/>
 								</label>
 							</td>
-							<td class="data center" th:text="${yuru.Name}">ふなっしー</td>
+							<td class="data center" th:text="${yuru.name}">ふなっしー</td>
 							<td class="data center">
 								<label th:if="${yuru.belong != null}" th:text="${yuru.belong.belong}" class="data center">ご当地</label>
 							</td>
 							<td class="data center">
-								<label th:if="${yuru.from != null}" th:text="${yuru.from.name}" class="data center">千葉県</label>
-							</td>
-							<td class="data center">
-								<label th:if="${yuru.runTime != null}" th:text="${yuru.releaseYear}+'年/'+${yuru.runTime}+'分'" class="data center">2011年/132分</label>
-								<label th:if="${yuru.runTime == null}" th:text="${yuru.releaseYear}+'年'" class="data center">2011年/132分</label>
+								<label th:if="${yuru.place != null}" th:text="${yuru.place.place}" class="data center">千葉県</label>
 							</td>
 							<td class="data center" th:text="${yuru.point}">本名 : ﾌﾅﾃﾞｨｳｽ4世/船田梨男</td>
 						</tr>

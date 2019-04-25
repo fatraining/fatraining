@@ -29,21 +29,21 @@
 				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{yuru.text.input.title.riquire}"> Title(*):</label>
+						th:text="#{yuru.text.input.name.riquire}"> Title(*):</label>
 					<input type="text" th:field="*{name}" class="form-control"
-						th:placeholder="#{yuru.text.title}" />
+						th:placeholder="#{yuru.text.name}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
-						th:text="#{${err}(#{yuru.text.title})}"></p>
+						th:text="#{${err}(#{yuru.text.name})}"></p>
 				</div>
 				<div class="form-group">
-					<label for="belonh" class="control-label"
+					<label for="belong" class="control-label"
 						th:text="#{yuru.text.input.belong}">Belong:</label>
-					<select name="belomgId" id="inputBelong"
+					<select name="belongId" id="inputBelong"
 						class="form-control select">
 						<option th:each="belong : ${yuruBelongYokoyamaList}"
-								th:value="${belong.id}"
+								th:value="${belong.belongId}"
 								th:text="${belong.belong}"
-								th:selected="${belong.id == yuruInputForm.belongId}">pulldown</option>
+								th:selected="${belong.belongId== yuruInputForm.belongId}">pulldown</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -51,15 +51,15 @@
 						th:text="#{yuru.text.input.from}">From:</label>
 					<select name="fromId" id="inputFrom"
 						class="form-control">
-						<option th:each="from : ${yuruFromYokoyamaList}"
-								th:value="${from.id}"
-								th:text="${from.from}"
-								th:selected="${from.id == yuruInputForm.fromId}">pulldown</option>
+						<option th:each="place : ${yuruFromYokoyamaList}"
+								th:value="${place.fromId}"
+								th:text="${place.place}"
+								th:selected="${place.fromId == yuruInputForm.fromId}">pulldown</option>
 					</select>
 
-<!--
+
 				</div>
-				<div class="form-group">
+<!--				<div class="form-group">
 					<label for="releaseYear" class="control-label"
 						th:text="#{yuru.text.input.releaseyear}">ReleaseYear(*):</label>
 					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"

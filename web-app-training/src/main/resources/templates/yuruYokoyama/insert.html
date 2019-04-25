@@ -24,7 +24,7 @@
 
 			<!-- 入力欄 -->
 			<form method="post" id="yuruInputForm"
-				th:action="@{/yuruYokoyama/insert}" th:object="${yuruYokoyamaInputForm}"
+				th:action="@{/yuruYokoyama/insert}" th:object="${yuruInputForm}"
 				class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
@@ -40,9 +40,9 @@
 					<select name="belongId" id="inputBelong"
 						class="form-control select">
 						<option th:each="belong : ${yuruBelongYokoyamaList}"
-								th:value="${belongid}"
+								th:value="${belong.belongId}"
 								th:text="${belong.belong}"
-								th:selected="${belong.id == yuruInputForm.belongId}">pulldown</option>
+								th:selected="${belong.belongId == yuruInputForm.belongId}">pulldown</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -50,10 +50,10 @@
 						th:text="#{yuru.text.input.from}"> From:</label>
 					<select name="fromId" id="inputFrom"
 						class="form-control">
-						<option th:each="from : ${yuruFromYokoyamaList}"
-								th:value="${from.id}"
-								th:text="${feom.name}"
-								th:selected="${from.id == yuruInputForm.fromId}">pulldown</option>
+						<option th:each="place : ${yuruFromYokoyamaList}"
+								th:value="${place.fromId}"
+								th:text="${place.place}"
+								th:selected="${place.fromId == yuruInputForm.fromId}">pulldown</option>
 					</select>
 				</div>
 
@@ -79,7 +79,7 @@
 				<div class="form-group">
 					<label for="point" class="control-label"
 						th:text="#{yuru.text.input.point}"> Point:</label>
-					<textarea th:field="*{pointt}" cols="" rows="5"
+					<textarea th:field="*{point}" cols="" rows="5"
 						class="form-control" id="inputPoint"
 						th:placeholder="#{yuru.text.point}"></textarea>
 				</div>

@@ -120,30 +120,30 @@
 		</form>
 
 		<!-- 検索結果の表示 -->
-		<section id="resultArea" th:if="${yuruDataYokoyamaList != null}">
+		<section id="resultArea" th:if="${yuruYokoyamaList != null}">
 			<table id="resultTable"
 				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
 						<th class="per-12 center" th:text="#{yuru.text.name}">name</th>
 						<th class="per-12 center" th:text="#{yuru.text.belong}">belong</th>
-						<th class="per-16 center" th:text="#{yuru.text.from}">from</th>
-						<th class="per-16 center" th:text="#{yuru.text.year.and.time}">ReleaseYear/RunTime</th>
-						<th class="per-45 center" th:text="#{yuru.text.comment}">Comment</th>
+						<th class="per-16 center" th:text="#{yuru.text.place}">from</th>
+						<th class="per-16 center" th:text="#{yuru.text.point}">point</th>
+						<th class="per-45 center" th:text="#{yuru.text.img}">img</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="yuruYokoyam : ${yuruYokoyamList}">
-						<td class="data center" th:text="${yuruYokoyama.name}">XMEN FC</td>
+					<tr th:each="yuruYokoyama : ${yuruYokoyamaList}">
+						<td class="data center" th:text="${yuruYokoyama.name}">ふなっしー</td>
 						<td class="data center">
-						<label th:if="${yuruYokoyama.belong != null}"
-							th:text="${yuruYokoyama.belong.belong}" class="data center"></label>ご当地
+						<label th:if="${yuruYokoyama.yuruBelongYokoyama != null}"
+							th:text="${yuruYokoyama.yuruBelongYokoyama.belong}" class="data center"></label>ご当地
 						</td>
 						<td class="data center"><label
-							th:if="${yuruYokoyama.from != null}"
-							th:text="${yuruYokoyama.from.name}" class="data center">兵庫県</label>
+							th:if="${yuruYokoyama.yuruFromYokoyama != null}"
+							th:text="${yuruYokoyama.yuruFromYokoyama.place}" class="data center">兵庫県</label>
 						</td>
 
 <!--
@@ -156,14 +156,17 @@
 						</td>
  -->
 
- 						<td class="data center" th:text="${yuruYokoyama.comment}">XMEN誕生秘話</td>
+ 						<td class="data center" th:text="${yuruYokoyama.point}">特徴</td>
+
+ 						<td class="data center" ><img th:src="@{${yuruYokoyama.img}}" width="180"></img></td>
+
 						<td class="data"><a class="btn btn-success"
 							th:href="@{/yuruYokoyama/update(id=${yuruYokoyama.id})}"
 							th:text="#{common.text.update}">Update</a></td>
 						<td class="data center"><a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${yuru.id}, data-title=${yuruYokoyama.name}">Delete</a>
+							th:attr="data-id=${yuruYokoyama.id}, data-title=${yuruYokoyama.name}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -221,7 +224,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
-							th:text="#{movie.text.delete}">MovieDelete</h4>
+							th:text="#{yuru.text.delete}">ゆるキャラDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
@@ -236,7 +239,7 @@
 								<div class="alert alert-danger" role="alert">
 									<span class="glyphicon glyphicon-exclamation-sign"
 										aria-hidden="true"></span> <span
-										th:text="#{common.text.warn.delete(#{menu.text.})}"></span>
+										th:text="#{common.text.warn.delete(#{menu.text.yuruYokoyama})}"></span>
 								</div>
 							</div>
 						</div>
