@@ -48,8 +48,8 @@ import lombok.Data;
 		private String point;
 
 		/** 画像 */
-		@Column(name = "run_time")
-		private Integer runTime;
+		@Column(name = "img")
+		private String img;
 
 		/** 削除フラグ */
 		@Column(name = "del_flg")
@@ -65,11 +65,11 @@ import lombok.Data;
 
 		/** 外部キー設定：ジャンル */
 		@ManyToOne(targetEntity = YuruBelongYokoyama.class)
-		@JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false, updatable = false)
-		private YuruBelongYokoyama yuruBelong;
+		@JoinColumn(name = "belong_id", referencedColumnName = "belong_id", insertable = false, updatable = false)
+		private YuruBelongYokoyama yuruBelongYokoyama;
 
 		/** 外部キー設定：出身 */
 		@ManyToOne(targetEntity = YuruFromYokoyama.class)
-		@JoinColumn(name = "actor_id", referencedColumnName = "id", insertable = false, updatable = false)
-		private YuruFromYokoyama yuruFrom;
+		@JoinColumn(name = "from_id", referencedColumnName = "from_id", insertable = false, updatable = false)
+		private YuruFromYokoyama yuruFromYokoyama;
 }

@@ -25,7 +25,7 @@ public interface YuruDataRepository extends JpaRepository<YuruDataYokoyama, Long
 	 */
 	@Transactional
 	@Modifying
-	@Query("UPDATE MovieMain SET delFlg = 1 WHERE id = :id")
+	@Query("UPDATE YuruDataYokoyama SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
 
 	/**
@@ -35,6 +35,6 @@ public interface YuruDataRepository extends JpaRepository<YuruDataYokoyama, Long
 	 */
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM MovieMain WHERE id IN(:ids)")
+	@Query("DELETE FROM YuruDataYokoyama WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 }

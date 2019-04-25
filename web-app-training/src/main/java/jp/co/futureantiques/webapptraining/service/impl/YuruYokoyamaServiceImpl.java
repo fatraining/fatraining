@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruInputForm;
-import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchFrom;
+import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchForm;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruBelongYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruFromYokoyama;
@@ -53,35 +53,35 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		}
 
 		@Override
-		public List<YuruBelongYokoyama> getListYuruBelong() {
+		public List<YuruBelongYokoyama> getListYuruBelongYokoyama() {
 
 			// YuruBelongテーブルのレコードをID順に取得する
-			return yuruBelongRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+			return yuruBelongRepository.findAll(new Sort(Sort.Direction.ASC, "belongId"));
 		}
 
 		@Override
-		public List<YuruFromYokoyama> getListYuruFrom() {
+		public List<YuruFromYokoyama> getListYuruFromYokoyama() {
 
 			// YuruFromテーブルのレコードをID順に取得する
-			return yuruFromRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+			return yuruFromRepository.findAll(new Sort(Sort.Direction.ASC, "fromId"));
 		}
 
 		@Override
-		public Page<YuruDataYokoyama> getPageYuru(final YuruSearchFrom form, final Pageable pageable) {
+		public Page<YuruDataYokoyama> getPageYuru(final YuruSearchForm form, final Pageable pageable) {
 
 			// 検索条件を生成しYuruDataテーブルのレコードを取得する
 			return yuruDataRepository.findAll(YuruYokoyamaSpecification.generateYuruSpecification(form), pageable);
 		}
 
 		@Override
-		public List<YuruDataYokoyama> getListYuru(final YuruSearchFrom form) {
+		public List<YuruDataYokoyama> getListYuruDataYokoyama(final YuruSearchForm form) {
 
 			// 検索条件を生成しYuruDataテーブルのレコードを取得する
 			return yuruDataRepository.findAll(YuruYokoyamaSpecification.generateYuruSpecification(form));
 		}
 
 		@Override
-		public YuruDataYokoyama getYuru(final long id) {
+		public YuruDataYokoyama getYuruDataYokoyama(final long id) {
 
 			// MovieMainテーブルを主キー検索する
 			return yuruDataRepository.findOne(id);

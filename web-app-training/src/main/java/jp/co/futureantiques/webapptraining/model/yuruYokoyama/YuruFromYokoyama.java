@@ -25,8 +25,8 @@ import lombok.Data;
 		/** 出身ID */
 		@Id
 		@GeneratedValue
-		@Column(name = "id")
-		private int id;
+		@Column(name = "from_id")
+		private int fromId;
 
 		/** 都道府県 */
 		@Column(name = "place")
@@ -47,7 +47,7 @@ import lombok.Data;
 
 		/** 外部キー設定：俳優ID */
 		@Transient
-		@OneToMany(targetEntity = YuruDataYokoyama.class, mappedBy = "from")
-		@JoinColumn(name = "id", referencedColumnName = "from_id")
-		private List<YuruDataYokoyama> yuruDataList;
+		@OneToMany(targetEntity = YuruDataYokoyama.class, mappedBy = "yuruFromYokoyama")
+		@JoinColumn(name = "from_id", referencedColumnName = "from_id")
+		private List<YuruDataYokoyama> yuruDataYokoyamaList;
 	}

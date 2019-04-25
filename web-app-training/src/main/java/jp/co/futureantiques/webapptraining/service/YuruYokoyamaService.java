@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruInputForm;
-import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchFrom;
+import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchForm;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruBelongYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruFromYokoyama;
@@ -26,31 +26,31 @@ public interface YuruYokoyamaService {
 	 *
 	 * @return YuruBelongEntityのリスト
 	 */
-	List<YuruBelongYokoyama> getListYuruBelong();
+	List<YuruBelongYokoyama> getListYuruBelongYokoyama();
 
 	/**
 	 * 出身エンティティのリストを取得する
 	 *
 	 * @return YuruFromEntityのリスト
 	 */
-	List<YuruFromYokoyama> getListYuruFrom();
+	List<YuruFromYokoyama> getListYuruFromYokoyama();
 
 	/**
 	 * 検索条件を元にYuruDataのレコードのリストを取得する(Paging)
 	 *
-	 * @param YuruSearchFrom form
+	 * @param YuruSearchForm form
 	 * @param Pageable pageable
 	 * @return YuruDataのリスト
 	 */
-	Page<YuruDataYokoyama> getPageYuru(final YuruSearchFrom form, final Pageable pageable);
+	Page<YuruDataYokoyama> getPageYuru(final YuruSearchForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にYuruDataのレコードのリストを取得する
 	 *
-	 * @param YuruSearchFrom form
+	 * @param YuruSearchForm form
 	 * @return YuruDataのリスト
 	 */
-	List<YuruDataYokoyama> getListYuru(final YuruSearchFrom form);
+	List<YuruDataYokoyama> getListYuruDataYokoyama(final YuruSearchForm form);
 
 	/**
 	 * IDをキーにYuruDataのレコードを取得する
@@ -58,12 +58,12 @@ public interface YuruYokoyamaService {
 	 * @param long id
 	 * @return YuruDataのレコード
 	 */
-	YuruDataYokoyama getYuru(final long id);
+	YuruDataYokoyama getYuruDataYokoyama(final long id);
 
 	/**
 	 * YuruDataにレコードを新規登録する
 	 *
-	 * @param YuruSearchFrom form
+	 * @param YuruSearchForm form
 	 * @return YuruData
 	 */
 	YuruDataYokoyama insertYuru(final YuruInputForm form);
@@ -71,7 +71,7 @@ public interface YuruYokoyamaService {
 	/**
 	 * YuruDataのレコードを更新する
 	 *
-	 * @param YuruSearchFrom form
+	 * @param YuruSearchForm form
 	 * @return YuruData
 	 */
 	YuruDataYokoyama updateYuru(final YuruInputForm form);

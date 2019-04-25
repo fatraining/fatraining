@@ -4,12 +4,12 @@ import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 import lombok.Data;
 
 /**
- * 映画検索画面のFormクラス
+ * 日本のゆるキャラ検索画面のFormクラス
  *
  * @author future
  */
 @Data
-public class YuruSearchFrom {
+public class YuruSearchForm {
 
 	/** ID */
 	private Integer id;

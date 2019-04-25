@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruDeleteFrom;
 import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruInputForm;
-import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchFrom;
+import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchForm;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruBelongYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruFromYokoyama;
 import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 
 	/**
-	 * MovieSampleのコントローラークラス
+	 * コントローラークラス
 	 *
 	 * @author future
 	 */
@@ -51,8 +51,8 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		 * @return BelongEntityのリスト
 		 */
 		@ModelAttribute
-		public List<YuruBelongYokoyama> getListYuruBelong() {
-			return yuruYokoyamaService.getListYuruBelong();
+		public List<YuruBelongYokoyama> getListYuruBelongYokoyama() {
+			return yuruYokoyamaService.getListYuruBelongYokoyama();
 		}
 
 		/**
@@ -61,8 +61,8 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		 * @return 出身Entityのリスト
 		 */
 		@ModelAttribute
-		public List<YuruFromYokoyama> getListYuruFrom() {
-			return yuruYokoyamaService.getListYuruFrom();
+		public List<YuruFromYokoyama> getListYuruFromYokoyama() {
+			return yuruYokoyamaService.getListYuruFromYokoyama();
 		}
 
 		/**
@@ -72,28 +72,28 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		 * @return 検索画面のパス
 		 */
 		@RequestMapping(value = "", method = RequestMethod.GET)
-		public String showSearchYuru(@ModelAttribute final YuruSearchFrom yuruSerchFrom) {
+		public String showSearchYuru(@ModelAttribute final YuruSearchForm yuruSerchFrom) {
 			return "yuruYokoyama/search";
 		}
 
 		/**
 		 * 検索結果を取得して検索画面に遷移する
 		 *
-		 * @param YuruSearchFrom
+		 * @param YuruSearchForm
 		 * @param Model model
 		 * @param Pageable pageable
 		 * @return 検索画面のパス
 		 */
 		@RequestMapping(value = "search", method = RequestMethod.POST)
-		public String searchYuru(final YuruSearchFrom form, final Model model, final Pageable pageable) {
+		public String searchYuru(final YuruSearchForm form, final Model model, final Pageable pageable) {
 
 			// 入力された検索条件を元にレコードを取得する
-			final Page<YuruDataYokoyama> yuruList = yuruYokoyamaService.getPageYuru(form, pageable);
-			if (yuruList.getTotalElements() != 0) {
+			final Page<YuruDataYokoyama> yuruYokoyamaList = yuruYokoyamaService.getPageYuru(form, pageable);
+			if (yuruYokoyamaList.getTotalElements() != 0) {
 
 				// 検索結果がある場合、Modelに結果をセットする
-				model.addAttribute("page", yuruList);
-				model.addAttribute("movieList", yuruList.getContent());
+				model.addAttribute("page", yuruYokoyamaList);
+				model.addAttribute("yuruYokoyamaList", yuruYokoyamaList.getContent());
 				model.addAttribute("url", "search");
 			}
 			return "yuruYokoyama/search";
@@ -127,8 +127,8 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 			}
 
 			// データを登録する
-			final YuruDataYokoyama yuruData  = yuruYokoyamaService.insertYuru(form);
-			return "redirect:/yuruYokoyama?result=insert&id=" + yuruData.getId();
+			final YuruDataYokoyama yuruDataYokoyama  = yuruYokoyamaService.insertYuru(form);
+			return "redirect:/yuruYokoyama?result=insert&id=" + yuruDataYokoyama.getId();
 		}
 
 		/**
@@ -139,14 +139,14 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		 * @return 更新画面のパス
 		 */
 		@RequestMapping(value = "update", method = RequestMethod.GET)
-		public String showUpdateMovie(@RequestParam(name = "id") final long id,
+		public String showUpdateYuru(@RequestParam(name = "id") final long id,
 				@ModelAttribute final YuruInputForm yuruInputForm) {
 
 			// IDをキーにYuruDataテーブルを検索する
-			YuruDataYokoyama yuruData = yuruYokoyamaService.getYuru(id);
+			YuruDataYokoyama yuruDataYokoyama = yuruYokoyamaService.getYuruDataYokoyama(id);
 
 			// フォームにレコードの値をセットする
-			yuruInputForm.initWithMovieMain(yuruData);
+			yuruInputForm.initWithYuruDataYokoyama(yuruDataYokoyama);
 			return "yuruYokoyama/update";
 		}
 
@@ -167,13 +167,13 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 			}
 
 			// データを更新する
-			YuruDataYokoyama yuruData = yuruYokoyamaService.updateYuru(form);
-			if (yuruData == null) {
+			YuruDataYokoyama yuruDataYokoyama = yuruYokoyamaService.updateYuru(form);
+			if (yuruDataYokoyama == null) {
 
 				// 更新が失敗した場合、検索画面にメッセージを表示する
 				return "redirect:/yuruYokoyama?result=updatefailed";
 			}
-			return "redirect:/yuruYokoyama?result=update&id=" + yuruData.getId();
+			return "redirect:/yuruYokoyama?result=update&id=" + yuruDataYokoyama.getId();
 		}
 
 		/**
@@ -193,17 +193,17 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 		/**
 		 * 完全削除画面に遷移する
 		 *
-		 * @param YuruSearchFrom form
-		 * @param YuruSearchFrom yuruSerchFrom
+		 * @param YuruSearchForm form
+		 * @param YuruSearchForm yuruSerchFrom
 		 * @param Model model
 		 * @return 完全削除画面のパス
 		 */
 		@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
-		public String showDeleteCompYuru(final YuruSearchFrom form,
+		public String showDeleteCompYuru(final YuruSearchForm form,
 				@ModelAttribute final YuruDeleteFrom yuruDeleteForm, final Model model) {
 
 			// MovieMainテーブルから削除フラグが1のレコードを検索する
-			final List<YuruDataYokoyama> yuruList = yuruYokoyamaService.getListYuru(form);
+			final List<YuruDataYokoyama> yuruList = yuruYokoyamaService.getListYuruDataYokoyama(form);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(yuruList);
@@ -224,9 +224,9 @@ import jp.co.futureantiques.webapptraining.service.YuruYokoyamaService;
 			if (bindingResult.hasFieldErrors()) {
 
 				// 入力エラーがある場合、再検索して自画面に戻る
-				YuruSearchFrom yuruSerchFrom = new YuruSearchFrom();
+				YuruSearchForm yuruSerchFrom = new YuruSearchForm();
 				yuruSerchFrom.setIsDelete(CommonConst.DELETE_FLG_ON);
-				final List<YuruDataYokoyama> YuruList = yuruYokoyamaService.getListYuru(yuruSerchFrom);
+				final List<YuruDataYokoyama> YuruList = yuruYokoyamaService.getListYuruDataYokoyama(yuruSerchFrom);
 
 				// Modelに検索結果を格納する
 				model.addAttribute(YuruList);

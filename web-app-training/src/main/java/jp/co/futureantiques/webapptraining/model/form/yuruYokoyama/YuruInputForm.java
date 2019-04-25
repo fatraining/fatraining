@@ -11,7 +11,7 @@ import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 import lombok.Data;
 
 	/**
-	 * 映画登録・更新画面用のFormクラス
+	 * ゆるキャラ登録・更新画面用のFormクラス
 	 *
 	 * @author future
 	 */
@@ -46,16 +46,16 @@ import lombok.Data;
 		/**
 		 * フィールドにエンティティの中身を入れる
 		 *
-		 * @param movieMain
+		 * @param yuruDataYokoyama
 		 */
-		public void initWithMovieMain(YuruDataYokoyama yuruData) {
-			this.setId((int) yuruData.getId());
-			this.setName(yuruData.getName());
-			this.setFromId(yuruData.getFromId());
-			this.setBelongId(yuruData.getBelongId());
-			this.setPoint(yuruData.getPoint());
+		public void initWithYuruDataYokoyama(YuruDataYokoyama yuruDataYokoyama) {
+			this.setId((int) yuruDataYokoyama.getId());
+			this.setName(yuruDataYokoyama.getName());
+			this.setFromId(yuruDataYokoyama.getFromId());
+			this.setBelongId(yuruDataYokoyama.getBelongId());
+			this.setPoint(yuruDataYokoyama.getPoint());
 			//画像？
-			this.setUpdateDate(String.valueOf(yuruData.getUpdateDate()));
+			this.setUpdateDate(String.valueOf(yuruDataYokoyama.getUpdateDate()));
 		}
 
 		/**
@@ -64,11 +64,11 @@ import lombok.Data;
 		 * @return YuruData
 		 */
 		public YuruDataYokoyama convertToYuruDataForInsert() {
-			YuruDataYokoyama yuruData = new YuruDataYokoyama();
-			yuruData = convertToYuruData(yuruData);
-			yuruData.setCreateDate(new Timestamp(new Date().getTime()));
-			yuruData.setUpdateDate(yuruData.getCreateDate());
-			return yuruData;
+			YuruDataYokoyama yuruDataYokoyama = new YuruDataYokoyama();
+			yuruDataYokoyama = convertToYuruData(yuruDataYokoyama);
+			yuruDataYokoyama.setCreateDate(new Timestamp(new Date().getTime()));
+			yuruDataYokoyama.setUpdateDate(yuruDataYokoyama.getCreateDate());
+			return yuruDataYokoyama;
 		}
 
 		/**
@@ -77,10 +77,10 @@ import lombok.Data;
 		 * @param YuruDataYokoyama yuruData
 		 * @return YuruData
 		 */
-		public YuruDataYokoyama convertToYuruDataForUpdate(YuruDataYokoyama yuruData) {
-			yuruData = convertToYuruData(yuruData);
-			yuruData.setUpdateDate(new Timestamp(new Date().getTime()));
-			return yuruData;
+		public YuruDataYokoyama convertToYuruDataForUpdate(YuruDataYokoyama yuruDataYokoyama) {
+			yuruDataYokoyama = convertToYuruData(yuruDataYokoyama);
+			yuruDataYokoyama.setUpdateDate(new Timestamp(new Date().getTime()));
+			return yuruDataYokoyama;
 		}
 
 		/**
@@ -89,13 +89,13 @@ import lombok.Data;
 		 * @param YuruDataYokoyama yuruData
 		 * @return YuruData
 		 */
-		private YuruDataYokoyama convertToYuruData(YuruDataYokoyama yuruData) {
-			yuruData.setName(this.name);
-			yuruData.setFromId(this.fromId);
-			yuruData.setBelongId(this.belongId);
+		private YuruDataYokoyama convertToYuruData(YuruDataYokoyama yuruDataYokoyama) {
+			yuruDataYokoyama.setName(this.name);
+			yuruDataYokoyama.setFromId(this.fromId);
+			yuruDataYokoyama.setBelongId(this.belongId);
 
-			yuruData.setPoint(this.point);
-			yuruData.setDelFlg("0");
-			return yuruData;
+			yuruDataYokoyama.setPoint(this.point);
+			yuruDataYokoyama.setDelFlg("0");
+			return yuruDataYokoyama;
 		}
 	}

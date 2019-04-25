@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Webアプリ研修 | 映画完全削除</title>
+<title>Webアプリ研修 | 日本のゆるキャラ完全削除</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
 </head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/yuruYokoyama.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
@@ -32,7 +32,7 @@
 			<div th:if="${yuruDataList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
-			<div th:if="${yuruDataList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div th:if="${yuruDataYokoyamaList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 				<table id="resultTable" class="table table-borderd table-striped table-hover">
 					<thead>
 						<tr>
@@ -40,12 +40,14 @@
 							<th class="per-19 center" th:text="#{yuru.text.name}">Name</th>
 							<th class="per-12 center" th:text="#{yuru.text.belong}">Belong</th>
 							<th class="per-17 center" th:text="#{yuru.text.from}">From</th>
-							<th class="per-16 center" th:text="#{yuru.text.year.and.time}">ReleasYear/RunTime</th>
+
+<!-- 							<th class="per-16 center" th:text="#{yuru.text.year.and.time}">ReleasYear/RunTime</th> -->
+
 							<th class="per-40 center" th:text="#{yuru.text.point}">Point</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="yuru : ${yuruDataList}">
+						<tr th:each="yuru : ${yuruDataYokoyamaList}">
 							<td>
 								<label>
 									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"

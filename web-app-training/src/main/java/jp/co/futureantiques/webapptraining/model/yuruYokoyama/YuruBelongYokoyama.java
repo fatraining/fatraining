@@ -25,8 +25,8 @@ public class YuruBelongYokoyama {
 	/** 所属ID */
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
-	private int id;
+	@Column(name = "belong_id")
+	private int belongId;
 
 	/** 所属 */
 	@Column(name = "belong")
@@ -47,7 +47,7 @@ public class YuruBelongYokoyama {
 
 	/** 外部キー設定：ジャンルID */
 	@Transient
-	@OneToMany(targetEntity = YuruDataYokoyama.class, mappedBy = "belong")
-	@JoinColumn(name = "id", referencedColumnName = "belong_id")
-	private List<YuruDataYokoyama> yuruDataList;
+	@OneToMany(targetEntity = YuruDataYokoyama.class, mappedBy = "yuruBelongYokoyama")
+	@JoinColumn(name = "belong_id", referencedColumnName = "belong_id")
+	private List<YuruDataYokoyama> yuruDataYokoyamaList;
 }

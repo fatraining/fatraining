@@ -9,12 +9,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
-import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchFrom;
+import jp.co.futureantiques.webapptraining.model.form.yuruYokoyama.YuruSearchForm;
 import jp.co.futureantiques.webapptraining.model.yuruYokoyama.YuruDataYokoyama;
 
 /**
- * MovieMainの検索条件を生成するクラス
+ * yuruDateの検索条件を生成するクラス
  *
  * @author future
  */
@@ -23,10 +22,10 @@ public class YuruYokoyamaSpecification {
 	/**
 	 * 検索条件生成の実装
 	 *
-	 * @param YuruSearchFrom form
+	 * @param YuruSearchForm form
 	 * @return YuruDataのSpecification
 	 */
-	public static Specification<YuruDataYokoyama> generateYuruSpecification(final YuruSearchFrom form) {
+	public static Specification<YuruDataYokoyama> generateYuruSpecification(final YuruSearchForm form) {
 		return new Specification<YuruDataYokoyama>() {
 			@Override
 			public Predicate toPredicate(Root<YuruDataYokoyama> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -38,7 +37,7 @@ public class YuruYokoyamaSpecification {
 				if (form.getIsDelete() == 1) {
 
 					// 削除フラグ＝1を検索条件にする
-					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
+					return cb.equal(root.get("delFlg"), 1);
 				}
 
 				// 条件が入力されている場合条件追加
@@ -69,7 +68,7 @@ public class YuruYokoyamaSpecification {
 				}
 
 				// 削除フラグを条件に追加
-				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
+				Predicate newCondition = cb.equal(root.get("delFlg"), 0);
 				condition = getPredicate(cb, condition, newCondition);
 				return condition;
 			}

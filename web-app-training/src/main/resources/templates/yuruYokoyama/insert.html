@@ -18,7 +18,7 @@
 		</div>
 		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
-				<h1 align="center" th:text="#{yuru.text.insert}">MovieInsert</h1>
+				<h1 align="center" th:text="#{yuru.text.insert}">yuruCharaInsert</h1>
 				<a th:href="@{/yuruYokoyama}" th:text="#{common.text.back}">Back</a>
 			</div>
 
@@ -39,10 +39,10 @@
 						th:text="#{yuru.text.input.belong}"> Belong:</label>
 					<select name="belongId" id="inputBelong"
 						class="form-control select">
-						<option th:each="belong : ${belongList}"
-								th:value="${belong.id}"
+						<option th:each="belong : ${yuruBelongYokoyamaList}"
+								th:value="${belongid}"
 								th:text="${belong.belong}"
-								th:selected="${belong.id == yuruInputForm.genreId}">pulldown</option>
+								th:selected="${belong.id == yuruInputForm.belongId}">pulldown</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -50,20 +50,22 @@
 						th:text="#{yuru.text.input.from}"> From:</label>
 					<select name="fromId" id="inputFrom"
 						class="form-control">
-						<option th:each="from : ${fromList}"
+						<option th:each="from : ${yuruFromYokoyamaList}"
 								th:value="${from.id}"
 								th:text="${feom.name}"
 								th:selected="${from.id == yuruInputForm.fromId}">pulldown</option>
 					</select>
 				</div>
-				<div class="form-group">
-					<label for="releaseYear" class="control-label"
-						th:text="#{yuru.text.input.releaseyear}"> ReleaseYear(必須):</label>
-					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
-						th:placeholder="#{yuru.text.releaseyear}" />
-					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
-						th:text="#{${err}(#{yuru.text.releaseyear})}"></p>
-				</div>
+
+<!--
+					<div class="form-group">
+						<label for="releaseYear" class="control-label"
+							th:text="#{yuru.text.input.releaseyear}"> ReleaseYear(必須):</label>
+						<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
+							th:placeholder="#{yuru.text.releaseyear}" />
+						<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+							th:text="#{${err}(#{yuru.text.releaseyear})}"></p>
+					</div>
 				<div class="form-group">
 					<label for="runTime" class="control-label"
 						th:text="#{yuru.text.input.runtime}"> RunTime:</label>
@@ -72,6 +74,8 @@
 					<p class="err alert-danger" th:each="err : ${#fields.errors('runTimeStr')}"
 						th:text="#{${err}(#{yuru.text.runtime})}"></p>
 				</div>
+-->
+
 				<div class="form-group">
 					<label for="point" class="control-label"
 						th:text="#{yuru.text.input.point}"> Point:</label>
