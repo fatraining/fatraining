@@ -51,7 +51,6 @@ public class HeritageKataokaController {
 	 */
 	@ModelAttribute
 	public List<GenreKataoka> getListGenre() {
-		List<GenreKataoka> genres = heritageKataokaService.getListGenre();
 		return heritageKataokaService.getListGenre();
 	}
 

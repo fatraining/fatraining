@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -156,6 +157,16 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 	@Override
 	public void deleteIcecreamComp(ArrayList<Long> ids) {
 
+		//対象のレコードの画像を削除する
+		for(long id : ids) {
+			File f = new File(CommonConst.STATIC_PATH + icecreamMainSakoRepository.findOne(id).getPhoto());
+			if(f.exists()) {
+
+				//ファイルが存在する場合削除
+				f.delete();
+			}
+		}
+
 		//対象のレコードを削除する
 		icecreamMainSakoRepository.deleteComp(ids);
 	}
@@ -169,7 +180,7 @@ public class IcecreamSakoServiceImpl implements IcecreamSakoService {
 	private void uploadFile(IcecreamMainSako icecreamMainSako , MultipartFile photo) {
 
 		//追加する画像ファイルのパス
-		Path path = Paths.get(CommonConst.STATIC_PATH + "icecreamSako");
+		Path path = Paths.get(CommonConst.STATIC_PATH + "/icecreamSako");
 
 		//ファイル名をつけるため拡張子や現在日時を取得
 		int dot = photo.getOriginalFilename().lastIndexOf(".");

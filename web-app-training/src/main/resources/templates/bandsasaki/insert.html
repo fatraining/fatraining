@@ -32,7 +32,7 @@
 			<!-- 入力欄 -->
 			<form method="post" id="bandSasakiInputForm"
 				th:action="@{/bandsasaki/insert}" th:object="${bandSasakiInputForm}"
-				class="form-horizontal">
+				class="form-horizontal" enctype="multipart/form-data">
 				<div class="form-group">
 					<div>
 						<label for="photo" class="control-label"
@@ -53,7 +53,7 @@
 					<label for="member" class="control-label"
 						th:text="#{band.text.input.member}">Member:</label> <select
 						name="memberId" id="inputMember" class="form-control select">
-						<option th:each="member:${memberList}" th:value="${member.id}"
+						<option th:each="member:${memberSasakiList}" th:value="${member.id}"
 							th:text="${member.member}"
 							th:selected="${member.id==bandSasakiInputForm.memberId}">pulldown</option>
 					</select>
@@ -62,7 +62,7 @@
 					<label for="birthplace" class="control-label"
 						th:text="#{band.text.input.birthplace}">Birthplace:</label> <select
 						name="birthplaceId" id="inputBirthplace" class="form-control">
-						<option th:each="birthplace:${birthplaceList}"
+						<option th:each="birthplace:${birthplaceSasakiList}"
 							th:value="${birthplace.id}" th:text="${birthplace.birthplace}"
 							th:selected="${birthplace.id==bandSasakiInputForm.birthplaceId}">pulldown</option>
 					</select>
@@ -101,5 +101,18 @@
 			</form>
 		</div>
 	</div>
+	<!-- Photoスクリプト -->
+	<script>
+		var obj = document.getElementById("file");
+
+		obj.addEventListener("change",function (evt){
+			var file = evt.target.files;
+
+			if(file[0].size > 1000000){
+				alert("サイズが大きすぎます。1MG以下のものを選択してください。");
+				document.getElementById('file').value="";
+			}
+		},false);
+		</script>
 </body>
 </html>

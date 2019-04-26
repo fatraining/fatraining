@@ -171,7 +171,7 @@ public class FlowerNakaiServiceImpl implements FlowerNakaiService {
 	private void uploadFile(FlowerMainNakai flowerMainNakai, MultipartFile flowerImage) {
 
 		//追加する画像ファイルのパス
-		Path path = Paths.get(CommonConst.STATIC_PATH + "FlowerNakai");
+		Path path = Paths.get(CommonConst.STATIC_PATH + "/FlowerNakai");
 
 		// ファイル名をつけるため拡張子や現在日時を取得
 		int dot = flowerImage.getOriginalFilename().lastIndexOf(".");

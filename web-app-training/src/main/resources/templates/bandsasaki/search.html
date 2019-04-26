@@ -11,13 +11,13 @@
 	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/bandSasaki.css}" />
-<body class="sback">
+<body class="dback">
 	<h4>
 		<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
 			th:text="#{login.text.version}">ver β</small>
 	</h4>
 	<div class="sub-header">
-		<a th:href="@{/http://localhost.8080/menu}"
+		<a th:href="@{/menu}"
 			th:text="#{common.text.back}">Back</a>
 		<h1 align="center" th:text="#{band.text.search}">BandSearch</h1>
 	</div>
@@ -92,7 +92,7 @@
 				<div class="col-sm-8">
 					<select id="inputMember" name="memberId"
 						class="form-control select">
-						<option th:each="member:${memberList}" th:value="${member.id}"
+						<option th:each="member:${memberSasakiList}" th:value="${member.id}"
 							th:text="${member.member}"
 							th:selected="${member.id==bandSasakiSearchForm.memberId}">pulldown</option>
 					</select>
@@ -104,7 +104,7 @@
 				<div class="col-sm-8">
 					<select id="inputBirthplace" name="birthplaceId"
 						class="form-control select">
-						<option th:each="birthplace:${birthplaceList}"
+						<option th:each="birthplace:${birthplaceSasakiList}"
 							th:value="${birthplace.id}" th:text="${birthplace.birthplace}"
 							th:selected="${birthplace.id==bandSasakiSearchForm.birthplaceId}">pulldown</option>
 					</select>
@@ -144,11 +144,11 @@
 					<tr th:each="band : ${bandList}">
 						<td class="data center"><img th:src="@{${band.photo}}"></img></td>
 						<td class="data center" th:text="${band.bandName}">ハンブレッダーズ</td>
-						<td class="data center"><label th:if="${band.member!=null}"
-							th:text="${band.member.member}" class="data center">4</label></td>
+						<td class="data center"><label th:if="${band.memberSasaki!=null}"
+							th:text="${band.memberSasaki.member}" class="data center">4</label></td>
 						<td class="data center"><label
-							th:if="${band.Birthplace!=null}"
-							th:text="${band.birthplace.birthplace}" class="data center">大阪</label>
+							th:if="${band.BirthplaceSasaki!=null}"
+							th:text="${band.birthplaceSasaki.birthplace}" class="data center">大阪</label>
 						</td>
 						<td class="data center" th:text="${band.formationYear}">2009年</td>
 						<td class="data center" th:text="${band.releaseNum}">3枚</td>

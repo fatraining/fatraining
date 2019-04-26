@@ -17,5 +17,7 @@ public final class CommonConst {
 	public static final long UPLOAD_ALLOWABLE_FILE_SIZE = 1048576;
 
 	/** staticまでのパス（Cドライブ以下） */
-	public static final String STATIC_PATH = "/pleiades/workspace/web-app-training/static/";
+	//public static final String STATIC_PATH = "/pleiades/workspace/web-app-training/src/main/resources/static";
+	public static final String STATIC_PATH = "/pleiades/workspace/web-app-training/static";
+	//public static final String STATIC_PATH = "classpath:static";
 }
