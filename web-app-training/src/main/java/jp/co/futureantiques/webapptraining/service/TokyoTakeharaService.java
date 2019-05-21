@@ -1,0 +1,63 @@
+package jp.co.futureantiques.webapptraining.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import jp.co.futureantiques.webapptraining.model.form.tokyoTakehara.TokyoTakeharaSearchForm;
+import jp.co.futureantiques.webapptraining.model.tokyoTakehara.LocationTakehara;
+import jp.co.futureantiques.webapptraining.model.tokyoTakehara.TokyoMainTakehara;
+
+/**
+ * TokyoTakeharaのサービスインターフェース
+ *
+ */
+public interface TokyoTakeharaService {
+
+	/**
+	 * 所在地域エンティティのリストを取得する
+	 *
+	 * @return LocationEntityのリスト
+	 */
+	List<LocationTakehara> getListLocation();
+
+	/**
+	 * 検索条件を元にTokyoMainTakeharaのレコードのリストを取得する(Paging)
+	 *
+	 * @param TokyomainTakeharaSearchForm form
+	 * @param Pageable pageable
+	 * @return TokyoMainTakeharaのリスト
+	 */
+	Page<TokyoMainTakehara> getPageWards(final TokyoTakeharaSearchForm form, final Pageable pageable);
+
+	/**
+	 * 検索条件を元にTokyoMainTakeharaのレコードのリストを取得する
+	 *
+	 * @param TokyoTakeharaSearchForm form
+	 * @return TokyoMainTakeharaのリスト
+	 */
+	List<TokyoMainTakehara> getListWards(final TokyoTakeharaSearchForm form);
+
+	/**
+	 * IDをキーにTokyoMainTakeharaのレコードを取得する
+	 * @param int id
+	 * @return TokyoMainTakeharaのレコード
+	 */
+	TokyoMainTakehara getWardData(final int id);
+
+	/**
+	 * TokyoMainTakeharaのレコードを論理削除する
+	 *
+	 * @param int id
+	 */
+	void deleteWardById(final int id);
+
+	/**
+	 * TokyoMainTakeharaのレコードを物理削除する
+	 *
+	 * @param ArrayList<Integer> ids
+	 */
+	void deleteWardComp(final ArrayList<Integer> ids);
+}
