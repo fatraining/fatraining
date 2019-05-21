@@ -13,6 +13,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 
+/**
+ * TokyoMainTakeharaテーブルと対応するEntity
+ *
+ */
 @Data
 @Entity
 public class TokyoMainTakehara {

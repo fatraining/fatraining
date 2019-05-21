@@ -17,6 +17,7 @@ import jp.co.futureantiques.webapptraining.model.tokyoTakehara.TokyoMainTakehara
  */
 public interface TokyoMainTakeharaRepository
 		extends JpaRepository<TokyoMainTakehara, Integer>, JpaSpecificationExecutor<TokyoMainTakehara> {
+
 	/**
 	 * 対象レコードの削除フラグを1にする
 	 * @param int id

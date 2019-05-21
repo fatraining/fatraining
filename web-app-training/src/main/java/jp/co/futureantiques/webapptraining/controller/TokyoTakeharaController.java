@@ -58,6 +58,7 @@ public class TokyoTakeharaController {
 	public String showSearchTokyo(@ModelAttribute final TokyoTakeharaSearchForm tokyoTakeharaSearchForm) {
 		return "tokyotakehara/searchDisp";
 	}
+
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 *

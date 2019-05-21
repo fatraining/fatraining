@@ -12,9 +12,14 @@ import javax.persistence.Transient;
 
 import lombok.Data;
 
+/**
+ * TokyoMainTakeharaテーブルと対応するEntity
+ *
+ */
 @Data
 @Entity
 public class LocationTakehara {
+
 	/** 地域ID */
 	@Id
 	@Column(name = "location_id")

@@ -45,6 +45,7 @@ public class TokyoTakeharaServiceImpl implements TokyoTakeharaService {
 
 	@Override
 	public List<LocationTakehara> getListLocation() {
+
 		// location_takeharaテーブルのレコードをID順に取得する
 		return locationTakeharaRepository.findAll(new Sort(Sort.Direction.ASC, "locationId"));
 	}
@@ -67,6 +68,7 @@ public class TokyoTakeharaServiceImpl implements TokyoTakeharaService {
 
 	@Override
 	public void deleteWardById(final int id) {
+
 		// 更新対象のレコードを取得する
 		TokyoMainTakehara tokyoMainTakehara = tokyoMainTakeharaRepository.findOne(id);
 		if (tokyoMainTakehara != null) {
@@ -74,12 +76,10 @@ public class TokyoTakeharaServiceImpl implements TokyoTakeharaService {
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
 			tokyoMainTakeharaRepository.delete(id);
 		}
-
 	}
 
 	@Override
 	public void deleteWardComp(final ArrayList<Integer> ids) {
 		tokyoMainTakeharaRepository.deleteComp(ids);
 	}
-
 }
