@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|本追加</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/novelMiyamoto.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{book.text.insert}">bookInsert</h1>
+				<a th:href="@{/novelmiyamoto}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="novelInputForm"
+				th:action="@{/novelmiyamoto/insert}" th:object="${novelInputForm}"
+				class="form-horizontal">
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{book.text.input.title.riquire}"> Title(*):</label>
+					<input type="text" th:field="*{bookTitle}" class="form-control"
+						th:placeholder="#{book.text.title}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('bookTitle')}"
+						th:text="#{${err}(#{book.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{book.text.input.genre}"> Genre:</label>
+					<select name="genreId" id="inputGenre"
+						class="form-control select">
+						<option th:each="genre : ${genreMiyamotoList}" th:value="${genre.genreId}"
+							th:text="${genre.genreName}"
+								th:selected="${genre.genreId == novelInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="Author" class="control-label"
+						th:text="#{book.text.input.author}"> Author:</label>
+					<select name="AuthorId" id="inputAuthor"
+						class="form-control">
+						<option th:each="author : ${authorMiyamotoList}" th:value="${author.authorId}"
+							th:text="${author.authorName}"
+								th:selected="${author.authorId == novelInputForm.authorId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="year" class="control-label"
+						th:text="#{book.text.input.year}"> year(必須):</label>
+					<input type="text" th:field="*{yearStr}" class="form-control" id="inputyear"
+						th:placeholder="#{book.text.year}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('yearStr')}"
+						th:text="#{${err}(#{book.text.year})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="page" class="control-label"
+						th:text="#{book.text.input.page}"> page:</label>
+					<input type="text" th:field="*{pageStr}" class="form-control" id="inputpage"
+						th:placeholder="#{book.text.page}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('pageStr')}"
+						th:text="#{${err}(#{book.text.page})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{book.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{book.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#novelInputForm').submit()"
+                       th:text="#{common.text.insert}">Insert</a>
+                </div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
