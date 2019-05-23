@@ -9,7 +9,7 @@ spring:
   messages:
     fallback-to-system-locale: false
     # properties ファイルの位置
-    basename:  i18n/templates, i18n/templates_moviesample,i18n/template_muscle_izawa,i18n/templates_heritage_kataoka,i18n/templates_flower_nakai,i18n/templates_resipe_ishikawa,i18n/template_icecream_sako,i18n/templates_band_sasaki,i18n/templates_Yuru_yokoyama,i18n/templates_tokyo_takehara,i18n/templates_novelmiyamoto,i18n/templates_jojostandsearch
+    basename:  i18n/templates, i18n/templates_moviesample,i18n/template_muscle_izawa,i18n/templates_heritage_kataoka,i18n/templates_flower_nakai,i18n/templates_resipe_ishikawa,i18n/template_icecream_sako,i18n/templates_band_sasaki,i18n/templates_Yuru_yokoyama,i18n/templates_tokyo_takehara,i18n/templates_novelmiyamoto,i18n/templates_jojostandsearch,i18n/templates_ruins_kurihara
     
   thymeleaf:
     # Thymeleaf のキャッシュが効いていると変更したあと即反映されません。開発時にはキャッシュを false にしておきます。
