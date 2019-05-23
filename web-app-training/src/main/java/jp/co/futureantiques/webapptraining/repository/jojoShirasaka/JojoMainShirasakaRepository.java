@@ -11,8 +11,7 @@ import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoMainShirasaka
 
 /** JojoMainShirasakaリポジトリのインターフェース */
 
-	//多重継承しているinterface
-	public interface JojoMainShirasakaRepository extends JpaRepository<JojoMainShirasaka, Long>, JpaSpecificationExecutor<JojoMainShirasaka> {
+public interface JojoMainShirasakaRepository extends JpaRepository<JojoMainShirasaka, Long>, JpaSpecificationExecutor<JojoMainShirasaka> {
 
 	/**  対象のレコードの削除フラグを1にする */
 	@Transactional
