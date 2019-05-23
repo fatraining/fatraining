@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Webアプリ研修|スタンド検索</title>
+			<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+			<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/jojoShirasaka.css}" />
+
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver 紅蓮弐式</small>
+		</h4>
+	</div>
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<h1 align="center" th:text="#{stand.text.search}">standSearch</h1>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+		 action="/jojoshirasaka/deletecomp" th:object="${jojoStandSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/jojoshirasaka/insert}" th:text="#{common.text.new}">New </a>
+				<a class="btn btn-danger" onclick="$('#deleteCompForm').submit()" th:text="#{common.text.unnecessary}">UnnecessaryData </a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<!-- jojoListはコントローラーで定義されているキー -->
+				<div class="alert alert-info text-center"
+				      role="alert"
+				     th:if="${(jojoStandSearchForm.standName != null or
+							jojoStandSearchForm.sexId != null or
+							jojoStandSearchForm.appearanceId != null) and
+							jojoList == null}"
+				   th:text="#{common.text.info.search}">No Result</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert"
+					 th:if="${param.result != null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert"
+						   th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update"
+						   th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed"
+						   th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete"
+						   th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<!-- スタンド名の入力検索 -->
+		<form class="form-horizontal" id="searchForm" method="post"
+			 action="/jojoshirasaka/search" th:object="${jojoStandSearchForm}">
+			<div class="form-group">
+				<label for="standName" class="col-sm-2 control-label"
+				   th:text="#{stand.text.input.name}">StandName:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{standName}" class="form-control"
+						     id="inputStandName" th:placeholder="#{stand.text.search.info}"/>
+				</div>
+			</div>
+
+			<!-- スタンド使いの性別選択検索 -->
+			<div class="form-group">
+				<label for="sex" class="control-label col-sm-2"
+				   th:text="#{stand.text.input.sex}">Sex:</label>
+				<div class="col-sm-8">
+					<select id="inputSex" name="sexId" class="form-control select">
+						<option th:each="sex : ${jojoSexShirasakaList}" th:value="${sex.sexId}"
+							    th:text="${sex.sex}"
+							th:selected="${sex.sexId == jojoStandSearchForm.sexId}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 登場部の選択検索 -->
+			<div class="form-group">
+				<label for="appearance" class="control-label col-sm-2"
+				 th:text="#{stand.text.input.appearance}">Appearance:</label>
+				<div class="col-sm-8">
+					<select id="inputAppearance" name="appearanceId" class="form-control select">
+						<option th:each="app : ${jojoAppearanceShirasakaList}" th:value="${app.appearanceId}"
+							    th:text="${app.appearance}"
+							th:selected="${app.appearanceId == jojoStandSearchForm.appearanceId}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<!-- 検索ボタン -->
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search </a>
+				</div>
+				<!-- リセットボタン -->
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-warning center-block" th:href="@{/jojoshirasaka}"
+						th:text="#{common.text.reset}">Reset </a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${jojoList != null}">
+			<table id="resultTable"
+				class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-12 center" th:text="#{stand.text.stand}">Stand</th>
+						<th class="per-12 center" th:text="#{stand.text.user}">StandUser</th>
+						<th class="per-12 center" th:text="#{stand.text.sex}">Sex</th>
+						<th class="per-12 center" th:text="#{stand.text.ability}">Ability</th>
+						<th class="per-16 center" th:text="#{stand.text.appearance}">Appearance</th>
+						<th class="per-45 center" th:text="#{stand.text.comment}">Comment</th>
+						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
+						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="stand : ${jojoList}">
+						<td class="data center" th:text="${stand.standName}">ゴールド・エクスペリエンス</td>
+						<td class="data center"><label th:if="${stand.standUserName != null}"
+						  th:text="${stand.standUserName}" class="data center">ジョルノ・ジョバァーナ</label>
+						</td>
+						<td class="data center"><label th:if="${stand.jojoSexShirasaka != null}"
+						  th:text="${stand.JojoSexShirasaka.sex}" class="data center">男</label>
+						</td>
+						<td class="data center">
+							<label th:if="${stand.ability != null}"
+								 th:text="${stand.ability}"
+								   class="data center">触れた物質に生命を与える。</label>
+						</td>
+						<td class="data center">
+							<label th:if="${stand.jojoAppearanceShirasaka != null}"
+								 th:text="${stand.jojoAppearanceShirasaka.appearance}" class="data center">第5部</label>
+						</td>
+						<td class="data center" th:text="${stand.comment}">コメント</td>
+						<td class="data">
+							<a class="btn btn-success"
+							 th:href="@{/jojoshirasaka/update(id=${stand.id})}"
+							 th:text="#{common.text.update}">Update</a>
+						</td>
+						<td class="data center">
+							<a class="btn btn-danger"
+							   style="margin-left: 5%" data-toggle="modal"
+							 data-target="#deleteModal" th:text="#{common.text.delete}"
+							 th:attr="data-id=${stand.id}, data-title=${stand.standName}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<p th:if="${page != null}">
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						 th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					   th:class="(${i}==${page.number})? 'active' : ''"
+						  style="display: inline">
+						<form th:id="'pageForm'+${i}" method="post"
+						  th:action="@{${url}(page=${i})}"
+						  th:object="${jojoStandSearchForm}" style="display: inline">
+							<input type="hidden" th:field="*{standName}" />
+							<input type="hidden" th:field="*{sexId}" />
+							<input type="hidden" th:field="*{appearanceId}" />
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+					     th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+					    	<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}"
+						 th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						 th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
+			</p>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+	 aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+			  th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id" />
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+						 th:text="#{stand.text.delete}">StandDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteTitle">Stand Name</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.stand})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+						 data-dismiss="modal">Cancel </a>
+						 <a class="btn btn-danger"
+						  onclick="$('#deleteForm').submit()"
+						  th:text="#{common.text.delete}">Delete </a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="bogoCount" class="panel-clear"></div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var movieId = button.data('id');
+			var movieTitle = button.data('title');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", movieId);
+			modal.find('#deleteTitle').text(movieTitle);
+		});
+	</script>
+</body>
+</html>
