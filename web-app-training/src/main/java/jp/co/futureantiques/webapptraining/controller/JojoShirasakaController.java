@@ -43,13 +43,13 @@ public class JojoShirasakaController {
 
 	/** 性別エンティティのリストを取得する */
 	@ModelAttribute
-	public List<JojoSexShirasaka> getListGenre() {
+	public List<JojoSexShirasaka> getListJojoSex() {
 		return jojoShirasakaService.getListJojoSex();
 	}
 
 	/** 登場部エンティティのリストを取得する */
 	@ModelAttribute
-	public List<JojoAppearanceShirasaka> getListMovieActor() {
+	public List<JojoAppearanceShirasaka> getListJojoAppearance() {
 		return jojoShirasakaService.getListJojoAppearance();
 	}
 
