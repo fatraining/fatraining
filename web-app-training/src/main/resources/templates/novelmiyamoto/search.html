@@ -4,22 +4,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|本検索</title>
-
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/novelMiyamoto.css}" />
+
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-				th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
-		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a>
+		<br />
 		<h1 align="center" th:text="#{book.text.search}">BookSearch</h1>
 	</div>
 
@@ -36,9 +37,10 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/novelmiyamoto/insert}"
-					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
+					th:text="#{common.text.new}">New</a>
+				<a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
+					th:text="#{common.text.unnecessary}">UnnecessaryData</a>
 			</div>
 		</div>
 	</div>
@@ -129,7 +131,7 @@
 						<th class="per-12 center" th:text="#{book.text.title}">Title</th>
 						<th class="per-12 center" th:text="#{book.text.genre}">Genre</th>
 						<th class="per-16 center" th:text="#{book.text.author}">Author</th>
-						<th class="per-16 center" th:text="#{book.text.year.and.page}">year/page</th>
+						<th class="per-16 center" th:text="#{book.text.year.and.page}">page</th>
 						<th class="per-45 center" th:text="#{book.text.comment}">Comment</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
@@ -138,25 +140,30 @@
 				<tbody>
 					<tr th:each="book : ${bookList}">
 						<td class="data center" th:text="${book.bookTitle}">こころ</td>
-						<td class="data center"><label th:if="${book.genreMiyamoto != null}"
+						<td class="data center">
+							<label th:if="${book.genreMiyamoto != null}"
 							th:text="${book.genreMiyamoto.genreName}" class="data center">長編小説</label>
 						</td>
-						<td class="data center"><label
-							th:if="${book.authorMiyamoto != null}"
+						<td class="data center">
+							<label th:if="${book.authorMiyamoto != null}"
 							th:text="${book.authorMiyamoto.AuthorName}" class="data center">夏目漱石</label>
 						</td>
-						<td class="data center"><label
-							th:if="${book.page != null}"
-							th:text="${book.year}+'年/'+${book.page}+'ページ'"
-							class="data center">2011年/132分</label> <label
-							th:if="${book.page == null}"
-							th:text="${book.year}+'年'" class="data center">1914年</label>
+						<td class="data center">
+							<label  th:if="${book.page != null}"
+									th:text="${book.year}+'年/'+${book.page}+'ページ'"
+									class="data center">2011年/132分</label>
+							<label
+									th:if="${book.page == null}"
+									th:text="${book.year}+'年'" class="data center">1914年</label>
 						</td>
 						<td class="data center" th:text="${book.comment}">読んだはずですが忘れました</td>
-						<td class="data"><a class="btn btn-success"
+						<td class="data">
+							<a class="btn btn-success"
 							th:href="@{/novelmiyamoto/update(id=${book.id})}"
-							th:text="#{common.text.update}">Update</a></td>
-						<td class="data center"><a class="btn btn-danger"
+							th:text="#{common.text.update}">Update</a>
+						</td>
+						<td class="data center">
+							<a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
 							th:attr="data-id=${book.id}, data-title=${book.bookTitle}">Delete</a>
@@ -181,14 +188,15 @@
 					<form th:id="'pageForm'+${i}" method="post"
 						th:action="@{${url}(page=${i})}"
 						th:object="${novelSearchForm}" style="display: inline">
-						<input type="hidden" th:field="*{bookTitle}" /> <input
-							type="hidden" th:field="*{genreId}" /> <input type="hidden"
-							th:field="*{authorId}" />
-					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-					th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-						th:text='${i+1}'>1</span>
-				</a>
+						<input type="hidden" th:field="*{bookTitle}" />
+						<input type="hidden" th:field="*{genreId}" />
+						<input type="hidden" th:field="*{authorId}" />
+					</form>
+					<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+					<a  th:if='${i}!=${page.number}'
+						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<span th:text='${i+1}'>1</span>
+					</a>
 				</li>
 				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
 					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
@@ -197,7 +205,6 @@
 					th:text="#{common.text.paging.end}">end➝</a>
 				</li>
 			</ul>
-			</p>
 		</div>
 	</div>
 
@@ -229,15 +236,16 @@
 							<div class="col-sm-12">
 								<div class="alert alert-danger" role="alert">
 									<span class="glyphicon glyphicon-exclamation-sign"
-										aria-hidden="true"></span> <span
-										th:text="#{common.text.warn.delete(#{menu.text.book})}"></span>
+										aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.book})}"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
+							data-dismiss="modal">Cancel </a>
+						<a class="btn btn-danger"
 							onclick="$('#deleteForm').submit()"
 							th:text="#{common.text.delete}">Delete </a>
 					</div>

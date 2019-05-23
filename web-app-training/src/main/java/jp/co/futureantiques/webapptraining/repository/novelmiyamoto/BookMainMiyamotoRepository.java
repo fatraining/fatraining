@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.co.futureantiques.webapptraining.model.novelmiyamoto.BookMainMiyamoto;
 
 /**
- * MovieMainリポジトリのインターフェース
+ * BookMainMiyamotoリポジトリのインターフェース
  */
 public interface BookMainMiyamotoRepository extends JpaRepository<BookMainMiyamoto, Long>, JpaSpecificationExecutor<BookMainMiyamoto> {
+
 	/**
 	 * 対象のレコードの削除フラグを1にする
 	 */
@@ -22,6 +23,7 @@ public interface BookMainMiyamotoRepository extends JpaRepository<BookMainMiyamo
 	@Modifying
 	@Query("UPDATE BookMainMiyamoto SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
+
 	/**
 	 * 対象のレコードを削除する
 	 */

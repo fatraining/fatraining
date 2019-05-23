@@ -16,38 +16,47 @@ import jp.co.futureantiques.webapptraining.model.novelmiyamoto.GenreMiyamoto;
  * Novelのサービスインターフェース
  */
 public interface NovelMiyamotoService {
+
 	/**
 	 * ジャンルエンティティのリストを取得する
 	 */
 	List<GenreMiyamoto> getListGenreMiyamoto();
+
 	/**
 	 * 作者エンティティのリストを取得する
 	 */
 	List<AuthorMiyamoto> getListNovelAuthor();
+
 	/**
 	 * 検索条件を元にbookMainMiyamotoのレコードのリストを取得する(Paging)
 	 */
 	Page<BookMainMiyamoto> getPageNovel(final NovelSearchForm form, final Pageable pageable);
+
 	/**
 	 * 検索条件を元にbookMainMiyamotoのレコードのリストを取得する
 	 */
 	List<BookMainMiyamoto> getListNovel(final NovelSearchForm form);
+
 	/**
 	 * IDをキーにbookMainMiyamotoのレコードを取得する
 	 */
 	BookMainMiyamoto getNovel(final long id);
+
 	/**
 	 * bookMainMiyamotoにレコードを新規登録する
 	 */
 	BookMainMiyamoto insertNovel(final NovelInputForm form);
+
 	/**
 	 * bookMainMiyamotoのレコードを更新する
 	 */
 	BookMainMiyamoto updateNovel(final NovelInputForm form);
+
 	/**
 	 * bookMainMiyamotoのレコードを論理削除する
 	 */
 	void deleteNovelById(final long id);
+
 	/**
 	 * bookMainMiyamotoのレコードを物理削除する
 	 */

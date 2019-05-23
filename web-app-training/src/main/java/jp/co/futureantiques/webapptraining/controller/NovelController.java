@@ -27,8 +27,10 @@ import jp.co.futureantiques.webapptraining.service.NovelMiyamotoService;
 /* URL　*/
 @RequestMapping(value = "/novelmiyamoto")
 public class NovelController {
-	/** 映画のサービス */
+
+	/** 本のサービス */
 	private final NovelMiyamotoService novelMiyamotoService;
+
 	/**
 	 * コンストラクタ
 	 */
@@ -36,6 +38,7 @@ public class NovelController {
 	public NovelController(final NovelMiyamotoService novelMiyamotoService) {
 		this.novelMiyamotoService = novelMiyamotoService;
 	}
+
 	/**
 	 * ジャンルエンティティのリストを取得する
 	 */
@@ -43,13 +46,15 @@ public class NovelController {
 	public List<GenreMiyamoto> getListGenreMiyamoto() {
 		return novelMiyamotoService.getListGenreMiyamoto();
 	}
+
 	/**
-	 * 俳優エンティティのリストを取得する
+	 * 作者エンティティのリストを取得する
 	 */
 	@ModelAttribute
 	public List<AuthorMiyamoto> getListNovelAuthor() {
 		return novelMiyamotoService.getListNovelAuthor();
 	}
+
 	/**
 	 * 検索画面に遷移する
 	 */
@@ -57,11 +62,13 @@ public class NovelController {
 	public String showSearchNovel(@ModelAttribute final NovelSearchForm novelSearchForm) {
 		return "novelmiyamoto/search";
 	}
+
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchNovel(final NovelSearchForm form, final Model model, final Pageable pageable) {
+
 		// 入力された検索条件を元にレコードを取得する
 		final Page<BookMainMiyamoto> bookList = novelMiyamotoService.getPageNovel(form, pageable);
 		if (bookList.getTotalElements() != 0) {
@@ -73,6 +80,7 @@ public class NovelController {
 		}
 		return "novelmiyamoto/search";
 	}
+
 	/**
 	 * 追加画面に遷移する
 	 */
@@ -80,6 +88,7 @@ public class NovelController {
 	public String showInsertBook(@ModelAttribute final NovelInputForm novelInputForm) {
 		return "novelmiyamoto/insert";
 	}
+
 	/**
 	 * BookMainMiyamotoテーブルにデータを登録して検索画面に遷移する
 	 */
@@ -87,25 +96,31 @@ public class NovelController {
 	public String insertBook(@ModelAttribute @Validated final NovelInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
+
 			// 入力エラーがある場合自画面に戻る
 			return "novelmiyamoto/insert";
 		}
+
 		// データを登録する
 		final BookMainMiyamoto bookMainMiyamoto = novelMiyamotoService.insertNovel(form);
 		return "redirect:/novelmiyamoto?result=insert&id=" + bookMainMiyamoto.getId();
 	}
+
 	/**
 	 * 更新画面に遷移する
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdateBook(@RequestParam(name = "id") final long id,
 			@ModelAttribute final NovelInputForm novelInputForm) {
+
 		// IDをキーにBookMainMiyamotoテーブルを検索する
 		BookMainMiyamoto bookMainMiyamoto = novelMiyamotoService.getNovel(id);
+
 		// フォームにレコードの値をセットする
 		novelInputForm.initWithBookMainMiyamoto(bookMainMiyamoto);
 		return "novelmiyamoto/update";
 	}
+
 	/**
 	 * BookMainMiyamotoテーブルのデータを更新して検索画面に遷移する
 	 */
@@ -113,17 +128,21 @@ public class NovelController {
 	public String updateNovel(@Validated final NovelInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
+
 			// 入力エラーがある場合自画面に戻る
 			return "novelmiyamoto/update";
 		}
+
 		// データを更新する
 		BookMainMiyamoto bookMainMiyamoto = novelMiyamotoService.updateNovel(form);
 		if (bookMainMiyamoto == null) {
+
 			// 更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/novelmiyamoto?result=updatefailed";
 		}
 		return "redirect:/novelmiyamoto?result=update&id=" + bookMainMiyamoto.getId();
 	}
+
 	/**
 	 * BookMainMiyamotoテーブルのレコードを論理削除して検索画面に遷移する
 	 */
@@ -133,18 +152,22 @@ public class NovelController {
 		novelMiyamotoService.deleteNovelById(id);
 		return "redirect:/novelmiyamoto?result=delete&id=" + id;
 	}
+
 	/**
 	 * 完全削除画面に遷移する
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompNovel(final NovelSearchForm form,
 			@ModelAttribute final NovelDeleteForm novelDeleteForm, final Model model) {
+
 		// BookMainMiyamotoテーブルから削除フラグが1のレコードを検索する
 		final List<BookMainMiyamoto> bookList = novelMiyamotoService.getListNovel(form);
+
 		// Modelに検索結果を格納する
 		model.addAttribute(bookList);
 		return "novelmiyamoto/deletecomp";
 	}
+
 	/**
 	 * BookMainMiyamotoテーブルのデータを完全削除して検索画面に遷移する
 	 */
@@ -152,14 +175,17 @@ public class NovelController {
 	public String deleteCompNovel(@Validated final NovelDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
+
 			// 入力エラーがある場合、再検索して自画面に戻る
 			NovelSearchForm novelSearchForm = new NovelSearchForm();
 			novelSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
 			final List<BookMainMiyamoto> bookList = novelMiyamotoService.getListNovel(novelSearchForm);
+
 			// Modelに検索結果を格納する
 			model.addAttribute(bookList);
 			return "novelmiyamoto/deletecomp";
 		}
+
 		// データを完全削除する
 		novelMiyamotoService.deleteNovelComp(form.getDeleteIds());
 		return "redirect:/novelmiyamoto?result=deletecomp";

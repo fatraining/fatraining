@@ -8,16 +8,22 @@ import lombok.Data;
  */
 @Data
 public class NovelSearchForm {
+
 	/** ID */
 	private Integer id;
+
 	/** 本名 */
 	private String bookTitle;
+
 	/** ジャンルID */
 	private Integer genreId;
+
 	/** 作者ID */
 	private Integer authorId;
+
 	/** 削除フラグON用 */
 	private int isDelete;
+
 	/**
 	 * 各フィールドに値を設定する
 	 */

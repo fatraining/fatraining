@@ -16,30 +16,39 @@ import lombok.Data;
  */
 @Data
 public class NovelInputForm {
+
 	/** ID */
 	private int id;
+
 	/** 本名 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 255)
 	private String bookTitle;
+
 	/** ジャンルID */
 	private Integer genreId;
+
 	/** 作者ID */
 	private Integer authorId;
+
 	/** 発行年 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String yearStr;
+
 	/** 上映時間 */
 	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String pageStr;
+
 	/** コメント */
 	@Size(max = 255)
 	private String comment;
+
 	/** 更新日時（排他制御用） */
 	private String updateDate;
+
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 */
@@ -55,6 +64,7 @@ public class NovelInputForm {
 		this.setComment(bookMainMiyamoto.getComment());
 		this.setUpdateDate(String.valueOf(bookMainMiyamoto.getUpdateDate()));
 	}
+
 	/**
 	 * BooKMainMiyamotoエンティティに登録値を入れる
 	 */
@@ -65,6 +75,7 @@ public class NovelInputForm {
 		bookMainMiyamoto.setUpdateDate(bookMainMiyamoto.getCreateDate());
 		return bookMainMiyamoto;
 	}
+
 	/**
 	 * BooKMainMiyamotoエンティティに更新値を入れる
 	 */
@@ -73,6 +84,7 @@ public class NovelInputForm {
 		bookMainMiyamoto.setUpdateDate(new Timestamp(new Date().getTime()));
 		return bookMainMiyamoto;
 	}
+
 	/**
 	 * BooKMainMiyamotoエンティティに入力値を入れる
 	 */
@@ -82,9 +94,11 @@ public class NovelInputForm {
 		bookMainMiyamoto.setAuthorId(this.authorId);
 		bookMainMiyamoto.setYear(Integer.parseInt(this.yearStr));
 		if (!this.pageStr.isEmpty()) {
+
 			// 上映時間が入力されていた場合
 			bookMainMiyamoto.setPage(Integer.parseInt(this.pageStr));
 		} else {
+
 			// 上映時間が入力されていなかった場合
 			bookMainMiyamoto.setPage(null);
 		}
