@@ -7,6 +7,7 @@ import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoAppearanceShi
 
 /**
  * @author user
+ * JojoAppearanceリポジトリのインターフェース
  *
  */
 public interface JojoAppearanceRepository extends JpaRepository<JojoAppearanceShirasaka, Long> {
