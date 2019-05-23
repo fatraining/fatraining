@@ -53,10 +53,9 @@ public class JojoShirasakaController {
 		return jojoShirasakaService.getListJojoAppearance();
 	}
 
-	/** 検索画面に遷移する */
-	/**
+	/** 検索画面に遷移する
 	 * @param jojoStandSearchForm
-	 * @return
+	 * @return String
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchJojo(@ModelAttribute final JojoStandSearchForm jojoStandSearchForm) {
@@ -68,7 +67,7 @@ public class JojoShirasakaController {
 	 * @param form
 	 * @param model
 	 * @param pageable
-	 * @return
+	 * @return String
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchJojo(final JojoStandSearchForm form, final Model model, final Pageable pageable) {
