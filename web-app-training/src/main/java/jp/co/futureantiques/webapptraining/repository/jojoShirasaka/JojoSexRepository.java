@@ -5,5 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoSexShirasaka;
 
 
+/**
+ * @author user
+ *
+ */
 public interface JojoSexRepository extends JpaRepository<JojoSexShirasaka, Long> {
 }
