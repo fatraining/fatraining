@@ -7,6 +7,7 @@ import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoSexShirasaka;
 
 /**
  * @author user
+ * JojoSexリポジトリのインターフェース
  *
  */
 public interface JojoSexRepository extends JpaRepository<JojoSexShirasaka, Long> {
