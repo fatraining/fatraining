@@ -19,51 +19,69 @@ import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoSexShirasaka;
 import jp.co.futureantiques.webapptraining.service.JojoShirasakaService;
 
 
-// Jojoのコントローラークラス
 
+/**
+ * Jojoのコントローラークラス
+ * @author user
+ *
+ */
 @Controller
-@RequestMapping(value = "/jojoshirasaka")//モデル（エンティティ）のjojoShirasaka
+@RequestMapping(value = "/jojoshirasaka")
 public class JojoShirasakaController {
 
 	/** ジョジョ検索のサービス */
 	private final JojoShirasakaService jojoShirasakaService;
 
 	/** コンストラクタ */
+	/**
+	 * @param jojoShirasakaService
+	 */
 	@Autowired
 	public JojoShirasakaController(final JojoShirasakaService jojoShirasakaService) {
 		this.jojoShirasakaService = jojoShirasakaService;
 	}
 
-	/** ジャンルエンティティのリストを取得する */
+	/** 性別エンティティのリストを取得する */
 	@ModelAttribute
 	public List<JojoSexShirasaka> getListGenre() {
 		return jojoShirasakaService.getListJojoSex();
 	}
 
-	/** 俳優エンティティのリストを取得する */
+	/** 登場部エンティティのリストを取得する */
 	@ModelAttribute
 	public List<JojoAppearanceShirasaka> getListMovieActor() {
 		return jojoShirasakaService.getListJojoAppearance();
 	}
 
 	/** 検索画面に遷移する */
+	/**
+	 * @param jojoStandSearchForm
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchJojo(@ModelAttribute final JojoStandSearchForm jojoStandSearchForm) {
 		return "jojoshirasaka/search";
 	}
 
 	/** 検索結果を取得して検索画面に遷移する */
+	/**
+	 * @param form
+	 * @param model
+	 * @param pageable
+	 * @return
+	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchJojo(final JojoStandSearchForm form, final Model model, final Pageable pageable) {
+
 		// 入力された検索条件を元にレコードを取得する
 		final Page<JojoMainShirasaka> jojoList = jojoShirasakaService.getPageJojo(form, pageable);
 		if (jojoList.getTotalElements() != 0) {
+
 			// 検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", jojoList);
 			model.addAttribute("jojoList", jojoList.getContent());
 			model.addAttribute("url", "search");
 		}
-
 		return "jojoshirasaka/search";
 	}
 }
