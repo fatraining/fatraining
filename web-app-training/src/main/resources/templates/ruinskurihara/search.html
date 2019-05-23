@@ -15,8 +15,8 @@
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-				th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
@@ -37,9 +37,10 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/ruinskurihara/insert}"
-					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
-					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
+				   th:text="#{common.text.new}">New </a>
+				<a class="btn btn-danger"
+				   onclick="$('#deleteCompForm').submit()"
+				   th:text="#{common.text.unnecessary}">UnnecessaryData </a>
 			</div>
 		</div>
 	</div>
@@ -191,11 +192,12 @@
 						<input type="hidden" th:field="*{ruinsName}" /> <input
 							type="hidden" th:field="*{genreId}" /> <input type="hidden"
 							th:field="*{areaId}" />
-					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-					th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-						th:text='${i+1}'>1</span>
-				</a>
+					</form>
+					<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+					<a th:if='${i}!=${page.number}'
+					   th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+					   <span th:text='${i+1}'>1</span>
+					</a>
 				</li>
 				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
 					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
@@ -244,9 +246,10 @@
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
-							onclick="$('#deleteForm').submit()"
-							th:text="#{common.text.delete}">Delete </a>
+						   data-dismiss="modal">Cancel </a>
+						   <a class="btn btn-danger"
+							  onclick="$('#deleteForm').submit()"
+							  th:text="#{common.text.delete}">Delete </a>
 					</div>
 				</div>
 			</form>
