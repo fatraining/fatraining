@@ -45,7 +45,7 @@ public class TokyoMainTakehara {
 
 	/** 面積(㎢) */
 	@Column(name = "area")
-	private Integer area;
+	private Float area;
 
 	/** 区役所の最寄駅 */
 	@Column(name = "ward_office")

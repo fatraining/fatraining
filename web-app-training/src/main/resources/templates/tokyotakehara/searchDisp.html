@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Webアプリ研修|東京23区検索</title>
+<title>Webアプリ研修|東京23区|検索</title>
 
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -36,7 +36,9 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/tokyotakehara/insert}"
-					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
+					th:text="#{common.text.new}">New
+				</a>
+				<a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData
 				</a>
@@ -52,7 +54,7 @@
 
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
-					th:if="${(tokyoTakeharaSearchForm.wardName != null)and
+					th:if="${(tokyoTakeharaSearchForm.wardName != null) and
 							wardsList == null}"
 					th:text="#{common.text.info.search}">No Result
 				</div>
@@ -165,55 +167,56 @@
 					<tr th:each="ward : ${wardsList}">
 						<td class="data center" th:text="${ward.wardName}+'区'">千代田区</td>
 						<td class="data center">
-						<label th:if="${ward.symbol != null}"
-							th:text="${ward.symbol}" class="data center">画像
-						</label>
+							<label th:if="${ward.symbol != null}"
+								th:text="${ward.symbol}" class="data center">画像
+							</label>
 						</td>
 						<td class="data center"
 							th:text="${ward.locationTakehara.locationName}">分類無し
 						</td>
 						<td class="data center">
-						<label th:if="${ward.population != null}" th:text="${ward.population}"
-							class="data center">64533
-						</label>
+							<label th:if="${ward.population != null}" th:text="${ward.population}"
+								class="data center">64533
+							</label>
 						</td>
 						<td class="data center">
-						<label th:if="${ward.area != null}"
-							th:text="${ward.area}" class="data center">11.66
-						</label>
+							<label th:if="${ward.area != null}"
+								th:text="${ward.area}" class="data center">11.66
+							</label>
 						</td>
 						<td class="data center">
-						<label th:if="${ward.area != null}"
-							th:text="${ward.wardOffice}+'駅'" class="data center">九段下
-						</label>
+							<label th:if="${ward.area != null}"
+								th:text="${ward.wardOffice}+'駅'" class="data center">九段下
+							</label>
 						</td>
 						<td class="data center">
-						<label th:if="${ward.averageAnnualIncome != null}"
-							th:text="${ward.averageAnnualIncome}" class="data center">784
-						</label>
+							<label th:if="${ward.averageAnnualIncome != null}"
+								th:text="${ward.averageAnnualIncome}" class="data center">784
+							</label>
 						</td>
 						<td class="data center">
-						<label th:if="${ward.officialLandPrice != null}"
-							th:text="${ward.officialLandPrice}" class="data center">633072
-						</label>
+							<label th:if="${ward.officialLandPrice != null}"
+								th:text="${ward.officialLandPrice}" class="data center">633072
+							</label>
 						</td>
 						<td class="data center">
-						<label th:if="${ward.performer != null}" th:text="${ward.performer}"
-							class="data center">樹木希林
-						</label>
+							<label th:if="${ward.performer != null}" th:text="${ward.performer}"
+								class="data center">樹木希林
+							</label>
 						</td>
 						<td class="data">
-						<a class="btn btn-success"
-							th:href="@{/tokyoTakehara/update(id=${ward.id})}"
-							th:text="#{common.text.update}">Update
-						</a>
+							<a class="btn btn-success"
+								th:href="@{/tokyotakehara/update(id=${ward.id})}"
+								th:text="#{common.text.update}">Update
+							</a>
 						</td>
 						<td class="data center">
-						<a class="btn btn-danger"
-							style="margin-left: 5%" data-toggle="modal"
-							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${ward.id}, data-title=${ward.wardName}">Delete
-						</a>
+							<a class="btn btn-danger"
+								style="margin-left: 5%" data-toggle="modal"
+								data-target="#deleteModal" th:text="#{common.text.delete}"
+								th:attr="data-id=${ward.id}, data-name=${ward.wardName}">Delete
+								<!-- date-○○…○○の変数名で=から先のものを扱うことができる。ここでは下のモーダル用スクリプトで使用されている -->
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -223,37 +226,38 @@
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
-			<ul>
-				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
-					th:text="#{common.text.paging.lead}">←lead
-					</a>
-				</li>
-				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
-					th:class="(${i}==${page.number})? 'active' : ''"
-					style="display: inline">
-					<form th:id="'pageForm'+${i}" method="post"
-						th:action="@{${url}(page=${i})}"
-						th:object="${tokyoTakeharaSearchForm}" style="display: inline">
-						<input type="hidden" th:field="*{wardName}" />
-						<input type="hidden" th:field="*{locationId}" />
-					</form>
-					<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
-					<a
-					th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
-						<span th:text='${i+1}'>1</span>
-					</a>
-				</li>
-				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
-					<a th:if="${not page.last}"
-					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-					th:text="#{common.text.paging.end}">end➝
-					</a>
-				</li>
-			</ul>
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						th:text="#{common.text.paging.lead}">←lead
+						</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+						th:class="(${i}==${page.number})? 'active' : ''"
+						style="display: inline">
+						<form th:id="'pageForm'+${i}" method="post"
+							th:action="@{${url}(page=${i})}"
+							th:object="${tokyoTakeharaSearchForm}" style="display: inline">
+							<input type="hidden" th:field="*{wardName}" />
+							<input type="hidden" th:field="*{locationId}" />
+							<input type="hidden" th:field="*{population}"/>
+							<!-- ページング部品はhiddenで検索条件を持っている -->
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}"
+						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						th:text="#{common.text.paging.end}">end➝
+						</a>
+					</li>
+				</ul>
 			</p>
 		</div>
 	</div>
@@ -279,7 +283,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteName">WardsName</span>
+									<span id="deleteName">WardName</span>
 								</p>
 							</div>
 						</div>
@@ -289,7 +293,7 @@
 									<span class="glyphicon glyphicon-exclamation-sign"
 										aria-hidden="true">
 									</span>
-									<span th:text="#{common.text.warn.delete(#{menu.text.tokyo})}"></span>
+									<span th:text="#{common.text.warn.delete(#{tokyo.text.ward})}"></span>
 								</div>
 							</div>
 						</div>
@@ -319,10 +323,12 @@
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var wardId = button.data('id');
-			var wardName = button.data('Name');
+			var wardName = button.data('name')+'区';
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", wardId);
-			modal.find('#deleteName').text(wardName));
+			//attr(アトリビュート)はタグの中に入れるものを指定する。ここでは削除モーダルにあるid=deleteId(#はidを意味する。.ならクラスを意味する)にwardId(wardslistからdata-idを経て)を渡している
+			modal.find('#deleteName').text(wardName);
+			//textは実際に表示される文字の部分を指定する。
 		});
 	</script>
 </body>

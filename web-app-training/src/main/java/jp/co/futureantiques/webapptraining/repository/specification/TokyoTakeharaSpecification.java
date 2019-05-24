@@ -14,7 +14,7 @@ import jp.co.futureantiques.webapptraining.model.form.tokyoTakehara.TokyoTakehar
 import jp.co.futureantiques.webapptraining.model.tokyoTakehara.TokyoMainTakehara;
 
 /**
- * MovieMainの検索条件を生成するクラス
+ * TokyoMainTakeharaの検索条件を生成するクラス
  *
  */
 public class TokyoTakeharaSpecification {

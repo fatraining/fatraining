@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jp.co.futureantiques.webapptraining.model.form.tokyoTakehara.TokyoTakeharaInputForm;
 import jp.co.futureantiques.webapptraining.model.form.tokyoTakehara.TokyoTakeharaSearchForm;
 import jp.co.futureantiques.webapptraining.model.tokyoTakehara.LocationTakehara;
 import jp.co.futureantiques.webapptraining.model.tokyoTakehara.TokyoMainTakehara;
@@ -48,6 +49,22 @@ public interface TokyoTakeharaService {
 	TokyoMainTakehara getWardData(final int id);
 
 	/**
+	 * TokyoMainTakeharaのレコードを新規登録する
+	 *
+	 * @param TokyoTakeharaInputForm form
+	 * @return TokyoMainTakehara
+	 */
+	TokyoMainTakehara insertWardData(final TokyoTakeharaInputForm form);
+
+	/**
+	 * TokyoMainTakeharaのレコードを更新する
+	 *
+	 * @param TokyoTakeharaInputForm form
+	 * @return TokyoMainTakehara
+	 */
+	TokyoMainTakehara updateWardData(final TokyoTakeharaInputForm form);
+
+	/**
 	 * TokyoMainTakeharaのレコードを論理削除する
 	 *
 	 * @param int id
@@ -59,5 +76,5 @@ public interface TokyoTakeharaService {
 	 *
 	 * @param ArrayList<Integer> ids
 	 */
-	void deleteWardComp(final ArrayList<Integer> ids);
+	void deleteWardDataComp(final ArrayList<Integer> ids);
 }

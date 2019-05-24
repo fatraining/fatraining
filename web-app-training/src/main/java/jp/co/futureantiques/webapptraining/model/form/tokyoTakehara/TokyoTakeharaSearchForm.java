@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class TokyoTakeharaSearchForm {
+
 	/** 区ID */
 	private Integer id;
 
