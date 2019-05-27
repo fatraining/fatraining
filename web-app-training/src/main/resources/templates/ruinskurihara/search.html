@@ -143,8 +143,9 @@
 
 						<td class="data center" th:text="${ruins.ruinsName}"></td>
 
-						<td class="data center"><label th:if="${ruins.genre != null}"
-							th:text="${ruins.genre.genre}" class="data center"></label>
+						<td class="data center">
+						<label th:if="${ruins.genre != null}"
+							   th:text="${ruins.genre.genre}" class="data center"></label>
 						</td>
 
 						<td class="data center"><label
@@ -180,7 +181,8 @@
 			<ul>
 				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
 					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+					<a th:if="${not page.first}"
+					onclick="$('#pageForm0').submit()"
 					th:text="#{common.text.paging.lead}">←lead</a>
 				</li>
 				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
