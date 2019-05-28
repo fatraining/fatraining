@@ -27,7 +27,7 @@ import jp.co.futureantiques.webapptraining.service.BandTaneichiService;
  *
  */
 @Service
-public class BandTaneichiServiceImpl implements BandTaneichiService{
+public class BandTaneichiServiceImpl implements BandTaneichiService {
 
 	/** BandMainTaneichiのリポジトリ*/
 	private final BandMainTaneichiRepository bandMainTaneichiRepository;
@@ -47,7 +47,7 @@ public class BandTaneichiServiceImpl implements BandTaneichiService{
 	 */
 	@Autowired
 	public BandTaneichiServiceImpl(BandMainTaneichiRepository bandMainTaneichiRepository,
-			BandSexTaneichiRepository bandSexTaneichiRepository, 
+			BandSexTaneichiRepository bandSexTaneichiRepository,
 			GenreTaneichiRepository genreTaneichiRepository) {
 		this.bandMainTaneichiRepository = bandMainTaneichiRepository;
 		this.bandSexTaneichiRepository = bandSexTaneichiRepository;
@@ -55,44 +55,44 @@ public class BandTaneichiServiceImpl implements BandTaneichiService{
 	}
 
 	@Override
-	public List<BandSexTaneichi>getListBandSex(){
+	public List<BandSexTaneichi> getListBandSex() {
 
-		// BandSexテーブルのレコードをID隼に取得
-		return bandSexTaneichiRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
+		// BandSexテーブルのレコードをID順に取得
+		return bandSexTaneichiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public List<GenreTaneichi>getListGenre(){
+	public List<GenreTaneichi> getListGenre() {
 
-		// GenreテーブルのレコードをID隼に取得
+		// GenreテーブルのレコードをID順に取得
 		return genreTaneichiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public Page<BandMainTaneichi>getPageBand(final BandTaneichiSearchForm form,final Pageable pageable){
+	public Page<BandMainTaneichi> getPageBand(final BandTaneichiSearchForm form, final Pageable pageable) {
 
-		// 検索条件を生成しBandMainテーブルのレコードを取得
-		return bandMainTaneichiRepository.findAll(BandTaneichiSpecification.generateBandSpecification(form),pageable);
+		// 検索条件を生成しBandMainTaneichiテーブルのレコードを取得
+		return bandMainTaneichiRepository.findAll(BandTaneichiSpecification.generateBandSpecification(form), pageable);
 	}
 
 	@Override
-	public List<BandMainTaneichi>getListBand(final BandTaneichiSearchForm form){
+	public List<BandMainTaneichi> getListBand(final BandTaneichiSearchForm form) {
 
-		// 検索条件を生成しBandMainテーブルのレコードを取得
+		// 検索条件を生成しBandMainTaneichiテーブルのレコードを取得
 		return bandMainTaneichiRepository.findAll(BandTaneichiSpecification.generateBandSpecification(form));
 	}
 
 	@Override
 	public BandMainTaneichi getBand(final long id) {
 
-		// BandMainテーブルを主キー検索
+		// BandMainTaneichiテーブルを主キー検索
 		return bandMainTaneichiRepository.findOne(id);
 	}
 
 	@Override
 	public BandMainTaneichi insertBand(final BandTaneichiInputForm form) {
 
-		// BandMainテーブルに新規でデータ登録
+		// BandMainTaneichiテーブルに新規でデータ登録
 		final BandMainTaneichi bandMainTaneichi = form.convertToBandMainTaneichiForInsert();
 		return bandMainTaneichiRepository.save(bandMainTaneichi);
 	}
@@ -102,10 +102,10 @@ public class BandTaneichiServiceImpl implements BandTaneichiService{
 
 		// 更新対象のレコードを取得する
 		BandMainTaneichi bandMainTaneichi = bandMainTaneichiRepository.findOne((long) form.getId());
-		if(bandMainTaneichi != null) {
+		if (bandMainTaneichi != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if(form.getUpdateDate().equals(String.valueOf(bandMainTaneichi.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(bandMainTaneichi.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
 				bandMainTaneichi = form.convertToBandMainTaneichiForUpdate(bandMainTaneichi);
@@ -120,7 +120,7 @@ public class BandTaneichiServiceImpl implements BandTaneichiService{
 
 		//更新対象のレコードを取得
 		BandMainTaneichi bandMainTaneichi = bandMainTaneichiRepository.findOne(id);
-		if(bandMainTaneichi != null) {
+		if (bandMainTaneichi != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを１にする
 			bandMainTaneichiRepository.delete(id);
