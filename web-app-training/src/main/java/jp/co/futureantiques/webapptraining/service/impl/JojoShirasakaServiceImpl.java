@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.futureantiques.webapptraining.model.form.jojoShirasaka.JojoStandInputForm;
 import jp.co.futureantiques.webapptraining.model.form.jojoShirasaka.JojoStandSearchForm;
 import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoAppearanceShirasaka;
 import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoMainShirasaka;
@@ -83,52 +85,50 @@ public class JojoShirasakaServiceImpl implements JojoShirasakaService {
 
 	}
 
-//未作成エリア
 
-	/**
 	@Override
-	public MovieMain insertMovie(final MovieSampleInputForm form) {
+	public JojoMainShirasaka insertJojo(final JojoStandInputForm form) {
 
-		// MovieMainテーブルに新規でデータを登録する
-		final MovieMain movieMain = form.convertToMovieMainForInsert();
-		return movieMainRepository.save(movieMain);
+		// JojoMainShirasakaテーブルに新規でデータを登録する
+		final JojoMainShirasaka jojoMainShirasaka = form.convertToJojoMainForInsert();
+		return jojoMainShirasakaRepository.save(jojoMainShirasaka);
 	}
 
 	@Override
-	public MovieMain updateMovie(final MovieSampleInputForm form) {
+	public JojoMainShirasaka updateStand(final JojoStandInputForm form) {
 
 		// 更新対象のレコードを取得する
-		MovieMain movieMain = movieMainRepository.findOne((long) form.getId());
-		if (movieMain != null) {
+		JojoMainShirasaka jojoMainShirasaka = jojoMainShirasakaRepository.findOne((long) form.getId());
+		if (jojoMainShirasaka != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(movieMain.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(jojoMainShirasaka.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
-				movieMain = form.convertToMovieMainForUpdate(movieMain);
-				return movieMainRepository.saveAndFlush(movieMain);
+				jojoMainShirasaka = form.convertToJojoMainForUpdate(jojoMainShirasaka);
+				return jojoMainShirasakaRepository.saveAndFlush(jojoMainShirasaka);
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void deleteMovieById(final long id) {
+	public void deleteStandById(final long id) {
 
 		// 更新対象のレコードを取得する
-		MovieMain movieMain = movieMainRepository.findOne(id);
-		if (movieMain != null) {
+		JojoMainShirasaka jojoMainShirasaka = jojoMainShirasakaRepository.findOne(id);
+		if (jojoMainShirasaka != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
-			movieMainRepository.delete(id);
+			jojoMainShirasakaRepository.delete(id);
 		}
 	}
 
 	@Override
-	public void deleteMovieComp(final ArrayList<Long> ids) {
+	public void deleteStandComp(final ArrayList<Long> ids) {
 
 		// 対象のレコードを削除する
-		movieMainRepository.deleteComp(ids);
+		jojoMainShirasakaRepository.deleteComp(ids);
 	}
-	*/
+
 }
