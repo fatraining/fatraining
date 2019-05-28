@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,33 +20,33 @@ import jp.co.futureantiques.webapptraining.model.form.bandTaneichi.BandTaneichiS
 public interface BandTaneichiService {
 
 	/**
-	 * バンド性別エンティティのリストを取得
+	 * ボーカル性別エンティティのリストを取得
 	 * @return BandSexTaneichiEntityのリスト
 	 */
-	List<BandSexTaneichi>getListBandSex();
+	List<BandSexTaneichi> getListBandSex();
 
 	/**
-	 * ジャンルのエンティティのリスtを取得
+	 * ジャンルのエンティティのリストを取得
 	 * @return GenreTaneichiEntityのリスト
 	 */
-	List<GenreTaneichi>getListGenre();
+	List<GenreTaneichi> getListGenre();
 
 	/**
-	 * 検索条件を元にBandMainのレコードのりうとを取得（pagging)
+	 * 検索条件をもとにBandMainTaneichiのレコードのリストを取得（paging)
 	 *
 	 * @param BandTaneichiSearchForm form
 	 * @param Pageble pageble
 	 * @return BandMainTaneichiのリスト
 	 */
-	Page<BandMainTaneichi>getPageBand(final BandTaneichiSearchForm form,final  Pageable pageable);
+	Page<BandMainTaneichi> getPageBand(final BandTaneichiSearchForm form, final Pageable pageable);
 
 	/**
-	 * 検索条件を元にBandMainのレコードのリスとを取得する
+	 * 検索条件を元にBandMainTaneichiのレコードのリストを取得する
 	 *
 	 * @param BandTaneichiSearchForm form
 	 * @return BandMainTaneichiのリスト
 	 */
-	List<BandMainTaneichi>getListBand(final BandTaneichiSearchForm form);
+	List<BandMainTaneichi> getListBand(final BandTaneichiSearchForm form);
 
 	/**
 	 * IDをキーにBandMainTaneichiのレコードを取得する
@@ -78,13 +77,13 @@ public interface BandTaneichiService {
 	 *
 	 * @param long id
 	 */
-	void  deleteBandById(final long id);
+	void deleteBandById(final long id);
 
 	/**
 	 * BandMainTaneichiのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long>ids
 	 */
-	void deleteBandComp(final ArrayList<Long>ids);
+	void deleteBandComp(final ArrayList<Long> ids);
 
 }
