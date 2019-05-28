@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Webアプリ研修|お城検索</title>
+<link rel="stylesheet"
+		type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet"
+		type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/CastleMinami.css}" />
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small>
+		</h4>
+	</div>
+
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<h1 align="center" th:text="#{castle.text.search}">CastleSearch</h1>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm"
+			method="get" action="/castle/deletecomp"
+			th:object="${castleSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
+
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning"
+					th:href="@{/castle/insert}"
+					th:text="#{common.text.new}">New </a>
+				<a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(castleSearchForm.castleName != null or
+							castleSearchForm.prefectureId != null or
+							castleSearchForm.tenshuId != null) and
+							castleList == null}"
+					th:text="#{common.text.info.search}">No Result</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result != null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<form class="form-horizontal" id="searchForm"
+			method="post" action="/castleminami/search"
+			th:object="${castleSearchForm}">
+			<div class="form-group">
+				<label for="castleName" class="col-sm-2 control-label"
+						th:text="#{castle.text.input.name}">Name:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{castleName}" class="form-control"
+					id="inputCastleName" th:placeholder="#{castle.text.search.info}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="prefecture" class="control-label col-sm-2" th:text="#{castle.text.input.prefecture}">Prefecture:</label>
+				<div class="col-sm-8">
+					<select
+						id="inputPrefecture"
+						name="prefectureId"
+						class="form-control select">
+					<option th:each="prefecture : ${prefectureMinamiList}"
+						th:value="${prefecture.id}"
+						th:text="${prefecture.prefecture}"
+						th:selected="${prefecture.id == castleSearchForm.prefectureId}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="tenshu" class="control-label col-sm-2" th:text="#{castle.text.input.tenshu}">Tenshu:</label>
+				<div class="col-sm-8">
+					<select
+						id="inputTenshu"
+						name="tenshuId"
+						class="form-control select">
+						<option th:each="tenshu : ${tenshuMinamiList}"
+							th:value="${tenshu.id}"
+							th:text="${tenshu.tenshu}"
+							th:selected="${tenshu.id == castleSearchForm.tenshuId}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search
+					</a>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-warning center-block"
+						th:href="@{/castleminami}"
+						th:text="#{common.text.reset}">Reset
+					</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${castleList != null}">
+			<table id="resultTable" class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-12 center" th:text="#{castle.text.name}">Name</th>
+						<th class="per-12 center" th:text="#{castle.text.cashu}">Cashu</th>
+						<th class="per-16 center" th:text="#{castle.text.prefecture.and.year}">Prefecture/CastleYear</th>
+						<th class="per-16 center" th:text="#{castle.text.tenshu}">Tenshu</th>
+						<th class="per-45 center" th:text="#{castle.text.comment}">Comment</th>
+						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
+						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="castle : ${castleList}">
+						<td class="data center" th:text="${castle.castleName}">会津若松城</td>
+						<td class="data center">
+							<label th:if="${castle.cashuName != null}"
+									th:text="${castle.cashuName}"
+									class="data center">葦名直盛</label>
+						</td>
+						<td class="data center">
+							<label th:if="${castle.castleYear != null}"
+									th:text="${castle.prefecture.prefecture}+'県 / '+${castle.castleYear}+'年'"
+									class="data center">福島/1384年</label>
+							<label th:if="${castle.castleYear == null}"
+									th:text="${castle.prefecture.prefecture}+'県'"
+									class="data center">福島</label>
+						</td>
+						<td class="data center" th:text="${castle.tenshu.tenshu}">あり</td>
+						<td class="data center" th:text="${castle.comment}">維新や白虎隊が好きな人必見</td>
+						<td class="data"><a class="btn btn-success"
+							th:href="@{/castle/update(id=${castle.id})}"
+							th:text="#{common.text.update}">Update</a></td>
+						<td class="data center">
+							<a class="btn btn-danger"
+								style="margin-left: 5%" data-toggle="modal"
+								data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${castle.id}, data-name=${castle.castleName}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<p th:if="${page != null}">
+			<ul>
+				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+					th:text="#{common.text.paging.lead}">←lead</a>
+				</li>
+				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					th:class="(${i}==${page.number})? 'active' : ''"
+					style="display: inline">
+					<form th:id="'pageForm'+${i}" method="post"
+						th:action="@{${url}(page=${i})}"
+						th:object="${castleSearchForm}" style="display: inline">
+						<input type="hidden" th:field="*{castleName}" />
+						<input type="hidden" th:field="*{prefectureId}" />
+						<input type="hidden" th:field="*{tenshuId}" />
+					</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+							th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<span th:text='${i+1}'>1</span>
+						</a>
+				</li>
+				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+					<a th:if="${not page.last}"
+						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						th:text="#{common.text.paging.end}">end➝</a>
+				</li>
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id" />
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{castle.text.delete}">CastleDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteName">Castle Name</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.castle})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel </a>
+							<a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete </a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="bogoCount" class="panel-clear"></div>
+	<script type="text/javascript"
+			src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var castleId = button.data('id');//このidとnameは上の検索結果のdeleteのdate-〇〇の部分
+			var castleName = button.data('name');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", castleId);
+			modal.find('#deleteName').text(castleName);
+			//ここで書いたものが削除モーダルの変数に飛ぶ
+		});
+	</script>
+</body>
+</html>
