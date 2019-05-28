@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 映画削除画面のFormクラス
+ * スタンド削除画面のFormクラス
  *
  * @author future
  */

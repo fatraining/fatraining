@@ -3,18 +3,18 @@ package jp.co.futureantiques.webapptraining.model.form.jojoShirasaka;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import jp.co.futureantiques.webapptraining.model.moviesample.MovieMain;
+import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoMainShirasaka;
 import lombok.Data;
 
 /**
  * 映画登録・更新画面用のFormクラス
  *
- * @author future
  */
 @Data
 public class JojoStandInputForm {
@@ -22,27 +22,25 @@ public class JojoStandInputForm {
 	/** ID */
 	private int id;
 
-	/** 映画名 */
+	/** スタンド名 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 255)
-	private String movieTitle;
+	private String standName;
 
-	/** ジャンルID */
-	private Integer genreId;
+	/** スタンド能力者 */
+	private String standUser;
 
-	/** 俳優ID */
-	private Integer actorId;
+	/** 性別ID */
+	private Integer sexId;
 
-	/** 公開年 */
+	/** 能力 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
-	private String releaseYearStr;
+	private String ability;
 
-	/** 上映時間 */
-	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
-	private String runTimeStr;
+	/** 登場部ID */
+	@NotNull(message = "common.text.error.require")
+	@Min(value=1, message = "common.text.error.require")
+	private Integer appearanceId;
 
 	/** コメント */
 	@Size(max = 255)
@@ -54,68 +52,58 @@ public class JojoStandInputForm {
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 *
-	 * @param movieMain
+	 * @param jojoMainShirasaka
 	 */
-	public void initWithMovieMain(MovieMain movieMain) {
-		this.setId((int) movieMain.getId());
-		this.setMovieTitle(movieMain.getMovieTitle());
-		this.setGenreId(movieMain.getGenreId());
-		this.setActorId(movieMain.getActorId());
-		this.setReleaseYearStr(String.valueOf(movieMain.getReleaseYear()));
-		if (movieMain.getRunTime() != null) {
-			this.setRunTimeStr(String.valueOf(movieMain.getRunTime()));
-		}
-		this.setComment(movieMain.getComment());
-		this.setUpdateDate(String.valueOf(movieMain.getUpdateDate()));
+	public void initWithJojoMain(JojoMainShirasaka jojoMainShirasaka) {
+		this.setId((int) jojoMainShirasaka.getId());
+		this.setStandName(jojoMainShirasaka.getStandName());
+		this.setStandUser(jojoMainShirasaka.getStandUserName());
+		this.setSexId(jojoMainShirasaka.getSexId());
+		this.setAbility(jojoMainShirasaka.getAbility());
+		this.setAppearanceId(jojoMainShirasaka.getAppearanceId());
+		this.setComment(jojoMainShirasaka.getComment());
+		this.setUpdateDate(String.valueOf(jojoMainShirasaka.getUpdateDate()));
 	}
 
 	/**
-	 * MovieMainエンティティに登録値を入れる
+	 * JojoMainShirasakaエンティティに登録値を入れる
 	 *
-	 * @return MovieMain
+	 * @return JojoMainShirasaka
 	 */
-	public MovieMain convertToMovieMainForInsert() {
-		MovieMain movieMain = new MovieMain();
-		movieMain = convertToMovieMain(movieMain);
-		movieMain.setCreateDate(new Timestamp(new Date().getTime()));
-		movieMain.setUpdateDate(movieMain.getCreateDate());
-		return movieMain;
+	public JojoMainShirasaka convertToJojoMainForInsert() {
+		JojoMainShirasaka jojoMainShirasaka = new JojoMainShirasaka();
+		jojoMainShirasaka = convertToJojoMain(jojoMainShirasaka);
+		jojoMainShirasaka.setCreateDate(new Timestamp(new Date().getTime()));
+		jojoMainShirasaka.setUpdateDate(jojoMainShirasaka.getCreateDate());
+		return jojoMainShirasaka;
 	}
 
 	/**
-	 * MovieMainエンティティに更新値を入れる
+	 * JojoMainShirasakaエンティティに更新値を入れる
 	 *
-	 * @param MovieMain movieMain
-	 * @return MovieMain
+	 * @param JojoMainShirasaka jojoMainShirasaka
+	 * @return JojoMainShirasaka
 	 */
-	public MovieMain convertToMovieMainForUpdate(MovieMain movieMain) {
-		movieMain = convertToMovieMain(movieMain);
-		movieMain.setUpdateDate(new Timestamp(new Date().getTime()));
-		return movieMain;
+	public JojoMainShirasaka convertToJojoMainForUpdate(JojoMainShirasaka jojoMainShirasaka) {
+		jojoMainShirasaka = convertToJojoMain(jojoMainShirasaka);
+		jojoMainShirasaka.setUpdateDate(new Timestamp(new Date().getTime()));
+		return jojoMainShirasaka;
 	}
 
 	/**
-	 * MovieMainエンティティに入力値を入れる
+	 * JojoMainShirasakaエンティティに入力値を入れる
 	 *
-	 * @param MovieMain movieMain
-	 * @return MovieMain
+	 * @param JojoMainShirasaka jojoMainShirasaka
+	 * @return JojoMainShirasaka
 	 */
-	private MovieMain convertToMovieMain(MovieMain movieMain) {
-		movieMain.setMovieTitle(this.movieTitle);
-		movieMain.setGenreId(this.genreId);
-		movieMain.setActorId(this.actorId);
-		movieMain.setReleaseYear(Integer.parseInt(this.releaseYearStr));
-		if (!this.runTimeStr.isEmpty()) {
-
-			// 上映時間が入力されていた場合
-			movieMain.setRunTime(Integer.parseInt(this.runTimeStr));
-		} else {
-
-			// 上映時間が入力されていなかった場合
-			movieMain.setRunTime(null);
-		}
-		movieMain.setComment(this.comment);
-		movieMain.setDelFlg("0");
-		return movieMain;
+	private JojoMainShirasaka convertToJojoMain(JojoMainShirasaka jojoMainShirasaka) {
+		jojoMainShirasaka.setStandName(this.standName);
+		jojoMainShirasaka.setStandUserName(this.standUser);
+		jojoMainShirasaka.setSexId(this.sexId);
+		jojoMainShirasaka.setAbility(this.ability);
+		jojoMainShirasaka.setAppearanceId(this.appearanceId);
+		jojoMainShirasaka.setComment(this.comment);
+		jojoMainShirasaka.setDelFlg("0");
+		return jojoMainShirasaka;
 	}
 }
