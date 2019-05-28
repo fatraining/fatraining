@@ -168,35 +168,35 @@
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
-			<ul>
-				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
-					th:text="#{common.text.paging.lead}">←lead</a>
-				</li>
-				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
-					th:class="(${i}==${page.number})? 'active' : ''"
-					style="display: inline">
-					<form th:id="'pageForm'+${i}" method="post"
-						th:action="@{${url}(page=${i})}" th:object="${spaOkabeSearchForm}"
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+						th:class="(${i}==${page.number})? 'active' : ''"
 						style="display: inline">
-						<input type="hidden" th:field="*{spaName}" />
-						<input type="hidden" th:field="*{areaId}" />
-						<input type="hidden" th:field="*{qualityId}" />
-					</form>
-					<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
-					<a th:if='${i}!=${page.number}'
-					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
-					<span th:text='${i+1}'>1</span>
-					</a>
-				</li>
-				<li th:class="${page.last} ? 'disabled':''" style="display: inline">
-					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
-					<a th:if="${not page.last}"
-					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-					th:text="#{common.text.paging.end}">end➝</a>
-				</li>
-			</ul>
+						<form th:id="'pageForm'+${i}" method="post"
+							th:action="@{${url}(page=${i})}" th:object="${spaOkabeSearchForm}"
+							style="display: inline">
+							<input type="hidden" th:field="*{spaName}" />
+							<input type="hidden" th:field="*{areaId}" />
+							<input type="hidden" th:field="*{qualityId}" />
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}"
+						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
 			</p>
 		</div>
 	</div>

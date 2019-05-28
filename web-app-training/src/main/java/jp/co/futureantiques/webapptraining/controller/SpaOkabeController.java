@@ -93,6 +93,5 @@ public class SpaOkabeController {
 		}
 		return "spaOkabe/search";
 
-
-}
+	}
 }

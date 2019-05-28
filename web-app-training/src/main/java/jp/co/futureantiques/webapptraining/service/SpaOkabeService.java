@@ -57,14 +57,11 @@ public interface SpaOkabeService {
 	 */
 	SpaMainOkabe getSpaMainOkabe(final long id);
 
-
 	/**
 	 * SpaMainOkabeのレコードを論理削除する
 	 *
 	 * @param long id
 	 */
 	void deleteSpaById(final long id);
-
-
 
 }

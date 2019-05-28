@@ -25,7 +25,7 @@ import jp.co.futureantiques.webapptraining.service.SpaOkabeService;
  */
 @Service
 
-public class SpaOkabeServiceImpl implements SpaOkabeService{
+public class SpaOkabeServiceImpl implements SpaOkabeService {
 
 	/** SpaMainOkabeリポジトリ */
 	private final SpaMainOkabeRepository spaMainOkabeRepository;
@@ -86,7 +86,6 @@ public class SpaOkabeServiceImpl implements SpaOkabeService{
 		return spaMainOkabeRepository.findOne(id);
 	}
 
-
 	@Override
 	public void deleteSpaById(final long id) {
 
@@ -98,7 +97,5 @@ public class SpaOkabeServiceImpl implements SpaOkabeService{
 			spaMainOkabeRepository.delete(id);
 		}
 	}
-
-
 
 }
