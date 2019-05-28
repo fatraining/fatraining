@@ -28,6 +28,7 @@ public interface CastleMinamiService {
 
 	/**
 	 * 天守エンティティのリストを取得する
+	 *
 	 * @return TenshuEntityのリスト
 	 */
 	List<TenshuMinami> getListTenshuMinami();
@@ -60,6 +61,7 @@ public interface CastleMinamiService {
 
 	/**
 	 * CastleMainMinamiのレコードを論理削除する
+	 *
 	 * @param long id
 	 */
 	void deleteCastleById(final long id);
