@@ -58,7 +58,7 @@ public class BandTaneichiSpecification {
 				}
 				if (form.getBandSex() != null && form.getBandSex() != 0) {
 
-					// バンド性別を条件に追加
+					// ボーカル性別を条件に追加
 					Predicate newCondition = cb.equal(root.get("bandSex"), form.getBandSex());
 					condition = getPredicate(cb, condition, newCondition);
 				}
