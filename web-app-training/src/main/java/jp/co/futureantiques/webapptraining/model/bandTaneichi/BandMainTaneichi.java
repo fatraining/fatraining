@@ -15,8 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
 /**
- * bandMainテーブルと対応するEntity
- *
+ * BandMainTaneichiテーブルと対応するEntity
  *
  * @author future
  *
