@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * BandSexテーブルと対応するEntity
+ * BandSexTaneichiテーブルと対応するEntity
  *
  * @author future
  *
@@ -26,12 +26,12 @@ public class BandSexTaneichi {
 	/** 性別ID*/
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
 
 	/** 性別*/
 	@Column(name = "sex")
-	@Size(max= 20)
+	@Size(max = 20)
 	private String sex;
 
 	/**削除フラグ*/
@@ -48,7 +48,7 @@ public class BandSexTaneichi {
 
 	/** 外部キー設定:性別ID*/
 	@Transient
-	@OneToMany(targetEntity = BandMainTaneichi.class,mappedBy = "bandSex")
-	@JoinColumn(name = "id",referencedColumnName = "band_sex")
-	private List<BandMainTaneichi>bandMainTaneichiList;
+	@OneToMany(targetEntity = BandMainTaneichi.class, mappedBy = "bandSex")
+	@JoinColumn(name = "id", referencedColumnName = "band_sex")
+	private List<BandMainTaneichi> bandMainTaneichiList;
 }
