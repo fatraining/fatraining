@@ -9,6 +9,6 @@ import jp.co.futureantiques.webapptraining.model.bandTaneichi.BandSexTaneichi;
  * @author future
  *
  */
-public interface BandSexTaneichiRepository extends JpaRepository<BandSexTaneichi,Long> {
+public interface BandSexTaneichiRepository extends JpaRepository<BandSexTaneichi, Long> {
 
 }
