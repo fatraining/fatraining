@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BandTaneichiDeleteForm {
 
 	public ArrayList<Long> getDeleteIds() {
-		// TODO 自動生成されたメソッド・スタブ
+		// TODO 時間があればつくる
 		return null;
 	}
 
