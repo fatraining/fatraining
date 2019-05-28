@@ -9,5 +9,5 @@ import jp.co.futureantiques.webapptraining.model.bandTaneichi.GenreTaneichi;
  * @author future
  *
  */
-public interface GenreTaneichiRepository extends JpaRepository<GenreTaneichi,Long> {
+public interface GenreTaneichiRepository extends JpaRepository<GenreTaneichi, Long> {
 }
