@@ -1,10 +1,12 @@
 package jp.co.futureantiques.webapptraining.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jp.co.futureantiques.webapptraining.model.form.jojoShirasaka.JojoStandInputForm;
 import jp.co.futureantiques.webapptraining.model.form.jojoShirasaka.JojoStandSearchForm;
 import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoAppearanceShirasaka;
 import jp.co.futureantiques.webapptraining.model.jojoShirasaka.JojoMainShirasaka;
@@ -60,30 +62,34 @@ public interface JojoShirasakaService {
 	 * JojoMainShirasakaにレコードを新規登録する
 	 *
 	 * @param JojoStandInputForm form
-	 * @return MovieMain
+	 * @return JojoMainShirasaka
+	  */
 
 	JojoMainShirasaka insertJojo(final JojoStandInputForm form);
 
 	/**
-	 * MovieMainのレコードを更新する
+	 * JojoMainShirasakaのレコードを更新する
 	 *
-	 * @param MovieSampleInputForm form
-	 * @return MovieMain
+	 * @param JojoStandInputForm form
+	 * @return JojoMainShirasaka
+	 */
 
-	MovieMain updateMovie(final MovieSampleInputForm form);
+	JojoMainShirasaka updateStand(final JojoStandInputForm form);
 
 	/**
-	 * MovieMainのレコードを論理削除する
+	 * JojoMainShirasakaのレコードを論理削除する
 	 *
 	 * @param long id
+	 */
 
-	void deleteMovieById(final long id);
+	void deleteStandById(final long id);
 
 	/**
 	 * MovieMainのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
-
-	void deleteMovieComp(final ArrayList<Long> ids);
 	 */
+
+	void deleteStandComp(final ArrayList<Long> ids);
+
 }
