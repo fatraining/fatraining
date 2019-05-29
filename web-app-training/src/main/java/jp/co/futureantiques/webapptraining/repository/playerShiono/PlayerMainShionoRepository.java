@@ -16,7 +16,8 @@ import jp.co.futureantiques.webapptraining.model.playerShiono.PlayerMainShiono;
  *
  * @author Shiono
  */
-public interface PlayerMainShionoRepository extends JpaRepository<PlayerMainShiono, Long>, JpaSpecificationExecutor<PlayerMainShiono> {
+public interface PlayerMainShionoRepository
+		extends JpaRepository<PlayerMainShiono, Long>, JpaSpecificationExecutor<PlayerMainShiono> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする

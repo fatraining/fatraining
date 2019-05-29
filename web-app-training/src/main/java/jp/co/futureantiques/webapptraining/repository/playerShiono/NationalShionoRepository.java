@@ -9,5 +9,5 @@ import jp.co.futureantiques.webapptraining.model.playerShiono.NationalShiono;
  *
  * @author Shiono
  */
-public interface NationalShionoRepository extends JpaRepository<NationalShiono,Integer>{
+public interface NationalShionoRepository extends JpaRepository<NationalShiono, Integer> {
 }

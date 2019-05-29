@@ -18,36 +18,36 @@ import lombok.Data;
 	 *
 	 * @author Shiono
 	 */
-	@Data
-	@Entity
-	public class TeamShiono {
+@Data
+@Entity
+public class TeamShiono {
 
-		/** チームID */
-		@Id
-		@GeneratedValue
-		@Column(name = "id")
-		private int id;
+	/** チームID */
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private int id;
 
-		/** チーム */
-		@Column(name = "team")
-		@Size(max = 30)
-		private String team;
+	/** チーム */
+	@Column(name = "team")
+	@Size(max = 30)
+	private String team;
 
-		/** 削除フラグ */
-		@Column(name = "del_flg")
-		private String delFlg;
+	/** 削除フラグ */
+	@Column(name = "del_flg")
+	private String delFlg;
 
-		/** 登録日時 */
-		@Column(name = "create_date")
-		private String createDate;
+	/** 登録日時 */
+	@Column(name = "create_date")
+	private String createDate;
 
-		/** 更新日時 */
-		@Column(name = "update_date")
-		private String updateDate;
+	/** 更新日時 */
+	@Column(name = "update_date")
+	private String updateDate;
 
-		/** 外部キー設定：チームID */
-		@Transient
-		@OneToMany(targetEntity = TeamShiono.class, mappedBy = "team")
-		@JoinColumn(name = "id", referencedColumnName = "team_id")
-		private List<PlayerMainShiono> playerMainList;
-	}
+	/** 外部キー設定：チームID */
+	@Transient
+	@OneToMany(targetEntity = TeamShiono.class, mappedBy = "team")
+	@JoinColumn(name = "id", referencedColumnName = "team_id")
+	private List<PlayerMainShiono> playerMainList;
+}
