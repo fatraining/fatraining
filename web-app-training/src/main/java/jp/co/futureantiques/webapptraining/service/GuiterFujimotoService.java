@@ -19,7 +19,7 @@ import jp.co.futureantiques.webapptraining.model.form.icecreamSako.IcecreamSearc
 /**
  * IcecreamSakoのサービスインターフェース
  *
- * @author MINAMI SAKO
+ * @author FUJIMOTO
  */
 @Service
 public interface GuiterFujimotoService {
@@ -63,9 +63,9 @@ public interface GuiterFujimotoService {
 	 */
 	GuiterMainFujimoto getGuiter(final long id);
 
-/**論理削除
- *
- */
+	/**論理削除
+	 *
+	 */
 
-//void deleteGuiterById(final long id);
+	//void deleteGuiterById(final long id);
 }

@@ -5,13 +5,11 @@ import lombok.Data;
 
 /**
  * 検索画面のFormクラス
- *
  * @author FUJIMOTO　YOSIHISA
- *
  */
 @Data
-
 public class GuiterSearchForm {
+
 	/**ID*/
 	private Integer id;
 
@@ -21,7 +19,7 @@ public class GuiterSearchForm {
 	/**会社ID*/
 	private Integer companyId;
 
-	/**木材Id*/
+	/**木材ID*/
 	private Integer woodId;
 
 	/** 削除フラグON用*/

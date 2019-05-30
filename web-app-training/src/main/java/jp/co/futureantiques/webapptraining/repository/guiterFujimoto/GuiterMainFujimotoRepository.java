@@ -17,8 +17,7 @@ import jp.co.futureantiques.webapptraining.model.GuiterFujimoto.GuiterMainFujimo
  */
 
 public interface GuiterMainFujimotoRepository extends
- JpaRepository<GuiterMainFujimoto,Long>,JpaSpecificationExecutor<GuiterMainFujimoto>
-{
+		JpaRepository<GuiterMainFujimoto, Long>, JpaSpecificationExecutor<GuiterMainFujimoto> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする

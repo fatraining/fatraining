@@ -63,8 +63,11 @@ public class GuiterMainFujimoto {
 	@Column(name="create_date")
 	private Timestamp createData;
 
-	/**外部キー設定：会社ID*/
+	/** 更新日時 */
+	@Column(name = "update_date")
+	private Timestamp updateDate;
 
+	/**外部キー設定：会社ID*/
 	@ManyToOne(targetEntity=CompanyFujimoto.class)
 	@JoinColumn(name="company_id",referencedColumnName="id",insertable=false,updatable=false)
 	private CompanyFujimoto company;

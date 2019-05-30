@@ -25,7 +25,9 @@ import jp.co.futureantiques.webapptraining.service.GuiterFujimotoService;
 @Controller
 @RequestMapping(value = "/guiterfujimoto")
 public class GuiterFujimotoController {
-	//名前のサービス*/
+
+	/**名前のサービス
+	*/
 	private final GuiterFujimotoService guiterFujimotoService;
 
 	/**コンストラクタ
@@ -40,7 +42,7 @@ public class GuiterFujimotoController {
 	/**
 	 * 会社エンティティのリストを取得する
 	 *
-	 * ＠return CompanyEntityのリスト
+	 * @return CompanyEntityのリスト
 	 */
 	@ModelAttribute
 	public List<CompanyFujimoto> getListCompanyFujimoto() {
@@ -58,21 +60,21 @@ public class GuiterFujimotoController {
 	}
 
 	/**
-	 * 検索結果を取得して検索画面に遷移する
-	 *
-	 * @param
-	 * @param
-	 * @param
+	 * 検索画面に遷移する
+	 * @param GuiterSearchForm guiterSearchForm
+	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchGuiter(@ModelAttribute final GuiterSearchForm guiterSearchForm) {
 		return "guiterFujimoto/search";
 	}
+
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 * @param GuiterSearchForm form
 	 * @param Model model
 	 * @param Pageable pageable
+	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchGuiter(

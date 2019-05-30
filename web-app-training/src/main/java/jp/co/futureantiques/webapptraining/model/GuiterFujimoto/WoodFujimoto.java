@@ -12,26 +12,25 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-
 /**Woodテーブルと対応するEntityクラス
- * @author futureFUJIMOTO
- *
+ * @author FUJIMOTO
  */
 @Data
 @Entity
 public class WoodFujimoto {
+
 	/** 木材ID*/
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private int id;
 
-	//木材/
+	/**木材*/
 	@Column(name="wood")
 	@Size(max=256)
 	private String wood;
 
-	//削除フラグ*/
+	/**削除フラグ*/
 	@Column(name="del_flg")
 	private String delFlg;
 
@@ -39,7 +38,7 @@ public class WoodFujimoto {
 	@Column(name="create_date")
 	private String createDate;
 
-	//更新日時*/
+	/**更新日時*/
 	@Column(name="update_date")
 	private String updateDate;
 
@@ -48,7 +47,4 @@ public class WoodFujimoto {
 	@OneToMany(targetEntity=GuiterMainFujimoto.class,mappedBy="wood_id")
 	@JoinColumn(name="id",referencedColumnName="wood_id")
 	private List<GuiterMainFujimoto> guiterMainFujimotoList;
-
-
-
 }
