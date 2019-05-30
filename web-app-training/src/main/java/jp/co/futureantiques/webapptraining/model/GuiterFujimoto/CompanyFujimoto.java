@@ -40,7 +40,7 @@ public class CompanyFujimoto {
 	@Column(name = "create_date")
 	private String createDate;
 
-	//更新日時
+	/**更新日時*/
 	@Column(name = "update_date")
 	private String updateDate;
 
