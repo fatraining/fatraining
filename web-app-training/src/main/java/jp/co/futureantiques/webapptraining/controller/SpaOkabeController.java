@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.futureantiques.webapptraining.model.form.spaOkabe.SpaOkabeSearchForm;
 import jp.co.futureantiques.webapptraining.model.spaOkabe.AreaOkabe;
@@ -93,5 +94,18 @@ public class SpaOkabeController {
 		}
 		return "spaOkabe/search";
 
+	}
+	/**
+	 * SpaMainOkabeテーブルのレコードを論理削除して検索画面に遷移する
+	 *
+	 * @param long id
+	 * @return 検索画面のパス
+	 */
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteSpa(@RequestParam(name = "id") final long id) {
+
+		//IDをキーにレコードを論理削除する
+		spaOkabeService.deleteSpaById(id);
+		return "redirect:/spa?result=delete&id" + id;
 	}
 }
