@@ -134,6 +134,7 @@
 						<th class="per-12 center" th:text="#{guiter.text.guiter}">ギターの名前</th>
 						<th class="per-12 center" th:text="#{guiter.text.companyId}">会社ID</th>
 						<th class="per-16 center" th:text="#{guiter.text.woodId}">木材ID</th>
+						<th class="per-12 center" th:text="#{guiter.text.price}">価格</th>
 						<th class="per-45 center" th:text="#{guiter.text.comment}">コメント</th>
 						<th class="per-7 center" th:text="#{common.text.update}">更新</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">削除</th>
@@ -148,6 +149,7 @@
 						</label></td>
 						<td class="data center"><label th:if="${guiter.wood != null}"
 							th:text="${guiter.wood.wood}" class="data center">スプルース</label></td>
+						<td class="data center" th:text="${guiter.priceInt}">17000</td>
 						<td class="data center" th:text="${guiter.comment}">ミニギター、癖なし</td>
 						<td class="data"><a class="btn btn-success"
 							th:href="@{/guiter/update(id=${guiter.id})}"
