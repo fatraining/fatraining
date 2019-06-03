@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.repository.spaOkabe;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,5 +27,15 @@ public interface SpaMainOkabeRepository extends JpaRepository<SpaMainOkabe, Long
 	@Modifying
 	@Query("UPDATE SpaMainOkabe SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id")final long id);
+
+	/**
+	 * 対象のレコードを削除する
+	 *
+	 * @param ArrayList<Long> ids
+	 */
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM SpaMainOkabe WHERE id IN(:ids)")
+	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 
 }
