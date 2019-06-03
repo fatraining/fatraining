@@ -60,7 +60,7 @@
 			<!--DB操作後 -->
 			<div class="alert alert-info text-center" role="alert"
 				th:if="${param.result !=null}">
-				<div th:switch="${param.resilt[0]}">
+				<div th:switch="${param.result[0]}">
 					<p th:case="insert"
 					   th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
 					<p th:case="update"
@@ -69,7 +69,8 @@
 					   th:text="#{common.text.info.update.failed}"></p>
 					<p th:case="delete"
 					   th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
-					<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					<p th:case="deletecomp"
+					   th:text="#{common.text.info.deletecomp}"></p>
 				</div>
 			</div>
 		</div>
