@@ -1,10 +1,12 @@
 package jp.co.futureantiques.webapptraining.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jp.co.futureantiques.webapptraining.model.form.spaOkabe.SpaOkabeInputForm;
 import jp.co.futureantiques.webapptraining.model.form.spaOkabe.SpaOkabeSearchForm;
 import jp.co.futureantiques.webapptraining.model.spaOkabe.AreaOkabe;
 import jp.co.futureantiques.webapptraining.model.spaOkabe.QualityOkabe;
@@ -58,10 +60,33 @@ public interface SpaOkabeService {
 	SpaMainOkabe getSpaMainOkabe(final long id);
 
 	/**
+	 * SpaMainOkabeにレコードを新規登録する
+	 *
+	 * @param SpaOkabeInputForm form
+	 * @return SpaMainOkabe
+	 */
+	SpaMainOkabe insertSpa(final SpaOkabeInputForm form);
+
+	/**
+	 * SpaMainのレコードを更新する
+	 *
+	 * @param SpaOkabeInputForm form
+	 * @return SpaMainOkabe
+	 */
+	SpaMainOkabe updateSpa(final SpaOkabeInputForm form);
+
+	/**
 	 * SpaMainOkabeのレコードを論理削除する
 	 *
 	 * @param long id
 	 */
 	void deleteSpaById(final long id);
+
+	/**
+	 * MovieMainのレコードを物理削除する
+	 *
+	 * @param ArrayList<Long> ids
+	 */
+	void deleteSpaComp(final ArrayList<Long> ids);
 
 }
