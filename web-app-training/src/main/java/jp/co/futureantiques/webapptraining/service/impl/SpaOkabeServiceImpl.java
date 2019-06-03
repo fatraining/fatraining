@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.futureantiques.webapptraining.model.form.spaOkabe.SpaOkabeInputForm;
 import jp.co.futureantiques.webapptraining.model.form.spaOkabe.SpaOkabeSearchForm;
 import jp.co.futureantiques.webapptraining.model.spaOkabe.AreaOkabe;
 import jp.co.futureantiques.webapptraining.model.spaOkabe.QualityOkabe;
@@ -21,7 +23,7 @@ import jp.co.futureantiques.webapptraining.service.SpaOkabeService;
 /**
  * SpaOkabeのサービス実装クラス
  *
- * @author Seiya Okabe
+ * @author SEIYA OKABE
  */
 @Service
 
@@ -87,15 +89,48 @@ public class SpaOkabeServiceImpl implements SpaOkabeService {
 	}
 
 	@Override
+	public SpaMainOkabe insertSpa(final SpaOkabeInputForm form) {
+
+		// MovieMainテーブルに新規でデータを登録する
+		final SpaMainOkabe spaMainOkabe = form.convertToSpaMainOkabeForInsert();
+		return spaMainOkabeRepository.save(spaMainOkabe);
+	}
+
+	@Override
+	public SpaMainOkabe updateSpa(final SpaOkabeInputForm form) {
+
+		// 更新対象のレコードを取得する
+		SpaMainOkabe spaMainOkabe = spaMainOkabeRepository.findOne((long) form.getId());
+		if (spaMainOkabe != null) {
+
+			// 更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(spaMainOkabe.getUpdateDate()))) {
+
+				// チェックOKの場合、更新
+				spaMainOkabe = form.convertToSpaMainOkabeForUpdate(spaMainOkabe);
+				return spaMainOkabeRepository.saveAndFlush(spaMainOkabe);
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public void deleteSpaById(final long id) {
 
 		// 更新対象のレコードを取得する
-		SpaMainOkabe spaMain = spaMainOkabeRepository.findOne(id);
-		if (spaMain != null) {
+		SpaMainOkabe spaMainOkabe = spaMainOkabeRepository.findOne(id);
+		if (spaMainOkabe != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
 			spaMainOkabeRepository.delete(id);
 		}
+	}
+
+	@Override
+	public void deleteSpaComp(final ArrayList<Long> ids) {
+
+		// 対象のレコードを削除する
+		spaMainOkabeRepository.deleteComp(ids);
 	}
 
 }
