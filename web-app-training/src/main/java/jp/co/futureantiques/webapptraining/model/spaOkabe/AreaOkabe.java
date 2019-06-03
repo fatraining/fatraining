@@ -16,7 +16,7 @@ import lombok.Data;
 /**
  * AreaOkabeテーブルと対応するEntityクラス
  *
- * @author Seiay Okabe
+ * @author SEIYA OKABE
  */
 @Data
 @Entity

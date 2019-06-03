@@ -16,7 +16,7 @@ import lombok.Data;
 /**
  * QualityOkabeテーブルと対応するEntity
  *
- * @author Seiya Okabe
+ * @author SEIYA OKABE
  *
  */
 @Data

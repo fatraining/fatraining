@@ -17,7 +17,7 @@ import lombok.Data;
 /**
  * SpaMainOkabeテーブルと対応するEntity
  *
- * @author Seiya Okabe
+ * @author SEIYA OKABE
  */
 @Data
 @Entity
