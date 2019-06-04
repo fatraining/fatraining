@@ -114,6 +114,9 @@ public class BandSasakiServiceImpl implements BandSasakiService {
 		bandMainSasakiRepository.deleteComp(ids);
 	}
 
+	
+	
+	
 	private void uploadFile(BandMainSasaki bandMainSasaki, MultipartFile photo) {
 
 		//追加する画像ファイルのパス
