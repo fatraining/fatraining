@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import jp.co.futureantiques.webapptraining.model.GuiterFujimoto.CompanyFujimoto;
 import jp.co.futureantiques.webapptraining.model.GuiterFujimoto.GuiterMainFujimoto;
 import jp.co.futureantiques.webapptraining.model.GuiterFujimoto.WoodFujimoto;
+import jp.co.futureantiques.webapptraining.model.form.guiterFujimoto.GuiterInputForm;
 import jp.co.futureantiques.webapptraining.model.form.guiterFujimoto.GuiterSearchForm;
 
 /*import jp.co.futureantiques.webapptraining.model.IcecreamSako.GenreSako;
@@ -63,9 +65,28 @@ public interface GuiterFujimotoService {
 	 */
 	GuiterMainFujimoto getGuiter(final long id);
 
-	/**論理削除
-	 *
-	 */
+	GuiterMainFujimoto insertGuiter(final GuiterInputForm form);
 
-	//void deleteGuiterById(final long id);
+	/**
+	 * GuiterMainFujimotoのレコードを更新する
+	 *
+	 * @param GuiterInputForm form
+	 * @return GuiterMainFujimoto
+	 */
+	GuiterMainFujimoto updateGuiter(final GuiterInputForm form);
+
+	/**
+	 * GuiterMainFujimotoのレコードを論理削除する
+	 *
+	 * @param long id
+	 */
+	void deleteGuiterById(final long id);
+
+	/**
+	 * GuiterMainFujimotoのレコードを物理削除する
+	 *
+	 * @param ArrayList<Long> ids
+	 */
+	void deleteGuiterComp(final ArrayList<Long> ids);
 }
+

@@ -61,7 +61,7 @@ public class GuiterMainFujimoto {
 
 	/**登録日時*/
 	@Column(name="create_date")
-	private Timestamp createData;
+	private Timestamp createDate;
 
 	/** 更新日時 */
 	@Column(name = "update_date")

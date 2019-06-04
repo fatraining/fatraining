@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|ギター更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/guiter.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{guiter.text.update}">ギター更新</h1>
+				<a th:href="@{/guiterfujimoto}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="guiterInputForm"
+				th:action="@{/guiterfujimoto/update}" th:object="${guiterInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="${guiterInputForm.id}"/>
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{guiter.text.input.title.riquire}"> NAME(*):</label>
+					<input type="text" th:field="${guiterInputForm.name}" class="form-control"
+						th:placeholder="#{guiter.text.guiter}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
+						th:text="#{${err}(#{guiter.text.guiter})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="company" class="control-label"
+						th:text="#{guiter.text.input.company}">Company:</label>
+					<select name="companyId" id="inputCompany"
+						class="form-control select">
+						<option th:each="company : ${companyFujimotoList}"
+								th:value="${company.id}"
+								th:text="${company.company}"
+								th:selected="${company.id == guiterInputForm.companyId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="wood" class="control-label"
+						th:text="#{guiter.text.input.wood}">Wood:</label>
+					<select name="woodId" id="inputWood"
+						class="form-control">
+						<option th:each="wood : ${woodFujimotoList}"
+								th:value="${wood.id}"
+								th:text="${wood.wood}"
+								th:selected="${wood.id == guiterInputForm.woodId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="priceInt" class="control-label"
+						th:text="#{guiter.text.input.price}">PriceInt(*):</label>
+					<input type="text" th:field="*{PriceInt}" class="form-control" id="inputPriceInt"
+						th:placeholder="#{guiter.text.price}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('PriceInt')}"
+						th:text="#{${err}(#{guiter.text.price})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{guiter.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{guiter.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#guiterInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>

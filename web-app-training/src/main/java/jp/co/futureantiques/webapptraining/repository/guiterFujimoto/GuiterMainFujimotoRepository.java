@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.repository.guiterFujimoto;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -33,9 +35,9 @@ public interface GuiterMainFujimotoRepository extends
 	 * 対象のレコードの削除
 	 * @param ArrayList<Long> ids
 	 */
-	//@Transactional
-	//@Modifying
-	//@Query("DELETE FROM GuiterMainFujimotoWHERE id IN(:ids)")
-	//void deleteComp(@Param("ids")final ArrayList<Long> ids);
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM GuiterMainFujimoto WHERE id IN(:ids)")
+	void deleteComp(@Param("ids")final ArrayList<Long> ids);
 
 }
