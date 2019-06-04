@@ -79,37 +79,34 @@ public class ChampionTibaController {
 	 * @param Pageable pageable
 	 * @return 検索画面のパス
 	 */
-@RequestMapping(value = "search", method = RequestMethod.POST)
-public String showSearchTiba(final ChampionTibaSearchForm form, final Model model, final Pageable pageable) {
+	@RequestMapping(value = "search", method = RequestMethod.POST)
+	public String showSearchTiba(final ChampionTibaSearchForm form, final Model model, final Pageable pageable) {
 
-	// 入力された検索条件を元にレコードを取得する
-	final Page<ChampionMainTiba> championList = championTibaService.getPageChampion(form, pageable);
-	if (championList.getTotalElements() != 0) {
+		// 入力された検索条件を元にレコードを取得する
+		final Page<ChampionMainTiba> championList = championTibaService.getPageChampion(form, pageable);
+		if (championList.getTotalElements() != 0) {
 
-		// 検索結果がある場合、Modelに結果をセットする
-		model.addAttribute("page", championList);
-		model.addAttribute("championList", championList.getContent());
-		model.addAttribute("url", "search");
+			// 検索結果がある場合、Modelに結果をセットする
+			model.addAttribute("page", championList);
+			model.addAttribute("championList", championList.getContent());
+			model.addAttribute("url", "search");
+		}
+		return "championtiba/search";
 	}
-	return "championtiba/search";
-}
 
-//論理削除↓
-	/**
-	 * ChampionMainTibaテーブルのレコードを論理削除して検索画面に遷移する
-	 *
-	 * @param long id
-	 * @return 検索画面のパス
-	 */
-@RequestMapping(value = "delete", method = RequestMethod.GET)
-public String deleteChampion(@RequestParam(name = "id") final long id) {
+	//論理削除↓
+		/**
+		 * ChampionMainTibaテーブルのレコードを論理削除して検索画面に遷移する
+		 *
+		 * @param long id
+		 * @return 検索画面のパス
+		 */
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteChampion(@RequestParam(name = "id") final long id) {
 
-	// IDをキーにレコードを論理削除する
-	championTibaService.deleteChampionById(id);
-	return "redirect:/championtiba?result=delete&id=" + id;
-}
+		// IDをキーにレコードを論理削除する
+		championTibaService.deleteChampionById(id);
+		return "redirect:/championtiba?result=delete&id=" + id;
+	}
 
-
-
-}
-
+	}
