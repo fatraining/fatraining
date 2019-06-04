@@ -1,10 +1,12 @@
 package jp.co.futureantiques.webapptraining.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoInputForm;
 import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoSearchForm;
 import jp.co.futureantiques.webapptraining.model.playerShiono.NationalShiono;
 import jp.co.futureantiques.webapptraining.model.playerShiono.PlayerMainShiono;
@@ -61,7 +63,7 @@ public interface PlayerShionoService {
 	 *
 	 * @param PlayerShionoInputForm form
 	 * @return PlayerMainShiono
-
+	*/
 	PlayerMainShiono insertPlayerShiono(final PlayerShionoInputForm form);
 
 	/**
@@ -69,22 +71,21 @@ public interface PlayerShionoService {
 	 *
 	 * @param PlayerShionoInputForm form
 	 * @return PlayerMainshiono
-
-	PlayerMainShiono updatePlayerShiono(final PlayerShionoInputForm form);
 	*/
+	PlayerMainShiono updatePlayerShiono(final PlayerShionoInputForm form);
 
 	/**
 	 * PlayerMainShionoのレコードを論理削除する
 	 *
 	 * @param long id
-
+	*/
 	void deletePlayerShionoById(final long id);
 
 	/**
 	 * PlayerMainShionoのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
-
-	void deletePlayerShionoComp(final ArrayList<Long> ids);
 	*/
+	void deletePlayerShionoComp(final ArrayList<Long> ids);
+
 }

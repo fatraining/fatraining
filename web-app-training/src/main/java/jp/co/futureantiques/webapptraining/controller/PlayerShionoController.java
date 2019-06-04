@@ -7,10 +7,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
+import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoDeleteForm;
+import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoInputForm;
 import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoSearchForm;
 import jp.co.futureantiques.webapptraining.model.playerShiono.NationalShiono;
 import jp.co.futureantiques.webapptraining.model.playerShiono.PlayerMainShiono;
@@ -98,9 +104,9 @@ public class PlayerShionoController {
 	 *
 	 * @param PlayerShionoInputForm playerShionoInputForm
 	 * @return 追加画面のパス
-
+	*/
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	public String showInsertplayer(@ModelAttribute final PlayerShionoInputForm playerShionoInputForm) {
+	public String showInsertPlayer(@ModelAttribute final PlayerShionoInputForm playerShionoInputForm) {
 		return "playershiono/insert";
 	}
 
@@ -110,9 +116,9 @@ public class PlayerShionoController {
 	 * @param PlayerShionoInputForm form
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
-
+	*/
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String insertPlayer(@ModelAttribute @Validated final PlayerShionoInputForm form,
+	public String insertPlayerShiono(@ModelAttribute @Validated final PlayerShionoInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
@@ -121,8 +127,8 @@ public class PlayerShionoController {
 		}
 
 		// データを登録する
-		final PlayerMainShiono playerMain = playerShionoService.insertPlayer(form);
-		return "redirect:/playershiono?result=insert&id=" + playerMain.getId();
+		final PlayerMainShiono playerMainShiono = playerShionoService.insertPlayerShiono(form);
+		return "redirect:/playershiono?result=insert&id=" + playerMainShiono.getId();
 	}
 
 	/**
@@ -131,16 +137,16 @@ public class PlayerShionoController {
 	 * @param long id
 	 * @param PlayerShionoInputForm playerShionoInputForm
 	 * @return 更新画面のパス
-
+	*/
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdatePlayer(@RequestParam(name = "id") final long id,
 			@ModelAttribute final PlayerShionoInputForm playerShionoInputForm) {
 
 		// IDをキーにPlayerMainShionoテーブルを検索する
-		PlayerMainShiono playerMain = playerShionoService.getMovie(id);
+		PlayerMainShiono playerMain = playerShionoService.getPlayerShiono(id);
 
 		// フォームにレコードの値をセットする
-		playerShionoInputForm.initWithPlayerMain(playerMain);
+		playerShionoInputForm.initWithPlayerMainShiono(playerMain);
 		return "playershiono/update";
 	}
 
@@ -150,7 +156,7 @@ public class PlayerShionoController {
 	 * @param PlayerShionoInputForm form
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
-
+	*/
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updatePlayer(@Validated final PlayerShionoInputForm form,
 			final BindingResult bindingResult) {
@@ -161,13 +167,13 @@ public class PlayerShionoController {
 		}
 
 		// データを更新する
-		PlayerMainShiono playerMain = playerShionoService.updatePlayer(form);
-		if (playerMain == null) {
+		PlayerMainShiono playerMainShiono = playerShionoService.updatePlayerShiono(form);
+		if (playerMainShiono == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/playershiono?result=updatefailed";
 		}
-		return "redirect:/playershiono?result=update&id=" + playerMain.getId();
+		return "redirect:/playershiono?result=update&id=" + playerMainShiono.getId();
 	}
 
 	/**
@@ -175,12 +181,12 @@ public class PlayerShionoController {
 	 *
 	 * @param long id
 	 * @return 検索画面のパス
-
+	*/
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deletePlayer(@RequestParam(name = "id") final long id) {
 
 		// IDをキーにレコードを論理削除する
-		playerShionoService.deletePlayerById(id);
+		playerShionoService.deletePlayerShionoById(id);
 		return "redirect:/playershiono?result=delete&id=" + id;
 	}
 
@@ -191,13 +197,13 @@ public class PlayerShionoController {
 	 * @param PlayerShionoDeleteForm playerShionoDeleteForm
 	 * @param Model model
 	 * @return 完全削除画面のパス
-
+	*/
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompPlayer(final PlayerShionoSearchForm form,
 			@ModelAttribute final PlayerShionoDeleteForm playerShionoDeleteForm, final Model model) {
 
 		// PlayerMainShionoテーブルから削除フラグが1のレコードを検索する
-		final List<PlayerMainShiono> playerList = playerShionoService.getListPlayer(form);
+		final List<PlayerMainShiono> playerList = playerShionoService.getListPlayerShiono(form);
 
 		// Modelに検索結果を格納する
 		model.addAttribute(playerList);
@@ -211,16 +217,16 @@ public class PlayerShionoController {
 	 * @param BindingResult bindingResult
 	 * @param Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
-
+	*/
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
 	public String deleteCompPlayer(@Validated final PlayerShionoDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合、再検索して自画面に戻る
-			PlayerShionoSearchForm playerShionoSearchForm = new PlayershionoSearchForm();
+			PlayerShionoSearchForm playerShionoSearchForm = new PlayerShionoSearchForm();
 			playerShionoSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<PlayerMainShiono> playerList = playerShionoService.getListPlayer(playerShionoSearchForm);
+			final List<PlayerMainShiono> playerList = playerShionoService.getListPlayerShiono(playerShionoSearchForm);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(playerList);
@@ -228,8 +234,8 @@ public class PlayerShionoController {
 		}
 
 		// データを完全削除する
-		playerShionoService.deletePlayerComp(form.getDeleteIds());
+		playerShionoService.deletePlayerShionoComp(form.getDeleteIds());
 		return "redirect:/playershiono?result=deletecomp";
 	}
-	*/
+
 }

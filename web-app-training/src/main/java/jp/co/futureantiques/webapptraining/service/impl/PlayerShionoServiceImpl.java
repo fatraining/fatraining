@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoInputForm;
 import jp.co.futureantiques.webapptraining.model.form.PlayerShiono.PlayerShionoSearchForm;
 import jp.co.futureantiques.webapptraining.model.playerShiono.NationalShiono;
 import jp.co.futureantiques.webapptraining.model.playerShiono.PlayerMainShiono;
@@ -43,7 +45,8 @@ public class PlayerShionoServiceImpl implements PlayerShionoService {
 	 * @param TeamShionoRepository teamShionoRepository
 	 */
 	@Autowired
-	public PlayerShionoServiceImpl(PlayerMainShionoRepository playerMainShionoRepository, NationalShionoRepository nationalShionoRepository,
+	public PlayerShionoServiceImpl(PlayerMainShionoRepository playerMainShionoRepository,
+			NationalShionoRepository nationalShionoRepository,
 			TeamShionoRepository teamShionoRepository) {
 		this.playerMainShionoRepository = playerMainShionoRepository;
 		this.nationalShionoRepository = nationalShionoRepository;
@@ -68,7 +71,8 @@ public class PlayerShionoServiceImpl implements PlayerShionoService {
 	public Page<PlayerMainShiono> getPagePlayerShiono(final PlayerShionoSearchForm form, final Pageable pageable) {
 
 		// 検索条件を生成しPlayerMainShionoテーブルのレコードを取得する
-		return playerMainShionoRepository.findAll(PlayerShionoSpecification.generatePlayerShionoSpecification(form), pageable);
+		return playerMainShionoRepository.findAll(PlayerShionoSpecification.generatePlayerShionoSpecification(form),
+				pageable);
 	}
 
 	@Override
@@ -84,15 +88,41 @@ public class PlayerShionoServiceImpl implements PlayerShionoService {
 		// PlayerMainShionoテーブルを主キー検索する
 		return playerMainShionoRepository.findOne(id);
 	}
-	/*
+
+	@Override
+	public PlayerMainShiono insertPlayerShiono(final PlayerShionoInputForm form) {
+
+		// PlayerMainShionoテーブルに新規でデータを登録する
+		final PlayerMainShiono playerMainShiono = form.convertToPlayerMainShionoForInsert();
+		return playerMainShionoRepository.save(playerMainShiono);
+	}
+
+	@Override
+	public PlayerMainShiono updatePlayerShiono(final PlayerShionoInputForm form) {
+
+		//更新対象のレコードを取得する
+		PlayerMainShiono playerMainShiono = playerMainShionoRepository.findOne((long) form.getId());
+		if (playerMainShiono != null) {
+
+			//更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(playerMainShiono.getUpdateDate()))) {
+
+				//チェックOKの場合、更新
+				playerMainShiono = form.convertToPlayerMainShionoForUpdate(playerMainShiono);
+				return playerMainShionoRepository.saveAndFlush(playerMainShiono);
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public void deletePlayerShionoById(final long id) {
 
-		// 更新対象のレコードを取得する
+		//更新対象のレコードを取得する
 		PlayerMainShiono playerMainShiono = playerMainShionoRepository.findOne(id);
 		if (playerMainShiono != null) {
 
-			// 更新対象のレコードが存在する場合、削除フラグを1にする
+			//更新対象のレコードが存在する場合、削除フラグを1にする
 			playerMainShionoRepository.delete(id);
 		}
 	}
@@ -100,8 +130,7 @@ public class PlayerShionoServiceImpl implements PlayerShionoService {
 	@Override
 	public void deletePlayerShionoComp(final ArrayList<Long> ids) {
 
-		// 対象のレコードを削除する
+		//対象のレコードを削除する
 		playerMainShionoRepository.deleteComp(ids);
 	}
-	*/
 }
