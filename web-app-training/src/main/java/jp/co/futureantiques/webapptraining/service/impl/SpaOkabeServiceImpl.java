@@ -23,7 +23,7 @@ import jp.co.futureantiques.webapptraining.service.SpaOkabeService;
 /**
  * SpaOkabeのサービス実装クラス
  *
- * @author SEIYA OKABE
+ * @author SEIYA OKABE　
  */
 @Service
 
