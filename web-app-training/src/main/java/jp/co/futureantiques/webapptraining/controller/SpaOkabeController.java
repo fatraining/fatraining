@@ -189,7 +189,7 @@ public class SpaOkabeController {
 
 		//IDをキーにレコードを論理削除する
 		spaOkabeService.deleteSpaById(id);
-		return "redirect:/spaOkabe?result=delete&id" + id;
+		return "redirect:/spaOkabe?result=delete&id=" + id;
 	}
 	/**
 	 * 完全削除画面に遷移する
