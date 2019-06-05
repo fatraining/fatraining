@@ -165,10 +165,11 @@
 							<a class="btn btn-success"
 								th:href="@{/mcuHayashi/update(id=${character.id})}"
 								th:text="#{common.text.update}">Update</a></td>
-						<td class="data center"><a class="btn btn-danger"
+						<td class="data center">
+						<a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${character.id}, data-title=${character.characterName}">Delete</a>
+							th:attr="data-id=${character.id}, data-name=${character.characterName}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -230,7 +231,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteTitle">キャラクター名</span>
+									<span id="deleteName">キャラクター名</span>
 								</p>
 							</div>
 						</div>
@@ -265,7 +266,7 @@
 	<script>
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
-			var charcterId = button.data('id');
+			var characterId = button.data('id');
 			var characterName = button.data('name');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", characterId);
