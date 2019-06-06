@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{/css/spring_training.css}" />
+	th:href="@{/css/tokyoTakehara.css}" />
 </head>
 <body>
 	<div class="page-header">
@@ -40,7 +40,7 @@
 				</a>
 				<a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData
+					th:text="#{common.text.garbage}">UnnecessaryData
 				</a>
 			</div>
 		</div>
@@ -64,14 +64,15 @@
 					th:if="${param.result != null}">
 					<div th:switch="${param.result[0]}">
 						<p th:case="insert"
-							th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+							th:text="#{common.text.info.insert} + '：' + ${wardName}"></p>
 						<p th:case="update"
-							th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+							th:text="#{common.text.info.update} + '：' + ${wardName}"></p>
 						<p th:case="updatefailed"
 							th:text="#{common.text.info.update.failed}"></p>
 						<p th:case="delete"
-							th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+							th:text="#{common.text.info.garbage} + '：' + ${wardName}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						<p th:case="restore" th:text="#{common.text.info.restore}"></p>
 					</div>
 				</div>
 			</div>
@@ -80,56 +81,76 @@
 		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm" method="post"
 			action="/tokyotakehara/search" th:object="${tokyoTakeharaSearchForm}">
-			<div class="form-group">
-				<label for="tokyoTakehara" class="col-sm-2 control-label"
-					th:text="#{tokyo.text.input.name}">WardName:
-				</label>
-				<div class="col-sm-8">
-					<input type="text" th:field="*{wardName}" class="form-control"
-						id="inputWardName" th:placeholder="#{tokyo.text.search.info}" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="locationName" class="control-label col-sm-2"
-					th:text="#{tokyo.text.input.location}">Location:
-				</label>
-				<div class="col-sm-8">
-					<select id="inputLocation" name="locationId"
-						class="form-control select">
-						<option th:each="location : ${locationTakeharaList}"
-							th:value="${location.locationId}"
-							th:text="${location.locationName}"
-							th:selected="${location.locationId == tokyoTakeharaSearchForm.locationId}">pulldown
-						</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="population" class="control-label col-sm-2"
-					th:text="#{tokyo.text.input.population}">Population:
-				</label>
-				<div class="col-sm-8">
-					<select id="inputPopulation" name="population"
-						class="form-control select">
-						<option th:value="0" th:selected="${0 == tokyoTakeharaSearchForm.population}"
-							th:text="#{tokyo.text.search.population.zero}">
-						</option>
-						<option th:value="50000" th:selected="${50000 == tokyoTakeharaSearchForm.population}"
-							th:text="#{tokyo.text.search.population.fiftythousand}">
-						</option>
-						<option th:value="100000" th:selected="${100000 == tokyoTakeharaSearchForm.population}"
-							th:text="#{tokyo.text.search.population.hundredthousand}">
-						</option>
-						<option th:value="200000" th:selected="${200000 == tokyoTakeharaSearchForm.population}"
-							th:text="#{tokyo.text.search.population.twohundredthousand}">
-						</option>
-						<option th:value="500000" th:selected="${500000 == tokyoTakeharaSearchForm.population}"
-							th:text="#{tokyo.text.search.population.fivehundredthousand}">
-						</option>
-					</select>人以上
-				</div>
-			</div>
-			<div class="form-group">
+			<table align="center" width="600px">
+				<tr>
+					<td align="justify" width="70px">
+						<label for="tokyoTakehara"
+							th:text="#{tokyo.text.name}">WardName
+						</label>
+					</td>
+					<td>：</td>
+					<td>
+						<div>
+							<input type="text" th:field="*{wardName}" class="form-control"
+								id="inputWardName" th:placeholder="#{tokyo.text.search.info}" />
+						</div>
+					</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td align="justify" width="70px">
+						<label for="locationName"
+							th:text="#{tokyo.text.location}">Location
+						</label>
+					</td>
+					<td>：</td>
+					<td>
+						<div>
+							<select id="inputLocation" name="locationId"
+								class="form-control select">
+								<option th:each="location : ${locationTakeharaList}"
+									th:value="${location.locationId}"
+									th:text="${location.locationName}"
+									th:selected="${location.locationId == tokyoTakeharaSearchForm.locationId}">pulldown
+								</option>
+							</select>
+						</div>
+					</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td align="justify" width="70px">
+						<label for="population"
+							th:text="#{tokyo.text.population}">Population
+						</label>
+					</td>
+					<td>：</td>
+					<td>
+						<div>
+							<select id="inputPopulation" name="population"
+								class="form-control select" width="100%">
+								<option th:value="0" th:selected="${0 == tokyoTakeharaSearchForm.population}"
+									th:text="#{tokyo.text.search.population.zero}">
+								</option>
+								<option th:value="50000" th:selected="${50000 == tokyoTakeharaSearchForm.population}"
+									th:text="#{tokyo.text.search.population.fiftythousand}">
+								</option>
+								<option th:value="100000" th:selected="${100000 == tokyoTakeharaSearchForm.population}"
+									th:text="#{tokyo.text.search.population.hundredthousand}">
+								</option>
+								<option th:value="200000" th:selected="${200000 == tokyoTakeharaSearchForm.population}"
+									th:text="#{tokyo.text.search.population.twohundredthousand}">
+								</option>
+								<option th:value="500000" th:selected="${500000 == tokyoTakeharaSearchForm.population}"
+									th:text="#{tokyo.text.search.population.fivehundredthousand}">
+								</option>
+							</select>
+						</div>
+					</td>
+					<td>人以上</td>
+				</tr>
+			</table>
+			<p>
 				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
 					<a class="btn btn-primary center-block"
 						onclick="$('#searchForm').submit()"
@@ -141,7 +162,7 @@
 						th:text="#{common.text.reset}">Reset
 					</a>
 				</div>
-			</div>
+			</p>
 		</form>
 
 		<!-- 検索結果の表示 -->
@@ -167,42 +188,27 @@
 					<tr th:each="ward : ${wardsList}">
 						<td class="data center" th:text="${ward.wardName}+'区'">千代田区</td>
 						<td class="data center">
-							<label th:if="${ward.symbol != null}"
-								th:text="${ward.symbol}" class="data center">画像
-							</label>
+							<img th:if="${ward.symbol != null}" th:src="@{${ward.symbol}}" width="60px" height="60px"></img>
 						</td>
 						<td class="data center"
 							th:text="${ward.locationTakehara.locationName}">分類無し
 						</td>
-						<td class="data center">
-							<label th:if="${ward.population != null}" th:text="${ward.population}"
-								class="data center">64533
-							</label>
+						<td class="data center" th:if="${ward.population != null}"
+							th:text="${#numbers.formatInteger(ward.population, 3, 'COMMA')}">64533
 						</td>
-						<td class="data center">
-							<label th:if="${ward.area != null}"
-								th:text="${ward.area}" class="data center">11.66
-							</label>
+						<td class="data center" th:if="${ward.area != null}"
+							th:text="${#numbers.formatDecimal(ward.area, 2, 2, 'POINT')}">11.66
 						</td>
-						<td class="data center">
-							<label th:if="${ward.area != null}"
-								th:text="${ward.wardOffice}+'駅'" class="data center">九段下
-							</label>
+						<td class="data center" th:if="${ward.wardOffice != null}"
+							th:text="${ward.wardOffice}+'駅'">九段下
 						</td>
-						<td class="data center">
-							<label th:if="${ward.averageAnnualIncome != null}"
-								th:text="${ward.averageAnnualIncome}" class="data center">784
-							</label>
+						<td class="data center" th:if="${ward.averageAnnualIncome != null}"
+							th:text="${ward.averageAnnualIncome}">784
 						</td>
-						<td class="data center">
-							<label th:if="${ward.officialLandPrice != null}"
-								th:text="${ward.officialLandPrice}" class="data center">633072
-							</label>
+						<td class="data center" th:if="${ward.officialLandPrice != null}"
+							th:text="${#numbers.formatInteger(ward.officialLandPrice, 3, 'COMMA')}">633072
 						</td>
-						<td class="data center">
-							<label th:if="${ward.performer != null}" th:text="${ward.performer}"
-								class="data center">樹木希林
-							</label>
+						<td class="data center" th:if="${ward.performer != null}" th:text="${ward.performer}">樹木希林
 						</td>
 						<td class="data">
 							<a class="btn btn-success"
@@ -210,10 +216,10 @@
 								th:text="#{common.text.update}">Update
 							</a>
 						</td>
-						<td class="data center">
+						<td class="data">
 							<a class="btn btn-danger"
 								style="margin-left: 5%" data-toggle="modal"
-								data-target="#deleteModal" th:text="#{common.text.delete}"
+								data-target="#deleteModal" th:text="#{common.text.garbage}"
 								th:attr="data-id=${ward.id}, data-name=${ward.wardName}">Delete
 								<!-- date-○○…○○の変数名で=から先のものを扱うことができる。ここでは下のモーダル用スクリプトで使用されている -->
 							</a>

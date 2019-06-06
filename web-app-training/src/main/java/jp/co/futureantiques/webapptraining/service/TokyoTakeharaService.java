@@ -72,6 +72,13 @@ public interface TokyoTakeharaService {
 	void deleteWardById(final int id);
 
 	/**
+	 * TokyoMainTakeharaから論理削除したレコードを戻す
+	 *
+	 * @param int id
+	 */
+	void restoreWardData(final ArrayList<Integer> ids);
+
+	/**
 	 * TokyoMainTakeharaのレコードを物理削除する
 	 *
 	 * @param ArrayList<Integer> ids

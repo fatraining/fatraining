@@ -106,6 +106,13 @@ public class TokyoTakeharaServiceImpl implements TokyoTakeharaService {
 	}
 
 	@Override
+	public void restoreWardData(ArrayList<Integer> ids) {
+
+		// 対象レコードの削除フラグを0に戻す
+		tokyoMainTakeharaRepository.restore(ids);
+	}
+
+	@Override
 	public void deleteWardDataComp(ArrayList<Integer> ids) {
 
 		// 対象のレコードを削除する

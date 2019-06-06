@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/tokyoTakehara.css}" />
 </head>
 <body>
 	<div class="container">
@@ -28,15 +28,15 @@
 				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group">
 					<label for="wardName" class="control-label"
-						th:text="#{tokyo.text.input.name.riquire}"> WardName(*):</label>
+						th:text="#{tokyo.text.name.require}"> WardName(*):</label>
 					<input type="text" th:field="*{wardName}" class="form-control"
-						th:placeholder="#{tokyo.text.name}" />区
+						th:placeholder="#{tokyo.text.name}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('wardName')}"
 						th:text="#{${err}(#{tokyo.text.name})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="locationName" class="control-label"
-						th:text="#{tokyo.text.input.location.require}">Location(*):</label>
+						th:text="#{tokyo.text.location.require}">Location(*):</label>
 					<select id="inputLocation" name="locationId"
 						class="form-control select">
 						<option th:each="location : ${locationTakeharaList}"
@@ -49,7 +49,7 @@
 				</div>
 				<div class="form-group">
 					<label for="population" class="control-label"
-						th:text="#{tokyo.text.input.population}">Population:</label>
+						th:text="#{tokyo.text.population}">Population:</label>
 					<input type="text" th:field="*{populationStr}" class="form-control" id="inputPopulation"
 						th:placeholder="#{tokyo.text.population}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('populationStr')}"
@@ -57,7 +57,7 @@
 				</div>
 				<div class="form-group">
 					<label for="area" class="control-label"
-						th:text="#{tokyo.text.input.area}">Area:</label>
+						th:text="#{tokyo.text.area}">Area:</label>
 					<input type="text" th:field="*{areaStr}" class="form-control" id="inputArea"
 						th:placeholder="#{tokyo.text.area}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('areaStr')}"
@@ -65,15 +65,15 @@
 				</div>
 				<div class="form-group">
 					<label for="wardOffice" class="control-label"
-						th:text="#{tokyo.text.input.office}">WardOffice:</label>
+						th:text="#{tokyo.text.office}">WardOffice:</label>
 					<input type="text" th:field="*{wardOffice}" class="form-control" id="inputWardOffice"
-						th:placeholder="#{tokyo.text.office}"/>駅
+						th:placeholder="#{tokyo.text.office}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('wardOffice')}"
 						th:text="#{${err}(#{tokyo.text.office})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="averageAnnualIncome" class="control-label"
-						th:text="#{tokyo.text.input.income}">AverageAnnualIncome:</label>
+						th:text="#{tokyo.text.income}">AverageAnnualIncome:</label>
 					<input type="text" th:field="*{averageAnnualIncomeStr}" class="form-control" id="inputAverageAnnualIncome"
 						th:placeholder="#{tokyo.text.income}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('averageAnnualIncomeStr')}"
@@ -81,7 +81,7 @@
 				</div>
 				<div class="form-group">
 					<label for="officialLandPrice" class="control-label"
-						th:text="#{tokyo.text.input.landprice}">OfficialLandPrice:</label>
+						th:text="#{tokyo.text.landprice}">OfficialLandPrice:</label>
 					<input type="text" th:field="*{officialLandPriceStr}" class="form-control" id="inputArea"
 						th:placeholder="#{tokyo.text.landprice}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('officialLandPriceStr')}"
@@ -89,7 +89,7 @@
 				</div>
 				<div class="form-group">
 					<label for="performer" class="control-label"
-						th:text="#{tokyo.text.input.performer}">Performer:</label>
+						th:text="#{tokyo.text.performer}">Performer:</label>
 					<input type="text" th:field="*{performer}" class="form-control" id="inputPerformer"
 						th:placeholder="#{tokyo.text.performer}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('performer')}"
@@ -97,8 +97,9 @@
 				</div>
 				<div class="form-group">
 					<div>
+					<!-- 未実装 -->
 						<label for="symbol" class="control-label"
-							th:text="#{tokyo.text.input.symbol}"> Symbol:</label> <input
+							th:text="#{tokyo.text.symbol}"> Symbol:</label> <input
 							type="file" id="file" th:field="*{symbol}" class="form-control" />
 					</div>
 				</div>

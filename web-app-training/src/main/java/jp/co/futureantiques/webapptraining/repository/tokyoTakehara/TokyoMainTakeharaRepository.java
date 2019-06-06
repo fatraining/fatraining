@@ -28,6 +28,16 @@ public interface TokyoMainTakeharaRepository
 	void delete(@Param("id") final int id);
 
 	/**
+	 * 対象レコードの削除フラグを0にする
+	 * @param int id
+	 * @author Y.Takehara
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE TokyoMainTakehara SET delFlg = 0 WHERE id IN(:ids)")
+	void restore(@Param("ids") final ArrayList<Integer> ids);
+
+	/**
 	 * 対象のレコードを削除する
 	 *
 	 * @param ArrayList<Integer> ids

@@ -3,7 +3,9 @@ package jp.co.futureantiques.webapptraining.model.form.tokyoTakehara;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,38 +26,39 @@ public class TokyoTakeharaInputForm {
 
 	/** 区名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 20)
+	@Size(max = 20 , message= "{max}"+"common.text.error.string.size")
 	private String wardName;
 
 	/** 所在地ID */
 	@NotNull(message = "common.text.error.require")
+	@Min(value = 1, message = "common.text.error.input.location")
 	private int locationId;
 
 	/** 人口 */
 	@Size(max = 7, message = "common.text.error.size.max")
-	//@Pattern(regexp = "^([1-9][0-9] {1,6})$", message = "common.text.error.numeric")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String populationStr;
 
 	/** 面積 */
-	//@Pattern(regexp = "^([0-9] {2}.[0-9] {2})$", message = "common.text.error.float.pointtwo")
+	@Pattern(regexp = "^([+-]?0|\\d{1,2}(\\.\\d{1,2})*)?$", message = "common.text.error.float.pointtwo")
 	private String areaStr;
 
 	/** 区役所の最寄駅 */
-	@Size(max = 20, message = "common.text.error.size.max")
+	@Size(max = 20, message = "common.text.error.string.size")
 	private String wardOffice;
 
 	/** 平均年収 */
 	@Size(max = 4, message = "common.text.error.size.max")
-	//@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String averageAnnualIncomeStr;
 
 	/** 公示地価 */
 	@Size(max = 7, message = "common.text.error.size.max")
-	//@Pattern(regexp = "^([1-9][0-9] {1,6})$", message = "common.text.error.numeric")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String officialLandPriceStr;
 
 	/** 出身の著名人 */
-	@Size(max = 10, message = "common.text.error.size.max")
+	@Size(max = 10, message = "common.text.error.string.size")
 	private String performer;
 
 	/** 区章 */
