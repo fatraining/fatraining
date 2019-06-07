@@ -16,7 +16,8 @@ import jp.co.futureantiques.webapptraining.model.mcuHayashi.McuMainHayashi;
  *
  * @author 林 重樹
  */
-public interface McuMainHayashiRepository extends JpaRepository<McuMainHayashi, Long>, JpaSpecificationExecutor<McuMainHayashi> {
+public interface McuMainHayashiRepository
+		extends JpaRepository<McuMainHayashi, Long>, JpaSpecificationExecutor<McuMainHayashi> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする

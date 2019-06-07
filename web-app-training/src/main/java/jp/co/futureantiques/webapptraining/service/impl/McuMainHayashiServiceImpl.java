@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.futureantiques.webapptraining.model.form.mcuMainHayashi.CharacterInputForm;
 import jp.co.futureantiques.webapptraining.model.form.mcuMainHayashi.CharacterSearchForm;
 import jp.co.futureantiques.webapptraining.model.mcuHayashi.McuMainHayashi;
 import jp.co.futureantiques.webapptraining.model.mcuHayashi.SexHayashi;
@@ -87,29 +89,28 @@ public class McuMainHayashiServiceImpl implements McuMainHayashiService {
 		// MovieMainテーブルを主キー検索する
 		return McuMainHayashiRepository.findOne(id);
 	}
-}
-/*
+
 	@Override
-	public MovieMain insertMcuMainHayashi(final McuMainHayashiInputForm form) {
+	public McuMainHayashi insertMcuMainHayashi(final CharacterInputForm form) {
 
 		// MovieMainテーブルに新規でデータを登録する
 		final McuMainHayashi McuMainHayashi = form.convertToMcuMainHayashiForInsert();
-		return McuMainHayashiRepository.save(McuMaunHayashi);
+		return McuMainHayashiRepository.save(McuMainHayashi);
 	}
 
 	@Override
-	public mcuMainHayashi updateMcuMainHayashi(final characterInputForm form) {
+	public McuMainHayashi updateMcuMainHayashi(final CharacterInputForm form) {
 
 		// 更新対象のレコードを取得する
-		mcuMainHayashi mcuMaiHayashi = mcuMainHayashiRepository.findOne((long) form.getId());
-		if (mcuMainHayashi != null) {
+		McuMainHayashi mcuMaiHayashi = McuMainHayashiRepository.findOne((long) form.getId());
+		if (mcuMaiHayashi != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(mcuMainHayashi.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(mcuMaiHayashi.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
-				mcuMainHayashi = form.convertToMcuMainHayashiForUpdate(mcuMainHayashi);
-				return mcuMainHayashiRepository.saveAndFlush(mcuMainHayashi);
+				mcuMaiHayashi = form.convertToMcuMainHayashiForUpdate(mcuMaiHayashi);
+				return McuMainHayashiRepository.saveAndFlush(mcuMaiHayashi);
 			}
 		}
 		return null;
@@ -119,18 +120,18 @@ public class McuMainHayashiServiceImpl implements McuMainHayashiService {
 	public void deleteMcuMainHayashiById(final long id) {
 
 		// 更新対象のレコードを取得する
-		mcuMainHayashi mcuMainHayashi = mcuMainHayashiRepository.findOne(id);
+		McuMainHayashi mcuMainHayashi = McuMainHayashiRepository.findOne(id);
 		if (mcuMainHayashi != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
-			mcuMainHayashiRepository.delete(id);
+			McuMainHayashiRepository.delete(id);
 		}
 	}
 
 	@Override
-	public void deletemcuMainHayashiComp(final ArrayList<Long> ids) {
+	public void deleteMcuMainHayahiComp(final ArrayList<Long> ids) {
 
 		// 対象のレコードを削除する
-		mcuMainHayashiRepository.deleteComp(ids);
+		McuMainHayashiRepository.deleteComp(ids);
 	}
-}*/
+}
