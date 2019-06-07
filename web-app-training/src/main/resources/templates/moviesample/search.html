@@ -3,12 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|映画検索</title>
-
-
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
-</head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
+</head>
 <body>
 	<div class="page-header">
 		<h4>
@@ -87,28 +85,24 @@
 			<div class="form-group">
 				<label for="genre" class="control-label col-sm-2" th:text="#{movie.text.input.genre}">Genre:</label>
 				<div class="col-sm-8">
-					<select
-						id="inputGenre"
-						name="genreId"
-						class="form-control select">
-					<option th:each="genre : ${genreList}"
-						th:value="${genre.id}"
-						th:text="${genre.genre}"
-						th:selected="${genre.id == movieSampleSearchForm.genreId}">pulldown</option>
+					<select id="inputGenre" name="genreId" class="form-control select">
+						<option th:each="genre : ${genreList}"
+							th:value="${genre.id}"
+							th:text="${genre.genre}"
+							th:selected="${genre.id == movieSampleSearchForm.genreId}">pulldown
+						</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="actor" class="control-label col-sm-2" th:text="#{movie.text.input.actor}">Actor:</label>
 				<div class="col-sm-8">
-					<select
-						id="inputActor"
-						name="actorId"
-						class="form-control select">
+					<select id="inputActor" name="actorId" class="form-control select">
 						<option th:each="actor : ${movieActorList}"
 							th:value="${actor.id}"
 							th:text="${actor.name}"
-							th:selected="${actor.id == movieSampleSearchForm.actorId}">pulldown</option>
+							th:selected="${actor.id == movieSampleSearchForm.actorId}">pulldown
+						</option>
 					</select>
 				</div>
 			</div>
@@ -162,7 +156,8 @@
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/moviesample/update(id=${movie.id})}"
-                       			th:text="#{common.text.update}">Update</a></td>
+								th:text="#{common.text.update}">Update</a>
+						</td>
 						<td class="data center">
 							<a class="btn btn-danger" style="margin-left: 5%"
 								data-toggle="modal" data-target="#deleteModal"
@@ -176,7 +171,7 @@
 
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
-			<p th:if="${page != null}">
+			<div th:if="${page != null}">
 				<ul>
 					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
 						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
@@ -201,7 +196,7 @@
 							th:text="#{common.text.paging.end}">end➝</a>
 					</li>
 				</ul>
-			</p>
+			</div>
 		</div>
 	</div>
 
@@ -239,8 +234,10 @@
 						<a class="btn btn-default"
 							th:text="#{common.text.cansel}"
 							data-dismiss="modal">Cancel
-						</a> <a class="btn btn-danger" onclick="$('#deleteForm').submit()"
-							th:text="#{common.text.delete}">Delete </a>
+						</a>
+						<a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete
+						</a>
 					</div>
 				</div>
 			</form>
