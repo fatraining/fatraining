@@ -119,33 +119,10 @@ public class ChampionTibaServiceImpl implements ChampionTibaService {
 		}
 	}
 
-	public void deleteChampionTibaComp(final ArrayList<Long> ids) {
+	@Override
+	public void deleteComp(final ArrayList<Long> ids) {
 
 		//対象のレコードを削除する
 		championMainTibaRepository.deleteComp(ids);
 	}
-
-	@Override
-	public ChampionMainTiba updatePlayerChampion(ChampionTibaInputForm form) {
-		// 更新対象のレコードを取得する
-				ChampionMainTiba championMainTiba = championMainTibaRepository.findOne((long) form.getId());
-				if (championMainTiba != null) {
-
-					//更新対象のレコードが存在する場合排他チェック
-					if (form.getUpdateDate().equals(String.valueOf(championMainTiba.getUpdateDate()))) {
-
-						//OKの場合、更新を実行
-						championMainTiba = form.convertToChampionMainTibaForUpdate(championMainTiba);
-						return championMainTibaRepository.saveAndFlush(championMainTiba);
-					}
-				}
-				return null;
-			}
-	@Override
-	public void deleteComp(ArrayList<Long> ids) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-
 }

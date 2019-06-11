@@ -167,7 +167,7 @@ public class ChampionTibaController {
 		}
 
 		// データを更新する
-		ChampionMainTiba championMainTiba = championTibaService.updatePlayerChampion(form);
+		ChampionMainTiba championMainTiba = championTibaService.updateChampion(form);
 		if (championMainTiba == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する

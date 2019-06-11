@@ -70,7 +70,7 @@ public interface ChampionTibaService {
 	 * @param PlayerShionoInputForm form
 	 * @return PlayerMainshiono
 	*/
-	ChampionMainTiba updatePlayerChampion(final ChampionTibaInputForm form);
+	ChampionMainTiba updateChampion(final ChampionTibaInputForm form);
 
 	//論理削除
 		/**
