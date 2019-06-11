@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import jp.co.futureantiques.webapptraining.model.championTiba.ChampionMainTiba;
 import jp.co.futureantiques.webapptraining.model.championTiba.ClassTiba;
 import jp.co.futureantiques.webapptraining.model.championTiba.CountryTiba;
+import jp.co.futureantiques.webapptraining.model.form.championTiba.ChampionTibaInputForm;
 import jp.co.futureantiques.webapptraining.model.form.championTiba.ChampionTibaSearchForm;
 import jp.co.futureantiques.webapptraining.repository.championTiba.ChampionMainTibaRepository;
 import jp.co.futureantiques.webapptraining.repository.championTiba.ClassTibaRepository;
@@ -70,62 +72,80 @@ public class ChampionTibaServiceImpl implements ChampionTibaService {
 		return championMainTibaRepository.findAll(ChampionTibaSpecification.generateChampionSpecification(form), pageable);
 	}
 
-	@Override
 	public List<ChampionMainTiba> getListChampion(final ChampionTibaSearchForm form) {
 
 		// ChampionMainTibaテーブルを主キー検索する
 		return championMainTibaRepository.findAll(ChampionTibaSpecification.generateChampionSpecification(form));
 	}
 
-	//未作成↓(削除フラグの更新部分のみ作成済み)
-	/**
+	@Override
+	public ChampionMainTiba insertChampion(final ChampionTibaInputForm form) {
+
+		// ChampionMainTibaテーブルに新規でデータ登録
+		final ChampionMainTiba championMainTiba = form.convertToChampionMainTibaForInsert();
+		return championMainTibaRepository.save(championMainTiba);
+	}
+
 	@Override
 	public ChampionMainTiba getChampion(final long id) {
 		return championMainTibaRepository.findOne(id);
 	}
-	Override
-	public ChampionMainTiba updateChampion(final ChampionTibaInputForm form) {
+   public ChampionMainTiba updateChampion(final ChampionTibaInputForm form) {
+
+		//更新対象のレコードを取得する
 		ChampionMainTiba championMainTiba = championMainTibaRepository.findOne((long) form.getId());
 		if (championMainTiba != null) {
-			if (form.getUpdateDate().equals(String.valueOf(championMainTiba.getUpdateDate()))) {
-				championMainTiba = form.convertToChampionMainTibaForUpdate(championMainTiba);
-				if (form.getPhoto().isEmpty()) {
 
-					return championMainTibaRepository.saveAndFlush(championMainTiba);
-				}
-				ファイルをアップロードする
-				uploadFile(championMainTiba, form.getPhoto());
+			//更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(championMainTiba.getUpdateDate()))) {
+
+				//チェックOKの場合、更新
+				championMainTiba = form.convertToChampionMainTibaForUpdate(championMainTiba);
 				return championMainTibaRepository.saveAndFlush(championMainTiba);
 			}
 		}
 		return null;
 	}
-    */
-	//未作成↑
 
 	@Override
 	public void deleteChampionById(final long id) {
 
-		// 更新対象のレコードを取得する
+		//更新対象のレコードを取得する
 		ChampionMainTiba championMainTiba = championMainTibaRepository.findOne(id);
 		if (championMainTiba != null) {
 
-			// 更新対象のレコードが存在する場合、削除フラグを1にする
+			//更新対象のレコードが存在する場合、削除フラグを1にする
 			championMainTibaRepository.delete(id);
 		}
 	}
 
-	@Override
-	public ChampionMainTiba getChampion(long id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+	public void deleteChampionTibaComp(final ArrayList<Long> ids) {
 
-	//未作成↓
-	/**
-	@Override
-	public void deleteChampionComp(final ArrayList<Long> ids) {
+		//対象のレコードを削除する
 		championMainTibaRepository.deleteComp(ids);
 	}
-	*/
+
+	@Override
+	public ChampionMainTiba updatePlayerChampion(ChampionTibaInputForm form) {
+		// 更新対象のレコードを取得する
+				ChampionMainTiba championMainTiba = championMainTibaRepository.findOne((long) form.getId());
+				if (championMainTiba != null) {
+
+					//更新対象のレコードが存在する場合排他チェック
+					if (form.getUpdateDate().equals(String.valueOf(championMainTiba.getUpdateDate()))) {
+
+						//OKの場合、更新を実行
+						championMainTiba = form.convertToChampionMainTibaForUpdate(championMainTiba);
+						return championMainTibaRepository.saveAndFlush(championMainTiba);
+					}
+				}
+				return null;
+			}
+	@Override
+	public void deleteComp(ArrayList<Long> ids) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+
 }

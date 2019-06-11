@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import jp.co.futureantiques.webapptraining.model.championTiba.ChampionMainTiba;
 import jp.co.futureantiques.webapptraining.model.championTiba.ClassTiba;
 import jp.co.futureantiques.webapptraining.model.championTiba.CountryTiba;
+import jp.co.futureantiques.webapptraining.model.form.championTiba.ChampionTibaInputForm;
 import jp.co.futureantiques.webapptraining.model.form.championTiba.ChampionTibaSearchForm;
 
 /** ChampionTibaのサービスインターフェース */
@@ -43,7 +45,7 @@ public interface ChampionTibaService {
 	 * @param ChampiontibaSearchForm form
 	 * @return ChampionMainTibaのリスト
 	 */
-	List<ChampionMainTiba> getListChampion(final ChampionTibaSearchForm form);
+	List<ChampionMainTiba> getListChampion(final ChampionTibaSearchForm championTibaSearchForm);
 
 	/**
 	 * IDをキーにChampionMainTibaのレコードを取得する
@@ -53,6 +55,23 @@ public interface ChampionTibaService {
 	 */
 	ChampionMainTiba getChampion(final long id);
 
+	/**
+	 * ChampionMainTibaにレコードを新規登録する
+	 *
+	 * @param ChampionTibaInputForm form
+	 * @return ChampionMainTiba
+	 */
+
+	ChampionMainTiba insertChampion(final ChampionTibaInputForm form);
+
+	/**
+	 * PlayerMainShionoのレコードを更新する
+	 *
+	 * @param PlayerShionoInputForm form
+	 * @return PlayerMainshiono
+	*/
+	ChampionMainTiba updatePlayerChampion(final ChampionTibaInputForm form);
+
 	//論理削除
 		/**
 		 * ChampionMainのレコードを論理削除する
@@ -61,13 +80,12 @@ public interface ChampionTibaService {
 		 */
 	void deleteChampionById(final long id);
 
-	//未作成↓
 		/**
 		 * ChampionMainのレコードを物理削除する
 		 *
 		 * @param ArrayList<Long> ids
 		 *
-		void deleteChampionComp(final ArrayList<Long> ids);
+		 **/
+		void deleteComp(final ArrayList<Long> ids);
 
-		*/
 }

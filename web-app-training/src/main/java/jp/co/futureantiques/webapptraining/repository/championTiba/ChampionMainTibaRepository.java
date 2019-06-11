@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.repository.championTiba;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,9 +23,11 @@ public interface ChampionMainTibaRepository extends JpaRepository<ChampionMainTi
 
 	//未作成↓
 	/** 対象のレコードを削除する
+	 *
+	 */
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM ChampionMainTiba WHERE id IN(:ids)")
+	@Query
+	("DELETE FROM ChampionMainTiba WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-	*/
 }

@@ -143,8 +143,9 @@
 					<tr th:each="champion : ${championList}">
 						<td class="data center" th:text="${champion.championName}">選手名</td>
 						<td class="data center"><label th:if="${champion.ClassTiba!=null}"
-							th:text="${champion.ClassTiba.classtiba}" class="data center">1</label></td>
-						<td class="data center">階級<label
+							th:text="${champion.ClassTiba.classtiba}" class="data center">階級</label></td>
+						<td class="data center">
+						<label
 							th:if="${champion.CountryTiba!=null}"
 							th:text="${champion.CountryTiba.country}" class="data center">国名</label>
 						</td>
@@ -178,8 +179,9 @@
 					<form th:id="'pageForm'+${i}" method="post"
 						th:action="@{${url}(page=${i})}"
 						th:object="${championTibaSearchForm}" style="display: inline">
-						<input type="hidden" th:field="*{championName}" /> <input
-							type="hidden" th:field="*{classId}" /> <input type="hidden"
+						<input type="hidden" th:field="*{championName}" />
+						<input type="hidden" th:field="*{classId}" />
+						<input type="hidden"
 							th:field="*{countryId}" />
 					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
 					th:if='${i}!=${page.number}'

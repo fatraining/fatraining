@@ -6,7 +6,7 @@ import lombok.Data;
 /** Champion検索画面のFormクラス */
 
 
-@Data
+ @Data
 public class ChampionTibaSearchForm{
 
 	/** ID */
