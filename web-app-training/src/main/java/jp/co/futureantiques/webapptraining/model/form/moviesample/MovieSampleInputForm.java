@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.moviesample.MovieMain;
 import lombok.Data;
 
@@ -102,8 +103,24 @@ public class MovieSampleInputForm {
 	 */
 	private MovieMain convertToMovieMain(MovieMain movieMain) {
 		movieMain.setMovieTitle(this.movieTitle);
-		movieMain.setGenreId(this.genreId);
-		movieMain.setActorId(this.actorId);
+		if(this.genreId == CommonConst.NOT_ENTERD) {
+
+			// ジャンルが入力されていなかった場合
+			movieMain.setGenreId(null);
+		}else {
+
+			// ジャンルが入力されていた場合
+			movieMain.setGenreId(this.genreId);
+		}
+		if(this.actorId == CommonConst.NOT_ENTERD) {
+
+			// 俳優が入力されていなかった場合
+			movieMain.setActorId(null);
+		}else {
+
+			// 俳優が入力されていた場合
+			movieMain.setActorId(this.actorId);
+		}
 		movieMain.setReleaseYear(Integer.parseInt(this.releaseYearStr));
 		if (!this.runTimeStr.isEmpty()) {
 
