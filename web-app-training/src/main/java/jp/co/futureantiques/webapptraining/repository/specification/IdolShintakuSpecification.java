@@ -37,51 +37,51 @@ public class IdolShintakuSpecification {
 				// 削除フラグON用が1かどうか判定
 				if (form.getIsDelete() == 1) {
 
-				// 削除フラグ＝1を検索条件にする
-				return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
-			}
+					// 削除フラグ＝1を検索条件にする
+					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
+				}
 
-			//条件が入力されている場合条件追加
-			if (form.getId() != null) {
+				//条件が入力されている場合条件追加
+				if (form.getId() != null) {
 
-				//IDを条件に追加
-				Predicate newCondition = cb.equal(root.get("id"), form.getId());
+					//IDを条件に追加
+					Predicate newCondition = cb.equal(root.get("id"), form.getId());
+					condition = getPredicate(cb, condition, newCondition);
+				}
+				if (!StringUtils.isEmpty(form.getName())) {
+
+					//アイドル名を条件に追加
+					form.setName(form.getName().trim());
+					Predicate newCondition = cb.like(root.get("name"), "%" + form.getName() + "%");
+					condition = getPredicate(cb, condition, newCondition);
+				}
+				if (form.getTypeId() != null && form.getTypeId() != 0) {
+
+					// 属性を条件に追加
+					Predicate newCondition = cb.equal(root.get("typeId"), form.getTypeId());
+					condition = getPredicate(cb, condition, newCondition);
+				}
+				if (form.getUnitId() != null && form.getUnitId() != 0) {
+
+					// ユニットを条件に追加
+					Predicate newCondition = cb.equal(root.get("unitId"), form.getUnitId());
+					condition = getPredicate(cb, condition, newCondition);
+				}
+
+				// 削除フラグを条件に追加
+				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
 				condition = getPredicate(cb, condition, newCondition);
-			}
-			if (!StringUtils.isEmpty(form.getName())) {
-
-			//アイドル名を条件に追加
-				form.setName(form.getName().trim());
-				Predicate newCondition = cb.like(root.get("name"), "%" + form.getName() + "%");
-				condition = getPredicate(cb, condition, newCondition);
-			}
-			if (form.getTypeId() != null && form.getTypeId() != 0) {
-
-				// 属性を条件に追加
-				Predicate newCondition = cb.equal(root.get("typeId"), form.getTypeId());
-				condition = getPredicate(cb, condition, newCondition);
-			}
-			if (form.getUnitId() != null && form.getUnitId() != 0) {
-
-				// ユニットを条件に追加
-				Predicate newCondition = cb.equal(root.get("unitId"), form.getUnitId());
-				condition = getPredicate(cb, condition, newCondition);
+				return condition;
 			}
 
-			// 削除フラグを条件に追加
-			Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
-			condition = getPredicate(cb, condition, newCondition);
-			return condition;
-		}
-
-		/**
-		 * 検索条件を結合する
-		 *
-		 * @param cb
-		 * @param condition
-		 * @param newCondition
-		 * @return Predicate
-		 */
+			/**
+			 * 検索条件を結合する
+			 *
+			 * @param cb
+			 * @param condition
+			 * @param newCondition
+			 * @return Predicate
+			 */
 			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
 				if (condition != null) {
 

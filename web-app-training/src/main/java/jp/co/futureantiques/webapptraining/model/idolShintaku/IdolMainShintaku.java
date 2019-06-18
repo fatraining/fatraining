@@ -24,56 +24,56 @@ import lombok.Data;
 @Entity
 public class IdolMainShintaku {
 
-	//アイドルID
+	/** アイドルID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
 	private long id;
 
-	//アイドル名
+	/** アイドル名 */
 	@Column(name = "name")
 	private String name;
 
-	//年齢
+	/** 年齢 */
 	@Column(name = "age")
 	@Max(value = 99)
 	private Integer age;
 
-	//属性ID
+	/** 属性ID */
 	@Column(name = "type_id")
 	private Integer typeId;
 
-	//ユニットID
+	/** ユニットID */
 	@Column(name = "unit_id")
 	private Integer unitId;
 
-	//ソロ曲
+	/** ソロ曲 */
 	@Column(name = "song")
 	private String song;
 
-	//コメント
+	/** コメント */
 	@Column(name = "comment")
 	@Size(max = 256)
 	private String comment;
 
-	//削除フラグ
+	/** 削除フラグ */
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	//登録日時
+	/** 登録日時 */
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	//更新日時
+	/** 更新日時 */
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	//外部キー設定：属性
+	/** 外部キー設定：属性 */
 	@ManyToOne(targetEntity = TypeShintaku.class)
 	@JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private TypeShintaku typeShintaku;
 
-	//外部キー設定：ユニット
+	/** 外部キー設定：ユニット */
 	@ManyToOne(targetEntity = UnitShintaku.class)
 	@JoinColumn(name = "unit_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private UnitShintaku unitShintaku;

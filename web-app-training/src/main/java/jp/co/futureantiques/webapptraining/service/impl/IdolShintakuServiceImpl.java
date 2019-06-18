@@ -28,13 +28,13 @@ import jp.co.futureantiques.webapptraining.service.IdolShintakuService;
 @Service
 public class IdolShintakuServiceImpl implements IdolShintakuService {
 
-	//IdolMainShintakuリポジトリ
+	/** IdolMainShintakuリポジトリ */
 	private final IdolMainShintakuRepository idolMainShintakuRepository;
 
-	//TypeShintakuリポジトリ
+	/** TypeShintakuリポジトリ */
 	private final TypeShintakuRepository typeShintakuRepository;
 
-	//UnitShintakuリポジトリ
+	/** UnitShintakuリポジトリ */
 	private final UnitShintakuRepository unitShintakuRepository;
 
 	/**

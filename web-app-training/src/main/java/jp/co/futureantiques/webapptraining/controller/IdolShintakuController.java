@@ -32,7 +32,7 @@ import jp.co.futureantiques.webapptraining.service.IdolShintakuService;
 @RequestMapping(value = "/idolshintaku")
 public class IdolShintakuController {
 
-	//アイドルのサービス
+	/** アイドルのサービス */
 	private final IdolShintakuService idolShintakuService;
 
 	/**

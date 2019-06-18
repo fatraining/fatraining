@@ -21,35 +21,35 @@ import lombok.Data;
 @Data
 public class IdolShintakuInputForm {
 
-	//アイドルID
+	/** アイドルID */
 	private int id;
 
-	//アイドル名
+	/** アイドル名 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
 	private String name;
 
-	//年齢
+	/** 年齢 */
 	@Max(value = 99,message ="common.text.error.size.max.two")
 	private Integer age;
 
-	//属性ID
+	/** 属性ID */
 	@NotNull(message = "common.text.error.require")
 	@Min(value = 1, message = "common.text.error.require")
 	private Integer typeId;
 
-	//ユニットID
+	/** ユニットID */
 	private Integer unitId;
 
-	//ソロ曲
+	/** ソロ曲 */
 	@Size(max = 256)
 	private String song;
 
-	//コメント
+	/** コメント */
 	@Size(max = 256)
 	private String comment;
 
-	//更新日時(排他制御用)
+	/** 更新日時(排他制御用) */
 	private String updateDate;
 
 	/**

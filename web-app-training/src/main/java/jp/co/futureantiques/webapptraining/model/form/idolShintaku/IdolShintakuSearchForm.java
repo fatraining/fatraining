@@ -12,19 +12,19 @@ import lombok.Data;
 @Data
 public class IdolShintakuSearchForm {
 
-	//ID
+	/** ID */
 	private Integer id;
 
-	//アイドル名
+	/** アイドル名 */
 	private String name;
 
-	//属性ID
+	/** 属性ID */
 	private Integer typeId;
 
-	//ユニットID
+	/** ユニットID */
 	private Integer unitId;
 
-	//削除フラグON用
+	/** 削除フラグON用 */
 	private int isDelete;
 
 	/**
