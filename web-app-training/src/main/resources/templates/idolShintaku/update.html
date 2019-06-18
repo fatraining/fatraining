@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Webアプリ研修|アイドル更新</title>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/idolShintaku.css}" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<h4>
+					<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver γ</small>
+				</h4>
+			</div>
+			<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+				<div class="sub-header">
+					<h1 align="center" th:text="#{idol.text.update}">アイドル更新</h1>
+					<a th:href="@{/idolshintaku}" th:text="#{common.text.back}">Back</a>
+				</div>
+
+				<!-- 入力欄 -->
+				<form method="post" id="idolShintakuInputForm"
+					th:action="@{/idolshintaku/update}" th:object="${idolShintakuInputForm}"
+					class="form-horizontal">
+					<input type="hidden" th:field="*{id}"/>
+					<div class="form-group">
+						<label for="name" class="control-label"
+							th:text="#{idol.text.input.name}"> Name(*):</label>
+						<input type="text" th:field="*{name}" class="form-control"
+							th:placeholder="#{idol.text.name}"/>
+						<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
+							th:text="#{${err}(#{idol.text.name})}"></p>
+					</div>
+					<div class="form-group">
+						<label for="age" class="control-label"
+							th:text="#{idol.text.input.age}"> Age:</label>
+						<input type="text" th:field="*{age}" class="form-control"
+							th:placeholder="#{idol.text.age}"/>
+						<p class="err alert-danger" th:each="err : ${#fields.errors('age')}"
+							th:text="#{${err}(#{idol.text.age})}"></p>
+					</div>
+					<div class="form-group">
+						<label for="type" class="control-label"
+							th:text="#{idol.text.input.type}">Type(*):</label>
+						<select name="typeId" id="inputType"
+							class="form-control select">
+							<option th:each="type : ${typeShintakuList}"
+									th:value="${type.id}"
+									th:text="${type.type}"
+									th:selected="${type.id == idolShintakuInputForm.typeId}">pulldown</option>
+						</select>
+						<p class="err alert-danger" th:each="err : ${#fields.errors('typeId')}"
+						th:text="#{${err}(#{idol.text.type})}"></p>
+					</div>
+					<div class="form-group">
+						<label for="unit" class="control-label"
+							th:text="#{idol.text.input.unit}">Unit:</label>
+						<select name="unitId" id="inputUnit"
+							class="form-control">
+							<option th:each="unit : ${unitShintakuList}"
+									th:value="${unit.id}"
+									th:text="${unit.unit}"
+									th:selected="${unit.id == idolShintakuInputForm.unitId}">pulldown</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="song" class="control-label"
+							th:text="#{idol.text.input.song}"> Song:</label>
+						<textarea th:field="*{song}" cols="" rows="5"
+						class="form-control" id="inputSong"
+						th:placeholder="#{idol.text.song}"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="comment" class="control-label"
+							th:text="#{idol.text.input.comment}"> Comment:</label>
+						<textarea th:field="*{comment}" cols="" rows="5"
+							class="form-control" id="inputComment"
+							th:placeholder="#{idol.text.comment}"></textarea>
+					</div>
+					<div class="col-xs-3 col-sm-2">
+						<a class="btn btn-success center-block"
+							onclick="$('#idolShintakuInputForm').submit()"
+							th:text="#{common.text.update}">Update</a>
+					</div>
+					<input type="hidden" th:field="*{updateDate}"/>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
