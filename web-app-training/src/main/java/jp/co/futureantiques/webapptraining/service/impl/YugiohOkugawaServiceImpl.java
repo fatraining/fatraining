@@ -23,7 +23,7 @@ import jp.co.futureantiques.webapptraining.service.YugiohOkugawaService;
 /** YugiohOkugawaのサービス実装クラス */
 
 @Service
-public class YugiohOkugawaServiceImpl implements YugiohOkugawaService{
+public class YugiohOkugawaServiceImpl implements YugiohOkugawaService {
 
 	/** YugiohMainOkugawaのリポジトリ*/
 	private final YugiohMainOkugawaRepository yugiohMainOkugawaRepository;
@@ -46,32 +46,35 @@ public class YugiohOkugawaServiceImpl implements YugiohOkugawaService{
 			SeriesOkugawaRepository seriesOkugawaRepository,
 			DeckOkugawaRepository deckOkugawaRepository) {
 		this.yugiohMainOkugawaRepository = yugiohMainOkugawaRepository;
-		this.seriesOkugawaRepository =seriesOkugawaRepository;
+		this.seriesOkugawaRepository = seriesOkugawaRepository;
 		this.deckOkugawaRepository = deckOkugawaRepository;
 	}
+
 	@Override
-	public List<SeriesOkugawa>getListSeriesOkugawa(){
+	public List<SeriesOkugawa> getListSeriesOkugawa() {
 
 		//SeriesテーブルのレコードをID順に取得
 		return seriesOkugawaRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 
 	}
+
 	@Override
-	public List<DeckOkugawa> getListDeckOkugawa(){
+	public List<DeckOkugawa> getListDeckOkugawa() {
 
 		//DeckテーブルのレコードをID順に取得
 		return deckOkugawaRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public Page<YugiohMainOkugawa> getPageYugiohOkugawa(final YugiohOkugawaSearchForm form, final Pageable pageable){
+	public Page<YugiohMainOkugawa> getPageYugiohOkugawa(final YugiohOkugawaSearchForm form, final Pageable pageable) {
 
 		//検索条件を生成し、YugiohMainOkugawaのテーブルのレコードを取得
-		return yugiohMainOkugawaRepository.findAll(YugiohOkugawaSpecification.generateYugiohSpecification(form), pageable);
+		return yugiohMainOkugawaRepository.findAll(YugiohOkugawaSpecification.generateYugiohSpecification(form),
+				pageable);
 	}
 
 	@Override
-	public List<YugiohMainOkugawa> getListYugiohOkugawa(final YugiohOkugawaSearchForm form){
+	public List<YugiohMainOkugawa> getListYugiohOkugawa(final YugiohOkugawaSearchForm form) {
 
 		//検索条件を生成しYugiohMainOkugawaのテーブルレコードを取得
 		return yugiohMainOkugawaRepository.findAll(YugiohOkugawaSpecification.generateYugiohSpecification(form));
@@ -97,10 +100,10 @@ public class YugiohOkugawaServiceImpl implements YugiohOkugawaService{
 
 		//更新対象のレコードを取得する
 		YugiohMainOkugawa yugiohMainOkugawa = yugiohMainOkugawaRepository.findOne((long) form.getId());
-		if(yugiohMainOkugawa != null) {
+		if (yugiohMainOkugawa != null) {
 
 			//更新対象のレコードが存在する場合排他チェック
-			if(form.getUpdateDate().equals(String.valueOf(yugiohMainOkugawa.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(yugiohMainOkugawa.getUpdateDate()))) {
 
 				//チェックOKの場合、更新
 				yugiohMainOkugawa = form.convertToYugiohMainOkugawaForUpdate(yugiohMainOkugawa);
@@ -115,17 +118,16 @@ public class YugiohOkugawaServiceImpl implements YugiohOkugawaService{
 
 		//更新対象のレコードを取得する
 		YugiohMainOkugawa yugiohMainOkugawa = yugiohMainOkugawaRepository.findOne(id);
-		if(yugiohMainOkugawa != null) {
+		if (yugiohMainOkugawa != null) {
 
-		//更新対象のレコードが存在する場合削除フラグを1にする
-		yugiohMainOkugawaRepository.delete(id);
+			//更新対象のレコードが存在する場合削除フラグを1にする
+			yugiohMainOkugawaRepository.delete(id);
 		}
 	}
 
-		@Override
-		public void deleteYugiohOkugawaComp(final ArrayList<Long> ids) {
-			//対象のレコードを削除する
-			yugiohMainOkugawaRepository.deleteComp(ids);
+	@Override
+	public void deleteYugiohOkugawaComp(final ArrayList<Long> ids) {
+		//対象のレコードを削除する
+		yugiohMainOkugawaRepository.deleteComp(ids);
 	}
 }
-

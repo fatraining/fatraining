@@ -33,28 +33,33 @@ public class YugiohOkugawaController {
 	/** 遊戯王の検索サービス */
 	private final YugiohOkugawaService yugiohOkugawaService;
 
-	/** コンストラクタ */
 	/**
-	 * @param yugiohOkugawaService
+	 * コンストラクタ
+	 *
+	 * @param YugiohOkugawaService yugiohOkugawaService
 	 */
 	@Autowired
 	public YugiohOkugawaController(final YugiohOkugawaService yugiohOkugawaService) {
 		this.yugiohOkugawaService = yugiohOkugawaService;
 	}
 
-	/** 作品エンティティのリストを取得する */
+	/**
+	 * 作品エンティティのリストを取得する
+	 *
+	 * @return SeriesOkugawaEntityのリスト
+	 */
 	@ModelAttribute
-	public List<SeriesOkugawa> getListSeries(){
+	public List<SeriesOkugawa> getListSeries() {
 		return yugiohOkugawaService.getListSeriesOkugawa();
 	}
 
 	/**
 	 * デッキエンティティのリストを取得する
 	 *
-	 * @return yugiohOkugawaService
+	 * @return DeckOkugawaEntityのリスト
 	 */
 	@ModelAttribute
-	public List<DeckOkugawa> getListDeck(){
+	public List<DeckOkugawa> getListDeck() {
 		return yugiohOkugawaService.getListDeckOkugawa();
 	}
 
@@ -72,22 +77,22 @@ public class YugiohOkugawaController {
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 *
-	 * @oram YugiohOkugawaSearchForm form
+	 * @param YugiohOkugawaSearchForm form
 	 * @param Model model
 	 * @param Pageable pageable
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-		public String searchYugioh(final YugiohOkugawaSearchForm form,final Model model, final Pageable pageable) {
+	public String searchYugioh(final YugiohOkugawaSearchForm form, final Model model, final Pageable pageable) {
 
-			//入力された検索条件をもとにレコードを取得
+		//入力された検索条件をもとにレコードを取得
 		final Page<YugiohMainOkugawa> yugiohList = yugiohOkugawaService.getPageYugiohOkugawa(form, pageable);
 		if (yugiohList.getTotalElements() != 0) {
 
 			//検索結果がある場合Modelに結果をセットする
 			model.addAttribute("page", yugiohList);
 			model.addAttribute("yugiohList", yugiohList.getContent());
-			model.addAttribute("url","search");
+			model.addAttribute("url", "search");
 		}
 		return "yugiohokugawa/search";
 	}
@@ -111,9 +116,9 @@ public class YugiohOkugawaController {
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-		public String insertYugiohOkugawa(@ModelAttribute @Validated final YugiohOkugawaInputForm form,
-			final BindingResult bindingResult){
-		if(bindingResult.hasFieldErrors()) {
+	public String insertYugiohOkugawa(@ModelAttribute @Validated final YugiohOkugawaInputForm form,
+			final BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合自画面に戻る
 			return "yugiohokugawa/insert";
@@ -130,17 +135,17 @@ public class YugiohOkugawaController {
 	 * @param YugiohOkugawaInputForm yugiohOkugawaInputForm
 	 * @return 更新画面のパス
 	 */
-	@RequestMapping(value ="update", method = RequestMethod.GET)
+	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUodateYugioh(@RequestParam(name = "id") final long id,
-			@ModelAttribute final YugiohOkugawaInputForm yugiohOkugawaInputForm){
+			@ModelAttribute final YugiohOkugawaInputForm yugiohOkugawaInputForm) {
 
-				//IDをキーにYugiohMAinOkugawaテーブルを検索する
-				YugiohMainOkugawa yugiohMain = yugiohOkugawaService.getYugiohOkugawa(id);
+		//IDをキーにYugiohOkugawaMainテーブルを検索する
+		YugiohMainOkugawa yugiohMain = yugiohOkugawaService.getYugiohOkugawa(id);
 
-				//フォームにレコードの値をセットする
-				yugiohOkugawaInputForm.initWithYugiohMainOkugawa(yugiohMain);
-				return "yugiohokugawa/update";
-			}
+		//フォームにレコードの値をセットする
+		yugiohOkugawaInputForm.initWithYugiohMainOkugawa(yugiohMain);
+		return "yugiohokugawa/update";
+	}
 
 	/**
 	 * YugiohMainOkugawaテーブルのデータを更新して検索画面に遷移する
@@ -151,8 +156,8 @@ public class YugiohOkugawaController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updateYugioh(@Validated final YugiohOkugawaInputForm form,
-			final BindingResult bindingResult){
-		if(bindingResult.hasFieldErrors()) {
+			final BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合自画面に戻る
 			return "yugiohokugawa/update";
@@ -183,6 +188,7 @@ public class YugiohOkugawaController {
 	}
 
 	/**
+	 *完全削除画面に遷移する
 	 *
 	 * @param YugiohOkugawaSearchForm
 	 * @param YugiohOkugawaDeleteForm yugiohOkugawaDeleteForm
@@ -211,22 +217,22 @@ public class YugiohOkugawaController {
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
 	public String deleteCompPlayer(@Validated final YugiohOkugawaDeleteForm form,
-			final BindingResult bindingResult, final Model model){
-		if(bindingResult.hasFieldErrors()) {
+			final BindingResult bindingResult, final Model model) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合、再検索して次画面に戻る
 			YugiohOkugawaSearchForm yugiohOkugawaSearchForm = new YugiohOkugawaSearchForm();
 			yugiohOkugawaSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<YugiohMainOkugawa> yugiohList = yugiohOkugawaService.getListYugiohOkugawa(yugiohOkugawaSearchForm);
+			final List<YugiohMainOkugawa> yugiohList = yugiohOkugawaService
+					.getListYugiohOkugawa(yugiohOkugawaSearchForm);
 
 			model.addAttribute(yugiohList);
 			return "yugiohokugawa/deletecomp";
 		}
 
-			//データを完全削除する
-			yugiohOkugawaService.deleteYugiohOkugawaComp(form.getDeleteIds());
-			return "redirect:/yugiohokugawa?result=deletecomp";
-		}
+		//データを完全削除する
+		yugiohOkugawaService.deleteYugiohOkugawaComp(form.getDeleteIds());
+		return "redirect:/yugiohokugawa?result=deletecomp";
+	}
 
 }
-
