@@ -75,26 +75,26 @@ public class KyarySahotaSpecification {
 				return condition;
 			}
 
-				/**
-				 * 検索条件を結合する
-				 *
-				 * @param cb
-				 * @param condition
-				 * @param newCondition
-				 * @return Predicate
-				 */
-				private Predicate getPredicate(CriteriaBuilder cb,Predicate condition,@NotNull Predicate newCondition) {
-					if(condition != null) {
+			/**
+			 * 検索条件を結合する
+			 *
+			 * @param cb
+			 * @param condition
+			 * @param newCondition
+			 * @return Predicate
+			 */
+			private Predicate getPredicate(CriteriaBuilder cb,Predicate condition,@NotNull Predicate newCondition) {
+				if(condition != null) {
 
-						//すでに条件がある場合ANDで結合する
-						condition = cb.and(condition,newCondition);
-					}else {
+					//すでに条件がある場合ANDで結合する
+					condition = cb.and(condition,newCondition);
+				}else {
 
-						//条件がまだない場合先頭の条件になる
-						condition = newCondition;
-					}
-					return condition;
+					//条件がまだない場合先頭の条件になる
+					condition = newCondition;
 				}
+				return condition;
+			}
 		};
 	}
 }
