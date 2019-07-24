@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|Mobile Legendsキャラクター検索</title>
+
+<link rel="stylesheet" type="text/css"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/mobileLegendsSakuma.css}" />
+
+</head>
+
+
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
+				th:text="#{login.text.version}">ver β</small>
+		</h4>
+	</div>
+
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a>
+		<h1 align="center" th:text="#{mobileLegends.text.search}">search</h1>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/mobileLegendsSakuma/deletecomp"
+			th:object="${mobileLegendsSakumaSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
+
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/mobileLegendsSakuma/insert}"
+					th:text="#{common.text.new}">New</a> <a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<!-- mobileLegendsListはコントローラーで定義されているキー -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(mobileLegendsSakumaSearchForm.mobaleChara !=null or
+							mobileLegendsSakumaSearchForm.type1Id !=null or
+							mobileLegendsSakumaSearchForm.type2Id !=null or
+							mobileLegendsSakumaSearchForm.feature1Id !=null or
+							mobileLegendsSakumaSearchForm.feature2Id !=null) and
+							mobileLegendsList == null}"
+					th:text="#{common.text.info.search}">No Result</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result !=null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert"
+							th:text="#{common.text.info.insert} + ':ID=' +${param.id[0]}"></p>
+						<p th:case="update"
+							th:text="#{common.text.info.update} + ':ID=' +${param.id[0]}"></p>
+						<p th:case="updatefailed"
+							th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete"
+							th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<!-- キャラクター名の入力検索 -->
+		<form class="form-horizontal" id="searchForm" method="post"
+			action="/mobileLegendsSakuma/search"
+			th:object="${mobileLegendsSakumaSearchForm}">
+			<div class="form-group">
+				<label for="mobaleChara" class="col-sm-3 control-label"
+					th:text="#{mobileLegends.text.input.mobaleChara}">Name:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{mobaleChara}" class="form-control"
+						id="inputName" th:placeholder="#{mobileLegends.text.search.info}" />
+				</div>
+			</div>
+
+			<!-- タイプの選択検索 -->
+			<div class="form-group">
+				<label for="type" class="control-label col-sm-3"
+					th:text="#{mobileLegends.text.input.type}">Type:</label>
+				<div class="col-sm-8">
+					<select id="inputType1Id" name="type1Id"
+						class="form-control select">
+						<option th:each="type : ${typeSakumaList}" th:value="${type.id}"
+							th:text="${type.typeName}"
+							th:selected="${type.id == mobileLegendsSakumaSearchForm.type1Id}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 特徴の選択検索 -->
+			<div class="form-group">
+				<label for="feature" class="control-label col-sm-3"
+					th:text="#{mobileLegends.text.input.feature}">Feature:</label>
+				<div class="col-sm-8">
+					<select id="inputFeature1Id" name="feature1Id"
+						class="form-control select">
+						<option th:each="feature : ${featureSakumaList}"
+							th:value="${feature.id}" th:text="${feature.featureName}"
+							th:selected="${feature.id==mobileLegendsSakumaSearchForm.feature1Id}">pulldown</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 検索ボタン -->
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search</a>
+				</div>
+
+				<!-- リセットボタン -->
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						th:href="@{/mobileLegendsSakuma}" th:text="#{common.text.reset}">Reset</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${mobileLegendsList != null}">
+			<table id="resultTable"
+				class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-15 center"
+							th:text="#{mobileLegends.text.mobaleChara}">mobaleChara</th>
+						<th class="per-10 center" th:text="#{mobileLegends.text.type1}">type1</th>
+						<th class="per-10 center" th:text="#{mobileLegends.text.type2}">type2</th>
+						<th class="per-10 center" th:text="#{mobileLegends.text.feature1}">feature1</th>
+						<th class="per-10 center" th:text="#{mobileLegends.text.feature2}">feature2</th>
+						<th class="per-35 center" th:text="#{mobileLegends.text.comment}">comment</th>
+						<th class="per-7 center" th:text="#{common.text.update}">update</th>
+						<th class="per-7 center" th:text="#{common.text.delete}">delete</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<!-- キャラクター名 -->
+					<tr th:each="mobileLegends : ${mobileLegendsList}">
+						<td class="data center" th:text="${mobileLegends.mobaleChara}">アウラド</td>
+						<td class="data center">
+							<!-- タイプ1 --> <label th:if="${mobileLegends.typeSakuma1 != null}"
+							th:text="${mobileLegends.typeSakuma1.typeName}"
+							class="data center">ファイター</label>
+						</td>
+						<!-- タイプ2 -->
+						<td class="data center"><label
+							th:if="${mobileLegends.typeSakuma2 != null}"
+							th:text="${mobileLegends.typeSakuma2.typeName}"
+							class="data center"></label></td>
+						<!-- 特徴1 -->
+						<td class="data center"><label
+							th:if="${mobileLegends.featureSakuma1 != null}"
+							th:text="${mobileLegends.featureSakuma1.featureName}"
+							class="data center">先手</label></td>
+						<!-- 特徴2 -->
+						<td class="data center"><label
+							th:if="${mobileLegends.featureSakuma2 != null}"
+							th:text="${mobileLegends.featureSakuma2.featureName}"
+							class="data center">爆発力</label></td>
+						<!-- コメント -->
+						<td class="data center" th:text="${mobileLegends.comment}">序盤からソウルスナッチを稼げていれば、終盤の場面で敵チームの後衛をULTで狙い撃ちすることが可能。</td>
+
+						<td class="data"><a class="btn btn-success"
+							th:href="@{/mobileLegendsSakuma/update(id=${mobileLegends.id})}"
+							th:text="#{common.text.update}">Update</a></td>
+						<td class="data center"><a class="btn btn-danger"
+							data-toggle="modal" data-target="#deleteModal"
+							th:text="#{common.text.delete}"
+							th:attr="data-id=${mobileLegends.id}, data-name=${mobileLegends.mobaleChara}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<p th:if="${page != null}">
+			<ul>
+				<li th:class="${page.first}? 'disabled':''" style="display: inline">
+					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+					th:text="#{common.text.paging.lead}">←lead</a>
+				</li>
+				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					th:class="(${i}==${page.number})? 'active' : ''"
+					style="display: inline">
+					<form th:id="'pageForm'+${i}" method="post"
+						th:action="@{${url}(page=${i})}"
+						th:object="${mobileLegendsSakumaSearchForm}"
+						style="display: inline">
+						<input type="hidden" th:field="*{mobaleChara}" /> <input
+							type="hidden" th:field="*{type1Id}" /> <input type="hidden"
+							th:field="*{type2Id}" /> <input type="hidden"
+							th:field="*{feature1Id}" /> <input type="hidden"
+							th:field="*{feature2Id}" />
+					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
+					th:if='${i}!=${page.number}'
+					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
+						th:text='${i+1}'>1</span>
+				</a>
+				</li>
+				<li th:class="${page.last} ? 'disable':''" style="display: inline">
+					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end→</span>
+					<a th:if="${not page.last}"
+					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+					th:text="#{common.text.paging.end}">end→</a>
+				</li>
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<!-- 削除モータル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id" />
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{mobileLegends.text.delete}">MobileLegendsDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteName">MobaleChara</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <span
+										th:text="#{common.text.warn.delete(#{menu.text.mobaleChara})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel</a> <a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var id = button.data('id');
+			var mobaleChara = button.data('name');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", id);
+			modal.find('#deleteName').text(mobaleChara);
+		});
+	</script>
+</body>
+</html>
