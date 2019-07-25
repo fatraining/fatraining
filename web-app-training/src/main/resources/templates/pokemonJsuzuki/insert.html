@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|ポケモン追加</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/pokemonJsuzuki.css}" />
+<body>
+	<div class="container">
+		<div class="page-hedder">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver γ</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset2 ">
+			<div class="sub-hedder">
+				<h1 align="center" th:text="#{pokemon.text.insert}"></h1>
+				<a th:href="@{/pokemonJsuzuki}" th:text="#{common.text.back}">Back</a>
+		</div>
+
+		<!-- a入力欄 -->
+		<form method="post" id="pokemonJsuzukiInputForm"
+			th:action="@{/pokemonJsuzuki/insert}" th:object="${pokemonJsuzukiInputForm}"
+			class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="control-label"
+					th:text="#{pokemon.text.input.pokemonName}">PokemonName(*):</label>
+				<input type="text" th:field="*{pokemonName}" class="form-control"
+					th:placeholder="#{pokemon.text.pokemonName}"/>
+				<p class="err alert-danger" th:each="err : ${#fields.errors('pokemonName')}"
+						th:text="#{${err}(#{pokemon.text.pokemonName})}"></p>
+			</div>
+
+			<div class="form-group">
+				<label for="area" class="control-label"
+					th:text="#{pokemon.text.input.area}">areaId:</label>
+				<select name="areaId" id="inputareaId"
+					class="form-control select">
+					<option th:each="areaId : ${areaIdJsuzukiList}"
+							th:value="${areaId.id}"
+							th:text="${areaId.areaId}"
+							th:selected="${areaId.id == pokemonJsuzukiInputForm.areaId}">pulldown</option>
+				</select>
+				<p class="err alert-danger" th:each="err : ${#fields.errors('areaId')}"
+						th:text="#{${err}(#{pokemon.text.area})}"></p>
+			</div>
+
+			<div class="form-group">
+				<label for="type1" class="control-label"
+					th:text="#{pokemon.text.input.type1}">type1:</label>
+				<select name="type1Id" id="inputTypeId"
+					class="form-control select">
+					<option th:each="typeId : ${typeIdJsuzukiList}"
+							th:value="${typeId.id}"
+							th:text="${typeId.typeId}"
+							th:selected="${typeId.id == pokemonJsuzukiInputForm.type1Id}">pulldown</option>
+				</select>
+				<p class="err alert-danger" th:each="err : ${#fields.errors('type1Id')}"
+						th:text="#{${err}(#{pokemon.text.type1})}"></p>
+			</div>
+			<div class="form-group">
+				<label for="type2" class="control-label"
+					th:text="#{pokemon.text.input.type2}">type2:</label>
+				<select name="type2Id" id="inputTypeId"
+					class="form-control select">
+					<option th:each="typeId : ${typeIdJsuzukiList}"
+							th:value="${typeId.id}"
+							th:text="${typeId.typeId}"
+							th:selected="${typeId.id == pokemonJsuzukiInputForm.type2Id}">pulldown</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+					<label for="hp" class="control-label"
+						th:text="#{pokemon.text.input.hp}">hp:</label>
+					<input type="text" th:field="*{hp}" class="form-control" id="inputHp"
+						th:placeholder="#{pokemon.text.hp}" />
+					</div>
+
+				<div class="form-group">
+					<label for="attack" class="control-label"
+						th:text="#{pokemon.text.input.attack}">attack:</label>
+					<input type="text" th:field="*{attack}" class="form-control" id="inputAttack"
+						th:placeholder="#{pokemon.text.attack}" />
+					</div>
+
+				<div class="form-group">
+					<label for="defense" class="control-label"
+						th:text="#{pokemon.text.input.defense}">defense:</label>
+					<input type="text" th:field="*{defense}" class="form-control" id="inputDefense"
+						th:placeholder="#{pokemon.text.defense}" />
+					</div>
+
+				<div class="form-group">
+					<label for="specialAttack" class="control-label"
+						th:text="#{pokemon.text.input.specialAttack}">specialAttack:</label>
+					<input type="text" th:field="*{specialAttack}" class="form-control" id="inputSpecialAttack"
+						th:placeholder="#{pokemon.text.specialAttack}" />
+					</div>
+
+				<div class="form-group">
+					<label for="specialDefense" class="control-label"
+						th:text="#{pokemon.text.input.specialDefense}">specialDefense:</label>
+					<input type="text" th:field="*{specialDefense}" class="form-control" id="inputSpecialDefense"
+						th:placeholder="#{pokemon.text.specialDefense}" />
+					</div>
+
+				<div class="form-group">
+					<label for="speed" class="control-label"
+						th:text="#{pokemon.text.input.speed}">speed:</label>
+					<input type="text" th:field="*{speed}" class="form-control" id="inputSpeed"
+						th:placeholder="#{pokemon.text.speed}" />
+					</div>
+
+				<div class="form-group">
+					<label for="parameter" class="control-label"
+						th:text="#{pokemon.text.input.parameter}">parameter:</label>
+					<input type="text" th:field="*{parameter}" class="form-control" id="inputParameter"
+						th:placeholder="#{pokemon.text.parameter}" />
+					</div>
+
+			<div class="col-xs-3 col-sm-2">
+				<a class="btn btn-success center-block"
+					onclick="$('#pokemonJsuzukiInputForm').submit()"
+					th:text="#{common.text.insert}">Insert</a>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>
