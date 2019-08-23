@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修 |住人データ更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/residentsUriu.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{residents.text.update}">住人データ更新</h1>
+				<a th:href="@{/residentsUriu}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="residentsUriuInputForm"
+				th:action="@{/residentsUriu/update}" th:object="${residentsUriuInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{residents.text.input.name.riquire}"> Name(*):</label>
+					<input type="text" th:field="*{name}" class="form-control"
+						th:placeholder="#{residents.text.name}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
+						th:text="#{${err}(#{residents.text.name})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="type" class="control-label"
+						th:text="#{residents.text.input.type}">Type:</label>
+					<select name="typeId" id="inputTypeUriu"
+						class="form-control select">
+						<option th:each="type : ${typeUriuList}"
+								th:value="${type.id}"
+								th:text="${type.type}"
+								th:selected="${type.id == residentsUriuInputForm.typeId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="animal" class="control-label"
+						th:text="#{residents.text.input.animal}">Animal:</label>
+					<select name="animalId" id="inputAnimalUriu"
+						class="form-control select">
+						<option th:each="animal : ${animalUriuList}"
+								th:value="${animal.id}"
+								th:text="${animal.animal}"
+								th:selected="${animal.id == residentsUriuInputForm.animalId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="phrase" class="control-label"
+						th:text="#{residents.text.input.phrase}">Phrase:</label>
+					<input type="text" th:field="*{phrase}" class="form-control" id="inputPhraseUriu"
+						th:placeholder="#{residents.text.phrase}"/>
+				</div>
+				<div class="form-group">
+					<label for="motto" class="control-label"
+						th:text="#{residents.text.input.motto}"> Motto:</label>
+					<textarea th:field="*{motto}" cols="" rows="5"
+						class="form-control" id="inputMottoUriu"
+						th:placeholder="#{residents.text.motto}"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="birthday" class="control-label"
+						th:text="#{residents.text.input.birthday.riquire}"> Birthday:</label>
+					<input type="text" th:field="*{birthday}" class="form-control" id="inputBirthdayUriu"
+						th:placeholder="#{residents.text.birthday}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('birthday')}"
+						th:text="#{residents.text.input.birthday.err}"></p>
+				</div>
+				<div class="form-group">
+					<div>
+						<label for="image" class="control-label"
+							th:text="#{residents.text.image}"> Image:</label>
+							<input type="file" id="file" th:field="*{image}" class="form-control" />
+					</div>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#residentsUriuInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
