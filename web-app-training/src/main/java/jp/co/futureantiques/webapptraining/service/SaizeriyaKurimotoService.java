@@ -13,59 +13,59 @@ import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.CategoryKurim
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.PriceKurimoto;
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenuMainKurimoto;
 
-//SaizeriyaKurimotoのサービスインターフェース
-//@author kurimoto
+/**SaizeriyaKurimotoのサービスインターフェース
+*@author kurimoto*/
 
 public interface SaizeriyaKurimotoService {
 
-	//カテゴリエンティティのリストを取得する
-	//@return CategoryEntityのリスト
+	/**カテゴリエンティティのリストを取得する
+	*@return CategoryEntityのリスト*/
 
 	List<CategoryKurimoto> getListCategoryKurimoto();
 
-	//価格帯エンティティのリストを取得する
-	//@return PriceEntityのリスト
+	/**価格帯エンティティのリストを取得する
+	*@return PriceEntityのリスト*/
 
 	List<PriceKurimoto> getListPriceKurimoto();
 
-	//検索条件を元にMenuKurimotoのレコードのリストを取得する(Paging)
-	//@param SaizeriyaKurimotoSearchForm form
-	//@param Pageable pageable
-	//@return MenuKurimotoのリスト
+	/**検索条件を元にMenuKurimotoのレコードのリストを取得する(Paging)
+	*@param SaizeriyaKurimotoSearchForm form
+	*@param Pageable pageable
+	*@return MenuKurimotoのリスト*/
 
 	Page<SaizeriyaMenuMainKurimoto> getPageSaizeriyaKurimoto(final SaizeriyaKurimotoSearchForm form, final Pageable pageable);
 
-	//検索条件を元にMenuKurimotoのレコードのリストを取得する
-	//@param SaizeriyaKurimotoSearchForm form
-	//@return MenuKurimotoのリスト
+	/**検索条件を元にMenuKurimotoのレコードのリストを取得する
+	*@param SaizeriyaKurimotoSearchForm form
+	*@return MenuKurimotoのリスト*/
 
 	List<SaizeriyaMenuMainKurimoto> getListSaizeriyaKurimoto(final SaizeriyaKurimotoSearchForm form);
 
-	//IDをキーにMenuKurimotoのレコードを取得する
-	//@param long id
-	//@return MenuKurimotoのレコード
+	/**IDをキーにMenuKurimotoのレコードを取得する
+	*@param long id
+	*@return MenuKurimotoのレコード*/
 
 	SaizeriyaMenuMainKurimoto getSaizeriyaKurimoto(final long id);
 
-	//MenuKurimotoにレコードを新規登録する
-	//@param SaizeriyaKurimotoInputForm form
-	//@return MenuKurimoto
+	/**MenuKurimotoにレコードを新規登録する
+	*@param SaizeriyaKurimotoInputForm form
+	*@return MenuKurimoto*/
 
 	SaizeriyaMenuMainKurimoto insertSaizeriyaKurimoto(final SaizeriyaKurimotoInputForm form);
 
-	//MenuKurimotoのレコードを更新する
-	//@param SaizeriyaKurimotoInputForm form
-	//@return MenuKurimoto
+	/**MenuKurimotoのレコードを更新する
+	*@param SaizeriyaKurimotoInputForm form
+	*@return MenuKurimoto*/
 
 	<SaizeriyaInputForm> SaizeriyaMenuMainKurimoto updateSaizeriyaKurimoto(final SaizeriyaKurimotoInputForm form);
 
-	//MenuKurimotoのレコードを論理削除する
-	//@param long id
+	/**MenuKurimotoのレコードを論理削除する
+	*@param long id*/
 
 	void deleteSaizeriyaKurimotoById(final long id);
 
-	//MenuKurimotoのレコードを物理削除する
-	//@param ArrayList<Long> ids
+	/**MenuKurimotoのレコードを物理削除する
+	*@param ArrayList<Long> ids*/
 
 	void deleteSaizeriyaKurimotoComp(final ArrayList<Long> ids);
 }

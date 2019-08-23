@@ -13,32 +13,32 @@ import javax.persistence.Transient;
 
 import lombok.Data;
 
-//price_kurimotoテーブルと対応するEntity
-//@author Kurimoto
+/**price_kurimotoテーブルと対応するEntity
+*@author Kurimoto*/
 
 @Data
 @Entity
 public class PriceKurimoto{
 
-	//価格帯ID
+	/**価格帯ID*/
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 
-	//名前
+	/**名前*/
 	@Column(name = "price_name")
 	private String priceName;
 
-	//削除フラグ
+	/**削除フラグ*/
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	//登録日時
+	/**登録日時*/
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	//更新日時
+	/**更新日時*/
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 

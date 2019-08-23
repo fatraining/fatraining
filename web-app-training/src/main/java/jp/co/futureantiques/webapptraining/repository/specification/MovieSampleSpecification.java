@@ -55,6 +55,7 @@ public class MovieSampleSpecification {
 					Predicate newCondition = cb.like(root.get("movieTitle"), "%" + form.getMovieTitle() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
+				
 				if (form.getGenreId() != null && form.getGenreId() != 0) {
 
 					// ジャンルを条件に追加

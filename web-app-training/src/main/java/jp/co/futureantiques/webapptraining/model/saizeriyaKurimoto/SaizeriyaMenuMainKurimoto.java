@@ -13,65 +13,62 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 
-//MenuKurimotoテーブルと対応するEntity
-//@author Kurimoto
+/**MenuKurimotoテーブルと対応するEntity
+*@author Kurimoto*/
 
-//↓getter/setterでアクセスが可能になるアノテーション
 @Data
-//↓このクラスはエンティティであることを示すアノテーション
 @Entity
 public class SaizeriyaMenuMainKurimoto {
 
-	//↓主キーが"メニューID"であることを示すアノテーション
+	/**メニューID*/
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
-	//↓Idで指定した主キーの採番方法を示すアノテーション
 	@GeneratedValue(generator = "gen")
 	private long id;
 
-	//メニュー名
+	/**メニュー名*/
 	@Column(name = "menu_name")
 	private String menuName;
 
-	//カテゴリID
+	/**カテゴリID*/
 	@Column(name = "category_id")
 	private Integer categoryId;
 
-	//価格帯ID
+	/**価格帯ID*/
 	@Column(name = "price_id")
 	private Integer priceId;
 
-	//定価
+	/**定価*/
 	@Column(name = "teika")
 	private Integer teika;
 
-	//カロリー
+	/**カロリー*/
 	@Column(name = "calories")
 	private Integer calories;
 
-	//塩分
+	/**塩分*/
 	@Column(name = "sodium")
 //	@Size(max = 255)
 	private Double sodium;
 
-	//削除フラグ
+	/**削除フラグ*/
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	//登録日時
+	/**登録日時*/
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	//更新日時
+	/**更新日時*/
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	//外部キー設定：カテゴリ
+	/**外部キー設定：カテゴリ*/
 	@ManyToOne(targetEntity = CategoryKurimoto.class)
 	@JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private CategoryKurimoto categoryKurimoto;
 
-	//外部キー設定：価格帯
+	/**外部キー設定：価格帯*/
 	@ManyToOne(targetEntity = PriceKurimoto.class)
 	@JoinColumn(name = "price_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private PriceKurimoto priceKurimoto;

@@ -13,14 +13,14 @@ import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.saizeriyaKurimoto.SaizeriyaKurimotoSearchForm;
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenuMainKurimoto;
 
-//SaizeriyaMenuMainKurimotoの検索条件を生成するクラス
-//@author Kurimoto
+/**SaizeriyaMenuMainKurimotoの検索条件を生成するクラス
+*@author Kurimoto*/
 
 public class SaizeriyaKurimotoSpecification {
 
-	//検索条件生成の実装
-	//@param SaizeriyaKurimotoSearchForm form
-	//@return SaizeriyaMenuMainKurimotoのSpecification
+	/**検索条件生成の実装
+	*@param SaizeriyaKurimotoSearchForm form
+	*@return SaizeriyaMenuMainKurimotoのSpecification*/
 
 	public static Specification<SaizeriyaMenuMainKurimoto> generateSaizeriyaSpecification(final SaizeriyaKurimotoSearchForm form) {
 		return new Specification<SaizeriyaMenuMainKurimoto>() {
@@ -71,11 +71,11 @@ public class SaizeriyaKurimotoSpecification {
 				return condition;
 			}
 
-			//検索条件を結合する
-			//@param cb
-			//@param condition
-			//@param newCondition
-			//@return Predicate
+			/**検索条件を結合する
+			*@param cb
+			*@param condition
+			*@param newCondition
+			*@return Predicate*/
 
 			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
 				if (condition != null) {

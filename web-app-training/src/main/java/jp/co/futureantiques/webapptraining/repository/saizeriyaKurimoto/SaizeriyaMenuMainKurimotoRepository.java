@@ -11,22 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenuMainKurimoto;
 
-//MenuKurimotoリポジトリのインターフェース
-//@author Kurimoto
+/**MenuKurimotoリポジトリのインターフェース
+*@author Kurimoto*/
 
 public interface SaizeriyaMenuMainKurimotoRepository extends JpaRepository<SaizeriyaMenuMainKurimoto, Long>, JpaSpecificationExecutor<SaizeriyaMenuMainKurimoto> {
 
-	//対象のレコードの削除フラグを1にする
-	//@param long id
+	/**対象のレコードの削除フラグを1にする
+	*@param long id*/
 
-	//↓処理の開始を示すアノテーション
+
 	@Transactional
 	@Modifying
 	@Query("UPDATE SaizeriyaMenuMainKurimoto SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
 
-	//対象のレコードを削除する
-	//@param ArrayList<Long> ids
+	/**対象のレコードを削除する
+	*@param ArrayList<Long> ids*/
 
 	@Transactional
 	@Modifying

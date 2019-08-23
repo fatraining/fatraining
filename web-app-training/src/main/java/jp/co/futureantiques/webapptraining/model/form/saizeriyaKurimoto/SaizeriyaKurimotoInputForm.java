@@ -10,46 +10,39 @@ import org.hibernate.validator.constraints.NotBlank;
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenuMainKurimoto;
 import lombok.Data;
 
-//メニュー登録・更新画面用のFormクラス
-//@author Kurimoto
-
+/**メニュー登録・更新画面用のFormクラス
+*@author Kurimoto*/
 @Data
 public class SaizeriyaKurimotoInputForm {
 
-	//ID
+	/**ID*/
 	private int id;
 
-	//メニュー名
+	/**メニュー名*/
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
 	private String menuName;
 
-	//カテゴリID
+	/**カテゴリID*/
 	private Integer categoryId;
 
-	//価格帯ID
+	/**価格帯ID*/
 	private Integer priceId;
 
-	//定価
-//	//@NotBlank
-//	@Size(max = 11)
-//	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	/**定価*/
 	private Integer teika;
 
-	//カロリー
-//	@Size	(min = 0, max = 4, message = "common.text.error.size.max.four")
-//	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	/**カロリー*/
 	private Integer calories;
 
-	//塩分
-//	@Size(max = 11)
+	/**塩分*/
 	private Double sodium;
 
-	//更新日時（排他制御用
+	/**更新日時（排他制御用*/
 	private String updateDate;
 
-	//フィールドにエンティティの中身を入れる
-	//@param saizeriyaMenuMainKurimoto
+	/**フィールドにエンティティの中身を入れる
+	*@param saizeriyaMenuMainKurimoto*/
 
 	public void initWithSaizeriyaMenuMainKurimoto(SaizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto) {
 		this.setId((int) saizeriyaMenuMainKurimoto.getId());
@@ -72,8 +65,8 @@ public class SaizeriyaKurimotoInputForm {
 		this.setUpdateDate(String.valueOf(saizeriyaMenuMainKurimoto.getUpdateDate()));
 	}
 
-	//saizeriyaMenuMainKurimotoエンティティに登録値を入れる
-	//@return saizeriyaMenuMainKurimoto
+	/**saizeriyaMenuMainKurimotoエンティティに登録値を入れる
+	*@return saizeriyaMenuMainKurimoto*/
 
 	public SaizeriyaMenuMainKurimoto convertToSaizeriyaMenuMainKurimotoForInsert() {
 		SaizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto = new SaizeriyaMenuMainKurimoto();
@@ -83,9 +76,9 @@ public class SaizeriyaKurimotoInputForm {
 		return saizeriyaMenuMainKurimoto;
 	}
 
-	//saizeriyaMenuMainKurimotoエンティティに更新値を入れる
-	//@param saizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto
-	//@return saizeriyaMenuMainKurimoto
+	/**saizeriyaMenuMainKurimotoエンティティに更新値を入れる
+	*@param saizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto
+	*@return saizeriyaMenuMainKurimoto*/
 
 	public SaizeriyaMenuMainKurimoto convertToSaizeriyaMenuMainKurimotoForUpdate(SaizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto) {
 		saizeriyaMenuMainKurimoto = convertToSaizeriyaMenuMainKurimoto(saizeriyaMenuMainKurimoto);
@@ -93,52 +86,52 @@ public class SaizeriyaKurimotoInputForm {
 		return saizeriyaMenuMainKurimoto;
 	}
 
-	//saizeriyaMenuMainKurimotoエンティティに入力値を入れる
-	//@param saizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto
-	//@return saizeriyaMenuMainKurimoto
+	/**saizeriyaMenuMainKurimotoエンティティに入力値を入れる
+	*@param saizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto
+	*@return saizeriyaMenuMainKurimoto*/
 
 	private SaizeriyaMenuMainKurimoto convertToSaizeriyaMenuMainKurimoto(SaizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto) {
 
-		//必須：メニュー名
+		/**必須：メニュー名*/
 		saizeriyaMenuMainKurimoto.setMenuName(this.menuName);
 
 
-		//カテゴリ
+		/**カテゴリ*/
 		if(this.categoryId !=0) {
 			saizeriyaMenuMainKurimoto.setCategoryId(this.categoryId);
 		}else {
 			saizeriyaMenuMainKurimoto.setCategoryId(null);
 		}
 
-		//価格帯
+		/**価格帯*/
 		if(this.priceId !=0) {
 			saizeriyaMenuMainKurimoto.setPriceId(this.priceId);
 		}else {
 			saizeriyaMenuMainKurimoto.setPriceId(null);
 		}
 
-		//定価
+		/**定価*/
 		if(this.teika != null) {
 			saizeriyaMenuMainKurimoto.setTeika(this.teika);
 		}else {
 			saizeriyaMenuMainKurimoto.setTeika(null);
 		}
 
-		//カロリー
+		/**カロリー*/
 		if(this.calories != null ) {
 			saizeriyaMenuMainKurimoto.setCalories(this.calories);
 		}else {
 			saizeriyaMenuMainKurimoto.setCalories(null);
 		}
 
-				//塩分
+		/**塩分*/
 			if(this.sodium !=null) {
 			saizeriyaMenuMainKurimoto.setSodium(this.sodium);
 		}else {
 			saizeriyaMenuMainKurimoto.setSodium(null);
 		}
 
-		//削除フラグ
+		/**削除フラグ*/
 		saizeriyaMenuMainKurimoto.setDelFlg("0");
 		return saizeriyaMenuMainKurimoto;
 	}

@@ -24,61 +24,52 @@ import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenu
 import jp.co.futureantiques.webapptraining.service.SaizeriyaKurimotoService;
 
 
-//SaizeriyaKurimotoのコントローラークラス
-//↓作者を示すアノテーション
-//@author kurimoto
+/**
+ *SaizeriyaKurimotoのコントローラークラス
+ *
+ * @author future
+ */
 
 
-//↓画面遷移の制御、Serviceを呼び出すアノテーション
 @Controller
-//↓URLへアクセスするとコントローラーが呼び出されるアノテーション
 @RequestMapping(value = "/saizeriyaKurimoto")
 public class SaizeriyaKurimotoController {
-	//SaizeriyaKurimotoのサービス
+	/**SaizeriyaKurimotoのサービス*/
 	private final SaizeriyaKurimotoService saizeriyaKurimotoService;
 
-	//↓パラメーターに関する説明をするアノテーション
-	//@param SaizeriyaKurimotoService saizeriyaKurimotoService
-	//↓DIするためのアノテーションとDIしているコンストラクタ
+	/**@param SaizeriyaKurimotoService saizeriyaKurimotoService*/
 	@Autowired
 	public SaizeriyaKurimotoController(final SaizeriyaKurimotoService saizeriyaKurimotoService) {
-		//外部からオブジェクトを注入
 		this.saizeriyaKurimotoService = saizeriyaKurimotoService;
 	}
 
-	//カテゴリエンティティのリストを取得する
-	//↓戻り値に関する説明をするアノテーション
-	//@return CategoryEntityのリスト
+	/**カテゴリエンティティのリストを取得する
+	*@return CategoryEntityのリスト*/
 
-	//↓戻り値は"Model"へ返されるアノテーション
 	@ModelAttribute
 	public List<CategoryKurimoto> getListCategory() {
 		return saizeriyaKurimotoService.getListCategoryKurimoto();
 	}
-
-	//価格帯エンティティのリストを取得する
-	//@return PriceEntityのリスト
 
 	@ModelAttribute
 	public List<PriceKurimoto> getListPrice() {
 		return saizeriyaKurimotoService.getListPriceKurimoto();
 	}
 
-	//検索画面に遷移する
-	//@param SaizeriyaKurimotoSearchForm SaizeriyaKurimotoSearchForm
-	//@return 検索画面のパス
+	/**検索画面に遷移する
+	*@param SaizeriyaKurimotoSearchForm SaizeriyaKurimotoSearchForm
+	*@return 検索画面のパス*/
 
-	//URLの指定と、GETメソッドorPOSTメソッドを使うかの指定をするアノテーション
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchSaizeriya(@ModelAttribute final SaizeriyaKurimotoSearchForm saizeriyaKurimotoSearchForm) {
 		return "saizeriyaKurimoto/search";
 	}
 
-	//検索結果を取得して検索画面に遷移する
-	//@param SaizeriyaKurimotoSearchForm form
-	//@param Model model
-	//@param Pageable pageable
-	//@return 検索画面のパス
+	/**検索結果を取得して検索画面に遷移する
+	*@param SaizeriyaKurimotoSearchForm form
+	*@param Model model
+	*@param Pageable pageable
+	*@return 検索画面のパス*/
 
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchSaizeriya(final SaizeriyaKurimotoSearchForm form, final Model model, final Pageable pageable) {
@@ -95,19 +86,19 @@ public class SaizeriyaKurimotoController {
 		return "saizeriyaKurimoto/search";
 	}
 
-	//追加画面に遷移する
-	//@param SaizeriyaKurimotoInputForm saizeriyaKurimotoInputForm
-	//@return 追加画面のパス
+	/**追加画面に遷移する
+	*@param SaizeriyaKurimotoInputForm saizeriyaKurimotoInputForm
+	*@return 追加画面のパス*/
 
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
 	public String showInsertSaizeriya(@ModelAttribute final SaizeriyaKurimotoInputForm saizeriyaKurimotoInputForm) {
 		return "saizeriyaKurimoto/insert";
 	}
 
-	//menu_main_kurimotoテーブルにデータを登録して検索画面に遷移する
-	//@param SaizeriyaKurimotoInputForm form
-	//@param BindingResult bindingResult
-	//@return 入力エラーがある場合追加画面、ない場合検索画面のパス
+	/**menu_main_kurimotoテーブルにデータを登録して検索画面に遷移する
+	*@param SaizeriyaKurimotoInputForm form
+	*@param BindingResult bindingResult
+	*@return 入力エラーがある場合追加画面、ない場合検索画面のパス*/
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertSaizeriyaKurimoto(@ModelAttribute @Validated final SaizeriyaKurimotoInputForm form,
@@ -123,10 +114,10 @@ public class SaizeriyaKurimotoController {
 		return "redirect:/saizeriyaKurimoto?result=insert&id=" + saizeriyaMenuMainKurimoto.getId();
 	}
 
-	//更新画面に遷移する
-	//@param long id
-	//@param SaizeriyaKurimotoInputForm saizeriyaKurimotoInputForm
-	//@return 更新画面のパス
+	/**更新画面に遷移する
+	*@param long id
+	*@param SaizeriyaKurimotoInputForm saizeriyaKurimotoInputForm
+	*@return 更新画面のパス*/
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdateSaizeriya(@RequestParam(name = "id") final long id,
@@ -141,9 +132,9 @@ public class SaizeriyaKurimotoController {
 	}
 
 	//MenuMainテーブルのデータを更新して検索画面に遷移する
-	//@param SaizeriyaKurimotoInputForm form
-	//@param BindingResult bindingResult
-	//@return 入力エラーがある場合更新画面、ない場合検索画面のパス
+	/**@param SaizeriyaKurimotoInputForm form
+	*@param BindingResult bindingResult
+	*@return 入力エラーがある場合更新画面、ない場合検索画面のパス*/
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updateSaizeriya(@Validated final SaizeriyaKurimotoInputForm form,
@@ -164,9 +155,9 @@ public class SaizeriyaKurimotoController {
 		return "redirect:/saizeriyaKurimoto?result=update&id=" + saizeriyaMenuMainKurimoto.getId();
 	}
 
-	//MenuMainテーブルのレコードを論理削除して検索画面に遷移する
-	//@param long id
-	//@return 検索画面のパス
+	/**MenuMainテーブルのレコードを論理削除して検索画面に遷移する
+	*@param long id
+	*@return 検索画面のパス*/
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteSaizeriya(@RequestParam(name = "id") final long id) {
@@ -176,11 +167,11 @@ public class SaizeriyaKurimotoController {
 		return "redirect:/saizeriyaKurimoto?result=delete&id=" + id;
 	}
 
-	//完全削除画面に遷移する
-	//@param SaizeriyaKurimotoSearchForm form
-	//@param SaizeriyiaKurimotoDeleteForm saizeriyaKurimotoDeleteForm
-	//@param Model model
-	//@return 完全削除画面のパス
+	/**完全削除画面に遷移する
+	*@param SaizeriyaKurimotoSearchForm form
+	*@param SaizeriyiaKurimotoDeleteForm saizeriyaKurimotoDeleteForm
+	*@param Model model
+	*@return 完全削除画面のパス*/
 
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompSaizeriya(final SaizeriyaKurimotoSearchForm form,
@@ -194,11 +185,11 @@ public class SaizeriyaKurimotoController {
 		return "saizeriyaKurimoto/deletecomp";
 	}
 
-	//MenuMainテーブルのデータを完全削除して検索画面に遷移する
-	//@param SaizeriyaKurimotoDeleteForm form
-	//@param BindingResult bindingResult
-	//@param Model model
-	//@return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
+	/**MenuMainテーブルのデータを完全削除して検索画面に遷移する
+	*@param SaizeriyaKurimotoDeleteForm form
+	*@param BindingResult bindingResult
+	*@param Model model
+	*@return 入力エラーがある場合完全削除画面、ない場合検索画面のパス*/
 
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
 	public String deleteCompSaizeriya(@Validated final SaizeriyaKurimotoDeleteForm form,

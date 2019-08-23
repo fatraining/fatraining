@@ -13,36 +13,36 @@ import javax.persistence.Transient;
 
 import lombok.Data;
 
-//Genreテーブルと対応するEntityクラス
-//@author kurimoto
+/**Genreテーブルと対応するEntityクラス
+*@author kurimoto*/
 
 @Data
 @Entity
 public class CategoryKurimoto {
 
-	//カテゴリID
+	/**カテゴリID*/
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 
-	//カテゴリ
+	/**カテゴリ*/
 	@Column(name = "category_name")
 	private String categoryName;
 
-	//削除フラグ
+	/**削除フラグ*/
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	//登録日時
+	/**登録日時*/
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	//更新日時
+	/**更新日時*/
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	//外部キー設定：カテゴリID
+	/**外部キー設定：カテゴリID*/
 	@Transient
 	@OneToMany(targetEntity = SaizeriyaMenuMainKurimoto.class, mappedBy = "category")
 	@JoinColumn(name = "id", referencedColumnName = "category_id")

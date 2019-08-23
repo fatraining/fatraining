@@ -3,29 +3,28 @@ package jp.co.futureantiques.webapptraining.model.form.saizeriyaKurimoto;
 import jp.co.futureantiques.webapptraining.model.saizeriyaKurimoto.SaizeriyaMenuMainKurimoto;
 import lombok.Data;
 
-//映画検索画面のFormクラス
-//@author future
-
+/**映画検索画面のFormクラス
+*@author future*/
 @Data
 public class SaizeriyaKurimotoSearchForm {
 
-	//ID
+	/**ID*/
 	private Integer id;
 
-	//メニュー名
+	/**メニュー名*/
 	private String menuName;
 
-	//カテゴリID
+	/**カテゴリID*/
 	private Integer categoryId;
 
-	//価格帯ID
+	/**価格帯ID*/
 	private Integer priceId;
 
-	//削除フラグON用
+	/**削除フラグON用*/
 	private int isDelete;
 
-	//各フィールドに値を設定する
-	//@param saizeriyaMenuMainKurimoto
+	/**各フィールドに値を設定する
+	*@param saizeriyaMenuMainKurimoto*/
 
 	public void setValues(SaizeriyaMenuMainKurimoto saizeriyaMenuMainKurimoto) {
 		this.setId((int) saizeriyaMenuMainKurimoto.getId());
