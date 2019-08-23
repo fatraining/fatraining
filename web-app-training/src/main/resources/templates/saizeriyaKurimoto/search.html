@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|サイゼリヤ メニュー検索</title>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/saizeriyaKurimoto.css}" />
+</head>
+
+
+<body>
+	<div class="page-header">
+		<h4><a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small></h4>
+	</div>
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<h1 align="center" th:text="#{saizeriya.text.search}">検索タイトル</h1>
+	</div>
+
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm"
+			method="get" action="/saizeriyaKurimoto/deletecomp"
+			th:object="${saizeriyaKurimotoSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1"  />
+				</div>
+			</div>
+		</form>
+		<div class="form-group">
+			<div class="" >
+				<a class="btn btn-warning"
+					th:href="@{/saizeriyaKurimoto/insert}"
+					th:text="#{common.text.new}" >New
+				</a>
+				<a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<!-- saizeriyaKurimotoListはコントローラーで定義されているキー -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(saizeriyaKurimotoSearchForm.menuName != null or
+							saizeriyaKurimotoSearchForm.categoryId != null or
+							saizeriyaKurimotoSearchForm.priceId != null) and
+							saizeriyaList == null}"
+                     th:text="#{common.text.info.search}">No Result
+				</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result != null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<!-- メニュー名の入力検索k -->
+		<form class="form-horizontal" id="searchForm"
+			method="post" action="/saizeriyaKurimoto/search"
+			th:object="${saizeriyaKurimotoSearchForm}" >
+			<div class="form-group">
+				<label for="menuName" class="col-sm-2 control-label" th:text="#{saizeriya.text.input.menuName}">Name:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{menuName}" class="form-control"
+						id="inputMenuName" th:placeholder="#{saizeriya.text.search.info}" />
+				</div>
+			</div>
+			<!-- カテゴリの選択検索 -->
+			<div class="form-group">
+				<label for="category" class="control-label col-sm-2" th:text="#{saizeriya.text.input.category}">Category:</label>
+				<div class="col-sm-8">
+					<select id="inputCategoryId" name="categoryId" class="form-control select">
+						<option th:each="category : ${categoryKurimotoList}"
+							th:value="${category.id}"
+							th:text="${category.categoryName}"
+							th:selected="${category.id == saizeriyaKurimotoSearchForm.categoryId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<!-- 価格帯の選択検索 -->
+			<div class="form-group">
+				<label for="price" class="control-label col-sm-2" th:text="#{saizeriya.text.input.price}">Price:</label>
+				<div class="col-sm-8">
+					<select id="inputPriceId" name="priceId" class="form-control select">
+						<option th:each="price : ${priceKurimotoList}"
+							th:value="${price.id}"
+							th:text="${price.priceName}"
+							th:selected="${price.id == saizeriyaKurimotoSearchForm.priceId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<!-- 検索ボタン -->
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search
+					</a>
+				</div>
+				<!-- リセットボタン -->
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						th:href="@{/saizeriyaKurimoto}"
+						th:text="#{common.text.reset}">Reset
+					</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${saizeriyaList != null}">
+			<table id="resultTable" class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-15 center" th:text="#{saizeriya.text.menuName}">menuName</th>
+						<th class="per-10 center" th:text="#{saizeriya.text.category}">category</th>
+						<th class="per-10 center" th:text="#{saizeriya.text.price}">price</th>
+						<th class="per-10 center" th:text="#{saizeriya.text.teika}">teika</th>
+						<th class="per-10 center" th:text="#{saizeriya.text.calories}">calories</th>
+						<th class="per-10 center" th:text="#{saizeriya.text.sodium}">sodium</th>
+						<th class="per-10 center" th:text="#{common.text.update}">update</th>
+						<th class="per-10 center" th:text="#{common.text.delete}">delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="saizeriya : ${saizeriyaList}">
+						<td class="data center" th:text="${saizeriya.menuName}">メニュー名</td>
+						<td class="data center">
+							<label th:if="${saizeriya.categoryKurimoto != null}"
+							th:text="${saizeriya.categoryKurimoto.categoryName}"
+							class="data center">カテゴリ</label>
+						</td>
+						<td class="data center">
+							<label th:if="${saizeriya.priceKurimoto != null}"
+							  th:text="${saizeriya.priceKurimoto.priceName}"
+									class="data center">価格帯</label>
+						</td>
+
+							<td class="data center">
+							<label th:if="${saizeriya.teika != null}"
+							th:text="${saizeriya.teika}+'円'">定価</label>
+							<label th:if="${saizeriya.teika == null}"></label>
+							</td>
+
+							<td class="data center">
+							<label th:if="${saizeriya.calories != null}"
+							th:text="${saizeriya.calories}+'cal'">カロリー</label>
+							<label th:if="${saizeriya.calories == null}"></label>
+							</td>
+
+							<td class="data center">
+							<label th:if="${saizeriya.sodium != null}"
+							th:text="${saizeriya.sodium}+'g'">定価</label>
+							<label th:if="${saizeriya.sodium == null}"></label>
+							</td>
+
+						<td class="data center"><a class="btn btn-success"
+							th:href="@{/saizeriyaKurimoto/update(id=${saizeriya.id})}"
+							th:text="#{common.text.update}">Update</a></td>
+						<td class="data center">
+							<a class="btn btn-danger"
+								data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${saizeriya.id}, data-name=${saizeriya.menuName}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<div th:if="${page != null}">
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+							th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					th:class="(${i}==${page.number})? 'active' : ''"
+					style="display:inline">
+						<form th:id="'pageForm'+${i}" method="post"
+						 th:action="@{${url}(page=${i})}"
+							th:object="${saizeriyaKurimotoSearchForm}"
+							style="display:inline" >
+							<input type="hidden" th:field="*{menuName}"/>
+							<input type="hidden" th:field="*{categoryId}"/>
+							<input type="hidden" th:field="*{priceId}"/>
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+							th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id"/>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{saizeriya.text.delete}">Delete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteName">MenuName</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.menuName})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default"
+							th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel
+						</a>
+						<a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+			var id = button.data('id');
+			var menuName = button.data('name');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", id);
+			modal.find('#deleteName').text(menuName);
+		});
+	</script>
+</body>
+</html>
