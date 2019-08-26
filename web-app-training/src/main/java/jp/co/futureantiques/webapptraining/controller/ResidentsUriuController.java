@@ -162,7 +162,7 @@ public class ResidentsUriuController {
 		ResidentsMainUriu residentsMainUriu = residentsUriuService.updateResidentsUriu(form);
 		if(residentsMainUriu==null) {
 			// 更新が失敗した場合、検索画面にメッセージを表示する
-			return "redirect://residentsUriu?result=updatefailed";
+			return "redirect:/residentsUriu?result=updatefailed";
 		}
 		return "redirect:/residentsUriu?result=update&id=" + residentsMainUriu.getId();
 	}
