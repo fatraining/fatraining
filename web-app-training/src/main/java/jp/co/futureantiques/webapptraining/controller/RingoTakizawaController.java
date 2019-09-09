@@ -26,6 +26,7 @@ import jp.co.futureantiques.webapptraining.service.RingoTakizawaService;
 /**
  * RingoTakizawaのコントローラークラス
  *
+ * RequestMapping (value = "/ringoTakizawa")はhtmlに対応
  * @author Mai Takizawa
  */
 @Controller
@@ -33,12 +34,13 @@ import jp.co.futureantiques.webapptraining.service.RingoTakizawaService;
 
 public class RingoTakizawaController {
 
-	/** 椎名林檎の曲（プレイリスト）のサービス */
+	/** 椎名林檎の曲（プレイリスト）のサービス
+	 *  serviceクラスを定義しているだけ */
 	private final RingoTakizawaService ringoTakizawaService;
 
 	/**
 	 * コンストラクタ
-	 *
+	 *上の定義を使えるようにした
 	 * @param RingoTakizawaService ringoTakizawaService
 	 */
 	@Autowired
@@ -46,10 +48,19 @@ public class RingoTakizawaController {
 		this.ringoTakizawaService = ringoTakizawaService;
 	}
 
+
+
+
+
 	/**
 	 * CD名エンティティのリストを取得する
 	 *
 	 * @return RingoCdTitleTakizawaEntityのリスト
+	 *
+	 * ModelAttribute…@ModelAttribute アノテーションは、コントローラのメソッドか引数につけて使う。
+	 * いずれの場合も、ハンドラメソッドが動く前にアノテーションが検出され、
+	 * メソッドについているか、引数についているかに応じて、Spring によって処理される。
+	 *詳細…https://kazkn.com/post/2017/use-model-attribute/
 	 */
 	@ModelAttribute
 	public List<RingoCdTitleTakizawa> getListRingoCdTitleTakizawa() {
@@ -67,16 +78,35 @@ public class RingoTakizawaController {
 		return ringoTakizawaService.getListRingoSongImageTakizawa();
 	}
 
+
+
+
+	/**
+	 * 上のModelAttributeの
+	 * ・ringoTakizawaService.getListRingoCdTitleTakizawa();
+	 * ・ringoTakizawaService.getListRingoSongImageTakizawa();
+	 * については、以下のメソッドを使うときにも対応する
+	 */
+
+
+
+
+
+
 	/**
 	 * 検索画面に遷移する
 	 *
 	 * @param RingoTakizawaSearchForm ringoTakizawaSearchForm
 	 * @return 検索画面のパス
+	 * (@ModelAttribute 引数)
+//	 *return "ringoTakizawa/search"=templates.ringoTakizawaのsearch.html?
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchRingoTakizawa(@ModelAttribute final RingoTakizawaSearchForm ringoTakizawaSearchForm) {
 		return "ringoTakizawa/search";
 	}
+
+
 
 	/**
 	 * 検索結果を取得して検索画面に遷移する
@@ -84,7 +114,7 @@ public class RingoTakizawaController {
 	 * @param RingoTakizawaSearchForm form
 	 * @param Model model
 	 * @param Pageable pageable
-	 * @return 検索画面のパス
+	 * @return 検索画面のパス　　ringoTakizawa/searchがsearch.htmlのactionに対応している？
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchRingoTakizawa(final RingoTakizawaSearchForm form, final Model model, final Pageable pageable) {
@@ -96,6 +126,7 @@ public class RingoTakizawaController {
 			// 検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", ringoTakizawaList);
 			model.addAttribute("ringoTakizawaList", ringoTakizawaList.getContent());
+			//この定義（search）＝（url）とする
 			model.addAttribute("url", "search");
 		}
 		return "ringoTakizawa/search";
@@ -129,7 +160,7 @@ public class RingoTakizawaController {
 			return "ringoTakizawa/insert";
 		}
 
-		// データを登録する
+		// データを登録する　search.html
 		final RingoMainTakizawa ringoMainTakizawa = ringoTakizawaService.insertRingo(form);
 		return "redirect:/ringoTakizawa?result=insert&id=" + ringoMainTakizawa.getId();
 	}
@@ -176,6 +207,7 @@ public class RingoTakizawaController {
 			// 更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/ringoTakizawa?result=updatefailed";
 		}
+		//更新が成功した場合、検索画面にメッセージとIDの表記
 		return "redirect:/ringoTakizawa?result=update&id=" + ringoMainTakizawa.getId();
 	}
 
@@ -192,6 +224,8 @@ public class RingoTakizawaController {
 		ringoTakizawaService.deleteRingoById(id);
 		return "redirect:/ringoTakizawa?result=delete&id=" + id;
 	}
+
+
 	/**
 	 * 完全削除画面に遷移する
 	 *

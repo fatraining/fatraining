@@ -13,6 +13,7 @@ import lombok.Data;
 
 /**
  * 椎名林檎の曲（プレイリスト）登録・更新画面用のFormクラス
+ * htmlで入力した値を格納
  *
  * @author Mai Takizawa
  */
@@ -33,37 +34,45 @@ public class RingoTakizawaInputForm {
 	/** リリース年 */
 
 	@Size(max = 4, message = "common.text.error.size.equal.four")
-	@Pattern(regexp = "^([+-]?0|[1-9][0-9][0-9][0-9])?$", message = "common.text.error.size.equal.four")
+	//正規表現で「4桁の数字（千の位は1-9の数字指定）」という制限をしている
+	@Pattern(regexp = "^([1-9][0-9][0-9][0-9])?$", message = "common.text.error.size.equal.four")
+	//入力欄はStringの形で入れる形式（input type="text"）のため、String型にしている（後に検索かける際にinteger型にする）
 	private String releaseYearStr;
 
 	/** 聞きたい気分ID */
 	private Integer songImageId;
 
-
-
 	/** 更新日時（排他制御用） */
 	private String updateDate;
+
+
+
+
+
 
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 *
-	 * @param spaMainOkabe
+	 * @param ringoMainTakizawa
 	 */
 	public void initWithRingoMainTakizawa(RingoMainTakizawa ringoMainTakizawa) {
+		//CdTitleIdとSongImageIdは入力欄空白の時にはID=0が入るため、nullになることがない。
+		//→ifを使わない
 		this.setId((int) ringoMainTakizawa.getId());
 		this.setSongTitle(ringoMainTakizawa.getSongTitle());
 		this.setCdTitleId(ringoMainTakizawa.getCdTitleId());
 
-		//this.setReleaseYearStr(String.valueOf(ringoMainTakizawa.getReleaseYear()));
-
+		//nullがOKのため、入力があるときだけ、setReleaseYearStrする
 		if (ringoMainTakizawa.getReleaseYear() != null) {
 			this.setReleaseYearStr(String.valueOf(ringoMainTakizawa.getReleaseYear()));
 		}
 
-
 		this.setSongImageId(ringoMainTakizawa.getSongImageId());
 		this.setUpdateDate(String.valueOf(ringoMainTakizawa.getUpdateDate()));
 	}
+
+
+
 
 	/**
 	 * RingoMainTakizawaエンティティに登録値を入れる
@@ -100,7 +109,6 @@ public class RingoTakizawaInputForm {
 		ringoMainTakizawa.setSongTitle(this.songTitle);
 		ringoMainTakizawa.setCdTitleId(this.cdTitleId);
 
-		//ringoMainTakizawa.setReleaseYear(Integer.parseInt(this.releaseYearStr));
 
 		if (!this.releaseYearStr.isEmpty()) {
 
@@ -111,7 +119,7 @@ public class RingoTakizawaInputForm {
 			//入力されていない場合
 			ringoMainTakizawa.setReleaseYear(null);
 		}
-		//ringoMainTakizawa.setReleaseYear(this.releaseYear);
+
 		ringoMainTakizawa.setSongImageId(this.songImageId);
 		ringoMainTakizawa.setDelFlg("0");
 		return ringoMainTakizawa;

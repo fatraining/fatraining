@@ -48,6 +48,7 @@ public class RingoSongImageTakizawa {
 
 	/** 外部キー設定：聞きたい気分ID */
 	@Transient
+	///一対多関連定義
 	@OneToMany(targetEntity = RingoMainTakizawa.class, mappedBy = "ringoSongImageTakizawa")
 	@JoinColumn(name = "id", referencedColumnName = "song_image_id")
 	private List<RingoMainTakizawa> ringoMainTakizawaList;

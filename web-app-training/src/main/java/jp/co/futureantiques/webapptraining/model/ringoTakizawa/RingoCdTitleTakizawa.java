@@ -47,7 +47,10 @@ public class RingoCdTitleTakizawa {
 	private String updateDate;
 
 	/** 外部キー設定 : CD名ID */
+	//@Transientアノテーションは対象クラス、またはプロパティデータの永続化を回避する際に使われます。
+	//永続化…プログラムの実行を終了してもデータが存続する特性を永続性（Persistence）といい、永続性を持たせることを永続化という
 	@Transient
+	///一対多関連定義
 	@OneToMany(targetEntity = RingoMainTakizawa.class,mappedBy = "ringoCdTitleTakizawa")
 	@JoinColumn(name = "id",referencedColumnName = "cd_title_id")
 	private List<RingoMainTakizawa> ringoMainTakizawaList;
