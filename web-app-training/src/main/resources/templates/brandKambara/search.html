@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|ブランド検索</title>
+
+
+
+
+<!-- #{}内の言葉の定義はi18n propertiesでしている -->
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/brandKambara.css}" />
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small>
+		</h4>
+	</div>
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<h1 align="center" th:text="#{brand.text.search}">ブランド検索</h1>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+
+	<div style="position: relative; left: 30px">
+
+	<!-- 不要データの削除の動きについてコントローラーとつないでる -->
+	<!-- action="/brandKambara/deletecomp"はコントローラーのRequestMapping(value = "deletecomp", method = RequestMethod.GET) -->
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/brandKambara/deletecomp" th:object="${brandKambaraSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
+
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/brandKambara/insert}"
+					th:text="#{common.text.new}">新規</a>
+				<a class="btn btn-danger" onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">不要データの削除 </a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+
+
+	<!-- メッセージ （新規・不要データ削除のボタンと検索条件入力欄の間に以下の時にメッセージを出す）-->
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-7">
+
+			<!-- 検索結果なし -->
+			<div class="alert alert-info text-center" role="alert"
+				th:if="${(brandKambaraSearchForm.brandName !=null or
+				          brandKambaraSearchForm.genreId !=null or
+					      brandKambaraSearchForm.countryId !=null) and
+					      brandKambaraList == null}"
+				th:text="#{common.text.info.search}">No Result</div>
+
+
+			<!--DB操作後 -->
+			<div class="alert alert-info text-center" role="alert"
+				th:if="${param.result !=null}">
+
+				<div th:switch="${param.result[0]}">
+					<!-- Controllerのreturn "redirect:/brandKambara?result=insert&id=" + brandMainKambara.getId();と対応 -->
+					<p th:case="insert"
+					   th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+					<!--  Controllerのreturn"redirect:/brandKambara?result=update&id=" + brandMainKambara.getId();と対応-->
+					<p th:case="update"
+					   th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+					<!-- Controllerのreturn "redirect:/brandKambara?result=updatefailed";と対応 -->
+					<p th:case="updatefailed"
+					   th:text="#{common.text.info.update.failed}"></p>
+					<!-- Controllerのreturn "redirect:/brandKambara?result=delete&id=" + id;と対応-->
+				    <p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+					<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- 検索条件 の欄-->
+	<!-- これは…？ -->
+	<form class="form-horizontal" id="searchForm" method="post"
+		action="/brandKambara/search" th:object="${brandKambaraSearchForm}">
+
+		<!-- ブランド名を入れる欄 -->
+		<div class="form-group">
+			<label for="brandName" class="col-sm-2 control-label"
+				th:text="#{brand.text.input.brandName}">BrandName:</label>
+			<div class="col-sm-8">
+				<!-- *{brandName}=${brandKambaraSerchForm.brandName} -->
+				<input type="text" th:field="*{brandName}" class="form-control"
+					id="inputBrandName" th:placeholder="#{brand.text.search.info}" />
+			</div>
+		</div>
+
+		<!-- ジャンルの欄 -->
+		<div class="form-group">
+			<label for="genre" class="control-label col-sm-2"
+				th:text="#{brand.text.input.genre}">Genre:</label>
+			<div class="col-sm-8">
+				<!-- 選択式 -->
+				<select id="inputGenreKambara" name="genreId"
+					class="form-control select">
+					<!-- each繰り返し　brandGenreKambaraListの中のgenreを繰り返す -->
+					<option th:each="genre : ${genreKambaraList}"
+					    th:value="${genre.id}"
+						th:text="${genre.genre}"
+						th:selected="${genre.id == brandKambaraSearchForm.genreId}">pulldown</option>
+				</select>
+			</div>
+		</div>
+
+
+		<!-- 8/26 th:textのinput.genreをinput.countryに訂正 -->
+		<div class="form-group">
+			<label for="country" class="control-label col-sm-2"
+				th:text="#{brand.text.input.country}">country:</label>
+			<div class="col-sm-8">
+				<select id="inputCountry" name="countryId"
+					class="form-control select">
+					<option th:each="country : ${madeCountryKambaraList}"
+					        th:value="${country.id}"
+				            th:text="${country.country}"
+					        th:selected="${country.id == brandKambaraSearchForm.countryId}">pulldown</option>
+				</select>
+			</div>
+		</div>
+		<!-- 検索ボタン -->
+		<!-- onclickでid=searchFormの実行 -->
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+				<a class="btn btn-primary center-block"
+					onclick="$('#searchForm').submit()"
+					th:text="#{common.text.search}">検索
+				</a>
+			</div>
+
+			<!-- リセットボタン -->
+			<!-- th:href="@{/brandKambara}"で検索画面（初期画面）にもどる -->
+			<div class="col-xs-3 col-sm-2">
+				<a class="btn btn-warning center-block" th:href="@{/brandKambara}"
+				   th:text="#{common.text.reset}">リセット </a>
+			</div>
+		</div>
+	</form>
+
+	<!-- 検索結果の表示 -->
+	<section id="resultArea" th:if="${brandKambaraList != null}">
+		<table id="resultTable"
+			class="table table-borderd table-striped table-hover">
+			<thead>
+				<tr>
+					<th class="per-16 center" th:text="#{brand.text.brandName}">ブランド名</th>
+					<th class="per-16 center" th:text="#{brand.text.genre}">ジャンル名</th>
+					<th class="per-16 center" th:text="#{brand.text.country}">生産国</th>
+					<th class="per-20 center" th:text="#{brand.text.designer}">デザイナー</th>
+					<th class="per-16 center" th:text="#{brand.text.releaseYear}">創業年</th>
+					<th class="per-7 center" th:text="#{common.text.update}">更新</th>
+					<th class="per-7 center" th:text="#{common.text.delete}">削除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="brandKambara : ${brandKambaraList}">
+					<td class="data center" th:text="${brandKambara.brandName}">GUCCI</td>
+					<!--  <label th:if="${brandKambara.brandGenreKambara != null}"
+						th:text="${brandKambara.brandGenreKambara.genre}" class="data center">ハイブランド</label>-->
+
+
+
+
+					<td class="data center">
+					<label th:if="${brandKambara.genreKambara != null}"
+						th:text="${brandKambara.genreKambara.genre}" class="data center">ハイブランド</label>
+					</td>
+
+					<td class="data center">
+					<label th:if="${brandKambara.madeCountryKambara != null}"
+						th:text="${brandKambara.madeCountryKambara.country}" class="data center">イタリア</label>
+					</td>
+
+					<td class="data center">
+					<label th:if="${brandKambara.designer != null}"
+						th:text="${brandKambara.designer}">グッチオ・グッチ</label>
+					<label th:if="${brandKambara.designer == null}"
+					    th:text="${brandKambara.designer}">""</label>
+					</td>
+
+					<td class="data center">
+					<label th:if="${brandKambara.releaseYear != null}"
+						th:text="${brandKambara.releaseYear}">1921</label>
+					<label th:if="${brandKambara.releaseYear == null}"
+					    th:text="${brandKambara.releaseYear}">""</label>
+					</td>
+
+					<td class="data center"><a class="btn btn-success"
+						th:href="@{/brandKambara/update(id=${brandKambara.id})}"
+						th:text="#{common.text.update}">Update</a></td>
+					<td class="data center"><a class="btn btn-danger"
+						style="margin-left: 5%" data-toggle="modal"
+						data-target="#deleteModal" th:text="#{common.text.delete}"
+						th:attr="data-id=${brandKambara.id}, data-title=${brandKambara.brandName}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+		<!-- ページング用 -->
+
+		<!--<div>…囲った部分をブロックレベル要素としてグループ化するタグ  -->
+		<!-- fragment…部品化したいタグを記述 -->
+		<div th:fragment='paginationbar'>
+
+			<!-- pageの定義　Controllerでしている -->
+			<p th:if="${page != null}">
+				<ul>
+					<!-- 先頭ページの表記について -->
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+
+						<!-- ページが最初の場合、「先頭」と表示（common～の定義はi18n templates_ja.properties）
+						（「先頭」が選択されている状態にするため、先頭ページのリンクを作らない＝<a>でくくらない） -->
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+
+
+						<!--  ページが先頭でない場合-->
+						<!-- onclick…マウスクリック時に対しての処理をするイベント -->
+						<!-- <a>で「先頭」のリンク作成。 「先頭」を押すとページ0（先頭）に遷移-->
+						<!--  「#」は「id=」直下のformで定義している-->
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+
+					<!-- eachは繰り返し　iは0～合計ページ-1まで -->
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+						th:class="(${i}==${page.number})? 'active' : ''"
+						style="display: inline">
+
+
+						<!-- action…Controllerのどのメソッドに行くか定義。formの中で使い、url等を指定 -->
+						<!--  action内の「url」…定義はControllerでしている -->
+						<!-- object…タグ内で使用するオブジェクトの指定 -->
+						<!-- method="post"について　Controllerのmethodがpostになっているから -->
+						<form th:id="'pageForm'+${i}" method="post"
+							th:action="@{${url}(page=${i})}" th:object="${brandKambaraSearchForm}"
+							style="display: inline">
+
+							<!-- ここにinputすることで検索条件を保持できる（条件入れて検索後F12押してみると分かりやすい） -->
+							<input type="hidden" th:field="*{brandName}" />
+							<input type="hidden" th:field="*{genreId}" />
+							<input type="hidden" th:field="*{countryId}" />
+						</form>
+
+
+						<!-- span…何かをとりあえず定義したりするとき使う -->
+						<!-- 「if」今見ているページ…画面で見ているページの”表記だけ”させる -->
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+
+						<!-- 今見ていないページについて、リンクを作成 -->
+						<a th:if='${i}!=${page.number}'
+						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+
+
+
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+
+						<!-- lastの時「末尾」と表示 -->
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+
+						<!-- 最後のページでないとき、最後のページのリンクの表示 -->
+						<!-- onclick="pageFome(7-1)"の表示＝「末尾」 -->
+						<a th:if="${not page.last}"
+						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
+			</p>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id" />
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{brand.text.delete}">BrandDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteName">Brand Name</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.brand})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel </a>
+							 <a class="btn btn-danger"
+							 	onclick="$('#deleteForm').submit()"
+								th:text="#{common.text.delete}">Delete </a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var brandId = button.data('id');
+			var brandName = button.data('title');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value",brandId);
+			modal.find('#deleteName').text(brandName);
+		});
+	</script>
+</body>
+</html>
