@@ -20,12 +20,22 @@ import jp.co.futureantiques.webapptraining.repository.bookUchiyama.WriterUchiyam
 import jp.co.futureantiques.webapptraining.repository.specification.BookUchiyamaSpecification;
 import jp.co.futureantiques.webapptraining.service.BookUchiyamaService;
 
+/**
+ * BookUchiyamaのサービス実装クラス
+ * @author FutureAntiques
+ */
 @Service
 public class BookUchiyamaServiceImpl implements BookUchiyamaService {
 	private final BookMainUchiyamaRepository bookMainUchiyamaRepository;
 	private final GenreUchiyamaRepository genreUchiyamaRepository;
 	private final WriterUchiyamaRepository writerUchiyamaRepository;
 
+	/**
+	 * コンストラクタ
+	 * @param BookMainUchiyamaRepository bookMainUchiyamaRepository
+	 * @param GenreUchiyamaRepository genreUchiyamaRepository
+	 * @param WriterUchiyamaRepository writerUchiyamaRepository
+	 */
 	@Autowired
 	public BookUchiyamaServiceImpl(BookMainUchiyamaRepository bookMainUchiyamaRepository,
 			GenreUchiyamaRepository genreUchiyamaRepository,
@@ -37,40 +47,49 @@ public class BookUchiyamaServiceImpl implements BookUchiyamaService {
 
 	@Override
 	public List<GenreUchiyama> getListGenre() {
+		//ジャンルテーブルのエンティティをID昇順で取得
 		return genreUchiyamaRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public List<WriterUchiyama> getListWriter() {
+		//作家テーブルのエンティティをID昇順で取得
 		return writerUchiyamaRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public Page<BookMainUchiyama> getPageBook(final BookUchiyamaSearchForm form, final Pageable pageable) {
+		//検索条件に基づいてPage型エンティティを取得
 		return bookMainUchiyamaRepository.findAll(BookUchiyamaSpecification.generateBookSpecification(form), pageable);
 	}
 
 	@Override
 	public List<BookMainUchiyama> getListBook(final BookUchiyamaSearchForm form) {
+		//検索条件に基づいてエンティティを取得
 		return bookMainUchiyamaRepository.findAll(BookUchiyamaSpecification.generateBookSpecification(form));
 	}
 
 	@Override
 	public BookMainUchiyama getBook(final long id) {
+		//指定したIDのエンティティを取得
 		return bookMainUchiyamaRepository.findOne(id);
 	}
 
 	@Override
 	public BookMainUchiyama insertBook(final BookUchiyamaInputForm form) {
+		//フォームの内容からエンティティを生成して登録
 		final BookMainUchiyama bookMainUchiyama = form.convertToBookMainUchiyamaForInsert();
 		return bookMainUchiyamaRepository.save(bookMainUchiyama);
 	}
 
 	@Override
 	public BookMainUchiyama updateBook(final BookUchiyamaInputForm form) {
+		//更新するIDのエンティティを取得
 		BookMainUchiyama bookMainUchiyama = bookMainUchiyamaRepository.findOne((long) form.getId());
 		if (bookMainUchiyama != null) {
+			//エンティティが存在すれば登録
 			if (form.getUpdateDate().equals(String.valueOf(bookMainUchiyama.getUpdateDate()))) {
+				//登録日時チェックが問題なければ更新
 				bookMainUchiyama = form.convertToBookMainUchiyamaForUpdate(bookMainUchiyama);
 				return bookMainUchiyamaRepository.saveAndFlush(bookMainUchiyama);
 			}
@@ -80,19 +99,18 @@ public class BookUchiyamaServiceImpl implements BookUchiyamaService {
 
 	@Override
 	public void deleteBookById(final long id) {
+		//IDに基づいてエンティティを取得
 		BookMainUchiyama bookMainUchiyama = bookMainUchiyamaRepository.findOne(id);
 		if (bookMainUchiyama != null) {
+			//エンティティが存在すれば削除
 			bookMainUchiyamaRepository.delete(id);
 		}
 	}
 
 	@Override
 	public void deleteBookComp(final ArrayList<Long> ids) {
+		//削除リストに含まれるIDの項目を削除
 		bookMainUchiyamaRepository.deleteComp(ids);
 	}
 
-
-
-
 }
-

@@ -11,13 +11,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.futureantiques.webapptraining.model.bookUchiyama.BookMainUchiyama;
 
+/**
+ * BookMainUchiyamaリポジトリのインターフェイス
+ * @author FutureAntiques
+ */
 public interface BookMainUchiyamaRepository extends JpaRepository<BookMainUchiyama, Long>, JpaSpecificationExecutor<BookMainUchiyama>{
 
+	/**
+	 * 指定したidの削除フラグを1に設定する
+	 * @param long id
+	 */
 	@Transactional
 	@Modifying
 	@Query("UPDATE BookMainUchiyama SET delFlg=1 WHERE id=:id")
 	void delete(@Param("id") final long id);
 
+	/**
+	 * 指定したIDを完全に削除する
+	 * @param  ArrayList<Long> ids
+	 */
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM BookMainUchiyama WHERE id IN(:ids)")

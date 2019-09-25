@@ -14,7 +14,7 @@
 	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/bookUchiyama.css}" />
-<body class="dback">
+<body>
 	<div class="container">
 		<div class="page-header">
 			<h4>
@@ -27,7 +27,8 @@
 			<a th:href="@{/bookUchiyama}" th:text="#{common.text.back}">Back</a>
 		</div>
 
-		<!-- 削除対象データ -->
+		<!-- 削除対象データ
+		POSTメソッドでdeletecompにリダイレクト(Controllerにより検索画面に遷移する) -->
 		<form class="form-horizontal" id="deleteForm"
 			action="/bookUchiyama/deletecomp" th:object="${bookUchiyamaDeleteForm}"
 			method="post">
