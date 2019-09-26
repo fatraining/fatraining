@@ -21,7 +21,7 @@ public class BookUchiyamaInputForm {
 	private int id;
 	/** 本タイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 256, message = "magazine.text.error.invalid.name")
 	private String bookTitle;
 	/** ジャンルID */
 	private Integer genreId;
@@ -34,7 +34,7 @@ public class BookUchiyamaInputForm {
 	/** 刊行年(モデル) */
 	private Integer releaseYear;
 	/** コメント */
-	@Size(max = 255)
+	@Size(max = 256, message = "magazine.text.error.invalid.name")
 	private String comment;
 	/** 更新日時 */
 	private String updateDate;
@@ -50,6 +50,7 @@ public class BookUchiyamaInputForm {
 		this.setGenreId(bookMainUchiyama.getGenreId());
 		this.setWriterId(bookMainUchiyama.getWriterId());
 		if (releaseYear != null) {
+			//刊行年が登録されていれば、フォーム文字列にセット
 			this.setReleaseYearStr(String.valueOf(bookMainUchiyama.getReleaseYear()));
 		}
 		this.setComment(bookMainUchiyama.getComment());
@@ -89,10 +90,11 @@ public class BookUchiyamaInputForm {
 		bookMainUchiyama.setBookTitle(this.bookTitle);
 		bookMainUchiyama.setGenreId(this.genreId);
 		bookMainUchiyama.setWriterId(this.writerId);
-		bookMainUchiyama.setReleaseYear(this.getReleaseYear());
+		if (!releaseYearStr.isEmpty()) {
+			bookMainUchiyama.setReleaseYear(Integer.parseInt(releaseYearStr));
+		}
 		bookMainUchiyama.setComment(this.comment);
 		bookMainUchiyama.setDelFlg("0");
 		return bookMainUchiyama;
 	}
-
 }

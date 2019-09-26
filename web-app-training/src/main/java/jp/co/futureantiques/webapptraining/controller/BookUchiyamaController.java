@@ -87,12 +87,10 @@ public class BookUchiyamaController {
 		//検索条件を元にレコードを取得する
 		final Page<BookMainUchiyama> bookList = bookUchiyamaService.getPageBook(form, pageable);
 		if (bookList.getTotalElements() != 0) {
-
 			//検索結果が存在する場合は取得したレコードをモデルにセットする
 			model.addAttribute("page", bookList);
 			model.addAttribute("bookList", bookList.getContent());
 			model.addAttribute("url", "search");
-
 		}
 		return "bookUchiyama/search";
 	}
@@ -127,10 +125,8 @@ public class BookUchiyamaController {
 			//入力にエラーがある場合は追加画面に遷移する
 			return "bookUchiyama/insert";
 		}
-
 		//入力フォームを元に項目を追加
 		final BookMainUchiyama bookMainUchiyama = bookUchiyamaService.insertBook(form);
-
 		//検索画面に追加したIDを表示する(param.result:insert,param.id:追加した本ID)
 		return "redirect:/bookUchiyama?result=insert&id=" + bookMainUchiyama.getId();
 	}
@@ -165,10 +161,8 @@ public class BookUchiyamaController {
 			//入力フォームにエラーがある場合は更新画面へ遷移する
 			return "bookUchiyama/update";
 		}
-
 		//入力フォームを元にテーブルを更新する
 		BookMainUchiyama bookMainUchiyama = bookUchiyamaService.updateBook(form);
-
 		//更新に失敗した場合に検索画面に更新失敗のメッセージを表示する
 		if (bookMainUchiyama == null) {
 			return "redirect:/bookUchiyama?result=updatefailed";
@@ -216,7 +210,6 @@ public class BookUchiyamaController {
 	public String deleteCompBook(@Validated final BookUchiyamaDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
-
 			//入力にエラーがある場合、再検索する
 			BookUchiyamaSearchForm bookUchiyamaSearchForm = new BookUchiyamaSearchForm();
 			bookUchiyamaSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
@@ -226,7 +219,6 @@ public class BookUchiyamaController {
 			//削除画面にリダイレクト
 			return "bookUchiyama/deletecomp";
 		}
-
 		//データを物理削除する
 		bookUchiyamaService.deleteBookComp(form.getDeleteIds());
 		return "redirect:/bookUchiyama?result=deletecomp";

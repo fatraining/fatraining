@@ -63,11 +63,11 @@
 				<div class="form-group">
 					<label for="releaseYear" class="control-label"
 						th:text="#{book.text.input.releaseyear}">ReleaseYear:</label>
-					<input type="text" th:field="*{releaseYear}"
+					<input type="text" th:field="*{releaseYearStr}"
 						class="form-control" id="inputReleaseYear"
 						th:placeholder="#{book.text.releaseyear}" />
 					<p class="err alert-danger"
-						th:each="err:${#fields.errors('releaseYear')}"
+						th:each="err:${#fields.errors('releaseYearStr')}"
 						th:text="#{${err}(#{book.text.releaseyear})}"></p>
 				</div>
 				<div class="form-group">
@@ -76,6 +76,9 @@
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{book.text.comment}"></textarea>
+					<p class="err alert-danger"
+						th:each="err:${#fields.errors('comment')}"
+						th:text="#{${err}(#{book.text.comment})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
