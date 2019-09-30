@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|アニメ追加</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/animeNagatake.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+			<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{anime.text.insert}">AnimeInsert</h1>
+				<a th:href="@{/animenagatake}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="animeNagatakeInputForm"
+				th:action="@{/animenagatake/insert}" th:object="${animeNagatakeInputForm}"
+				class="form-horizontal">
+				<div class="form-group">
+					<label for="animeTitle" class="control-label"
+						th:text="#{anime.text.input.animetitle.riquire}">Name(*)</label>
+				<input  type="text" th:field="*{animeTitle}" class="form-control"
+						th:placeholder="#{anime.text.animetitle}"
+						value = "utf-8"/>
+					<p class="err alert-danger"
+						th:each="err:${#fields.errors('animeTitle')}"
+						th:text="#{${err}(#{anime.text.animetitle})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{anime.text.input.genre}">Genre:</label> <select
+						name="genreId" id="inputGenre" class="form-control select">
+						<option th:each="genre:${genreNagatakeList}" th:value="${genre.genreId}"
+							th:text="${genre.genre}"
+							th:selected="${genre.genreId == animeNagatakeInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="studio" class="control-label"
+						th:text="#{anime.text.input.studio}">Studio:</label> <select
+						name="studioId" id="inputStudio" class="form-control">
+						<option th:each="studio:${studioNagatakeList}"
+							th:value="${studio.studioId}" th:text="${studio.studio}"
+							th:selected="${studio.studioId==animeNagatakeInputForm.studioId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="releaseyear" class="control-label"
+						th:text="#{anime.text.input.relaseyear}"> ReleaseYear(必須):</label>
+					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
+						th:placeholder="#{anime.text.releaseyear}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{anime.text.releaseyear})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{anime.text.input.voiceactor}">voiceactor:</label>
+						<select name="voiceactorId" id="inputVoiceactor" class="form-control">
+						<option th:each="name:${voiceactorNagatakeList}"
+							th:value="${name.voiceactorId}" th:text="${name.name}"
+							th:selected="${name.voiceactorId==animeNagatakeInputForm.voiceactorId}">pulldown</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="source" class="control-label"
+						th:text="#{anime.text.input.source}">source:</label> <select
+						name="sourceId" id="inputSource" class="form-control">
+						<option th:each="source:${sourceNagatakeList}"
+							th:value="${source.sourceId}" th:text="${source.source}"
+							th:selected="${source.sourceId==animeNagatakeInputForm.sourceId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{anime.text.input.comment}">Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{anime.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#animeNagatakeInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
