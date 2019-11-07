@@ -14,10 +14,12 @@ import jp.co.futureantiques.webapptraining.model.perfumeAnzai.PerfumeMainAnzai;
 import lombok.Data;
 
 /**
+ * Perfume追加画面のFormクラス
 * @author  anzai
 */
 @Data
 public class PerfumeAnzaiInputForm {
+
 	/**ID**/
 	private int id;
 
@@ -55,7 +57,6 @@ public class PerfumeAnzaiInputForm {
 	 * フィールドにエンティティの中身を入れる
 	 * @param perfumeMainAnzai
 	 * **/
-
 	public void iniWithperfumeManinAnzia(PerfumeMainAnzai perfumeMainAnzai) {
 		this.setId((int) perfumeMainAnzai.getId());
 		this.setSongName(perfumeMainAnzai.getSongName());
@@ -73,7 +74,6 @@ public class PerfumeAnzaiInputForm {
 	 *
 	 * @return PerfumeMainAnzai
 	 */
-
 	public PerfumeMainAnzai convertToPerfumeMainForInsert() {
 		PerfumeMainAnzai perfumeMainAnzai = new PerfumeMainAnzai();
 		perfumeMainAnzai = convertToPerfumeMain(perfumeMainAnzai);
@@ -87,7 +87,6 @@ public class PerfumeAnzaiInputForm {
 	 * @param PerfumeMainAnzai perfumeMainAnzai
 	 * @return PerfumeMainAnzai
 	 */
-
 	public PerfumeMainAnzai convertToPerfumeMainForUpdate(PerfumeMainAnzai perfumeMainAnzai) {
 		perfumeMainAnzai = convertToPerfumeMain(perfumeMainAnzai);
 		perfumeMainAnzai.setUpdateDate(new Timestamp(new Date().getTime()));
@@ -99,7 +98,6 @@ public class PerfumeAnzaiInputForm {
 	 * @param PerfumeMainAnzai perfumeMainAnzai
 	 * @return PerfumeMainAnzai
 	 */
-
 	private PerfumeMainAnzai convertToPerfumeMain(PerfumeMainAnzai perfumeMainAnzai) {
 		perfumeMainAnzai.setSongName(this.songName);
 		perfumeMainAnzai.setReleaseYear(Integer.parseInt(this.releaseYearStr));

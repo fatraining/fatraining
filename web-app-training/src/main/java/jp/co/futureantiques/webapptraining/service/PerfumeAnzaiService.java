@@ -17,8 +17,8 @@ import jp.co.futureantiques.webapptraining.model.perfumeAnzai.TieupAnzai;
  * @author anzai
  *
  */
-
 public interface PerfumeAnzaiService {
+
 	/**
 	 * アルバムエンティティのリストを取得する
 	 *

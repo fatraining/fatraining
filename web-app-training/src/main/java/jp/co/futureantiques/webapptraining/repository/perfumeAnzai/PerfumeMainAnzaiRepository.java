@@ -15,15 +15,14 @@ import jp.co.futureantiques.webapptraining.model.perfumeAnzai.PerfumeMainAnzai;
  *PerfumeMainリポジトリのインターフェス
  *@author anzai
  */
-
 public interface PerfumeMainAnzaiRepository
 		extends JpaRepository<PerfumeMainAnzai, Long>, JpaSpecificationExecutor<PerfumeMainAnzai> {
+
 	/**
 	 * 対象のレコードの削除フラグを1にする
 	 *
 	 * @param long id
 	 */
-
 	@Transactional
 	@Modifying
 	@Query("UPDATE PerfumeMainAnzai SET delFlg=1 WHERE id = :id")

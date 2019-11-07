@@ -9,7 +9,6 @@ import jp.co.futureantiques.webapptraining.model.perfumeAnzai.AlbumAnzai;
  * @author anzai
  *
  */
-
 public interface AlbumAnzaiRepository extends JpaRepository<AlbumAnzai, Long> {
 
 }

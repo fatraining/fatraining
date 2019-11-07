@@ -4,23 +4,25 @@ import jp.co.futureantiques.webapptraining.model.perfumeAnzai.PerfumeMainAnzai;
 import lombok.Data;
 
 /**
+ * Perfume検索画面のFormクラス
  * @author  anzai
  */
 @Data
 public class PerfumeAnzaiSearchForm {
-	//ID
+
+	/**ID**/
 	private Integer id;
 
-	//曲名
+	/**曲名**/
 	private String songName;
 
-	//アルバムID
+	/**アルバムID**/
 	private Integer albumId;
 
-	//タイアップID
+	/**タイアップID**/
 	private Integer tieupId;
 
-	//削除フラグON用
+	/**削除フラグON用**/
 	private int isDelete;
 
 	/**
@@ -28,7 +30,6 @@ public class PerfumeAnzaiSearchForm {
 	 *
 	 * @param perfumeMainAnzai
 	 */
-
 	public void setValues(PerfumeMainAnzai perfumeMainAnzai) {
 		this.setId((int) perfumeMainAnzai.getId());
 		this.setSongName(perfumeMainAnzai.getSongName());

@@ -31,11 +31,8 @@ import jp.co.futureantiques.webapptraining.service.PerfumeAnzaiService;
  * @author anzai
  *
  */
-
 @Controller
 @RequestMapping(value = "/perfumeanzai")
-
-
 public class PerfumeAnzaiController {
 
 	 @Autowired
@@ -61,7 +58,6 @@ public class PerfumeAnzaiController {
 	@ModelAttribute
 	public List<AlbumAnzai> getListAlbumAnzai() {
 		return perfumeAnzaiService.getListAlbumAnzai();
-
 	}
 
 	/**
@@ -72,7 +68,6 @@ public class PerfumeAnzaiController {
 	@ModelAttribute
 	public List<TieupAnzai> getListTieupAnzai() {
 		return perfumeAnzaiService.getListTieupAnzai();
-
 	}
 
 	/**
@@ -95,21 +90,20 @@ public class PerfumeAnzaiController {
 	 * @param Pageable Pageable
 	 * @return 検索画面のパス
 	 */
-
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String seachPerfumeAnzai(final PerfumeAnzaiSearchForm form, final Model model,
 				final  @PageableDefault(page = 0, value = 10 )Pageable pageable) {
+
 		//入力された検索条件を元にレコードを取得する
 		final Page<PerfumeMainAnzai> perfumeList = perfumeAnzaiService.getPagePerfumeAnzai(form, pageable);
 		if (perfumeList.getTotalElements() != 0) {
+
 			//検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", perfumeList);
 			model.addAttribute("perfumeList", perfumeList.getContent());
 			model.addAttribute("url", "search");
-
 		}
 		return "perfumeanzai/search";
-
 	}
 
 	/**
@@ -130,14 +124,15 @@ public class PerfumeAnzaiController {
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
-
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String inserPerfumeAnzai(@ModelAttribute @Validated final PerfumeAnzaiInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
+
 			//入力値エラーなら、自画面遷移
 			return "perfumeanzai/insert";
 		}
+
 		//データを登録する
 		final PerfumeMainAnzai perfumeMainAnzai = perfumeAnzaiService.insertPerfumeAnzai(form);
 		return "redirect:/perfumeanzai?result=insert&id=" + perfumeMainAnzai.getId();
@@ -153,8 +148,10 @@ public class PerfumeAnzaiController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdatePerfumeAnzai(@RequestParam(name = "id") final long id,
 			@ModelAttribute final PerfumeAnzaiInputForm perfumeAnzaiInputForm) {
+
 		//IDをキーにPerfumeMainテーブルを検索
 		PerfumeMainAnzai perfumeMainAnzai = perfumeAnzaiService.getPerfumeAnzai(id);
+
 		//フォームにレコードの値をセットする
 		perfumeAnzaiInputForm.iniWithperfumeManinAnzia(perfumeMainAnzai);
 		return "perfumeanzai/update";
@@ -171,9 +168,11 @@ public class PerfumeAnzaiController {
 	public String updatePerfumeAnzai(@Validated final PerfumeAnzaiInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
+
 			//入力エラーがある場合自画面に遷移
 			return "perfumeanzai/update";
 		}
+
 		//データを更新する
 		PerfumeMainAnzai perfumeMainAnzai = perfumeAnzaiService.updatePerfumeAnzai(form);
 		if (perfumeMainAnzai == null) {
@@ -212,7 +211,6 @@ public class PerfumeAnzaiController {
 		//Modelに検索結果を格納
 		model.addAttribute(perfumeList);
 		return "perfumeanzai/deletecomp";
-
 	}
 
 	/**
@@ -241,5 +239,4 @@ public class PerfumeAnzaiController {
 		perfumeAnzaiService.deletePerfumeAnzaiComp(form.getDeleteIds());
 		return "redirect:/perfumeanzai?result=deletecomp";
 	}
-
 }
