@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|日本の近絶滅種更新</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/crKawanaka.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
-		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
 				<h1 align="center" th:text="#{cr.text.update}">絶滅種更新</h1>
 				<a th:href="@{/crkawanaka}" th:text="#{common.text.back}">Back</a>
@@ -28,8 +35,7 @@
 				class="form-horizontal" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
-					<label for="name" class="control-label"
-						th:text="#{cr.text.name}">Name(*):</label>
+					<label for="name" class="control-label" th:text="#{cr.text.name}">Name(*):</label>
 					<input type="text" th:field="*{Name}" class="form-control"
 						th:placeholder="#{cr.text.name}" />
 					<p class="err alert-danger" th:each="err:${#fields.errors('name')}"
@@ -39,42 +45,42 @@
 				<div class="form-group">
 					<div>
 						<label for="photo" class="control-label"
-							th:text="#{cr.text.input.image}">PHOTO:</label>
-						<input type="file"  id="file"  th:field="*{image}" class=""
-							th:placeholder="#{cr.text.image}" />
-						<span th:text="#{cr.text.input.image.atention}">※画像を変更しない場合は「ファイルを選択」ボタンを押さないでください。</span>
+							th:text="#{cr.text.input.image}">PHOTO:</label> <input
+							type="file" id="file" th:field="*{image}" class=""
+							th:placeholder="#{cr.text.image}" /> <span
+							th:text="#{cr.text.input.image.atention}">※画像を変更しない場合は「ファイルを選択」ボタンを押さないでください。</span>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="category" class="control-label"
-						th:text="#{cr.text.input.category}">Category:</label>
-					<select name="categoryId" id="inputCategory"
-						class="form-control select">
+						th:text="#{cr.text.input.category}">Category:</label> <select
+						name="categoryId" id="inputCategory" class="form-control select">
 						<option th:each="category:${categoryKawanakaList}"
-							th:value="${category.categoryId}"
-							th:text="${category.category}"
-							th:selected="${category.categoryId == crInputForm.categoryId}">pull down</option>
+							th:value="${category.categoryId}" th:text="${category.category}"
+							th:selected="${category.categoryId == crInputForm.categoryId}">pull
+							down</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="distribution" class="control-label"
-						th:text="#{cr.text.input.distribution}">Distribution:</label>
-					<select name="distributionId" id="inputDistribution"
+						th:text="#{cr.text.input.distribution}">Distribution:</label> <select
+						name="distributionId" id="inputDistribution"
 						class="form-control select">
 						<option th:each="distribution:${distributionKawanakaList}"
 							th:value="${distribution.distributionId}"
 							th:text="${distribution.distribution}"
-							th:selected="${distribution.distributionId == crInputForm.distributionId}">pull down</option>
+							th:selected="${distribution.distributionId == crInputForm.distributionId}">pull
+							down</option>
 					</select>
 				</div>
 
 				<div class="form-group">
-					<label for="cause" class="control-label"
-						th:text="#{cr.text.cause}">Cause(*):</label>
+					<label for="cause" class="control-label" th:text="#{cr.text.cause}">Cause(*):</label>
 					<input type="text" th:field="*{Cause}" class="form-control"
 						th:placeholder="#{cr.text.cause}" />
-					<p class="err alert-danger" th:each="err:${#fields.errors('cause')}"
+					<p class="err alert-danger"
+						th:each="err:${#fields.errors('cause')}"
 						th:text="#{${err}(#{cr.text.cause})}"></p>
 				</div>
 
@@ -88,17 +94,17 @@
 		</div>
 	</div>
 	<!-- Photoスクリプト -->
-				<script>
-				var obj = document.getElementById("file");
+	<script>
+		var obj = document.getElementById("file");
 
-				obj.addEventListener("change",function(evt){
-				var file = evt.target.files;
+		obj.addEventListener("change", function(evt) {
+			var file = evt.target.files;
 
-				if(file[0].size > 1000000){
+			if (file[0].size > 1000000) {
 				alert("サイズが大きすぎます。１MG以下のものを選択してください。");
-				document.getElementById('file').value="";
-				}
-				},false);
-				</script>
+				document.getElementById('file').value = "";
+			}
+		}, false);
+	</script>
 </body>
 </html>

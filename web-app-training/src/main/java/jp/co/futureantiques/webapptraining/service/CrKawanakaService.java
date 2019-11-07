@@ -16,22 +16,21 @@ import jp.co.futureantiques.webapptraining.model.form.crKawanaka.CrSearchForm;
  * CrKawanakaサービスのインターフェース
  * @author Misato Kawanaka
  */
-
 public interface CrKawanakaService {
 
-	/*
+	/**
 	 * Categoryエンティティのリストを取得する
 	 * @return CategoryKawanakaのエンティティのリスト
 	 */
 	List<CategoryKawanaka> getListCategoryKawanaka();
 
-	/*
+	/**
 	 * Distributionエンティティのリストを取得する
 	 * @return CategoryKawanakaのエンティティのリスト
 	 */
 	List<DistributionKawanaka> getListDistributionKawanaka();
 
-	/*
+	/**
 	 * 検索結果をもとにCrMainKawanakaのレコードのリストを取得する（Paging）
 	 * @param CrSearchForm form
 	 * @param Pageable pageable

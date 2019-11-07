@@ -30,27 +30,28 @@ import jp.co.futureantiques.webapptraining.repository.crKawanaka.DistributionKaw
 import jp.co.futureantiques.webapptraining.repository.specification.CrKawanakaSpecification;
 import jp.co.futureantiques.webapptraining.service.CrKawanakaService;
 
-/*
+/**
  * CrKawanakaServiseインターフェースの実装クラス
  * @author Misato Kawanaka
  */
 @Service
 public class CrKawanakaServicelmpl implements CrKawanakaService {
+
 	/*CrMainKawanakaリポジトリ*/
 	private final CrMainKawanakaRepository crMainKawanakaRepository;
 
 	/*Cotegoryリポジトリ*/
 	private final CategoryKawanakaRepository categoryKawanakaRepository;
-	/*Distributionリポジトリ*/
 
+	/*Distributionリポジトリ*/
 	private final DistributionKawanakaRepository distributionKawanakaRepository;
-	/*
+
+	/**
 	 * コンストラクタ
 	 * @param CrMainKawanakaReopsitory crMainKawanakaRepository
 	 * @param CategoryKawanakaRepository categoryKawanakaRepository
 	 * @param DistributionKawanakaRepository distrybutionKawanakaRepository
 	 */
-
 	@Autowired
 	public CrKawanakaServicelmpl(CrMainKawanakaRepository crMainKawanakaRepository,
 			CategoryKawanakaRepository categoryKawanakaRepository,
@@ -62,18 +63,21 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 	@Override
 	public List<CategoryKawanaka> getListCategoryKawanaka() {
+
 		//カテゴリーテーブルのリストをID順に取得する
 		return categoryKawanakaRepository.findAll(new Sort(Sort.Direction.ASC, "categoryId"));
 	}
 
 	@Override
 	public List<DistributionKawanaka> getListDistributionKawanaka() {
+
 		//分布テーブルのリストをID順に取得する
 		return distributionKawanakaRepository.findAll(new Sort(Sort.Direction.ASC, "distributionId"));
 	}
 
 	@Override
 	public Page<CrMainKawanaka> getPageCr(final CrSearchForm form, final Pageable pageable) {
+
 		//検索条件を生成し、cr_main_kawanakaテーブルのリストを取得する
 		return crMainKawanakaRepository.findAll(
 				CrKawanakaSpecification.generateCrKawanakaSpecification(form), pageable);
@@ -102,7 +106,6 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 		// ファイルをアップロードする
 		uploadFile(crMainKawanaka, form.getImage());
-
 		return crMainKawanakaRepository.save(crMainKawanaka);
 	}
 
@@ -118,7 +121,6 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 				//チェックOKの場合、更新
 				crMainKawanaka = form.convertToCrMainKawanakaForUpdate(crMainKawanaka);
-
 				if (form.getImage().isEmpty()) {
 
 					//今あるデータベースの画像パスを入れとく
@@ -126,13 +128,11 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 					//エンティティに画像パスを入れなおす
 					crMainKawanaka.setImage(imageTemp);
-
 					return crMainKawanakaRepository.saveAndFlush(crMainKawanaka);
 				}
 
 				// ファイルをアップロードする
 				uploadFile(crMainKawanaka, form.getImage());
-
 				return crMainKawanakaRepository.saveAndFlush(crMainKawanaka);
 			}
 		}
@@ -141,9 +141,11 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 	@Override
 	public void deleteCrById(final long id) {
+
 		//更新対象のレコードを取得
 		CrMainKawanaka crMainKawanaka = crMainKawanakaRepository.findOne(id);
 		if (crMainKawanaka != null) {
+
 			//削除フラグを1にする
 			crMainKawanakaRepository.delete(id);
 		}
@@ -151,6 +153,7 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 
 	@Override
 	public void deleteCrComp(final ArrayList<Long> ids) {
+
 		//対象のレコードを削除
 		crMainKawanakaRepository.deleteComp(ids);
 	}
@@ -163,6 +166,7 @@ public class CrKawanakaServicelmpl implements CrKawanakaService {
 	 * @param
 	 */
 	private void uploadFile(CrMainKawanaka crMainKawanaka, MultipartFile Image) {
+
 		//追加する画像パス
 		Path path = Paths.get(CommonConst.STATIC_PATH + "/CrKawanaka");
 

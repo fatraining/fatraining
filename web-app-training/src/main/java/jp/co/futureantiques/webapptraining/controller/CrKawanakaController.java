@@ -34,6 +34,7 @@ import jp.co.futureantiques.webapptraining.service.CrKawanakaService;
 @Controller
 @RequestMapping(value = "/crkawanaka")
 public class CrKawanakaController {
+
 	/**CrKawanakaサービスクラス*/
 	private final CrKawanakaService crKawanakaService;
 
@@ -81,9 +82,11 @@ public class CrKawanakaController {
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchCr(final CrSearchForm form, final Model model, final Pageable pageable) {
+
 		//入力された検索結果をもとにレコードを取得する
 		final Page<CrMainKawanaka> crList = crKawanakaService.getPageCr(form, pageable);
 		if (crList.getTotalElements() != 0) {
+
 			//検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", crList);
 			model.addAttribute("crList", crList.getContent());
@@ -92,7 +95,7 @@ public class CrKawanakaController {
 		return "crkawanaka/search";
 	}
 
-	/*
+	/**
 	 * 追加画面に遷移する
 	 * @param CrInputForm crInputForm
 	 * @return 追加画面のパス
@@ -121,8 +124,8 @@ public class CrKawanakaController {
 	public String insertCr(
 			@ModelAttribute @Validated final CrInputForm form,
 			final BindingResult bindingResult, Model model, MultipartFile crImage) {
-
 		if (bindingResult.hasErrors()) {
+
 			//入力エラーがある場合、戻る
 			return "crkawanaka/insert";
 		}
@@ -142,7 +145,6 @@ public class CrKawanakaController {
 	public String showUpdateCr(@RequestParam(name = "id") final long id,
 			@ModelAttribute final CrInputForm crInputForm) {
 		CrMainKawanaka crMainkawanaka = crKawanakaService.getCr(id);
-
 		crInputForm.initWithCrMainKawanaka(crMainkawanaka);
 		return "crkawanaka/update";
 	}
@@ -154,9 +156,7 @@ public class CrKawanakaController {
 	 * @return 入力エラーがある場合、更新画面のパス、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateCr(
-
-			@Validated final CrInputForm form,
+	public String updateCr(@Validated final CrInputForm form,
 			final BindingResult bindingResult, MultipartFile crImage) {
 
 		//入力エラーがある場合、次画面に戻る

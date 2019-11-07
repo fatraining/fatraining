@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|日本の近絶滅種検索</title>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/crKawanaka.css}" />
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
-			<small th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
+				th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
-		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
 		<h1 align="center" th:text="#{cr.text.search}">crSearch</h1>
 	</div>
 
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px">
-		<form class="form-horizontal" id="deleteCompForm"
-		method="get" action="/crkawanaka/deletecomp"
-		th:object="${crSearchForm}">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/crkawanaka/deletecomp" th:object="${crSearchForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
 					<input type="hidden" name="isDelete" th:value="1" />
@@ -32,14 +34,10 @@
 		</form>
 		<div class="form-group">
 			<div class="">
-				<a class="btn btn-warning"
-					th:href="@{/crkawanaka/insert}"
-					th:text="#{common.text.new}">New
-				</a>
-				<a class="btn btn-danger"
+				<a class="btn btn-warning" th:href="@{/crkawanaka/insert}"
+					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData
-				</a>
+					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
 			</div>
 		</div>
 	</div>
@@ -55,17 +53,20 @@
 							crSearchForm.categoryId != null or
 							crSearchForm.distributionId != null)
 							and crList == null}"
-					th:text="#{common.text.info.search}">No Result
-				</div>
+					th:text="#{common.text.info.search}">No Result</div>
 
 				<!-- DB操作後 -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${param.result != null}">
 					<div th:switch="${param.result[0]}">
-						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
-						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' +${param.id[0]}"></p>
-						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
-						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="insert"
+							th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update"
+							th:text="#{common.text.info.update} + ':ID=' +${param.id[0]}"></p>
+						<p th:case="updatefailed"
+							th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete"
+							th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
 					</div>
 				</div>
@@ -73,68 +74,58 @@
 		</div>
 
 		<!-- 検索条件 -->
-		<form class="form-horizontal" id="searchForm"
-				method="post" action="/crkawanaka/search"
-				th:object="${crSearchForm}">
+		<form class="form-horizontal" id="searchForm" method="post"
+			action="/crkawanaka/search" th:object="${crSearchForm}">
 			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label" th:text="#{cr.text.input.name}">
-				Name:
-				</label>
+				<label for="name" class="col-sm-2 control-label"
+					th:text="#{cr.text.input.name}"> Name: </label>
 				<div class="col-sm-8">
 					<input type="text" th:field="*{name}" class="form-control"
-					id="inputName" th:placeholder="#{cr.text.search.info}"/>
+						id="inputName" th:placeholder="#{cr.text.search.info}" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="category" class="col-sm-2 control-label" th:text="#{cr.text.input.category}">
-				Category:
-				</label>
+				<label for="category" class="col-sm-2 control-label"
+					th:text="#{cr.text.input.category}"> Category: </label>
 				<div class="col-sm-8">
-					<select
-						id="inputCategory"
-						name="categoryId"
+					<select id="inputCategory" name="categoryId"
 						class="form-control select">
 						<option th:each="category : ${categoryKawanakaList}"
-						th:value="${category.categoryId}"
-						th:text="${category.category}"
-						th:selected="${category.categoryId == crSearchForm.categoryId}">pullDown</option>
+							th:value="${category.categoryId}" th:text="${category.category}"
+							th:selected="${category.categoryId == crSearchForm.categoryId}">pullDown</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="distribution" class="col-sm-2 control-label" th:text="#{cr.text.input.distribution}">
-				Color:</label>
+				<label for="distribution" class="col-sm-2 control-label"
+					th:text="#{cr.text.input.distribution}"> Color:</label>
 				<div class="col-sm-8">
-					<select
-						id="inputDistribution"
-						name="distributionId"
+					<select id="inputDistribution" name="distributionId"
 						class="form-control select">
 						<option th:each="distribution : ${distributionKawanakaList}"
-						th:value="${distribution.distributionId}"
-						th:text="${distribution.distribution}"
-						th:selected="${distribution.distributionId == crSearchForm.distributionId}">pullDown</option>
+							th:value="${distribution.distributionId}"
+							th:text="${distribution.distribution}"
+							th:selected="${distribution.distributionId == crSearchForm.distributionId}">pullDown</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<div  class="col-sm-offset-4 col-xs-3 col-sm-2">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
 					<a class="btn btn-primary center-block"
 						onclick="$('#searchForm').submit()"
-						th:text="#{common.text.search}">検索
-					</a>
+						th:text="#{common.text.search}">検索 </a>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-warning center-block"
-					th:href="@{/crkawanaka}"
-					th:text="#{common.text.reset}">リセット
-					</a>
+					<a class="btn btn-warning center-block" th:href="@{/crkawanaka}"
+						th:text="#{common.text.reset}">リセット </a>
 				</div>
 			</div>
 		</form>
 
 		<!-- 検索結果の表示 -->
 		<section id="resultArea" th:if="${crList != null}">
-			<table id="resultTable" class="table table-borderd table-striped table-hover">
+			<table id="resultTable"
+				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
 						<th class="per-12 center" th:text="#{cr.text.image}">Image</th>
@@ -148,31 +139,27 @@
 				</thead>
 				<tbody>
 					<tr th:each="cr :${crList}">
-						<td class="data center"><img  class="image" th:src="@{${cr.image}}"></img></td>
-						<td class="data left" th:text="${cr.name}">センカクモグラ
+						<td class="data center"><img class="image"
+							th:src="@{${cr.image}}"></img></td>
+						<td class="data left" th:text="${cr.name}">センカクモグラ</td>
+						<td class="data center"><label
+							th:if="${cr.categoryKawanaka != null}"
+							th:text="${cr.categoryKawanaka.category}" class="data center">
+								哺乳類</label></td>
+						<td class="data center"><label
+							th:if="${cr.distributionKawanaka != null}"
+							th:text="${cr.distributionKawanaka.distribution}"
+							class="data center"> 沖縄</label></td>
+						<td class="data left"><label th:if="${cr.cause!=null}"
+							th:text="${cr.cause}" class="data left"> ヤギによる森林領域の現状の為減少</label>
 						</td>
-						<td class="data center">
-							<label th:if="${cr.categoryKawanaka != null}" th:text="${cr.categoryKawanaka.category}" class="data center">
-							哺乳類</label>
-						</td>
-						<td class="data center">
-							<label th:if="${cr.distributionKawanaka != null}" th:text="${cr.distributionKawanaka.distribution}" class="data center">
-							沖縄</label>
-						</td>
-					    <td class="data left">
-					    	<label th:if="${cr.cause!=null}" th:text="${cr.cause}" class="data left">
-					    	ヤギによる森林領域の現状の為減少</label>
-						</td>
-						<td class="data">
-							<a class="btn btn-success"
+						<td class="data"><a class="btn btn-success"
 							th:href="@{/crkawanaka/update(id=${cr.id})}"
 							th:text="#{common.text.update}">Update</a></td>
-						<td class="data center">
-							<a class="btn btn-danger" style="margin-left: 5%"
-								data-toggle="modal" data-target="#deleteModal"
-								th:text="#{common.text.delete}"
-								th:attr="data-id=${cr.id}, data-title=${cr.name}"
-							>Delete</a>
+						<td class="data center"><a class="btn btn-danger"
+							style="margin-left: 5%" data-toggle="modal"
+							data-target="#deleteModal" th:text="#{common.text.delete}"
+							th:attr="data-id=${cr.id}, data-title=${cr.name}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -182,47 +169,53 @@
 		<!-- ページング用 -->
 		<div th:fragment='paginationbar'>
 			<p th:if="${page != null}">
-				<ul>
-					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
-						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
-							th:text="#{common.text.paging.lead}">←lead</a>
-					</li>
-					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})?'active' : ''" style="display:inline">
-					 	<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
-					 	th:object="${crSearchForm}" style="display:inline">
-					 		<input type="hidden" th:field="*{name}"/>
-					 		<input type="hidden" th:field="*{categoryId}"/>
-					 		<input type="hidden" th:field="*{distributionId}"/>
-					 	</form>
-						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
-						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
-							<span th:text='${i+1}'>1</span>
-						</a>
-					</li>
-					<li th:class="${page.last} ? 'disabled' :''" style="display:inline">
-						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end→</span>
-						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-							th:text="#{common.text.paging.end}">end➝</a>
-					</li>
-				</ul>
+			<ul>
+				<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+					<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+					<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+					th:text="#{common.text.paging.lead}">←lead</a>
+				</li>
+				<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+					th:class="(${i}==${page.number})?'active' : ''"
+					style="display: inline">
+					<form th:id="'pageForm'+${i}" method="post"
+						th:action="@{${url}(page=${i})}" th:object="${crSearchForm}"
+						style="display: inline">
+						<input type="hidden" th:field="*{name}" /> <input type="hidden"
+							th:field="*{categoryId}" /> <input type="hidden"
+							th:field="*{distributionId}" />
+					</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
+					th:if='${i}!=${page.number}'
+					th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
+						th:text='${i+1}'>1</span>
+				</a>
+				</li>
+				<li th:class="${page.last} ? 'disabled' :''" style="display: inline">
+					<span th:if="${page.last}" th:text="#{common.text.paging.end}">end→</span>
+					<a th:if="${not page.last}"
+					th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+					th:text="#{common.text.paging.end}">end➝</a>
+				</li>
+			</ul>
 			</p>
 		</div>
 	</div>
 
 	<!-- 削除モーダル -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel">
 		<div class="modal-dialog" role="document">
-			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+			<form class="form-horizontal" id="deleteForm" th:method="get"
+				th:action="@{delete}">
 				<div class="modal-content">
-					<input type="hidden" id="deleteId" name="id"/>
+					<input type="hidden" id="deleteId" name="id" />
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
-						th:text="#{cr.text.delete}">CrDelete
-						</h4>
+							th:text="#{cr.text.delete}">CrDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
@@ -235,17 +228,17 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="alert alert-danger" role="alert">
-									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-									<span th:text="#{common.text.warn.delete(#{menu.text.cr})}"></span>
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <span
+										th:text="#{common.text.warn.delete(#{menu.text.cr})}"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a class="btn btn-default"
-							th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel
-						</a> <a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+						<a class="btn btn-default" th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()"
 							th:text="#{common.text.delete}">Delete </a>
 					</div>
 				</div>
@@ -254,7 +247,8 @@
 	</div>
 	<div id="bogoCount" class="panel-clear"></div>
 
-	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script th:src="@{/libs/jquery/jquery.js}"></script>
 	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
 

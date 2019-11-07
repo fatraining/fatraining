@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.model.form.crKawanaka;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -19,70 +18,66 @@ import lombok.Data;
 @Data
 public class CrInputForm {
 
-	/*CRID*/
+	/**CRID*/
 	private int id;
 
-	/*名前*/
-	@NotBlank(message="comm.text.error.require")
-	@Size(max=256)
+	/**名前*/
+	@NotBlank(message = "comm.text.error.require")
+	@Size(max = 256)
 	private String name;
 
-	/*画像*/
+	/**画像*/
 	private MultipartFile image;
 
-	/*カテゴリーID*/
+	/**カテゴリーID*/
 	private Integer categoryId;
 
-	/*分布ID*/
+	/**分布ID*/
 	private Integer distributionId;
 
-	/*原因*/
-	@Size(max=256)
+	/**原因*/
+	@Size(max = 256)
 	private String cause;
 
-	/*更新日時(排他制御)*/
+	/**更新日時(排他制御)*/
 	private String updateDate;
 
-
-	/*
+	/**
 	 * フィールドに中身を入れる
 	 * @param CrMainKawanaka crMainKawanaka
 	 */
 	public void initWithCrMainKawanaka(CrMainKawanaka crMainKawanaka) {
 		this.setId((int) crMainKawanaka.getId());
 		this.setName(crMainKawanaka.getName());
-
 		this.setCategoryId((int) crMainKawanaka.getCategoryId());
 		this.setDistributionId((int) crMainKawanaka.getDistributionId());
 		this.setCause(crMainKawanaka.getCause());
 		this.setUpdateDate(String.valueOf(crMainKawanaka.getUpdateDate()));
 	}
 
-	/*CrMainKawanakaエンティティに登録値を入れる
+	/**CrMainKawanakaエンティティに登録値を入れる
 	 * @return CrMainKawanaka
 	 */
 	public CrMainKawanaka convertToCrMainKawanakaForInsert() {
-		CrMainKawanaka crMainKawanaka=new CrMainKawanaka();
+		CrMainKawanaka crMainKawanaka = new CrMainKawanaka();
 		crMainKawanaka = convertToCrMainKawanaka(crMainKawanaka);
 		crMainKawanaka.setCreateDate(new Timestamp(new Date().getTime()));
 		crMainKawanaka.setUpdateDate(crMainKawanaka.getCreateDate());
 		return crMainKawanaka;
 	}
 
-		/*
-		 * CrMainKawanakaエンティティい更新値を入れる
-		 *@return crMainKawanaka
-		 *@param CrMainKawanaka crMainKawanaka
-		 */
+	/**
+	 * CrMainKawanakaエンティティい更新値を入れる
+	 *@return crMainKawanaka
+	 *@param CrMainKawanaka crMainKawanaka
+	 */
+	public CrMainKawanaka convertToCrMainKawanakaForUpdate(CrMainKawanaka crMainKawanaka) {
+		crMainKawanaka = convertToCrMainKawanaka(crMainKawanaka);
+		crMainKawanaka.setUpdateDate(crMainKawanaka.getUpdateDate());
+		return crMainKawanaka;
+	}
 
-		public CrMainKawanaka convertToCrMainKawanakaForUpdate(CrMainKawanaka crMainKawanaka) {
-			crMainKawanaka = convertToCrMainKawanaka(crMainKawanaka);
-			crMainKawanaka.setUpdateDate(crMainKawanaka.getUpdateDate());
-			return crMainKawanaka;
-		}
-
-
-	/*
+	/**
 	 * CrMainKawanakaエンティティに入力値を入れる
 	 *@return CrMianKawanaka
 	 *@param CrMainKawanaka crMainKawanaka
@@ -95,5 +90,4 @@ public class CrInputForm {
 		crMainKawanaka.setDelFlg("0");
 		return crMainKawanaka;
 	}
-
 }
