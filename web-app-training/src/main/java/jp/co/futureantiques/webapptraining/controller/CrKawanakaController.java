@@ -28,6 +28,7 @@ import jp.co.futureantiques.webapptraining.model.form.crKawanaka.CrSearchForm;
 import jp.co.futureantiques.webapptraining.service.CrKawanakaService;
 
 /**
+ * コミットテスト
  *CrKawanakaコントローラークラス
  *@author Misato Kawanaka
  */
