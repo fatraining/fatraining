@@ -47,9 +47,10 @@
 						<tr>
 							<th><input type="checkbox" id="allCheck" /></th>
 							<th class="per-12 center" th:text="#{cr.text.image}">Image</th>
-							<th class="per-30 center" th:text="#{cr.text.name}">Name</th>
+							<th class="per-12 center" th:text="#{cr.text.name}">Name</th>
 							<th class="per-12 center" th:text="#{cr.text.category}">Category</th>
-							<th class="per-7 center" th:text="#{cr.text.distribution}">Distribution</th>
+							<th class="per-12 center" th:text="#{cr.text.distribution}">Distribution</th>
+							<th class="per-30 center" th:text="#{cr.text.cause}">Cause</th>
 
 						</tr>
 					</thead>
@@ -69,6 +70,7 @@
 								th:if="${cr.distributionKawanaka!= null}"
 								th:text="${cr.distributionKawanaka.distribution}"
 								class="data center"> 沖縄</label></td>
+							<td class="data center" th:text="${cr.cause}">持ち込まれたヤギによる森林領域の減少</td>
 						</tr>
 					</tbody>
 				</table>

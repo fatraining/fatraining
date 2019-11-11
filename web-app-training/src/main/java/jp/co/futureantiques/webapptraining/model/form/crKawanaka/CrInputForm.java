@@ -67,13 +67,13 @@ public class CrInputForm {
 	}
 
 	/**
-	 * CrMainKawanakaエンティティい更新値を入れる
+	 * CrMainKawanakaエンティティに更新値を入れる
 	 *@return crMainKawanaka
 	 *@param CrMainKawanaka crMainKawanaka
 	 */
 	public CrMainKawanaka convertToCrMainKawanakaForUpdate(CrMainKawanaka crMainKawanaka) {
 		crMainKawanaka = convertToCrMainKawanaka(crMainKawanaka);
-		crMainKawanaka.setUpdateDate(crMainKawanaka.getUpdateDate());
+		crMainKawanaka.setUpdateDate(new Timestamp(new Date().getTime()));
 		return crMainKawanaka;
 	}
 

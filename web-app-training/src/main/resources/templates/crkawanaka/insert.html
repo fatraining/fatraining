@@ -74,6 +74,14 @@
 							down</option>
 					</select>
 				</div>
+				<div class="form-group">
+					<label for="cause" class="control-label"
+						th:text="#{cr.text.input.cause}">Cause:</label> <input
+						type="text" th:field="*{cause}" class="form-control"
+						th:placeholder="#{cr.text.cause}" />
+
+				</div>
+
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
 						onclick="$('#crInputForm').submit()"
