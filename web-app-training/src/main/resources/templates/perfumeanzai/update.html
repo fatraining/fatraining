@@ -50,7 +50,7 @@
 						th:text="#{perfume.text.input.releaseyear}">ReleaseYear</label> <input
 						type="text" th:field="*{releaseYearStr}" class="form-control"
 						id="inputReleaseYear" th:placeholder="#{perfume.text.releaseYear}" />
-					<p class="err alert-danger"
+				 	<p class="err alert-danger"
 						th:each="err : ${#fields.errors('releaseYearStr')}"
 						th:text="#{${err}(#{perfume.text.releaseYear})}"></p>
 				</div>
@@ -91,6 +91,9 @@
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{perfume.text.comment}"></textarea>
+						<p class="err alert-danger"
+						th:each="err : ${#fields.errors('comment')}"
+						th:text="#{${err}(#{perfume.text.comment})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success btn-block"

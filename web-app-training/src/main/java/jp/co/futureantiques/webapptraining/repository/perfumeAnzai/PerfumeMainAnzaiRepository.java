@@ -25,7 +25,7 @@ public interface PerfumeMainAnzaiRepository
 	 */
 	@Transactional
 	@Modifying
-	@Query("UPDATE PerfumeMainAnzai SET delFlg=1 WHERE id = :id")
+	@Query("UPDATE PerfumeMainAnzai SET delFlg=1,update_date=now() WHERE id = :id")
 	void delete(@Param("id") final long id);
 
 	/**

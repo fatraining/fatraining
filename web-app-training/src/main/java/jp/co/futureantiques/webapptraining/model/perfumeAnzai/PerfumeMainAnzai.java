@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,10 +26,12 @@ public class PerfumeMainAnzai {
 
 	/** 曲名**/
 	@Column(name = "song_name")
+	@Size(min = 1, max = 255)
 	private String songName;
 
 	/** 発売年**/
-	//	@Column(name ="release_year")
+	@Column(name ="release_year")
+	@Size(min = 1, max = 4)
 	private Integer releaseYear;
 
 	/** 作詞者**/

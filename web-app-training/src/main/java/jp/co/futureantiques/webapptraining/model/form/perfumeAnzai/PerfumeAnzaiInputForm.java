@@ -26,7 +26,7 @@ public class PerfumeAnzaiInputForm {
 	/**曲名**/
 	@NotNull(message = "common.text.error.require")
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 255, message="perfume.text.error.size.max")
 	private String songName;
 
 	/**発売年**/
@@ -37,7 +37,7 @@ public class PerfumeAnzaiInputForm {
 	private String releaseYearStr;
 
 	/** 作詞者**/
-	@Size(max = 255)
+	@Size(max = 255, message="perfume.text.error.size.max")
 	private String lyricistName;
 
 	/**アルバムID**/
@@ -47,7 +47,7 @@ public class PerfumeAnzaiInputForm {
 	private Integer tieupId;
 
 	/** コメント**/
-	@Size(max = 255)
+	@Size(max = 255, message="perfume.text.error.size.max")
 	private String comment;
 
 	/**更新日時**/
