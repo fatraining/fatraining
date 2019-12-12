@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|04LSライブ定番曲更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/liveKawada.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{live.text.update}">定番曲更新</h1>
+				<a th:href="@{/liveKawada}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="liveMainKawadaInputForm"
+				th:action="@{/liveKawada/update}"
+				th:object="${liveMainKawadaInputForm}" class="form-horizontal">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{live.text.input.title.riquire}"> title</label> <input
+						type="text" th:field="*{songTitle}" class="form-control"
+						th:placeholder="#{live.text.title}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('songTitle')}"
+						th:text="#{${err}(#{live.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="album" class="control-label"
+						th:text="#{live.text.input.album.riquire}">album</label> <select
+						name="albumId" id="inputAlbume" class="form-control select">
+						<option th:each="album : ${albumKawadaList}" th:value="${album.albumId}"
+							th:text="${album.album}"
+							th:selected="${album.albumId == liveMainKawadaInputForm.albumId}">select</option>
+					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('albumId')}"
+						th:text="#{${err}(#{live.text.album})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="percent" class="control-label"
+						th:text="#{live.text.input.percent}">percent</label>
+					<textarea th:field="*{percent}" cols="" rows="1"
+						class="form-control" id="inputPercent"
+						th:placeholder="#{live.text.percent}"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="style" class="control-label"
+						th:text="#{live.text.input.style.riquire}">style</label> <select
+						name="styleId" id="inputStyle" class="form-control">
+						<option th:each="style : ${styleKawadaList}"
+							th:value="${style.styleId}" th:text="${style.style}"
+							th:selected="${style.styleId == liveMainKawadaInputForm.styleId}">select</option>
+					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('styleId')}"
+						th:text="#{${err}(#{live.text.style})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{live.text.input.comment}"> comment</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{live.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#liveMainKawadaInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
