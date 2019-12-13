@@ -11,19 +11,19 @@ import lombok.Data;
 @Data
 public class LiveMainKawadaSearchForm {
 
-	//曲名ID
+	/**曲名ID */
 	private Integer id;
 
-	//収録アルバム
+	/**収録アルバム */
 	private Integer albumId;
 
-	//曲名
+	/**曲名 */
 	private String songTitle;
 
-	//ライブスタイル
+	/**ライブスタイル */
 	private Integer styleId;
 
-	//削除フラグON用
+	/** 削除フラグON用 */
 	private int isDelete;
 
 	/**
@@ -36,5 +36,4 @@ public class LiveMainKawadaSearchForm {
 		this.setSongTitle(liveMainKawada.getSongTitle());
 		this.setStyleId(liveMainKawada.getStyleId());
 	}
-
 }

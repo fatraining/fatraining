@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-
 /**
  * StyleKawadaテーブルと対応するエンティティ
  * @author future
@@ -21,16 +20,15 @@ import lombok.Data;
  */
 @Data
 @Entity
-
 public class StyleKawada {
 
-	//スタイルID
+	/**スタイルID */
 	@Id
 	@GeneratedValue
-	@Column(name="style_id")
+	@Column(name = "style_id")
 	private int styleId;
 
-	//スタイル
+	/**スタイル */
 	@Column(name = "style")
 	@Size(max = 255)
 	private String style;
@@ -52,5 +50,4 @@ public class StyleKawada {
 	@OneToMany(targetEntity = LiveMainKawada.class, mappedBy = "StyleKawada")
 	@JoinColumn(name = "style_id", referencedColumnName = "style_id")
 	private List<LiveMainKawada> liveMainKawada;
-
 }

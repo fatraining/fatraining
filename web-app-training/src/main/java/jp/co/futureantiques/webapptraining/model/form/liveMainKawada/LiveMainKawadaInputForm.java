@@ -21,33 +21,34 @@ import lombok.Data;
 @Data
 public class LiveMainKawadaInputForm {
 
-	//曲名ID
+	/**曲名ID */
 	private int id;
 
-	//収録アルバム曲
+	/** 収録アルバム曲 */
 	@NotNull(message = "common.text.error.require")
 	@Min(value = 1, message = "common.text.error.require")
 	private Integer albumId;
 
-	//曲名
+	/** 曲名 */
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 255)
 	private String songTitle;
 
-	//演奏率
+	/** 演奏率 */
 	private Integer percent;
 
-
-	//ライブスタイル
+	/**ライブスタイル */
 	@NotNull(message = "common.text.error.require")
 	@Min(value = 1, message = "common.text.error.require")
 	private Integer styleId;
 
-	//コメント
+	/** コメント */
 	@Size(max = 255)
 	private String comment;
 
-	//更新日時（排他制御用）
+	/**
+	 * 更新日時（排他制御用）
+	 */
 	private String updateDate;
 
 	/**
@@ -118,7 +119,5 @@ public class LiveMainKawadaInputForm {
 		liveMainKawada.setComment(this.comment);
 		liveMainKawada.setDelFlg("0");
 		return liveMainKawada;
-
 	}
-
 }

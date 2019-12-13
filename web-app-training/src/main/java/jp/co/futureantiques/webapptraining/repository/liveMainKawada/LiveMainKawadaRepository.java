@@ -16,7 +16,6 @@ import jp.co.futureantiques.webapptraining.model.liveMainKawada.LiveMainKawada;
  * @author future
  *
  */
-
 public interface LiveMainKawadaRepository
 		extends JpaRepository<LiveMainKawada, Long>, JpaSpecificationExecutor<LiveMainKawada> {
 
@@ -37,5 +36,4 @@ public interface LiveMainKawadaRepository
 	@Modifying
 	@Query("DELETE FROM LiveMainKawada WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

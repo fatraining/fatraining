@@ -21,12 +21,14 @@ public interface LiveMainKawadaService {
 
 	/**
 	 * アルバムエンティティのリストを取得する
+	 *
 	 * @return AlbumEntityのリスト
 	 */
 	List<AlbumKawada> getListAlbumKawada();
 
 	/**
 	 * スタイルエンティティのリストを取得する
+	 *
 	 * @return StyleEntityのリスト
 	 */
 	List<StyleKawada> getListStyleKawada();
@@ -85,5 +87,4 @@ public interface LiveMainKawadaService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteLiveMainKawadaComp(final ArrayList<Long>ids);
-
 }

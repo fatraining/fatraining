@@ -47,6 +47,7 @@ public class LiveMainKawadaController {
 
 	/**
 	 * アルバムエンティティのリストを取得する
+	 *
 	 * @return AlbumKawadaEntityのリスト
 	 */
 	@ModelAttribute
@@ -63,6 +64,7 @@ public class LiveMainKawadaController {
 	public List<StyleKawada> getListStyleKawada(){
 		return liveMainKawadaService.getListStyleKawada();
 	}
+
 	/**
 	 * 検索画面に遷移する
 	 *
@@ -74,6 +76,7 @@ public class LiveMainKawadaController {
 	public String showSearchLive(@ModelAttribute final LiveMainKawadaSearchForm liveMainKawadaSearchForm) {
 		return "liveKawada/search";
 	}
+
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 *
@@ -89,13 +92,13 @@ public class LiveMainKawadaController {
 		//入力された検索条件を元にレコードを取得する
 		final Page<LiveMainKawada> liveList = liveMainKawadaService.getPageLive(form, pageable);
 		if(liveList.getTotalElements() != 0) {
+
 			//検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page",liveList);
 			model.addAttribute("liveList",liveList.getContent());
 			model.addAttribute("url","search");
 		}
 		return "liveKawada/search";
-
 	}
 
 	/**
@@ -115,7 +118,6 @@ public class LiveMainKawadaController {
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
-
 	@RequestMapping(value ="insert" , method = RequestMethod.POST)
 	public String insertLive(@ModelAttribute @Validated final LiveMainKawadaInputForm form,
 			final BindingResult bindingResult) {
@@ -146,8 +148,8 @@ public class LiveMainKawadaController {
 		//フォームにレコードの値をセットする
 		liveMainKawadaInputForm.initWithLiveMainKawada(liveMainKawada);
 		return "liveKawada/update";
-
 	}
+
 	/**
 	 * LiveMainKawadaテーブルのデータを更新して検索画面に遷移する
 	 *

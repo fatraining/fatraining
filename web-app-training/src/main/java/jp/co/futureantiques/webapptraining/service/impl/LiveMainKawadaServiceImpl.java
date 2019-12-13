@@ -28,13 +28,13 @@ import jp.co.futureantiques.webapptraining.service.LiveMainKawadaService;
 @Service
 public class LiveMainKawadaServiceImpl implements LiveMainKawadaService {
 
-	//LiveMainKawadaリポジトリ
+	/** LiveMainKawadaリポジトリ */
 	private final LiveMainKawadaRepository liveMainKawadaRepository;
 
-	//AlbumKawadaリポジトリ
+	/** AlbumKawadaリポジトリ */
 	private final AlbumKawadaRepository albumKawadaRepository;
 
-	//StyleKawadaリポジトリ
+	/** StyleKawadaリポジトリ */
 	private final StyleKawadaRepository styleKawadaRepository;
 
 	/** コンストラクタ
@@ -121,7 +121,6 @@ public class LiveMainKawadaServiceImpl implements LiveMainKawadaService {
 			//更新対象のレコードが存在する場合は削除フラグを１にする
 			liveMainKawadaRepository.delete(id);
 		}
-
 	}
 
 	@Override
@@ -130,5 +129,4 @@ public class LiveMainKawadaServiceImpl implements LiveMainKawadaService {
 		//対象のレコードを削除する
 		liveMainKawadaRepository.deleteComp(ids);
 	}
-
 }
