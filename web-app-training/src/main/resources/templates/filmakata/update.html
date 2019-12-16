@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|フィルモグラフィー更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/filmAkata.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{film.text.update}">フィルモグラフィー更新</h1>
+				<a th:href="@{/filmakata}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="filmAkataInputForm"
+				th:action="@{/filmakata/update}" th:object="${filmAkataInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}"/>
+
+				<!-- タイトル -->
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{film.text.input.title.riquire}"> Title(*):</label>
+					<input type="text" th:field="*{filmTitle}" class="form-control"
+						th:placeholder="#{film.text.title}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('filmTitle')}"
+						th:text="#{${err}(#{film.text.title})}"></p>
+				</div>
+
+				<!-- ジャンル -->
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{film.text.input.genre}">Genre:</label>
+					<select name="genreId" id="inputGenre"
+						class="form-control select">
+						<option th:each="genre : ${filmGenreAkataList}"
+								th:value="${genre.id}"
+								th:text="${genre.genre}"
+								th:selected="${genre.id == filmAkataInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+
+				<!-- 主演 -->
+				<div class="form-group">
+					<label for="actor" class="control-label"
+						th:text="#{film.text.input.actor}">Actor:</label>
+					<select name="actorId" id="inputActor"
+						class="form-control">
+						<option th:each="actor : ${filmActorAkataList}"
+								th:value="${actor.id}"
+								th:text="${actor.name}"
+								th:selected="${actor.id == filmAkataInputForm.actorId}">pulldown</option>
+					</select>
+				</div>
+
+				<!-- 公開年 -->
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{film.text.input.releaseyear}">ReleaseYear(*):</label>
+					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
+						th:placeholder="#{film.text.releaseyear}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{film.text.releaseyear})}"></p>
+				</div>
+
+				<!-- 上映時間 -->
+				<div class="form-group">
+					<label for="runTime" class="control-label"
+						th:text="#{film.text.input.runtime}"> RunTime:</label>
+					<input type="text" th:field="*{runTimeStr}" class="form-control" id="inputRunTime"
+						th:placeholder="#{film.text.runtime}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('runTimeStr')}"
+						th:text="#{${err}(#{film.text.runtime})}"></p>
+				</div>
+
+				<!-- おすすめ度 -->
+				<div class="form-group">
+					<label for="recommend" class="control-label"
+						th:text="#{film.text.input.recommend}"> Recommend:</label>
+					<textarea th:field="*{recommend}" cols="" rows="5"
+						class="form-control" id="inputrecommend"
+						th:placeholder="#{film.text.recommend}"></textarea>
+				</div>
+
+				<!-- 更新 -->
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#filmAkataInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
