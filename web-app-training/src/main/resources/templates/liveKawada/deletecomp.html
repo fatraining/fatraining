@@ -56,9 +56,9 @@
 							<td class="data center" th:text="${live.songTitle}"></td>
 							<td class="data center"><label th:if="${live.album != null}"
 								th:text="${live.album.album}" class="data center"></label></td>
+								<td class="data center" th:text="${live.percent}"></td>
 							<td class="data center"><label th:if="${live.style != null}"
 								th:text="${live.style.style}" class="data center"></label></td>
-							<td class="data center" th:text="${live.percent}"></td>
 							<td class="data center" th:text="${live.comment}"></td>
 						</tr>
 					</tbody>

@@ -51,7 +51,7 @@ public class LiveMainKawadaController {
 	 * @return AlbumKawadaEntityのリスト
 	 */
 	@ModelAttribute
-	public List<AlbumKawada> getListAlbumKawada(){
+	public List<AlbumKawada> getListAlbumKawada() {
 		return liveMainKawadaService.getListAlbumKawada();
 	}
 
@@ -61,7 +61,7 @@ public class LiveMainKawadaController {
 	 * @return StyleKawadaEntityのリスト
 	 */
 	@ModelAttribute
-	public List<StyleKawada> getListStyleKawada(){
+	public List<StyleKawada> getListStyleKawada() {
 		return liveMainKawadaService.getListStyleKawada();
 	}
 
@@ -72,7 +72,7 @@ public class LiveMainKawadaController {
 	 * @return 検索画面のパス
 	 *
 	 */
-	@RequestMapping(value ="", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchLive(@ModelAttribute final LiveMainKawadaSearchForm liveMainKawadaSearchForm) {
 		return "liveKawada/search";
 	}
@@ -86,17 +86,17 @@ public class LiveMainKawadaController {
 	 * @return 検索画面のパス
 	 *
 	 */
-	@RequestMapping(value = "search" , method = RequestMethod.POST)
-	public String searchLive(final LiveMainKawadaSearchForm form,final Model model,final Pageable pageable) {
+	@RequestMapping(value = "search", method = RequestMethod.POST)
+	public String searchLive(final LiveMainKawadaSearchForm form, final Model model, final Pageable pageable) {
 
 		//入力された検索条件を元にレコードを取得する
 		final Page<LiveMainKawada> liveList = liveMainKawadaService.getPageLive(form, pageable);
-		if(liveList.getTotalElements() != 0) {
+		if (liveList.getTotalElements() != 0) {
 
 			//検索結果がある場合、Modelに結果をセットする
-			model.addAttribute("page",liveList);
-			model.addAttribute("liveList",liveList.getContent());
-			model.addAttribute("url","search");
+			model.addAttribute("page", liveList);
+			model.addAttribute("liveList", liveList.getContent());
+			model.addAttribute("url", "search");
 		}
 		return "liveKawada/search";
 	}
@@ -118,10 +118,10 @@ public class LiveMainKawadaController {
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
-	@RequestMapping(value ="insert" , method = RequestMethod.POST)
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertLive(@ModelAttribute @Validated final LiveMainKawadaInputForm form,
 			final BindingResult bindingResult) {
-		if(bindingResult.hasFieldErrors()) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合自画面に戻る
 			return "liveKawada/insert";
@@ -138,8 +138,8 @@ public class LiveMainKawadaController {
 	 * @param LiveMainKawadaInputForm liveMainKawadaInputForm
 	 * @return 更新画面のパス
 	 */
-	@RequestMapping(value = "update" , method = RequestMethod.GET)
-	public String showUpdateLive(@RequestParam(name = "id" ) final long id,
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String showUpdateLive(@RequestParam(name = "id") final long id,
 			@ModelAttribute final LiveMainKawadaInputForm liveMainKawadaInputForm) {
 
 		//IDをキーにLiveMainKawadateテーブルを検索する
@@ -158,10 +158,10 @@ public class LiveMainKawadaController {
 	 * @retunn 入力エラーがある場合更新画面 ない場合検索画面のパス
 	 *
 	 */
-	@RequestMapping(value = "update" , method = RequestMethod.POST)
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updateLive(@Validated final LiveMainKawadaInputForm form,
 			final BindingResult bindingResult) {
-		if(bindingResult.hasFieldErrors()) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合自画面に戻る
 			return "liveKawada/update";
@@ -169,12 +169,12 @@ public class LiveMainKawadaController {
 
 		//データを更新する
 		LiveMainKawada liveMainKawada = liveMainKawadaService.updateLive(form);
-		if(liveMainKawada == null) {
+		if (liveMainKawada == null) {
 
 			//更新が失敗した場合、検索画面にメッセージを表示する
-			return "redirect:/liveKawada?result = updatefailed";
+			return "redirect:/liveKawada?result=updatefailed";
 		}
-		return"redirect:/liveKawada?result=update&id=" + liveMainKawada.getId();
+		return "redirect:/liveKawada?result=update&id=" + liveMainKawada.getId();
 	}
 
 	/**
@@ -183,12 +183,12 @@ public class LiveMainKawadaController {
 	 * @patam long id
 	 * @return 検索画面のパス
 	 */
-	@RequestMapping(value = "delete" , method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteLive(@RequestParam(name = "id") final long id) {
 
 		//IDをキーにレコードを論理削除する
 		liveMainKawadaService.deleteLiveMainKawadaById(id);
-		return"redirect:/liveKawada?result=delete&id=" + id;
+		return "redirect:/liveKawada?result=delete&id=" + id;
 	}
 
 	/**
@@ -208,7 +208,7 @@ public class LiveMainKawadaController {
 
 		//Modelに検索結果を格納する
 		model.addAttribute(liveList);
-		return"liveKawada/deletecomp";
+		return "liveKawada/deletecomp";
 	}
 
 	/**
@@ -219,10 +219,10 @@ public class LiveMainKawadaController {
 	 * @param Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
 	 */
-	@RequestMapping(value="deletecomp" , method = RequestMethod.POST)
+	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
 	public String deleteCompLive(@Validated final LiveMainKawadaDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
-		if(bindingResult.hasFieldErrors()) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合、再検索して次画面に戻る
 			LiveMainKawadaSearchForm liveMainKawadaSearchForm = new LiveMainKawadaSearchForm();
@@ -231,7 +231,7 @@ public class LiveMainKawadaController {
 
 			//Modelに検索結果を格納する
 			model.addAttribute(liveList);
-			return"liveKawada/deletecomp";
+			return "liveKawada/deletecomp";
 		}
 
 		//データを完全削除する

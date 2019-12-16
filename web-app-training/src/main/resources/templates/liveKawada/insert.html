@@ -60,6 +60,9 @@
 					<textarea th:field="*{percent}" cols="" rows="1"
 						class="form-control" id="inputPercent"
 						th:placeholder="#{live.text.percent}"></textarea>
+						<p class="err alert-danger"
+						th:each="err : ${#fields.errors('percent')}"
+						th:text="#{${err}(#{live.text.percent})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="style" class="control-label"

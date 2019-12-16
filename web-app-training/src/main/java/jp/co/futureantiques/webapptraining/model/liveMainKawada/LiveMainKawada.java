@@ -38,7 +38,6 @@ public class LiveMainKawada {
 	private String songTitle;
 
 	/** 演奏 */
-	@Column(name = "percent")
 	private Integer percent;
 
 	/** ライブスタイル */

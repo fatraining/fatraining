@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -35,7 +36,9 @@ public class LiveMainKawadaInputForm {
 	private String songTitle;
 
 	/** 演奏率 */
-	private Integer percent;
+	@Size(max = 3, message = "live.text.error.size.max.three")
+	@Pattern(regexp =  "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "live.text.error.numeric")
+	private String percent;
 
 	/**ライブスタイル */
 	@NotNull(message = "common.text.error.require")
@@ -59,7 +62,7 @@ public class LiveMainKawadaInputForm {
 		this.setId((int) liveMainKawada.getId());
 		this.setSongTitle(liveMainKawada.getSongTitle());
 		this.setAlbumId(liveMainKawada.getAlbumId());
-		this.setPercent(liveMainKawada.getPercent());
+		this.setPercent(String.valueOf(liveMainKawada.getPercent()));
 		this.setStyleId(liveMainKawada.getStyleId());
 		this.setComment(liveMainKawada.getComment());
 		this.setUpdateDate(String.valueOf(liveMainKawada.getUpdateDate()));
@@ -106,6 +109,7 @@ public class LiveMainKawadaInputForm {
 			//収録アルバムが入力されていた場合
 			liveMainKawada.setAlbumId(this.albumId);
 		}
+
 		if (this.styleId == CommonConst.NOT_ENTERD) {
 
 			//ライブスタイルが入力されていなかった場合
@@ -115,7 +119,15 @@ public class LiveMainKawadaInputForm {
 			//ライブスタイルが入力されている場合
 			liveMainKawada.setStyleId(this.styleId);
 		}
-		liveMainKawada.setPercent(this.percent);
+		if (!this.percent.isEmpty()) {
+
+			// 演奏率が入力されていた場合
+			liveMainKawada.setPercent(Integer.parseInt(this.percent));
+		} else {
+
+			// 演奏率が入力されていなかった場合
+			liveMainKawada.setPercent(null);
+		}
 		liveMainKawada.setComment(this.comment);
 		liveMainKawada.setDelFlg("0");
 		return liveMainKawada;
