@@ -43,7 +43,7 @@ public class FilmAkataController {
 	 * @param FilmAkataService movieAkataService
 	 */
 	@Autowired
-	public FilmAkataController (final FilmAkataService filmAkataService) {
+	public FilmAkataController(final FilmAkataService filmAkataService) {
 		this.filmAkataService = filmAkataService;
 	}
 
@@ -88,16 +88,16 @@ public class FilmAkataController {
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchFilmAkata(final FilmAkataSearchForm form, final Model model,
-				final @PageableDefault(page = 0, value = 1 ) Pageable pageable) {
+			final @PageableDefault(page = 0, value = 1) Pageable pageable) {
 
 		//入力された検索条件を元にレコードを取得する
 		final Page<FilmMainAkata> filmMainAkata = filmAkataService.getPageFilm(form, pageable);
-		if(filmMainAkata.getTotalElements() != 0 ) {
+		if (filmMainAkata.getTotalElements() != 0) {
 
 			//検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", filmMainAkata);
 			model.addAttribute("filmAkataList", filmMainAkata.getContent());
-			model.addAttribute("url", "search" );
+			model.addAttribute("url", "search");
 		}
 		return "filmakata/search";
 	}
@@ -141,8 +141,8 @@ public class FilmAkataController {
 	 * @param FilmAkataInputForm filmAkataInputForm
 	 * @return 更新画面のパス
 	 */
-	@RequestMapping (value = "update", method = RequestMethod.GET)
-	public String showUpdateFilm(@RequestParam(name = "id")final long id,
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String showUpdateFilm(@RequestParam(name = "id") final long id,
 			@ModelAttribute final FilmAkataInputForm filmAkataInputForm) {
 
 		//IDをキーにFilmテーブルを検索する
@@ -202,7 +202,7 @@ public class FilmAkataController {
 	 * @return 完全削除画面のパス
 	 */
 
-	@RequestMapping (value = "deletecomp", method = RequestMethod.GET)
+	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompFilm(final FilmAkataSearchForm form,
 			@ModelAttribute final FilmAkataDeleteForm filmAkataDeleteForm, final Model model) {
 
@@ -227,20 +227,18 @@ public class FilmAkataController {
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
-
 			//入力エラーがある場合、再検索して自画面に戻る
 			FilmAkataSearchForm filmAkataSearchForm = new FilmAkataSearchForm();
 			filmAkataSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
 			final List<FilmMainAkata> filmList = filmAkataService.getListFilm(filmAkataSearchForm);
 
+			//Modelに検索結果を格納する
+			model.addAttribute(filmList);
+			return "filmakata/deletcomp";
+		}
 
-		//Modelに検索結果を格納する
-		model.addAttribute(filmList);
-		return "filmakata/deletcomp";
+		//データを完全削除する
+		filmAkataService.deleteFilmComp(form.getDeleteIds());
+		return "redirect:/filmakata?reult=deletecomp";
 	}
-
-	//データを完全削除する
-	filmAkataService.deleteFilmComp(form.getDeleteIds());
-	return "redirect:/filmakata?reult=deletecomp";
-}
 }
