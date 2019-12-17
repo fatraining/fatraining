@@ -72,7 +72,7 @@ public class PenguinInputForm {
 	 */
 	public PenguinMainKawamura converToPenguinMainKawamuraForUpdate(PenguinMainKawamura penguinMainKawamura) {
 		penguinMainKawamura = converToPenguinMainKawamura(penguinMainKawamura);
-		penguinMainKawamura.setUpdateDate(penguinMainKawamura.getUpdateDate());
+		penguinMainKawamura.setUpdateDate(new Timestamp(new Date().getTime()));
 		return penguinMainKawamura;
 	}
 

@@ -2,10 +2,7 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
@@ -97,13 +93,13 @@ public class PenguinKawamuraController {
 		return "penguinKawamura/insert";
 	}
 
-	//これらはわざわざDIしないといけない
-	@Autowired
-	ResourceLoader resourceLoader;
-	@Autowired
-	ServletContext context;
-	@Autowired
-	WebApplicationContext wac;
+//	//これらはわざわざDIしないといけない
+//	@Autowired
+//	ResourceLoader resourceLoader;
+//	@Autowired
+//	ServletContext context;
+//	@Autowired
+//	WebApplicationContext wac;
 
 	/**
 	 * penguin_main_kawamuraテーブルにデータを登録して検索画面に遷移する
@@ -117,7 +113,7 @@ public class PenguinKawamuraController {
 			@ModelAttribute @Validated final PenguinInputForm form,
 			final BindingResult bindingResult, Model model, MultipartFile image) {
 
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合、戻る
 			return "penguinKawamura/insert";
@@ -168,7 +164,7 @@ public class PenguinKawamuraController {
 			final BindingResult bindingResult, MultipartFile image) {
 
 		//入力エラーがある場合、自画面に戻る
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasFieldErrors()) {
 			return "penguinKawamura/update";
 
 		}
@@ -179,7 +175,9 @@ public class PenguinKawamuraController {
 		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
 
 			//入力エラーがある場合、戻る
+			if(bindingResult.hasErrors()) {
 			return "penguinKawamura/insert";
+			}
 		}
 
 		//データを更新する
@@ -237,7 +235,7 @@ public class PenguinKawamuraController {
 			@Validated final PenguinDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 
-		if(bindingResult.hasFieldErrors()) {
+		if(bindingResult.hasErrors()) {
 
 			//入力エラーがある場合、再検索して自画面に戻る
 			PenguinSearchForm penguinSearchForm = new PenguinSearchForm();

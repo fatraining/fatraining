@@ -1,13 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinInputForm;
@@ -89,8 +81,8 @@ public class PenguinKawamuraServiceImpl implements PenguinKawamuraService{
 		//penguin_main_kawamuraテーブルに新規でデータを登録する
 		final PenguinMainKawamura penguinMainKawamura = form.converToPenguinMainKawamuraForInsert();
 
-		//ファイルをアップロードする
-		uploadFile(penguinMainKawamura, form.getImage());
+//		//ファイルをアップロードする
+//		uploadFile(penguinMainKawamura, form.getImage());
 
 		return penguinMainKawamuraRepository.save(penguinMainKawamura);
 	}
@@ -108,19 +100,19 @@ public class PenguinKawamuraServiceImpl implements PenguinKawamuraService{
 				//チェックOKの場合、更新
 				penguinMainKawamura = form.converToPenguinMainKawamuraForUpdate(penguinMainKawamura);
 
-				if(form.getImage().isEmpty()) {
-
-					//今あるデータベースの画像パスを入れとく
-					String imageTemp = penguinMainKawamura.getImage();
-
-					//エンティティに画像パスを入れなおす
-					penguinMainKawamura.setImage(imageTemp);
-
-					return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
-				}
-
-				//ファイルをアップロードする
-				uploadFile(penguinMainKawamura, form.getImage());
+//				if(form.getImage().isEmpty()) {
+//
+//					//今あるデータベースの画像パスを入れとく
+//					String imageTemp = penguinMainKawamura.getImage();
+//
+//					//エンティティに画像パスを入れなおす
+//					penguinMainKawamura.setImage(imageTemp);
+//
+//					return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
+//				}
+//
+//				//ファイルをアップロードする
+//				uploadFile(penguinMainKawamura, form.getImage());
 
 				return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
 			}
@@ -142,41 +134,50 @@ public class PenguinKawamuraServiceImpl implements PenguinKawamuraService{
 
 	@Override
 	public void deletePenguinComp(final ArrayList<Long> ids) {
+		//対象のレコードの画像を削除する
+		for(long id : ids) {
+			File f = new File(CommonConst.STATIC_PATH + penguinMainKawamuraRepository.findOne(id).getImage());
+			if(f.exists()) {
+
+				//ファイルが存在する場合削除
+				f.delete();
+			}
+		}
 
 		//対象のレコードを削除する
 		penguinMainKawamuraRepository.deleteComp(ids);
 	}
 
-	/**
-	 * 選択したファイルを指定のパスにアップロードする
-	 * @param penguinMainKawamura
-	 * @param Image
-	 */
-	private void uploadFile(PenguinMainKawamura penguinMainKawamura, MultipartFile image) {
-
-		//追加する画像のファイルパス
-		Path path = Paths.get(CommonConst.STATIC_PATH + "/PenguinKawamura");
-
-		//ファイル名をつけるため拡張子や現在日時を取得
-		int dot = image.getOriginalFilename().lastIndexOf(".");
-		String extention = "";
-		if(dot > 0) {
-			extention = image.getOriginalFilename().substring(dot).toLowerCase();
-		}
-		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-
-		//エンティティに画像の値を入れる
-		penguinMainKawamura.setImage("/PenguinKawamura" + filename + extention);
-
-		//指定した場所にファイルを書き込む
-		path = path.resolve(filename + extention);
-		try(OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)){
-			byte[] bytes = image.getBytes();
-			os.write(bytes);
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
+//	/**
+//	 * 選択したファイルを指定のパスにアップロードする
+//	 * @param penguinMainKawamura
+//	 * @param Image
+//	 */
+//	private void uploadFile(PenguinMainKawamura penguinMainKawamura, MultipartFile image) {
+//
+//		//追加する画像のファイルパス
+//		Path path = Paths.get(CommonConst.STATIC_PATH + "/PenguinKawamura");
+//
+//		//ファイル名をつけるため拡張子や現在日時を取得
+//		int dot = image.getOriginalFilename().lastIndexOf(".");
+//		String extention = "";
+//		if(dot > 0) {
+//			extention = image.getOriginalFilename().substring(dot).toLowerCase();
+//		}
+//		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+//
+//		//エンティティに画像の値を入れる
+//		penguinMainKawamura.setImage("/PenguinKawamura" + filename + extention);
+//
+//		//指定した場所にファイルを書き込む
+//		path = path.resolve(filename + extention);
+//		try(OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)){
+//			byte[] bytes = image.getBytes();
+//			os.write(bytes);
+//		}catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 }
