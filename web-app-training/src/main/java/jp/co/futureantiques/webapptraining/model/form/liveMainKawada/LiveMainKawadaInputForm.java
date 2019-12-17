@@ -62,7 +62,9 @@ public class LiveMainKawadaInputForm {
 		this.setId((int) liveMainKawada.getId());
 		this.setSongTitle(liveMainKawada.getSongTitle());
 		this.setAlbumId(liveMainKawada.getAlbumId());
-		this.setPercent(String.valueOf(liveMainKawada.getPercent()));
+		if (liveMainKawada.getPercent() != null) {
+			this.setPercent(String.valueOf(liveMainKawada.getPercent()));
+		}
 		this.setStyleId(liveMainKawada.getStyleId());
 		this.setComment(liveMainKawada.getComment());
 		this.setUpdateDate(String.valueOf(liveMainKawada.getUpdateDate()));
