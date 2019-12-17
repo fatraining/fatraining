@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|BOØWYの曲検索</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/boowyWaki.css}" />
+
+</head>
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+		</h4>
+	</div>
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<h1 align="center" th:text="#{boowy.text.search}">BoowySongSearch</h1>
+	</div>
+	<!-- LoginControllerでusernameをsessionに格納してる -->
+	<div class="user">
+		<span th:text="#{boowy.text.hello.user(${session.user})}">登録ユーザーIDさん</span>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/boowywaki/deletecomp" th:object="${boowyWakiSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1"  />
+				</div>
+			</div>
+		</form>
+		<div class="form-group">
+			<div class="" >
+				<a class="btn btn-warning" th:href="@{/boowywaki/insert}"
+					th:text="#{common.text.new}" >New
+				</a>
+				<a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(boowyWakiSearchForm.name != null or
+							boowyWakiSearchForm.genreId != null or
+							boowyWakiSearchForm.songwriterId != null) and
+							boowyList == null}"
+                     th:text="#{common.text.info.search}">No Result
+				</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result != null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<!-- 曲名検索 -->
+		<form class="form-horizontal" id="searchForm" method="post"
+			action="/boowywaki/search" th:object="${boowyWakiSearchForm}" >
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label" th:text="#{boowy.text.input.name}">Name:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{name}" class="form-control"
+						id="inputName" th:placeholder="#{boowy.text.search.info}" />
+				</div>
+			</div>
+			<!-- ジャンル検索 -->
+			<div class="form-group">
+				<label for="genre" class="control-label col-sm-2" th:text="#{boowy.text.input.genre}">Genre:</label>
+				<div class="col-sm-8">
+					<select id="inputGenre" name="genreId" class="form-control select">
+						<option th:each="genre : ${genreWakiList}"
+							th:value="${genre.id}"
+							th:text="${genre.genre}"
+							th:selected="${genre.id == boowyWakiSearchForm.genreId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<!-- 作詞者検索 -->
+			<div class="form-group">
+				<label for="songwriter" class="control-label col-sm-2" th:text="#{boowy.text.input.songwriter}">Songwriter:</label>
+				<div class="col-sm-8">
+					<select id="inputSongwriter" name="songwriterId" class="form-control select">
+						<option th:each="songwriter : ${songwriterWakiList}"
+							th:value="${songwriter.id}"
+							th:text="${songwriter.songwriter}"
+							th:selected="${songwriter.id == boowyWakiSearchForm.songwriterId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search
+					</a>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-warning center-block"
+						th:href="@{/boowywaki}"
+						th:text="#{common.text.reset}">Reset
+					</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${boowyList != null}">
+			<table id="resultTable" class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-15 center" th:text="#{boowy.text.name}">Name</th>
+						<th class="per-12 center" th:text="#{boowy.text.releaseDate}">ReleaseDate</th>
+						<th class="per-10 center" th:text="#{boowy.text.length}">Length</th>
+						<th class="per-12 center" th:text="#{boowy.text.genre}">Genre</th>
+						<th class="per-12 center" th:text="#{boowy.text.songwriter}">Songwriter</th>
+						<th class="per-25 center" th:text="#{boowy.text.comment}">Comment</th>
+						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
+						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="boowy : ${boowyList}">
+						<!-- 曲名 -->
+						<td class="data center" th:text="${boowy.name}">ホンキー・トンキー・クレイジー</td>
+						<!-- リリース日 -->
+						<td class="data center">
+							<label th:if="${boowy.releaseDate != null}"  th:text="${boowy.releaseDate}"
+									class="data center">1987年</label>
+						</td>
+						<!-- 曲の長さ -->
+						<td class="data center">
+							<label th:if="${boowy.length != null}"  th:text="${boowy.length}"
+									class="data center">4:30</label>
+						</td>
+						<!-- ジャンル -->
+						<td class="data center">
+							<label th:if="${boowy.genreWaki != null}"  th:text="${boowy.genreWaki.genre}"
+									class="data center">ロック</label>
+						</td>
+						<!-- 作詞者 -->
+						<td class="data center">
+							<label th:if="${boowy.songwriterWaki != null}"  th:text="${boowy.songwriterWaki.songwriter}"
+									class="data center">氷室京介</label>
+						</td>
+						<!-- コメント -->
+						<td class="data center" th:text="${boowy.comment}">ファースト・シングル。ライブの最後に流れるとテ ンションが上がるやつ。</td>
+						<td class="data">
+							<a class="btn btn-success"
+								th:href="@{/boowywaki/update(id=${boowy.id})}"
+								th:text="#{common.text.update}">Update</a>
+						</td>
+						<td class="data center">
+							<a class="btn btn-danger" style="margin-left: 5%"
+								data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${boowy.id}, data-title=${boowy.name}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<div th:if="${page != null}">
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+							th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+						<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
+							th:object="${boowyWakiSearchForm}" style="display:inline" >
+							<input type="hidden" th:field="*{name}"/>
+							<input type="hidden" th:field="*{genreId}"/>
+							<input type="hidden" th:field="*{songwriterId}"/>
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+							th:text="#{common.text.paging.end}">end➝</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id"/>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{boowy.text.delete}">BoowyDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteName">Name</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{boowy.text.delete.info}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default"
+							th:text="#{boowy.text.delete.cansel}"
+							data-dismiss="modal">Cancel
+						</a>
+						<a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+							th:text="#{boowy.text.delete.submit}">Delete
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+			<!--検索結果の一番下にある"data-id=${boowy.id}, data-title=${boowy.name}">Delete</a>の部分-->
+			var id = button.data('id');
+			var name = button.data('title');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", id);
+			modal.find('#deleteName').text(name);
+		});
+	</script>
+</body>
+</html>
