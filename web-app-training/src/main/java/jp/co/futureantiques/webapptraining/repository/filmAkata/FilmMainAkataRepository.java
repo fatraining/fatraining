@@ -16,7 +16,6 @@ import jp.co.futureantiques.webapptraining.model.filmAkata.FilmMainAkata;
  *
  * @author future
  */
-
 public interface FilmMainAkataRepository extends JpaRepository<FilmMainAkata, Long>, JpaSpecificationExecutor<FilmMainAkata> {
 
 	/**
@@ -24,7 +23,6 @@ public interface FilmMainAkataRepository extends JpaRepository<FilmMainAkata, Lo
 	 *
 	 * @param id
 	 */
-
 	@Transactional
 	@Modifying
 	@Query("UPDATE FilmMainAkata SET delFlg = 1 WHERE id = :id")
@@ -35,11 +33,9 @@ public interface FilmMainAkataRepository extends JpaRepository<FilmMainAkata, Lo
 	 *
 	 * @param ArrayList<Long> ids
 	 */
-
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM FilmMainAkata WHERE id IN(:ids)")
 	void deleteComp(@Param("ids")final ArrayList<Long> ids);
-
 
 }

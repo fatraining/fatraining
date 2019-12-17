@@ -69,7 +69,7 @@ public class FilmMainAkata {
 
 	/** 外部キー設定：ジャンル*/
 	@ManyToOne(targetEntity = FilmGenreAkata.class)
-	@JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false,updatable = false)
+	@JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private FilmGenreAkata filmGenreAkata;
 
 	/** 外部キー設定：主演 */
@@ -77,5 +77,4 @@ public class FilmMainAkata {
 	@JoinColumn(name = "actor_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private FilmActorAkata filmActorAkata;
 
-	}
-
+}

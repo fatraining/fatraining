@@ -45,23 +45,26 @@ public class FilmAkataServiceImpl implements FilmAkataService {
 	 * @param FilmActorAkataRepository filmActorRepository
 	 */
 	@Autowired
-	public FilmAkataServiceImpl(FilmMainAkataRepository filmMainAkataRepository, FilmGenreAkataRepository filmGenreAkataRepository,
+	public FilmAkataServiceImpl(FilmMainAkataRepository filmMainAkataRepository,
+			FilmGenreAkataRepository filmGenreAkataRepository,
 			FilmActorAkataRepository filmActorAkataRepository) {
 		this.filmMainAkataRepository = filmMainAkataRepository;
 		this.filmGenreAkataRepository = filmGenreAkataRepository;
 		this.filmActorAkataRepository = filmActorAkataRepository;
 	}
+
 	@Override
 	public List<FilmGenreAkata> getListFilmGenreAkata() {
 
 		//FilmGenreAkataテーブルのレコードをID順に取得する
 		return filmGenreAkataRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
+
 	@Override
 	public List<FilmActorAkata> getListFilmActorAkata() {
 
 		//FilmActorAkataテーブルのレコードをID側に取得する
-		return filmActorAkataRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
+		return filmActorAkataRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
@@ -122,6 +125,7 @@ public class FilmAkataServiceImpl implements FilmAkataService {
 			filmMainAkataRepository.delete(id);
 		}
 	}
+
 	@Override
 	public void deleteFilmComp(final ArrayList<Long> ids) {
 

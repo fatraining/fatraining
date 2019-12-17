@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.filmAkata.FilmMainAkata;
 import lombok.Data;
+
 /**
  * フィルモグラフィー登録・更新画面用のFormクラス
  *
@@ -64,7 +65,6 @@ public class FilmAkataInputForm {
 		this.setReleaseYearStr(String.valueOf(filmMainAkata.getReleaseYear()));
 		if (filmMainAkata.getRunTime() != null) {
 			this.setRunTimeStr(String.valueOf(filmMainAkata.getRunTime()));
-
 		}
 		this.setRecommend(filmMainAkata.getRecommend());
 		this.setUpdateDate(String.valueOf(filmMainAkata.getUpdateDate()));
@@ -126,7 +126,7 @@ public class FilmAkataInputForm {
 
 			//上映時間が入力されていた場合
 			filmMainAkata.setRunTime(Integer.parseInt(this.runTimeStr));
-		}else {
+		} else {
 
 			//上映時間が入力されていなかった場合
 			filmMainAkata.setRunTime(null);

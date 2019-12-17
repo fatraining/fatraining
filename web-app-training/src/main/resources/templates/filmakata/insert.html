@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|フィルモグラフィー追加</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/filmAkata.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
-		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
 				<h1 align="center" th:text="#{film.text.insert}">filmInsert</h1>
 				<a th:href="@{/filmakata}" th:text="#{common.text.back}">Back</a>
@@ -28,48 +35,47 @@
 				class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{film.text.input.title.riquire}"> Title(*):</label>
-					<input type="text" th:field="*{filmTitle}" class="form-control"
-						th:placeholder="#{film.text.title}"/>
-					<p class="err alert-danger" th:each="err : ${#fields.errors('filmTitle')}"
+						th:text="#{film.text.input.title.riquire}"> Title(*):</label> <input
+						type="text" th:field="*{filmTitle}" class="form-control"
+						th:placeholder="#{film.text.title}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('filmTitle')}"
 						th:text="#{${err}(#{film.text.title})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="genre" class="control-label"
-						th:text="#{film.text.input.genre}"> Genre:</label>
-					<select name="genreId" id="inputGenre"
-						class="form-control select">
+						th:text="#{film.text.input.genre}"> Genre:</label> <select
+						name="genreId" id="inputGenre" class="form-control select">
 						<option th:each="genre : ${filmGenreAkataList}"
-								th:value="${genre.id}"
-								th:text="${genre.genre}"
-								th:selected="${genre.id == filmAkataInputForm.genreId}">pulldown</option>
+							th:value="${genre.id}" th:text="${genre.genre}"
+							th:selected="${genre.id == filmAkataInputForm.genreId}">pulldown</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="actor" class="control-label"
-						th:text="#{film.text.input.actor}"> Actor:</label>
-					<select name="actorId" id="inputActor"
-						class="form-control">
+						th:text="#{film.text.input.actor}"> Actor:</label> <select
+						name="actorId" id="inputActor" class="form-control">
 						<option th:each="actor : ${filmActorAkataList}"
-								th:value="${actor.id}"
-								th:text="${actor.name}"
-								th:selected="${actor.id == filmAkataInputForm.actorId}">pulldown</option>
+							th:value="${actor.id}" th:text="${actor.name}"
+							th:selected="${actor.id == filmAkataInputForm.actorId}">pulldown</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="releaseYear" class="control-label"
-						th:text="#{film.text.input.releaseyear}"> ReleaseYear:</label>
-					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
-						th:placeholder="#{film.text.releaseyear}" />
-					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{film.text.input.releaseyear}"> ReleaseYear:</label> <input
+						type="text" th:field="*{releaseYearStr}" class="form-control"
+						id="inputReleaseYear" th:placeholder="#{film.text.releaseyear}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('releaseYearStr')}"
 						th:text="#{${err}(#{film.text.releaseyear})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="runTime" class="control-label"
-						th:text="#{film.text.input.runtime}"> RunTime:</label>
-					<input type="text" th:field="*{runTimeStr}" class="form-control" id="inputRunTime"
-						th:placeholder="#{film.text.runtime}" />
-					<p class="err alert-danger" th:each="err : ${#fields.errors('runTimeStr')}"
+						th:text="#{film.text.input.runtime}"> RunTime:</label> <input
+						type="text" th:field="*{runTimeStr}" class="form-control"
+						id="inputRunTime" th:placeholder="#{film.text.runtime}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('runTimeStr')}"
 						th:text="#{${err}(#{film.text.runtime})}"></p>
 				</div>
 				<div class="form-group">
@@ -80,10 +86,10 @@
 						th:placeholder="#{film.text.recommend}"></textarea>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-                    <a class="btn btn-success center-block"
-                       onclick="$('#filmAkataInputForm').submit()"
-                       th:text="#{common.text.insert}">Insert</a>
-                </div>
+					<a class="btn btn-success center-block"
+						onclick="$('#filmAkataInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
 			</form>
 		</div>
 	</div>

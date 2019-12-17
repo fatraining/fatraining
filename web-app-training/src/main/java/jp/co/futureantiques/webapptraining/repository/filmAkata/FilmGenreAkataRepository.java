@@ -9,7 +9,6 @@ import jp.co.futureantiques.webapptraining.model.filmAkata.FilmGenreAkata;
  *
  * @author future
  */
-
 public interface FilmGenreAkataRepository extends JpaRepository<FilmGenreAkata, Long> {
 
 }
