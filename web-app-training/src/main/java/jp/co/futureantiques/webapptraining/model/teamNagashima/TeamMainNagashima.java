@@ -73,5 +73,4 @@ public class TeamMainNagashima {
 	@ManyToOne(targetEntity = CoachNagashima.class)
 	@JoinColumn(name = "coach_id", referencedColumnName = "coach_id", insertable = false, updatable = false)
 	private CoachNagashima coachNagashima;
-
 }

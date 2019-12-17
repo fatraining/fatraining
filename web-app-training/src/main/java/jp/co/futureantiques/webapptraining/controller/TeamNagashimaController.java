@@ -29,7 +29,7 @@ import jp.co.futureantiques.webapptraining.service.TeamNagashimaService;
  *
  */
 @Controller
-@RequestMapping(value="/teamNagashima")
+@RequestMapping(value = "/teamNagashima")
 public class TeamNagashimaController {
 
 	/**チームのサービス*/
@@ -42,7 +42,7 @@ public class TeamNagashimaController {
 	 */
 	@Autowired
 	public TeamNagashimaController(final TeamNagashimaService teamNagashimaService) {
-		this.teamNagashimaService=teamNagashimaService;
+		this.teamNagashimaService = teamNagashimaService;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class TeamNagashimaController {
 	 * @return RegionEntityのリスト
 	 */
 	@ModelAttribute
-	public List<RegionNagashima>getListRegionNagashima(){
+	public List<RegionNagashima> getListRegionNagashima() {
 		return teamNagashimaService.getListRegionNagashima();
 	}
 
@@ -61,7 +61,7 @@ public class TeamNagashimaController {
 	 * @return CoachEntityのリスト
 	 */
 	@ModelAttribute
-	public List<CoachNagashima>getListCoachNagashima(){
+	public List<CoachNagashima> getListCoachNagashima() {
 		return teamNagashimaService.getListCoachNagashima();
 	}
 
@@ -71,7 +71,7 @@ public class TeamNagashimaController {
 	 * @param TeamNagashimaSerchForm teamNagashimaSerchForm
 	 * @return 検索画面のパス
 	 */
-	@RequestMapping(value="",method=RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchTeamNagashima(@ModelAttribute final TeamNagashimaSearchForm teamNagashimaSearchForm) {
 		return "teamNagashima/search";
 	}
@@ -84,82 +84,86 @@ public class TeamNagashimaController {
 	 * @param Pageable pageable
 	 * @return 検索画面のパス
 	 */
-	@RequestMapping(value="search",method=RequestMethod.POST)
-	public String searchTeamNagashima(final TeamNagashimaSearchForm form,final Model model,final Pageable pageable) {
+	@RequestMapping(value = "search", method = RequestMethod.POST)
+	public String searchTeamNagashima(final TeamNagashimaSearchForm form, final Model model, final Pageable pageable) {
 		//入力された検索条件を元にレコードを取得する
-		final Page<TeamMainNagashima>teamNagashimaList=teamNagashimaService.getPageTeamNagashima(form,pageable);
-		if(teamNagashimaList.getTotalElements()!=0) {
-		//検索結果がある場合、Modelに結果をセットする
-		model.addAttribute("page",teamNagashimaList);
-		model.addAttribute("teamNagashimaList",teamNagashimaList.getContent());
-		model.addAttribute("url","search");
+		final Page<TeamMainNagashima> teamNagashimaList = teamNagashimaService.getPageTeamNagashima(form, pageable);
+		if (teamNagashimaList.getTotalElements() != 0) {
+			//検索結果がある場合、Modelに結果をセットする
+			model.addAttribute("page", teamNagashimaList);
+			model.addAttribute("teamNagashimaList", teamNagashimaList.getContent());
+			model.addAttribute("url", "search");
 		}
-	return "teamNagashima/search";
-}
-
-/**
- * 追加画面に推移する
- *
- * @param TeamNagashimaInputForm teamNagashimaInputForm
- * @return 追加画面のパス
- */
-	@RequestMapping(value="insert",method=RequestMethod.GET)
-	public String showInsertTeamNagashima(@ModelAttribute final TeamNagashimaInputForm teamNagashimaInputForm) {
-			return "teamNagashima/insert";
+		return "teamNagashima/search";
 	}
-@RequestMapping(value="insert",method=RequestMethod.POST)
-public String insertTeam(@ModelAttribute @Validated final TeamNagashimaInputForm form,BindingResult bindingResult) {
-	if(bindingResult.hasFieldErrors()){
 
-		//入力エラーがある場合自画面に戻る
+	/**
+	 * 追加画面に推移する
+	 *
+	 * @param TeamNagashimaInputForm teamNagashimaInputForm
+	 * @return 追加画面のパス
+	 */
+	@RequestMapping(value = "insert", method = RequestMethod.GET)
+	public String showInsertTeamNagashima(@ModelAttribute final TeamNagashimaInputForm teamNagashimaInputForm) {
 		return "teamNagashima/insert";
 	}
-	//データを登録する
-	final TeamMainNagashima teamMainNagashima=teamNagashimaService.insertTeamNagashima(form);
-	return "redirect:/teamNagashima?result=insert&id="+teamMainNagashima.getId();
-}
 
-/**
- * 更新画面に遷移する
- *
- * @param long id
- * @palam TeamNagashimaInputForm teamNagashimaInputForm
- * @return 更新画面のパス
- */
-@RequestMapping(value="update",method=RequestMethod.GET)
-public String showUpdateTeamNagashima(@RequestParam(name="id")final long id,@ModelAttribute final TeamNagashimaInputForm teamNagashimaInputForm) {
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	public String insertTeam(@ModelAttribute @Validated final TeamNagashimaInputForm form,
+			BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
 
-	//IDをキーにTeamMainテーブルを検索する
-	TeamMainNagashima teamMainNagashima=teamNagashimaService.getTeamNagashima(id);
+			//入力エラーがある場合自画面に戻る
+			return "teamNagashima/insert";
+		}
 
-	//フォームにレコードの値をセットする
-	teamNagashimaInputForm.initWithTeamMainNagashima(teamMainNagashima);
-	return "teamNagashima/update";
-}
+		//データを登録する
+		final TeamMainNagashima teamMainNagashima = teamNagashimaService.insertTeamNagashima(form);
+		return "redirect:/teamNagashima?result=insert&id=" + teamMainNagashima.getId();
+	}
 
-/**
- * TeamMainテーブルのデータを更新して検索画面に遷移する
- *
- * @param TeamNagashimaInputForm form
- * @param BindingResult bindingResult
- * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
- */
-@RequestMapping(value="update",method=RequestMethod.POST)
-public String updateTeam(@Validated final TeamNagashimaInputForm form,final BindingResult bindingResult) {
-	if(bindingResult.hasFieldErrors()) {
+	/**
+	 * 更新画面に遷移する
+	 *
+	 * @param long id
+	 * @palam TeamNagashimaInputForm teamNagashimaInputForm
+	 * @return 更新画面のパス
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String showUpdateTeamNagashima(@RequestParam(name = "id") final long id,
+			@ModelAttribute final TeamNagashimaInputForm teamNagashimaInputForm) {
 
-		//入力エラーがある場合自画面に戻る
+		//IDをキーにTeamMainテーブルを検索する
+		TeamMainNagashima teamMainNagashima = teamNagashimaService.getTeamNagashima(id);
+
+		//フォームにレコードの値をセットする
+		teamNagashimaInputForm.initWithTeamMainNagashima(teamMainNagashima);
 		return "teamNagashima/update";
 	}
 
-	//データを更新する
-	TeamMainNagashima teamMainNagashima=teamNagashimaService.updateTeamNagashima(form);
-	if(teamMainNagashima==null) {
+	/**
+	 * TeamMainテーブルのデータを更新して検索画面に遷移する
+	 *
+	 * @param TeamNagashimaInputForm form
+	 * @param BindingResult bindingResult
+	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateTeam(@Validated final TeamNagashimaInputForm form, final BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
 
-		//更新が失敗した場合、検索画面にメッセージを表示する
-		return "redirect:/teamNagashima?result=updatefailed";
-	}
-		return "redirect:/teamNagashima?result=uppdatefaild="+teamMainNagashima.getId();
+			//入力エラーがある場合自画面に戻る
+			return "teamNagashima/update";
+		}
+
+		//データを更新する
+		TeamMainNagashima teamMainNagashima = teamNagashimaService.updateTeamNagashima(form);
+		if (teamMainNagashima == null) {
+
+			//更新が失敗した場合、検索画面にメッセージを表示する
+			return "redirect:/teamNagashima?result=updatefailed";
+		}
+		return "redirect:/teamNagashima?result=uppdatefaild=" + teamMainNagashima.getId();
 	}
 
 	/**
@@ -168,13 +172,12 @@ public String updateTeam(@Validated final TeamNagashimaInputForm form,final Bind
 	 * @param long id
 	 * @return 検索画面のパス
 	 */
-	@RequestMapping(value="delete",method=RequestMethod.GET)
-	public String deleteteamNagashima(@RequestParam(name="id")final long id) {
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteteamNagashima(@RequestParam(name = "id") final long id) {
 
 		//IDをキーにレコードを論理削除する
 		teamNagashimaService.deleteTeamNagashimaById(id);
-		return "redirect:/teamNagashima?result=delete&id="+id;
-
+		return "redirect:/teamNagashima?result=delete&id=" + id;
 	}
 
 	/**
@@ -184,11 +187,12 @@ public String updateTeam(@Validated final TeamNagashimaInputForm form,final Bind
 	 * @param Model model
 	 * @return 完全削除画面のパス
 	 */
-	@RequestMapping(value="deletecomp",method=RequestMethod.GET)
-	public String showdeleteCompTeam(final TeamNagashimaSearchForm form,@ModelAttribute final TeamNagashimaDeleteForm teamNagashimaDeleteForm,final Model model) {
+	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
+	public String showdeleteCompTeam(final TeamNagashimaSearchForm form,
+			@ModelAttribute final TeamNagashimaDeleteForm teamNagashimaDeleteForm, final Model model) {
 
 		//TeamMainテーブルから削除フラグが１のレコードを検索する
-		final List<TeamMainNagashima>teamList=teamNagashimaService.getListTeamNagashima(form);
+		final List<TeamMainNagashima> teamList = teamNagashimaService.getListTeamNagashima(form);
 
 		//Modelに検索結果を格納する
 		model.addAttribute(teamList);
@@ -203,14 +207,16 @@ public String updateTeam(@Validated final TeamNagashimaInputForm form,final Bind
 	 * @param Model model
 	 * @return　入力エラーがある場合完全削除画面、ない場合検索画面のパス
 	 */
-	@RequestMapping(value="deletecomp",method=RequestMethod.POST)
-	public String deleteCompTeam(@Validated final TeamNagashimaDeleteForm form,final BindingResult bindingResult,final Model model) {
-		if(bindingResult.hasFieldErrors()) {
+	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
+	public String deleteCompTeam(@Validated final TeamNagashimaDeleteForm form, final BindingResult bindingResult,
+			final Model model) {
+		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合、再検索して自画面に戻る
-			TeamNagashimaSearchForm teamNagashimaForm=new TeamNagashimaSearchForm();
+			TeamNagashimaSearchForm teamNagashimaForm = new TeamNagashimaSearchForm();
 			teamNagashimaForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<TeamMainNagashima>teamNagashimaList=teamNagashimaService.getListTeamNagashima(teamNagashimaForm);
+			final List<TeamMainNagashima> teamNagashimaList = teamNagashimaService
+					.getListTeamNagashima(teamNagashimaForm);
 
 			//Modelにデータを格納する
 			model.addAttribute(teamNagashimaList);
@@ -218,9 +224,7 @@ public String updateTeam(@Validated final TeamNagashimaInputForm form,final Bind
 		}
 
 		//データを完全に削除する
-	teamNagashimaService.deleteTeamNagashimaComp(form.getDeleteIds());
-	return "redirect:/teamNagashima?result=deletecomp";
-
+		teamNagashimaService.deleteTeamNagashimaComp(form.getDeleteIds());
+		return "redirect:/teamNagashima?result=deletecomp";
 	}
 }
-

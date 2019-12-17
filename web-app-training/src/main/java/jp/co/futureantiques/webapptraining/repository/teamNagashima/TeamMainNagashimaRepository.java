@@ -16,7 +16,8 @@ import jp.co.futureantiques.webapptraining.model.teamNagashima.TeamMainNagashima
  *
  *
  */
-public interface TeamMainNagashimaRepository extends JpaRepository<TeamMainNagashima,Long>,JpaSpecificationExecutor<TeamMainNagashima>{
+public interface TeamMainNagashimaRepository
+		extends JpaRepository<TeamMainNagashima, Long>, JpaSpecificationExecutor<TeamMainNagashima> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする
@@ -26,7 +27,7 @@ public interface TeamMainNagashimaRepository extends JpaRepository<TeamMainNagas
 	@Transactional
 	@Modifying
 	@Query("UPDATE TeamMainNagashima SET delFlg=1 WHERE id=:id")
-	void delete(@Param("id")final long id);
+	void delete(@Param("id") final long id);
 
 	/**
 	 * 対象のレコードを削除する
@@ -36,7 +37,5 @@ public interface TeamMainNagashimaRepository extends JpaRepository<TeamMainNagas
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM TeamMainNagashima WHERE id IN(:ids)")
-	void deleteComp(@Param("ids")final ArrayList<Long>ids);
-
-
+	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 }

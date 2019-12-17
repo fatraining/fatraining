@@ -32,7 +32,7 @@
 					<input type="text" th:field="*{name}" class="form-control"
 						th:placeholder="#{team.text.name}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('name')}"
-						th:text="#{${err}(#{team.text.title})}"></p>
+						th:text="#{${err}(#{team.text.name})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="region" class="control-label"

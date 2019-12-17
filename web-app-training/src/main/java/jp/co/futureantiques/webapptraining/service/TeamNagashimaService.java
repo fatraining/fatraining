@@ -85,5 +85,4 @@ public interface TeamNagashimaService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteTeamNagashimaComp(final ArrayList<Long> ids);
-
 }

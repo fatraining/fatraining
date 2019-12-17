@@ -19,60 +19,60 @@ import jp.co.futureantiques.webapptraining.model.teamNagashima.TeamMainNagashima
  *
  */
 public class TeamNagashimaSpecification {
-/**
- * 検索条件生成の実装
- *
- * @param TeamNagashimaSearchForm form
- * @return TeamMainのSpecification
- */
-	public static Specification<TeamMainNagashima> generateTeamNagashmaSpecification(final TeamNagashimaSearchForm form){
+
+	/**
+	 * 検索条件生成の実装
+	 *
+	 * @param TeamNagashimaSearchForm form
+	 * @return TeamMainのSpecification
+	 */
+	public static Specification<TeamMainNagashima> generateTeamNagashmaSpecification(
+			final TeamNagashimaSearchForm form) {
 		return new Specification<TeamMainNagashima>() {
 			@Override
-			public Predicate toPredicate(Root<TeamMainNagashima>root, CriteriaQuery<?>query,CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<TeamMainNagashima> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				//検索条件
-				Predicate condition=null;
+				Predicate condition = null;
 
 				//削除フラグON用が1かどうか判定
-				if(form.getIsDelete()==1) {
+				if (form.getIsDelete() == 1) {
 
 					//削除フラグ=1を検索条件にする
-					return cb.equal(root.get("delFlg"),CommonConst.DELETE_FLG_ON);
-
+					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
 				}
 				//条件が入力されている場合条件追加
-				if(form.getId()!=null) {
+				if (form.getId() != null) {
 
 					//IDを条件に追加
-					Predicate newCondition=cb.equal(root.get("id"),form.getId());
-					condition=getPredicate(cb,condition,newCondition);
-
+					Predicate newCondition = cb.equal(root.get("id"), form.getId());
+					condition = getPredicate(cb, condition, newCondition);
 				}
-				if(!StringUtils.isEmpty(form.getName())) {
+				if (!StringUtils.isEmpty(form.getName())) {
 
 					//チーム名を条件に追加
 					form.setName(form.getName().trim());
-					Predicate newCondition=cb.like(root.get("name"),"%"+form.getName()+"%");
-					condition=getPredicate(cb,condition,newCondition);
+					Predicate newCondition = cb.like(root.get("name"), "%" + form.getName() + "%");
+					condition = getPredicate(cb, condition, newCondition);
 				}
-				if(form.getRegionId()!=null&&form.getRegionId()!=0) {
+				if (form.getRegionId() != null && form.getRegionId() != 0) {
 
 					//地域を条件に追加
-					Predicate newCondition=cb.equal(root.get("regionId"),form.getRegionId());
-					condition=getPredicate(cb,condition,newCondition);
+					Predicate newCondition = cb.equal(root.get("regionId"), form.getRegionId());
+					condition = getPredicate(cb, condition, newCondition);
 				}
-				if(form.getCoachId()!=null&&form.getCoachId()!=0) {
+				if (form.getCoachId() != null && form.getCoachId() != 0) {
 
 					//監督国籍を条件に追加
-					Predicate newCondition=cb.equal(root.get("coachId"),form.getCoachId());
-					condition=getPredicate(cb,condition,newCondition);
-
+					Predicate newCondition = cb.equal(root.get("coachId"), form.getCoachId());
+					condition = getPredicate(cb, condition, newCondition);
 				}
+
 				//削除フラグを条件に追加
-				Predicate newCondition=cb.equal(root.get("delFlg"),CommonConst.DELETE_FLG_OFF);
-				condition=getPredicate(cb,condition,newCondition);
+				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
+				condition = getPredicate(cb, condition, newCondition);
 				return condition;
-}
+			}
 
 			/**
 			 * 検索条件を統合する
@@ -82,27 +82,18 @@ public class TeamNagashimaSpecification {
 			 * @param newCondition
 			 * @return Predicate
 			 */
-			private Predicate getPredicate(CriteriaBuilder cb,Predicate condition, @NotNull Predicate newCondition) {
-if(condition!=null) {
+			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
+				if (condition != null) {
 
-	//すでに条件がある場合ANDで結合する
-	condition=cb.and(condition,newCondition);
+					//すでに条件がある場合ANDで結合する
+					condition = cb.and(condition, newCondition);
+				} else {
 
-}else {
-
-	//条件がまだない場合先頭の条件になる
-	condition=newCondition;
-}
-return condition;
+					//条件がまだない場合先頭の条件になる
+					condition = newCondition;
+				}
+				return condition;
 			}
-
-
-};
+		};
 	}
-
-
 }
-
-
-
-

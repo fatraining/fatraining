@@ -2,14 +2,15 @@ package jp.co.futureantiques.webapptraining.model.form.teamNagashima;
 
 import jp.co.futureantiques.webapptraining.model.teamNagashima.TeamMainNagashima;
 import lombok.Data;
+
 /**
  * チーム検索画面のFormクラス
  * @author future
  *
  */
- @Data
-public class TeamNagashimaSearchForm{
-	 /**ID*/
+@Data
+public class TeamNagashimaSearchForm {
+	/**ID*/
 	private Integer id;
 
 	/**チーム名*/
@@ -31,15 +32,11 @@ public class TeamNagashimaSearchForm{
 	 * 各フィールドに値を設定する
 	 * @param teamMainNagashima
 	 */
-
-
 	public void setValues(TeamMainNagashima teamMainNagashima) {
-		this.setId((int)teamMainNagashima.getId());
+		this.setId((int) teamMainNagashima.getId());
 		this.setName(teamMainNagashima.getName());
 		this.setRegionId(teamMainNagashima.getRegionId());
 		this.setCoachId(teamMainNagashima.getCoachId());
 		this.setTitles(teamMainNagashima.getTitles());
-
-
 	}
 }

@@ -4,8 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import jp.co.futureantiques.webapptraining.model.teamNagashima.CoachNagashima;
 
-public interface CoachNagashimaRepository extends JpaRepository<CoachNagashima,Long>{
-
+public interface CoachNagashimaRepository extends JpaRepository<CoachNagashima, Long> {
 
 	/**
 	 * Coachリポジトリのインターフェース

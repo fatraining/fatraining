@@ -48,5 +48,4 @@ public class RegionNagashima {
 	@OneToMany(targetEntity = TeamMainNagashima.class, mappedBy = "regionNagashima")
 	@JoinColumn(name = "region_id", referencedColumnName = "region_id")
 	private List<TeamMainNagashima> teamMainNagashimaList;
-
 }

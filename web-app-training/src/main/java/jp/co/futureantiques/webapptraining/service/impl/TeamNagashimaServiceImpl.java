@@ -50,50 +50,50 @@ public class TeamNagashimaServiceImpl implements TeamNagashimaService {
 		this.teamMainNagashimaRepository = teamMainNagashimaRepository;
 		this.regionNagashimaRepository = regionNagashimaRepository;
 		this.coachNagashimaRepository = coachNagashimaRepository;
-
 	}
-
 	@Override
 	public List<RegionNagashima> getListRegionNagashima() {
+
 		// RegionNagashimaテーブルのレコードをID順に取得する
 		return regionNagashimaRepository.findAll(new Sort(Sort.Direction.ASC, "regionId"));
 	}
-
 	@Override
 	public List<CoachNagashima> getListCoachNagashima() {
+
 		// CoachNagashimaテーブルのレコードをID順に取得する
 		return coachNagashimaRepository.findAll(new Sort(Sort.Direction.ASC, "coachId"));
 	}
-
 	@Override
-	public Page<TeamMainNagashima> getPageTeamNagashima(final TeamNagashimaSearchForm form, final Pageable pageable) {
+	public Page<TeamMainNagashima> getPageTeamNagashima
+	(final TeamNagashimaSearchForm form, final Pageable pageable) {
+
 		// 検索条件を生成しTeamMainNagashimaテーブルのレコードを取得する
 		return teamMainNagashimaRepository.findAll(TeamNagashimaSpecification.generateTeamNagashmaSpecification(form),
 				pageable);
 	}
-
 	@Override
 	public List<TeamMainNagashima> getListTeamNagashima(final TeamNagashimaSearchForm form) {
+
 		// 検索条件を生成しTeamMainNagashimaテーブルのレコードを取得する
 		return teamMainNagashimaRepository.findAll(TeamNagashimaSpecification.generateTeamNagashmaSpecification(form));
 	}
 
 	@Override
 	public TeamMainNagashima getTeamNagashima(final long id) {
+
 		// TeamMainNagashimaテーブルを主キー検索する
 		return teamMainNagashimaRepository.findOne(id);
 	}
-
 	@Override
 	public TeamMainNagashima insertTeamNagashima(final TeamNagashimaInputForm form) {
+
 		// TeamMainNagashimaテーブルに新規データを登録する
 		final TeamMainNagashima teamMainNagashima = form.convertToTeamMainNagashimaForInsert();
 		return teamMainNagashimaRepository.save(teamMainNagashima);
-
 	}
-
 	@Override
 	public TeamMainNagashima updateTeamNagashima(final TeamNagashimaInputForm form) {
+
 		// 更新対象のレコードを取得する
 		TeamMainNagashima teamMainNagashima = teamMainNagashimaRepository.findOne((long) form.getId());
 		if (teamMainNagashima != null) {
@@ -104,12 +104,10 @@ public class TeamNagashimaServiceImpl implements TeamNagashimaService {
 				//チェックOKの場合、更新
 				teamMainNagashima = form.convertToTeamMainNagashimaForUpdate(teamMainNagashima);
 				return teamMainNagashimaRepository.saveAndFlush(teamMainNagashima);
-
 			}
 		}
 		return null;
 	}
-
 	@Override
 	public void deleteTeamNagashimaById(final long id) {
 
@@ -121,11 +119,10 @@ public class TeamNagashimaServiceImpl implements TeamNagashimaService {
 			teamMainNagashimaRepository.delete(id);
 		}
 	}
-
 	@Override
 	public void deleteTeamNagashimaComp(final ArrayList<Long> ids) {
+
 		// 対象のレコードを削除する
 		teamMainNagashimaRepository.deleteComp(ids);
 	}
-
 }

@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.model.teamNagashima;
 
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,11 +24,11 @@ public class CoachNagashima {
 	/**監督国籍ID*/
 	@Id
 	@GeneratedValue
-	@Column(name="coach_id")
+	@Column(name = "coach_id")
 	private int coachId;
 
 	/**国籍*/
-	@Column(name="country")
+	@Column(name = "country")
 	private String country;
 
 	/**削除フラグ*/
@@ -46,9 +45,7 @@ public class CoachNagashima {
 
 	/**外部キー設定：監督国籍ID*/
 	@Transient
-	@OneToMany(targetEntity=TeamMainNagashima.class,mappedBy="coachNagashima")
-	@JoinColumn(name="coach_id",referencedColumnName="coach_id")
-	private List<TeamMainNagashima>teamMainNagashimaList;
-
-
+	@OneToMany(targetEntity = TeamMainNagashima.class, mappedBy = "coachNagashima")
+	@JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
+	private List<TeamMainNagashima> teamMainNagashimaList;
 }
