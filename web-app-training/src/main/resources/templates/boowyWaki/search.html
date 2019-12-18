@@ -18,7 +18,8 @@
 		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
 		<h1 align="center" th:text="#{boowy.text.search}">BoowySongSearch</h1>
 	</div>
-	<!-- LoginControllerでusernameをsessionに格納してる -->
+	<!-- LoginControllerに以下記載 -->
+	<!-- session.setAttribute("user", loginForm.getUsername()); -->
 	<div class="user">
 		<span th:text="#{boowy.text.hello.user(${session.user})}">登録ユーザーIDさん</span>
 	</div>
