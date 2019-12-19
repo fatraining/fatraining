@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,6 +31,7 @@ public class TeamMainNagashima {
 
 	/**チーム名*/
 	@Column(name = "name")
+	@Size(max=50)
 	private String name;
 
 	/**地域ID*/
@@ -50,6 +52,7 @@ public class TeamMainNagashima {
 
 	/**今注目の選手*/
 	@Column(name = "player")
+	@Size(max=50)
 	private String player;
 
 	/**削除フラグ*/

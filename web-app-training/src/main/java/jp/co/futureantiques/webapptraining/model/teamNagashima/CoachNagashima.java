@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -29,6 +30,7 @@ public class CoachNagashima {
 
 	/**国籍*/
 	@Column(name = "country")
+	@Size(max=50)
 	private String country;
 
 	/**削除フラグ*/

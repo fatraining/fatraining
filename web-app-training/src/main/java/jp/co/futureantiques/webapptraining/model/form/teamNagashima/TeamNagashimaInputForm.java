@@ -29,11 +29,12 @@ public class TeamNagashimaInputForm {
 	private Integer coachId;
 
 	/**設立年*/
-	private Integer foundedYear;
+	@Size(max=4,message="common.text.error.size.max.four")
+	private String foundedYearStr;
 
 	/**タイトル数*/
-
-	private Integer titles;
+    @Size(max=2,message="common.text.error.size.max.two")
+	private String titlesStr;
 
 	/**今注目の選手*/
 	@Size(max = 50)
@@ -51,8 +52,8 @@ public class TeamNagashimaInputForm {
 		this.setName(teamMainNagashima.getName());
 		this.setRegionId(teamMainNagashima.getRegionId());
 		this.setCoachId(teamMainNagashima.getCoachId());
-		this.setFoundedYear(teamMainNagashima.getFoundedYear());
-		this.setTitles(teamMainNagashima.getTitles());
+		this.setFoundedYearStr(String.valueOf(teamMainNagashima.getFoundedYear()));
+		this.setTitlesStr(String.valueOf(teamMainNagashima.getTitles()));
 		this.setPlayer(teamMainNagashima.getPlayer());
 		this.setUpdateDate(String.valueOf(teamMainNagashima.getUpdateDate()));
 	}
@@ -97,8 +98,8 @@ public class TeamNagashimaInputForm {
 		} else {
 			teamMainNagashima.setCoachId(this.coachId);
 		}
-		teamMainNagashima.setFoundedYear(this.foundedYear);
-		teamMainNagashima.setTitles(this.titles);
+		teamMainNagashima.setFoundedYear(Integer.parseInt(this.foundedYearStr));
+		teamMainNagashima.setTitles(Integer.parseInt(this.titlesStr));
 		teamMainNagashima.setPlayer(this.player);
 		teamMainNagashima.setDelFlg("0");
 		return teamMainNagashima;

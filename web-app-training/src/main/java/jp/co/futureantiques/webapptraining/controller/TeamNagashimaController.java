@@ -149,7 +149,7 @@ public class TeamNagashimaController {
 	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateTeam(@Validated final TeamNagashimaInputForm form, final BindingResult bindingResult) {
+	public String updateTeamNagashima(@Validated final TeamNagashimaInputForm form, final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
 			//入力エラーがある場合自画面に戻る
@@ -163,7 +163,7 @@ public class TeamNagashimaController {
 			//更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/teamNagashima?result=updatefailed";
 		}
-		return "redirect:/teamNagashima?result=uppdatefaild=" + teamMainNagashima.getId();
+		return "redirect:/teamNagashima?result=update&id=" + teamMainNagashima.getId();
 	}
 
 	/**
