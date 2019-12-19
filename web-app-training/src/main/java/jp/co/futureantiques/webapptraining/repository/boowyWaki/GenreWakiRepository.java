@@ -8,8 +8,7 @@ import jp.co.futureantiques.webapptraining.model.boowyWaki.GenreWaki;
  * GenreWakiリポジトリのインターフェース
  *
  * @author WAKI
- *
  */
-public interface GenreWakiRepository extends JpaRepository<GenreWaki, Long>{
+public interface GenreWakiRepository extends JpaRepository<GenreWaki, Long> {
 
 }

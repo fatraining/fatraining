@@ -22,12 +22,14 @@ import jp.co.futureantiques.webapptraining.service.BoowyWakiService;
 
 /**
  * BoowyWakiのサービス実装クラス
- * リポジトリの上位
- * @author WAKI
  *
+ * リポジトリの上位
+ *
+ * @author WAKI
  */
 @Service
-public class BoowyWakiServiceImpl implements BoowyWakiService{
+public class BoowyWakiServiceImpl implements BoowyWakiService {
+
 	/** BoowyMainリポジトリ */
 	private final BoowyMainWakiRepository boowyMainWakiRepository;
 
@@ -45,25 +47,25 @@ public class BoowyWakiServiceImpl implements BoowyWakiService{
 	 * @param SongwriterWakiRepository songwriterWakiRepository
 	 */
 	@Autowired
-	public BoowyWakiServiceImpl(BoowyMainWakiRepository boowyMainWakiRepository, GenreWakiRepository genreWakiRepository,
-			SongwriterWakiRepository songwriterWakiRepository) {
+	public BoowyWakiServiceImpl(BoowyMainWakiRepository boowyMainWakiRepository,
+			GenreWakiRepository genreWakiRepository, SongwriterWakiRepository songwriterWakiRepository) {
 		this.boowyMainWakiRepository = boowyMainWakiRepository;
 		this.genreWakiRepository = genreWakiRepository;
 		this.songwriterWakiRepository = songwriterWakiRepository;
 	}
 
 	@Override
-	public List<GenreWaki> getListGenreWaki(){
+	public List<GenreWaki> getListGenreWaki() {
 
 		//GenreテーブルのレコードをID順に取得する
-		return genreWakiRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
+		return genreWakiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public List<SongwriterWaki> getListSongwriterWaki(){
+	public List<SongwriterWaki> getListSongwriterWaki() {
 
 		//SongwriterテーブルのレコードをID順に取得する
-		return songwriterWakiRepository.findAll(new Sort(Sort.Direction.ASC,"id"));
+		return songwriterWakiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
@@ -74,7 +76,7 @@ public class BoowyWakiServiceImpl implements BoowyWakiService{
 	}
 
 	@Override
-	public List<BoowyMainWaki> getListBoowyMainWaki(final BoowyWakiSearchForm form){
+	public List<BoowyMainWaki> getListBoowyMainWaki(final BoowyWakiSearchForm form) {
 
 		//検索条件を生成しBoowyMainWakiテーブルのレコードを取得
 		return boowyMainWakiRepository.findAll(BoowyWakiSpecification.generateBoowyWakiSpecification(form));
@@ -114,11 +116,11 @@ public class BoowyWakiServiceImpl implements BoowyWakiService{
 	}
 
 	@Override
-	public void deleteBoowyMainWakiById(final  long id) {
+	public void deleteBoowyMainWakiById(final long id) {
 
 		//更新対象のレコードを取得する
 		BoowyMainWaki boowyMainWaki = boowyMainWakiRepository.findOne(id);
-		if(boowyMainWaki != null) {
+		if (boowyMainWaki != null) {
 
 			//更新対象のレコードが存在する場合、削除フラグを1にする
 			boowyMainWakiRepository.delete(id);

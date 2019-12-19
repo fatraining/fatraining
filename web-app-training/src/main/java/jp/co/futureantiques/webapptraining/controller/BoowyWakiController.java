@@ -87,7 +87,6 @@ public class BoowyWakiController {
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchBoowy(final BoowyWakiSearchForm form, final Model model, final Pageable pageable) {
 
-
 		// 入力された検索条件を元にレコードを取得する
 		final Page<BoowyMainWaki> boowyList = boowyWakiService.getPageBoowyMainWaki(form, pageable);
 		if (boowyList.getTotalElements() != 0) {
@@ -99,6 +98,7 @@ public class BoowyWakiController {
 		}
 		return "boowywaki/search";
 	}
+
 	/**
 	 * 追加画面に遷移する
 	 *
@@ -130,6 +130,7 @@ public class BoowyWakiController {
 		final BoowyMainWaki boowyMainWaki = boowyWakiService.insertBoowyMainWaki(form);
 		return "redirect:/boowywaki?result=insert&id=" + boowyMainWaki.getId();
 	}
+
 	/**
 	 * 更新画面に遷移する
 	 *
@@ -174,6 +175,7 @@ public class BoowyWakiController {
 		}
 		return "redirect:/boowywaki?result=update&id=" + boowyMainWaki.getId();
 	}
+
 	/**
 	 * BoowyMainWakiテーブルのレコードを論理削除して検索画面に遷移する
 	 *
@@ -187,6 +189,7 @@ public class BoowyWakiController {
 		boowyWakiService.deleteBoowyMainWakiById(id);
 		return "redirect:/boowywaki?result=delete&id" + id;
 	}
+
 	/**
 	 * 完全削除画面に遷移する
 	 *
@@ -231,7 +234,7 @@ public class BoowyWakiController {
 		}
 
 		// データを完全削除する
-				boowyWakiService.deleteBoowyMainWakiComp(form.getDeleteIds());
-				return "redirect:/boowywaki?result=deletecomp";
+		boowyWakiService.deleteBoowyMainWakiComp(form.getDeleteIds());
+		return "redirect:/boowywaki?result=deletecomp";
 	}
 }

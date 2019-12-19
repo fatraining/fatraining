@@ -8,7 +8,6 @@ import jp.co.futureantiques.webapptraining.model.boowyWaki.SongwriterWaki;
  * SongwriterWakiリポジトリのインターフェース
  *
  * @author WAKI
- *
  */
 public interface SongwriterWakiRepository extends JpaRepository<SongwriterWaki, Long> {
 

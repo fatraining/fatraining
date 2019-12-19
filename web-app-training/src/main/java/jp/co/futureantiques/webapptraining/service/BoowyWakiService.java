@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,7 @@ import jp.co.futureantiques.webapptraining.model.form.boowyWaki.BoowyWakiSearchF
  * @author WAKI
  */
 public interface BoowyWakiService {
+
 	/**
 	 * ジャンルエンティティのリストを取得する
 	 *
@@ -33,13 +33,12 @@ public interface BoowyWakiService {
 	 */
 	List<SongwriterWaki> getListSongwriterWaki();
 
-
 	/**
 	 * 検索条件を元にBoowyMainWakiのレコードのリストを取得する(Paging)
 	 *
 	 * @param BoowyWakiSearchForm form
 	 * @param Pageable pageable
-	 * @param BoowyMainWakiのリスト
+	 * @return BoowyMainWakiのリスト
 	 */
 	Page<BoowyMainWaki> getPageBoowyMainWaki(final BoowyWakiSearchForm form, final Pageable pageable);
 
