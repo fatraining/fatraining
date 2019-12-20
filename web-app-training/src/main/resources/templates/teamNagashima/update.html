@@ -79,6 +79,8 @@
 					<textarea th:field="*{player}" cols="" rows=""
 						class="form-control" id="inputPlayer"
 						th:placeholder="#{team.text.player}"></textarea>
+						<p class="err alert-danger" th:each="err : ${#fields.errors('player')}"
+						th:text="#{${err}(#{team.text.player})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"

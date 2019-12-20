@@ -3,6 +3,7 @@ package jp.co.futureantiques.webapptraining.model.form.teamNagashima;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,7 +20,7 @@ public class TeamNagashimaInputForm {
 
 	/**チーム名*/
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 50)
+	@Size(max = 50,message="common.text.error.size.max.fifty")
 	private String name;
 
 	/**地域ID*/
@@ -30,14 +31,16 @@ public class TeamNagashimaInputForm {
 
 	/**設立年*/
 	@Size(max=4,message="common.text.error.size.max.four")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String foundedYearStr;
 
 	/**タイトル数*/
     @Size(max=2,message="common.text.error.size.max.two")
+    @Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String titlesStr;
 
 	/**今注目の選手*/
-	@Size(max = 50)
+	@Size(max = 50,message="common.text.error.size.max.fifty")
 	private String player;
 
 	/**更新日時（排他制御用）*/
@@ -52,8 +55,10 @@ public class TeamNagashimaInputForm {
 		this.setName(teamMainNagashima.getName());
 		this.setRegionId(teamMainNagashima.getRegionId());
 		this.setCoachId(teamMainNagashima.getCoachId());
-		this.setFoundedYearStr(String.valueOf(teamMainNagashima.getFoundedYear()));
-		this.setTitlesStr(String.valueOf(teamMainNagashima.getTitles()));
+		if(teamMainNagashima.getFoundedYear()!=null) {
+		this.setFoundedYearStr(String.valueOf(teamMainNagashima.getFoundedYear()));}
+		if(teamMainNagashima.getTitles()!=null) {
+		this.setTitlesStr(String.valueOf(teamMainNagashima.getTitles()));}
 		this.setPlayer(teamMainNagashima.getPlayer());
 		this.setUpdateDate(String.valueOf(teamMainNagashima.getUpdateDate()));
 	}
@@ -98,8 +103,16 @@ public class TeamNagashimaInputForm {
 		} else {
 			teamMainNagashima.setCoachId(this.coachId);
 		}
+		if(!this.foundedYearStr.isEmpty()) {
 		teamMainNagashima.setFoundedYear(Integer.parseInt(this.foundedYearStr));
+		}else {
+			teamMainNagashima.setFoundedYear(null);
+		}
+		if(!this.titlesStr.isEmpty()) {
 		teamMainNagashima.setTitles(Integer.parseInt(this.titlesStr));
+		}else {
+			teamMainNagashima.setTitles(null);
+		}
 		teamMainNagashima.setPlayer(this.player);
 		teamMainNagashima.setDelFlg("0");
 		return teamMainNagashima;
