@@ -21,6 +21,27 @@ div.font-color{
 	color:#0066CC;
 }
 
+div.searchclear {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+@media screen { #filename { display: none; } }
+
+div.browse_btn {
+background-color: #d3d3d3;
+padding: 6px;
+border-radius: 8px;
+font-weight: bold;
+}
+
 div.container {
 	max-width: 95%;
 	width: 95%;

@@ -2,7 +2,10 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,9 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
-import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinInputForm;
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinSearchForm;
@@ -93,13 +96,13 @@ public class PenguinKawamuraController {
 		return "penguinKawamura/insert";
 	}
 
-//	//これらはわざわざDIしないといけない
-//	@Autowired
-//	ResourceLoader resourceLoader;
-//	@Autowired
-//	ServletContext context;
-//	@Autowired
-//	WebApplicationContext wac;
+	//これらはわざわざDIしないといけない
+	@Autowired
+	ResourceLoader resourceLoader;
+	@Autowired
+	ServletContext context;
+	@Autowired
+	WebApplicationContext wac;
 
 	/**
 	 * penguin_main_kawamuraテーブルにデータを登録して検索画面に遷移する
@@ -113,20 +116,20 @@ public class PenguinKawamuraController {
 			@ModelAttribute @Validated final PenguinInputForm form,
 			final BindingResult bindingResult, Model model, MultipartFile image) {
 
-		if(bindingResult.hasFieldErrors()) {
+		if(bindingResult.hasErrors()) {
 
 			//入力エラーがある場合、戻る
 			return "penguinKawamura/insert";
 		}
 
-		/*画像ファイルが1MB以上の場合、自画面に戻る
-		 * ※MultiPartConfigureコミットしていないので動かないです
-		 */
-		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
-
-			//入力エラーがある場合、戻る
-			return "penguinKawamura/insert";
-		}
+//		/*画像ファイルが1MB以上の場合、自画面に戻る
+//		 * ※MultiPartConfigureコミットしていないので動かないです
+//		 */
+//		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
+//
+//			//入力エラーがある場合、戻る
+//			return "penguinKawamura/insert";
+//		}
 
 		//データを登録する
 		final PenguinMainKawamura penguinMainKawamura = penguinKawamuraService.insertPenguin(form);
@@ -164,21 +167,21 @@ public class PenguinKawamuraController {
 			final BindingResult bindingResult, MultipartFile image) {
 
 		//入力エラーがある場合、自画面に戻る
-		if(bindingResult.hasFieldErrors()) {
+		if(bindingResult.hasErrors()) {
 			return "penguinKawamura/update";
 
 		}
 
-		/*画像ファイルが1MB以上の場合、自画面に戻る
-		 * ※MultipartConfigureコミットしていないので動かないです
-		 */
-		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
-
-			//入力エラーがある場合、戻る
-			if(bindingResult.hasErrors()) {
-			return "penguinKawamura/insert";
-			}
-		}
+//		/*画像ファイルが1MB以上の場合、自画面に戻る
+//		 * ※MultipartConfigureコミットしていないので動かないです
+//		 */
+//		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
+//
+//			//入力エラーがある場合、戻る
+//			if(bindingResult.hasErrors()) {
+//			return "penguinKawamura/insert";
+//			}
+//		}
 
 		//データを更新する
 		PenguinMainKawamura penguinMainKawamura = penguinKawamuraService.updatePenguin(form);

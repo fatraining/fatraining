@@ -137,7 +137,9 @@
 				</thead>
 				<tbody>
 					<tr class="active" th:each="penguin : ${penguinList}">
-						<td class="data center"><img  class="image" th:src="@{${penguin.image}}"></img></td>
+						<td class="data center" th:if="${penguin.image!=null}"><img  class="image" th:src="@{${penguin.image}}"></img></td>
+						<td class="data center" th:if="${penguin.image==null}"><img src="/PenguinKawamura/NoImage.png"></img></td>
+
 						<td class="data center" th:text="${penguin.name}">コウテイペンギン</td>
 						<td class="data center">
 							<label th:if="${penguin.attributeKawamura != null}" th:text="${penguin.attributeKawamura.attributeName}" class="data center">
