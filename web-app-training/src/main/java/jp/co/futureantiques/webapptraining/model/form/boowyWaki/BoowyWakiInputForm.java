@@ -25,27 +25,28 @@ public class BoowyWakiInputForm {
 
 	/** 曲名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 100)
+	@Size(max = 100, message="boowy.text.insert.nameInfo")
 	private String name;
 
 	/** リリース日 */
-	@Size(max = 10, message = "common.text.error.size.max.ten")
-	@Pattern(regexp = ("^([0-9]{4}/[0-9]{2}/[0-9]{2})$"), message = "common.text.error.numeric")
+	@Size(max = 10, message = "boowy.text.insert.dateOver")
+	//正規表現に？つけないとパターン完全一致以外追加できない
+	@Pattern(regexp = ("^([0-9]{4}/[0-9]{2}/[0-9]{2})?$"), message = "boowy.text.insert.dateEx")
 	private String releaseDate;
 
 	/** ジャンルID */
 	private Integer genreId;
 
 	/** 曲の長さ */
-	@Size(max = 5, message = "common.text.error.size.max.five")
-	@Pattern(regexp = ("^([0-9]{2}:[0-9]{2})$"), message = "common.text.error.numeric")
+	@Size(max = 5, message = "boowy.text.insert.lengthOver")
+	@Pattern(regexp = ("^([0-9]{2}:[0-9]{2})?$"), message = "boowy.text.insert.lengthEx")
 	private String length;
 
 	/** 作詞者ID */
 	private Integer songwriterId;
 
 	/** コメント */
-	@Size(max = 200)
+	@Size(max = 200, message="boowy.text.insert.commentInfo")
 	private String comment;
 
 	/** 更新日時（排他制御用） */
@@ -65,13 +66,13 @@ public class BoowyWakiInputForm {
 		this.setLength(boowyMainWaki.getLength());
 		this.setComment(boowyMainWaki.getComment());
 		this.setUpdateDate(String.valueOf(boowyMainWaki.getUpdateDate()));
-		}
+	}
 
 	/**
 	 * BoowyMainWakiエンティティに登録値を入れる。
 	 *
 	 * @return BoowyMainWaki
-	 * */
+	 */
 	public BoowyMainWaki convertToBoowyMainWakiForInsert() {
 		BoowyMainWaki boowyMainWaki = new BoowyMainWaki();
 		boowyMainWaki = convertToBoowyMainWaki(boowyMainWaki);
@@ -119,9 +120,25 @@ public class BoowyWakiInputForm {
 			// 作詞者が入力されていた場合
 			boowyMainWaki.setSongwriterId(this.songwriterId);
 		}
+		if (!this.releaseDate.isEmpty()) {
 
-		boowyMainWaki.setReleaseDate(this.releaseDate);
-		boowyMainWaki.setLength(this.length);
+			// リリース日が入力されていた場合
+			boowyMainWaki.setReleaseDate(this.releaseDate);
+		} else {
+
+			// リリース日が入力されていなかった場合
+			boowyMainWaki.setReleaseDate(null);
+		}
+		if (!this.length.isEmpty()) {
+
+			// 曲の長さが入力されていた場合
+			boowyMainWaki.setLength(this.length);
+		} else {
+
+			// 曲の長さが入力されていなかった場合
+			boowyMainWaki.setLength(null);
+		}
+
 		boowyMainWaki.setComment(this.comment);
 		boowyMainWaki.setDelFlg("0");
 		return boowyMainWaki;

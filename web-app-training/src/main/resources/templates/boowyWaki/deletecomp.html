@@ -7,9 +7,8 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/boowyWaki.css}" />
-
 </head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/boowyWaki.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
@@ -25,15 +24,15 @@
 		<!-- 削除対象データ -->
 		<form class="form-horizontal" id="deleteForm" action="/boowywaki/deletecomp"
 		th:object="${boowyWakiDeleteForm}" method="post">
-			<div th:if="${boowyWakiList != null}">
+			<div th:if="${boowyMainWakiList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
 				<h4 th:each="err : ${#fields.errors('deleteIds')}" th:text="#{${err}}"
 					class="err alert-danger">error message</h4>
 			</div>
-			<div th:if="${boowyWakiList == null}">
+			<div th:if="${boowyMainWakiList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
-			<div th:if="${boowyWakiList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div th:if="${boowyMainWakiList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 				<table id="resultTable" class="table table-borderd table-striped table-hover">
 					<thead>
 						<tr>
@@ -47,7 +46,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="boowy : ${boowyWakiList}">
+						<tr th:each="boowy : ${boowyMainWakiList}">
 							<td>
 								<label>
 									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"
@@ -55,12 +54,16 @@
 								</label>
 							</td>
 							<td class="data center" th:text="${boowy.name}">ホンキー・トンキー・クレイジー</td>
-							<td class="data center" th:text="${boowy.releaseDate}">リリース日</td>
-							<td class="data center" th:text="${boowy.length}">曲の長さ</td>
 							<td class="data center">
-								<label th:if="${boowy.genre != null}" th:text="${boowy.genreWaki.genre}" class="data center">ロック</label></td>
+								<label th:if="${boowy.releaseDate !=null}" th:text="${boowy.releaseDate}" class="data center">リリース日</label>
+							</td>
 							<td class="data center">
-								<label th:if="${boowy.songwriter != null}" th:text="${boowy.songwriterWaki.songwriter}" class="data center">BOOWY</label>
+								<label th:if="${boowy.length !=null}" th:text="${boowy.length}" class="data center">曲の長さ</label>
+							</td>
+							<td class="data center">
+								<label th:if="${boowy.genreWaki != null}" th:text="${boowy.genreWaki.genre}" class="data center">ロック</label></td>
+							<td class="data center">
+								<label th:if="${boowy.songwriterWaki != null}" th:text="${boowy.songwriterWaki.songwriter}" class="data center">BOOWY</label>
 							</td>
 							<td class="data center" th:text="${boowy.comment}">ファースト・シングル。ライブの最後に流れるとテ ンションが上がるやつ。</td>
 						</tr>
@@ -69,7 +72,8 @@
 				<div>
 					<a class="btn btn-danger center-block"
 						onclick="$('#deleteForm').submit()"
-						th:text="#{common.text.delete}"> </a>
+						th:text="#{common.text.delete}">
+					</a>
 				</div>
 			</div>
 		</form>

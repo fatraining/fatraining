@@ -1,7 +1,8 @@
 package jp.co.futureantiques.webapptraining.controller;
 
-import jp.co.futureantiques.webapptraining.model.form.LoginForm;
-import jp.co.futureantiques.webapptraining.service.UserService;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,9 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import jp.co.futureantiques.webapptraining.model.form.LoginForm;
+import jp.co.futureantiques.webapptraining.service.UserService;
 
 /**
  * @author Created by YaoHaitao on 2018/3/13.
@@ -22,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/login")
 // URL: localhost:8080/login
 public class LoginController {
+	@Autowired
+    HttpSession session;
+
 
     private UserService userService;
 
@@ -52,6 +59,7 @@ public class LoginController {
             return "login";
         }
         // リダイレクトの書き方："redirect:" + "URL"
+        session.setAttribute("user", loginForm.getUsername());
         return "redirect:/menu";
     }
 }

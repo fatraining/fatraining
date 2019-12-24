@@ -142,7 +142,7 @@ public class BoowyWakiController {
 	public String showUpdateBoowy(@RequestParam(name = "id") final long id,
 			@ModelAttribute final BoowyWakiInputForm boowyWakiInputForm) {
 
-		// IDをキーにMovieMainテーブルを検索する
+		// IDをキーにBoowyWakiMainテーブルを検索する
 		BoowyMainWaki boowyMainWaki = boowyWakiService.getBoowyMainWaki(id);
 
 		// フォームにレコードの値をセットする
@@ -187,7 +187,7 @@ public class BoowyWakiController {
 
 		//IDをキーにレコードを論理削除する
 		boowyWakiService.deleteBoowyMainWakiById(id);
-		return "redirect:/boowywaki?result=delete&id" + id;
+		return "redirect:/boowywaki?result=delete&id=" + id;
 	}
 
 	/**
@@ -203,10 +203,10 @@ public class BoowyWakiController {
 			@ModelAttribute final BoowyWakiDeleteForm boowyWakiDeleteForm, final Model model) {
 
 		// MovieMainテーブルから削除フラグが1のレコードを検索する
-		final List<BoowyMainWaki> boowyWakiList = boowyWakiService.getListBoowyMainWaki(form);
+		final List<BoowyMainWaki> boowyList = boowyWakiService.getListBoowyMainWaki(form);
 
 		// Modelに検索結果を格納する
-		model.addAttribute(boowyWakiList);
+		model.addAttribute(boowyList);
 		return "boowywaki/deletecomp";
 	}
 
@@ -226,10 +226,10 @@ public class BoowyWakiController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			BoowyWakiSearchForm boowyWakiSearchForm = new BoowyWakiSearchForm();
 			boowyWakiSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<BoowyMainWaki> boowyWakiList = boowyWakiService.getListBoowyMainWaki(boowyWakiSearchForm);
+			final List<BoowyMainWaki> boowyList = boowyWakiService.getListBoowyMainWaki(boowyWakiSearchForm);
 
 			// Modelに検索結果を格納する
-			model.addAttribute(boowyWakiList);
+			model.addAttribute(boowyList);
 			return "boowywaki/deletecomp";
 		}
 
