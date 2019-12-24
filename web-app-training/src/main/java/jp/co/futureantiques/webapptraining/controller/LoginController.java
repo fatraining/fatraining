@@ -1,8 +1,6 @@
 package jp.co.futureantiques.webapptraining.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +24,6 @@ import jp.co.futureantiques.webapptraining.service.UserService;
 @RequestMapping("/login")
 // URL: localhost:8080/login
 public class LoginController {
-	@Autowired
-    HttpSession session;
-
 
     private UserService userService;
 
@@ -59,7 +54,6 @@ public class LoginController {
             return "login";
         }
         // リダイレクトの書き方："redirect:" + "URL"
-        session.setAttribute("user", loginForm.getUsername());
         return "redirect:/menu";
     }
 }
