@@ -50,7 +50,7 @@ public class FilmAkataController {
 	/**
 	 * ジャンルエンティティのリストを取得する
 	 *
-	 * @return GenreEntityのリスト
+	 * @return FilmGenreEntityのリスト
 	 */
 	@ModelAttribute
 	public List<FilmGenreAkata> getListFilmGenreAkata() {

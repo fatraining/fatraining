@@ -58,7 +58,7 @@ public class FilmAkataSpecification {
 				if(form.getGenreId() != null && form.getGenreId() != 0) {
 
 					//ジャンルを条件に追加
-					Predicate newCondition = cb.equal(root.get("actorId"), form.getGenreId());
+					Predicate newCondition = cb.equal(root.get("genreId"), form.getGenreId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if (form.getActorId() != null && form.getActorId() != 0) {

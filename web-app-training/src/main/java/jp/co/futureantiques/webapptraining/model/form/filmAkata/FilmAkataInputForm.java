@@ -3,6 +3,8 @@ package jp.co.futureantiques.webapptraining.model.form.filmAkata;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -25,28 +27,29 @@ public class FilmAkataInputForm {
 
 	/** タイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 100)
+	@Size(max = 100, message="film.text.error.size.max")
 	private String filmTitle;
 
 	/** ジャンルID */
+	@NotNull(  message = "common.text.error.require")
+	@Min(value = 1, message = "film.text.error.input.genre")
 	private Integer genreId;
 
 	/** 主演ID */
 	private Integer actorId;
 
 	/** 公開年 */
-	@NotBlank(message = "common.text.error.require")
 	@Size(max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String releaseYearStr;
 
-	/** 上映時間　*/
+	/** 上映時間 */
 	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String runTimeStr;
 
 	/** おすすめ度 */
-	@Size(max = 10)
+	@Size(min = 0, max = 10, message="film.text.error.size.ten")
 	private String recommend;
 
 	/** 更新日時 （排他制御用）*/
@@ -121,7 +124,7 @@ public class FilmAkataInputForm {
 			//主演が入力されていた場合
 			filmMainAkata.setActorId(this.actorId);
 		}
-		filmMainAkata.setReleaseYear(Integer.parseInt(this.releaseYearStr));
+		/*filmMainAkata,setReleaseYear(Integer.parseInt(this.releaseYearStr));
 		if (!this.runTimeStr.isEmpty()) {
 
 			//上映時間が入力されていた場合
@@ -130,7 +133,7 @@ public class FilmAkataInputForm {
 
 			//上映時間が入力されていなかった場合
 			filmMainAkata.setRunTime(null);
-		}
+		}*/
 		filmMainAkata.setRecommend(this.recommend);
 		filmMainAkata.setDelFlg("0");
 		return filmMainAkata;

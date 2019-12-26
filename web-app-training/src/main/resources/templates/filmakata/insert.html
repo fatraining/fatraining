@@ -43,13 +43,15 @@
 						th:text="#{${err}(#{film.text.title})}"></p>
 				</div>
 				<div class="form-group">
-					<label for="genre" class="control-label"
-						th:text="#{film.text.input.genre}"> Genre:</label> <select
-						name="genreId" id="inputGenre" class="form-control select">
+						<label for="genre" class="control-label"
+							th:text="#{film.text.input.genre.riquire}"> Genre(*):</label><select
+							name="genreId" id="inputGenre"  class="form-control select">
 						<option th:each="genre : ${filmGenreAkataList}"
 							th:value="${genre.id}" th:text="${genre.genre}"
 							th:selected="${genre.id == filmAkataInputForm.genreId}">pulldown</option>
-					</select>
+						</select>
+						<p class="err alert-danger" th:each="err : ${#fields.errors('genreId')}"
+							th:text="#{${err}(#{film.text.genre})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="actor" class="control-label"
@@ -84,6 +86,9 @@
 					<textarea th:field="*{recommend}" cols="" rows="5"
 						class="form-control" id="inputrecommend"
 						th:placeholder="#{film.text.recommend}"></textarea>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('recommend')}"
+						th:text="#{${err}(#{film.text.recommend})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"

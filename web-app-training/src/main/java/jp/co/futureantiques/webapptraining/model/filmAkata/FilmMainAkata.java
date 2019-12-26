@@ -44,7 +44,7 @@ public class FilmMainAkata {
 
 	/** 公開年 */
 	@Column(name = "release_year")
-	private int releaseYear;
+	private String releaseYear;
 
 	/** 上映時間 */
 	@Column(name = "run_time")
