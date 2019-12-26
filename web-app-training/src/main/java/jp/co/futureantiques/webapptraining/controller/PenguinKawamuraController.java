@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.penguinKawamura.PenguinInputForm;
@@ -114,22 +113,13 @@ public class PenguinKawamuraController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insetPenguin(
 			@ModelAttribute @Validated final PenguinInputForm form,
-			final BindingResult bindingResult, Model model, MultipartFile image) {
+			final BindingResult bindingResult, Model model) {
 
 		if(bindingResult.hasErrors()) {
 
 			//入力エラーがある場合、戻る
 			return "penguinKawamura/insert";
 		}
-
-//		/*画像ファイルが1MB以上の場合、自画面に戻る
-//		 * ※MultiPartConfigureコミットしていないので動かないです
-//		 */
-//		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
-//
-//			//入力エラーがある場合、戻る
-//			return "penguinKawamura/insert";
-//		}
 
 		//データを登録する
 		final PenguinMainKawamura penguinMainKawamura = penguinKawamuraService.insertPenguin(form);
@@ -144,14 +134,22 @@ public class PenguinKawamuraController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdatePenguin(
+			final PenguinSearchForm form,
 			@RequestParam(name = "id") final long id,
-			@ModelAttribute final PenguinInputForm penguinInputForm) {
+			@ModelAttribute final PenguinInputForm penguinInputForm, Model model, final Pageable pageable) {
 
 		//IDをキーにpenguin_main_kawamuraテーブルを検索する
 		PenguinMainKawamura penguinMainKawamura = penguinKawamuraService.getPenguin(id);
 
+		//penguin_main_kawamuraテーブルから画像パスを取得する
+		String imagePass = penguinMainKawamura.getImage();
+
+		//Modelに画像パスをセットする
+		model.addAttribute("imagePass", imagePass);
+
 		//フォームにレコードの値をセットする
 		penguinInputForm.initWithPenguinMainKawamura(penguinMainKawamura);
+		penguinInputForm.setImageDelFlg("0");
 		return "penguinKawamura/update";
 	}
 
@@ -164,24 +162,12 @@ public class PenguinKawamuraController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String updatePenguin(
 			@Validated final PenguinInputForm form,
-			final BindingResult bindingResult, MultipartFile image) {
+			final BindingResult bindingResult) {
 
 		//入力エラーがある場合、自画面に戻る
 		if(bindingResult.hasErrors()) {
 			return "penguinKawamura/update";
-
 		}
-
-//		/*画像ファイルが1MB以上の場合、自画面に戻る
-//		 * ※MultipartConfigureコミットしていないので動かないです
-//		 */
-//		if(CommonConst.UPLOAD_ALLOWABLE_FILE_SIZE < image.getSize()) {
-//
-//			//入力エラーがある場合、戻る
-//			if(bindingResult.hasErrors()) {
-//			return "penguinKawamura/insert";
-//			}
-//		}
 
 		//データを更新する
 		PenguinMainKawamura penguinMainKawamura = penguinKawamuraService.updatePenguin(form);

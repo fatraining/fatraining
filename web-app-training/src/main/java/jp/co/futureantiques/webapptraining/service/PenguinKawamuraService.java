@@ -71,4 +71,7 @@ public interface PenguinKawamuraService {
 	void deletePenguinComp(final ArrayList<Long> ids);
 
 
+
+
+
 }

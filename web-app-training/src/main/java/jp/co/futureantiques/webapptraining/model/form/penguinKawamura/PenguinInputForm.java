@@ -41,6 +41,9 @@ public class PenguinInputForm {
 	/** 更新日時(排他制御用) */
 	private String updateDate;
 
+	/** 画像削除フラグ */
+	private String imageDelFlg;
+
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 * @param PenguinMainKawamua penguinMainKawamura
@@ -88,5 +91,7 @@ public class PenguinInputForm {
 		penguinMainKawamura.setDelFlg("0");
 		return penguinMainKawamura;
 	}
+
+
 
 }

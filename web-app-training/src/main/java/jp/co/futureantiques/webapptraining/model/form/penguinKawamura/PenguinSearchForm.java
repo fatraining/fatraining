@@ -22,6 +22,9 @@ public class PenguinSearchForm {
 	/** 削除フラグON用 */
 	private int isDelete;
 
+	/** 画像 */
+	private String image;
+
 	/**
 	 * 各フィールドに値を設定する
 	 * @param PenguinMainKawamura penguinMainKawamura

@@ -90,8 +90,8 @@ public class PenguinKawamuraServiceImpl implements PenguinKawamuraService {
 		//penguin_main_kawamuraテーブルに新規でデータを登録する
 		final PenguinMainKawamura penguinMainKawamura = form.converToPenguinMainKawamuraForInsert();
 
-				//ファイルをアップロードする
-				uploadFile(penguinMainKawamura, form.getImage());
+		//ファイルをアップロードする
+		uploadFile(penguinMainKawamura, form.getImage());
 
 		return penguinMainKawamuraRepository.save(penguinMainKawamura);
 	}
@@ -109,19 +109,37 @@ public class PenguinKawamuraServiceImpl implements PenguinKawamuraService {
 				//チェックOKの場合、更新
 				penguinMainKawamura = form.converToPenguinMainKawamuraForUpdate(penguinMainKawamura);
 
-								if(form.getImage().isEmpty()) {
+				if (form.getImage().isEmpty()) {
 
-									//今あるデータベースの画像パスを入れとく
-									String imageTemp = penguinMainKawamura.getImage();
+					//もし画像削除フラグが１だった場合
+					if (form.getImageDelFlg().matches("1")) {
 
-									//エンティティに画像パスを入れなおす
-									penguinMainKawamura.setImage(imageTemp);
+						//対象のレコードの画像を削除する
+						File f = new File(CommonConst.STATIC_PATH + penguinMainKawamura.getImage());
+						if (f.exists()) {
 
-									return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
-								}
+							//ファイルが存在する場合削除
+							f.delete();
+						}
 
-								//ファイルをアップロードする
-								uploadFile(penguinMainKawamura, form.getImage());
+						//penguinMainKawamuraのimgをNULLにする（setImg）
+						penguinMainKawamura.setImage(null);
+
+					} else {
+
+						//今あるデータベースの画像パスを入れとく
+						String imageTemp = penguinMainKawamura.getImage();
+
+						//エンティティに画像パスを入れなおす
+						penguinMainKawamura.setImage(imageTemp);
+					}
+
+					// 更新する
+					return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
+				}
+
+				//ファイルをアップロードする
+				uploadFile(penguinMainKawamura, form.getImage());
 
 				return penguinMainKawamuraRepository.saveAndFlush(penguinMainKawamura);
 			}

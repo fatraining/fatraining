@@ -53,6 +53,10 @@ div.search-menu {
 	margin-top: 15px;
 }
 
+div.image{
+	width: 300px;
+}
+
 @media ( min-width : 980px) {
 	div.search-menu {
 		height: 100vh;
