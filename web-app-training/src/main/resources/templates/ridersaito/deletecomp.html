@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/riderSaito.css}" />
+<div class="shutter"></div>
 <body>
 	<div class="container">
 		<div class="page-header">
@@ -41,6 +42,7 @@
 							<th class="per-12 center" th:text="#{rider.text.age}">Age</th>
 							<th class="per-17 center" th:text="#{rider.text.actor}">Actor</th>
 							<th class="per-40 center" th:text="#{rider.text.serif}">Serif</th>
+							<th class="per-40 center" th:text="#{rider.text.img}">Img</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,6 +62,8 @@
 						<td class="data center" th:text="${RiderSaito.Actor}">藤岡 弘</td>
 
 						<td class="data center" th:text="${RiderSaito.Serif}">セリフ</td>
+
+						<td class="data center" th:text="${RiderSaito.Img}">img</td>
 						</tr>
 					</tbody>
 				</table>
