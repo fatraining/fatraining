@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${voiceActorKobaOperateForm.insert} ? #{voiceActorKoba.text.operate.insert} : #{voiceActorKoba.text.operate.update}">
+        男性声優データ登録画面</title>
+
+    <link rel="stylesheet" th:href="@{/css/spring_training.css}"/>
+</head>
+<body>
+<div class="container">
+
+    <!-- ヘッダー -->
+    <header>
+        <div th:replace="/commons :: header"></div>
+    </header>
+    <!-- ヘッダー -->
+
+    <!-- 操作の表示 -->
+    <section id="operationSection" th:object="${voiceActorKobaOperateForm}">
+
+        <!-- アラート -->
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="alert alert-info text-center" role="alert"
+                   th:text="${voiceActorKobaOperateForm.insert} ?
+                            #{voiceActorKoba.text.operate.alert.insert} :
+                            #{voiceActorKoba.text.operate.alert.update(${voiceActorKobaOperateForm.actorName})}">
+                    新しく声優のデータを登録します
+                </div>
+            </div>
+
+            <div class="col-sm-offset-3 col-sm-6"
+                 th:if="${#fields.hasErrors()}">
+                <div class="alert alert-danger text-center" role="alert"
+                     th:each="error : ${#fields.errors()}"
+                     th:text="#{${error}}">
+                    新しく声優のデータを登録します
+                </div>
+            </div>
+        </div>
+        <!-- アラート -->
+
+        <!-- 新規入力 -->
+        <form class="form-horizontal" method="post" id="operationForm"
+              th:action="*{insert} ? 'insert' : 'update'">
+            <input type="hidden"
+                   th:field="*{insert}"/>
+            <input type="hidden"
+                   th:if="!*{insert}"
+                   th:field="*{id}"/>
+            <!-- 名前 -->
+            <div class="form-group">
+                <label for="inputActorName" class="col-sm-2 control-label"
+                       th:text="#{voiceActorKoba.text.input.actorName.require}">ActorName(*):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputActorName"
+                           th:field="*{ActorName}"/>
+				<p class="err alert-danger"
+					th:each="err : ${#fields.errors('actorName')}"
+					th:text="#{${err}(#{voiceActorKoba.text.actorName})}"></p>
+                </div>
+            </div>
+            <!-- 写真 -->
+            <div class="form-group">
+                <label for="image" class="control-label"
+					th:text="#{voiceActorKoba.text.input.image}">Image:</label>
+					<input type="file" style="width:100%;padding:10px;"
+					th:field="*{image}" class="form-control"
+					id="file" th:placeholder="#{voiceActorKoba.text.image}" />
+            </div>
+            <!-- 誕生日 -->
+            <div class="form-group">
+                <label for="inputbirthday" class="col-sm-2 control-label"
+                       th:text="#{voiceActorKoba.text.input.birthday}">Birthday:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputBirthday"
+                           th:field="*{birthday}"/>
+                </div>
+            </div>
+            <!-- 出身地 -->
+            <div class="form-group">
+                <label for="inputFrom" class="col-sm-2 control-label"
+                       th:text="#{voiceActorKoba.text.search.from}">From:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="inputFrom"
+                            name="fromId">
+                        <option th:each="from : $fromKobaList}"
+                                th:text="${from.fromName}"
+                                th:value="${from.fromId}"
+                                th:selected="${from.fromId == voiceActorKobaOperateForm.fromId}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 事務所 -->
+				<div class="form-group">
+					<label for="office" class="control-label"
+						th:text="#{voiceActor.text.input.office}">office:</label>
+					<input type="text" th:field="*{office}" class="form-control"
+						th:placeholder="#{voiceActor.text.office}" />
+					<select name="officeId" class="bsize" id="inputOffice" onChange="getofficeId(0,this.value)">
+					<option th:each="office : ${officeKobaList}"
+						th:value="${office.officeId}"
+						th:text="${office.officeName}"
+						th:selected="${office.officeId ==voiceActorKobaInputForm.officeId}">
+					</option>
+					</select>
+					<input type="button" class="bsize" value="新規追加" onclick="getText(0)">
+					<p><b> ※選択にない場合は事務所名を入力して新規追加をクリックしてください </b></p>
+				</div>
+            <!-- アニメタイトル -->
+            <div class="form-group">
+                <label for="animeTitle" class="control-label"
+					th:text="#{voiceActorKoba.text.input.animeTitle.require}">AnimeTitle(*):</label>
+				<input type="text" th:field="*{animeTitle}" class="form-control"
+					th:placeholder="#{voiceActorKoba.text.animeTitle}" />
+				<p class="err alert-danger"
+					th:each="err : ${#fields.errors('animeTitle')}"
+					th:text="#{${err}(#{voiceActorKoba.text.animeTitle})}"></p>
+            </div>
+            <!-- キャラクター名 -->
+            <div class="form-group">
+                <label for="characterName" class="control-label"
+					th:text="#{voiceActorKoba.text.input.characterName.require}">CharacterName(*):</label>
+				<input type="text" th:field="*{characterName}" class="form-control"
+					th:placeholder="#{voiceActorKoba.text.characterName}" />
+				<p><b> ※上記のアニメタイトルで担当していたキャラクター名を入力してください </b></p>
+				<p class="err alert-danger"
+					th:each="err : ${#fields.errors('characterName')}"
+					th:text="#{${err}(#{voiceActorKoba.text.characterName})}"></p>
+            </div>
+            <!-- コメント -->
+            <div class="form-group">
+                <label for="inputComment" class="col-sm-2 control-label"
+                       th:text="#{voiceActorKoba.text.search.comment}">Comment:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="inputComment"
+                              th:field="*{comment}"></textarea>
+                </div>
+            </div>
+
+            <!-- ボタン -->
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-xs-offset-3 col-xs-3 col-sm-2">
+                    <a class="btn btn-danger center-block" type="button"
+                       th:href="@{/voiceActorKoba}"
+                       th:text="#{voiceActorKoba.text.operate.back}">Back
+                    </a>
+                </div>
+                <div class="col-xs-3 col-sm-2">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#operationForm').submit()"
+                       th:text="${voiceActorKobaOperateForm.insert} ? #{voiceActorKoba.text.operate.insert} : #{voiceActorKoba.text.operate.update}">Insert</a>
+                </div>
+            </div>
+
+            <!-- ボタン -->
+        </form>
+        <!-- 入力 -->
+    </section>
+    <!-- 操作の表示 -->
+    <script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+<!-- </div>
+<script th:src="@{/libs/jquery/jquery.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+<script th:src="@{/libs/bootstrap-star-rating/js/star-rating.js}"></script>
+<script>
+    $(function () {
+        $('#inputRating').rating({hoverChangeCaption: false});
+    });
+</script> -->
+</div>
+</body>
+</html>
