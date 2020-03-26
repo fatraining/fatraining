@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -82,6 +83,9 @@ public class VoiceActorMainKoba {
 
 	/** 外部キー設定：キャラクター名 */
 	@ManyToOne(targetEntity = CharacterKoba.class)
-	@JoinColumn(name = "character_id", referencedColumnName = "character_id", insertable = false, updatable = false)
+	@JoinColumns({
+	@JoinColumn(name = "character_id1", referencedColumnName = "id", insertable = false, updatable = false),
+	@JoinColumn(name = "character_id2", referencedColumnName = "anime_id", insertable = false, updatable = false)
+	})
 	private CharacterKoba characterKoba;
-	}
+}
