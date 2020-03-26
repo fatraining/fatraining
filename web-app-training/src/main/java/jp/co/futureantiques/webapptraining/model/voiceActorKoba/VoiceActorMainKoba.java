@@ -61,7 +61,6 @@ public class VoiceActorMainKoba {
 	@Column(name = "character_Name")
 	private String characterName;
 
-
 	/** コメント */
 	@Size(max = 155)
 	private String comment;
