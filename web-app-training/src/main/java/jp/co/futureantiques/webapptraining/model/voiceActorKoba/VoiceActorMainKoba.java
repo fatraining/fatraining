@@ -84,8 +84,8 @@ public class VoiceActorMainKoba {
 	/** 外部キー設定：キャラクター名 */
 	@ManyToOne(targetEntity = CharacterKoba.class)
 	@JoinColumns({
-	@JoinColumn(name = "character_id1", referencedColumnName = "id", insertable = false, updatable = false),
-	@JoinColumn(name = "character_id2", referencedColumnName = "anime_id", insertable = false, updatable = false)
+	@JoinColumn(name = "character_id", referencedColumnName = "id", insertable = false, updatable = false),
+	@JoinColumn(name = "character_id", referencedColumnName = "anime_id", insertable = false, updatable = false)
 	})
 	private CharacterKoba characterKoba;
 }
