@@ -32,4 +32,10 @@ public interface VoiceActorKobaService {
 
 	VoiceActorMainKoba updateVoiceActorMainKoba(VoiceActorKobaOperateForm form);
 
+	List<CharacterKoba> listCharacterKoba(VoiceActorKobaSearchForm form);
+
+	List<AnimeKoba> listAnimeKoba(VoiceActorKobaSearchForm form);
+
+	VoiceActorMainKoba getAnimeKoba(Integer animeId);
+
 }
