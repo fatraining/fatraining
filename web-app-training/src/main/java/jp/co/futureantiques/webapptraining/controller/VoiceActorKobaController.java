@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.futureantiques.webapptraining.model.form.voiceActorKoba.VoiceActorKobaOperateForm;
 import jp.co.futureantiques.webapptraining.model.form.voiceActorKoba.VoiceActorKobaSearchForm;
 import jp.co.futureantiques.webapptraining.model.voiceActorKoba.AnimeKoba;
+import jp.co.futureantiques.webapptraining.model.voiceActorKoba.CharacterKoba;
 import jp.co.futureantiques.webapptraining.model.voiceActorKoba.OfficeKoba;
 import jp.co.futureantiques.webapptraining.model.voiceActorKoba.VoiceActorMainKoba;
+import jp.co.futureantiques.webapptraining.repository.voiceActorKoba.CharacterKobaRepository;
 import jp.co.futureantiques.webapptraining.service.VoiceActorKobaService;
 
 /**
@@ -121,7 +123,7 @@ public class VoiceActorKobaController {
 		return "error";
 	}
 
-	/** CharacterKobaテーブルの複合主キー用ココカラ
+	// CharacterKobaテーブルの複合主キー用ココカラ
 	@Autowired
     CharacterKobaRepository repository;
 
