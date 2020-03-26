@@ -51,8 +51,8 @@ public class VoiceActorKobaOperateForm {
 	/** 上記入力したアニメで担当していたキャラクター名 */
 	@NotNull
 	@Size(max=256)
-	//private String characterName;
-	private Integer characterId;
+	private String characterName;
+	// private Integer characterId;
 
 	/** コメント */
 	@Size(max=155)
@@ -69,7 +69,7 @@ public class VoiceActorKobaOperateForm {
 		this.setFromId(voiceActorKoba.getFromId());
 		this.setOfficeId(voiceActorKoba.getOfficeId());
 		this.setAnimeId(voiceActorKoba.getAnimeId());
-		this.setCharacterId(voiceActorKoba.getCharacterId());
+		this.setCharacterName(voiceActorKoba.getCharacterName());
 		this.setComment(voiceActorKoba.getComment());
 	}
 
@@ -81,7 +81,7 @@ public class VoiceActorKobaOperateForm {
 		voiceActorMainKoba.setFromId(this.getFromId());
 		voiceActorMainKoba.setOfficeId(this.getOfficeId());
 		voiceActorMainKoba.setAnimeId(this.getAnimeId());
-		voiceActorMainKoba.setCharacterId(this.getCharacterId());
+		voiceActorMainKoba.setCharacterName(this.getCharacterName());
 		voiceActorMainKoba.setComment(this.getComment());
 		return voiceActorMainKoba;
 	}
