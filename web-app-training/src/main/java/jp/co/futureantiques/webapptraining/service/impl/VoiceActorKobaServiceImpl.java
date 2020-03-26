@@ -97,15 +97,33 @@ public class VoiceActorKobaServiceImpl implements VoiceActorKobaService {
 	}
 
 	@Override
+	public VoiceActorMainKoba getAnimeKoba(Integer animeId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
 	public List<CharacterKoba> listCharacterKoba() {
 		// character_kobaテーブルのレコードをID順に取得する
-		return characterKobaRepository.findAll(new Sort(Sort.Direction.ASC,"id, animeId"));
+		return characterKobaRepository.findAll(new Sort(Sort.Direction.ASC,"id","animeId"));
 	}
 
 	@Override
 	public List<VoiceActorMainKoba> listVoiceActorMainKoba(VoiceActorKobaSearchForm form){
 		// 検索条件を生成しVoiceMainKobaテーブルのレコードを取得する
 		return voiceActorMainKobaRepository.findAll(VoiceActorKobaSpecification.generateVoiceActorKobaSpecification(form));
+	}
+
+	@Override
+	public List<CharacterKoba> listCharacterKoba(VoiceActorKobaSearchForm form){
+		// 検索条件を生成しVoiceMainKobaテーブルのレコードを取得する
+		return characterKobaRepository.findAll();
+	}
+
+	@Override
+	public List<AnimeKoba> listAnimeKoba(VoiceActorKobaSearchForm form){
+		// 検索条件を生成しVoiceMainKobaテーブルのレコードを取得する
+		return animeKobaRepository.findAll();
 	}
 
 	@Override
@@ -133,7 +151,7 @@ public class VoiceActorKobaServiceImpl implements VoiceActorKobaService {
         voiceActorMainKoba.setOfficeId(form.getOfficeId());
         // voiceActorMainKoba.setAnimeTitle(form.getAnimeTitle());
         voiceActorMainKoba.setAnimeId(form.getAnimeId());
-        // voiceActorMainKoba.setCharacterName(form.getCharacterName());
+        // voiceActorMainKoba.setCharacterId(form.getCharacterId());
         voiceActorMainKoba.setCharacterName(form.getCharacterName());
         voiceActorMainKoba.setComment(form.getComment());
     }
@@ -149,6 +167,5 @@ public class VoiceActorKobaServiceImpl implements VoiceActorKobaService {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
-
 
 }
