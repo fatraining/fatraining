@@ -70,6 +70,7 @@ public class VoiceActorKobaOperateForm {
 		this.setOfficeId(voiceActorKoba.getOfficeId());
 		this.setAnimeId(voiceActorKoba.getAnimeId());
 		this.setCharacterName(voiceActorKoba.getCharacterName());
+		// this.setCharacterId(voiceActorKoba.getCharacterId());
 		this.setComment(voiceActorKoba.getComment());
 	}
 
@@ -82,6 +83,7 @@ public class VoiceActorKobaOperateForm {
 		voiceActorMainKoba.setOfficeId(this.getOfficeId());
 		voiceActorMainKoba.setAnimeId(this.getAnimeId());
 		voiceActorMainKoba.setCharacterName(this.getCharacterName());
+		// voiceActorMainKoba.setCharacterId(this.getCharacterId());
 		voiceActorMainKoba.setComment(this.getComment());
 		return voiceActorMainKoba;
 	}
