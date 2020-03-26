@@ -9,4 +9,5 @@ public class WebAppTrainingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebAppTrainingApplication.class, args);
 	}
+
 }
