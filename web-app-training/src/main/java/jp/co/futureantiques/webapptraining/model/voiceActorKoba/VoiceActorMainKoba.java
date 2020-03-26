@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
 /**
- * VoiceActorkobaテーブルと対応するEntity
+ * VoiceActorMainkobaテーブルと対応するEntity
  *
  * @author future
  */
@@ -58,9 +58,10 @@ public class VoiceActorMainKoba {
 	@Column(name = "anime_id")
 	private Integer animeId;
 
-	/** キャラクターID */
-	@Column(name = "character_id")
-	private Integer characterId;
+	/** キャラクター */
+	@Column(name = "character_Name")
+	private String characterName;
+
 
 	/** コメント */
 	@Size(max = 155)
@@ -84,8 +85,8 @@ public class VoiceActorMainKoba {
 	/** 外部キー設定：キャラクター名 */
 	@ManyToOne(targetEntity = CharacterKoba.class)
 	@JoinColumns({
-	@JoinColumn(name = "character_id", referencedColumnName = "id", insertable = false, updatable = false),
-	@JoinColumn(name = "character_id", referencedColumnName = "anime_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
+	@JoinColumn(name = "anime_id", referencedColumnName = "anime_id", insertable = false, updatable = false)
 	})
 	private CharacterKoba characterKoba;
 }
