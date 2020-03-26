@@ -68,6 +68,7 @@ public class VoiceActorKobaOperateForm {
 		this.setBirthday(voiceActorKoba.getBirthday());
 		this.setFromId(voiceActorKoba.getFromId());
 		this.setOfficeId(voiceActorKoba.getOfficeId());
+		//this.setAnimeId(voiceActorKoba.getAnimeId());
 		this.setAnimeId(voiceActorKoba.getAnimeId());
 		this.setCharacterName(voiceActorKoba.getCharacterName());
 		// this.setCharacterId(voiceActorKoba.getCharacterId());
@@ -81,12 +82,14 @@ public class VoiceActorKobaOperateForm {
 		voiceActorMainKoba.setBirthday(this.getBirthday());
 		voiceActorMainKoba.setFromId(this.getFromId());
 		voiceActorMainKoba.setOfficeId(this.getOfficeId());
+		//voiceActorMainKoba.setAnimeId(this.getAnimeId());
 		voiceActorMainKoba.setAnimeId(this.getAnimeId());
 		voiceActorMainKoba.setCharacterName(this.getCharacterName());
 		// voiceActorMainKoba.setCharacterId(this.getCharacterId());
 		voiceActorMainKoba.setComment(this.getComment());
 		return voiceActorMainKoba;
 	}
+
 
 	public void setInsert(boolean b) {
 		// TODO 自動生成されたメソッド・スタブ
