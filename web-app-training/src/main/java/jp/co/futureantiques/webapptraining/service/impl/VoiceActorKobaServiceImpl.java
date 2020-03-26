@@ -134,7 +134,7 @@ public class VoiceActorKobaServiceImpl implements VoiceActorKobaService {
         // voiceActorMainKoba.setAnimeTitle(form.getAnimeTitle());
         voiceActorMainKoba.setAnimeId(form.getAnimeId());
         // voiceActorMainKoba.setCharacterName(form.getCharacterName());
-        voiceActorMainKoba.setCharacterId(form.getCharacterId());
+        voiceActorMainKoba.setCharacterName(form.getCharacterName());
         voiceActorMainKoba.setComment(form.getComment());
     }
 
