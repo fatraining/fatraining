@@ -123,7 +123,7 @@
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-warning center-block"
-						th:href="@{/soccerteamMatsuda}" th:text="#{common.text.reset}">Reset
+						th:href="@{/soccerteam}" th:text="#{common.text.reset}">Reset
 					</a>
 				</div>
 			</div>
@@ -169,7 +169,7 @@
 						<td class="data center"><a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${team.id}, data-title=${team.teamName}">Delete</a>
+							th:attr="data-id=${team.id}, data-name=${team.teamName}">Delete</a>
 						</td>
 
 					</tr>
@@ -268,10 +268,10 @@
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var teamId = button.data('id');
-			var teamName = button.data('name');
+			var name = button.data('name');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", teamId);
-			modal.find('#deleteTitle').text(teamName);
+			modal.find('#deleteName').text(name);
 		});
 	</script>
 </body>

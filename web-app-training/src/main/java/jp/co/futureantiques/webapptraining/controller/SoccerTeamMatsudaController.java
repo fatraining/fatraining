@@ -133,7 +133,7 @@ public class SoccerTeamMatsudaController {
 	 * 更新画面に遷移する
 	 *
 	 * @param long id
-	 * @param TeamMatsudaInputForm movieSampleInputForm
+	 * @param TeamMatsudaInputForm teamMatsudaInputForm
 	 * @return 更新画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -175,7 +175,7 @@ public class SoccerTeamMatsudaController {
 	}
 
 	/**
-	 * MovieMainテーブルのレコードを論理削除して検索画面に遷移する
+	 * TeamMainMatsudaテーブルのレコードを論理削除して検索画面に遷移する
 	 *
 	 * @param long id
 	 * @return 検索画面のパス
@@ -192,7 +192,7 @@ public class SoccerTeamMatsudaController {
 	 * 完全削除画面に遷移する
 	 *
 	 * @param SoccerTeamSearchForm form
-	 * @param TeamMatsudaDeleteForm movieSampleDeleteForm
+	 * @param TeamMatsudaDeleteForm teamMatsudaDeleteForm
 	 * @param Model model
 	 * @return 完全削除画面のパス
 	 */
@@ -200,7 +200,7 @@ public class SoccerTeamMatsudaController {
 	public String showDeleteCompTeam(final TeamMatsudaSearchForm form,
 			@ModelAttribute final TeamMatsudaDeleteForm teamMatsudaDeleteForm, final Model model) {
 
-		// MovieMainテーブルから削除フラグが1のレコードを検索する
+		// TeamMainMatsudaテーブルから削除フラグが1のレコードを検索する
 		final List<TeamMainMatsuda> teamList = soccerTeamMatsudaService.getListTeamMainMatsuda(form);
 
 		// Modelに検索結果を格納する
