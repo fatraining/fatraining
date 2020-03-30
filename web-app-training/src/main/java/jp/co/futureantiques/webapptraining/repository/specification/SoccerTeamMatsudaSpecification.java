@@ -14,7 +14,7 @@ import jp.co.futureantiques.webapptraining.model.form.soccerteamMatsuda.TeamMats
 import jp.co.futureantiques.webapptraining.model.soccerteamMatsuda.TeamMainMatsuda;
 
 /**
- * MovieMainの検索条件を生成するクラス
+ * TeamMainMatsudaの検索条件を生成するクラス
  *
  * @author future
  */
@@ -26,7 +26,8 @@ public class SoccerTeamMatsudaSpecification {
 	 * @param SoccerTeamSearchForm form
 	 * @return SoccerTeamMatsudaのSpecification
 	 */
-	public static Specification<TeamMainMatsuda> generateSoccerTeamMatsudaSpecification(final TeamMatsudaSearchForm form) {
+	public static Specification<TeamMainMatsuda> generateSoccerTeamMatsudaSpecification(
+			final TeamMatsudaSearchForm form) {
 		return new Specification<TeamMainMatsuda>() {
 			@Override
 			public Predicate toPredicate(Root<TeamMainMatsuda> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

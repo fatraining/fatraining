@@ -111,8 +111,6 @@ public class SoccerTeamMatsudaController {
 	}
 
 	/**
-	 * TeamMainMatsudaテーブルにデータを登録して検索画面に遷移する
-	 *紐づけするため！！
 	 * @param TeamMatsudaInputForm form
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス

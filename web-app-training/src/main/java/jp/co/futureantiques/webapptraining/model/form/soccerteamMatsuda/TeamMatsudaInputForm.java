@@ -98,47 +98,6 @@ public class TeamMatsudaInputForm {
 		teamMainMatsuda.setTeamColorId(this.teamColorId);
 		teamMainMatsuda.setStarPlayer(this.starPlayer);
 		teamMainMatsuda.setDelFlag("0");
-
-		//以下は時間に余裕がある時のみ
-		/*if (this.hometownId == CommonConst.NOT_ENTERD) {
-
-			// ホームタウンが入力されていなかった場合
-			teamMain.setHometownId(null);
-		} else {
-
-			// ホームタウンが入力されていた場合
-			teamMain.setHometownId(this.hometownId);
-		}
-		if (this.teamColorId == CommonConst.NOT_ENTERD) {
-
-			// チームカラーが入力されていなかった場合
-			teamMain.setTeamColorId(null);
-		} else {
-
-			// チームカラーが入力されていた場合
-			teamMain.setTeamColorId(this.teamColorId);
-		}
-		if (this.starPlayer == CommonConst.NOT_ENTERD) {
-
-			// 注目選手が入力されていなかった場合
-			teamMain.setTeamColorId(null);
-		} else {
-
-			// 注目選手が入力されていた場合
-			teamMain.setTeamColorId(this.teamColorId);
-		}
-				teamMain.setReleaseYear(Integer.parseInt(this.releaseYearStr));
-				if (!this.runTimeStr.isEmpty()) {
-
-					// 上映時間が入力されていた場合
-					movieMain.setRunTime(Integer.parseInt(this.runTimeStr));
-				} else {
-
-					// 上映時間が入力されていなかった場合
-					movieMain.setRunTime(null);
-				}
-		teamMain.setComment(this.comment);
-		teamMain.setDelFlag("0");*/
 		return teamMainMatsuda;
 	}
 }

@@ -24,7 +24,7 @@ public class TriathlonMoriSpecification {
 	/**
 	 * 検索条件生成の実装
 	 *
-	 * @param TriathlonMoriSearchForm form
+	 * @param SoccerMatsudaSearchForm form
 	 * @return TriathlonMoriのSpecification
 	 */
 	public static Specification<TriathlonMainMori> generateTriathlonSpecification(final TriathlonMoriSearchForm form) {

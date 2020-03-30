@@ -8,7 +8,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
-<!-- 未編集↓ -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
 </head>
 <body>
@@ -49,14 +48,8 @@
 		<div class="row">
 			<div class="col-sm-offset-3 col-sm-7">
 
-				<!-- プロパティから呼び出す！ -->
-				<!-- 検索結果がない場合
-				⇒全ての検索ワードがヒットしなかった場合
-				⇒どれか一つでも入力されているのにチームリスト（エンティティの入った）が空の場合
-				 -->
-				<!-- Controllerで@ModelAttributeしたオブジェクトは自動的に変数へ変換される！
-				 そのため、"${〇〇〇〇〇.teamName}"の〇〇〇〇〇は変数名で入力！
-				  -->
+
+				<!-- 検索結果がない場合 -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${(teamMatsudaSearchForm.teamName != null or
 							teamMatsudaSearchForm.hometownId != null or
@@ -82,9 +75,7 @@
 			</div>
 		</div>
 
-		<!-- 検索条件
-		placeholder:入力欄に薄く書かれるワード＝入力例
-		 -->
+		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm" method="post"
 			action="/soccerteam/search" th:object="${teamMatsudaSearchForm}">
 			<div class="form-group">
@@ -102,11 +93,6 @@
 				<div class="col-sm-8">
 					<select id="inputHometown" name="hometownId"
 						class="form-control select">
-						<!--
-						${HometownMatsudaList}:
-						ホームタウンエンティティ”HometownMatsuda.java”が１つずつ格納されたリスト
-						hometown:このクラスで生成した変数だからなんでもいい！
-						  -->
 						<option th:each="town : ${hometownMatsudaList}"
 							th:value="${town.hometownId}" th:text="${town.hometown}"
 							th:selected="${town.hometownId == teamMatsudaSearchForm.hometownId}">pulldown

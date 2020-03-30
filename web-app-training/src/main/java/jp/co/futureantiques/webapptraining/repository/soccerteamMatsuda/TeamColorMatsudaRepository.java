@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import jp.co.futureantiques.webapptraining.model.soccerteamMatsuda.TeamColorMatsuda;
 
 /**
- * MovieActorリポジトリのインターフェース
+ * 	TeamColorリポジトリのインターフェース
  *
  * @author future
  */
