@@ -24,13 +24,13 @@
 		</div>
 		<div class="sub-header">
 			<h1 align="center" th:text="#{team.text.delete}">TeamDelete</h1>
-			<a th:href="@{/team}" th:text="#{common.text.back}">Back</a>
+			<a th:href="@{/soccerteam}" th:text="#{common.text.back}">Back</a>
 		</div>
 
 		<!-- 削除対象データ -->
 		<form class="form-horizontal" id="deleteForm"
-			action="/soccerteamMatsuda/deleteComp"
-			th:object="${teamMainMatsudaDeleteForm}" method="post">
+			action="/soccerteam/deletecomp"
+			th:object="${teamMatsudaDeleteForm}" method="post">
 			<div th:if="${teamMainMatsudaList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
 				<h4 th:each="err : ${#fields.errors('deleteIds')}"
@@ -54,21 +54,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="team : ${TeamMainMatsudaList}">
+						<tr th:each="team : ${teamMainMatsudaList}">
 							<td><label> <input type="checkbox"
 									style="margin-left: 50%" th:field="*{deleteIds}"
 									th:value="${team.id}" />
 							</label></td>
-							<td class="data center" th:text="${team.team_name}">FC東京</td>
+							<td class="data center" th:text="${team.teamName}">FC東京</td>
 							<td class="data center"><label
-								th:if="${team.hometown_id != null}"
+								th:if="${team.hometownId != null}"
 								th:text="${team.hometown.hometown}" class="data center">東京都</label>
 							</td>
 							<td class="data center"><label
 								th:if="${team.teamColor != null}"
-								th:text="${team.teamColor.team_color}" class="data center">青</label></td>
+								th:text="${team.teamColor.teamColor}" class="data center">青</label></td>
 							<td class="data center"><label
-								th:if="${team.starplayer != null}" th:text="${team.starplayer}"
+								th:if="${team.starPlayer != null}" th:text="${team.starPlayer}"
 								class="data center">室谷成</label></td>
 							<td class="data center" th:text="${team.comment}">献身的サイドバック</td>
 						</tr>

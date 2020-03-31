@@ -25,7 +25,7 @@
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px">
 		<form class="form-horizontal" id="deleteCompForm" method="get"
-			action="/soccerteamMatsuda/deletecomp"
+			action="/soccerteam/deletecomp"
 			th:object="${teamMatsudaSearchForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
@@ -35,7 +35,7 @@
 		</form>
 		<div class="form-group">
 			<div class="">
-				<a class="btn btn-warning" th:href="@{/soccerteamMatsuda/insert}"
+				<a class="btn btn-warning" th:href="@{/soccerteam/insert}"
 					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData </a>

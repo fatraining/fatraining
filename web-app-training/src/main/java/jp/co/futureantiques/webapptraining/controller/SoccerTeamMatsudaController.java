@@ -234,6 +234,6 @@ public class SoccerTeamMatsudaController {
 
 		// データを完全削除する
 		soccerTeamMatsudaService.deleteTeamComp(form.getDeleteIds());
-		return "redirect:/soccerteamMatsuda?result=deletecomp";
+		return "redirect:/soccerteam?result=deletecomp";
 	}
 }

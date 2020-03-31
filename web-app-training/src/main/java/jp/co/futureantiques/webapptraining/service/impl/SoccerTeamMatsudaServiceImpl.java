@@ -31,10 +31,10 @@ public class SoccerTeamMatsudaServiceImpl implements SoccerTeamMatsudaService {
 	/** TeamMainMatsudaリポジトリ */
 	private final TeamMainMatsudaRepository teamMainMatsudaRepository;
 
-	/** Genreリポジトリ */
+	/** Hometownリポジトリ */
 	private final HometownMatsudaRepository hometownMatsudaRepository;
 
-	/** MovieActorリポジトリ */
+	/** TeamColorリポジトリ */
 	private final TeamColorMatsudaRepository teamColorMatsudaRepository;
 
 	/**
