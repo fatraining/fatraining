@@ -3,6 +3,8 @@ package jp.co.futureantiques.webapptraining.model.form.soccerteamMatsuda;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -27,13 +29,16 @@ public class TeamMatsudaInputForm {
 	private String teamName;
 
 	/** ホームタウンID */
+	@NotNull(message = "common.text.error.require")
+	@Min(value = 1, message = "team.text.input.town.must")
 	private Integer hometownId;
 
 	/** チームカラーID */
+	@NotNull(message = "common.text.error.require")
+	@Min(value = 1, message = "team.text.input.color.must")
 	private Integer teamColorId;
 
 	/** 注目選手 */
-	//@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
 	//@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String starPlayer;
