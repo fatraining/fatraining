@@ -90,7 +90,7 @@ public class SoccerTeamMatsudaServiceImpl implements SoccerTeamMatsudaService {
 	@Override
 	public TeamMainMatsuda insertTeam(final TeamMatsudaInputForm form) {
 
-		// MovieMainテーブルに新規でデータを登録する
+		// TeamMainMatsudaテーブルに新規でデータを登録する
 		final TeamMainMatsuda teamMainMatsuda = form.convertToTeamMainMatsudaForInsert();
 
 /*		//ファイルをアップロードする

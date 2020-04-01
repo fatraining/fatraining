@@ -102,7 +102,7 @@ public class SoccerTeamMatsudaController {
 	/**
 	 * 追加画面に遷移する
 	 *
-	 * @param TeamMatsudaInputForm
+	 * @param TeamMatsudaInputForm teamMatsudaInputForm
 	 * @return 追加画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
@@ -126,7 +126,7 @@ public class SoccerTeamMatsudaController {
 
 		// データを登録する
 		final TeamMainMatsuda teamMain = soccerTeamMatsudaService.insertTeam(form);
-		return "redirect:/soccerteamMatsuda?result=insert&id=" + teamMain.getId();
+		return "redirect:/soccerteam?result=insert&id=" + teamMain.getId();
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class SoccerTeamMatsudaController {
 	}
 
 	/**
-	 * MovieMainテーブルのデータを更新して検索画面に遷移する
+	 * TeamMainMatsudaテーブルのデータを更新して検索画面に遷移する
 	 *
 	 * @param TeamMatsudaInputForm form
 	 * @param BindingResult bindingResult
@@ -169,9 +169,9 @@ public class SoccerTeamMatsudaController {
 		if (teamMain == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示する
-			return "redirect:/soccerteamMatsuda?result=updatefailed";
+			return "redirect:/soccerteam?result=updatefailed";
 		}
-		return "redirect:/soccerteamMatsuda?result=update&id=" + teamMain.getId();
+		return "redirect:/soccerteam?result=update&id=" + teamMain.getId();
 	}
 
 	/**

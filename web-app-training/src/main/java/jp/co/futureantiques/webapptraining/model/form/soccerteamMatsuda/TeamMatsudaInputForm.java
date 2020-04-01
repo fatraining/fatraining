@@ -3,7 +3,6 @@ package jp.co.futureantiques.webapptraining.model.form.soccerteamMatsuda;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,13 +33,13 @@ public class TeamMatsudaInputForm {
 	private Integer teamColorId;
 
 	/** 注目選手 */
-	@NotBlank(message = "common.text.error.require")
-	@Size(max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	//@NotBlank(message = "common.text.error.require")
+	@Size(max = 256)
+	//@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String starPlayer;
 
 	/** コメント */
-	@Size(max = 255)
+	@Size(max = 256)
 	private String comment;
 
 	/** 更新日時（排他制御用） */
@@ -51,14 +50,14 @@ public class TeamMatsudaInputForm {
 	 *
 	 * @param TeamMainMatsuda
 	 */
-	public void initWithTeamMainMatsuda(TeamMainMatsuda teamMain) {
-		this.setId((int) teamMain.getId());
-		this.setTeamName(teamMain.getTeamName());
-		this.setHometownId(teamMain.getHometownId());
-		this.setTeamColorId(teamMain.getTeamColorId());
-		this.setStarPlayer(String.valueOf(teamMain.getStarPlayer()));
-		this.setComment(teamMain.getComment());
-		this.setUpdateFlag(String.valueOf(teamMain.getUpdateFlag()));
+	public void initWithTeamMainMatsuda(TeamMainMatsuda teamMainMatsuda) {
+		this.setId((int) teamMainMatsuda.getId());
+		this.setTeamName( teamMainMatsuda.getTeamName());
+		this.setHometownId(teamMainMatsuda.getHometownId());
+		this.setTeamColorId(teamMainMatsuda.getTeamColorId());
+		this.setStarPlayer(String.valueOf(teamMainMatsuda.getStarPlayer()));
+		this.setComment(teamMainMatsuda.getComment());
+		this.setUpdateFlag(String.valueOf(teamMainMatsuda.getUpdateFlag()));
 	}
 
 	/**
@@ -97,6 +96,7 @@ public class TeamMatsudaInputForm {
 		teamMainMatsuda.setHometownId(this.hometownId);
 		teamMainMatsuda.setTeamColorId(this.teamColorId);
 		teamMainMatsuda.setStarPlayer(this.starPlayer);
+		teamMainMatsuda.setComment(this.comment);
 		teamMainMatsuda.setDelFlag("0");
 		return teamMainMatsuda;
 	}

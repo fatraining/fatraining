@@ -27,14 +27,14 @@
 			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
 				<h1 align="center" th:text="#{team.text.insert}">TeamInsert</h1>
-				<a th:href="@{/soccerteamMatsuda}" th:text="#{common.text.back}">Back</a>
+				<a th:href="@{/soccerteam}" th:text="#{common.text.back}">Back</a>
 			</div>
 
 			<!-- 入力欄 -->
 			<!-- チーム名 -->
 			<form method="post" id="teamMatsudaInputForm"
-				th:action="@{/soccerteamMatsuda/insert}"
-				th:object="${TeamMatsudaInputForm}" class="form-horizontal">
+				th:action="@{/soccerteam/insert}"
+				th:object="${teamMatsudaInputForm}" class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
 						th:text="#{team.text.input.name.riquire}"> TeamName:</label> <input
@@ -49,9 +49,9 @@
 					<label for="hometown" class="control-label"
 						th:text="#{team.text.input.town.riquire}"> Hometown:</label> <select
 						name="hometownId" id="inputHometown" class="form-control select">
-						<option th:each="town : ${HometownmatsudaList}"
-							th:value="${town.hometown_id}" th:text="${town.hometown}"
-							th:selected="${town.hometown_id == TeamMatsudaInputForm.hometownId}">pulldown</option>
+						<option th:each="town : ${hometownMatsudaList}"
+							th:value="${town.hometownId}" th:text="${town.hometown}"
+							th:selected="${town.hometownId == teamMatsudaInputForm.hometownId}">pulldown</option>
 					</select>
 				</div>
 				<!-- チームカラー -->
@@ -59,9 +59,9 @@
 					<label for="teamColor" class="control-label"
 						th:text="#{team.text.input.color.riquire}"> TeamColor:</label> <select
 						name="teamColorId" id="inputTeamColor" class="form-control">
-						<option th:each="color : ${TeamColorMatsudaList}"
-							th:value="${color.team_color_id}" th:text="${color.team_color}"
-							th:selected="${color.team_color_id == TeamMatsudaInputForm.teamColorId}">pulldown</option>
+						<option th:each="color : ${teamColorMatsudaList}"
+							th:value="${color.teamColorId}" th:text="${color.teamColor}"
+							th:selected="${color.teamColorId == teamMatsudaInputForm.teamColorId}">pulldown</option>
 					</select>
 				</div>
 				<!-- 注目選手 -->
@@ -84,7 +84,7 @@
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
-						onclick="$('#TeamMatsudaInputForm').submit()"
+						onclick="$('#teamMatsudaInputForm').submit()"
 						th:text="#{common.text.insert}">Insert</a>
 				</div>
 			</form>
