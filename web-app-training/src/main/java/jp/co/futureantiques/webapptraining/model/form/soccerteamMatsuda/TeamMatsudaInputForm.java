@@ -88,7 +88,7 @@ public class TeamMatsudaInputForm {
 	/**
 	 * TeamMainMatsudaエンティティに入力値を入れる
 	 *
-	 * @param TeamMainMatsuda teamMain
+	 * @param TeamMainMatsuda teamMainMatsuda
 	 * @return TeamMainMatsuda
 	 */
 	private TeamMainMatsuda convertToTeamMainMatsuda(TeamMainMatsuda teamMainMatsuda) {

@@ -47,7 +47,7 @@ public class TeamColorMatsuda {
 
 	/** 外部キー設定：俳優ID */
 	@Transient
-	@OneToMany(targetEntity = TeamMainMatsuda.class, mappedBy = "team_color_matsuda")
+	@OneToMany(targetEntity = TeamMainMatsuda.class, mappedBy = "teamColor")
 	@JoinColumn(name = "team_color_id", referencedColumnName = "team_color_id")
 	private List<TeamMainMatsuda> TeamMainMatsudaList;
 }
