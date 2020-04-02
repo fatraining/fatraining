@@ -8,25 +8,27 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
 </head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/soccerteamMatsuda.css}" />
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-				th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <font
+				color="#000000" th:text="#{login.text.version}">ver β</font>
 		</h4>
 	</div>
 	<div class="sub-header">
-		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<a class="btn btn-info center-block" th:href="@{/menu}">Back</a><br />
+	</div>
+	<div class="font">
 		<h1 align="center" th:text="#{team.text.search}">SoccerTeamSearch</h1>
 	</div>
 
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px">
 		<form class="form-horizontal" id="deleteCompForm" method="get"
-			action="/soccerteam/deletecomp"
-			th:object="${teamMatsudaSearchForm}">
+			action="/soccerteam/deletecomp" th:object="${teamMatsudaSearchForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
 					<input type="hidden" name="isDelete" th:value="1" />
@@ -36,9 +38,9 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/soccerteam/insert}"
-					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
-					onclick="$('#deleteCompForm').submit()"
-					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
+				th:text="#{common.text.new}">New </a>
+				<a class="btn btn-danger" onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData</a>
 			</div>
 		</div>
 	</div>
@@ -78,6 +80,7 @@
 		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm" method="post"
 			action="/soccerteam/search" th:object="${teamMatsudaSearchForm}">
+			<!-- チーム名 -->
 			<div class="form-group">
 				<label for="teamName" class="col-sm-2 control-label"
 					th:text="#{team.text.input.name}">TeamName</label>
@@ -87,6 +90,7 @@
 				</div>
 			</div>
 
+			<!-- ホームタウン -->
 			<div class="form-group">
 				<label for="hometown" class="control-label col-sm-2"
 					th:text="#{team.text.input.town}">Hometown</label>
@@ -122,9 +126,8 @@
 						th:text="#{common.text.search}">Search </a>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-warning center-block"
-						th:href="@{/soccerteam}" th:text="#{common.text.reset}">Reset
-					</a>
+					<a class="btn btn-warning center-block" th:href="@{/soccerteam}"
+						th:text="#{common.text.reset}">Reset </a>
 				</div>
 			</div>
 		</form>
@@ -201,12 +204,11 @@
 							th:text='${i+1}'>1</span>
 					</a>
 					</li>
-					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
-						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline"><span
+						th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
 						<a th:if="${not page.last}"
 						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
-						th:text="#{common.text.paging.end}">end➝</a>
-					</li>
+						th:text="#{common.text.paging.end}">end➝</a></li>
 				</ul>
 			</div>
 		</div>

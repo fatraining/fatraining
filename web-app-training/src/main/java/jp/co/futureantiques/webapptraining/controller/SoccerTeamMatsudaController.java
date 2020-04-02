@@ -62,6 +62,7 @@ public class SoccerTeamMatsudaController {
 	 */
 	@ModelAttribute
 	public List<TeamColorMatsuda> getListTeamColorMatsuda() {
+		//List<TeamColorMatsuda> colorMatsudas =soccerTeamMatsudaService.getListTeamColorMatsuda();
 		return soccerTeamMatsudaService.getListTeamColorMatsuda();
 	}
 
