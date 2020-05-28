@@ -4,11 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|飲み物検索</title>
+<!--
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />-->
 </head>
 <body>
 	<div class="page-header">
@@ -266,8 +267,8 @@
 	<script>
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
-			var movieId = button.data('id');
-			var movieTitle = button.data('title');
+			var drinkId = button.data('id');
+			var drinkName = button.data('title');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", drinkId);
 			modal.find('#deleteName').text(drinkName);
