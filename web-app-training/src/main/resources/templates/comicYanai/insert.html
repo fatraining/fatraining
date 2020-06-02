@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/comicYanai.css}" />
+<body>
+
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{comic.text.insert}">ComicInsert</h1>
+				<a th:href="@{/comicYanai}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="comicYanaiInputForm"
+				th:action="@{/comicYanai/insert}" th:object="${comicYanaiInputForm}"
+				class="form-horizontal">
+
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{comic.text.input.title.riquire}"> Title(*):</label>
+					<input type="text" th:field="*{comicTitle}" class="form-control"
+						th:placeholder="#{comic.text.title}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('comicTitle')}"
+						th:text="#{${err}(#{comic.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{comic.text.input.genre}"> Genre:</label>
+					<select name="genreId" id="inputGenre"
+						class="form-control select">
+						<option th:each="genre : ${genreYanaiList}"
+								th:value="${genre.id}"
+								th:text="${genre.genre}"
+								th:selected="${genre.id == comicYanaiInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="pubco" class="control-label"
+						th:text="#{comic.text.input.pubco}"> Pubco:</label>
+					<select name="pubcoId" id="inputPubco"
+						class="form-control">
+						<option th:each="pubco : ${pubcoYanaiList}"
+								th:value="${pubco.id}"
+								th:text="${pubco.pubco}"
+								th:selected="${pubco.id == comicYanaiInputForm.pubcoId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="volume" class="control-label"
+						th:text="#{comic.text.input.volume.riquire}"> volume(*):</label>
+					<input type="text" th:field="*{volume}" class="form-control" id="inputVolume"
+						th:placeholder="#{comic.text.volume}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('volume')}"
+						th:text="#{${err}(#{comic.text.volume})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{comic.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{comic.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#comicYanaiInputForm').submit()"
+                       th:text="#{common.text.insert}">Insert</a>
+                </div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
