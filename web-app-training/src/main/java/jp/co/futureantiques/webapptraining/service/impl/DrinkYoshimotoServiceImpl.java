@@ -164,7 +164,7 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 		if (!image.isEmpty()) {
 
 			//追加する画像のファイルパス、Cドライブからstaticまでのパス
-			Path path = Paths.get(CommonConst.STATIC_PATH + "/DrinkYoshimoto");
+			Path path = Paths.get(CommonConst.STATIC_PATH + "/DrinkImageYoshimoto");
 
 			//ファイル名を付けるため拡張子や現在日時を取得
 			int dot = image.getOriginalFilename().lastIndexOf(".");
@@ -176,7 +176,7 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 			String fileName = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 
 			//エンティティに画像の値を入れる
-			drinkMainYoshimoto.setImage("/DrinkYoshimoto/" + fileName + extention);
+			drinkMainYoshimoto.setImage("/DrinkImageYoshimoto/" + fileName + extention);
 
 			//指定した場所にファイルを書き込む
 			path = path.resolve(fileName + extention);

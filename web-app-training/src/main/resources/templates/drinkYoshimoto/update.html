@@ -65,12 +65,6 @@
 						th:field="*{image}" th:placeholder="#{drink.text.input.image}" />
 					<span th:text="#{drink.text.input.image.attention}">※画像を変更しない場合は「ファイルを選択」ボタンを押さないでください</span>
 				</div>
-				<!-- 現在の画像を削除 -->
-				<div th:if="${imagePass!=null}">
-					<div class="btn btn-danger" data-toggle="modal" data-target="#imageDeleteModal">
-						現在登録している画像を削除する
-					</div>
-				</div>
 
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
