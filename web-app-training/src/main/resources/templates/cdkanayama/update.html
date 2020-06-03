@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>研修Webアプリ|CD更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/cdKanayama.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{cd.text.update}">CD更新</h1>
+				<a th:href="@{/cdKanayama}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="cdKanayamaInputForm"
+				th:action="@{/cdkanayama/update}" th:object="${cdKanayamaInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{cdkanayama.text.input.title}"> Title(*):</label>
+					<input type="text" th:field="*{cdTitle}" class="form-control"
+						th:placeholder="#{cdkanayama.text.title}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('cdTitle')}"
+						th:text="#{${err}(#{cdkanayama.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{cd.text.input.genre}">Genre:</label>
+					<select name="genreId" id="inputGenre"
+						class="form-control select">
+						<option th:each="genre : ${genreKanayamaList}"
+								th:value="${genre.id}"
+								th:text="${genre.genre}"
+								th:selected="${genre.id == cdKanayamaInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="artistName" class="control-label"
+						th:text="#{cd.text.input.artistname}">ArtistName(*):</label>
+					<input type="text" th:field="*{artistName}" class="form-control" id="inputArtistName"
+						th:placeholder="#{cd.text.artistname}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('artistName')}"
+						th:text="#{${err}(#{cd.text.artistname})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{cd.text.input.releaseyear}">ReleaseYear(*):</label>
+					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
+						th:placeholder="#{cd.text.releaseyear}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{cd.text.releaseyear})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="playTime" class="control-label"
+						th:text="#{cd.text.input.playtime}"> PlayTime:</label>
+					<input type="text" th:field="*{playTimeStr}" class="form-control" id="inputPlayTime"
+						th:placeholder="#{cd.text.playtime}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('playTimeStr')}"
+						th:text="#{${err}(#{cd.text.playtime})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{cd.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{cd.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#cdKanayamaInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
