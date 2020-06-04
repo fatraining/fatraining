@@ -20,7 +20,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Maker_Ohkubo {
+public class MakerOhkubo {
 	/** メーカーID */
 	@Id
 	@GeneratedValue
@@ -46,7 +46,7 @@ public class Maker_Ohkubo {
 
 	/** 外部キー設定：俳優ID */
 	@Transient
-	@OneToMany(targetEntity = DrinkMain_Ohkubo.class, mappedBy = "maker")
+	@OneToMany(targetEntity = DrinkMainOhkubo.class, mappedBy = "maker")
 	@JoinColumn(name = "id", referencedColumnName = "maker_id")
-	private List<DrinkMain_Ohkubo> drinkMainList;
+	private List<DrinkMainOhkubo> drinkMainList;
 }

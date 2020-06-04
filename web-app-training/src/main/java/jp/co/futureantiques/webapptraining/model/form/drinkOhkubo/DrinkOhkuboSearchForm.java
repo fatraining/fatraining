@@ -1,6 +1,6 @@
 package jp.co.futureantiques.webapptraining.model.form.drinkOhkubo;
 
-import jp.co.futureantiques.webapptraining.model.drinkOhkubo.DrinkMain_Ohkubo;
+import jp.co.futureantiques.webapptraining.model.drinkOhkubo.DrinkMainOhkubo;
 import lombok.Data;
 /**
  * 飲み物検索画面のFormクラス
@@ -9,12 +9,12 @@ import lombok.Data;
  */
 
 @Data
-public class DrinkSearch_Ohkubo {
+public class DrinkOhkuboSearchForm {
 	//ID
 	private Integer id;
 
 	//製品名
-	private String drink_name;
+	private String drinkName;
 
 	//メーカーID
 	private Integer makerId;
@@ -32,13 +32,13 @@ public class DrinkSearch_Ohkubo {
 	/**
 	 * 各フィールドに値を設定する
 	 *
-	 * @param DrinkMain_Ohkubo
+	 * @param drinkMainOhkubo
 	 */
 
-	public void setValues(DrinkMain_Ohkubo drinkMain) {
-		this.setId((int) drinkMain.getId());
-		this.setDrink_name(drinkMain.getDrinkName());
-		this.setTypeId(drinkMain.getTypeId());
-		this.setContainerId(drinkMain.getContainerId());
+	public void setValues(DrinkMainOhkubo drinkMainOhkubo) {
+		this.setId((int) drinkMainOhkubo.getId());
+		this.setDrinkName(drinkMainOhkubo.getDrinkName());
+		this.setTypeId(drinkMainOhkubo.getTypeId());
+		this.setContainerId(drinkMainOhkubo.getContainerId());
 	}
 }

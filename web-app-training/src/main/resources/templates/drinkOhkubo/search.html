@@ -4,12 +4,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|飲み物検索</title>
-<!--
+
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />-->
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/movieSample.css}" />
 </head>
 <body>
 	<div class="page-header">
@@ -26,7 +28,7 @@
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px">
 		<form class="form-horizontal" id="deleteCompForm" method="get"
-			action="/drink/deletecomp" th:object="${DrinkSearch_Ohkubo}">
+			action="/drinkohkubo/deletecomp" th:object="${drinkSearchOhkuboForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
 					<input type="hidden" name="isDelete" th:value="1" />
@@ -35,7 +37,7 @@
 		</form>
 		<div class="form-group">
 			<div class="">
-				<a class="btn btn-warning" th:href="@{/drink/insert}"
+				<a class="btn btn-warning" th:href="@{/drinkohkubo/insert}"
 					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData </a>
@@ -50,10 +52,10 @@
 
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
-					th:if="${(drinkSearch_Ohkubo.drinkName != null or
-							DrinkSearch_Ohkubo.makerId != null or
-							DrinkSearch_Ohkubo.typeId != null or
-							DrinkSearch_Ohkubo.containerId) and
+					th:if="${(drinkOhkuboSearchForm.drinkName != null or
+							drinkOhkuboSearchForm.	Id != null or
+							drinkOhkuboSearchForm.typeId != null or
+							drinkOhkuboSearchForm.containerId != null) and
 							drinkList == null}"
 					th:text="#{common.text.info.search}">No Result</div>
 
@@ -77,36 +79,37 @@
 
 		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm" method="post"
-			action="/drink/search" th:object="${DrinkSearch_Ohkubo}">
+			action="/drinkohkubo/search" th:object="${drinkOhkuboSearchForm}">
 			<div class="form-group">
-				<label for="drinkTitle" class="col-sm-2 control-label"
-					th:text="#{drink.text.input.title}">Title:</label>
+				<label for="drinkName" class="col-sm-2 control-label"
+					th:text="#{drink.text.input.name}">製品名:</label>
 				<div class="col-sm-8">
 					<input type="text" th:field="*{drinkName}" class="form-control"
-						id="inputDrinkTitle" th:placeholder="#{drink.text.search.info}" />
+						id="inputDrinkName" th:placeholder="#{drink.text.search.info}" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="maker" class="control-maker col-sm-2"
-					th:text="#{drink.text.input.maker}">Maker:</label>
+				<label for="maker" class="control-label col-sm-2"
+					th:text="#{drink.text.input.maker}">メーカー:</label>
 				<div class="col-sm-8">
 					<select id="inputMaker" name="makerId" class="form-control select">
-						<option th:each="maker : ${makerList}" th:value="${maker.id}"
+						<option th:each="maker : ${makerOhkuboList}" th:value="${maker.id}"
 							th:text="${maker.maker}"
-							th:selected="${maker.id == drinkSearch_Ohkubo.makerId}">pulldown
+							th:selected="${maker.id == drinkOhkuboSearchForm.makerId}">pulldown
 						</option>
 					</select>
 				</div>
 			</div>
 
+
 			<div class="form-group">
 				<label for="type" class="control-label col-sm-2"
-					th:text="#{drink.text.input.type}">Type:</label>
+					th:text="#{drink.text.input.type}">種類:</label>
 				<div class="col-sm-8">
 					<select id="inputType" name="typeId" class="form-control select">
-						<option th:each="type : ${drinkTypeList}" th:value="${type.id}"
-							th:text="${type.name}"
-							th:selected="${type.id == drinkSearch_Ohkubo.typeId}">pulldown
+						<option th:each="type : ${typeOhkuboList}" th:value="${type.id}"
+							th:text="${type.type}"
+							th:selected="${type.id == drinkOhkuboSearchForm.typeId}">pulldown
 						</option>
 					</select>
 				</div>
@@ -114,13 +117,13 @@
 
 			<div class="form-group">
 				<label for="container" class="control-label col-sm-2"
-					th:text="#{drink.text.input.container}">Type:</label>
+					th:text="#{drink.text.input.container}">容器:</label>
 				<div class="col-sm-8">
 					<select id="inputContainer" name="containerId"
 						class="form-control select">
-						<option th:each="type : ${drinkContainerList}"
-							th:value="${container.id}" th:text="${container.name}"
-							th:selected="${container.id == drinkSearch_Ohkubo.containerId}">pulldown
+						<option th:each="container : ${containerOhkuboList}"
+							th:value="${container.id}" th:text="${container.container}"
+							th:selected="${container.id == drinkOhkuboSearchForm.containerId}">pulldown
 						</option>
 					</select>
 				</div>
@@ -130,10 +133,10 @@
 				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
 					<a class="btn btn-primary center-block"
 						onclick="$('#searchForm').submit()"
-						th:text="#{common.text.search}">Search </a>
+						th:text="#{common.text.search}">Search</a>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-warning center-block" th:href="@{/drink}"
+					<a class="btn btn-warning center-block" th:href="@{/drinkohkubo}"
 						th:text="#{common.text.reset}">Reset </a>
 				</div>
 			</div>
@@ -145,11 +148,11 @@
 				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="per-12 center" th:text="#{drink.text.title}">Title</th>
+						<th class="per-12 center" th:text="#{drink.text.name}">Name</th>
 						<th class="per-12 center" th:text="#{drink.text.maker}">Maker</th>
 						<th class="per-16 center" th:text="#{drink.text.type}">Type</th>
 						<th class="per-16 center" th:text="#{drink.text.ml}">ml</th>
-						<th class="per-16 center" th:text="#{drink.text.container}">container</th>
+						<th class="per-16 center" th:text="#{drink.text.container}">Container</th>
 						<th class="per-45 center" th:text="#{drink.text.comment}">Comment</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
@@ -159,13 +162,18 @@
 					<tr th:each="drink : ${drinkList}">
 						<td class="data center" th:text="${drink.drinkName}">コカコーラ</td>
 						<td class="data center"><label th:if="${drink.maker != null}"
-							th:text="${drink.maker.maker}" class="data center">コカ・コーラ株式会社</label></td>
+							th:text="${drink.maker.maker}" class="data center">コカ・コーラ株式会社</label>
+						</td>
 						<td class="data center"><label th:if="${drink.type != null}"
 							th:text="${drink.type.type}" class="data center">炭酸飲料</label></td>
-						<td class="data center"><label th:if="${drink.type != null}"
-							th:text="${drink.type.type}" class="data center">ペットボトル</label></td>
+						<td class="data center" th:text="${drink.ml}"></td>
+						<td class="data center"><label
+							th:if="${drink.container != null}"
+							th:text="${drink.container.container}" class="data center">ペットボトル</label>
+						</td>
+						<td class="data center" th:text="${drink.comment}"></td>
 						<td class="data"><a class="btn btn-success"
-							th:href="@{/drink/update(id=${drink.id})}"
+							th:href="@{/drinkohkubo/update(id=${drink.id})}"
 							th:text="#{common.text.update}">Update</a></td>
 						<td class="data center"><a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
@@ -191,10 +199,11 @@
 						style="display: inline">
 						<form th:id="'pageForm'+${i}" method="post"
 							th:action="@{${url}(page=${i})}"
-							th:object="${drinkSearch_Ohkubo}" style="display: inline">
+							th:object="${drinkOhkuboSearchForm}" style="display: inline">
 							<input type="hidden" th:field="*{drinkName}" /> <input
 								type="hidden" th:field="*{makerId}" /> <input type="hidden"
-								th:field="*{typeId}" />
+								th:field="*{typeId}" /><input type="hidden"
+								th:field="*{containerId}" />
 						</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
 						th:if='${i}!=${page.number}'
 						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
@@ -226,13 +235,13 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="deleteModalLabel"
-							th:text="#{drink.text.delete}">MovieDelete</h4>
+							th:text="#{drink.text.delete}">DrinkDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteTitle">Drink Title</span>
+									<span id="deleteName">Drink Name</span>
 								</p>
 							</div>
 						</div>
@@ -268,7 +277,7 @@
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var drinkId = button.data('id');
-			var drinkName = button.data('title');
+			var drinkName = button.data('name');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", drinkId);
 			modal.find('#deleteName').text(drinkName);

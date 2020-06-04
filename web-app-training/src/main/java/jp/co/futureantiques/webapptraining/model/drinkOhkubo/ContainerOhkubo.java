@@ -14,23 +14,23 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 種類テーブルと対応するEntity
+ * MovieActorテーブルと対応するEntity
  *
  * @author future
  */
 @Data
 @Entity
-public class Type_Ohkubo {
-	/** 種類ID */
+public class ContainerOhkubo {
+	/** 容器ID */
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 
-	/** 種類 */
-	@Column(name = "type")
+	/** 容器 */
+	@Column(name = "container")
 	@Size(max = 255)
-	private String type;
+	private String container;
 
 	/** 削除フラグ */
 	@Column(name = "del_flg")
@@ -44,9 +44,9 @@ public class Type_Ohkubo {
 	@Column(name = "update_date")
 	private String updateDate;
 
-	/** 外部キー設定：種類ID */
+	/** 外部キー設定：容器ID */
 	@Transient
-	@OneToMany(targetEntity = DrinkMain_Ohkubo.class, mappedBy = "type")
-	@JoinColumn(name = "id", referencedColumnName = "type_id")
-	private List<DrinkMain_Ohkubo> drinkMainList;
+	@OneToMany(targetEntity = DrinkMainOhkubo.class, mappedBy = "container")
+	@JoinColumn(name = "id", referencedColumnName = "container_id")
+	private List<DrinkMainOhkubo> drinkMain_List;
 }

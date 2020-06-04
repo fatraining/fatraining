@@ -21,7 +21,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class DrinkMain_Ohkubo {
+public class DrinkMainOhkubo {
 	/**飲み物ID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
@@ -42,7 +42,7 @@ public class DrinkMain_Ohkubo {
 
 	/** 内容量 */
 	@Column(name = "ml")
-	private Integer ml;
+	private String ml;
 
 	/** 容器ID */
 	@Column(name = "container_id")
@@ -66,18 +66,18 @@ public class DrinkMain_Ohkubo {
 	private Timestamp updateDate;
 
 	/** 外部キー設定：メーカー */
-	@ManyToOne(targetEntity = Maker_Ohkubo.class)
+	@ManyToOne(targetEntity = MakerOhkubo.class)
 	@JoinColumn(name = "maker_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Maker_Ohkubo maker;
+	private MakerOhkubo maker;
 
 	/** 外部キー設定：種類 */
-	@ManyToOne(targetEntity = Type_Ohkubo.class)
+	@ManyToOne(targetEntity = TypeOhkubo.class)
 	@JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Type_Ohkubo type;
+	private TypeOhkubo type;
 
 	/** 外部キー設定：容器 */
-	@ManyToOne(targetEntity = Container_Ohkubo.class)
+	@ManyToOne(targetEntity = ContainerOhkubo.class)
 	@JoinColumn(name = "container_id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Container_Ohkubo container;
+	private ContainerOhkubo container;
 
 }

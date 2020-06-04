@@ -10,8 +10,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.drinkOhkubo.DrinkMain_Ohkubo;
-import jp.co.futureantiques.webapptraining.model.form.drinkOhkubo.DrinkSearch_Ohkubo;
+import jp.co.futureantiques.webapptraining.model.drinkOhkubo.DrinkMainOhkubo;
+import jp.co.futureantiques.webapptraining.model.form.drinkOhkubo.DrinkOhkuboSearchForm;
 
 
 /**
@@ -19,18 +19,18 @@ import jp.co.futureantiques.webapptraining.model.form.drinkOhkubo.DrinkSearch_Oh
  *
  * @author future
  */
-public class DrinkSpecification_Ohkubo {
+public class DrinkOhkuboSpecification {
 
 	/**
 	 * 検索条件生成の実装
 	 *
-	 * @param DrinkSearch_Ohkubo form
+	 * @param DrinkOhkuboSearchForm form
 	 * @return DrinkMainのSpecification
 	 */
-	public static Specification<DrinkMain_Ohkubo> generateDrinkSpecification(final DrinkSearch_Ohkubo form) {
-		return new Specification<DrinkMain_Ohkubo>() {
+	public static Specification<DrinkMainOhkubo> generateDrinkSpecification(final DrinkOhkuboSearchForm form) {
+		return new Specification<DrinkMainOhkubo>() {
 			@Override
-			public Predicate toPredicate(Root<DrinkMain_Ohkubo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<DrinkMainOhkubo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				// 検索条件
 				Predicate condition = null;
@@ -49,11 +49,11 @@ public class DrinkSpecification_Ohkubo {
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-				if (!StringUtils.isEmpty(form.getDrink_name())) {
+				if (!StringUtils.isEmpty(form.getDrinkName())) {
 
 					// 製品名を条件に追加
-					form.setDrink_name(form.getDrink_name().trim());
-					Predicate newCondition = cb.like(root.get("drinkName"), "%" + form.getDrink_name() + "%");
+					form.setDrinkName(form.getDrinkName().trim());
+					Predicate newCondition = cb.like(root.get("drinkName"), "%" + form.getDrinkName() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
 
