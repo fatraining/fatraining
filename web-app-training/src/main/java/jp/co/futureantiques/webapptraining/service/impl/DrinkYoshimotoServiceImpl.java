@@ -84,7 +84,6 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 		//検索条件を生成しDrinkMainYoshimotoテーブルのレコードを取得
 		return drinkMainYoshimotoRepository
 				.findAll(DrinkYoshimotoSpecification.drinkCategoryYoshimotoSpecification(form), pageable);
-
 	}
 
 	@Override
@@ -109,7 +108,6 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 		final DrinkMainYoshimoto drinkMainYoshimoto = form.convertToDrinkMainYoshimotoForInsert();
 		//ファイルをアップロードする
 		uploadFile(drinkMainYoshimoto, form.getImage());
-
 		return drinkMainYoshimotoRepository.save(drinkMainYoshimoto);
 	}
 
@@ -131,7 +129,6 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 
 				//更新を実行
 				return drinkMainYoshimotoRepository.saveAndFlush(drinkMainYoshimoto);
-
 			}
 		}
 		return null;
@@ -142,7 +139,6 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 
 		//更新対象のレコードが存在する場合、削除フラグを1にする
 		drinkMainYoshimotoRepository.delete(id);
-
 	}
 
 	@Override
@@ -150,7 +146,6 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 
 		//対象のレコードを削除する
 		drinkMainYoshimotoRepository.deleteComp(ids);
-
 	}
 
 	/**
@@ -170,6 +165,7 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 			int dot = image.getOriginalFilename().lastIndexOf(".");
 			String extention = "";
 			if (dot > 0) {
+
 				//拡張子を小文字にする
 				extention = image.getOriginalFilename().substring(dot).toLowerCase();
 			}

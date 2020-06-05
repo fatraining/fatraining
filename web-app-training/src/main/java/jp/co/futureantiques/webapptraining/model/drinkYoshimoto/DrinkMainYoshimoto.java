@@ -22,7 +22,6 @@ import lombok.Data;
 @Entity
 public class DrinkMainYoshimoto {
 
-
 	/** 飲み物ID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
@@ -63,7 +62,7 @@ public class DrinkMainYoshimoto {
 	private DrinkCategoryYoshimoto drinkCategoryYoshimoto;
 
 	/** 外部キー設定：メーカーID */
-	@ManyToOne(targetEntity =DrinkMakerYoshimoto.class)
+	@ManyToOne(targetEntity = DrinkMakerYoshimoto.class)
 	@JoinColumn(name = "maker_id", referencedColumnName = "maker_id", insertable = false, updatable = false)
 	private DrinkMakerYoshimoto drinkMakerYoshimoto;
 }

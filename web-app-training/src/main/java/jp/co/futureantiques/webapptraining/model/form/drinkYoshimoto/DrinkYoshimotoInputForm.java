@@ -105,9 +105,7 @@ public class DrinkYoshimotoInputForm {
 			//メーカーが入力されていた場合
 			drinkMainYoshimoto.setMakerId(this.makerId);
 		}
-
 		drinkMainYoshimoto.setDelFlg("0");
 		return drinkMainYoshimoto;
 	}
-
 }

@@ -65,14 +65,12 @@
 						th:field="*{image}" th:placeholder="#{drink.text.input.image}" />
 					<span th:text="#{drink.text.input.image.attention}">※画像を登録しない場合は「ファイルを選択」ボタンを押さないでください</span>
 				</div>
-
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
 						onclick="$('#drinkYoshimotoInputForm').submit()"
 						th:text="#{common.text.insert}">Insert</a>
 				</div>
 			</form>
-
 		</div><!-- end resultArea -->
 	</div><!-- end container -->
 
@@ -80,7 +78,6 @@
 
 	<script>
 		var obj = document.getElementById("file");
-
 		obj.addEventListener("change",function(evt){
 			var file = evt.target.files;
 
@@ -91,7 +88,5 @@
 			}
 		},false);
 	</script>
-
-
 </body>
 </html>

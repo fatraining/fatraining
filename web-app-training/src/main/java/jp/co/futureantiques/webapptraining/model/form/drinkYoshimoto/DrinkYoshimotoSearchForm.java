@@ -33,11 +33,9 @@ public class DrinkYoshimotoSearchForm {
 	 * @param drinkMainYoshimoto
 	 */
 	public void setValues(DrinkMainYoshimoto drinkMainYoshimoto) {
-		this.setDrinkId((int)drinkMainYoshimoto.getDrinkId());
+		this.setDrinkId((int) drinkMainYoshimoto.getDrinkId());
 		this.setDrinkName(drinkMainYoshimoto.getDrinkName());
 		this.setCategoryId(drinkMainYoshimoto.getCategoryId());
 		this.setMakerId(drinkMainYoshimoto.getMakerId());
-
 	}
-
 }

@@ -90,5 +90,4 @@ public interface DrinkYoshimotoService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteDrinkComp(final ArrayList<Long> ids);
-
 }

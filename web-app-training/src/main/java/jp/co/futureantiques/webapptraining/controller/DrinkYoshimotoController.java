@@ -32,6 +32,7 @@ import jp.co.futureantiques.webapptraining.service.DrinkYoshimotoService;
 @Controller
 @RequestMapping(value = "/drinkYoshimoto")
 public class DrinkYoshimotoController {
+
 	/** 飲み物のサービス */
 	private final DrinkYoshimotoService drinkYoshimotoService;
 
@@ -96,7 +97,6 @@ public class DrinkYoshimotoController {
 			model.addAttribute("drinkYoshimotoList", drinkYoshimotoList.getContent());
 			model.addAttribute("url", "search");
 		}
-
 		return "drinkYoshimoto/search";
 	}
 
@@ -122,8 +122,8 @@ public class DrinkYoshimotoController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertDrink(@ModelAttribute @Validated final DrinkYoshimotoInputForm form,
 			final BindingResult bindingResult, Model model) {
-		//if (bindingResult.hasFieldErrors()) {
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasFieldErrors()) {
+
 			//エラーがある場合自画面に戻る
 			return "drinkYoshimoto/insert";
 		}

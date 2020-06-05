@@ -16,6 +16,6 @@ import lombok.Data;
 public class DrinkYoshimotoDeleteForm {
 
 	/** 削除ID */
-	@Size(min=1,message="common.text.error.require.check")
+	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
 }

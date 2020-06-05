@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/drinkYoshimoto.css}" />
 </head>
 <body>
-
 	<div class="page-header">
 		<h4>
 			<a th:href="@{/}" th:text="#{login.text.app}">研修WEBアプリ</a>
@@ -42,10 +41,9 @@
 				</a>
 			</div>
 		</div>
-
 	</div>
-
 	<div class="container">
+
 		<!-- メッセージ -->
 		<div class="row">
 			<div class="col-sm-offset-3 col-sm-7">
@@ -156,10 +154,10 @@
 								class="data center">炭酸飲料
 							</label>
 						</td>
+
 						<!-- 画像 -->
 						<td th:if="${drink.image==null or drink.image.equals('')}" class="data center"><img src="/DrinkImageYoshimoto/Noimage.jpg" height="180" width="180" /></td>
 						<td th:if="${drink.image!=null and !(drink.image.equals(''))}" class="data center"><img th:src="@{${drink.image}}" height="180" width="180" /></td>
-
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/drinkYoshimoto/update(id=${drink.drinkId})}"
@@ -274,7 +272,5 @@
 			modal.find('#deleteName').text(drinkName);
 		});
 	</script>
-
-
 </body>
 </html>

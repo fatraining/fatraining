@@ -27,7 +27,6 @@ public class DrinkYoshimotoSpecification {
 	 * @param DrinkMainYoshimotoSearchForm
 	 * @return DrinkMainYohimotoのSpecification
 	 * */
-
 	public static Specification<DrinkMainYoshimoto> drinkCategoryYoshimotoSpecification(
 			final DrinkYoshimotoSearchForm form) {
 		return new Specification<DrinkMainYoshimoto>() {
@@ -51,7 +50,6 @@ public class DrinkYoshimotoSpecification {
 					Predicate newCondition = cb.equal(root.get("drinkId"), form.getDrinkId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (!StringUtils.isEmpty(form.getDrinkName())) {
 
 					//商品名を条件に追加
@@ -59,7 +57,6 @@ public class DrinkYoshimotoSpecification {
 					Predicate newCondition = cb.like(root.get("drinkName"), "%" + form.getDrinkName() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (form.getMakerId() != null && form.getMakerId() != 0) {
 
 					//メーカーを条件に追加
