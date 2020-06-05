@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
+
+/** 漫画削除画面のformクラス
+ * @author yanai
+ *
+ */
 @Data
 public class ComicYanaiDeleteForm {
 	/** 削除ID */

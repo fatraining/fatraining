@@ -10,41 +10,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+
+/** ComicMainYanaiテーブルに対応するエンティティクラス
+ *
+ * @author yanai
+ *
+ */
 @Data
 @Entity
 public class ComicMainYanai {
-	//ID
+	/**漫画ID*/
 	@Id
 	@GeneratedValue
-	@Column(name ="id")
+	@Column(name = "id")
 	private long id;
-	//comictitle
-	@Column(name="comic_title")
+	/** 漫画名*/
+	@Column(name = "comic_title")
 	private String comicTitle;
-	//genreId
-	@Column(name="genre_id")
+	/** ジャンルID */
+	@Column(name = "genre_id")
 	private Integer genreId;
-	//pubcoId
-	@Column(name="pubco_id")
+	/** 出版社ID */
+	@Column(name = "pubco_id")
 	private Integer pubcoId;
-	//volume
-	@Column(name="volume")
+	/** 巻数 */
+	@Column(name = "volume")
 	private Integer volume;
-	//comment
-	@Column(name="comment")
+	/**コメント*/
+	@Column(name = "comment")
 	private String comment;
-	//delFlg
-	@Column(name="del_flg")
+	/** 削除フラグ*/
+	@Column(name = "del_flg")
 	private String delFlg;
-	//createDate
-	@Column(name="create_date")
+	/**登録日時*/
+	@Column(name = "create_date")
 	private Timestamp createDate;
-	//updateDate
-	@Column(name="update_date")
+	/** 更新日時*/
+	@Column(name = "update_date")
 	private Timestamp updateDate;
-	//外部キー
+
+	/**外部キー設定：ジャンル*/
 	@ManyToOne(targetEntity = GenreYanai.class)
 	@JoinColumn(name = "genre_id", referencedColumnName = "id", insertable = false, updatable = false)
+
+	/**外部キー設定：出版社*/
 	private GenreYanai genre;
 	@ManyToOne(targetEntity = PubcoYanai.class)
 	@JoinColumn(name = "pubco_id", referencedColumnName = "id", insertable = false, updatable = false)

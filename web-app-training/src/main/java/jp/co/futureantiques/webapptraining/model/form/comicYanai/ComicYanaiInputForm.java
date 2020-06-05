@@ -10,6 +10,11 @@ import org.hibernate.validator.constraints.NotBlank;
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.comicYanai.ComicMainYanai;
 import lombok.Data;
+
+/**漫画追加・更新画面のform
+ * @author yanai
+ *
+ */
 @Data
 public class ComicYanaiInputForm {
 
@@ -67,10 +72,10 @@ public class ComicYanaiInputForm {
 	}
 
 	/**
-	 * MovieMainエンティティに更新値を入れる
+	 * ComicMainYanaiエンティティに更新値を入れる
 	 *
-	 * @param MovieMain movieMain
-	 * @return MovieMain
+	 * @param ComicMainYanai comicMainYanai
+	 * @return ComicMainYanai
 	 */
 	public ComicMainYanai convertToComicMainYanaiForUpdate(ComicMainYanai comicMainYanai) {
 		comicMainYanai = convertToComicMainYanai(comicMainYanai);
@@ -79,27 +84,28 @@ public class ComicYanaiInputForm {
 	}
 
 	/**
-	 * MovieMainエンティティに入力値を入れる
+	 * ComicMainYanaiエンティティに入力値を入れる
 	 *
-	 * @param MovieMain movieMain
-	 * @return MovieMain
+	 * @param ComicMainYanai comicMainYanai
+	 * @return ComicMainYanai
 	 */
 	private ComicMainYanai convertToComicMainYanai(ComicMainYanai comicMainYanai) {
 		comicMainYanai.setComicTitle(this.comicTitle);
-		if(this.genreId == CommonConst.NOT_ENTERD) {
+		if (this.genreId == CommonConst.NOT_ENTERD) {
 
 			// ジャンルが入力されていなかった場合
 			comicMainYanai.setGenreId(0);
-		}else {
+		} else {
 
 			// ジャンルが入力されていた場合
 			comicMainYanai.setGenreId(this.genreId);
 		}
-		if(this.pubcoId == CommonConst.NOT_ENTERD) {
+		if (this.pubcoId == CommonConst.NOT_ENTERD) {
 
 			// 出版社が入力されていなかった場合
 			comicMainYanai.setPubcoId(0);
-		}else {
+		} else {
+
 			// 出版社が入力されていた場合
 			comicMainYanai.setPubcoId(this.pubcoId);
 		}

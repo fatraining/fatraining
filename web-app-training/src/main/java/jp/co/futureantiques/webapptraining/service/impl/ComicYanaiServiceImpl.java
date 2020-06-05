@@ -18,17 +18,29 @@ import jp.co.futureantiques.webapptraining.repository.comicYanai.GenreYanaiRepos
 import jp.co.futureantiques.webapptraining.repository.comicYanai.PubcoYanaiRepository;
 import jp.co.futureantiques.webapptraining.repository.specification.ComicYanaiSpecification;
 import jp.co.futureantiques.webapptraining.service.ComicYanaiService;
+
+/** ComicYanaiserviceの実装クラス
+ * @author yanai
+ *
+ */
 @Service
 public class ComicYanaiServiceImpl implements ComicYanaiService {
 
-	//リポジトリ
+	/** ComicMainYanaiリポジトリ*/
 	private final ComicMainYanaiRepository comicMainYanaiRepository;
+	/**GenreYanaiのリポジトリ */
 	private final GenreYanaiRepository genreYanaiRepository;
+	/**PubcoYanaiのリポジトリ*/
 	private final PubcoYanaiRepository pubcoYanaiRepository;
 
-	//コンストラクタ
+	/**コンストラクタ
+	 *
+	 * @param comicMainYanaiRepository
+	 * @param genreYanaiRepository
+	 * @param pubcoYanaiRepository
+	 */
 	ComicYanaiServiceImpl(ComicMainYanaiRepository comicMainYanaiRepository, GenreYanaiRepository genreYanaiRepository,
-								PubcoYanaiRepository pubcoYanaiRepository){
+			PubcoYanaiRepository pubcoYanaiRepository) {
 		this.comicMainYanaiRepository = comicMainYanaiRepository;
 		this.genreYanaiRepository = genreYanaiRepository;
 		this.pubcoYanaiRepository = pubcoYanaiRepository;
@@ -36,54 +48,53 @@ public class ComicYanaiServiceImpl implements ComicYanaiService {
 
 	@Override
 	public List<GenreYanai> getListGenre() {
-		// TODO 自動生成されたメソッド・スタブ
-		return  genreYanaiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+		//GenreYanaiテーブルのレコードをID順に取得する
+		return genreYanaiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public List<PubcoYanai> getListPubco() {
-		// TODO 自動生成されたメソッド・スタブ
-		return  pubcoYanaiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+		// PubcoYanaiテーブルのレコードをID順に取得する
+		return pubcoYanaiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public Page<ComicMainYanai> getPageComic(ComicYanaiSearchForm form, Pageable pageable) {
-		// TODO 自動生成されたメソッド・スタブ
-		 // 検索条件を生成しConicMainYanaiテーブルのレコードを取得する
-		return comicMainYanaiRepository.findAll(ComicYanaiSpecification.generateComicYanaiSpecification(form), pageable);
+		// 検索条件を生成しConicMainYanaiテーブルのレコードを取得する
+		return comicMainYanaiRepository.findAll(ComicYanaiSpecification.generateComicYanaiSpecification(form),
+				pageable);
 	}
 
 	@Override
 	public List<ComicMainYanai> getListComic(ComicYanaiSearchForm form) {
-		// TODO 自動生成されたメソッド・スタブ
+		// 検索条件を生成しComicMainYanaiテーブルのレコードを取得する
 		return comicMainYanaiRepository.findAll(ComicYanaiSpecification.generateComicYanaiSpecification(form));
 	}
 
-
 	@Override
 	public ComicMainYanai getComic(long id) {
-		// TODO 自動生成されたメソッド・スタブ
+		// ComicMainYanaiテーブルを主キー検索する
 		return comicMainYanaiRepository.findOne(id);
 	}
 
 	@Override
 	public ComicMainYanai insertComic(ComicYanaiInputForm form) {
-		// TODO 自動生成されたメソッド・スタブ
+		// ComicMainYanaiテーブルに新規でデータを登録する
 		final ComicMainYanai comicMainYanai = form.convertToComicMainYanaiForInsert();
 		return comicMainYanaiRepository.save(comicMainYanai);
 	}
 
 	@Override
 	public ComicMainYanai updateComic(ComicYanaiInputForm form) {
-		// TODO 自動生成されたメソッド・スタブ
-		ComicMainYanai comicMainYanai= comicMainYanaiRepository.findOne((long) form.getId());
+		// 更新対象のレコードを取得する。
+		ComicMainYanai comicMainYanai = comicMainYanaiRepository.findOne((long) form.getId());
 		if (comicMainYanai != null) {
 
 			// 更新対象のレコードが存在する場合排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(comicMainYanai.getUpdateDate()))) {
 
 				// チェックOKの場合、更新
-				comicMainYanai= form.convertToComicMainYanaiForUpdate(comicMainYanai);
+				comicMainYanai = form.convertToComicMainYanaiForUpdate(comicMainYanai);
 				return comicMainYanaiRepository.saveAndFlush(comicMainYanai);
 			}
 		}
@@ -93,17 +104,18 @@ public class ComicYanaiServiceImpl implements ComicYanaiService {
 
 	@Override
 	public void deleteComicById(long id) {
-		// TODO 自動生成されたメソッド・スタブ
+		// 更新対象のレコードを取得する
 		ComicMainYanai comicMainYanai = comicMainYanaiRepository.findOne(id);
 		if (comicMainYanai != null) {
 
 			// 更新対象のレコードが存在する場合、削除フラグを1にする
-			comicMainYanaiRepository.delete(id);}
+			comicMainYanaiRepository.delete(id);
+		}
 	}
 
 	@Override
 	public void deleteComicComp(ArrayList<Long> ids) {
-		// TODO 自動生成されたメソッド・スタブ
+		// 対象のレコードを削除する
 		comicMainYanaiRepository.deleteComp(ids);
 	}
 

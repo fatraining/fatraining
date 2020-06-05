@@ -23,32 +23,48 @@ import jp.co.futureantiques.webapptraining.model.form.comicYanai.ComicYanaiInput
 import jp.co.futureantiques.webapptraining.model.form.comicYanai.ComicYanaiSearchForm;
 import jp.co.futureantiques.webapptraining.service.ComicYanaiService;
 
+/**
+ * ComicYanaiのコントローラークラス
+ *
+ * @author yanai
+ */
 @Controller
 @RequestMapping(value = "/comicYanai")
 public class ComicYanaiController {
 
-	//使用するサービス
+	/** 漫画のサービス */
 	private ComicYanaiService comicYanaiService;
 
-	//DIするためのアノテーションとDIしているコンストラクタ
+	/**DIするためのアノテーションとDIしているコンストラクタ
+	 * @param ComicYanai Service comicYanaiService
+	 */
 	@Autowired
 	public ComicYanaiController(ComicYanaiService comicYanaiService) {
 		//外部からオブジェクトを注入
 		this.comicYanaiService = comicYanaiService;
 	}
 
-	//ジャンルと出版社のエンティティリストを取得する
+	/**ジャンルのエンティティリストを取得する
+	 * @return GenreYanaiのリスト
+	 */
 	@ModelAttribute
 	public List<GenreYanai> getListGenre() {
 		return comicYanaiService.getListGenre();
 	}
 
+	/**出版社のエンティティリストを取得
+	 * @return PubcoYanaiのリスト
+	 */
 	@ModelAttribute
 	public List<PubcoYanai> getListPubco() {
 		return comicYanaiService.getListPubco();
 	}
 
-	//検索結果画面へ遷移する。
+	/**検索結果画面へ遷移する。
+	 *
+	 * @param ComicSerchForm comicYanaiSerchForm
+	 * @return 検索画面のパス
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchComicYanai(@ModelAttribute final ComicYanaiSearchForm comicYanaiSerchForm) {
 		return "comicYanai/search";

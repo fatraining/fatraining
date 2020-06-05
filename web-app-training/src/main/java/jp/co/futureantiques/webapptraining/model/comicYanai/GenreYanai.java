@@ -12,29 +12,34 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import lombok.Data;
+
+/** Genreテーブルに対応するエンティティクラス
+ * @author yanai
+ *
+ */
 @Data
 @Entity
 public class GenreYanai {
-	//genreId
+	/**ジャンルID*/
 	@Id
 	@GeneratedValue
-	@Column(name ="id")
+	@Column(name = "id")
 	private int id;
 
-	//genre
-	@Column(name="genre")
+	/**ジャンル*/
+	@Column(name = "genre")
 	private String genre;
 
-	//delFlg
-	@Column(name="del_flg")
+	/**削除フラグ*/
+	@Column(name = "del_flg")
 	private String delFlg;
 
-	//createDate
-	@Column(name="createDate")
+	/**登録日時*/
+	@Column(name = "createDate")
 	private Timestamp createDate;
 
-	//updateDate
-	@Column(name="updateDate")
+	/**更新日時*/
+	@Column(name = "updateDate")
 	private Timestamp updateDate;
 
 	/** 外部キー設定：ジャンルID */

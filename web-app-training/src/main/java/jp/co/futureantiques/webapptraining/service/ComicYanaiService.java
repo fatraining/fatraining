@@ -12,24 +12,35 @@ import jp.co.futureantiques.webapptraining.model.comicYanai.PubcoYanai;
 import jp.co.futureantiques.webapptraining.model.form.comicYanai.ComicYanaiInputForm;
 import jp.co.futureantiques.webapptraining.model.form.comicYanai.ComicYanaiSearchForm;
 
-//comicYanaiserviceのインターフェイス
+/**comicYanaiserviceのインターフェイス
+ * @author yanai
+ */
 public interface ComicYanaiService {
 
-	//ジャンルのリストを取得
+	/**ジャンルエンティティのリストを取得
+	 *
+	 * @return genreエンティティのリスト
+	 */
 	List<GenreYanai> getListGenre();
 
-	//出版社のリストを取得
+	/**出版社エンティティのリストを取得
+	 *
+	 * @return Pubcoエンティティのリスト
+	 */
 	List<PubcoYanai> getListPubco();
-
 
 	/**
 	 * 検索条件を元にComicMainYanaiのレコードのリストを取得する(Paging)
-	 *
+	 *@param ComicYanaiSearchForm form
+	 *@param Pageable pageable
+	 *@return ComicMainYanaiのリスト
 	 */
 	Page<ComicMainYanai> getPageComic(final ComicYanaiSearchForm form, final Pageable pageable);
 
 	/**
 	 * 検索条件を元にComicMainYaniのレコードのリストを取得する
+	 * @param ComicYanaiSearchForm form
+	 * @return ComicMainYanaiのリスト
 	 */
 	List<ComicMainYanai> getListComic(final ComicYanaiSearchForm form);
 
