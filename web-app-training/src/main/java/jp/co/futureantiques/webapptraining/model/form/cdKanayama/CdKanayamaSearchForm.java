@@ -24,11 +24,8 @@ public class CdKanayamaSearchForm {
 	/** リリース年 */
 	private Integer releaseYear;
 
-
-
 	/** ジャンルID */
 	private Integer genreId;
-
 
 	/** 削除フラグON用 */
 	private int isDelete;

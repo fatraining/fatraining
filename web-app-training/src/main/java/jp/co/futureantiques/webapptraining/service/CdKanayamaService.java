@@ -11,9 +11,6 @@ import jp.co.futureantiques.webapptraining.model.cdKanayama.GenreKanayama;
 import jp.co.futureantiques.webapptraining.model.form.cdKanayama.CdKanayamaInputForm;
 import jp.co.futureantiques.webapptraining.model.form.cdKanayama.CdKanayamaSearchForm;
 
-
-
-
 /**
  * CdKanayamaのサービスインターフェース
  *
@@ -25,7 +22,7 @@ public interface CdKanayamaService {
 	/**
 	 * ジャンルエンティティのリストを取得する
 	 *
-	 * @return GenreEntityのリスト
+	 * @return GenreKanayamaEntityのリスト
 	 */
 	List<GenreKanayama> getListGenreKanayama();
 
@@ -34,7 +31,7 @@ public interface CdKanayamaService {
 	 *
 	 * @param CdKanayamaSearchForm form
 	 * @param Pageable pageable
-	 * @return CdMainのリスト
+	 * @return CdMainKanayamaのリスト
 	 */
 	Page<CdMainKanayama> getPageCd(final CdKanayamaSearchForm form, final Pageable pageable);
 
@@ -42,7 +39,7 @@ public interface CdKanayamaService {
 	 * 検索条件を元にCdMainのレコードのリストを取得する
 	 *
 	 * @param CdKanayaaSearchForm form
-	 * @return CdMainのリスト
+	 * @return CdMainKanayamaのリスト
 	 */
 	List<CdMainKanayama> getListCd(final CdKanayamaSearchForm form);
 
@@ -50,7 +47,7 @@ public interface CdKanayamaService {
 	 * IDをキーにCdMainのレコードを取得する
 	 *
 	 * @param long id
-	 * @return CdeMainのレコード
+	 * @return CdeMainKanayamaのレコード
 	 */
 	CdMainKanayama getCd(final long id);
 
@@ -58,7 +55,7 @@ public interface CdKanayamaService {
 	 * CdMainにレコードを新規登録する
 	 *
 	 * @param CdKanayamaInputForm form
-	 * @return CdMain
+	 * @return CdMainKanayama
 	 */
 	CdMainKanayama insertCd(final CdKanayamaInputForm form);
 
@@ -66,7 +63,7 @@ public interface CdKanayamaService {
 	 * CdMainのレコードを更新する
 	 *
 	 * @param CdKanayamaInputForm form
-	 * @return CdMain
+	 * @return CdMainKanayama
 	 */
 	CdMainKanayama updateCd(final CdKanayamaInputForm form);
 

@@ -2,10 +2,8 @@ package jp.co.futureantiques.webapptraining.repository.cdKanayama;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-
 /**
- * genreリポジトリのインターフェース
+ * genreKanayamaリポジトリのインターフェース
  * @author genre
  *
  */

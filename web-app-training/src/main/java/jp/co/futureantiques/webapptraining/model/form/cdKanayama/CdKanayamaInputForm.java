@@ -1,6 +1,5 @@
 package jp.co.futureantiques.webapptraining.model.form.cdKanayama;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -56,11 +55,10 @@ public class CdKanayamaInputForm {
 	/** 更新日時（排他制御用） */
 	private String updateDate;
 
-
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 *
-	 * @param cdMain
+	 * @param cdMainKanayama
 	 */
 	public void initWithCdMain(CdMainKanayama cdMain) {
 		this.setId((int) cdMain.getId());
@@ -78,7 +76,7 @@ public class CdKanayamaInputForm {
 	/**
 	 * CdMainエンティティに登録値を入れる
 	 *
-	 * @return CdMain
+	 * @return CdMainKanayama
 	 */
 	public CdMainKanayama convertToCdMainKanayamaForInsert() {
 		CdMainKanayama cdMain = new CdMainKanayama();
@@ -88,12 +86,11 @@ public class CdKanayamaInputForm {
 		return cdMain;
 	}
 
-
 	/**
 	 * CdMainエンティティに更新値を入れる
 	 *
-	 * @param CdMain cdMain
-	 * @return CdMain
+	 * @param CdMainKanayama cdMain
+	 * @return CdMainKanayama
 	 */
 	public CdMainKanayama convertToCdMainForUpdate(CdMainKanayama cdMain) {
 		cdMain = convertToCdMain(cdMain);
@@ -103,8 +100,8 @@ public class CdKanayamaInputForm {
 	/**
 	 * CdMainエンティティに入力値を入れる
 	 *
-	 * @param CdMain cdMain
-	 * @return CdMain
+	 * @param CdMainKanayama cdMain
+	 * @return CdMainKanayama
 	 */
 	private CdMainKanayama convertToCdMain(CdMainKanayama cdMain) {
 		cdMain.setCdTitle(this.cdTitle);
@@ -118,8 +115,15 @@ public class CdKanayamaInputForm {
 			cdMain.setGenreId(this.genreId);
 		}
 
-		cdMain.setArtistName(this.artistName);
+		if(!this.artistName.isEmpty()) {
 
+			//アーティスト名が入力されていた場合
+			cdMain.setArtistName(this.artistName);
+		}else {
+
+			//アーティスト名が入力されていなかった場合
+			cdMain.setArtistName(null);
+		}
 
 		cdMain.setReleaseYear(Integer.parseInt(this.releaseYearStr));
 		if (!this.playTimeStr.isEmpty()) {

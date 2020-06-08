@@ -27,10 +27,10 @@ import jp.co.futureantiques.webapptraining.service.CdKanayamaService;
 
 public class CdKanayamaServiceImpl implements  CdKanayamaService{
 
-	/** MovieMainリポジトリ */
+	/** CdMainKanayamaリポジトリ */
 	private final CdMainKanayamaRepository cdMainRepository;
 
-	/** Genreリポジトリ */
+	/** GenreKanayamaリポジトリ */
 	private final GenreKanayamaRepository genreRepository;
 
 	/**
@@ -40,7 +40,6 @@ public class CdKanayamaServiceImpl implements  CdKanayamaService{
 	 * @param GenreKanayamaRepository genreRepository
 	 */
 	@Autowired
-
 	public CdKanayamaServiceImpl(CdMainKanayamaRepository cdMainRepository, GenreKanayamaRepository genreRepository) {
 		this.cdMainRepository = cdMainRepository;
 		this.genreRepository = genreRepository;

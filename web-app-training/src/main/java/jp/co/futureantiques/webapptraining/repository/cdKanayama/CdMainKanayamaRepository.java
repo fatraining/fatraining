@@ -11,9 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.futureantiques.webapptraining.model.cdKanayama.CdMainKanayama;
 
-
 /**
- * CDMdinリポジトリのインターフェース
+ * CDMainKanayamaリポジトリのインターフェース
  *
  * @author future
  */

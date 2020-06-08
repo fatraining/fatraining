@@ -22,9 +22,6 @@ import jp.co.futureantiques.webapptraining.model.form.cdKanayama.CdKanayamaInput
 import jp.co.futureantiques.webapptraining.model.form.cdKanayama.CdKanayamaSearchForm;
 import jp.co.futureantiques.webapptraining.service.CdKanayamaService;
 
-
-
-
 /**
  * cdKanayamaのコントローラークラス
  *
@@ -34,7 +31,6 @@ import jp.co.futureantiques.webapptraining.service.CdKanayamaService;
 @RequestMapping(value = "/cdkanayama")
 
 public class CdKanayamaController {
-
 
 	/** CDのサービス */
 	private final CdKanayamaService cdKanayamaService;
