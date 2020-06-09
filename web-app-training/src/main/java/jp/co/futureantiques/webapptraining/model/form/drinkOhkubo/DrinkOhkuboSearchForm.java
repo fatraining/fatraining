@@ -10,31 +10,30 @@ import lombok.Data;
 
 @Data
 public class DrinkOhkuboSearchForm {
-	//ID
+
+	/** ID */
 	private Integer id;
 
-	//製品名
+	/** 製品名 */
 	private String drinkName;
 
-	//メーカーID
+	/** メーカーID */
 	private Integer makerId;
 
-	//種類ID
+	/** 種類ID */
 	private Integer typeId;
 
-	//容器ID
+	/** 容器ID */
 	private Integer containerId;
 
-	//削除フラグON用
+	/** 削除フラグON用 */
 	private int isDelete;
-
 
 	/**
 	 * 各フィールドに値を設定する
 	 *
 	 * @param drinkMainOhkubo
 	 */
-
 	public void setValues(DrinkMainOhkubo drinkMainOhkubo) {
 		this.setId((int) drinkMainOhkubo.getId());
 		this.setDrinkName(drinkMainOhkubo.getDrinkName());

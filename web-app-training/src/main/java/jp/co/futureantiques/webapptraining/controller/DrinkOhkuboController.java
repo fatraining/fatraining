@@ -75,7 +75,7 @@ public class DrinkOhkuboController {
 	@ModelAttribute
 	public List<ContainerOhkubo> getListContainer() {
 		return drinkService.getListContainer();
-	}
+	}	
 
 	/**
 	 * 検索画面に遷移する

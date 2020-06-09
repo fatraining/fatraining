@@ -14,13 +14,14 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 種類テーブルと対応するEntity
+ * Typeテーブルと対応するEntity
  *
  * @author future
  */
 @Data
 @Entity
 public class TypeOhkubo {
+
 	/** 種類ID */
 	@Id
 	@GeneratedValue

@@ -22,7 +22,6 @@ import jp.co.futureantiques.webapptraining.repository.drinkOhkubo.TypeOhkuboRepo
 import jp.co.futureantiques.webapptraining.repository.specification.DrinkOhkuboSpecification;
 import jp.co.futureantiques.webapptraining.service.DrinkOhkuboService;
 
-
 /**
  * MovieSampleのサービス実装クラス
  *
@@ -30,6 +29,7 @@ import jp.co.futureantiques.webapptraining.service.DrinkOhkuboService;
  */
 @Service
 public class DrinkOhkuboServiceImpl implements DrinkOhkuboService{
+
 	/** DrinkMainリポジトリ */
 	private final DrinkMainOhkuboRepository drinkMainOhkuboRepository;
 
@@ -41,7 +41,6 @@ public class DrinkOhkuboServiceImpl implements DrinkOhkuboService{
 
 	/** Containerリポジトリ */
 	private final ContainerOhkuboRepository containerOhkuboRepository;
-
 
 	/**
 	 * コンストラクタ

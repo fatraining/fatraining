@@ -82,7 +82,7 @@
 			action="/drinkohkubo/search" th:object="${drinkOhkuboSearchForm}">
 			<div class="form-group">
 				<label for="drinkName" class="col-sm-2 control-label"
-					th:text="#{drink.text.input.name}">製品名:</label>
+					th:text="#{drink.text.input.name.ohkubo}">製品名:</label>
 				<div class="col-sm-8">
 					<input type="text" th:field="*{drinkName}" class="form-control"
 						id="inputDrinkName" th:placeholder="#{drink.text.search.info}" />
@@ -148,7 +148,7 @@
 				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="per-12 center" th:text="#{drink.text.name}">Name</th>
+						<th class="per-12 center" th:text="#{drink.text.name.ohkubo}">Name</th>
 						<th class="per-12 center" th:text="#{drink.text.maker}">Maker</th>
 						<th class="per-16 center" th:text="#{drink.text.type}">Type</th>
 						<th class="per-16 center" th:text="#{drink.text.ml}">ml</th>

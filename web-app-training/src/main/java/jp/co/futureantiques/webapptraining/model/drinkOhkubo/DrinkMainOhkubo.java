@@ -22,6 +22,7 @@ import lombok.Data;
 @Data
 @Entity
 public class DrinkMainOhkubo {
+
 	/**飲み物ID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")

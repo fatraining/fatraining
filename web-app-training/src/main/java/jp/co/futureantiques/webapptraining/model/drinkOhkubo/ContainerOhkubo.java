@@ -14,13 +14,14 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * MovieActorテーブルと対応するEntity
+ * Containerテーブルと対応するEntity
  *
  * @author future
  */
 @Data
 @Entity
 public class ContainerOhkubo {
+
 	/** 容器ID */
 	@Id
 	@GeneratedValue
@@ -48,5 +49,5 @@ public class ContainerOhkubo {
 	@Transient
 	@OneToMany(targetEntity = DrinkMainOhkubo.class, mappedBy = "container")
 	@JoinColumn(name = "id", referencedColumnName = "container_id")
-	private List<DrinkMainOhkubo> drinkMain_List;
+	private List<DrinkMainOhkubo> drinkMainList;
 }

@@ -13,8 +13,6 @@ import jp.co.futureantiques.webapptraining.model.drinkOhkubo.TypeOhkubo;
 import jp.co.futureantiques.webapptraining.model.form.drinkOhkubo.DrinkOhkuboInputForm;
 import jp.co.futureantiques.webapptraining.model.form.drinkOhkubo.DrinkOhkuboSearchForm;
 
-
-
 /**
  * Drinkのサービスインターフェース
  *
@@ -59,7 +57,6 @@ public interface DrinkOhkuboService {
 	 * @return DrinkMainのリスト
 	 */
 	List<DrinkMainOhkubo> getListDrink(final DrinkOhkuboSearchForm form);
-
 
 	/**
 	 * IDをキーにDrinkMain_Ohkuboのレコードを取得する

@@ -14,13 +14,14 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * MovieActorテーブルと対応するEntity
+ * Makerテーブルと対応するEntity
  *
  * @author future
  */
 @Data
 @Entity
 public class MakerOhkubo {
+
 	/** メーカーID */
 	@Id
 	@GeneratedValue
