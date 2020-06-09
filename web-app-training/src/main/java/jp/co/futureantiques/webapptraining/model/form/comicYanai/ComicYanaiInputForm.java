@@ -3,6 +3,7 @@ package jp.co.futureantiques.webapptraining.model.form.comicYanai;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,7 +35,8 @@ public class ComicYanaiInputForm {
 
 	/** 巻数 */
 	@NotBlank(message = "common.text.error.require")
-	private Integer volume;
+	@Pattern(regexp ="[0-9]{1,3}?",message = "comic.text.error.volume.limit")
+	private String volumeStr;
 
 	/** コメント */
 	@Size(max = 255)
@@ -53,11 +55,10 @@ public class ComicYanaiInputForm {
 		this.setComicTitle(comicMainYanai.getComicTitle());
 		this.setGenreId(comicMainYanai.getGenreId());
 		this.setPubcoId(comicMainYanai.getPubcoId());
-		this.setVolume(comicMainYanai.getVolume());
+		this.setVolumeStr(String.valueOf(comicMainYanai.getVolume()));
 		this.setComment(comicMainYanai.getComment());
 		this.setUpdateDate(String.valueOf(comicMainYanai.getUpdateDate()));
 	}
-
 	/**
 	 * CoomicMainYanaiエンティティに登録値を入れる
 	 *
@@ -109,7 +110,7 @@ public class ComicYanaiInputForm {
 			// 出版社が入力されていた場合
 			comicMainYanai.setPubcoId(this.pubcoId);
 		}
-		comicMainYanai.setVolume(this.volume);
+		comicMainYanai.setVolume(Integer.parseInt(this.volumeStr));
 		comicMainYanai.setComment(this.comment);
 		comicMainYanai.setDelFlg("0");
 		return comicMainYanai;

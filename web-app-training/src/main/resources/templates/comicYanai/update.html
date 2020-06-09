@@ -60,9 +60,9 @@
 				<div class="form-group">
 					<label for="volume" class="control-label"
 						th:text="#{comic.text.input.volume.riquire}">Volume(*):</label>
-					<input type="text" th:field="*{volume}" class="form-control" id="inputVolume"
+					<input type="text" th:field="*{volumeStr}" class="form-control" id="inputVolume"
 						th:placeholder="#{comic.text.volume}"/>
-					<p class="err alert-danger" th:each="err : ${#fields.errors('volume')}"
+					<p class="err alert-danger" th:each="err : ${#fields.errors('volumeStr')}"
 						th:text="#{${err}(#{comic.text.volume})}"></p>
 				</div>
 
