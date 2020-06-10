@@ -120,12 +120,12 @@ public class DogKannoController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertDog(@ModelAttribute @Validated final DogInputForm form,
 			final BindingResult bindingResult) {
-		if (bindingResult.hasFieldErrors()  ) {
+		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合自画面に戻る
 			return "dogKanno/insert";
 
-		} else if(form.getImage().getSize() == 0) {
+		} else if (form.getImage().getSize() == 0) {
 
 			// 画像登録されていない場合エラー画面へ移動
 			return "dogKanno/error";
@@ -135,8 +135,6 @@ public class DogKannoController {
 		final DogMainKanno dogMainKanno = dogKannoService.insertDog(form);
 		return "redirect:/dogKanno?result=insert&dogId=" + dogMainKanno.getDogId();
 	}
-
-
 
 	/**
 	 *  更新画面に遷移する

@@ -72,5 +72,4 @@ public class DogMainKanno {
 	@JoinColumn(name = "size_id" , referencedColumnName = "id", insertable = false, updatable = false)
 	private DogSizeKanno dogSizeKanno;
 
-
 }
