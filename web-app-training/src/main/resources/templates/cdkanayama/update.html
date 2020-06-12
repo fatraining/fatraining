@@ -58,7 +58,7 @@
 					<label for="releaseYear" class="control-label"
 						th:text="#{cd.text.input.releaseyear}">ReleaseYear(*):</label>
 					<input type="text" th:field="*{releaseYearStr}" class="form-control" id="inputReleaseYear"
-						th:placeholder="#{cd.text.releaseyear}"/>
+						th:placeholder="#{cd.text.input.releaseyear}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYearStr')}"
 						th:text="#{${err}(#{cd.text.releaseyear})}"></p>
 				</div>
@@ -66,9 +66,9 @@
 					<label for="playTime" class="control-label"
 						th:text="#{cd.text.input.playtime}"> PlayTime:</label>
 					<input type="text" th:field="*{playTimeStr}" class="form-control" id="inputPlayTime"
-						th:placeholder="#{cd.text.playtime}" />
+						th:placeholder="#{cd.text.input.playtime}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('playTimeStr')}"
-						th:text="#{${err}(#{cd.text.playtime})}"></p>
+						th:text="#{${err}(#{cd.text.input.playtime})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="comment" class="control-label"

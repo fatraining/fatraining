@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.cdKanayama;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.cdKanayama.CdMainKanayama;
 import lombok.Data;
 
@@ -16,6 +18,7 @@ public class CdKanayamaSearchForm {
 	private Integer id;
 
 	/** CDタイトル */
+	@Size(min = 0, max = 255, message = "common.text.error.size.max.four")
 	private String cdTitle;
 
 	/** アーティスト名 */

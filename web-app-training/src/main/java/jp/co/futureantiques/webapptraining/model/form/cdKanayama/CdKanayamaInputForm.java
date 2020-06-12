@@ -44,12 +44,12 @@ public class CdKanayamaInputForm {
 	private String releaseYearStr;
 
 	/** 再生時間 */
-	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
+	@Size(min = 0, max = 3, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String playTimeStr;
 
 	/** コメント */
-	@Size(max = 255)
+	@Size(min = 0, max = 255, message = "common.text.error.size.max.four")
 	private String comment;
 
 	/** 更新日時（排他制御用） */
