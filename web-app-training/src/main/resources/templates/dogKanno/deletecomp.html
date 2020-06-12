@@ -59,14 +59,18 @@
 									style="margin-left: 50%" th:field="*{deleteIds}"
 									th:value="${dog.dogId}" />
 							</label></td>
-							<td class="data center" th:text="${dog.dogName}">ラブラドール・レトリーバー</td>
+							<td class="data center">
+								<label  th:text="${dog.dogName}" class="data cebter">ラブラドール・レトリーバー</label>
+							</td>
 							<td class="data center">
 							    <label th:if="${dog.dogCountryKanno != null}" th:text="${dog.dogCountryKanno.country}" class="data center">イギリス</label>
 							</td>
 							<td class="data center">
 							<label th:if="${dog.dogSizeKanno != null}" th:text="${dog.dogSizeKanno.size}" class="data center">大型</label>
 							</td>
-							<td class="data center" th:text="${dog.charcter}">泳ぐことが得意。盲導犬としても活躍する。</td>
+							<td class="data center">
+								<label  th:text="${dog.charcter}" class="data center">泳ぐことが得意。盲導犬としても活躍する。</label>
+							</td>
 							<td class="data center"><img th:src="@{${dog.image}}" width="180"></img></td>
 						</tr>
 					</tbody>

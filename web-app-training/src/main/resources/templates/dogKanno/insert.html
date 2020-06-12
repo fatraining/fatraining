@@ -35,12 +35,13 @@
 				enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{dog.text.input.name.require}"> Name(*):</label> <input
-						type="text" th:field="*{dogName}" class="form-control"
-						th:placeholder="#{dog.text.name}" />
+						th:text="#{dog.text.input.name.require}"> Name(*):</label>
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('dogName')}"
 						th:text="#{${err}(#{dog.text.name})}"></p>
+					<input type="text" th:field="*{dogName}" class="form-control"
+						th:placeholder="#{dog.text.name}" />
+
 				</div>
 				<div class="form-group">
 					<label for="country" class="control-label"
@@ -54,7 +55,7 @@
 				<div class="form-group">
 					<label for="size" class="control-label"
 						th:text="#{dog.text.input.size.require}"> Size(*):</label> <select
-						name="sizeId" id="inputSize" class="form-control" >
+						name="sizeId" id="inputSize" class="form-control">
 						<option th:each="size : ${dogSizeKannoList}" th:value="${size.id}"
 							th:text="${size.size}"
 							th:selected="${size.id == dogInputForm.sizeId}">pulldown</option>
@@ -69,13 +70,14 @@
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('charcter')}"
 						th:text="#{${err}(#{dog.text.charcter})}"></p>
+
 				</div>
 				<div class="form-group">
 					<label for="image" class="control-label"
 						th:text="#{dog.text.input.image}"> Image(*):</label> <input
 						type="file" id="file" th:field="*{image}" class="form-control"
 						th:placeholder="#{dog.text.image}" />
-						<p class="err alert-danger"
+					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('image')}"
 						th:text="#{${err}(#{dog.text.image})}"></p>
 

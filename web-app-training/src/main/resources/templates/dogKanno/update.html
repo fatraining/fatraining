@@ -68,6 +68,9 @@
 					<textarea th:field="*{charcter}" cols="" rows="5"
 						class="form-control" id="inputCharcter"
 						th:placeholder="#{dog.text.charcter}"></textarea>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('charcter')}"
+						th:text="#{${err}(#{dog.text.charcter})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="image" class="control-label"

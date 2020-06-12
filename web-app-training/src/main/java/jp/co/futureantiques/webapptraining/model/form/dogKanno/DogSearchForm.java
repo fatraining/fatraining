@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.dogKanno;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.dogKanno.DogMainKanno;
 import lombok.Data;
 
@@ -15,6 +17,7 @@ public class DogSearchForm {
 	private Integer dogId;
 
 	/** 犬種 */
+	@Size(max = 256 , message = "dog.text.error.invalid.name")
 	private String dogName;
 
 	/** 原産国ID */

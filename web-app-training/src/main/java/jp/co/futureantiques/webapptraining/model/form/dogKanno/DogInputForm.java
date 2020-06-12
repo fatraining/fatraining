@@ -26,7 +26,7 @@ public class DogInputForm {
 
 	/** 犬種 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256 , message = "dog.text.error.invalid.name")
 	private String dogName;
 
 	/** 原産国ID */
@@ -39,7 +39,7 @@ public class DogInputForm {
 
 	/** 性格・特徴 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256, message = "common.text.error.max.length")
+	@Size(max = 256, message = "dog.text.error.invalid.name")
 	private String charcter;
 
 	/** 画像 */

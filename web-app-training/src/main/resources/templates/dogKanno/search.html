@@ -80,8 +80,11 @@
 				<label for="dogName" class="col-sm-2 control-label"
 					th:text="#{dog.text.input.name}">Name:</label>
 				<div class="col-sm-8">
-					<input type="text" th:field="*{dogName}" class="form-control"
+					<input type="text" maxlength="256" th:field="*{dogName}" class="form-control"
 						id="inputDogName" th:placeholder="#{dog.text.search.info}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('dogName')}"
+						th:text="#{${err}(#{dog.text.name})}"></p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -139,7 +142,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="dog : ${dogList}">
-						<td class="data center" th:text="${dog.dogName}">ラブラドール・レトリーバー</td>
+						<td class="data center" ><label
+						 	th:text="${dog.dogName}" class="data center">ラブラドール・レトリーバー</label>
+						</td>
 
 						<td class="data center"><label
 							th:if="${dog.dogCountryKanno != null}"
@@ -151,7 +156,9 @@
 							th:text="${dog.dogSizeKanno.size}" class="data center">大型</label>
 						</td>
 
-						<td class="data center" th:text="${dog.charcter}">泳ぐことが得意。盲導犬としても活躍する。</td>
+						<td class="data center"><label
+						     th:text="${dog.charcter}" class="data center">泳ぐことが得意。盲導犬としても活躍する。</label>
+						</td>
 
 						<td class="data center"><img class="image"
 							th:src="@{${dog.image}}" width="160"></img></td>
