@@ -2,7 +2,10 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.drinkYoshimoto.DrinkCategoryYoshimoto;
@@ -83,10 +87,17 @@ public class DrinkYoshimotoController {
 	 * @param DrinkYoshimotoSearchFrom from
 	 * @param Model model
 	 * @param Pageable pageable
+	 * @param BindingResult bindingResult
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-	public String searchDrink(final DrinkYoshimotoSearchForm form, final Model model, final Pageable pageable) {
+	public String searchDrink(@Validated final DrinkYoshimotoSearchForm form, BindingResult bindingResult,
+			final Model model, final Pageable pageable) {
+
+		//文字数がオーバーした時
+		if (bindingResult.hasFieldErrors()) {
+			return "drinkYoshimoto/search";
+		}
 
 		//入力された検索条件をもとにレコードを取得する
 		final Page<DrinkMainYoshimoto> drinkYoshimotoList = drinkYoshimotoService.getPageDrinkMain(form, pageable);
@@ -110,6 +121,14 @@ public class DrinkYoshimotoController {
 	public String showInsertDrink(@ModelAttribute final DrinkYoshimotoInputForm drinkYoshimotoInputForm) {
 		return "drinkYoshimoto/insert";
 	}
+
+	//手動でDIする
+	@Autowired
+	ResourceLoader resourceLoader;
+	@Autowired
+	ServletContext context;
+	@Autowired
+	WebApplicationContext wac;
 
 	/**
 	 * DrinkMainYoshimotoテーブルにデータを登録して検索画面に遷移する
@@ -138,17 +157,27 @@ public class DrinkYoshimotoController {
 	 *
 	 * @param long id
 	 * @param DrinkYoshimotoInputForm drinkYoshimotoInputForm
+	 * @param Model model
+	 * @param Pageable pageable
 	 * @return 更新画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdateDrink(@RequestParam(name = "id") final long id,
-			@ModelAttribute final DrinkYoshimotoInputForm drinkYoshimotoInputForm) {
+			@ModelAttribute final DrinkYoshimotoInputForm drinkYoshimotoInputForm, Model model,
+			final Pageable pageable) {
 
 		//IDをキーにDrinkMainYoshimotoテーブルを検索
 		DrinkMainYoshimoto drinkMainYoshimoto = drinkYoshimotoService.getDrink(id);
 
+		//drink_main_yoshimotoテーブルから画像のパスを取得する
+		String imagePass = drinkMainYoshimoto.getImage();
+
+		//modelに画像のパスをセットする
+		model.addAttribute("imagePass", imagePass);
+
 		//フォームにレコードの値をセットする
 		drinkYoshimotoInputForm.initWithDrinkMainYoshimoto(drinkMainYoshimoto);
+		drinkYoshimotoInputForm.setImageDelFlg("0");
 		return "drinkYoshimoto/update";
 	}
 

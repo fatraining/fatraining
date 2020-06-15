@@ -26,7 +26,7 @@ public class DrinkYoshimotoInputForm {
 
 	/** 商品名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256, message = "drink.text.error.countover")
 	private String drinkName;
 
 	/** カテゴリーID */
@@ -40,6 +40,9 @@ public class DrinkYoshimotoInputForm {
 
 	/** 更新日時（排他制御用） */
 	private String updateDate;
+
+	/** 画像削除フラグ */
+	private String imageDelFlg;
 
 	/**
 	 * フィールドにエンティティの中身を入れる

@@ -1,5 +1,6 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -123,7 +124,33 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 
 				//チェックOkの場合
 				drinkMainYoshimoto = form.convertToDrinkMainYoshimotoForUpdate(drinkMainYoshimoto);
+				if (form.getImage().isEmpty()) {
 
+					//画像削除フラグが１だった場合
+					if (form.getImageDelFlg().matches("1")) {
+
+						//対象のレコードの画像を削除する
+						File f = new File(CommonConst.STATIC_PATH + drinkMainYoshimoto.getImage());
+						if (f.exists()) {
+
+							//ファイルが存在する場合削除
+							f.delete();
+						}
+
+						//drinkMainYoshimotoのimgをNULLにする(setImg)
+						drinkMainYoshimoto.setImage(null);
+					} else {
+
+						//今あるデータベースの画像パスを入れておく
+						String imageTemp = drinkMainYoshimoto.getImage();
+
+						//エンティティに画像パスをいれなおす
+						drinkMainYoshimoto.setImage(imageTemp);
+					}
+
+					//更新を実行
+					drinkMainYoshimotoRepository.saveAndFlush(drinkMainYoshimoto);
+				}
 				//ファイルをアップロード
 				uploadFile(drinkMainYoshimoto, form.getImage());
 

@@ -53,7 +53,9 @@
 										th:value="${drink.drinkId}" />
 								</label>
 							</td>
-							<td class="data center" th:text="${drink.drinkName}">コカ・コーラ　ゼロ</td>
+							<td class="data center">
+								<label th:text="${drink.drinkName}">コカ・コーラ ゼロ</label>
+							</td>
 							<td class="data center">
 								<label th:if="${drink.makerId != null}" th:text="${drink.drinkMakerYoshimoto.makerName}" class="data center">コカ・コーラ</label>
 							</td>

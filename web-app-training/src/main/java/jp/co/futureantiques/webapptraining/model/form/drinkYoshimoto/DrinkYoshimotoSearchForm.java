@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.drinkYoshimoto;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.drinkYoshimoto.DrinkMainYoshimoto;
 import lombok.Data;
 
@@ -16,6 +18,7 @@ public class DrinkYoshimotoSearchForm {
 	private Integer drinkId;
 
 	/** 商品名 */
+	@Size(max = 256, message = "drink.text.error.countover")
 	private String drinkName;
 
 	/** カテゴリーID */
