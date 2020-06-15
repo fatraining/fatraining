@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|ディズニーアトラクション更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/disneyIto.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{disney.text.update}">ディズニーアトラクション更新</h1>
+				<a th:href="@{/disneyIto}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="disneyItoInputForm"
+				th:action="@{/disneyIto/update}" th:object="${disneyItoInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{disney.text.input.name.riquire}"> AttracitonName(*):</label>
+					<input type="text" th:field="*{attractionName}" class="form-control"
+						th:placeholder="#{disney.text.name}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('attractionName')}"
+						th:text="#{${err}(#{disney.text.name})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="park" class="control-label"
+						th:text="#{disney.text.input.park}">Park:</label>
+					<select name="parkId" id="inputPark"
+						class="form-control select">
+						<option th:each="park : ${disneyParkItoList}"
+								th:value="${park.id}"
+								th:text="${park.park}"
+								th:selected="${park.id == disneyItoInputForm.parkId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="area" class="control-label"
+						th:text="#{disney.text.input.area}">Area:</label>
+					<select name="areaId" id="inputArea"
+						class="form-control">
+						<option th:each="area : ${disneyAreaItoList}"
+								th:value="${area.id}"
+								th:text="${area.area}"
+								th:selected="${area.id == disneyItoInputForm.areaId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="time" class="control-label"
+						th:text="#{disney.text.input.time}">Time</label>
+						<input type="text" th:field="*{timeStr}" class="form-control"
+						id="inputTime" th:placeholder="#{disney.text.time}" />
+				 	<p class="err alert-danger"
+						th:each="err : ${#fields.errors('timeStr')}"
+						th:text="#{${err}(#{disney.text.time})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{disney.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{disney.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#disneyItoInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
