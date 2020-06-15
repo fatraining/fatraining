@@ -12,7 +12,7 @@ spring:
     basename:  i18n/templates, i18n/templates_moviesample,i18n/templates_heritage_kataoka,i18n/templates_resipe_ishikawa,
         i18n/templates_tokyo_takehara,i18n/template_perfume_anzai,i18n/template_penguin_kawamura,i18n/templates_triathlon_mori,
         i18n/templates_soccerteam_matsuda,i18n/templates_band_ito,i18n/template_comic_yanai,i18n/template_drink_yoshimoto,i18n/templates_cd_kanayama,
-        i18n/templates_drink_Ohkubo,i18n/template_dog_kanno,i18n/templates_protein_ueno,i18n/template_comic_miyoshi
+        i18n/templates_drink_Ohkubo,i18n/template_dog_kanno,i18n/templates_protein_ueno,i18n/template_comic_miyoshi,i18n/templates_disney_okiyoshi
         
         
     
