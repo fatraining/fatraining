@@ -84,7 +84,13 @@ public class DogKannoController {
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-	public String searchDog(final DogSearchForm form, final Model model, final Pageable pageable) {
+	public String searchDog(@Validated final DogSearchForm form, BindingResult bindingResult, final Model model, final Pageable pageable) {
+
+		// 文字数
+		if (bindingResult.hasFieldErrors()) {
+			return "dogKanno/search";
+
+		}
 
 		// 入力された検索画面を元にレコードを取得する
 		final Page<DogMainKanno> dogList = dogKannoService.getPageDog(form, pageable);

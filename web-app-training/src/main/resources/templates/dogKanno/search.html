@@ -77,10 +77,10 @@
 		<form class="form-horizontal" id="searchForm" method="post"
 			action="/dogKanno/search" th:object="${dogSearchForm}">
 			<div class="form-group">
-				<label for="dogName" class="col-sm-2 control-label"
+				<label for="name" class="col-sm-2 control-label"
 					th:text="#{dog.text.input.name}">Name:</label>
 				<div class="col-sm-8">
-					<input type="text" maxlength="256" th:field="*{dogName}" class="form-control"
+					<input type="text" th:field="*{dogName}" class="form-control"
 						id="inputDogName" th:placeholder="#{dog.text.search.info}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('dogName')}"
@@ -261,6 +261,7 @@
 		src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script th:src="@{/libs/jquery/jquery.js}"></script>
 	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
 
 	<!-- 削除モーダル用スクリプト -->
 	<script>
