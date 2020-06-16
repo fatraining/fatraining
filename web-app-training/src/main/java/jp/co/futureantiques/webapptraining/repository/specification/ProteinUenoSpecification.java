@@ -76,6 +76,7 @@ public class ProteinUenoSpecification {
 				return condition;
 
 			}
+
 			/**
 			 * 検索条件を結合する
 			 *
