@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>研修Webアプリ|ラジオ番組更新</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/radioKashima.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-oddset-2 col-lg-8 col-lg-offset-2">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{radio.text.update}">ラジオ番組更新</h1>
+				<a th:href="@{/radiokashima}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="radioKashimaInputForm"
+				th:action="@{/radiokashima/update }"
+				th:object="${radioKashimaInputForm}" class="form-horizontal">
+				<input type="hidden" th:field="*{id}" />
+		<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{radio.text.input.programName.riquire}">ラジオ番組名(*):</label>
+					<input type="text" th:field="*{programName}" class="form-control"
+						th:placeholder="#{radio.text.programName}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('programName')}"
+						th:text="#{${err}(#{radio.text.programName})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="keystation" class="control-label"
+						th:text="#{radio.text.input.keystation}">放送局:</label> <select
+						name="keystationId" id="inputkeystation" class="form-control">
+						<option th:each="keystation: ${keystationKashimaList}"
+							th:value="${keystation.id}" th:text="${keystation.keystation}"
+							th:selected="${keystation.id == radioKashimaInputForm.keystationId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label"
+						th:text="#{radio.text.input.personality.riquire}">パーソナリティ(*)</label> <input
+						type="text" th:field="*{personality}" class="form-control"
+						id="inputpersonality" th:placeholder="#{radio.text.personality}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('personality')}"
+						th:text="#{${err}(#{radio.text.personality})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="broadcastPeriod" class="control-label"
+						th:text="#{radio.text.input.broadcastPeriod}">放送局</label> <input
+						type="text" th:field="*{broadcastPeriod}" class="form-control"
+						id="inputbroadcastPeriod"
+						th:placeholder="#{radio.text.broadcastPeriod}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('broadcastPeriod')}"
+						th:text="#{${err}(#{radio.text.broadcastPeriod})}"></p>
+				</div>
+
+
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{radio.text.input.comment}">コメント:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{radio.text.comment}"></textarea>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('comment')}"
+						th:text="#{${err}(#{radio.text.comment})}"></p>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success btn-block"
+						onclick="$('#radioKashimaInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+						<br/>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
