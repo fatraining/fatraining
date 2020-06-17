@@ -45,45 +45,53 @@ public class ComicMiyoshiServiceImpl implements ComicMiyoshiService {
 
 	@Override
 	public List<MagazineMiyoshi> getListMagazineMiyoshi() {
-		//		MagazineMiyoshiテーブルのレコードをID順に取得する
+
+		//MagazineMiyoshiテーブルのレコードをID順に取得する
 		return magazineMiyoshiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public Page<ComicMainMiyoshi> getPageComic(final ComicMiyoshiSearchForm form, final Pageable pageable) {
-		//		検索条件を生成しComicMainMiyoshiテーブルのレコードを取得する
+
+		//検索条件を生成しComicMainMiyoshiテーブルのレコードを取得する
 		return comicMainMiyoshiRepository.findAll(
 				ComicMiyoshiSpecification.generateComicMiyoshiSpecification(form), pageable);
 	}
 
 	@Override
 	public List<ComicMainMiyoshi> getListComic(final ComicMiyoshiSearchForm form) {
-		//		検索条件を生成しComicMainMiyoshiテーブルのレコードを取得する
+
+		//検索条件を生成しComicMainMiyoshiテーブルのレコードを取得する
 		return comicMainMiyoshiRepository.findAll(
 				ComicMiyoshiSpecification.generateComicMiyoshiSpecification(form));
 	}
 
 	@Override
 	public ComicMainMiyoshi getComic(final long id) {
-		//		 ComicMainMiyoshiテーブルを主キー検索する
+
+		//ComicMainMiyoshiテーブルを主キー検索する
 		return comicMainMiyoshiRepository.findOne(id);
 	}
 
 	@Override
 	public ComicMainMiyoshi insertComic(final ComicMiyoshiInputForm form) {
-		//		ComicMainMiyoshiテーブルに新規でデータを登録する
+
+		//ComicMainMiyoshiテーブルに新規でデータを登録する
 		final ComicMainMiyoshi comicMainMiyoshi = form.convertToComicMainMiyoshiForInsert();
 		return comicMainMiyoshiRepository.save(comicMainMiyoshi);
 	}
 
 	@Override
 	public ComicMainMiyoshi updateComic(final ComicMiyoshiInputForm form) {
-		//		更新対象のレコードを取得する
+
+		//更新対象のレコードを取得する
 		ComicMainMiyoshi comicMainMiyoshi = comicMainMiyoshiRepository.findOne((long) form.getId());
 		if (comicMainMiyoshi != null) {
-			//			更新対象のレコードが存在する場合排他チェック
+
+			//更新対象のレコードが存在する場合排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(comicMainMiyoshi.getUpdateDate()))) {
-				//				チェックOKの場合、更新
+
+				//チェックOKの場合、更新
 				comicMainMiyoshi = form.convertToComicMainMiyoshiForUpdate(comicMainMiyoshi);
 				return comicMainMiyoshiRepository.saveAndFlush(comicMainMiyoshi);
 			}
@@ -93,17 +101,20 @@ public class ComicMiyoshiServiceImpl implements ComicMiyoshiService {
 
 	@Override
 	public void deleteComicById(final long id) {
-		//		更新対象のレコードを取得する
+
+		//更新対象のレコードを取得する
 		ComicMainMiyoshi comicMainMiyoshi = comicMainMiyoshiRepository.findOne(id);
 		if (comicMainMiyoshi != null) {
-			//			更新対象のレコードが存在する場合、削除フラグを1にする
+
+			//更新対象のレコードが存在する場合、削除フラグを1にする
 			comicMainMiyoshiRepository.delete(id);
 		}
 	}
 
 	@Override
 	public void deleteComicComp(final ArrayList<Long> ids) {
-		//		対象のレコードを削除する
+
+		//対象のレコードを削除する
 		comicMainMiyoshiRepository.deleteComp(ids);
 	}
 

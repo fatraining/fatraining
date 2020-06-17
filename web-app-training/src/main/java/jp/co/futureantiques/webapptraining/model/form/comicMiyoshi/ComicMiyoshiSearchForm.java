@@ -29,7 +29,6 @@ public class ComicMiyoshiSearchForm {
 	 * 各フィールドに値を設定する
 	 * @param comicMainMiyoshi
 	 */
-
 	public void setValue(ComicMainMiyoshi comicMainMiyoshi) {
 		this.setId((int) comicMainMiyoshi.getId());
 		this.setComicTitle(comicMainMiyoshi.getComicTitle());

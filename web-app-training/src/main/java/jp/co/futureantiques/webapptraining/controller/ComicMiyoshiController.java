@@ -30,6 +30,7 @@ import jp.co.futureantiques.webapptraining.service.ComicMiyoshiService;
 @RequestMapping(value = "/comicMiyoshi")
 public class ComicMiyoshiController {
 
+	/**漫画のサービス*/
 	private final ComicMiyoshiService comicMiyoshiService;
 
 	/**
@@ -69,16 +70,18 @@ public class ComicMiyoshiController {
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String SearchComic(final ComicMiyoshiSearchForm form, final Model model, final Pageable pageable) {
-		//		入力された条件を元にレコードを取得する
+
+		//入力された条件を元にレコードを取得する
 		final Page<ComicMainMiyoshi> comicList = comicMiyoshiService.getPageComic(form, pageable);
 		if (comicList.getTotalElements() != 0) {
-			//			検索結果がある場合、Modelに結果をセットする。
+
+			//検索結果がある場合、Modelに結果をセットする。
 			model.addAttribute("page", comicList);
 			model.addAttribute("comicList", comicList.getContent());
 			model.addAttribute("url", "search");
 		}
 
-		return "comicMiyoshi/search"; //表示させるhtmlを示す
+		return "comicMiyoshi/search";
 	}
 
 	/**
@@ -101,11 +104,12 @@ public class ComicMiyoshiController {
 	public String insertComic(@ModelAttribute @Validated final ComicMiyoshiInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
-			//			入力エラーがある場合自画面に戻る
+
+			//入力エラーがある場合自画面に戻る
 			return "comicMiyoshi/insert";
 		}
 
-		//		データを登録する
+		//データを登録する
 		final ComicMainMiyoshi comicMainMiyoshi = comicMiyoshiService.insertComic(form);
 		return "redirect:/comicMiyoshi?result=insert&id=" + comicMainMiyoshi.getId();
 	}
@@ -120,10 +124,10 @@ public class ComicMiyoshiController {
 	public String showUpdateComic(@RequestParam(name = "id") final long id,
 			@ModelAttribute final ComicMiyoshiInputForm comicMiyoshiInputForm) {
 
-		//		IDキーにComicMainMiyoshiテーブルを検索する
+		//IDキーにComicMainMiyoshiテーブルを検索する
 		ComicMainMiyoshi comicMainMiyoshi = comicMiyoshiService.getComic(id);
 
-		//		フォームにレコードの値をセットする
+		//フォームにレコードの値をセットする
 		comicMiyoshiInputForm.initWithComicMainMiyoshi(comicMainMiyoshi);
 		return "comicMiyoshi/update";
 	}
@@ -138,15 +142,15 @@ public class ComicMiyoshiController {
 	public String updateComic(@Validated final ComicMiyoshiInputForm form, final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//			入力エラーがある場合自画面に戻る
+			//入力エラーがある場合自画面に戻る
 			return "comicMiyoshi/update";
 		}
 
-		//		データを更新する
+		//データを更新する
 		ComicMainMiyoshi comicMainMiyoshi = comicMiyoshiService.updateComic(form);
 		if (comicMainMiyoshi == null) {
 
-			//			更新が失敗した場合、検索画面にメッセージを表示する
+			//更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/comicMain?result=updatefailed";
 		}
 		return "redirect:/comicMiyoshi?result=update&id=" + comicMainMiyoshi.getId();
@@ -160,7 +164,7 @@ public class ComicMiyoshiController {
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteComic(@RequestParam(name = "id") final long id) {
 
-		//		IDをキーにレコードを論理削除する
+		//IDをキーにレコードを論理削除する
 		comicMiyoshiService.deleteComicById(id);
 		return "redirect:/comicMiyoshi?result=delete&id=" + id;
 	}
@@ -176,10 +180,10 @@ public class ComicMiyoshiController {
 	public String showDeleteComic(final ComicMiyoshiSearchForm form,
 			@ModelAttribute final ComicMiyoshiDeleteForm comicMiyoshiDeleteForm, final Model model) {
 
-		//		ComicMainMiyoshiテーブルから削除フラグが1のレコードを検索する
+		//ComicMainMiyoshiテーブルから削除フラグが1のレコードを検索する
 		final List<ComicMainMiyoshi> comicList = comicMiyoshiService.getListComic(form);
 
-		//		Modelに検索結果を格納する
+		//Modelに検索結果を格納する
 		model.addAttribute(comicList);
 		return "comicMiyoshi/deletecomp";
 	}
@@ -196,17 +200,17 @@ public class ComicMiyoshiController {
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//			入力エラーがある場合、再検索して自画面に戻る
+			//入力エラーがある場合、再検索して自画面に戻る
 			ComicMiyoshiSearchForm comicMiyoshiSearchForm = new ComicMiyoshiSearchForm();
 			comicMiyoshiSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
 			final List<ComicMainMiyoshi> comicList = comicMiyoshiService.getListComic(comicMiyoshiSearchForm);
 
-			//			Modelに検索結果を格納する
+			//Modelに検索結果を格納する
 			model.addAttribute(comicList);
 			return "comicMiyoshi/deletecomp";
 		}
 
-		//		データを完全削除する
+		//データを完全削除する
 		comicMiyoshiService.deleteComicComp(form.getDeleteIds());
 		return "redirect:/comicMiyoshi?result=deletecomp";
 	}

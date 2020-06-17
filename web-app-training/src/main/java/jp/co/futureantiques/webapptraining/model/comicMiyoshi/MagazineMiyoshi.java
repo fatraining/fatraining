@@ -48,5 +48,4 @@ public class MagazineMiyoshi {
 	@JoinColumn(name = "id", referencedColumnName = "magazine_id")
 	private List<ComicMainMiyoshi> comicMainMiyoshiList;
 
-
 }

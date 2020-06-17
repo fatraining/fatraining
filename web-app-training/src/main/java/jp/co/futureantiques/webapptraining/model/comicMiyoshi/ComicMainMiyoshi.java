@@ -18,7 +18,6 @@ import lombok.Data;
  * ComicMainMiyoshiテーブルと対応するEntity
  * @author Miyoshi
  */
-
 @Data
 @Entity
 public class ComicMainMiyoshi {

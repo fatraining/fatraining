@@ -16,7 +16,6 @@ import jp.co.futureantiques.webapptraining.model.form.comicMiyoshi.ComicMiyoshiS
  * @author Miyoshi
  *
  */
-
 public interface ComicMiyoshiService {
 
 	/**

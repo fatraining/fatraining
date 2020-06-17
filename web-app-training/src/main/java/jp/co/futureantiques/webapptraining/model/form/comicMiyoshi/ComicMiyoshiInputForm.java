@@ -90,11 +90,11 @@ public class ComicMiyoshiInputForm {
 		comicMainMiyoshi.setComicTitle(this.comicTitle);
 		if(this.magazineId == CommonConst.NOT_ENTERD) {
 
-//			連載雑誌が入力されていなかった場合
+			//連載雑誌が入力されていなかった場合
 			comicMainMiyoshi.setMagazineId(null);
 		}else {
 
-//			連載雑誌が入力されていなかった場合
+			//連載雑誌が入力されていなかった場合
 			comicMainMiyoshi.setMagazineId(this.magazineId);
 		}
 		comicMainMiyoshi.setAuthor(this.author);
