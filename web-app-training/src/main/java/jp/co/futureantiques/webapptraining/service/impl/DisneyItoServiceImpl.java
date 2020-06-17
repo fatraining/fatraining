@@ -37,7 +37,6 @@ public class DisneyItoServiceImpl implements DisneyItoService {
 	/** DisneyAreaItoリポジトリ */
 	private final DisneyAreaItoRepository disneyAreaItoRepository;
 
-
 	/**
 	 * コンストラクタ
 	 *

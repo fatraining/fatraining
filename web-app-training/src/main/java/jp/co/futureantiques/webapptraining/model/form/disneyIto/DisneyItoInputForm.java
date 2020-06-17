@@ -123,5 +123,4 @@ public class DisneyItoInputForm {
 		disneyMainIto.setDelFlg("0");
 		return disneyMainIto;
 	}
-
 }

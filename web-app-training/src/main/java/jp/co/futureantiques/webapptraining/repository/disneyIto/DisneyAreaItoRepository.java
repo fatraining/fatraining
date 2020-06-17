@@ -11,5 +11,4 @@ import jp.co.futureantiques.webapptraining.model.disneyIto.DisneyAreaIto;
 */
 
 public interface DisneyAreaItoRepository extends JpaRepository<DisneyAreaIto, Long> {
-
 }

@@ -164,6 +164,7 @@ public class DisneyItoController {
 			// 入力エラーがある場合自画面に戻る
 			return "disneyIto/update";
 		}
+
 		// データを更新する
 		DisneyMainIto disneyMainIto = disneyItoService.updateDisney(form);
 		if (disneyMainIto == null) {
@@ -172,7 +173,6 @@ public class DisneyItoController {
 			return "redirect:/disneyIto?result=updatefailed";
 		}
 		return "redirect:/disneyIto?result=update&id=" + disneyMainIto.getId();
-
 	}
 
 	/**
