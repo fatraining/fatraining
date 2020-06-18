@@ -22,9 +22,7 @@
 		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a>
 		<h1 align="center" th:text="#{radio.text.search}">ラジオ番組検索</h1>
 	</div>
-	<div class="user">
-		<span th:text="#{radio.text.hello.user(${session.user})}">こんにちは</span>
-	</div>
+
 
 	<!--新規・削除ボタン  -->
 	<div style="positon: relative; left: 30">
@@ -150,7 +148,7 @@
 							th:if="${radio.keystationKashima != null}"
 							th:text="${radio.keystationKashima.keystation}"
 							class="data center">ニッポン放送</label></td>
-							<td class="data center" th:text="${radio.personality}">オードリー</td>
+						<td class="data center" th:text="${radio.personality}">オードリー</td>
 						<td class="date center" th:text="${radio.broadcastPeriod}">2009/10/10-現在</td>
 
 						<td class="data center" th:text="${radio.comment}">コメント</td>

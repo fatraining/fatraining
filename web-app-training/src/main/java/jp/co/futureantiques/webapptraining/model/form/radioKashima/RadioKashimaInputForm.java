@@ -50,6 +50,7 @@ public class RadioKashimaInputForm {
 
 	/**
 	 * フィールドにエンティティの中身を入れる
+	 *
 	 * @param radioMainKashima
 	 * **/
 	public void iniWithradioMainKashima(RadioMainKashima radioMainKashima) {
@@ -78,6 +79,7 @@ public class RadioKashimaInputForm {
 
 	/**
 	 * RadioMainエンティティに更新値を入れる
+	 *
 	 * @param RadioMainKashima radioMainKashima
 	 * @return RadioMainKashima
 	 */
@@ -89,6 +91,7 @@ public class RadioKashimaInputForm {
 
 	/**
 	 * RadioMainエンティティに入力値を入れる
+	 *
 	 * @param RadioMainKashima radioMainKashima
 	 * @return RadioMainKashima
 	 */

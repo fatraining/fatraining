@@ -15,29 +15,26 @@ import jp.co.futureantiques.webapptraining.model.radioKashima.RadioMainKashima;
  *RadioMainリポジトリのインターフェス
  *@author kashima
  */
-public interface RadioMainKashimaRepository
+public interface RadioMainKashimaRepository extends JpaRepository<RadioMainKashima, Long>, JpaSpecificationExecutor<RadioMainKashima> {
 
-	extends JpaRepository<RadioMainKashima, Long>, JpaSpecificationExecutor<RadioMainKashima> {
+	/**
+	 * 対象のレコードの削除フラグを1にする
+	 *
+	 * @param long id
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE RadioMainKashima SET delFlg=1,update_date=now() WHERE id = :id")
+	void delete(@Param("id") final long id);
 
-		/**
-		 * 対象のレコードの削除フラグを1にする
-		 *
-		 * @param long id
-		 */
-		@Transactional
-		@Modifying
-		@Query("UPDATE RadioMainKashima SET delFlg=1,update_date=now() WHERE id = :id")
-		void delete(@Param("id") final long id);
+	/**
+	 * 対象のレコードを削除する
+	 *
+	 * @param ArrayList<Long> ids
+	 */
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM RadioMainKashima WHERE id IN(:ids)")
+	void deleteComp(@Param("ids") final ArrayList<Long> ids);
 
-		/**
-		 * 対象のレコードを削除する
-		 *
-		 * @param ArrayList<Long> ids
-		 */
-		@Transactional
-		@Modifying
-		@Query("DELETE FROM RadioMainKashima WHERE id IN(:ids)")
-		void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
-	}
-
+}

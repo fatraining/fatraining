@@ -19,7 +19,8 @@
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small
 					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
@@ -47,7 +48,8 @@
 
 				<div class="form-group">
 					<label for="keystation" class="control-label"
-						th:text="#{radio.text.input.keystation}">放送局:</label> <select
+						th:text="#{radio.text.input.keystation}">放送局:</label>
+						<select
 						name="keystationId" id="inputkeystation" class="form-control">
 						<option th:each="keystation: ${keystationKashimaList}"
 							th:value="${keystation.id}" th:text="${keystation.keystation}"
@@ -56,7 +58,8 @@
 				</div>
 				<div class="form-group">
 					<label for="" class="control-label"
-						th:text="#{radio.text.input.personality.riquire}">パーソナリティ(*)</label> <input
+						th:text="#{radio.text.input.personality.riquire}">パーソナリティ(*)</label>
+						<input
 						type="text" th:field="*{personality}" class="form-control"
 						id="inputpersonality" th:placeholder="#{radio.text.personality}" />
 					<p class="err alert-danger"
@@ -66,7 +69,8 @@
 
 				<div class="form-group">
 					<label for="broadcastPeriod" class="control-label"
-						th:text="#{radio.text.input.broadcastPeriod}">放送局</label> <input
+						th:text="#{radio.text.input.broadcastPeriod}">放送局</label>
+						<input
 						type="text" th:field="*{broadcastPeriod}" class="form-control"
 						id="inputbroadcastPeriod"
 						th:placeholder="#{radio.text.broadcastPeriod}" />

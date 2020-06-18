@@ -2,8 +2,6 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +23,7 @@ import jp.co.futureantiques.webapptraining.model.radioKashima.KeystationKashima;
 import jp.co.futureantiques.webapptraining.model.radioKashima.RadioMainKashima;
 import jp.co.futureantiques.webapptraining.service.RadioKashimaService;
 
-/* RadioKashimaのコントローラークラス
+/** RadioKashimaのコントローラークラス
 * @author kashima
 *
 */
@@ -34,24 +32,17 @@ import jp.co.futureantiques.webapptraining.service.RadioKashimaService;
 public class RadioKashimaController {
 
 	 @Autowired
-	  HttpSession session;
-
 	/** ラジオ番組のサービス**/
 	private final RadioKashimaService radioKashimaService;
 
 	/**
 	 * コンストラクタ
+	 *
 	 * @param RadioKashimaService radioKashimaService
 	 */
 	@Autowired
 	public RadioKashimaController(final RadioKashimaService radioKashimaService) {
 		this.radioKashimaService = radioKashimaService;
-	}
-
-
-	@ModelAttribute
-	public List<KeystationKashima> getListkeystationKashima() {
-		return radioKashimaService.getListKeystationKashima();
 	}
 
 	/**
@@ -65,16 +56,20 @@ public class RadioKashimaController {
 	 * @param RadioKashimaSearchForm radioKashimaSearchForm
 	 * @return 検索画面のパス
 	 */
+	@ModelAttribute
+	public List<KeystationKashima> getListkeystationKashima() {
+		return radioKashimaService.getListKeystationKashima();
+	}
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSeachRadioKashima(@ModelAttribute final RadioKashimaSearchForm radioKashimaSearchFrom) {
-		session.setAttribute("user","新規");
 		return "radiokashima/search";
 	}
 
 	/**
 	 * 検索結果を取得して検索画面に遷移する
 	 *
-	 * @param RadioKashimaSearchFrom form
+	 * @param RadioKashimaSearchForm form
 	 * @param Model model
 	 * @param Pageable Pageable
 	 * @return 検索画面のパス
@@ -107,7 +102,7 @@ public class RadioKashimaController {
 	}
 
 	/**
-	 *
+	 *追加して検索画面に遷移する
 	 *
 	 * @param RadioKashimaInputForm form
 	 * @param BindingResult bindingResult
@@ -173,8 +168,9 @@ public class RadioKashimaController {
 
 	/**
 	 * RadioMainKashimaテーブルのレコードを論理削除し検索画面に遷移
+	 *
 	 * @param long id
-	 * @return 検索画面のぱす
+	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteRadioKashima(@RequestParam(name = "id") final long id) {
