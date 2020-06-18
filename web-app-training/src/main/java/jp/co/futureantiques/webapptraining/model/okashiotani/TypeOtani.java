@@ -16,9 +16,8 @@ import lombok.Data;
 /**
  * TypeOtaniテーブルと対応するEntityクラス
  *
- * @author future
+ * @author otani
  */
-
 @Data
 @Entity
 public class TypeOtani {
@@ -51,5 +50,4 @@ public class TypeOtani {
 	@OneToMany(targetEntity = OkashiMainOtani.class, mappedBy = "TypeOtani")
 	@JoinColumn(name = "id", referencedColumnName = "type_id")
 	private List<OkashiMainOtani> okashiMainList;
-
 }

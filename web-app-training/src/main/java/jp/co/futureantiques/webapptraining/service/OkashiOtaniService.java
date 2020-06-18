@@ -87,6 +87,4 @@ public interface OkashiOtaniService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteOkashiOtaniComp(final ArrayList<Long> ids);
-
 }
-

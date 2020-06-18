@@ -2,8 +2,6 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,14 +27,11 @@ import jp.co.futureantiques.webapptraining.service.OkashiOtaniService;
 /**
  * OkashiOtaniのコントローラークラス
  *
- * @author future
+ * @author otani
  */
 @Controller
 @RequestMapping(value = "/okashiotani")
 public class OkashiOtaniController {
-
-	@Autowired
-	HttpSession session;
 
 	/** お菓子のサービス */
 	private final OkashiOtaniService okashiOtaniService;
@@ -104,7 +99,6 @@ public class OkashiOtaniController {
 			model.addAttribute("url", "search");
 		}
 		return "okashiotani/search";
-
 	}
 
 	/**

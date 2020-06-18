@@ -13,13 +13,11 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-
 /**
 * MakerOtaniテーブルと対応するEntity
 *
-* @author future
+* @author otani
 */
-
 @Data
 @Entity
 public class MakerOtani {
@@ -52,5 +50,4 @@ public class MakerOtani {
 	@OneToMany(targetEntity = OkashiMainOtani.class, mappedBy = "MakerOtani")
 	@JoinColumn(name = "id", referencedColumnName = "maker_id")
 	private List<OkashiMainOtani> okashiMainList;
-
 }

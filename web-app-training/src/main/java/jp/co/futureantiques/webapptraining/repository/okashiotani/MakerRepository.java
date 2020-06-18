@@ -7,7 +7,7 @@ import jp.co.futureantiques.webapptraining.model.okashiotani.MakerOtani;
 /**
  * Makerリポジトリのインターフェース
  *
- * @author future
+ * @author otani
  */
 public interface MakerRepository extends JpaRepository<MakerOtani, Long> {
 }

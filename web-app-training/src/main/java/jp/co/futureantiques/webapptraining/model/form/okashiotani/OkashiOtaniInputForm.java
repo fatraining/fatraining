@@ -11,8 +11,6 @@ import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.okashiotani.OkashiMainOtani;
 import lombok.Data;
 
-
-
 /**
 * お菓子追加画面のFormクラス
 *
@@ -106,8 +104,3 @@ public class OkashiOtaniInputForm {
 		return okashiMainOtani;
 	}
 }
-
-
-
-
-

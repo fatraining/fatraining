@@ -20,7 +20,6 @@ import jp.co.futureantiques.webapptraining.model.okashiotani.OkashiMainOtani;
  */
 public class OkashiOtaniSpecification {
 
-
 	/**
 	 * 検索条件生成の実装
 	 *
@@ -65,7 +64,7 @@ public class OkashiOtaniSpecification {
 				}
 				if (form.getMakerId() != null && form.getMakerId() != 0) {
 
-					// 俳メーカーを条件に追加
+					// メーカーを条件に追加
 					Predicate newCondition = cb.equal(root.get("makerId"), form.getMakerId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
@@ -98,5 +97,4 @@ public class OkashiOtaniSpecification {
 			}
 		};
 	}
-
 }

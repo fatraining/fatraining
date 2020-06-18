@@ -28,7 +28,6 @@ import jp.co.futureantiques.webapptraining.service.OkashiOtaniService;
 @Service
 public class OkashiOtaniServiceImpl implements OkashiOtaniService {
 
-
 	/** OkashiMainリポジトリ */
 	private final OkashiMainRepository okashiMainRepository;
 
@@ -133,5 +132,3 @@ public class OkashiOtaniServiceImpl implements OkashiOtaniService {
 		okashiMainRepository.deleteComp(ids);
 	}
 }
-
-

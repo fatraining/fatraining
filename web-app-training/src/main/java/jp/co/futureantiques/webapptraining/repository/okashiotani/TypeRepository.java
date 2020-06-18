@@ -10,5 +10,4 @@ import jp.co.futureantiques.webapptraining.model.okashiotani.TypeOtani;
  * @author future
  */
 public interface TypeRepository extends JpaRepository<TypeOtani,Long>{
-
 }

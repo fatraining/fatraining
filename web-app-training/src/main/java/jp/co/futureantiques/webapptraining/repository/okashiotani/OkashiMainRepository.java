@@ -37,5 +37,4 @@ public interface OkashiMainRepository extends JpaRepository<OkashiMainOtani, Lon
 	@Modifying
 	@Query("DELETE FROM OkashiMainOtani WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

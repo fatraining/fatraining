@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 public class OkashiOtaniSearchForm {
 
-
 	/** ID */
 	private Integer id;
 
@@ -38,5 +37,4 @@ public class OkashiOtaniSearchForm {
 		this.setTypeId(okashiMain.getTypeId());
 		this.setMakerId(okashiMain.getMakerId());
 	}
-
 }
