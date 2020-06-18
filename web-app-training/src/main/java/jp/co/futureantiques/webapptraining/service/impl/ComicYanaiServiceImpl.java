@@ -104,11 +104,11 @@ public class ComicYanaiServiceImpl implements ComicYanaiService {
 
 	@Override
 	public void deleteComicById(long id) {
-		// 更新対象のレコードを取得する
+		// 削除対象のレコードを取得する
 		ComicMainYanai comicMainYanai = comicMainYanaiRepository.findOne(id);
 		if (comicMainYanai != null) {
 
-			// 更新対象のレコードが存在する場合、削除フラグを1にする
+			// 削除対象のレコードが存在する場合、削除フラグを1にする
 			comicMainYanaiRepository.delete(id);
 		}
 	}

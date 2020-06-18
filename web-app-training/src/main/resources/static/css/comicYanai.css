@@ -21,7 +21,8 @@ div.search-menu .btn-group {
 }
 
 h1, .h1 {
-	font-size: 36px;
+	font-family: 'Sawarabi Mincho', sans-serif;
+	font-size:50px;
 }
 
 #resultTable {
