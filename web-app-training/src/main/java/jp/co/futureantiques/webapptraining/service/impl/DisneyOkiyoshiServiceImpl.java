@@ -20,30 +20,29 @@ import jp.co.futureantiques.webapptraining.repository.disneyOkiyoshi.GenreOkiyos
 import jp.co.futureantiques.webapptraining.repository.specification.DisneyOkiyoshiSpecification;
 import jp.co.futureantiques.webapptraining.service.DisneyOkiyoshiService;
 
-
 /**
- * MovieSampleのサービス実装クラス
+ * disneyのサービス実装クラス
  *
  * @author future
  */
 @Service
 public class DisneyOkiyoshiServiceImpl implements DisneyOkiyoshiService {
 
-	/** MovieMainリポジトリ */
+	/** DisneyMainOkiyoshiリポジトリ */
 	private final DisneyMainOkiyoshiRepository disneyMainOkiyoshiRepository;
 
-	/** Genreリポジトリ */
+	/** GenreOkiyoshiリポジトリ */
 	private final GenreOkiyoshiRepository genreOkiyoshiRepository;
 
-	/** MovieActorリポジトリ */
+	/** EreaOkiyoshiリポジトリ */
 	private final EreaOkiyoshiRepository ereaOkiyoshiRepository;
 
 	/**
 	 * コンストラクタ
 	 *
-	 * @param MovieMainRepository movieMainRepository
-	 * @param GenreOkiyoshiRepository genreRepository
-	 * @param MovieActorRepository movieActorRepository
+	 * @param DisneyMainOkiyoshiRepository disneyMainOkiyoshiRepository
+	 * @param GenreOkiyoshiRepository genreOkiyoshiRepository
+	 * @param EreaOkiyoshiRepository ereaOkiyoshiRepository
 	 */
 	@Autowired
 	public DisneyOkiyoshiServiceImpl(DisneyMainOkiyoshiRepository disneyMainOkiyoshiRepository,
@@ -64,35 +63,37 @@ public class DisneyOkiyoshiServiceImpl implements DisneyOkiyoshiService {
 	@Override
 	public List<EreaOkiyoshi> getListEreaOkiyoshi() {
 
-		// MovieActorテーブルのレコードをID順に取得する
+		// EreaテーブルのレコードをID順に取得する
 		return ereaOkiyoshiRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
-	public Page<DisneyMainOkiyoshi> getPageDisneyOkiyoshi(final DisneyOkiyoshiSearchForm form, final Pageable pageable) {
+	public Page<DisneyMainOkiyoshi> getPageDisneyOkiyoshi(final DisneyOkiyoshiSearchForm form,
+			final Pageable pageable) {
 
-		// 検索条件を生成しMovieMainテーブルのレコードを取得する
-		return disneyMainOkiyoshiRepository.findAll(DisneyOkiyoshiSpecification.generateDisneySpecification(form), pageable);
+		// 検索条件を生成しDisneyMainOkiyoshiテーブルのレコードを取得する
+		return disneyMainOkiyoshiRepository.findAll(DisneyOkiyoshiSpecification.generateDisneySpecification(form),
+				pageable);
 	}
 
 	@Override
 	public List<DisneyMainOkiyoshi> getListDisneyOkiyoshi(final DisneyOkiyoshiSearchForm form) {
 
-		// 検索条件を生成しMovieMainテーブルのレコードを取得する
+		// 検索条件を生成しDisneyMainOkiyoshiテーブルのレコードを取得する
 		return disneyMainOkiyoshiRepository.findAll(DisneyOkiyoshiSpecification.generateDisneySpecification(form));
 	}
 
 	@Override
 	public DisneyMainOkiyoshi getDisneyOkiyoshi(final long id) {
 
-		// MovieMainテーブルを主キー検索する
+		// DisneyMainOkiyoshiテーブルを主キー検索する
 		return disneyMainOkiyoshiRepository.findOne(id);
 	}
 
 	@Override
 	public DisneyMainOkiyoshi insertDisneyOkiyoshi(final DisneyOkiyoshiInputForm form) {
 
-		// MovieMainテーブルに新規でデータを登録する
+		// DisneyMainOkiyoshiテーブルに新規でデータを登録する
 		final DisneyMainOkiyoshi disneyMainOkiyoshi = form.convertToDisneyMainForInsert();
 		return disneyMainOkiyoshiRepository.save(disneyMainOkiyoshi);
 	}

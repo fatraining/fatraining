@@ -12,7 +12,7 @@ import jp.co.futureantiques.webapptraining.model.disneyOkiyoshi.DisneyMainOkiyos
 import lombok.Data;
 
 /**
- * 映画登録・更新画面用のFormクラス
+ * 登録・更新画面用のFormクラス
  *
  * @author future
  */

@@ -13,7 +13,8 @@
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/spring_training.css}" />
 </head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/disneyOkiyoshi.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/disneyOkiyoshi.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
@@ -30,12 +31,14 @@
 			</div>
 
 			<!-- 入力欄 -->
-			<form method="post" id="disneyOkiyoshiInputForm" th:action="@{/disneyokiyoshi/insert}"
+			<form method="post" id="disneyOkiyoshiInputForm"
+				th:action="@{/disneyokiyoshi/insert}"
 				th:object="${disneyOkiyoshiInputForm}" class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{disney.text.input.restaurantname.riquire}"> RestaurantName(*):</label> <input
-						type="text" th:field="*{RestaurantName}" class="form-control"
+						th:text="#{disney.text.input.restaurantname.riquire}">
+						RestaurantName(*):</label> <input type="text" th:field="*{RestaurantName}"
+						class="form-control"
 						th:placeholder="#{disney.text.restaurantname}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('restaurantName')}"
@@ -45,8 +48,8 @@
 					<label for="genre" class="control-label"
 						th:text="#{disney.text.input.genre}"> Genre:</label> <select
 						name="genreId" id="inputGenre" class="form-control select">
-						<option th:each="genre : ${genreOkiyoshiList}" th:value="${genre.id}"
-							th:text="${genre.genre}"
+						<option th:each="genre : ${genreOkiyoshiList}"
+							th:value="${genre.id}" th:text="${genre.genre}"
 							th:selected="${genre.id == disneyOkiyoshiInputForm.genreId}">pulldown</option>
 					</select>
 				</div>
@@ -68,7 +71,8 @@
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
-						onclick="$('#disneyOkiyoshiInputForm').submit()" th:text="#{common.text.insert}">Insert</a>
+						onclick="$('#disneyOkiyoshiInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
 				</div>
 			</form>
 		</div>

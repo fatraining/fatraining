@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Genreテーブルと対応するEntityクラス
+ * Ereaテーブルと対応するEntityクラス
  *
  * @author future
  */

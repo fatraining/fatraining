@@ -27,14 +27,14 @@ public interface DisneyOkiyoshiService {
 	public List<GenreOkiyoshi> getListGenreOkiyoshi();
 
 	/**
-	 * 映画俳優エンティティのリストを取得する
+	 * エリアエンティティのリストを取得する
 	 *
-	 * @return MovieActorEntityのリスト
+	 * @return EreaEntityのリスト
 	 */
 	public List<EreaOkiyoshi> getListEreaOkiyoshi();
 
 	/**
-	 * 検索条件を元にDisneyMainのレコードのリストを取得する(Paging)
+	 * 検索条件を元にDisneyMainOkiyoshiのレコードのリストを取得する(Paging)
 	 *
 	 * @param DisneyOkiyoshiSearchForm form
 	 * @param Pageable pageable
@@ -43,7 +43,7 @@ public interface DisneyOkiyoshiService {
 	public Page<DisneyMainOkiyoshi> getPageDisneyOkiyoshi(final DisneyOkiyoshiSearchForm form, final Pageable pageable);
 
 	/**
-	 * 検索条件を元にDisneyMainのレコードのリストを取得する
+	 * 検索条件を元にDisneyMainOkiyoshiのレコードのリストを取得する
 	 *
 	 * @param DisneyOkiyoshiSearchForm form
 	 * @return DisneyMainのリスト
@@ -51,38 +51,38 @@ public interface DisneyOkiyoshiService {
 	public List<DisneyMainOkiyoshi> getListDisneyOkiyoshi(final DisneyOkiyoshiSearchForm form);
 
 	/**
-	 * IDをキーにDisneyMainのレコードを取得する
+	 * IDをキーにDisneyMainOkiyoshiのレコードを取得する
 	 *
 	 * @param long id
-	 * @return DisneyMainのレコード
+	 * @return DisneyMainOkiyoshiのレコード
 	 */
 	public DisneyMainOkiyoshi getDisneyOkiyoshi(final long id);
 
 	/**
-	 * DisneyMainにレコードを新規登録する
+	 * DisneyMainOkiyoshiにレコードを新規登録する
 	 *
 	 * @param DisneyOkiyoshiInputForm form
-	 * @return DisneyMain
+	 * @return DisneyMainOkiyoshi
 	 */
 	public DisneyMainOkiyoshi insertDisneyOkiyoshi(final DisneyOkiyoshiInputForm form);
 
 	/**
-	 * DisneyMainのレコードを更新する
+	 * DisneyMainOkiyoshiのレコードを更新する
 	 *
 	 * @param DisneyOkiyoshiInputForm form
-	 * @return DisneyMain
+	 * @return DisneyMainOkiyoshi
 	 */
 	public DisneyMainOkiyoshi updateDisneyOkiyoshi(final DisneyOkiyoshiInputForm form);
 
 	/**
-	 * DisneyMainのレコードを論理削除する
+	 * DisneyMainOkiyoshiのレコードを論理削除する
 	 *
 	 * @param long id
 	 */
 	public void deleteDisneyOkiyoshiById(final long id);
 
 	/**
-	 * DisneyMainのレコードを物理削除する
+	 * DisneyMainOkiyoshiのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
 	 */

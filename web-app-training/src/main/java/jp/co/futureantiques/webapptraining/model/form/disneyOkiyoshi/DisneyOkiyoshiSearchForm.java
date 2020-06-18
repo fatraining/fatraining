@@ -4,7 +4,7 @@ import jp.co.futureantiques.webapptraining.model.disneyOkiyoshi.DisneyMainOkiyos
 import lombok.Data;
 
 /**
- * 映画検索画面のFormクラス
+ *検索画面のFormクラス
  *
  * @author future
  */
