@@ -75,7 +75,7 @@ public class DrinkOhkuboController {
 	@ModelAttribute
 	public List<ContainerOhkubo> getListContainer() {
 		return drinkService.getListContainer();
-	}	
+	}
 
 	/**
 	 * 検索画面に遷移する
@@ -239,10 +239,10 @@ public class DrinkOhkuboController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			DrinkOhkuboSearchForm drinkOhkuboSearchForm = new DrinkOhkuboSearchForm();
 			drinkOhkuboSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<DrinkMainOhkubo> drinkList = drinkService.getListDrink(drinkOhkuboSearchForm);
+			final List<DrinkMainOhkubo> drinkMainOhkuboList = drinkService.getListDrink(drinkOhkuboSearchForm);
 
 			// Modelに検索結果を格納する
-			model.addAttribute(drinkList);
+			model.addAttribute(drinkMainOhkuboList);
 			return "drinkohkubo/deletecomp";
 		}
 

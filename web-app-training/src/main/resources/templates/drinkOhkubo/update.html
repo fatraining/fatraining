@@ -36,7 +36,7 @@
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{drink.text.input.name.riquire.ohkubo.ohkubo}"> 製品名(*):</label> <input
+						th:text="#{drink.text.input.name.ohkubo}"> 製品名(*):</label> <input
 						type="text" th:field="*{drinkName}" class="form-control"
 						th:placeholder="#{drink.text.name.ohkubo}" />
 					<p class="err alert-danger"
@@ -47,8 +47,8 @@
 					<label for="maker" class="control-label"
 						th:text="#{drink.text.input.maker}">メーカー:</label> <select
 						name="makerId" id="inputMaker" class="form-control select">
-						<option th:each="maker : ${makerOhkuboList}" th:value="${maker.id}"
-							th:text="${maker.maker}"
+						<option th:each="maker : ${makerOhkuboList}"
+							th:value="${maker.id}" th:text="${maker.maker}"
 							th:selected="${maker.id == drinkOhkuboInputForm.makerId}">pulldown</option>
 					</select>
 				</div>
@@ -63,8 +63,8 @@
 				</div>
 				<div class="form-group">
 					<label for="ml" class="control-label"
-						th:text="#{drink.text.input.ml}"> 内容量:</label>
-						<textarea name="ml" cols="" rows="1"
+						th:text="#{drink.text.input.ml}"> Comment:</label>
+					<textarea th:field="*{ml}" cols="" rows="1"
 						class="form-control" id="inputMl"
 						th:placeholder="#{drink.text.ml}"></textarea>
 				</div>

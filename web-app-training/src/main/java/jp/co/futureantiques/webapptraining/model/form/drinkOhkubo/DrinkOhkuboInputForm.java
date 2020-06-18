@@ -34,7 +34,7 @@ public class DrinkOhkuboInputForm {
 	private Integer typeId;
 
 	/** 内容量 **/
-	private Integer ml;
+	private String ml;
 
 	/** 容器ID */
 	private Integer containerId;
@@ -56,7 +56,7 @@ public class DrinkOhkuboInputForm {
 		this.setDrinkName(drinkMainOhkubo.getDrinkName());
 		this.setMakerId(drinkMainOhkubo.getMakerId());
 		this.setTypeId(drinkMainOhkubo.getTypeId());
-		//if(drinkMain.get)
+		this.setMl(drinkMainOhkubo.getMl());
 		this.setContainerId(drinkMainOhkubo.getContainerId());
 		this.setComment(drinkMainOhkubo.getComment());
 		this.setUpdateDate(String.valueOf(drinkMainOhkubo.getUpdateDate()));
@@ -95,7 +95,7 @@ public class DrinkOhkuboInputForm {
 	 */
 	private DrinkMainOhkubo convertToDrinkMainOhkubo(DrinkMainOhkubo drinkMainOhkubo) {
 		drinkMainOhkubo.setDrinkName(this.drinkName);
-		
+
 		if(this.makerId == CommonConst.NOT_ENTERD) {
 
 			// メーカー名が入力されていなかった場合
@@ -123,9 +123,10 @@ public class DrinkOhkuboInputForm {
 		}else {
 
 			// 容器が入力されていた場合
-			drinkMainOhkubo.setContainerId(this.typeId);
+			drinkMainOhkubo.setContainerId(this.containerId);
 		}
-		
+
+		drinkMainOhkubo.setMl(this.ml);
 		drinkMainOhkubo.setComment(this.comment);
 		drinkMainOhkubo.setDelFlg("0");
 		return drinkMainOhkubo;

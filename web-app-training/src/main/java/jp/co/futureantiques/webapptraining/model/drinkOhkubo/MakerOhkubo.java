@@ -45,7 +45,7 @@ public class MakerOhkubo {
 	@Column(name = "update_date")
 	private String updateDate;
 
-	/** 外部キー設定：俳優ID */
+	/** 外部キー設定：メーカーID */
 	@Transient
 	@OneToMany(targetEntity = DrinkMainOhkubo.class, mappedBy = "maker")
 	@JoinColumn(name = "id", referencedColumnName = "maker_id")
