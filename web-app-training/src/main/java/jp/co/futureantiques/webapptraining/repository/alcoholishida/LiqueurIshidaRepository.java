@@ -6,8 +6,8 @@ import jp.co.futureantiques.webapptraining.model.alcoholishida.LiqueurIshida;
 
 /**
  * liqueurレポジトリのインターフェイス
- * @author t.ishida
  *
+ * @author t.ishida
  */
 
 public interface LiqueurIshidaRepository extends JpaRepository<LiqueurIshida, Long> {

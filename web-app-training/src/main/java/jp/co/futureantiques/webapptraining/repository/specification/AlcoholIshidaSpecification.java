@@ -13,14 +13,14 @@ import jp.co.futureantiques.webapptraining.model.alcoholishida.AlcoholMainIshida
 import jp.co.futureantiques.webapptraining.model.form.alcoholishida.AlcoholIshidaSearchForm;
 
 /**
- *  AlcoholMainIshidaの検索条件を生成するクラス
+ * AlcoholMainIshidaの検索条件を生成するクラス
  *
  * @author t.ishida
  */
 public class AlcoholIshidaSpecification {
 
 	/**
-	 *検索条件生成の実装
+	 * 検索条件生成の実装
 	 *
 	 * @param AlcoholIshidaSearchForm form
 	 * @return AlcoholMainIshidaのSpecification
@@ -31,26 +31,26 @@ public class AlcoholIshidaSpecification {
 			@Override
 			public Predicate toPredicate(Root<AlcoholMainIshida> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
-				//検索条件
+				// 検索条件
 				Predicate condition = null;
 
-				//削除フラグON用が1かどうか判定
+				// 削除フラグON用が1かどうか判定
 				if (form.getIsDelete() == 1) {
 
-					//削除フラグ=1を検索条件にする
+					// 削除フラグ=1を検索条件にする
 					return cb.equal(root.get("delFlg"), 1);
 				}
 
-				//条件が入力されている場合条件追加
+				// 条件が入力されている場合条件追加
 				if (form.getId() != null) {
 
-					//IDを条件に追加
+					// IDを条件に追加
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if (!StringUtils.isEmpty(form.getAlcoholName())) {
 
-					//お酒名を条件に追加
+					// お酒名を条件に追加
 					form.setAlcoholName(form.getAlcoholName().trim());
 					final String space = " ";
 
@@ -69,13 +69,7 @@ public class AlcoholIshidaSpecification {
 						condition = getPredicate(cb, condition, newCondition);
 					}
 				}
-				if (!StringUtils.isEmpty(form.getAlcoholName())) {
 
-					// お酒名を条件に追加
-					form.setAlcoholName(form.getAlcoholName().trim());
-					Predicate newCondition = cb.like(root.get("alcoholName"), "%" + form.getAlcoholName() + "%");
-					condition = getPredicate(cb, condition, newCondition);
-				}
 				if (form.getLiqueurId() != null && form.getLiqueurId() != 0) {
 
 					// リキュールを条件に追加
@@ -85,19 +79,25 @@ public class AlcoholIshidaSpecification {
 				if (form.getIngredientId1() != null && form.getIngredientId1() != 0) {
 
 					// 材料1を条件に追加
-					Predicate newCondition = cb.equal(root.get("ingredientId1"), form.getIngredientId1());
+					Predicate newCondition = cb.or(cb.equal(root.get("ingredientId1"), form.getIngredientId1()),
+							cb.equal(root.get("ingredientId2"), form.getIngredientId1()),
+							cb.equal(root.get("ingredientId3"), form.getIngredientId1()));
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if (form.getIngredientId2() != null && form.getIngredientId2() != 0) {
 
 					// 材料2を条件に追加
-					Predicate newCondition = cb.equal(root.get("ingredientId2"), form.getIngredientId2());
+					Predicate newCondition = cb.or(cb.equal(root.get("ingredientId2"), form.getIngredientId2()),
+							cb.equal(root.get("ingredientId1"), form.getIngredientId2()),
+							cb.equal(root.get("ingredientId3"), form.getIngredientId2()));
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if (form.getIngredientId3() != null && form.getIngredientId3() != 0) {
 
 					// 材料3を条件に追加
-					Predicate newCondition = cb.equal(root.get("ingredientId3"), form.getIngredientId3());
+					Predicate newCondition = cb.or(cb.equal(root.get("ingredientId3"), form.getIngredientId3()),
+							cb.equal(root.get("ingredientId1"), form.getIngredientId3()),
+							cb.equal(root.get("ingredientId2"), form.getIngredientId3()));
 					condition = getPredicate(cb, condition, newCondition);
 				}
 
@@ -108,21 +108,21 @@ public class AlcoholIshidaSpecification {
 			}
 
 			/**
-			 *検索条件を結合する
+			 * 検索条件を結合する
 			 *
-			 *@param cd
-			 *@param condition
-			 *@param newCondition
-			 *@returm Predicate
+			 * @param cd
+			 * @param condition
+			 * @param newCondition
+			 * @returm Predicate
 			 */
 			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
 				if (condition != null) {
 
-					//すでに条件がある場合ANDで結合する
+					// すでに条件がある場合ANDで結合する
 					condition = cb.and(condition, newCondition);
 				} else {
 
-					//条件がまだ無い場合先頭の条件になる
+					// 条件がまだ無い場合先頭の条件になる
 					condition = newCondition;
 				}
 				return condition;

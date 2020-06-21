@@ -25,6 +25,7 @@ import jp.co.futureantiques.webapptraining.service.AlcoholIshidaService;
 
 /**
  * Alcoholのコントローラークラス
+ *
  * @author t.ishida
  */
 @Controller
@@ -34,7 +35,8 @@ public class AlcoholIshidaController {
 	/**お酒のサービス */
 	private final AlcoholIshidaService alcoholIshidaService;
 
-	/**コンストラクタ
+	/**
+	 * コンストラクタ
 	 *
 	 * @param AlcoholIshidaService alcoholIshidaService
 	 */
@@ -56,6 +58,7 @@ public class AlcoholIshidaController {
 	/**
 	 * 材料エンティティのリストを取得する
 	 *
+	 * @return IngredientEntityのリストを取得
 	 */
 	@ModelAttribute
 	public List<IngredientIshida> getListIngredient() {
@@ -65,8 +68,8 @@ public class AlcoholIshidaController {
 	/**
 	 * 検索画面に遷移する
 	 *
-	 *@param alcoholIshidaSearchForm alcoholIshidaSearchFrom
-	 *@param 検索画面のパス
+	 * @param alcoholIshidaSearchForm alcoholIshidaSearchFrom
+	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearch(@ModelAttribute final AlcoholIshidaSearchForm alcoholIshidaSearchForm) {
@@ -74,21 +77,21 @@ public class AlcoholIshidaController {
 	}
 
 	/**
-	 *検索結果を取得して検索画面に遷移する
+	 * 検索結果を取得して検索画面に遷移する
 	 *
-	 *@param AlcoholIshidaSearchForm
-	 *@param Model model
-	 *@param Pageable pageable
-	 *@param 検索画面のパス
+	 * @param AlcoholIshidaSearchForm
+	 * @param Model model
+	 * @param Pageable pageable
+	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchAlcohol(final AlcoholIshidaSearchForm form, final Model model, final Pageable pageable) {
 
-		//入力された検索条件を元にレコードを取得する
+		// 入力された検索条件を元にレコードを取得する
 		final Page<AlcoholMainIshida> alcoholIshidaList = alcoholIshidaService.getPageAlcohol(form, pageable);
 		if (alcoholIshidaList.getTotalElements() != 0) {
 
-			//検索結果がある場合はModelに結果をセットする
+			// 検索結果がある場合はModelに結果をセットする
 			model.addAttribute("page", alcoholIshidaList);
 			model.addAttribute("alcoholIshidaList", alcoholIshidaList.getContent());
 			model.addAttribute("url", "search");
@@ -98,6 +101,7 @@ public class AlcoholIshidaController {
 
 	/**
 	 * 追加画面に遷移する
+	 *
 	 * @param AlcoholIshidaInputForm alcoholIshidaInputForm
 	 * @return 追加画面のパス
 	 */
@@ -107,6 +111,8 @@ public class AlcoholIshidaController {
 	}
 
 	/**
+	 * AlcoholIshidaテーブルにデータを登録して検索画面に遷移する
+	 *
 	 * @param AlcoholIshidaInputForm form
 	 * @param BindingResult bindingResult
 	 * @param Model model
@@ -117,18 +123,18 @@ public class AlcoholIshidaController {
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//入力エラーがある場合自画面に戻る
+			// 入力エラーがある場合自画面に戻る
 			return "alcoholIshida/insert";
 		}
 
-		//データを登録する
+		// データを登録する
 		final AlcoholMainIshida alcoholMainIshida = alcoholIshidaService.insertAlcohol(form);
 		return "redirect:/alcoholIshida?result=insert&id=" + alcoholMainIshida.getId();
 	}
 
 	/**
 	 * 更新画面に遷移する
-
+	 *
 	 * @param long id
 	 * @param AlcoholIshidaInputForm alcoholIshidaInputForm
 	 * @return 更新画面のパス
@@ -138,10 +144,10 @@ public class AlcoholIshidaController {
 			@ModelAttribute final AlcoholIshidaInputForm alcoholIshidaInputForm,
 			Model model, final Pageable pageable) {
 
-		//IDをキーにAlcoholMainIshidaテーブルを検索する
+		// IDをキーにAlcoholMainIshidaテーブルを検索する
 		AlcoholMainIshida alcoholMainIshida = alcoholIshidaService.getAlcohol(id);
 
-		//フォームにレコードの値をセットする
+		// フォームにレコードの値をセットする
 		alcoholIshidaInputForm.initWithAlcoholMainIshida(alcoholMainIshida);
 		return "alcoholIshida/update";
 	}
@@ -158,21 +164,22 @@ public class AlcoholIshidaController {
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//入力エラーがある場合自画面に戻る
+			// 入力エラーがある場合自画面に戻る
 			return "alcoholIshida/update";
 		}
 
-		//データを更新する
+		// データを更新する
 		AlcoholMainIshida alcoholMainIshida = alcoholIshidaService.updateAlcohol(form);
 		if (alcoholMainIshida == null) {
 
-			//更新が失敗した場合、検索画面にメッセージを表示をする
+			// 更新が失敗した場合、検索画面にメッセージを表示をする
 			return "redirect:/alcoholIshida?result=updatefailed";
 		}
 		return "redirect:/alcoholIshida?result=update&id=" + alcoholMainIshida.getId();
 	}
 
-	/**AlcoholMainIshidaテーブルのレコードを論理削除して検索画面に遷移する
+	/**
+	 * AlcoholMainIshidaテーブルのレコードを論理削除して検索画面に遷移する
 	 *
 	 * @param long id
 	 * @return 検索画面のパス
@@ -180,7 +187,7 @@ public class AlcoholIshidaController {
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteAlcohol(@RequestParam(name = "id") final long id) {
 
-		//IDをキーにレコードを論理削除する
+		// IDをキーにレコードを論理削除する
 		alcoholIshidaService.deleteAlcoholById(id);
 		return "redirect:/alcoholIshida?result=delete&id=" + id;
 	}
@@ -197,10 +204,10 @@ public class AlcoholIshidaController {
 	public String showDeleteCompAlcohol(final AlcoholIshidaSearchForm form,
 			@ModelAttribute final AlcoholIshidaDeleteForm alcoholIshidaDeleteForm, final Model model) {
 
-		//AlcoholIshidaテーブルから削除フラグが1のレコードを検索する
+		// AlcoholIshidaテーブルから削除フラグが1のレコードを検索する
 		final List<AlcoholMainIshida> alcoholList = alcoholIshidaService.getListAlcohol(form);
 
-		//Modelに検索結果を格納する
+		// Modelに検索結果を格納する
 		model.addAttribute(alcoholList);
 		return "alcoholIshida/deletecomp";
 	}
@@ -219,17 +226,17 @@ public class AlcoholIshidaController {
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//入力エラーがある場合、再検索して自画面に戻る
+			// 入力エラーがある場合、再検索して自画面に戻る
 			AlcoholIshidaSearchForm alcoholIshidaSearchForm = new AlcoholIshidaSearchForm();
 			alcoholIshidaSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
 			final List<AlcoholMainIshida> alcoholList = alcoholIshidaService.getListAlcohol(alcoholIshidaSearchForm);
 
-			//Modelに検索結果を格納する
+			// Modelに検索結果を格納する
 			model.addAttribute(alcoholList);
 			return "alcoholIshida/deletecomp";
 		}
 
-		//データを完全削除する
+		// データを完全削除する
 		alcoholIshidaService.deleteAlcoholComp(form.getDeleteIds());
 		return "redirect:/alcoholIshida?result=deletecomp";
 	}

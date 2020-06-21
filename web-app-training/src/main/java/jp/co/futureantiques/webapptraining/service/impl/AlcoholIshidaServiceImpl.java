@@ -37,7 +37,7 @@ public class AlcoholIshidaServiceImpl implements AlcoholIshidaService {
 	/**Liqueurリポジトリ*/
 	private final LiqueurIshidaRepository liqueurIshidaRepository;
 
-	/**
+		/**
 		 * コンストラクタ
 		 *
 		 * @param AlcoholMainIshidaRepository alcoholMainIshidaRepository
