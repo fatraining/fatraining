@@ -47,6 +47,7 @@ public class OkashiOtaniInputForm {
 		this.setTypeId(okashiMainOtani.getTypeId());
 		this.setMakerId(okashiMainOtani.getMakerId());
 		this.setUpdateDate(String.valueOf(okashiMainOtani.getUpdateDate()));
+
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class OkashiOtaniInputForm {
 		if(this.typeId == CommonConst.NOT_ENTERD) {
 
 			// 種類が入力されていなかった場合
-			okashiMainOtani.setTypeId(null);
+			okashiMainOtani.setTypeId(0);
 		}else {
 
 			// 種類が入力されていた場合
@@ -94,7 +95,7 @@ public class OkashiOtaniInputForm {
 		if(this.makerId == CommonConst.NOT_ENTERD) {
 
 			// メーカーが入力されていなかった場合
-			okashiMainOtani.setMakerId(null);
+			okashiMainOtani.setMakerId(0);
 		}else {
 
 			// メーカーが入力されていた場合

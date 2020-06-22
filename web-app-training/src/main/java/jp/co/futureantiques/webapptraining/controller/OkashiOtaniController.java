@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,7 +86,7 @@ public class OkashiOtaniController {
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchOkashi(final OkashiOtaniSearchForm form, final Model model,
-			final @PageableDefault(page = 0, value = 10) Pageable pageable) {
+			final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得する
 		final Page<OkashiMainOtani> okashiList = okashiOtaniService.getPageOkashiOtani(form, pageable);
