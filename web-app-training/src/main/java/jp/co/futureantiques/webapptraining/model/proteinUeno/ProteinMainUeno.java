@@ -44,7 +44,7 @@ public class ProteinMainUeno {
 
 	/** 評価 */
 	@Column(name = "review")
-	private int review;
+	private Integer review;
 
 	/** コメント */
 	@Column(name = "comment")

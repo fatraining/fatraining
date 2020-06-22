@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.co.futureantiques.webapptraining.model.proteinUeno.ProteinMainUeno;
 
 /**
- *ProteinMainリポジトリのインターフェス
+ *ProteinMainUenoリポジトリのインターフェス
  *@author ueno
  */
 public interface ProteinMainUenoRepository

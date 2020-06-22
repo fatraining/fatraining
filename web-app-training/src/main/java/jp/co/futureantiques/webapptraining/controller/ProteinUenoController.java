@@ -104,7 +104,7 @@ public class ProteinUenoController {
 	/**
 	 * 追加画面に遷移する
 	 *
-	 * @param ProteinUenoInputForm proteinUenoInputForm
+	 * @param ProteinUeno\InputForm proteinUenoInputForm
 	 * @return 追加画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.GET)

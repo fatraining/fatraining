@@ -28,10 +28,6 @@ public class ProteinUenoInputForm {
 	@Size(max = 256, message = "protein.text.error.size.max")
 	private String flavor;
 
-	/** 評価**/
-	@Size(max = 11, message = "protein.text.error.size.max")
-	private Integer review;
-
 	/**種類ID**/
 	private Integer kindId;
 
@@ -39,10 +35,11 @@ public class ProteinUenoInputForm {
 	private Integer makerId;
 
 	/** 評価 */
+	@Size(min = 0, max = 11, message = "protein.text.error.size.max")
 	private String reviewStr;
 
 	/** コメント**/
-	@Size(max = 256, message = "protein.text.error.size.max")
+	@Size(min = 0, max = 256, message = "protein.text.error.size.max")
 	private String comment;
 
 	/**更新日時**/
@@ -78,7 +75,7 @@ public class ProteinUenoInputForm {
 
 	/**
 	 * ProteinMainエンティティに更新値を入れる
-	 * @param ProteinMainUeno proteinMainUeno
+	 * @param ProteinMainUeno proteinMain
 	 * @return proteinMainUeno
 	 */
 	public ProteinMainUeno convertToProteinMainForUpdate(ProteinMainUeno proteinMain) {
@@ -94,27 +91,36 @@ public class ProteinUenoInputForm {
 	 */
 	private ProteinMainUeno convertToProteinMain(ProteinMainUeno proteinMain) {
 		proteinMain.setFlavor(this.flavor);
-		if (this.kindId == CommonConst.NOT_ENTERD) {
+		if(this.kindId == CommonConst.NOT_ENTERD) {
 
 			// 種類が入力されていなかった場合
 			proteinMain.setKindId(null);
-		} else {
+		}else {
 
 			// 種類が入力されていた場合
 			proteinMain.setKindId(this.kindId);
 		}
 
-		if (this.makerId == CommonConst.NOT_ENTERD) {
+		if(this.makerId == CommonConst.NOT_ENTERD) {
 
 			// メーカーが入力されていなかった場合
 			proteinMain.setMakerId(null);
-		} else {
+		}else {
 
 			// メーカーが入力されていた場合
 			proteinMain.setMakerId(this.makerId);
 		}
 
-		proteinMain.setReview(Integer.parseInt(this.reviewStr));
+		if (!this.reviewStr.isEmpty()) {
+
+			// 評価が入力されていた場合
+			proteinMain.setReview(Integer.parseInt(this.reviewStr));
+		} else {
+
+			//　評価が入力されていなかった場合
+			proteinMain.setReview(null);
+		}
+
 		proteinMain.setComment(this.comment);
 		proteinMain.setDelFlg("0");
 		return proteinMain;
