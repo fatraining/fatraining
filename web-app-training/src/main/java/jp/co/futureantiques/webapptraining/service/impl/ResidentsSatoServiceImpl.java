@@ -27,7 +27,6 @@ import jp.co.futureantiques.webapptraining.service.ResidentsSatoService;
 @Service
 public class ResidentsSatoServiceImpl implements ResidentsSatoService{
 
-
 	/**ResidentsMainリポジトリ */
 	private final ResidentsMainSatoRepository residentsMainSatoRepository;
 
