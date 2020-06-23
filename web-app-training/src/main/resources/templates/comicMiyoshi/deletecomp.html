@@ -52,7 +52,9 @@
 										th:value="${comic.id}"/>
 								</label>
 							</td>
-							<td class="data center" th:text="${comic.comicTitle}">鬼滅の刃</td>
+							<td class="data center">
+								<label th:if="${comic.comicTitle != null}"  th:text="${comic.comicTitle}"  class="data center">鬼滅の刃</label>
+							</td>
 							<td class="data center">
 								<label th:if="${comic.magazineMiyoshi != null}" th:text="${comic.magazineMiyoshi.magazine}" class="data center">週刊少年ジャンプ</label>
 							</td>
@@ -62,7 +64,9 @@
 							<td class="data center">
 								<label th:if="${comic.volume != null}" th:text="${comic.volume}" class="data center">20巻</label>
 							</td>
-							<td class="data center" th:text="${comic.comment}">今すごい人気。完結</td>
+							<td class="data center">
+								<label th:if="${comic.volume != null}" th:text="${comic.comment}" class="data center">今すごい人気。完結</label>
+							</td>
 						</tr>
 					</tbody>
 				</table>

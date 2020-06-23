@@ -151,7 +151,7 @@ public class ComicMiyoshiController {
 		if (comicMainMiyoshi == null) {
 
 			//更新が失敗した場合、検索画面にメッセージを表示する
-			return "redirect:/comicMain?result=updatefailed";
+			return "redirect:/comicMiyoshi?result=updatefailed";
 		}
 		return "redirect:/comicMiyoshi?result=update&id=" + comicMainMiyoshi.getId();
 	}

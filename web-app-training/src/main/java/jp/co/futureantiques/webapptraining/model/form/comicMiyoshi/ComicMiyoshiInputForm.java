@@ -3,6 +3,7 @@ package jp.co.futureantiques.webapptraining.model.form.comicMiyoshi;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -23,7 +24,7 @@ public class ComicMiyoshiInputForm {
 
 	/** 漫画タイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256,message = "comic.text.error.limit")
 	private String comicTitle;
 
 	/** 連載雑誌ID */
@@ -31,14 +32,15 @@ public class ComicMiyoshiInputForm {
 
 	/** 原作者 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256,message = "comic.text.error.limit")
 	private String author;
 
 	/** 巻数 */
-	private Integer volume;
+	@Pattern(regexp ="[0-9]{1,3}?",message = "comic.text.error.volume")
+	private String volumeStr;
 
 	/** コメント */
-	@Size(max = 256)
+	@Size(max = 256,message = "comic.text.error.comment")
 	private String comment;
 
 	/** 更新日時（排他制御用） */
@@ -53,7 +55,7 @@ public class ComicMiyoshiInputForm {
 		this.setComicTitle(comicMainMiyoshi.getComicTitle());
 		this.setMagazineId(comicMainMiyoshi.getMagazineId());
 		this.setAuthor(comicMainMiyoshi.getAuthor());
-		this.setVolume(comicMainMiyoshi.getVolume());
+		this.setVolumeStr(String.valueOf(comicMainMiyoshi.getVolume()));
 		this.setComment(comicMainMiyoshi.getComment());
 		this.setUpdateDate(String.valueOf(comicMainMiyoshi.getUpdateDate()));
 	}
@@ -98,7 +100,7 @@ public class ComicMiyoshiInputForm {
 			comicMainMiyoshi.setMagazineId(this.magazineId);
 		}
 		comicMainMiyoshi.setAuthor(this.author);
-		comicMainMiyoshi.setVolume(this.volume);
+		comicMainMiyoshi.setVolume(Integer.parseInt(this.volumeStr));
 		comicMainMiyoshi.setComment(this.comment);
 		comicMainMiyoshi.setDelFlg("0");
 		return comicMainMiyoshi;

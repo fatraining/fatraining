@@ -29,7 +29,7 @@
 				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{comic.text.input.title.riquire}"> 漫画タイトル(*)（必須）:</label>
+						th:text="#{comic.text.input.comicTitle.riquire}"> 漫画タイトル(*)（必須）:</label>
 					<input type="text" th:field="*{comicTitle}" class="form-control"
 						th:placeholder="#{comic.text.comicTitle}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('comicTitle')}"
@@ -46,8 +46,10 @@
 				<div class="form-group">
 					<label for="volume" class="control-label"
 						th:text="#{comic.text.input.volume}">巻数:</label>
-					<input type="text" th:field="*{volume}" class="form-control"
+					<input type="text" th:field="*{volumeStr}" class="form-control"
 						th:placeholder="#{comic.text.volume}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('volumeStr')}"
+						th:text="#{${err}(#{comic.text.volume})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="magazine" class="control-label"
@@ -66,6 +68,8 @@
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{comic.text.comment}"></textarea>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('comment')}"
+						th:text="#{${err}(#{comic.text.comment})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"

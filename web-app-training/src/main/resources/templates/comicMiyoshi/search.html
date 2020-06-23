@@ -133,7 +133,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="comic : ${comicList}">
-						<td class="data center" th:text="${comic.comicTitle}">鬼滅の刃</td>
+						<td class="data center">
+							<label th:if="${comic.comicTitle != null}" th:text="${comic.comicTitle}" class="data center">鬼滅の刃</label>
+						</td>
 						<td class="data center">
 							<label th:if="${comic.author != null}"  th:text="${comic.author}" class="data center">吾峠呼世晴</label>
 						</td>
@@ -144,7 +146,9 @@
 						<td class="data center">
 							<label th:if="${comic.volume != null}"  th:text="${comic.volume}" class="data center">20巻</label>
 						</td>
-						<td class="data center" th:text="${comic.comment}">今すごい人気。完結</td>
+						<td class="data center">
+							<label  th:text="${comic.comment}">今すごい人気。完結</label>
+						</td>
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/comicMiyoshi/update(id=${comic.id})}"
