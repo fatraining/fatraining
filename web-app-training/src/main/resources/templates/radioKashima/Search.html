@@ -143,15 +143,23 @@
 				</thead>
 				<tbody>
 					<tr th:each="radio: ${radioList}">
-						<td class="data center" th:text="${radio.programName}">オードリーのオールナイトニッポン</td>
+					<td class="data center" ><label
+						 	th:text="${radio.programName}" class="data center">オードリーのオールナイトニッポン</label>
+						</td>
+
 						<td class="data center"><label
 							th:if="${radio.keystationKashima != null}"
-							th:text="${radio.keystationKashima.keystation}"
-							class="data center">ニッポン放送</label></td>
-						<td class="data center" th:text="${radio.personality}">オードリー</td>
-						<td class="date center" th:text="${radio.broadcastPeriod}">2009/10/10-現在</td>
+							th:text="${radio.keystationKashima.keystation}" class="data center">ニッポン放送</label>
+						</td>
 
-						<td class="data center" th:text="${radio.comment}">コメント</td>
+						<td class="data center"><label
+						     th:text="${radio.personality}" class="data center">オードリー</label>
+						</td>
+						<td class="data center"><label
+						     th:text="${radio.broadcastPeriod}" class="data center">2009/10/10-現在</label>
+						</td><td class="data center"><label
+						     th:text="${radio.comment}" class="data center">コメント</label>
+						</td>
 
 						<td class="data center"><a class="btn btn-success"
 							th:href="@{/radiokashima/update(id=${radio.id})}"

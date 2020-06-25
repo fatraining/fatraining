@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.radioKashima;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.radioKashima.RadioMainKashima;
 import lombok.Data;
 
@@ -14,6 +16,7 @@ public class RadioKashimaSearchForm {
 	private Integer id;
 
 	/**ラジオ番組名**/
+	@Size(max = 255, message = "radio.text.error.size.max")
 	private String programName;
 
 	/**パーソナリティ**/
