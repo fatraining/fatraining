@@ -85,7 +85,13 @@ public class DisneyItoController {
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-	public String searchDisney(final DisneyItoSearchForm form, final Model model, final Pageable pageable) {
+	public String searchDisney(@Validated final DisneyItoSearchForm form, BindingResult bindingResult,
+			final Model model, final Pageable pageable) {
+
+		//文字数がオーバーした時
+		if (bindingResult.hasFieldErrors()) {
+			return "disneyIto/search";
+		}
 
 		// 入力された検索条件を元にレコードを取得する
 		final Page<DisneyMainIto> disneyList = disneyItoService.getPageDisney(form, pageable);
@@ -124,6 +130,7 @@ public class DisneyItoController {
 
 			// 入力エラーがある場合自画面に戻る
 			return "disneyIto/insert";
+
 		}
 
 		// データを登録する

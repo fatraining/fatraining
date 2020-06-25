@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.disneyIto;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.disneyIto.DisneyMainIto;
 import lombok.Data;
 
@@ -15,6 +17,7 @@ public class DisneyItoSearchForm {
 	private Integer id;
 
 	/** アトラクション名 */
+	@Size(max = 256, message = "disney.text.error.countover")
 	private String attractionName;
 
 	/** パークID */

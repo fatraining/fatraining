@@ -52,7 +52,9 @@
 										th:value="${disney.id}"/>
 								</label>
 							</td>
-							<td class="data center" th:text="${disney.attractionName}">カリブの海賊</td>
+							<td class="data center">
+								<label th:text="${disney.attractionName}">カリブの海賊</label>
+							</td>
 							<td class="data center">
 								<label th:if="${disney.park != null}" th:text="${disney.park.park}" class="data center">東京ディズニーランド</label>
 							</td>
@@ -60,9 +62,11 @@
 								<label th:if="${disney.area != null}" th:text="${disney.area.area}" class="data center">アドベンチャーランド</label>
 							</td>
 							<td class="data center">
-								<label th:if="${disney.time == null}" th:text="${disney.time}+'分'" class="data center">15分</label>
+								<label th:if="${disney.time != null}" th:text="${disney.time}+'分'" class="data center">15分</label>
 							</td>
-							<td class="data center" th:text="${disney.comment}">ボートに乗って海賊たちの世界へ。ランドに来たら一度は乗りたい。</td>
+							<td class="data center">
+								<label th:text="${disney.comment}">ボートに乗って海賊たちの世界へ。ランドに来たら一度は乗りたい。</label>
+							</td>
 						</tr>
 					</tbody>
 				</table>

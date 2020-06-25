@@ -80,6 +80,9 @@
 				<div class="col-sm-8">
 					<input type="text" th:field="*{attractionName}" class="form-control"
 						id="inputname" th:placeholder="#{disney.text.search.info}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('attractionName')}"
+						th:text="#{${err}(#{disney.text.name})}"></p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -138,7 +141,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="disney : ${disneyList}">
-						<td class="data center" th:text="${disney.attractionName}">カリブの海賊</td>
+						<td class="data center" >
+							<label th:text="${disney.attractionName}">カリブの海賊</label>
+						</td>
 						<td class="data center">
 							<label th:if="${disney.park != null}"  th:text="${disney.park.park}" class="data center">東京ディズニーランド</label>
 						</td>
@@ -150,7 +155,9 @@
 							<label th:if="${disney.time != null}"  th:text="${disney.time}+'分'"
 									class="data center">15分</label>
 						</td>
-						<td class="data center" th:text="${disney.comment}">ボートに乗って海賊たちの世界へ。ランドに来たら一度は乗りたい。</td>
+						<td class="data center">
+							<label th:text="${disney.comment}">ボートに乗って海賊たちの世界へ。ランドに来たら一度は乗りたい。</label>
+						</td>
 						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/disneyIto/update(id=${disney.id})}"

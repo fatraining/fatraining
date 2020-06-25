@@ -25,7 +25,7 @@ public class DisneyItoInputForm {
 
 	/** アトラクション名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256 , message = "disney.text.error.countover")
 	private String attractionName;
 
 	/** パークID */
@@ -36,7 +36,7 @@ public class DisneyItoInputForm {
 
 	/** 乗車時間 */
 	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	@Pattern(regexp = "^([1-9]|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String timeStr;
 
 	/** コメント */
