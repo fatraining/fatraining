@@ -31,6 +31,7 @@ public class ResidentsMainSato {
 
 	/** 住民名 */
 	@Column(name = "residents_name")
+	@Size(max = 256)
 	private String residentsName;
 
 	/** 動物ID */

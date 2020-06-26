@@ -24,7 +24,7 @@ public class ResidentsSatoInputForm {
 
 	/** 住民名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256,message ="residents.text.error.invalid.name")
 	private String residentsName;
 
 	/** 動物ID */
@@ -34,7 +34,7 @@ public class ResidentsSatoInputForm {
 	private Integer sexId;
 
 	/** コメント */
-	@Size(max = 256)
+	@Size(max = 256,message ="residents.text.error.invalid.name")
 	private String comment;
 
 	/** 更新日時（排他制御用） */
@@ -55,7 +55,7 @@ public class ResidentsSatoInputForm {
 	}
 
 	/**
-	 * MovieMainエンティティに登録値を入れる
+	 * ResidentsMainエンティティに登録値を入れる
 	 *
 	 * @return ResidentsMainSato
 	 */

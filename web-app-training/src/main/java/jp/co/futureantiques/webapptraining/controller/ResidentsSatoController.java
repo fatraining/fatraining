@@ -73,7 +73,6 @@ public class ResidentsSatoController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchResidents(@ModelAttribute final ResidentsSatoSearchForm residentsSatoSearchForm) {
-		//6/15 residentssatoからresidentsSatoに変更、htmlのsearch部分も同様
 		return "residentsSato/search";
 	}
 
@@ -86,7 +85,13 @@ public class ResidentsSatoController {
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-	public String searchResidents(final ResidentsSatoSearchForm form, final Model model, final Pageable pageable) {
+	public String searchResidents(@Validated final ResidentsSatoSearchForm form, BindingResult bindingResult,final Model model, final Pageable pageable) {
+
+		//文字数超えた時
+		if (bindingResult.hasFieldErrors()) {
+			return "residentsSato/search";
+
+		}
 
 		// 入力された検索条件を元にレコードを取得する
 		final Page<ResidentsMainSato> residentsList = residentsSatoService.getPageResidentsSato(form, pageable);
@@ -97,7 +102,6 @@ public class ResidentsSatoController {
 			model.addAttribute("residentsList", residentsList.getContent());
 			model.addAttribute("url", "search");
 		}
-		//6/15 residentssatoからresidentsSatoに変更
 		return "residentsSato/search";
 	}
 

@@ -1,5 +1,7 @@
 package jp.co.futureantiques.webapptraining.model.form.residentsSato;
 
+import javax.validation.constraints.Size;
+
 import jp.co.futureantiques.webapptraining.model.residentsSato.ResidentsMainSato;
 import lombok.Data;
 
@@ -14,6 +16,7 @@ public class ResidentsSatoSearchForm {
 	private Integer id;
 
 	/** 住民名 */
+	@Size(max = 256, message ="residents.text.error.invalid.name")
 	private String residentsName;
 
 	/** 動物ID */
