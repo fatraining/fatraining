@@ -160,7 +160,7 @@ public class AlcoholIshidaController {
 	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateAlcohol(@Validated final AlcoholIshidaInputForm form,
+	public String updateAlcohol(@Validated final AlcoholIshidaInputForm form,Model model,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
@@ -168,9 +168,14 @@ public class AlcoholIshidaController {
 			return "alcoholIshida/update";
 		}
 
+		//delflg判定
+		AlcoholMainIshida alcoholMainIshidaGetAlcohol = alcoholIshidaService.getAlcohol(form.getId());
+		if (Integer.parseInt(alcoholMainIshidaGetAlcohol.getDelFlg()) ==1) {
+			return "redirect:/alcoholIshida?result=updatedelete&id=" + alcoholMainIshidaGetAlcohol.getId();
+		}
 		// データを更新する
 		AlcoholMainIshida alcoholMainIshida = alcoholIshidaService.updateAlcohol(form);
-		if (alcoholMainIshida == null) {
+		if(alcoholMainIshida == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示をする
 			return "redirect:/alcoholIshida?result=updatefailed";

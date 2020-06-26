@@ -72,6 +72,9 @@
 						<p th:case="delete"
 							th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						<p th:case="updatedelete"
+							th:text="#{common.text.info.update.failed}"></p>
+
 					</div>
 				</div>
 			</div>
@@ -302,7 +305,7 @@
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var alcoholId = button.data('id');
-			var alcoholName = button.data('name');
+			var alcoholName = button.data('title');
 			var modal = $(this);
 			modal.find('#deleteId').attr("value", alcoholId);
 			modal.find('#deleteName').text(alcoholName);

@@ -24,7 +24,7 @@ public class AlcoholIshidaInputForm {
 
 	/**お酒名*/
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 255,message = "alcohol.text.error.countover")
 	private String alcoholName;
 
 	/**リキュールID*/

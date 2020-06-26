@@ -37,13 +37,13 @@ public class AlcoholIshidaServiceImpl implements AlcoholIshidaService {
 	/**Liqueurリポジトリ*/
 	private final LiqueurIshidaRepository liqueurIshidaRepository;
 
-		/**
-		 * コンストラクタ
-		 *
-		 * @param AlcoholMainIshidaRepository alcoholMainIshidaRepository
-		 * @param IngredientIshidaMainRepository ingredientIshidaMainRepository
-		 * @param LiqueurIshidaMainRepository liqueurIshidaMainRepository
-		 */
+	/**
+	 * コンストラクタ
+	 *
+	 * @param AlcoholMainIshidaRepository alcoholMainIshidaRepository
+	 * @param IngredientIshidaMainRepository ingredientIshidaMainRepository
+	 * @param LiqueurIshidaMainRepository liqueurIshidaMainRepository
+	 */
 	@Autowired
 	public AlcoholIshidaServiceImpl(AlcoholMainIshidaRepository alcoholMainIshidaRepository,
 			IngredientIshidaRepository ingredientIshidaRepository, LiqueurIshidaRepository liqueurIshidaRepository) {
@@ -104,11 +104,17 @@ public class AlcoholIshidaServiceImpl implements AlcoholIshidaService {
 		AlcoholMainIshida alcoholMainIshida = alcoholMainIshidaRepository.findOne((long) form.getId());
 		if (alcoholMainIshida != null) {
 
+			//削除フラグが１だったとき
+			if (Integer.parseInt(alcoholMainIshida.getDelFlg()) == 1) {
+				return null;
+			}
 			//更新対象のレコードが存在する場合排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(alcoholMainIshida.getUpdateDate()))) {
 
-				//チェックOKの場合、更新
+				//チェックOKの場合
 				alcoholMainIshida = form.convertToAlcoholMainIshidaForUpdate(alcoholMainIshida);
+
+				//更新を実行
 				return alcoholMainIshidaRepository.saveAndFlush(alcoholMainIshida);
 			}
 		}
