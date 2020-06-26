@@ -179,6 +179,7 @@ public class DrinkYoshimotoController {
 		drinkYoshimotoInputForm.initWithDrinkMainYoshimoto(drinkMainYoshimoto);
 		drinkYoshimotoInputForm.setImageDelFlg("0");
 		return "drinkYoshimoto/update";
+
 	}
 
 	/**
@@ -202,6 +203,12 @@ public class DrinkYoshimotoController {
 
 			//更新が失敗した場合検索画面にメッセージを表示
 			return "redirect:/drinkYoshimoto?result=updatefailed";
+		}
+
+		//delfg
+		DrinkMainYoshimoto drinkMainYoshimotoGetDrink = drinkYoshimotoService.getDrink(form.getDrinkId());
+		if (Integer.parseInt(drinkMainYoshimotoGetDrink.getDelFlg()) == 1) {
+			return "redirect:/drinkYoshimoto?result=updatedel";
 		}
 		return "redirect:/drinkYoshimoto?result=update&id=" + drinkMainYoshimoto.getDrinkId();
 	}

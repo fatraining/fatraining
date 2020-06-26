@@ -122,6 +122,11 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 			//更新対象のレコードが存在する場合排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(drinkMainYoshimoto.getUpdateDate()))) {
 
+				//削除フラグが１だったとき
+				if (Integer.parseInt(drinkMainYoshimoto.getDelFlg()) == 1) {
+					return null;
+				}
+
 				//チェックOkの場合
 				drinkMainYoshimoto = form.convertToDrinkMainYoshimotoForUpdate(drinkMainYoshimoto);
 				if (form.getImage().isEmpty()) {
@@ -156,6 +161,7 @@ public class DrinkYoshimotoServiceImpl implements DrinkYoshimotoService {
 
 				//更新を実行
 				return drinkMainYoshimotoRepository.saveAndFlush(drinkMainYoshimoto);
+
 			}
 		}
 		return null;
