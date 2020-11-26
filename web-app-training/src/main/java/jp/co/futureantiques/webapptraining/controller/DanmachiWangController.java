@@ -24,7 +24,7 @@ import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiSearc
 import jp.co.futureantiques.webapptraining.service.DanmachiService;
 
 /**
- * ComicYanaiのコントローラークラス
+ * Danmachiのコントローラークラス
  *
  * @author Wang
  */
@@ -34,7 +34,7 @@ public class DanmachiWangController {
 
 
 	/**ダンまちのサービス*/
-	private DanmachiService danmachiService;
+	private final DanmachiService danmachiService;
 
 	/**
 	 * コンストラクタ
@@ -91,12 +91,12 @@ public class DanmachiWangController {
 	public String searchDanmachi(final DanmachiSearchForm form, final Model model, final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得する
-		final Page<Danmachi> List = danmachiService.getPageDanmachi(form, pageable);
-		if (List.getTotalElements() != 0) {
+		final Page<Danmachi> DanmachiList = danmachiService.getPageDanmachi(form, pageable);
+		if (DanmachiList.getTotalElements() != 0) {
 
 			// 検索結果がある場合はModelに結果をセットする
-			model.addAttribute("page", List);
-			model.addAttribute("alcoholIshidaList", List.getContent());
+			model.addAttribute("page", DanmachiList);
+			model.addAttribute("DanmachiList", DanmachiList.getContent());
 			model.addAttribute("url", "search");
 		}
 		return "Danmachi/search";
@@ -213,11 +213,11 @@ public class DanmachiWangController {
 	public String showDeleteCompDanmachi(final DanmachiSearchForm form,
 			@ModelAttribute final DanmachiDeleteForm dDeleteForm, final Model model) {
 
-		// AlcoholIshidaテーブルから削除フラグが1のレコードを検索する
-		final List<Danmachi> List = danmachiService.getListDanmachi(form);
+		// Danmachiテーブルから削除フラグが1のレコードを検索する
+		final List<Danmachi> DanmachiList = danmachiService.getListDanmachi(form);
 
 		// Modelに検索結果を格納する
-		model.addAttribute(List);
+		model.addAttribute(DanmachiList);
 		return "Danmachi/deletecomp";
 	}
 
@@ -238,10 +238,10 @@ public class DanmachiWangController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			DanmachiSearchForm dSearchForm = new DanmachiSearchForm();
 			dSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<Danmachi> List = danmachiService.getListDanmachi(dSearchForm);
+			final List<Danmachi> DanmachiList = danmachiService.getListDanmachi(dSearchForm);
 
 			// Modelに検索結果を格納する
-			model.addAttribute(List);
+			model.addAttribute(DanmachiList);
 			return "Danmachi/deletecomp";
 		}
 
