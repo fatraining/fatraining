@@ -11,7 +11,11 @@ import jp.co.futureantiques.webapptraining.model.danmachi.Fami;
 import jp.co.futureantiques.webapptraining.model.danmachi.Race;
 import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiInputForm;
 import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiSearchForm;
-
+/**
+ * Danmachiのサービスインターフェース
+ *
+ * @author Wang
+ */
 public interface DanmachiService {
 	/**
 	 *ファミリアエンティティのリストを取得する
@@ -27,25 +31,25 @@ public interface DanmachiService {
 	List<Race> getListRace();
 
 	/**
-	 *検索結果を元にAlcoholMainIshidaのレコードリストを取得する(paging)
+	 *検索結果を元にDanmachiのレコードリストを取得する(paging)
 	 *
-	 *@param alcoholIshidaSearchForm form
+	 *@param DanmachiSearchForm form
 	 *@param Pageable pageable
 	 *@return Danmachiのリスト
 	 */
 	Page<Danmachi> getPageDanmachi(final DanmachiSearchForm form, final Pageable pageable);
 
 	/**
-	 *検索結果を元にalcoholMainIshidaのレコードリストを取得する
+	 *検索結果を元にDanmachiのレコードリストを取得する
 	 *
-	 *@param alcoholIshidaSearchForm form
+	 *@param DanmachiSearchForm form
 	 *@return Danmachiのリスト
 	 *
 	 */
 	List<Danmachi> getListDanmachi(final DanmachiSearchForm form);
 
 	/**
-	 *IDをキーにalcoholMainIshidaのレコードを取得する
+	 *IDをキーにDanmachiのレコードを取得する
 	 *
 	 *@param long  id
 	 *@return Danmachiのレコード

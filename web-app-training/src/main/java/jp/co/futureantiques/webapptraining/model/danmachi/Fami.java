@@ -47,5 +47,5 @@ public class Fami {
 	@Transient
     @OneToMany(targetEntity = Danmachi.class, mappedBy = "fami_wang")
     @JoinColumn(name = "id", referencedColumnName = "fami_id")
-    private List<Danmachi> list;
+    private List<Danmachi> FamiList;
 }

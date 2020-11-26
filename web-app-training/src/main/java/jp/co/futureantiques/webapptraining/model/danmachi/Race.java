@@ -47,5 +47,5 @@ public class Race {
 	@Transient
     @OneToMany(targetEntity = Danmachi.class, mappedBy = "race_wang")
     @JoinColumn(name = "id", referencedColumnName = "race_id")
-    private List<Danmachi> list;
+    private List<Danmachi> RaceList;
 }
