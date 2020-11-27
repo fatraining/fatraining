@@ -96,7 +96,7 @@
 						class="form-control select">
 						<option th:each="famiName : ${FamiList}"
 							th:value="${famiName.id}" th:text="${famiName.famiName}"
-							th:selected="${famiName.id == DanmachiSearchForm.fami_wang}">pulldown</option>
+							th:selected="${famiName.id == DanmachiSearchForm.famiID}">pulldown</option>
 					</select>
 				</div>
 			</div>
@@ -104,11 +104,11 @@
 				<label for="raceName" class="control-label col-sm-2"
 					th:text="#{Danmachi.text.input.race_wang}">RaceName: </label>
 				<div class="col-sm-8">
-					<select id="inputIngredient" name="race_wang"
+					<select id="inputRace" name="race_wang"
 						class="form-control select">
 						<option th:each="raceName : ${RaceList}"
 							th:value="${raceName.id}" th:text="${raceName.raceName}"
-							th:selected="${raceName.id == DanmachiSearchForm.race_wang}">pulldown</option>
+							th:selected="${raceName.id == DanmachiSearchForm.raceID}">pulldown</option>
 					</select>
 				</div>
 			</div>
