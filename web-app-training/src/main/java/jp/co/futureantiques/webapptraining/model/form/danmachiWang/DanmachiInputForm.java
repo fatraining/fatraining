@@ -22,7 +22,7 @@ public class DanmachiInputForm {
 	private int id;
 
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255,message = "alcohol.text.error.countover")
+	@Size(max = 255,message = "Danmachi.text.error.countover")
 	private String name;
 
 	@NotNull(message = "common.text.error.require")
