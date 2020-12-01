@@ -29,7 +29,7 @@ import jp.co.futureantiques.webapptraining.service.DanmachiService;
  * @author Wang
  */
 @Controller
-@RequestMapping(value = "/Danmachi")
+@RequestMapping(value = "/danmachi")
 public class DanmachiWangController {
 
 
