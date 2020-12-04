@@ -27,7 +27,7 @@
 		<div
 			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 			<div class="sub-hedder">
-				<h1 align="center" th:text="#{Danmachi.text.update}">ダンまち更新</h1>
+				<h1 align="center" th:text="#{DanmachiWang.text.update}">ダンまち更新</h1>
 				<a th:href="@{/DanmachiWang}" th:text="#{common.text.back}">Back</a>
 			</div>
 
@@ -38,7 +38,7 @@
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{Danmachi.text.input.name.riquire}">Name(*):</label> <input
+						th:text="#{DanmachiWang.text.input.name.riquire}">Name(*):</label> <input
 						type="text" th:field="*{name}" class="form-control"
 						th:placeholder="#{Danmachi.text.name}" />
 					<p class="err alert-danger"
@@ -47,7 +47,7 @@
 				</div>
 				<div class="form-group">
 					<label for="fami" class="control-label"
-						th:text="#{Danmachi.text.input.fami.riquire}">Fami:</label> <select
+						th:text="#{DanmachiWang.text.input.fami.riquire}">Fami:</label> <select
 						name="fami_wang" id="inputfami" class="form-control select">
 						<option th:each="famiName : ${FamiList}"
 							th:value="${famiName.id}" th:text="${famiName.famiName}"
@@ -56,7 +56,7 @@
 				</div>
 				<div class="form-group">
 					<label for="race" class="control-label"
-						th:text="#{Danmachi.text.input.race.riquire}">Race:</label>
+						th:text="#{DanmachiWang.text.input.race.riquire}">Race:</label>
 					<select name="race_wang" id="inputRace"
 						class="form-control select">
 						<option th:each="raceName : ${RaceList}"
@@ -67,17 +67,17 @@
 				</div>
 				<div class="form-group">
 					<label for="title" class="control-label"
-						th:text="#{Danmachi.text.input.title}"> Tiltle:</label>
+						th:text="#{DanmachiWang.text.input.title}"> Tiltle:</label>
 					<textarea th:field="*{title}" cols="" rows="5"
 						class="form-control" id="inputTitle"
-						th:placeholder="#{Danmachi.text.title}"></textarea>
+						th:placeholder="#{DanmachiWang.text.title}"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="cast" class="control-label"
-						th:text="#{Danmachi.text.input.cast}"> Cast:</label>
+						th:text="#{DanmachiWang.text.input.cast}"> Cast:</label>
 					<textarea th:field="*{cast}" cols="" rows="5"
 						class="form-control" id="inputCast"
-						th:placeholder="#{Danmachi.text.cast}"></textarea>
+						th:placeholder="#{DanmachiWang.text.cast}"></textarea>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
