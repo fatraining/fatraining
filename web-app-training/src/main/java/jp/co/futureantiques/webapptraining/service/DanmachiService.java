@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.futureantiques.webapptraining.model.danmachi.Danmachi;
-import jp.co.futureantiques.webapptraining.model.danmachi.Fami;
-import jp.co.futureantiques.webapptraining.model.danmachi.Race;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiInputForm;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiSearchForm;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.DanmachiMain;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.Fami;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.Race;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiInputForm;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiSearchForm;
 /**
  * Danmachiのサービスインターフェース
  *
@@ -37,7 +37,7 @@ public interface DanmachiService {
 	 *@param Pageable pageable
 	 *@return Danmachiのリスト
 	 */
-	Page<Danmachi> getPageDanmachi(final DanmachiSearchForm form, final Pageable pageable);
+	Page<DanmachiMain> getPageDanmachi(final DanmachiSearchForm form, final Pageable pageable);
 
 	/**
 	 *検索結果を元にDanmachiのレコードリストを取得する
@@ -46,7 +46,7 @@ public interface DanmachiService {
 	 *@return Danmachiのリスト
 	 *
 	 */
-	List<Danmachi> getListDanmachi(final DanmachiSearchForm form);
+	List<DanmachiMain> getListDanmachi(final DanmachiSearchForm form);
 
 	/**
 	 *IDをキーにDanmachiのレコードを取得する
@@ -54,7 +54,7 @@ public interface DanmachiService {
 	 *@param long  id
 	 *@return Danmachiのレコード
 	 */
-	Danmachi getDanmachi(final long id);
+	DanmachiMain getDanmachi(final long id);
 
 	/**
 	 *Danmachiにレコードを新規登録する
@@ -62,7 +62,7 @@ public interface DanmachiService {
 	 *@param DanmachiInputForm form
 	 *@return Danmachi
 	 */
-	Danmachi insertDanmachi(final DanmachiInputForm form);
+	DanmachiMain insertDanmachi(final DanmachiInputForm form);
 
 	/**
 	 *Danmachiのレコードを更新する
@@ -70,7 +70,7 @@ public interface DanmachiService {
 	 * @param  DanmachiInputForm form
 	 * @rerurn Danmachi
 	 */
-	Danmachi updateDanmachi(final DanmachiInputForm form);
+	DanmachiMain updateDanmachi(final DanmachiInputForm form);
 
 	/**
 	 * Danmachiのレコードを論理削除する
