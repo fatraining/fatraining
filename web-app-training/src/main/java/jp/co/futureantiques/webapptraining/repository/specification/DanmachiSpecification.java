@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import jp.co.futureantiques.webapptraining.model.danmachi.Danmachi;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiSearchForm;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.DanmachiMain;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiSearchForm;
 
 /**
  * Danmachiの検索条件を生成するクラス
@@ -22,14 +22,14 @@ public class DanmachiSpecification {
 	/**
 	 * 検索条件生成の実装
 	 *
-	 * @param DanmachiSearchForm form
+	 * @param Danmachi form
 	 * @return DanmachiのSpecification
 	 */
-	public static Specification<Danmachi> generateDanmachiSpecification(
+	public static Specification<DanmachiMain> generateDanmachiSpecification(
 			final DanmachiSearchForm form) {
-		return new Specification<Danmachi>() {
+		return new Specification<DanmachiMain>() {
 			@Override
-			public Predicate toPredicate(Root<Danmachi> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<DanmachiMain> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				// 検索条件
 				Predicate condition = null;
@@ -71,16 +71,16 @@ public class DanmachiSpecification {
 					}
 				}
 
-				if (form.getFamiID() != null && form.getFamiID() != 0) {
+				if (form.getFamiId() != null && form.getFamiId() != 0) {
 
 					// ファミリを条件に追加
-					Predicate newCondition = cb.equal(root.get("famiID"), form.getFamiID());
+					Predicate newCondition = cb.equal(root.get("famiId"), form.getFamiId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-				if (form.getRaceID() != null && form.getRaceID() != 0) {
+				if (form.getRaceId() != null && form.getRaceId() != 0) {
 
 					// ファミリを条件に追加
-					Predicate newCondition = cb.equal(root.get("ramiID"), form.getRaceID());
+					Predicate newCondition = cb.equal(root.get("raceId"), form.getRaceId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
 
