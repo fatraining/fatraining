@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
-import jp.co.futureantiques.webapptraining.model.danmachi.Danmachi;
-import jp.co.futureantiques.webapptraining.model.danmachi.Fami;
-import jp.co.futureantiques.webapptraining.model.danmachi.Race;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiDeleteForm;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiInputForm;
-import jp.co.futureantiques.webapptraining.model.form.danmachiWang.DanmachiSearchForm;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.DanmachiMain;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.Fami;
+import jp.co.futureantiques.webapptraining.model.DanmachiWang.Race;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiDeleteForm;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiInputForm;
+import jp.co.futureantiques.webapptraining.model.form.DanmachiWang.DanmachiSearchForm;
 import jp.co.futureantiques.webapptraining.service.DanmachiService;
 
 /**
@@ -29,7 +29,7 @@ import jp.co.futureantiques.webapptraining.service.DanmachiService;
  * @author Wang
  */
 @Controller
-@RequestMapping(value = "/danmachi")
+@RequestMapping(value = "/danmachiWang")
 public class DanmachiWangController {
 
 
@@ -45,6 +45,9 @@ public class DanmachiWangController {
 	public DanmachiWangController(final DanmachiService danmachiService) {
 		this.danmachiService = danmachiService;
 	}
+
+/*	@Autowired
+	private DanmachiRepository danmachiRepository;*/
 
 	/**
 	 * ファミリアエンティティのリストを取得する
@@ -73,9 +76,19 @@ public class DanmachiWangController {
 	 * @return 検索画面のパス
 	 */
 
+/*	@GetMapping("")
+	public String find() {
+
+		List<DanmachiMain> danmachiMain = danmachiRepository.findAll();
+		System.out.println("================================================");
+		System.out.println(danmachiMain);
+		System.out.println("================================================");
+		return "danmachiWang/search";
+	}*/
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String showSearch(@ModelAttribute final DanmachiSearchForm dSearchForm) {
-		return "Danmachi/search";
+	public String showSearch(@ModelAttribute final DanmachiSearchForm danmachiSearchForm) {
+		return "danmachiWang/search";
 	}
 
 	/**
@@ -91,7 +104,7 @@ public class DanmachiWangController {
 	public String searchDanmachi(final DanmachiSearchForm form, final Model model, final Pageable pageable) {
 
 		// 入力された検索条件を元にレコードを取得する
-		final Page<Danmachi> DanmachiList = danmachiService.getPageDanmachi(form, pageable);
+		final Page<DanmachiMain> DanmachiList = danmachiService.getPageDanmachi(form, pageable);
 		if (DanmachiList.getTotalElements() != 0) {
 
 			// 検索結果がある場合はModelに結果をセットする
@@ -99,7 +112,7 @@ public class DanmachiWangController {
 			model.addAttribute("DanmachiList", DanmachiList.getContent());
 			model.addAttribute("url", "search");
 		}
-		return "Danmachi/search";
+		return "danmachiWang/search";
 	}
 
 	/**
@@ -109,8 +122,8 @@ public class DanmachiWangController {
 	 * @return 追加画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	public String showInsertDanmachi(@ModelAttribute final DanmachiInputForm dInputForm) {
-		return "Danmachi/insert";
+	public String showInsertDanmachi(@ModelAttribute final DanmachiInputForm danmachiInputForm) {
+		return "danmachiWang/insert";
 	}
 
 	/**
@@ -128,12 +141,12 @@ public class DanmachiWangController {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合自画面に戻る
-			return "Danmachi/insert";
+			return "danmachiWang/insert";
 		}
 
 		// データを登録する
-		final Danmachi d = danmachiService.insertDanmachi(form);
-		return "redirect:/Danmachi?result=insert&id=" + d.getId();
+		final DanmachiMain d = danmachiService.insertDanmachi(form);
+		return "redirect:/danmachiWang?result=insert&id=" + d.getId();
 	}
 
 	/**
@@ -146,15 +159,15 @@ public class DanmachiWangController {
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String showUpdateDanmachi(final DanmachiSearchForm form, @RequestParam(name = "id") final long id,
-			@ModelAttribute final DanmachiInputForm dInputForm,
+			@ModelAttribute final DanmachiInputForm danmachiInputForm,
 			Model model, final Pageable pageable) {
 
-		// IDをキーにAlcoholMainIshidaテーブルを検索する
-		Danmachi d = danmachiService.getDanmachi(id);
+		// IDをキーにDanmachiテーブルを検索する
+		DanmachiMain danmachimain = danmachiService.getDanmachi(id);
 
 		// フォームにレコードの値をセットする
-		dInputForm.initWithDanmachi(d);
-		return "Danmachi/update";
+		danmachiInputForm.initWithDanmachi(danmachimain);
+		return "danmachiWang/update";
 	}
 
 	/**
@@ -170,22 +183,22 @@ public class DanmachiWangController {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合自画面に戻る
-			return "Danmachi/update";
+			return "danmachiWang/update";
 		}
 
 		//delflg判定
-		Danmachi dGetd = danmachiService.getDanmachi(form.getId());
-		if (Integer.parseInt(dGetd.getDelFlg()) ==1) {
-			return "redirect:/Danmachi?result=updatedelete&id=" + dGetd.getId();
+		DanmachiMain danmachiMainGetDanmachi = danmachiService.getDanmachi(form.getId());
+		if (Integer.parseInt(danmachiMainGetDanmachi.getDelFlg()) ==1) {
+			return "redirect:/danmachiWang?result=updatedelete&id=" + danmachiMainGetDanmachi.getId();
 		}
 		// データを更新する
-		Danmachi d = danmachiService.updateDanmachi(form);
-		if(d == null) {
+		DanmachiMain danmachiMain = danmachiService.updateDanmachi(form);
+		if(danmachiMain == null) {
 
 			// 更新が失敗した場合、検索画面にメッセージを表示をする
-			return "redirect:/Danmachi?result=updatefailed";
+			return "redirect:/danmachiWang?result=updatefailed";
 		}
-		return "redirect:/Danmachi?result=update&id=" + d.getId();
+		return "redirect:/danmachiWang?result=update&id=" + danmachiMain.getId();
 	}
 	/**
 	 * Danmachiテーブルのレコードを論理削除して検索画面に遷移する
@@ -198,7 +211,7 @@ public class DanmachiWangController {
 
 		// IDをキーにレコードを論理削除する
 		danmachiService.deleteDanmachiById(id);
-		return "redirect:/Danmachi?result=delete&id=" + id;
+		return "redirect:/danmachiWang?result=delete&id=" + id;
 	}
 
 	/**
@@ -214,11 +227,11 @@ public class DanmachiWangController {
 			@ModelAttribute final DanmachiDeleteForm dDeleteForm, final Model model) {
 
 		// Danmachiテーブルから削除フラグが1のレコードを検索する
-		final List<Danmachi> DanmachiList = danmachiService.getListDanmachi(form);
+		final List<DanmachiMain> DanmachiList = danmachiService.getListDanmachi(form);
 
 		// Modelに検索結果を格納する
 		model.addAttribute(DanmachiList);
-		return "Danmachi/deletecomp";
+		return "danmachiWang/deletecomp";
 	}
 
 	/**
@@ -236,17 +249,17 @@ public class DanmachiWangController {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合、再検索して自画面に戻る
-			DanmachiSearchForm dSearchForm = new DanmachiSearchForm();
-			dSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<Danmachi> DanmachiList = danmachiService.getListDanmachi(dSearchForm);
+			DanmachiSearchForm danmachiSearchForm = new DanmachiSearchForm();
+			danmachiSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
+			final List<DanmachiMain> DanmachiList = danmachiService.getListDanmachi(danmachiSearchForm);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(DanmachiList);
-			return "Danmachi/deletecomp";
+			return "danmachiWang/deletecomp";
 		}
 
 		// データを完全削除する
 		danmachiService.deleteDanmachiComp(form.getDeleteIds());
-		return "redirect:/Danmachi?result=deletecomp";
+		return "redirect:/danmachiWang?result=deletecomp";
 	}
 }
