@@ -33,6 +33,8 @@
 		<!-- 削除対象データ -->
 		<form class="form-horizontal" id="deleteForm" action="/dramaIge/deletecomp"
 			th:object="${dramaIgeDeleteForm}" method="post">
+
+			<!-- dramaMainListが空でない場合 -->
 			<div th:if="${dramaMainIgeList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">
 					選択したデータを完全に削除します。
@@ -42,6 +44,8 @@
 					error message
 				</h4>
 			</div>
+
+			<!-- dramaMainListが空の場合 -->
 			<div th:if="${dramaMainIgeList == null}">
 				<h3 th:text="#{common.text.info.no.delete}">
 					削除するデータがありません。
@@ -103,7 +107,6 @@
 									2020冬
 								</label>
 							</td>
-
 							<td class="data center" th:text="${drama.comment}">
 								1期は上戸彩、それ以降は沢村一樹主演の刑事ドラマ。
 							</td>

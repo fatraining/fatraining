@@ -40,5 +40,4 @@ public interface DramaMainIgeRepository extends JpaRepository<DramaMainIge, Long
 	@Modifying
 	@Query("DELETE FROM DramaMainIge WHERE id IN (:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

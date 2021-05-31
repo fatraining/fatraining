@@ -70,6 +70,7 @@ public class DramaIgeController {
 
 	/**
 	 * 季節のリストを取得する
+	 *
 	 * @return SeasonIgeのリスト
 	 */
 	@ModelAttribute
@@ -79,6 +80,7 @@ public class DramaIgeController {
 
 	/**
 	 * 曜日のリストを取得する
+	 *
 	 * @return DayOfWeekIgeのリスト
 	 */
 	@ModelAttribute
@@ -92,7 +94,6 @@ public class DramaIgeController {
 	 * @param DramaIgeSearchForm dramaIgeSearchForm
 	 * @return 検索画面のパス
 	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchDrama(@ModelAttribute final DramaIgeSearchForm dramaIgeSearchform) {
 		return "dramaIge/search";
 	}
@@ -143,12 +144,10 @@ public class DramaIgeController {
 	 * @param DramaIgeInputForm form
 	 * @param BindingResult bingingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
-	 *
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertDrama(@ModelAttribute @Validated final DramaIgeInputForm form,
 			final BindingResult bindingResult) {
-
 		if (bindingResult.hasFieldErrors()) {
 			//入力エラーがある場合、次画面に戻る
 			return "dramaIge/insert";
@@ -229,6 +228,7 @@ public class DramaIgeController {
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompDrama(final DramaIgeSearchForm form,
 			@ModelAttribute final DramaIgeDeleteForm dramaIgeDeleteForm, final Model model) {
+
 		// DramaIgeテーブルから削除フラグが1のレコードを検索する
 		final List<DramaMainIge> dramaList = dramaIgeService.getListDramaMainIge(form);
 

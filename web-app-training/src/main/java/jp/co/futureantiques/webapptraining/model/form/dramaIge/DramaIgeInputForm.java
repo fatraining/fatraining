@@ -109,24 +109,30 @@ public class DramaIgeInputForm {
 		dramaMainIge.setDramaTitle(this.dramaTitle);
 
 		if (this.genreId == CommonConst.NOT_ENTERD) {
+
 			//ジャンルが入力されなかった場合
 			dramaMainIge.setGenreId(null);
 		} else {
+
 			// ジャンルが入力された場合
 			dramaMainIge.setGenreId(this.genreId);
 		}
 		if (this.broadcastStationId == CommonConst.NOT_ENTERD) {
+
 			//放送局が入力されなかった場合
 			dramaMainIge.setBroadcastStationId(null);
 		} else {
+
 			//放送局が入力されていた場合
 			dramaMainIge.setBroadcastStationId(this.broadcastStationId);
 		}
 		dramaMainIge.setStartSeason(this.startYearStr + this.selectStartSeason);
 		if (this.dayOfWeek.isEmpty()) {
+
 			// 放送曜日が入力されなかった場合
 			dramaMainIge.setDayOfWeek(null);
 		} else {
+
 			// 放送曜日が入力された場合
 			dramaMainIge.setDayOfWeek(this.dayOfWeek);
 		}

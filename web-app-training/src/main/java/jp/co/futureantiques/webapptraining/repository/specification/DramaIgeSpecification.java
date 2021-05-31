@@ -23,6 +23,7 @@ public class DramaIgeSpecification {
 
 	/**
 	 * 検索条件生成の実装
+	 *
 	 * @param DramaMainIgeSearchForm
 	 * @return DramaMainIgeのSpecification
 	 *
@@ -53,7 +54,6 @@ public class DramaIgeSpecification {
 
 					// ドラマ名を条件に追加
 					form.setDramaTitle(form.getDramaTitle().trim());
-					;
 					Predicate newCondition = cb.like(root.get("dramaTitle"), "%" + form.getDramaTitle() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
