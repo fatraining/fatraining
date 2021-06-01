@@ -94,6 +94,7 @@ public class DramaIgeController {
 	 * @param DramaIgeSearchForm dramaIgeSearchForm
 	 * @return 検索画面のパス
 	 */
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showSearchDrama(@ModelAttribute final DramaIgeSearchForm dramaIgeSearchform) {
 		return "dramaIge/search";
 	}
