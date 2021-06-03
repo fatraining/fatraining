@@ -198,7 +198,7 @@
 							th:object="${playerKuramotoSearchForm}" style="display: inline">
 							<input type="hidden" th:field="*{playerName}" />
 							<input type="hidden" th:field="*{positionId}" />
-							<input type="hidden"th:field="*{btId}" />
+							<input type="hidden" th:field="*{btId}" />
 						</form>
 						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
 						 <a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">

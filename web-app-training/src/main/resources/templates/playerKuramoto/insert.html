@@ -57,14 +57,14 @@
 				</div>
 				<div class="form-group">
 					<label for="playerAge" class="control-label" th:text="年齢（半角数字で入力してください）：">PlayerAge:</label>
-					 <input type="text" th:field="*{playerAgeStr}"class="form-control" id="inputPlayerAge" />
+					 <input type="text" th:field="*{playerAgeStr}" class="form-control" id="inputPlayerAge" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('playerAgeStr')}"
 						th:text="#{${err}(#{player.text.playerAge})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="playerYears" class="control-label" th:text="プロ在籍年数（半角数字で入力してください）：">PlayerYears:</label>
-					 <input type="text" th:field="*{playerYearsStr}"class="form-control" id="inputPlayerYears" />
+					 <input type="text" th:field="*{playerYearsStr}" class="form-control" id="inputPlayerYears" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('playerYearsStr')}"
 						th:text="#{${err}(#{player.text.playerYears})}"></p>
@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label for="playerPlace" class="control-label" th:text="出身地：">PlayerPlace:</label>
 					 <input type="text" th:field="*{PlayerPlace}"	class="form-control" />
-					<p class="err alert-danger"th:each="err : ${#fields.errors('PlayerPlace')}"></p>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('PlayerPlace')}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"
