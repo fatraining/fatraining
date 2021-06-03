@@ -185,9 +185,10 @@
 			<div th:if="${page != null}">
 				<ul>
 					<li th:class="${page.first} ? 'disabled':''"
-						style="display: inline"><span th:if="${page.first}"
-						th:text="#{common.text.paging.lead}">←lead</span> <a
-						th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						style="display: inline">
+						<span th:if="${page.first}"
+						th:text="#{common.text.paging.lead}">←lead</span>
+						 <a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
 						th:text="#{common.text.paging.lead}">←lead</a></li>
 					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
 						th:class="(${i}==${page.number})? 'active' : ''"
@@ -195,14 +196,13 @@
 						<form th:id="'pageForm'+${i}" method="post"
 							th:action="@{${url}(page=${i})}"
 							th:object="${playerKuramotoSearchForm}" style="display: inline">
-							<input type="hidden" th:field="*{playerName}" /> <input
-								type="hidden" th:field="*{positionId}" /> <input type="hidden"
-								th:field="*{btId}" />
-						</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-						th:if='${i}!=${page.number}'
-						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-							th:text='${i+1}'>1</span>
-					</a>
+							<input type="hidden" th:field="*{playerName}" />
+							<input type="hidden" th:field="*{positionId}" />
+							<input type="hidden"th:field="*{btId}" />
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						 <a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						 <span th:text='${i+1}'>1</span></a>
 					</li>
 					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
 						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
@@ -228,8 +228,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="deleteModalLabel"
-							th:text="選手削除">PlayerDelete</h4>
+						<h4 class="modal-title" id="deleteModalLabel" th:text="選手削除">PlayerDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">

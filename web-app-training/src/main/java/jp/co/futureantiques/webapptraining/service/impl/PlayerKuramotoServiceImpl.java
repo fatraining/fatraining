@@ -34,7 +34,7 @@ public class PlayerKuramotoServiceImpl implements PlayerKuramotoService {
 	/** PositionKuramotoリポジトリ */
 	private final PositionKuramotoRepository positionKuramotoRepository;
 
-	/**btKuramotoリポジトリ */
+	/** BtKuramotoリポジトリ */
 	private final BtKuramotoRepository btKuramotoRepository;
 
 	/**
@@ -55,14 +55,14 @@ public class PlayerKuramotoServiceImpl implements PlayerKuramotoService {
 	@Override
 	public List<PlayerPositionKuramoto> getListPosition() {
 
-		// playerPositionKuramotoテーブルのレコードをID順に取得する
+		// PlayerPositionKuramotoテーブルのレコードをID順に取得する
 		return positionKuramotoRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
 	@Override
 	public List<PlayerBtKuramoto> getListBt() {
 
-		// plaerBtKuramotoテーブルのレコードをID順に取得する
+		// PlayerBtKuramotoテーブルのレコードをID順に取得する
 		return btKuramotoRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
 	}
 
@@ -83,7 +83,7 @@ public class PlayerKuramotoServiceImpl implements PlayerKuramotoService {
 	@Override
 	public PlayerMainKuramoto getPlayer(final long id) {
 
-		// playerMainKuramotoテーブルを主キー検索する
+		// PlayerMainKuramotoテーブルを主キー検索する
 		return playerMainKuramotoRepository.findOne(id);
 	}
 

@@ -84,6 +84,12 @@ public class PlayerKuramotoController {
 	 * @param Pageable pageable
 	 * @return 検索画面のパス
 	 */
+	/**
+	 * @param form
+	 * @param model
+	 * @param pageable
+	 * @return 
+	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchPlayer(final PlayerKuramotoSearchForm form, final Model model, final Pageable pageable) {
 
@@ -102,7 +108,7 @@ public class PlayerKuramotoController {
 	/**
 	 * 追加画面に遷移する
 	 *
-	 * @param PlayerKuramotoInputForm movieSampleInputForm
+	 * @param PlayerKuramotoInputForm PlayerKuramotoInputForm
 	 * @return 追加画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.GET)

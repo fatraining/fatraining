@@ -34,7 +34,7 @@ public interface PlayerKuramotoService {
 	List<PlayerBtKuramoto> getListBt();
 
 	/**
-	 * 検索条件を元にPlayerMainKuramoroのレコードのリストを取得する(Paging)
+	 * 検索条件を元にPlayerMainKuramotoのレコードのリストを取得する(Paging)
 	 *
 	 * @param PlayerKuramotoSearchForm form
 	 * @param Pageable pageable

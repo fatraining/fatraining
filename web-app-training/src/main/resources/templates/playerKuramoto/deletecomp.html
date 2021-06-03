@@ -49,8 +49,7 @@
 						<tr th:each="player : ${playerMainKuramotoList}">
 							<td>
 								<label>
-									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"
-										th:value="${player.id}"/>
+									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"th:value="${player.id}"/>
 								</label>
 							</td>
 							<td class="data center" th:text="${player.playerName}"></td>
@@ -73,10 +72,7 @@
 					</tbody>
 				</table>
 				<div>
-					<a class="btn btn-danger center-block"
-						onclick="$('#deleteForm').submit()"
-						th:text="#{common.text.delete}">
-					</a>
+					<a class="btn btn-danger center-block"onclick="$('#deleteForm').submit()"th:text="#{common.text.delete}"></a>
 				</div>
 			</div>
 		</form>
