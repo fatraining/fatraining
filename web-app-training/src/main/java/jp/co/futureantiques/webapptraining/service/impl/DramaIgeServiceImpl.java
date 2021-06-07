@@ -104,13 +104,20 @@ public class DramaIgeServiceImpl implements DramaIgeService {
 
 		// 更新対象のレコードを取得する
 		DramaMainIge dramaMainIge = dramaMainIgeRepository.findOne((long) form.getId());
+		if (dramaMainIge != null) {
 
-		// 更新対象のレコードが存在する場合排他チェック
-		if (form.getUpdateDate().equals(String.valueOf(dramaMainIge.getUpdateDate()))) {
+			// 更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(dramaMainIge.getUpdateDate()))) {
 
-			// チェックOKの場合、更新
-			dramaMainIge = form.convertToDramaMainIgeForUpdate(dramaMainIge);
-			return dramaMainIgeRepository.saveAndFlush(dramaMainIge);
+				// 削除フラグが1にされていた場合
+				if (Integer.parseInt(dramaMainIge.getDelFlg()) == 1) {
+					return null;
+				}
+
+				// チェックOKの場合、更新
+				dramaMainIge = form.convertToDramaMainIgeForUpdate(dramaMainIge);
+				return dramaMainIgeRepository.saveAndFlush(dramaMainIge);
+			}
 		}
 		return null;
 	}
