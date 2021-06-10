@@ -51,7 +51,7 @@ public class NbaplayersTakahashiInputForm {
 	@Size(max = 256)
 	private String comment;
 
-	/** 更新日時（排他制御用） */
+	/** 更新日時（排他制御用) */
 	private String updateDate;
 
 	/**
@@ -122,12 +122,12 @@ public class NbaplayersTakahashiInputForm {
 			// 所属チームが入力されていた場合
 			nbaplayersMainTakahashi.setTeamId(this.teamId);
 		}
+
 		// 身長が入力されていた場合
 		nbaplayersMainTakahashi.setHeight(Integer.parseInt(this.heightStr));
 
 		// 体重が入力されていた場合
 		nbaplayersMainTakahashi.setWeight(Integer.parseInt(this.weightStr));
-
 		nbaplayersMainTakahashi.setComment(this.comment);
 		nbaplayersMainTakahashi.setDelFlg("0");
 		return nbaplayersMainTakahashi;

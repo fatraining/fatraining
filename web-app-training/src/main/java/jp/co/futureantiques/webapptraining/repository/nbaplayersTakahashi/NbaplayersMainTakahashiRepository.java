@@ -13,6 +13,7 @@ import jp.co.futureantiques.webapptraining.model.nbaplayersTakahashi.NbaplayersM
 
 /**
  * NbaplayersMainTakahashiリポジトリのインターフェース
+ *
  * @author TakumiTakahashi
  */
 
@@ -21,6 +22,7 @@ public interface NbaplayersMainTakahashiRepository
 
 	/**
 	 * 対象レコードの削除フラグを１にする
+	 *
 	 * @param long id
 	 */
 	@Transactional
@@ -30,6 +32,7 @@ public interface NbaplayersMainTakahashiRepository
 
 	/**
 	 * 対象レコードを削除する
+	 *
 	 * @param ArrayList<Long> ids
 	 */
 	@Transactional

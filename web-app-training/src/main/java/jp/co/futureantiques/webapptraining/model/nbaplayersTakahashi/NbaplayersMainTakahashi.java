@@ -16,6 +16,7 @@ import lombok.Data;
 
 /**
  * SQL NbaplayersMainTakahashiテーブルと対応しているエンティティ
+ *
  * @author Takumi Takahashi
  */
 @Data

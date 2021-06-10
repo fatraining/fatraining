@@ -32,7 +32,8 @@ import jp.co.futureantiques.webapptraining.service.NbaplayersTakahashiService;
 @RequestMapping(value = "/nbaplayerstakahashi")
 public class NbaplayersTakahashiController {
 
-	/**NBA選手データのサービス */
+	/**
+	 * NBA選手データのサービス */
 	private final NbaplayersTakahashiService nbaplayersTakahashiService;
 
 	/**

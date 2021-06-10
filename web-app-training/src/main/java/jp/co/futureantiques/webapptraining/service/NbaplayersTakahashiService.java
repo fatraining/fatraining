@@ -14,6 +14,7 @@ import jp.co.futureantiques.webapptraining.model.nbaplayersTakahashi.TeamTakahas
 
 /**
  * NbaplayersTakahashiのサービスインターフェース
+ *
  * @author Takumi Takahashi
  */
 public interface NbaplayersTakahashiService {
