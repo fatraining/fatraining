@@ -36,12 +36,12 @@ public class PlayerKuramotoInputForm {
 
 	/** 年齢 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 4, message = "common.text.error.size.max.four")
+	@Size(max = 2, message = "common.text.error.size.max.two")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String playerAgeStr;
 
 	/** プロ在籍年年数 */
-	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
+	@Size(min = 1, max = 2, message = "common.text.error.size.max.two")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String playerYearsStr;
 

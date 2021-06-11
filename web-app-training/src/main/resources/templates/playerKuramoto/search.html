@@ -20,7 +20,7 @@
 	</div>
 	<div class="sub-header">
 		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
-		<h1 align="center" th:text="DeNA選手検索">選手情報検索画面</h1>
+		<h1 align="center" th:text="#{player.text.search}">選手情報検索画面</h1>
 	</div>
 
 	<!-- 新規・削除ボタン -->
@@ -81,7 +81,7 @@
 			th:object="${playerKuramotoSearchForm}">
 			<div class="form-group">
 				<label for="playerName" class="col-sm-2 control-label"
-					th:text="選手名：">PlayerName:</label>
+					th:text="#{player.text.input.playerName}">PlayerName:</label>
 				<div class="col-sm-8">
 					<input type="text" th:field="*{playerName}" class="form-control"
 						id="inputPlayerName" />
@@ -89,7 +89,7 @@
 			</div>
 			<div class="form-group">
 				<label for="position" class="control-label col-sm-2"
-					th:text="ポジション：">position:</label>
+					th:text="#{player.text.input.position}">position:</label>
 				<div class="col-sm-8">
 					<select id="inputPosition" name="positionId"
 						class="form-control select">
@@ -102,7 +102,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="bt" class="control-label col-sm-2" th:text="投打：">bt:</label>
+				<label for="bt" class="control-label col-sm-2" th:text="#{player.text.input.bt}">bt:</label>
 				<div class="col-sm-8">
 					<select id="inputBt" name="btId" class="form-control select">
 						<option th:each="bt : ${playerBtKuramotoList}" th:value="${bt.id}"
@@ -133,39 +133,38 @@
 				class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="per-12 center" th:text="選手名">PlayerName</th>
-						<th class="per-12 center" th:text="ポジション">Positon</th>
-						<th class="per-16 center" th:text="投打">Bt</th>
-						<th class="per-16 center" th:text="年齢">PlayerAge</th>
-						<th class="per-16 center" th:text="プロ在籍年数">PlayerYears</th>
-						<th class="per-16 center" th:text="出身地">PlayerPlace</th>
+						<th class="per-12 center" th:text="#{player.text.playerName}">PlayerName</th>
+						<th class="per-12 center" th:text="#{player.text.position}">Positon</th>
+						<th class="per-16 center" th:text="#{player.text.bt}">Bt</th>
+						<th class="per-16 center" th:text="#{player.text.playerAge}">PlayerAge</th>
+						<th class="per-16 center" th:text="#{player.text.playerYears}">PlayerYears</th>
+						<th class="per-16 center" th:text="#{player.text.playerPlace}">PlayerPlace</th>
 						<th class="per-7 center" th:text="#{common.text.update}">Update</th>
 						<th class="per-7 center" th:text="#{common.text.delete}">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="player : ${playerKuramotoList}">
-						<td class="data center" th:text="${player.playerName}"></td>
-						<td class="data center"><label
+						<td class="data center" th:text="${player.playerName}">M.ピープルズ</td>
+						<td class="data center">
+						<label
 							th:if="${player.position != null}"
-							th:text="${player.position.positionName}" class="data center"></label>
+							th:text="${player.position.positionName}" class="data center">投手</label>
 						</td>
-						<td class="data center"><label th:if="${player.bt != null}"
-							th:text="${player.bt.btInfo}" class="data center"></label></td>
-						<td class="data center"><label
+						<td class="data center">
+						<label th:if="${player.bt != null}"
+							th:text="${player.bt.btInfo}" class="data center">右投・右打</label></td>
+						<td class="data center">
+						<label
 							th:if="${player.playerAge != null}" th:text="${player.playerAge}"
-							class="data center"></label> <label
-							th:if="${player.playerAge == null}" th:text="${player.playerAge}"
-							class="data center"></label></td>
-						<td class="data center"><label
+							class="data center">29</label></td>
+						<td class="data center">
+						<label
 							th:if="${player.playerYears != null}"
-							th:text="${player.playerYears}" class="data center"></label> <label
-							th:if="${player.playerYears == null}"
 							th:text="${player.playerYears}" class="data center"></label></td>
-						<td class="data center"><label
+						<td class="data center">
+						<label
 							th:if="${player.playerPlace != null}"
-							th:text="${player.playerPlace}" class="data center"></label> <label
-							th:if="${player.playerPlace == null}"
 							th:text="${player.playerPlace}" class="data center"></label></td>
 						<td class="data"><a class="btn btn-success"
 							th:href="@{/playerKuramoto/update(id=${player.id})}"
@@ -173,7 +172,7 @@
 						<td class="data center"><a class="btn btn-danger"
 							style="margin-left: 5%" data-toggle="modal"
 							data-target="#deleteModal" th:text="#{common.text.delete}"
-							th:attr="data-id=${player.id}, data-title=${player.playerName}">Delete</a>
+							th:attr="data-id=${player.id}, data-name=${player.playerName}">Delete</a>
 						</td>
 					</tr>
 				</tbody>
@@ -228,13 +227,13 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="deleteModalLabel" th:text="選手削除">PlayerDelete</h4>
+						<h4 class="modal-title" id="deleteModalLabel" th:text="#{player.text.delete}">PlayerDelete</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deletePlayerName">Player Name</span>
+									<span id="deletePlayerName">PlayerName</span>
 								</p>
 							</div>
 						</div>
@@ -269,11 +268,11 @@
 	<script>
 		$('#deleteModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
-			var playerId = button.data('id');
-			var playerName = button.data('playerName');
+			var id = button.data('id');
+			var name = button.data('name');
 			var modal = $(this);
-			modal.find('#deleteId').attr("value", playerId);
-			modal.find('#deletePlayerName').text(playerName);
+			modal.find('#deleteId').attr("value", id);
+			modal.find('#deletePlayerName').text(name);
 		});
 	</script>
 </body>
