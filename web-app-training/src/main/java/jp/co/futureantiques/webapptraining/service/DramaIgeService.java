@@ -98,4 +98,12 @@ public interface DramaIgeService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteDramaComp(final ArrayList<Long> ids);
+
+	// 削除画面追加機能
+	/**
+	 * DramaMainIgeのレコードの削除フラグを0に戻す
+	 *
+	 * @param long id
+	 */
+	void restoreById(final long id);
 }

@@ -10,7 +10,7 @@
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/dramaIge.css}" />
 <body>
-	<div class="container">
+	<section id="body">
 		<div class="page-header">
 			<h4>
 				<a th:href="@{/}" th:text="#{login.text.app}">
@@ -73,6 +73,11 @@
 							<th class="per-40 center" th:text="#{drama.text.comment}">
 								Comment
 							</th>
+
+							<!-- 復元機能用 -->
+							<th class="per-7 center" th:text="#{common.text.restore}">
+								Restore
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -110,24 +115,151 @@
 							<td class="data center" th:text="${drama.comment}">
 								1期は上戸彩、それ以降は沢村一樹主演の刑事ドラマ。
 							</td>
+
+							<!-- 削除復元機能用ボタン -->
+							<td class="data center">
+								<a class="btn btn-anime btn-color-yellow"
+									style="margin-left: 5%" data-toggle="modal"
+									data-target="#restoreModal" th:text="#{common.text.restore}"
+									th:attr="data-id=${drama.id}, data-title=${drama.dramaTitle}">
+								</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 				<div>
-					<a class="btn btn-danger center-block"
-						onclick="$('#deleteForm').submit()"
-						th:text="#{common.text.delete}">
+					<a class="btn btn-anime btn-color-red btn-wide2" data-toggle="modal" data-target="#deleteAlertModal"
+						th:text="#{common.text.delete}" >
+						Delete
 					</a>
 				</div>
 			</div>
 		</form>
-	</div>
+
+		<!-- 削除確認用モーダル -->
+		<div class="modal fade" id="deleteAlertModal" tabindex="-1" role="dialog"
+			aria-labelledby="deleteAlertModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form class="form-horizontal" id="deleteForm" th:method="post" th:action="@{deletecomp}">
+					<div class="modal-content">
+						<input type="hidden" id="deleteId" name="id" />
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="deleteAlertModalLabel" th:text="#{drama.text.deletecomp}">
+								DramaDeletecomp
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="alert alert-danger" role="alert">
+										<span class="glyphicon glyphicon-exclamation-sing" aria-hidden="true"></span>
+										<span th:text="#{drama.text.deleteWarning}"></span>
+					                </div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"
+								th:text="#{common.text.cansel}">
+								Cansel
+							</button>
+							<a class="btn btn-danger" onclick="$('#deleteForm').submit()" th:text="#{common.text.delete}">
+								Delete
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- 削除確認モーダル用 終了 -->
+
+		<!-- 削除復元機能モーダル -->
+		<div class="modal fade" id="restoreModal" tabindex="-1" role="dialog"
+			aria-labelledby="restoreModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form class="form-horizontal" id="restoreForm" th:method="get" th:action="@{restore}">
+					<div class="modal-content">
+						<input type="hidden" id="restoreId" name="id" />
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="restoreModalLabel" th:text="#{drama.text.restoreTitle}">
+								RestoreTitle
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<p class="lead">
+										<span id="restoreTitle">
+											DramaTitle
+										</span>
+									</p>
+								</div>
+							</div>
+								<div class="row">
+								<div class="col-sm-12">
+									<div class="alert alert-danger" role="alert">
+										<span class="glyphicon glyphicon-exclamation-sing" aria-hidden="true">
+										</span>
+										<span th:text="#{drama.text.restoreMessage}">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<a class="btn btn-default"
+								th:text="#{common.text.cansel}"
+								data-dismiss="modal">
+								Cancel
+							</a>
+							<a class="btn btn-danger"
+								th:text="#{common.text.restore}" onclick="$('#restoreForm').submit()">
+								Restore
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- 削除復元モーダル終了 -->
+	</section>
+
+	<!-- javascript読み込み -->
 	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script th:src="@{/libs/jquery/jquery.js}"></script>
 	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
 	<script>
 		$('#allCheck').on('change', function(){
 			$('input[name=deleteIds]').prop('checked', this.checked);
+		});
+		$(function(){
+			$('#body').hide().fadeIn('slow');
+		});
+	</script>
+
+	<!-- 削除確認モーダル用スクリプト -->
+	<script>
+		$('#deleteAlertModal').on('show.bs.modal',function(event){
+			var button = $(event.relatedTarget);
+			var dramaId = button.data('id');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value",id);
+		});
+	</script>
+
+	<!-- 削除復元モーダル用スクリプト -->
+	<script>
+		$('#restoreModal').on('show.bs.modal',function (event){
+			var button = $(event.relatedTarget);
+			var dramaId = button.data('id');
+			var dramaTitle = button.data('title');
+			var modal = $(this);
+			modal.find('#restoreId').attr("value",dramaId);
+			modal.find('#restoreTitle').text(dramaTitle);
 		});
 	</script>
 </body>

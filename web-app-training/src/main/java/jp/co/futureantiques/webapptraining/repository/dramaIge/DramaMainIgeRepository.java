@@ -40,4 +40,15 @@ public interface DramaMainIgeRepository extends JpaRepository<DramaMainIge, Long
 	@Modifying
 	@Query("DELETE FROM DramaMainIge WHERE id IN (:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
+
+	// 削除画面追加機能
+	/**
+	 * 対象のレコードの削除フラグを0にする
+	 *
+	 * @param long id
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE DramaMainIge SET delFlg = 0 WHERE id = :id")
+	void restore(@Param("id") final long id);
 }

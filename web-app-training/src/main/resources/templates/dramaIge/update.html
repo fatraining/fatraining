@@ -11,7 +11,7 @@
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/dramaIge.css}" />
 <body>
-	<div class="container">
+	<section id="body">
 		<div class="page-header">
 			<h4>
 				<a th:href="@{/}" th:text="#{login.text.app}">
@@ -31,7 +31,6 @@
 				Back
 				</a>
 			</div>
-
 
 			<!-- 入力欄 -->
 			<form method="post" id="dramaIgeInputForm"
@@ -116,28 +115,46 @@
 						</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label for="comment" class="control-label"
 						th:text="#{drama.text.input.comment}">
 						Comment:
 					</label>
-					<textarea th:field="*{comment}" cols="" rows="5"
+					<textarea th:field="*{comment}" cols="" rows="5" onkeyup="count_up(this);"
 						class="form-control" id="inputComment"
 						th:placeholder="#{drama.text.comment}">
 					</textarea>
+					<span id="commentCount" class="float-right">0</span>
 				</div>
-
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-success center-block"
-						onclick="$('#dramaIgeInputForm').submit()"
-						th:text="#{common.text.update}">
+					<a class="btn btn-anime btn-color-green btn-wide"
+						th:text="#{common.text.update}"
+						onclick="$('#dramaIgeInputForm').submit()">
 						Update
 					</a>
 				</div>
 				<input type="hidden" th:field="*{updateDate}" />
 			</form>
 		</div>
-	</div>
+	</section>
+
+	<!-- javascript読み込み -->
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- コメントカウント -->
+	<script>
+		function count_up(obj){
+			document.getElementById('commentCount').innerHTML = obj.value.length;
+		}
+	</script>
+
+	<!-- フェードイン -->
+	<script>
+		$(function(){
+			$('#body').hide().fadeIn('slow');
+		});
+	</script>
 </body>
 </html>

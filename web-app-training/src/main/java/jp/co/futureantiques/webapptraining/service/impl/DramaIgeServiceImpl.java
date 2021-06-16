@@ -208,4 +208,16 @@ public class DramaIgeServiceImpl implements DramaIgeService {
 		// 対象のレコードを削除する
 		dramaMainIgeRepository.deleteComp(ids);
 	}
+
+	@Override
+	public void restoreById(long id) {
+
+		// 対象のレコードを取得
+		DramaMainIge dramaMainIge = dramaMainIgeRepository.findOne(id);
+		if(dramaMainIge !=null) {
+
+			// 対象のレコードの削除フラグを0にする
+			dramaMainIgeRepository.restore(id);
+		}
+	}
 }

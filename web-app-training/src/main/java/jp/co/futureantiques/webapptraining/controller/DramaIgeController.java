@@ -266,4 +266,20 @@ public class DramaIgeController {
 		return "redirect:/dramaIge?result=deletecomp";
 	}
 
+	// 削除画面追加機能
+	/**
+	 * DramaMainIgeの論理削除されたレコードを復元して削除画面に戻る
+	 *
+	 * @param long id
+	 * @return 検索画面のパス
+	 */
+	@RequestMapping(value="restore", method=RequestMethod.GET)
+	public String restoreDrama(@RequestParam(name="id")final long id) {
+
+		// idをキーに削除フラグを0にして論理削除から復元する
+		dramaIgeService.restoreById(id);
+
+		// 削除画面にリダイレクト
+		return "redirect:/dramaIge?result=restore&id=" + id;
+	}
 }

@@ -12,7 +12,7 @@
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/dramaIge.css}" />
 <body>
-	<div class="container">
+	<section id="body">
 		<div class="page-header">
 			<h4>
 				<a th:href="@{/}" th:text="#{login.text.app}">
@@ -66,7 +66,7 @@
 					</label>
 					<select name = "broadcastStationId" id="inputBroadcastStation" class="form-control select">
 						<option th:each="broadcastStation : ${broadcastStationIgeList}"
-						 	th:value="${broadcastStation.id}"
+							th:value="${broadcastStation.id}"
 						 	th:text="${broadcastStation.name}"
 						 	th:selected="${broadcastStation.id == dramaIgeInputForm.broadcastStationId}">
 						</option>
@@ -101,7 +101,7 @@
 					</p>
 				</div>
 				<div class="form-group">
-						<label for="dayOfWeek" class="control-label"
+					<label for="dayOfWeek" class="control-label"
 						th:text="#{drama.text.input.dayOfWeek}">
 						dayOfWeek:
 					</label>
@@ -119,19 +119,38 @@
 						th:text="#{drama.text.input.comment}">
 						Comment:
 					</label>
-					<textarea th:field="*{comment}" cols="" rows="5"
+					<textarea th:field="*{comment}" cols="" rows="5" onkeyup="count_up(this);"
 						class="form-control" id="inputComment"
 						th:placeholder="#{drama.text.comment}">
 					</textarea>
+					<span id="commentCount" class="float-right">0</span>
 				</div>
 				<div class="col-xs-3 col-sm-2">
-					<a class="btn btn-success center-block" onclick="$('#dramaIgeInputForm').submit()"
+					<a class="btn btn-anime btn-color-green btn-wide" onclick="$('#dramaIgeInputForm').submit()"
 						th:text="#{common.text.insert}">
 						Insert
 					</a>
 				</div>
 			</form>
 		</div>
-	</div>
+	</section>
+
+	<!-- javascript読み込み -->
+	<script th:src="@{/libs/jquery/jquery.js}">
+	</script>
+
+	<!-- コメントカウント -->
+	<script>
+		function count_up(obj){
+			document.getElementById('commentCount').innerHTML = obj.value.length;
+		}
+	</script>
+
+	<!-- フェードイン -->
+	<script>
+		$(function(){
+			$('#body').hide().fadeIn('slow');
+		});
+	</script>
 </body>
 </html>
