@@ -1,5 +1,16 @@
 @CHARSET "UTF-8";
 
+body{
+	font-family: fantasy;
+}
+
+div.page-header {
+	background-image: url(/playerKuramoto/logo2.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size:contain ;
+}
+
 div.container {
 	max-width: 95%;
 	width: 95%;
@@ -21,7 +32,7 @@ div.search-menu .btn-group {
 }
 
 h1, .h1 {
-	font-size: 36px;
+	font-size: 30px;
 }
 
 #resultTable {
@@ -52,6 +63,8 @@ h1, .h1 {
 	width: 32%;
 }
 
+
+
 .customUpload .file-upload {
 	display: none;
 }
@@ -69,6 +82,7 @@ h1, .h1 {
 
 .page-header>h4 {
 	margin-left: 40px;
+	color: #ff0000;
 }
 
 .sub-header {

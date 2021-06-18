@@ -4,12 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|選手情報</title>
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/playerKuramoto.css}" />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/playerKuramoto.css}" />
 </head>
 <body>
 	<div class="page-header">
@@ -20,7 +17,7 @@
 	</div>
 	<div class="sub-header">
 		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
-		<h1 align="center" th:text="#{player.text.search}">選手情報検索画面</h1>
+		<h1  align="center" th:text="#{player.text.search}">選手検索</h1>
 	</div>
 
 	<!-- 新規・削除ボタン -->
@@ -43,7 +40,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" >
 
 		<!-- メッセージ -->
 		<div class="row">
