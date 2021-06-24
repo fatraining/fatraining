@@ -112,15 +112,17 @@
 			<!-- チーム検索 -->
 			<div class="form-group">
 				<label for="team" class="control-label col-sm-2"
-					th:text="#{nbaplayers.text.input.teamName}"> Team:
+					th:text="#{nbaplayers.text.input.teamName}">Team:
 				</label>
-				<select
-					name="teamId" id="inputTeam" class="form-control select">
-					<option th:each="team : ${teamTakahashiList}" th:value="${team.id}"
-						th:text="${team.teamName}"
-						th:selected="${team.id == nbaplayersTakahashiSearchForm.teamId}">pulldown
-					</option>
-				</select>
+				<div class="col-sm-8">
+					<select id="inputTeam" name="teamId"
+						class="form-control select">
+						<option th:each="team : ${teamTakahashiList}"
+							th:value="${team.id}" th:text="${team.teamName}"
+							th:selected="${team.id == nbaplayersTakahashiSearchForm.teamId}">pulldown
+						</option>
+					</select>
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-xs-3 col-sm-2">

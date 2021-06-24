@@ -44,22 +44,20 @@
 						th:placeholder="#{nbaplayers.text.playername}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('playerName')}"
-						th:text="#{${err}(#{nbamplayers.text.playername})}">
+						th:text="#{${err}(#{nbaplayers.text.playername})}">
 					</p>
 				</div>
 				<div class="form-group">
-					<label for="position" class="control-label col-sm-2"
-						th:text="#{nbaplayers.text.input.position}">Position:
+					<label for="position" class="control-label"
+						th:text="#{nbaplayers.text.input.position}"> Position:
 					</label>
-					<div class="col-sm-8">
-						<select id="inputPosition" name="positionId"
-							class="form-control select">
-							<option th:each="position : ${positionTakahashiList}"
-								th:value="${position.id}" th:text="${position.position}"
-								th:selected="${position.id == nbaplayersTakahashiInputForm.positionId}">pulldown
-							</option>
-						</select>
-					</div>
+					<select
+						name="positionId" id="inputPosition" class="form-control select">
+						<option th:each="position : ${positionTakahashiList}"
+							th:value="${position.id}" th:text="${position.position}"
+							th:selected="${position.id == nbaplayersTakahashiInputForm.positionId}">pulldown
+						</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="team" class="control-label"
