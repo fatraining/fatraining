@@ -15,6 +15,11 @@ import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.VtuberMainUmehara;
 import lombok.Data;
 
+/**
+ * Vtuber登録・更新画面用のFormクラス
+ *
+ * @author future
+ */
 @Data
 public class VtuberUmeharaInputForm {
 
@@ -134,9 +139,13 @@ public class VtuberUmeharaInputForm {
 		}
 		vtuberMainUmehara.setChannelUrl(this.channelUrl);
 		vtuberMainUmehara.setChannelFollowers(this.channelFollowers);
+
+		// 入力されたString型の日付データをsdfを用いてDate型のデータへ変換
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			vtuberMainUmehara.setChannelDate(sdf.parse(this.channelDate));
+
+			// 入力されたString型の日付データをsdfを用いてDate型のデータへ変換へ失敗した場合
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -6,8 +6,8 @@ import jp.co.futureantiques.webapptraining.model.vtuberUmehara.FormsUmehara;
 
 /**
  * FormsUmeharaリポジトリのインターフェース
- * @author future
  *
+ * @author future
  */
 public interface FormsUmeharaRepository extends JpaRepository<FormsUmehara, Long> {
 }

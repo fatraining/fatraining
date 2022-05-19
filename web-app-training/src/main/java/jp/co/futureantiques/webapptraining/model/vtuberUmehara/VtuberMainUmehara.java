@@ -26,73 +26,72 @@ import lombok.Data;
 @Entity
 public class VtuberMainUmehara {
 
-	//vtuberID
+	/** vtuberID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
 	@GeneratedValue(generator = "gen")
 	private long id;
 
-	//Vtuber名
+	/** Vtuber名 */
 	@Column(name = "vtuber_name")
 	@Size(max = 255)
 	private String vtuberName;
 
-	//会社ID
+	/** 会社ID */
 	@Column(name = "company_id")
 	private Integer companyId;
 
-	//動画形態ID
+	/** 動画形態ID */
 	@Column(name = "forms_id")
 	private Integer formsId;
 
-	//動画内容ID
+	/** 動画内容ID */
 	@Column(name = "contents_id")
 	private Integer contentsId;
 
-	//チャンネル登録者数
+	/** チャンネル登録者数 */
 	@Column(name = "channel_followers")
 	private Integer channelFollowers;
 
-	//チャンネルURL
+	/** チャンネルURL */
 	@Column(name = "channel_url")
 	@Size(max = 255)
 	private String channelUrl;
 
-	//チャンネル作成日
+	/** チャンネル作成日 */
 	@Column(name = "channel_date")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date channelDate;
 
-	//コメント
+	/** コメント */
 	@Column(name = "comment")
 	@Size(max = 255)
 	private String comment;
 
-	// 登録日時
+	/** 登録日時 */
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	// 更新日時
+	/** 更新日時 */
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
-	// 削除フラグ
+	/** 削除フラグ */
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	// 外部キー設定：会社
+	/** 外部キー設定：会社 */
 	@ManyToOne(targetEntity = CompanyUmehara.class)
 	@JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private CompanyUmehara companyUmehara;
 
-	// 外部キー設定：動画内容
+	/** 外部キー設定：動画内容 */
 	@ManyToOne(targetEntity = ContentsUmehara.class)
 	@JoinColumn(name = "contents_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private ContentsUmehara contentsUmehara;
 
-	// 外部キー設定：動画形態
+	/** 外部キー設定：動画形態 */
 	@ManyToOne(targetEntity = FormsUmehara.class)
 	@JoinColumn(name = "forms_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private FormsUmehara formsUmehara;
-
 }

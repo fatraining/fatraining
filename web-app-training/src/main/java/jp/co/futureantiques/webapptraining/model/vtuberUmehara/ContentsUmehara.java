@@ -15,34 +15,33 @@ import lombok.Data;
 
 /**
  * 動画内容テーブルと対応するEntity
- * @author future
  *
+ * @author future
  */
-
 @Data
 @Entity
 public class ContentsUmehara {
 
-	// 動画内容ID
+	/** 動画内容ID */
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
 
-	//動画内容
+	/** 動画内容 */
 	@Column(name = "stream_content")
 	@Size(max = 255)
 	private String streamContent;
 
-	// 登録日時
+	/** 登録日時 */
 	@Column(name = "create_date")
 	private String createDate;
 
-	// 更新日時
+	/** 更新日時 */
 	@Column(name = "update_date")
 	private String updateDate;
 
-	// 外部キー設定：動画内容ID
+	/** 外部キー設定：動画内容ID */
 	@Transient
 	@OneToMany(targetEntity = VtuberMainUmehara.class, mappedBy = "contentsUmehara")
 	@JoinColumn(name = "id", referencedColumnName = "contents_id")

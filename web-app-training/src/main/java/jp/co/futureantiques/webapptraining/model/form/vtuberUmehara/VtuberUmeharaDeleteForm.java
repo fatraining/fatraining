@@ -6,6 +6,11 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
+/**
+ * Vtuber削除画面のFormクラス
+ *
+ * @author future
+ */
 @Data
 public class VtuberUmeharaDeleteForm {
 

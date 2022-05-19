@@ -11,8 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.VtuberMainUmehara;
 
+/**
+ * VtuberMainUmeharaリポジトリのインターフェース
+ *
+ * @author future
+ */
 public interface VtuberMainUmeharaRepository
 		extends JpaRepository<VtuberMainUmehara, Long>, JpaSpecificationExecutor<VtuberMainUmehara> {
+
 	/**
 	 * 対象のレコードの削除フラグを1にする
 	 *

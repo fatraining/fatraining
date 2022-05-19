@@ -4,27 +4,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Webアプリ研修|Vtuber梅原更新</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/spring_training.css}" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
 </head>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/vtuberUmehara.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/vtuberUmehara.css}" />
 <body>
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-					th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
-		<div
-			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 			<div class="sub-header">
 				<h1 align="center" th:text="#{vtuber.text.update}">Vtuber更新</h1>
 				<a th:href="@{/vtuberUmehara}" th:text="#{common.text.back}">Back</a>
@@ -37,17 +31,17 @@
 				<input type="hidden" th:field="*{id}" />
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{vtuber.text.input.name.riquire}"> Vtuber名(*):</label> <input
-						type="text" th:field="*{vtuberName}" class="form-control"
-						th:placeholder="#{vtuber.text.name}" />
+						th:text="#{vtuber.text.input.name.riquire}"> Vtuber名(*):</label>
+					<input type="text" th:field="*{vtuberName}" class="form-control"
+							th:placeholder="#{vtuber.text.name}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('vtuberName')}"
 						th:text="#{${err}(#{vtuber.text.title})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="company" class="control-label"
-						th:text="#{vtuber.text.input.company.riquire}">会社(*):</label> <select
-						name="companyId" id="inputCompany" class="form-control select">
+						th:text="#{vtuber.text.input.company.riquire}">会社(*):</label>
+					<select name="companyId" id="inputCompany" class="form-control select">
 						<option th:each="companyUmehara : ${companyUmeharaList}"
 							th:value="${companyUmehara.id}"
 							th:text="${companyUmehara.companyName}"
@@ -56,8 +50,8 @@
 				</div>
 				<div class="form-group">
 					<label for="forms" class="control-label"
-						th:text="#{vtuber.text.input.forms.riquire}">動画形態(*):</label> <select
-						name="formsId" id="inputForms" class="form-control select">
+						th:text="#{vtuber.text.input.forms.riquire}">動画形態(*):</label>
+					<select name="formsId" id="inputForms" class="form-control select">
 						<option th:each="formsUmehara : ${formsUmeharaList}"
 							th:value="${formsUmehara.id}"
 							th:text="${formsUmehara.streamForm}"
@@ -66,8 +60,8 @@
 				</div>
 				<div class="form-group">
 					<label for="contents" class="control-label"
-						th:text="#{vtuber.text.input.contents.riquire}">動画内容(*):</label> <select
-						name="contentsId" id="inputContents" class="form-control">
+						th:text="#{vtuber.text.input.contents.riquire}">動画内容(*):</label>
+					<select name="contentsId" id="inputContents" class="form-control">
 						<option th:each="contentsUmehara : ${contentsUmeharaList}"
 							th:value="${contentsUmehara.id}"
 							th:text="${contentsUmehara.streamContent}"
@@ -95,14 +89,13 @@
 				</div>
 				<div class="form-group">
 					<label for="channelDate" class="control-label"
-						th:text="#{vtuber.text.input.channelDate}">チャンネル作成日:</label> <input
-						type="date" th:field="*{channelDate}" class="form-control"
+						th:text="#{vtuber.text.input.channelDate}">チャンネル作成日:</label>
+					<input type="date" th:field="*{channelDate}" class="form-control"
 						id="inputChannelDate" th:placeholder="#{vtuber.text.channelDate}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('channelDate')}"
 						th:text="#{${err}(#{vtuber.text.channelDate})}"></p>
 				</div>
-
 				<div class="form-group">
 					<label for="comment" class="control-label"
 						th:text="#{vtuber.text.input.comment}"> Comment:</label>

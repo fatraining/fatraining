@@ -7,6 +7,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.VtuberMainUmehara;
 import lombok.Data;
 
+/**
+ * Vtuber検索画面のFormクラス
+ *
+ * @author future
+ */
 @Data
 public class VtuberUmeharaSearchForm {
 

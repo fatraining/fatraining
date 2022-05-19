@@ -18,35 +18,34 @@ import lombok.Data;
  * @author future
  *
  */
-
 @Data
 @Entity
 public class FormsUmehara {
 
-	// 動画形態ID
+	/** 動画形態ID */
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
 
-	//配信・投稿形態
+	/** 配信・投稿形態 */
 	@Column(name = "stream_form")
 	@Size(max = 255)
 	private String streamForm;
 
-	//削除フラグ
+	/** 削除フラグ */
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	// 登録日時
+	/** 登録日時 */
 	@Column(name = "create_date")
 	private String createDate;
 
-	// 更新日時
+	/** 更新日時 */
 	@Column(name = "update_date")
 	private String updateDate;
 
-	// 外部キー設定：動画形態ID
+	/** 外部キー設定：動画形態ID */
 	@Transient
 	@OneToMany(targetEntity = VtuberMainUmehara.class, mappedBy = "formsUmehara")
 	@JoinColumn(name = "id", referencedColumnName = "forms_id")

@@ -214,7 +214,7 @@ public class VtuberUmeharaController {
 	public String showDeleteCompVtuberUmehara(final VtuberUmeharaSearchForm form,
 			@ModelAttribute final VtuberUmeharaDeleteForm vtuberUmeharaDeleteForm, final Model model) {
 
-		// MovieMainテーブルから削除フラグが1のレコードを検索する
+		// VtuberMainUmeharaテーブルから削除フラグが1のレコードを検索する
 		final List<VtuberMainUmehara> vtuberUmeharaList = vtuberUmeharaService.getListVtuberUmehara(form);
 
 		// Modelに検索結果を格納する

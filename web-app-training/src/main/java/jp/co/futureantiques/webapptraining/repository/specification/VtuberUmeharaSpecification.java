@@ -56,7 +56,6 @@ public class VtuberUmeharaSpecification {
 					Predicate newCondition = cb.like(root.get("vtuberName"), "%" + form.getVtuberName() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (form.getCompanyId() != null && form.getCompanyId() != 0) {
 
 					// 会社を条件に追加
@@ -75,6 +74,7 @@ public class VtuberUmeharaSpecification {
 					Predicate newCondition = cb.equal(root.get("contentsId"), form.getContentsId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
+
 				// 削除フラグを条件に追加
 				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
 				condition = getPredicate(cb, condition, newCondition);

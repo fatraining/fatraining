@@ -13,7 +13,13 @@ import jp.co.futureantiques.webapptraining.model.vtuberUmehara.ContentsUmehara;
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.FormsUmehara;
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.VtuberMainUmehara;
 
+/**
+ * VtuberUmeharaのサービスインターフェース
+ *
+ * @author future
+ */
 public interface VtuberUmeharaService {
+
 	/**
 	 * 会社エンティティのリストを取得する
 	 *
