@@ -6,9 +6,8 @@ import jp.co.futureantiques.webapptraining.model.animeWatanabe.OriginalWatanabe;
 
 /**
  * OriginalWatanabeリポジトリのインターフェース
- * @author Watanabe
  *
+ * @author Watanabe
  */
 public interface OriginalWatanabeRepository extends JpaRepository<OriginalWatanabe, Long> {
-
 }

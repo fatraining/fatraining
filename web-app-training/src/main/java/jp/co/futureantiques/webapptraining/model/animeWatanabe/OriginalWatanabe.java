@@ -19,7 +19,6 @@ import lombok.Data;
  *
  * @author Watanabe
  */
-
 @Data
 @Entity
 public class OriginalWatanabe {

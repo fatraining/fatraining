@@ -15,10 +15,9 @@ import jp.co.futureantiques.webapptraining.model.form.animeWatanabe.AnimeSearchF
 
 /**
  * AnimeMainの検索条件を生成するクラス
- * @author Watanabe
  *
+ * @author Watanabe
  */
-
 public class AnimeWatanabeSpecification {
 
 	/**
@@ -49,7 +48,6 @@ public class AnimeWatanabeSpecification {
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (!StringUtils.isEmpty(form.getAnimeTitle())) {
 
 					//アニメ名を条件に追加
@@ -57,14 +55,12 @@ public class AnimeWatanabeSpecification {
 					Predicate newCondition = cb.like(root.get("animeTitle"), "%" + form.getAnimeTitle() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (form.getCompanyId() != null && form.getCompanyId() != 0) {
 
 					//アニメ制作会社を条件に追加
 					Predicate newCondition = cb.equal(root.get("companyId"), form.getCompanyId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
-
 				if (form.getOriginalId() != null && form.getOriginalId() != 0) {
 
 					//原作を条件に追加

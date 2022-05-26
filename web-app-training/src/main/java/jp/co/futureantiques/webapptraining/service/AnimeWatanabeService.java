@@ -14,10 +14,9 @@ import jp.co.futureantiques.webapptraining.model.form.animeWatanabe.AnimeSearchF
 
 /**
  * AnimeWatanabeのサービスインターフェイス
- * @author Watanabe
  *
+ * @author Watanabe
  */
-
 public interface AnimeWatanabeService {
 
 	/**
@@ -68,6 +67,7 @@ public interface AnimeWatanabeService {
 
 	/**
 	 * AnimeMainWatanabeのレコードを更新する
+	 *
 	 * @param AnimeInputForm form
 	 * @return AnimeWatanabe
 	 */
@@ -82,6 +82,7 @@ public interface AnimeWatanabeService {
 
 	/**
 	 * AnimeMainWatanabeのレコードを物理削除する
+	 *
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteAnimeComp(final ArrayList<Long> ids);

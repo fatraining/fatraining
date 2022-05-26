@@ -13,9 +13,9 @@ import jp.co.futureantiques.webapptraining.model.animeWatanabe.AnimeMainWatanabe
 
 /**
  *AnimeMainWatanabeリポジトリのインターフェス
+ *
  *@author Watanabe
  */
-
 public interface AnimeMainWatanabeRepository
 		extends JpaRepository<AnimeMainWatanabe, Long>, JpaSpecificationExecutor<AnimeMainWatanabe> {
 

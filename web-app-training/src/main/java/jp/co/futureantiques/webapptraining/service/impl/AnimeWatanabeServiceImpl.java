@@ -25,7 +25,6 @@ import jp.co.futureantiques.webapptraining.service.AnimeWatanabeService;
  *
  * @author Watanabe
  */
-
 @Service
 public class AnimeWatanabeServiceImpl implements AnimeWatanabeService {
 
@@ -44,9 +43,7 @@ public class AnimeWatanabeServiceImpl implements AnimeWatanabeService {
 	 * @param AnimeMainWatanabeRepository animeMainWatanabeRepository
 	 * @param CompanyWatanabeRepository companyWatanabeRepository
 	 * @param OriginalWatanabeRepository originalWatanabeRepository
-	 *
 	 */
-
 	@Autowired
 	public AnimeWatanabeServiceImpl(AnimeMainWatanabeRepository animeMainWatanabeRepository,
 			CompanyWatanabeRepository companyWatanabeRepository,
@@ -54,7 +51,6 @@ public class AnimeWatanabeServiceImpl implements AnimeWatanabeService {
 		this.animeMainWatanabeRepository = animeMainWatanabeRepository;
 		this.companyWatanabeRepository = companyWatanabeRepository;
 		this.originalWatanabeRepository = originalWatanabeRepository;
-
 	}
 
 	@Override
@@ -98,7 +94,6 @@ public class AnimeWatanabeServiceImpl implements AnimeWatanabeService {
 
 		// AnimeMainWatanabeテーブルに新規でデータを登録する
 		final AnimeMainWatanabe animeMainWatanabe = form.convertToAnimeMainWatanabeForInsert();
-
 		return animeMainWatanabeRepository.save(animeMainWatanabe);
 	}
 

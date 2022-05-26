@@ -16,9 +16,9 @@ import lombok.Data;
 
 /**
  * CompanyWatanabeテーブルと対応するEntity
+ *
  * @author Watanabe
  */
-
 @Data
 @Entity
 public class CompanyWatanabe {

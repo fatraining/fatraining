@@ -26,8 +26,8 @@ import jp.co.futureantiques.webapptraining.service.AnimeWatanabeService;
 
 /**
  * AnimeWatanabeのコントローラークラス
- * @author Watanabe
  *
+ * @author Watanabe
  */
 @Controller
 @RequestMapping(value = "/animeWatanabe")
@@ -38,8 +38,8 @@ public class AnimeWatanabeController {
 
 	/**
 	 * コンストラクタ
+	 *
 	 * @param AnimeWatanabeService animeWatanabeService
-	 * (コンストラクタインジェクション)
 	 */
 	@Autowired
 	public AnimeWatanabeController(final AnimeWatanabeService animeWatanabeService) {
@@ -50,7 +50,6 @@ public class AnimeWatanabeController {
 	 * アニメ制作会社エンティティのリストを取得する
 	 *
 	 * @return CompanyWatanabeのリスト
-
 	 */
 	@ModelAttribute
 	public List<CompanyWatanabe> getListCompanyWatanabe() {
@@ -115,11 +114,11 @@ public class AnimeWatanabeController {
 
 	/**
 	 * AnimeMainWatanabeテーブルにデータを登録して検索画面に遷移する
+	 *
 	 * @param AnimeInputForm form
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
-
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertAnime(@ModelAttribute @Validated final AnimeInputForm form,
 			final BindingResult bindingResult) {
@@ -127,8 +126,8 @@ public class AnimeWatanabeController {
 
 			// 入力エラーがある場合自画面に戻る
 			return "animeWatanabe/insert";
+			}
 
-		}
 		// データを登録する
 		final AnimeMainWatanabe animeMainWatanabe = animeWatanabeService.insertAnime(form);
 		return "redirect:/animeWatanabe?result=insert&id=" + animeMainWatanabe.getId();
@@ -172,6 +171,7 @@ public class AnimeWatanabeController {
 		//データを更新する
 		AnimeMainWatanabe animeMainWatanabe = animeWatanabeService.updateAnime(form);
 		if (animeMainWatanabe == null) {
+
 			//	更新失敗で、検索画面にてメッセージ表示
 			return "redirect:/animeWatanabe?result=updatefailed";
 		}
@@ -180,6 +180,7 @@ public class AnimeWatanabeController {
 
 	/**
 	 * AnimeMainWatanabeテーブルのレコードを論理削除し検索画面に遷移
+	 *
 	 * @param long id
 	 * @return 検索画面のパス
 	 */
@@ -231,6 +232,7 @@ public class AnimeWatanabeController {
 			model.addAttribute(animeList);
 			return "animeWatanabe/deletecomp";
 		}
+
 		//データを完全削除する
 		animeWatanabeService.deleteAnimeComp(form.getDeleteIds());
 		return "redirect:/animeWatanabe?result=deletecomp";
