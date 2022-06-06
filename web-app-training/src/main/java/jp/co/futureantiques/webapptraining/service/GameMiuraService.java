@@ -48,7 +48,8 @@ public interface GameMiuraService {
 	 * @param Pageable pageable
 	 * @return GameMainMiuraのリスト
 	 */
-	Page<GameMainMiura> getPageGameMain(final GameMiuraSearchForm form, final Pageable pageable);
+	Page<GameMainMiura> getPageGameMain(final GameMiuraSearchForm form,
+			final Pageable pageable);
 
 	/**
 	 * IDをキーにGameMainMiuraのレコードを取得する
@@ -71,7 +72,6 @@ public interface GameMiuraService {
 	 *
 	 * @param GameMiuraInputForm
 	 * @return GameMainMiura
-	 *
 	 */
 	GameMainMiura updateGame(final GameMiuraInputForm form);
 
@@ -88,5 +88,4 @@ public interface GameMiuraService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteGameComp(final ArrayList<Long> ids);
-
 }

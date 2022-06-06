@@ -2,10 +2,7 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.WebApplicationContext;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.gameMiura.GameMiuraDeleteForm;
@@ -29,8 +25,8 @@ import jp.co.futureantiques.webapptraining.service.GameMiuraService;
 
 /**
  * Gameのコントロールクラス
- * @author Miura
  *
+ * @author Miura
  */
 @Controller
 @RequestMapping(value = "/gameMiura")
@@ -90,8 +86,8 @@ public class GameMiuraController {
 	 * @return 検索画面のパス
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
-	public String searchGame(@Validated final GameMiuraSearchForm form, BindingResult bindingResult,
-			final Model model, final Pageable pageable) {
+	public String searchGame(@Validated final GameMiuraSearchForm form,
+			BindingResult bindingResult, final Model model, final Pageable pageable) {
 
 		// 文字数がオーバーした時
 		if (bindingResult.hasFieldErrors()) {
@@ -99,7 +95,8 @@ public class GameMiuraController {
 		}
 
 		//入力された検索条件をもとにレコードを取得する
-		final Page<GameMainMiura> gameMiuraList = gameMiuraService.getPageGameMain(form, pageable);
+		final Page<GameMainMiura> gameMiuraList = gameMiuraService.getPageGameMain(form,
+				pageable);
 		if (gameMiuraList.getTotalElements() != 0) {
 
 			//検索結果があればModelに結果をセットする
@@ -118,25 +115,17 @@ public class GameMiuraController {
 	 */
 
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	public String showInsertGame(@ModelAttribute final GameMiuraInputForm gameMiuraInputForm) {
+	public String showInsertGame(@ModelAttribute final GameMiuraInputForm
+			gameMiuraInputForm) {
 		return "gameMiura/insert";
 	}
-
-	//手動でDIする
-	@Autowired
-	ResourceLoader resourceLoader;
-	@Autowired
-	ServletContext context;
-	@Autowired
-	WebApplicationContext wac;
 
 	/**
 	 * GameMainMiuraテーブルにデータを登録して検索画面に遷移する
 	 *
 	 * @param GameMiuraInputForm form
 	 * @param BindingResult bindingResult
-	 * @return 入力エラーがある場合追加画面　ない場合検索画面のパス
-	 *
+	 * @return 入力エラーがある場合追加画面 ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertGame(@ModelAttribute @Validated final GameMiuraInputForm form,
@@ -172,7 +161,6 @@ public class GameMiuraController {
 		// フォームにレコードの値をセットする
 		gameMiuraInputForm.initWithGameMainMiura(gameMainMiura);
 		return "gameMiura/update";
-
 	}
 
 	/**
@@ -198,7 +186,6 @@ public class GameMiuraController {
 			return "redirect:/gameMiura?result=updatefailed";
 		}
 		return "redirect:/gameMiura?result=update&id=" + gameMainMiura.getId();
-
 	}
 
 	/**
@@ -224,7 +211,8 @@ public class GameMiuraController {
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompGame(final GameMiuraSearchForm form,
-			@ModelAttribute final GameMiuraDeleteForm gameMiuraDeleteForm, final Model model) {
+			@ModelAttribute final GameMiuraDeleteForm gameMiuraDeleteForm,
+			final Model model) {
 
 		// GameMainMiuraテーブルから削除フラグが1のレコードを検索する
 		final List<GameMainMiura> gameList = gameMiuraService.getListGameMainMiura(form);
@@ -240,7 +228,6 @@ public class GameMiuraController {
 	 * @param  BindingResult bindingResult
 	 * @Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
-	 *
 	 */
 
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
@@ -251,7 +238,8 @@ public class GameMiuraController {
 			// 入力エラーがある場合、再検索して自画面に戻る
 			GameMiuraSearchForm gameMiuraSearchForm = new GameMiuraSearchForm();
 			gameMiuraSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<GameMainMiura> gameList = gameMiuraService.getListGameMainMiura(gameMiuraSearchForm);
+			final List<GameMainMiura> gameList =
+					gameMiuraService.getListGameMainMiura(gameMiuraSearchForm);
 
 			// Modelに検索結果を格納する
 			model.addAttribute(gameList);
@@ -262,5 +250,4 @@ public class GameMiuraController {
 		gameMiuraService.deleteGameComp(form.getDeleteIds());
 		return "redirect:/gameMiura?result=deletecomp";
 	}
-
 }

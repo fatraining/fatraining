@@ -7,10 +7,10 @@ import lombok.Data;
 
 /**
  * ゲーム検索画面のFormクラス
+ *
  * @author Miura
  */
 @Data
-
 public class GameMiuraSearchForm {
 
 	/** ID */
@@ -40,5 +40,4 @@ public class GameMiuraSearchForm {
 		this.setGenreId(gameMainMiura.getGenreId());
 		this.setHardId(gameMainMiura.getHardId());
 	}
-
 }

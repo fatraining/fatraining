@@ -67,12 +67,13 @@ public class GameMiuraServiceImpl implements GameMiuraService {
 	}
 
 	@Override
-	public Page<GameMainMiura> getPageGameMain(final GameMiuraSearchForm form, Pageable pageable) {
+	public Page<GameMainMiura> getPageGameMain(final GameMiuraSearchForm form,
+			Pageable pageable) {
 
 		// 検索条件を生成しGameMainMiuraテーブルのレコードを取得
 		return gameMainMiuraRepository
-				.findAll(GameMiuraSpecification.generateMiuraSpecification(form), pageable);
-
+				.findAll(GameMiuraSpecification.generateMiuraSpecification(form),
+						pageable);
 	}
 
 	@Override
@@ -96,7 +97,6 @@ public class GameMiuraServiceImpl implements GameMiuraService {
 		//GameMainMiuraテーブルに新規でデータを登録する
 		final GameMainMiura gameMainMiura = form.convertToGameMainMiuraForInsert();
 		return gameMainMiuraRepository.save(gameMainMiura);
-
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GameMiuraServiceImpl implements GameMiuraService {
 		if (gameMainMiura != null) {
 
 			//更新対象のレコードが存在する場合排他チェック
-			if (form.getUpdateDate().equals(String.valueOf(gameMainMiura.getUpdateDate()))) {
+			if (form.getUpdateDate().equals(String.valueOf(gameMainMiura.getUpdateDate()))){
 
 				//チェックOKの場合、更新
 				gameMainMiura = form.convertToGameMainMiuraForUpdate(gameMainMiura);

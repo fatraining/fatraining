@@ -15,12 +15,11 @@ import lombok.Data;
 
 /**
  * game_main_miuraテーブルと対応するEntityクラス
- * @author Miura
  *
+ * @author Miura
  */
 @Data
 @Entity
-
 public class GameMainMiura {
 	/** ゲームID */
 	@Id

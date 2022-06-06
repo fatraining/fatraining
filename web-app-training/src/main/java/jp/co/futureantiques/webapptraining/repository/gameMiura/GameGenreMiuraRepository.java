@@ -6,8 +6,8 @@ import jp.co.futureantiques.webapptraining.model.gameMiura.GameGenreMiura;
 
 /**
  * GameGenreMiuraリポジトリのインターフェース
- * @author Miura
  *
+ * @author Miura
  */
 public interface GameGenreMiuraRepository extends JpaRepository<GameGenreMiura, Long> {
 

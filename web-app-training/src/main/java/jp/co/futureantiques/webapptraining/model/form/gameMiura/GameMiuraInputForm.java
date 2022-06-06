@@ -14,8 +14,8 @@ import lombok.Data;
 
 /**
  * ゲーム登録・更新画面用のFormクラス
- * @author miura
  *
+ * @author miura
  */
 @Data
 public class GameMiuraInputForm {
@@ -52,7 +52,6 @@ public class GameMiuraInputForm {
 	 *
 	 * @param gameMainMiura
 	 */
-
 	public void initWithGameMainMiura(GameMainMiura gameMainMiura) {
 		this.setId((int) gameMainMiura.getId());
 		this.setGameTitle(gameMainMiura.getGameTitle());
@@ -66,6 +65,7 @@ public class GameMiuraInputForm {
 
 	/**
 	 * GameMainMiuraエンティティに登録値を入れる
+	 *
 	 * @author miura
 	 */
 	public GameMainMiura convertToGameMainMiuraForInsert() {
@@ -116,10 +116,8 @@ public class GameMiuraInputForm {
 		}
 
 		gameMainMiura.setReleaseYear(this.releaseYearStr);
-
 		gameMainMiura.setComment(this.comment);
 		gameMainMiura.setDelFlg("0");
 		return gameMainMiura;
 	}
-
 }

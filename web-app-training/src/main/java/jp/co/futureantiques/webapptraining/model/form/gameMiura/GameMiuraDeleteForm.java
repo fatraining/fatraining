@@ -8,8 +8,8 @@ import lombok.Data;
 
 /**
  * ゲーム削除画面のFormクラス
- * @author miura
  *
+ * @author miura
  */
 @Data
 public class GameMiuraDeleteForm {
@@ -17,5 +17,4 @@ public class GameMiuraDeleteForm {
 	//** 削除ID */
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
-
 }

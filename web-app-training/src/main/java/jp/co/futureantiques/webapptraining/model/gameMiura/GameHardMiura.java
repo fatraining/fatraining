@@ -15,12 +15,12 @@ import lombok.Data;
 
 /**
  * hard_miuraテーブルと対応するEntityクラス
+ *
  * @author Miura
  */
 
 @Data
 @Entity
-
 public class GameHardMiura {
 
 	/** ハードID*/
@@ -51,5 +51,4 @@ public class GameHardMiura {
 	@OneToMany(targetEntity = GameMainMiura.class, mappedBy = "gamehardmiura")
 	@JoinColumn(name = "id", referencedColumnName = "hard_id")
 	private List<GameMainMiura> gameMainList;
-
 }

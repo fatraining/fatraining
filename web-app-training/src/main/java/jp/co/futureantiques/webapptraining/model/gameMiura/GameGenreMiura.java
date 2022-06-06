@@ -15,12 +15,11 @@ import lombok.Data;
 
 /**
  * genre_miuraテーブルと対応するEntityクラス
- * @author future
  *
+ * @author future
  */
 @Data
 @Entity
-
 public class GameGenreMiura {
 
 	/** ジャンルID */

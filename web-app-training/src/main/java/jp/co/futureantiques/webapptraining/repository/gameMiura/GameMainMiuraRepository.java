@@ -13,9 +13,8 @@ import jp.co.futureantiques.webapptraining.model.gameMiura.GameMainMiura;
 
 /**
  * GameMainmiuraリポジトリのインターフェース
+ *
  * @author miura
- *
- *
  */
 
 public interface GameMainMiuraRepository
@@ -39,5 +38,4 @@ public interface GameMainMiuraRepository
 	@Query("DELETE FROM GameMainMiura WHERE id IN(:ids)")
 
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

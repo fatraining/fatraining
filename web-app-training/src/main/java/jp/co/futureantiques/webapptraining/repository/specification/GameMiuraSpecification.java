@@ -15,8 +15,8 @@ import jp.co.futureantiques.webapptraining.model.gameMiura.GameMainMiura;
 
 /**
  * GameMainMiuraの検索条件を生成するクラス
- * @author Miura
  *
+ * @author Miura
  */
 public class GameMiuraSpecification {
 
@@ -30,7 +30,8 @@ public class GameMiuraSpecification {
 			final GameMiuraSearchForm form) {
 		return new Specification<GameMainMiura>() {
 			@Override
-			public Predicate toPredicate(Root<GameMainMiura> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<GameMainMiura> root,
+					CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 				// 検索条件
 				Predicate condition = null;
@@ -40,7 +41,6 @@ public class GameMiuraSpecification {
 
 					// 削除フラグ＝１を検索条件にする
 					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
-
 				}
 
 				// 条件が入力されている場合追加
@@ -54,24 +54,29 @@ public class GameMiuraSpecification {
 
 					//ゲームタイトルを条件に追加
 					form.setGameTitle(form.getGameTitle().trim());
-					Predicate newCondition = cb.like(root.get("gameTitle"), "%" + form.getGameTitle() + "%");
+					Predicate newCondition = cb.like(root.get("gameTitle"),
+							"%" + form.getGameTitle() + "%");
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if (form.getGenreId() != null && form.getGenreId() != 0) {
 
 					// ジャンルを条件に追加
-					Predicate newCondition = cb.equal(root.get("genreId"), form.getGenreId());
+					Predicate newCondition = cb.equal(root.get("genreId"),
+							form.getGenreId());
 					condition = getPredicate(cb, condition, newCondition);
 
 				}
 				if (form.getHardId() != null && form.getHardId() != 0) {
 
 					// ハードを条件に追加
-					Predicate newCondition = cb.equal(root.get("hardId"), form.getHardId());
+					Predicate newCondition = cb.equal(root.get("hardId"),
+							form.getHardId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
+
 				//削除フラグを条件に追加
-				Predicate newCondition = cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
+				Predicate newCondition = cb.equal(root.get("delFlg"),
+						CommonConst.DELETE_FLG_OFF);
 				condition = getPredicate(cb, condition, newCondition);
 				return condition;
 			}
@@ -84,7 +89,8 @@ public class GameMiuraSpecification {
 			 * @param newCondition
 			 * @return Predicate
 			 */
-			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
+			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition,
+					@NotNull Predicate newCondition) {
 				if (condition != null) {
 
 					//すでに条件がある場合ANDで結合
