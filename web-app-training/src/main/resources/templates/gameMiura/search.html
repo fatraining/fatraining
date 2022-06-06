@@ -13,8 +13,8 @@
 <body>
 	<div class="page-header">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修WEBアプリ</a> <small
-				th:text="#{login.text.version}">ver β</small>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修WEBアプリ</a>
+			<small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header">
@@ -35,8 +35,8 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/gameMiura/insert}"
-					th:text="#{common.text.new}">New </a> <a
-					class="btn-flat-dashed-filled bg-hover-red"
+					th:text="#{common.text.new}">New </a>
+					<a class="btn-flat-dashed-filled bg-hover-red"
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData</a>
 			</div>
@@ -171,8 +171,8 @@
 				<ul>
 					<li th:class="${page.first} ? 'disabled':''"
 						style="display: inline"><span th:if="${page.first}"
-						th:text="#{common.text.paging.lead}">←lead</span> <a
-						th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						th:text="#{common.text.paging.lead}">←lead</span>
+						<a	th:if="${not page.first}" onclick="$('#pageForm0').submit()"
 						th:text="#{common.text.paging.lead}">←lead</a></li>
 					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
 						th:class="(${i}==${page.number})? 'active' : ''"
@@ -180,16 +180,17 @@
 						<form th:id="'pageForm'+${i}" method="post"
 							th:action="@{${url}(page=${i})}"
 							th:object="${gameMiuraSearchForm}" style="display: inline">
-							<input type="hidden" th:field="*{gameTitle}" /> <input
-								type="hidden" th:field="*{genreId}" /> <input type="hidden"
-								th:field="*{hardId}" />
-						</form> <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span> <a
-						th:if='${i}!=${page.number}'
-						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'"> <span
-							th:text='${i+1}'>1</span>
-					</a>
+							<input type="hidden" th:field="*{gameTitle}" />
+							<input type="hidden" th:field="*{genreId}" />
+							<input type="hidden" th:field="*{hardId}" />
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}'
+						th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<span th:text='${i+1}'>1</span></a>
 					</li>
-					<li th:class="${page.last} ? 'disabled':''" style="display: inline"><span
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+					<span
 						th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
 						<a th:if="${not page.last}"
 						th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
@@ -226,15 +227,16 @@
 							<div class="col-sm-12">
 								<div class="alert alert-danger" role="alert">
 									<span class="glyphicon glyphicon-exclamation-sign"
-										aria-hidden="true"></span> <span
-										th:text="#{common.text.warn.delete(#{menu.text.game})}"></span>
+										aria-hidden="true"></span>
+										<span th:text="#{common.text.warn.delete(#{menu.text.game})}"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" th:text="#{common.text.cansel}"
-							data-dismiss="modal">Cancel </a> <a class="btn btn-danger"
+							data-dismiss="modal">Cancel </a>
+							<a class="btn btn-danger"
 							onclick="$('#deleteForm').submit()"
 							th:text="#{common.text.delete}">Delete </a>
 					</div>

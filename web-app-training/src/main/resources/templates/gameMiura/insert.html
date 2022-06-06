@@ -18,8 +18,8 @@
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
-					th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
 		<div
@@ -35,8 +35,8 @@
 				class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{game.text.input.title.require}"> Title(必須):</label> <input
-						type="text" th:field="*{gameTitle}" class="form-control"
+						th:text="#{game.text.input.title.require}"> Title(必須):</label>
+						<input type="text" th:field="*{gameTitle}" class="form-control"
 						th:placeholder="#{game.text.title}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('gameTitle')}"
@@ -44,8 +44,8 @@
 				</div>
 				<div class="form-group">
 					<label for="genre" class="control-label"
-						th:text="#{game.text.input.genre}"> Genre:</label> <select
-						name="genreId" id="inputGenre" class="form-control select">
+						th:text="#{game.text.input.genre}"> Genre:</label>
+						<select name="genreId" id="inputGenre" class="form-control select">
 						<option th:each="genre : ${gameGenreMiuraList}"
 							th:value="${genre.id}" th:text="${genre.genre}"
 							th:selected="${genre.id == gameMiuraInputForm.genreId}">pulldown</option>
@@ -53,8 +53,8 @@
 				</div>
 				<div class="form-group">
 					<label for="hard" class="control-label"
-						th:text="#{game.text.input.hard}"> Hard:</label> <select
-						name="hardId" id="inputHard" class="form-control">
+						th:text="#{game.text.input.hard}"> Hard:</label>
+						<select name="hardId" id="inputHard" class="form-control">
 						<option th:each="hard : ${gameHardMiuraList}"
 							th:value="${hard.id}" th:text="${hard.hard}"
 							th:selected="${hard.id == gameMiuraInputForm.hardId}">pulldown</option>
@@ -63,7 +63,8 @@
 				<div class="form-group">
 					<label for="releaseYear" class="control-label"
 						th:text="#{game.text.input.releaseyear}">
-						ReleaseYear(必須):</label> <input type="text" th:field="*{releaseYearStr}"
+						ReleaseYear(必須):</label>
+						<input type="text" th:field="*{releaseYearStr}"
 						class="form-control" id="inputReleaseYear"
 						th:placeholder="#{game.text.releaseyear}" />
 
