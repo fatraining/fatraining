@@ -19,6 +19,7 @@ import jp.co.futureantiques.webapptraining.model.weaponHiratsuka.WeaponMainHirat
 
 public interface WeaponMainHiratsukaRepository
 		extends JpaRepository<WeaponMainHiratsuka, Long>, JpaSpecificationExecutor<WeaponMainHiratsuka> {
+
 	/**
 	 * 対象のレコードの削除フラグを1にする
 	 *

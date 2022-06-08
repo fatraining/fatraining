@@ -16,12 +16,13 @@ import lombok.Data;
 /**
  * Weapontypeテーブルと対応するEntityクラス
  *
- * @author future
+ * @author hiratsuka
  */
 @Data
 @Entity
 
 public class WeapontypeHiratsuka {
+
 	/** 武器タイプID */
 	@Id
 	@GeneratedValue

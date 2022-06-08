@@ -32,11 +32,14 @@ import jp.co.futureantiques.webapptraining.service.WeaponHiratsukaService;
 @RequestMapping(value = "/weaponHiratsuka")
 public class WeaponHiratsukaController {
 
-	//weaponのサービス
+	/**
+	 * weaponのサービス
+	 */
 	private final WeaponHiratsukaService weaponHiratsukaService;
 
 	/**
 	 * コンストラクタ
+	 *
 	 * @param weaponService weaponService;
 	 */
 	@Autowired
@@ -85,6 +88,7 @@ public class WeaponHiratsukaController {
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public String searchWeapon(final WeaponHiratsukaSearchForm form, final Model model, final Pageable pageable) {
+
 		// 入力された検索条件を元にレコードを取得する
 		final Page<WeaponMainHiratsuka> weaponList = weaponHiratsukaService.getPageWeapon(form, pageable);
 		if (weaponList.getTotalElements() != 0) {
@@ -109,7 +113,7 @@ public class WeaponHiratsukaController {
 	}
 
 	/**
-	 * MovieMainテーブルにデータを登録して検索画面に遷移する
+	 * WeaponHiratsukaMainテーブルにデータを登録して検索画面に遷移する
 	 *
 	 * @param WeaponHiratsukaInputForm form
 	 * @param BindingResult bindingResult
@@ -156,7 +160,7 @@ public class WeaponHiratsukaController {
 	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateMovie(@Validated final WeaponHiratsukaInputForm form,
+	public String updateWeapon(@Validated final WeaponHiratsukaInputForm form,
 			final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 
@@ -200,7 +204,7 @@ public class WeaponHiratsukaController {
 	public String showDeleteCompWeapon(final WeaponHiratsukaSearchForm form,
 			@ModelAttribute final WeaponHiratsukaDeleteForm weaponHiratsukaDeleteForm, final Model model) {
 
-		// MovieMainテーブルから削除フラグが1のレコードを検索する
+		// WeaponHiratsukaMainテーブルから削除フラグが1のレコードを検索する
 		final List<WeaponMainHiratsuka> weaponList = weaponHiratsukaService.getListWeapon(form);
 
 		// Modelに検索結果を格納する
@@ -217,7 +221,7 @@ public class WeaponHiratsukaController {
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.POST)
-	public String deleteCompMovie(@Validated final WeaponHiratsukaDeleteForm form,
+	public String deleteCompWeapon(@Validated final WeaponHiratsukaDeleteForm form,
 			final BindingResult bindingResult, final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 

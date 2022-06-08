@@ -13,8 +13,11 @@ import jp.co.futureantiques.webapptraining.model.weaponHiratsuka.ShottypeHiratsu
 import jp.co.futureantiques.webapptraining.model.weaponHiratsuka.WeaponMainHiratsuka;
 import jp.co.futureantiques.webapptraining.model.weaponHiratsuka.WeapontypeHiratsuka;
 
-//コントローラーの呼び出し先
-
+/**
+ * コントローラーの呼び出し先
+ *
+ * @author hiratsuka
+ */
 public interface WeaponHiratsukaService {
 
 	/**

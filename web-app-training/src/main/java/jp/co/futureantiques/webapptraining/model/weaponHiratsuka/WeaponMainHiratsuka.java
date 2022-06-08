@@ -16,12 +16,13 @@ import lombok.Data;
 /**
  * WeaponMainテーブルと対応するEntity
  *
- * @author future
+ * @author hiratsuka
  */
 @Data
 @Entity
 
 public class WeaponMainHiratsuka {
+
 	/** 武器ID */
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")

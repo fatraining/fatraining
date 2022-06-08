@@ -20,9 +20,12 @@ import jp.co.futureantiques.webapptraining.repository.weaponHiratsuka.WeaponMain
 import jp.co.futureantiques.webapptraining.repository.weaponHiratsuka.WeapontypeHiratsukaRepository;
 import jp.co.futureantiques.webapptraining.service.WeaponHiratsukaService;
 
-//実装クラス
-// @author hiratsuka
 
+/**
+ * 実装クラス
+ *
+ *@author hiratsuka
+ */
 @Service
 public class WeaponHiratsukaServiceImpl implements WeaponHiratsukaService {
 
@@ -76,7 +79,7 @@ public class WeaponHiratsukaServiceImpl implements WeaponHiratsukaService {
 	@Override
 	public List<WeaponMainHiratsuka> getListWeapon(final WeaponHiratsukaSearchForm form) {
 
-		// 検索条件を生成しMovieMainテーブルのレコードを取得する
+		// 検索条件を生成しWeaponMainテーブルのレコードを取得する
 		return weaponMainHiratsukaRepository
 				.findAll(WeaponHiratsukaSpecification.generateWeaponHiratsukaSpecification(form));
 	}
@@ -84,14 +87,14 @@ public class WeaponHiratsukaServiceImpl implements WeaponHiratsukaService {
 	@Override
 	public WeaponMainHiratsuka getWeapon(final long id) {
 
-		// MovieMainテーブルを主キー検索する
+		// WeaponMainテーブルを主キー検索する
 		return weaponMainHiratsukaRepository.findOne(id);
 	}
 
 	@Override
 	public WeaponMainHiratsuka insertWeapon(final WeaponHiratsukaInputForm form) {
 
-		// MovieMainテーブルに新規でデータを登録する
+		// WeaponMainテーブルに新規でデータを登録する
 		final WeaponMainHiratsuka weaponMainHiratsuka = form.convertToWeaponMainHiratsukaForInsert();
 		return weaponMainHiratsukaRepository.save(weaponMainHiratsuka);
 	}

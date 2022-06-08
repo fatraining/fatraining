@@ -5,27 +5,28 @@ import lombok.Data;
 
 /**
  * メイン画面使用されるformクラス
+ *
  * @author hiratsuka
  */
 @Data
 public class WeaponHiratsukaSearchForm {
 
-	//ID
+	/** ID */
 	private Integer id;
 
-	//武器名
+	/** 武器名 */
 	private String weaponname;
 
-	//武器タイプ
+	/** 武器タイプID */
 	private Integer weapontypeId;
 
-	//コスト
+	/** コスト */
 	private Integer cost;
 
-	//射撃方式
+	/** 射撃方式ID */
 	private Integer shottypeId;
 
-	//削除フラグ
+	/** 削除フラグ */
 	private int isDelete;
 
 	/**

@@ -14,11 +14,12 @@ import jp.co.futureantiques.webapptraining.model.form.weaponHiratsuka.WeaponHira
 import jp.co.futureantiques.webapptraining.model.weaponHiratsuka.WeaponMainHiratsuka;
 
 public class WeaponHiratsukaSpecification {
+
 	/**
 	 * 検索条件生成の実装
 	 *
-	 * @param MovieSampleSearchForm form
-	 * @return MovieMainのSpecification
+	 * @param WeaponHiratsukaSearchForm form
+	 * @return WeaponMainのSpecification
 	 */
 	public static Specification<WeaponMainHiratsuka> generateWeaponHiratsukaSpecification(
 			final WeaponHiratsukaSearchForm form) {
@@ -53,7 +54,7 @@ public class WeaponHiratsukaSpecification {
 
 				if (form.getWeapontypeId() != null && form.getWeapontypeId() != 0) {
 
-					// ジャンルを条件に追加
+					// 射撃方法を条件に追加
 					Predicate newCondition = cb.equal(root.get("weapontypeId"), form.getWeapontypeId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
@@ -83,8 +84,6 @@ public class WeaponHiratsukaSpecification {
 			 * @param newCondition
 			 * @return Predicate				 削除フラグを条件に追加
 			 */
-
-
 			private Predicate getPredicate(CriteriaBuilder cb, Predicate condition, @NotNull Predicate newCondition) {
 				if (condition != null) {
 

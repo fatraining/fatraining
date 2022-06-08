@@ -119,12 +119,12 @@ public class WeaponHiratsukaInputForm {
 	 */
 	private WeaponMainHiratsuka convertToWeaponMainHiratsuka(WeaponMainHiratsuka weaponMainHiratsuka) {
 		weaponMainHiratsuka.setWeaponname(this.weaponname);
-		//parseInt? this?
 		weaponMainHiratsuka.setWeapontypeId(this.weapontypeId);
 		weaponMainHiratsuka.setShottypeId(this.shottypeId);
 		weaponMainHiratsuka.setCost(Integer.parseInt(this.costStr));
 
 		if (!this.headdamageStr.isEmpty()) {
+
 			// 頭部ダメージが入力されていた場合
 			weaponMainHiratsuka.setHeaddamage(Integer.parseInt(this.headdamageStr));
 		} else {
@@ -134,6 +134,7 @@ public class WeaponHiratsukaInputForm {
 		}
 
 		if (!this.bodydamageStr.isEmpty()) {
+
 			// 胴ダメージが入力されていた場合
 			weaponMainHiratsuka.setBodydamage(Integer.parseInt(this.bodydamageStr));
 		} else {
@@ -143,6 +144,7 @@ public class WeaponHiratsukaInputForm {
 		}
 
 		if (!this.legdamageStr.isEmpty()) {
+
 			// 脚部ダメージが入力されていた場合
 			weaponMainHiratsuka.setLegdamage(Integer.parseInt(this.legdamageStr));
 		} else {
@@ -152,6 +154,7 @@ public class WeaponHiratsukaInputForm {
 		}
 
 		if (!this.rateStr.isEmpty()) {
+
 			// 連射速度が入力されていた場合
 			weaponMainHiratsuka.setRate(Double.parseDouble(this.rateStr));
 		} else {
