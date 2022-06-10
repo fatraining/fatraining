@@ -2,7 +2,10 @@ package jp.co.futureantiques.webapptraining.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.vtuberUmehara.VtuberUmeharaDeleteForm;
@@ -122,6 +126,14 @@ public class VtuberUmeharaController {
 		return "vtuberUmehara/insert";
 	}
 
+	//これらはわざわざDIしないといけない
+	@Autowired
+	ResourceLoader resourceLoader;
+	@Autowired
+	ServletContext context;
+	@Autowired
+	WebApplicationContext wac;
+
 	/**
 	 * VtuberUmeharaMainテーブルにデータを登録して検索画面に遷移する
 	 *
@@ -131,7 +143,7 @@ public class VtuberUmeharaController {
 	 */
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insertVtuberUmehara(@ModelAttribute @Validated final VtuberUmeharaInputForm form,
-			final BindingResult bindingResult) {
+			final BindingResult bindingResult,Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
 			// 入力エラーがある場合自画面に戻る
@@ -151,14 +163,21 @@ public class VtuberUmeharaController {
 	 * @return 更新画面のパス
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String showUpdateVtuberUmehara(@RequestParam(name = "id") final long id,
-			@ModelAttribute final VtuberUmeharaInputForm vtuberUmeharaInputForm) {
+	public String showUpdateVtuberUmehara(final VtuberUmeharaSearchForm form, @RequestParam(name = "id") final long id,
+			@ModelAttribute final VtuberUmeharaInputForm vtuberUmeharaInputForm, Model model, final Pageable pageable) {
 
 		// IDをキーにVtuberMainUmeharaテーブルを検索する
 		VtuberMainUmehara vtuberMainUmehara = vtuberUmeharaService.getVtuberUmehara(id);
 
+		//penguin_main_kawamuraテーブルから画像パスを取得する
+		String imagePass = vtuberMainUmehara.getImage();
+
+		//Modelに画像パスをセットする
+		model.addAttribute("imagePass", imagePass);
+
 		// フォームにレコードの値をセットする
 		vtuberUmeharaInputForm.initWithVtuberMainUmehara(vtuberMainUmehara);
+		vtuberUmeharaInputForm.setImageDelFlg("0");
 		return "vtuberUmehara/update";
 	}
 

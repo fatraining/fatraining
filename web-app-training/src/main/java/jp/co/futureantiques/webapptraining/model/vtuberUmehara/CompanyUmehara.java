@@ -69,6 +69,10 @@ public class CompanyUmehara {
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
+	/** 会社画像 */
+	@Column(name = "company_image")
+	private String companyImage;
+
 	/** 外部キー設定：会社 */
 	@Transient
 	@OneToMany(targetEntity = VtuberMainUmehara.class, mappedBy = "companyUmehara")

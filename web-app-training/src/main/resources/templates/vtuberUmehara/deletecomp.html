@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Webアプリ研修 | Vtuber完全削除</title>
-	<script type="text/javascript"src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
@@ -37,6 +37,7 @@
 					<thead>
 						<tr>
 							<th><input type="checkbox" id="allCheck" /></th>
+							<th class="per-12 center" th:text="#{vtuber.text.image}">Image</th>
 							<th class="per-7 center" th:text="#{vtuber.text.name}">name</th>
 							<th class="per-12 center" th:text="#{vtuber.text.company}">company</th>
 							<th class="per-7 center" th:text="#{vtuber.text.forms}">forms</th>
@@ -54,6 +55,7 @@
 									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}" th:value="${vtuber.id}" />
 								</label>
 							</td>
+							<td class="data center"><img th:src="@{${vtuber.image}}"></img></td>
 							<td class="data center" th:text="${vtuber.vtuberName}">VtuberName</td>
 							<td class="data center">
 								<label th:if="${vtuber.companyUmehara != null}" th:text="${vtuber.companyUmehara.companyName}" class="data center">Company</label></td>

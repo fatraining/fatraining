@@ -24,7 +24,16 @@
 				</div>
 
 				<!-- 入力欄 -->
-				<form method="post" id="vtuberUmeharaInputForm" th:action="@{/vtuberUmehara/insert}" th:object="${vtuberUmeharaInputForm}" class="form-horizontal">
+				<form method="post" id="vtuberUmeharaInputForm" th:action="@{/vtuberUmehara/insert}" th:object="${vtuberUmeharaInputForm}" class="form-horizontal" enctype="multipart/form-data">
+				<div class="form-group">
+					<div>
+						<label for="image" class="control-label"
+							th:text="#{vtuber.text.input.image}">Image:</label>
+						<input type="file" id="file" th:field="*{image}" class="form-control"
+							th:placeholder="#{vtuber.text.image}" />
+						<span th:text="#{vtuber.text.input.image.attention}">※画像を変更しない場合は「ファイルを選択」ボタンを押さないでください。</span>
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="name" class="control-label" th:text="#{vtuber.text.input.name.riquire}">
 							VtuberName(*):
@@ -39,6 +48,7 @@
 					<select name="companyId" id="inputCompanyUmehara" class="form-control select">
 						<option th:each="companyUmehara : ${companyUmeharaList}" th:value="${companyUmehara.id}" th:text="${companyUmehara.companyName}" th:selected="${companyUmehara.id == vtuberUmeharaInputForm.companyId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('companyId')}" th:text="#{${err}(#{vtuber.text.company})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="formsUmehara" class="control-label" th:text="#{vtuber.text.input.forms.riquire}">
@@ -47,6 +57,7 @@
 					<select name="formsId" id="inputFormsUmehara" class="form-control select">
 						<option th:each="formsUmehara : ${formsUmeharaList}" th:value="${formsUmehara.id}" th:text="${formsUmehara.streamForm}" th:selected="${formsUmehara.id == vtuberUmeharaInputForm.formsId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('formsId')}" th:text="#{${err}(#{vtuber.text.forms})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="contentsUmehara" class="control-label" th:text="#{vtuber.text.input.contents.riquire}">
@@ -55,13 +66,14 @@
 					<select name="contentsId" id="inputContentsUmehara" class="form-control">
 						<option th:each="contentsUmehara : ${contentsUmeharaList}" th:value="${contentsUmehara.id}" th:text="${contentsUmehara.streamContent}" th:selected="${contentsUmehara.id == vtuberUmeharaInputForm.contentsId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('contentsId')}" th:text="#{${err}(#{vtuber.text.contents})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="channelUrl" class="control-label" th:text="#{vtuber.text.input.channelUrl.riquire}">
 						ChannelUrl(*):
 					</label>
 					<input type="text" th:field="*{channelUrl}" class="form-control" id="inputChannelUrl" th:placeholder="#{vtuber.text.channelURL}" />
-							<p class="err alert-danger" th:each="err : ${#fields.errors('channelUrl')}" th:text="#{${err}(#{vtuber.text.channelUrl})}"></p>
+							<p class="err alert-danger" th:each="err : ${#fields.errors('channelUrl')}" th:text="#{${err}(#{vtuber.text.channelURL})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="channelFollowers" class="control-label" th:text="#{vtuber.text.input.channelFollowers}">
@@ -89,5 +101,19 @@
 			</form>
 		</div>
 	</div>
+	<!-- Photoスクリプト -->
+			<script>
+			var obj = document.getElementById("file");
+
+			obj.addEventListener("change",function (evt){
+				var file = evt.target.files;
+
+				if(file[0].size > 1000000){
+
+					alert("サイズが大きすぎます。1MG以下のものを選択してください。");
+					document.getElementById('file').value="";
+				}
+			},false);
+			</script>
 </body>
 </html>

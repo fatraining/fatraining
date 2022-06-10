@@ -1,5 +1,14 @@
 package jp.co.futureantiques.webapptraining.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +17,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.form.vtuberUmehara.VtuberUmeharaInputForm;
 import jp.co.futureantiques.webapptraining.model.form.vtuberUmehara.VtuberUmeharaSearchForm;
 import jp.co.futureantiques.webapptraining.model.vtuberUmehara.CompanyUmehara;
@@ -108,21 +119,57 @@ public class VtuberUmeharaServiceImpl implements VtuberUmeharaService {
 
 		// VtuberMainUmeharaテーブルに新規でデータを登録する
 		final VtuberMainUmehara vtuberMainUmehara = form.convertToVtuberMainUmeharaForInsert();
+		//ファイルをアップロードする
+		uploadFile(vtuberMainUmehara, form.getImage());
+
 		return vtuberMainUmeharaRepository.save(vtuberMainUmehara);
 	}
 
 	@Override
 	public VtuberMainUmehara updateVtuberUmehara(final VtuberUmeharaInputForm form) {
 
-		// 更新対象のレコードを取得する
+		//更新対象のレコードを取得
 		VtuberMainUmehara vtuberMainUmehara = vtuberMainUmeharaRepository.findOne((long) form.getId());
 		if (vtuberMainUmehara != null) {
 
-			// 更新対象のレコードが存在する場合排他チェック
+			//更新対象のレコードが存在する場合排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(vtuberMainUmehara.getUpdateDate()))) {
 
-				// チェックOKの場合、更新
+				//チェックOKの場合、更新
 				vtuberMainUmehara = form.convertToVtuberMainUmeharaForUpdate(vtuberMainUmehara);
+
+				if (form.getImage().isEmpty()) {
+
+					//もし画像削除フラグが１だった場合
+					if (form.getImageDelFlg().matches("1")) {
+
+						//対象のレコードの画像を削除する
+						File f = new File(CommonConst.STATIC_PATH + vtuberMainUmehara.getImage());
+						if (f.exists()) {
+
+							//ファイルが存在する場合削除
+							f.delete();
+						}
+
+						//vtuberMainUmeharaのimgをNULLにする（setImg）
+						vtuberMainUmehara.setImage(null);
+
+					} else {
+
+						//今あるデータベースの画像パスを入れとく
+						String imageTemp = vtuberMainUmehara.getImage();
+
+						//エンティティに画像パスを入れなおす
+						vtuberMainUmehara.setImage(imageTemp);
+					}
+
+					// 更新する
+					return vtuberMainUmeharaRepository.saveAndFlush(vtuberMainUmehara);
+				}
+
+				//ファイルをアップロードする
+				uploadFile(vtuberMainUmehara, form.getImage());
+
 				return vtuberMainUmeharaRepository.saveAndFlush(vtuberMainUmehara);
 			}
 		}
@@ -144,7 +191,53 @@ public class VtuberUmeharaServiceImpl implements VtuberUmeharaService {
 	@Override
 	public void deleteVtuberUmeharaComp(final ArrayList<Long> ids) {
 
+		//対象のレコードの画像を削除する
+		for (long id : ids) {
+			File f = new File(CommonConst.STATIC_PATH + vtuberMainUmeharaRepository.findOne(id).getImage());
+			if (f.exists()) {
+
+				//ファイルが存在する場合削除
+				f.delete();
+			}
+		}
+
 		// 対象のレコードを削除する
 		vtuberMainUmeharaRepository.deleteComp(ids);
+	}
+
+	/**
+	 * 選択したファイルを指定のパスにアップロードする
+	 * @param vtuberMainUmehara
+	 * @param Image
+	 */
+	private void uploadFile(VtuberMainUmehara vtuberMainUmehara, MultipartFile image) {
+
+		//画像を挿入していた場合の処理(挿入していなければNULLにするための条件式)
+		if (!image.isEmpty()) {
+
+			//追加する画像のファイルパス
+			Path path = Paths.get(CommonConst.STATIC_PATH + "/VtuberUmehara");
+
+			//ファイル名をつけるため拡張子や現在日時を取得
+			int dot = image.getOriginalFilename().lastIndexOf(".");
+			String extention = "";
+			if (dot > 0) {
+				extention = image.getOriginalFilename().substring(dot).toLowerCase();
+			}
+			String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+
+			//エンティティに画像の値を入れる
+			vtuberMainUmehara.setImage("/VtuberUmehara/" + filename + extention);
+
+			//指定した場所にファイルを書き込む
+			path = path.resolve(filename + extention);
+			try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
+				byte[] bytes = image.getBytes();
+				os.write(bytes);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }

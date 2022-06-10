@@ -80,6 +80,10 @@ public class VtuberMainUmehara {
 	@Column(name = "del_flg")
 	private String delFlg;
 
+	/** 画像 */
+	@Column(name ="image")
+	private String image;
+
 	/** 外部キー設定：会社 */
 	@ManyToOne(targetEntity = CompanyUmehara.class)
 	@JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)

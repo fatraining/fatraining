@@ -1,6 +1,6 @@
 package jp.co.futureantiques.webapptraining.model.form.vtuberUmehara;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -38,13 +38,17 @@ public class VtuberUmeharaSearchForm {
 
 	/** チャンネル作成日 */
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date channelDate;
+	private String channelDate;
 
 	/** コメント */
 	private String comment;
 
 	/** 削除フラグON用 */
 	private int isDelete;
+
+	/** 画像 */
+	private String image;
+
 
 	/**
 	 * 各フィールドに値を設定する
@@ -59,7 +63,8 @@ public class VtuberUmeharaSearchForm {
 		this.setContentsId(vtuberMainUmehara.getContentsId());
 		this.setChannelUrl(vtuberMainUmehara.getChannelUrl());
 		this.setChannelFollowers(vtuberMainUmehara.getChannelFollowers());
-		this.setChannelDate(vtuberMainUmehara.getChannelDate());
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+		this.setChannelDate(sdf.format(vtuberMainUmehara.getChannelDate()));
 		this.setComment(vtuberMainUmehara.getComment());
 	}
 }

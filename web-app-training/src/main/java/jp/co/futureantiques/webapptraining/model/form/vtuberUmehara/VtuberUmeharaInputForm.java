@@ -5,9 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -26,20 +29,23 @@ public class VtuberUmeharaInputForm {
 	/** ID */
 	private Integer id;
 
+	/** Image */
+	private MultipartFile image;
+
 	/** Vtuber名 */
 	@NotBlank(message = "common.text.error.require")
 	private String vtuberName;
 
 	/** 会社ID */
-	@NotNull(message = "common.text.error.require")
+	@Min(value=1,message = "common.text.error.require")
 	private Integer companyId;
 
 	/** 動画形態ID */
-	@NotNull(message = "common.text.error.require")
+	@Min(value=1,message = "common.text.error.require")
 	private Integer formsId;
 
 	/** 動画内容ID */
-	@NotNull(message = "common.text.error.require")
+	@Min(value=1,message = "common.text.error.require")
 	private Integer contentsId;
 
 	/** チャンネルURL */
@@ -47,7 +53,9 @@ public class VtuberUmeharaInputForm {
 	private String channelUrl;
 
 	/** チャンネル登録者数 */
-	private Integer channelFollowers;
+	@Size(max=9,message = "common.text.error.size.max.nine")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
+	private String channelFollowers;
 
 	/** チャンネル作成日 */
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -55,6 +63,9 @@ public class VtuberUmeharaInputForm {
 
 	/** コメント */
 	private String comment;
+
+	/** 画像削除フラグ */
+	private String imageDelFlg;
 
 	/** 更新日時（排他制御用） */
 	private String updateDate;
@@ -71,8 +82,18 @@ public class VtuberUmeharaInputForm {
 		this.setFormsId(vtuberMainUmehara.getFormsId());
 		this.setContentsId(vtuberMainUmehara.getContentsId());
 		this.setChannelUrl(vtuberMainUmehara.getChannelUrl());
-		this.setChannelFollowers(vtuberMainUmehara.getChannelFollowers());
-		this.setChannelDate(vtuberMainUmehara.getChannelDate().toString());
+		if (vtuberMainUmehara.getChannelFollowers()!=null) {
+		this.setChannelFollowers(String.valueOf(vtuberMainUmehara.getChannelFollowers()));
+		}else {
+			this.setChannelFollowers(null);
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date date=vtuberMainUmehara.getChannelDate();
+		String strDate = null;
+		if (date!=null) {
+		strDate=sdf.format(date);
+		}
+		this.setChannelDate(strDate);
 		this.setComment(vtuberMainUmehara.getComment());
 		this.setUpdateDate(String.valueOf(vtuberMainUmehara.getUpdateDate()));
 	}
@@ -110,10 +131,10 @@ public class VtuberUmeharaInputForm {
 	 */
 	private VtuberMainUmehara convertToVtuberMainUmehara(VtuberMainUmehara vtuberMainUmehara) {
 		vtuberMainUmehara.setVtuberName(this.vtuberName);
-		if (this.getCompanyId() == CommonConst.NOT_ENTERD) {
+		if (this.companyId == CommonConst.NOT_ENTERD) {
 
 			// 会社が入力されていなかった場合
-			vtuberMainUmehara.setCompanyId(null);
+			vtuberMainUmehara.setCompanyId(this.companyId);
 		} else {
 
 			// 会社が入力されていた場合
@@ -138,16 +159,21 @@ public class VtuberUmeharaInputForm {
 			vtuberMainUmehara.setContentsId(this.contentsId);
 		}
 		vtuberMainUmehara.setChannelUrl(this.channelUrl);
-		vtuberMainUmehara.setChannelFollowers(this.channelFollowers);
-
+		if (!this.channelFollowers.isEmpty()) {
+		vtuberMainUmehara.setChannelFollowers(Integer.valueOf(this.channelFollowers));
+		}else {
+			vtuberMainUmehara.setChannelFollowers(null);
+		}
 		// 入力されたString型の日付データをsdfを用いてDate型のデータへ変換
+		if(!this.channelDate.isEmpty()) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			vtuberMainUmehara.setChannelDate(sdf.parse(this.channelDate));
-
-			// 入力されたString型の日付データをsdfを用いてDate型のデータへ変換へ失敗した場合
 		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+		}}else {
+			vtuberMainUmehara.setChannelDate(null);
 		}
 		vtuberMainUmehara.setComment(this.comment);
 		vtuberMainUmehara.setDelFlg("0");

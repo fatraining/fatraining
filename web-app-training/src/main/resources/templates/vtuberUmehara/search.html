@@ -5,8 +5,8 @@
 <title>Webアプリ研修|Vtuber梅原検索</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/vtuberUmehara.css}" />
 </head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/vtuberUmehara.css}" />
 <body>
 	<div class="page-header">
 		<h4>
@@ -135,6 +135,7 @@
 			<table id="resultTable" class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
+						<th class="per-16 center" th:text="#{vtuber.text.image}">Image</th>
 						<th class="per-7 center" th:text="#{vtuber.text.name}">Name</th>
 						<th class="per-12 center" th:text="#{vtuber.text.company}">Company</th>
 						<th class="per-7 center" th:text="#{vtuber.text.forms}">Forms</th>
@@ -147,17 +148,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="vtuberUmehara : ${vtuberUmeharaList}">
+					<tr  class="active" th:each="vtuberUmehara : ${vtuberUmeharaList}">
+						<td class="data center" th:if="${vtuberUmehara.image!=null}"><img  class="image" th:src="@{${vtuberUmehara.image}}"></img></td>
+						<td class="data center" th:if="${vtuberUmehara.image==null}"><img src="/VtuberUmehara/NoImage.png"></img></td>
 						<td class="data center">
 							<a th:text="${vtuberUmehara.vtuberName}" th:href="${vtuberUmehara.channelUrl}">
 								Vtuber
 							</a>
 						</td>
-						<td class="data center">
-							<label th:if="${vtuberUmehara.companyUmehara != null}" th:text="${vtuberUmehara.companyUmehara.companyName}"
-								class="data center">
-								Compnay
-							</label>
+						<td class="data center" th:if="${vtuberUmehara.image!=null}">
+							<img  class="image" th:src="@{${vtuberUmehara.companyUmehara.companyImage}}"></img>
 						</td>
 						<td class="data center">
 							<label th:if="${vtuberUmehara.formsUmehara != null}"

@@ -1,13 +1,60 @@
 @CHARSET "UTF-8";
 
+body{
+	background-image: url(/VtuberUmehara/VtuberUmeharaBack.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+div.font{
+	pudding: 10px;
+	margin-bottom: 10px;
+	border: 10px double #008080;
+	border-radius: 20px;
+	background-color: #99CCFF;
+	color: #ffffff;
+}
+
+div.font-color{
+	color:#0066CC;
+}
+
+div.searchclear {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+@media screen { #filename { display: none; } }
+
+div.browse_btn {
+background-color: #d3d3d3;
+padding: 6px;
+border-radius: 8px;
+font-weight: bold;
+}
+
 div.container {
 	max-width: 95%;
 	width: 95%;
 	margin: auto;
 }
 
+
 div.search-menu {
 	margin-top: 15px;
+}
+
+div.image{
+	width: 300px;
 }
 
 @media ( min-width : 980px) {
@@ -32,6 +79,10 @@ h1, .h1 {
 	text-align: center;
 }
 
+#resultTable td img.image{
+	width: 300px;
+}
+
 #resultTable th.per-12 {
 	width: 12%;
 }
@@ -42,6 +93,10 @@ h1, .h1 {
 
 #resultTable th.per-16 {
 	width: 16%;
+}
+
+#resultTable th.per-30 {
+	width: 30%;
 }
 
 #resultTable th.per-46 {
