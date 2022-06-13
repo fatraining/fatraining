@@ -115,8 +115,7 @@ public class GameMiuraController {
 	 */
 
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	public String showInsertGame(@ModelAttribute final GameMiuraInputForm
-			gameMiuraInputForm) {
+	public String showInsertGame(@ModelAttribute final GameMiuraInputForm gameMiuraInputForm) {
 		return "gameMiura/insert";
 	}
 
@@ -206,8 +205,9 @@ public class GameMiuraController {
 	 * 完全削除画面に遷移する
 	 *
 	 * @param GameMiuraSearchForm form
-	 * @param GameMiuraDeleteForm gameMiruaDeleteForm
+	 * @param GameMiuraDeleteForm gameMiuraDeleteForm
 	 * @param Model model
+	 * @return 完全削除画面のパス
 	 */
 	@RequestMapping(value = "deletecomp", method = RequestMethod.GET)
 	public String showDeleteCompGame(final GameMiuraSearchForm form,
@@ -222,7 +222,8 @@ public class GameMiuraController {
 		return "gameMiura/deletecomp";
 	}
 
-	/** GameMianMiuraテーブルのデータを完全削除して検索画面に遷移する
+	/**
+	 * GameMainMiuraテーブルのデータを完全削除して検索画面に遷移する
 	 *
 	 * @param GameMiuraDeleteForm form
 	 * @param  BindingResult bindingResult

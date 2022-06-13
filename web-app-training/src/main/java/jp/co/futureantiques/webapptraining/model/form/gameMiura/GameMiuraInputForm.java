@@ -25,7 +25,7 @@ public class GameMiuraInputForm {
 
 	/** ゲームタイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256, message = "game.text.error.countover")
 	private String gameTitle;
 
 	/** ジャンルID */
@@ -35,7 +35,7 @@ public class GameMiuraInputForm {
 	private Integer hardId;
 
 	/** 発売日 */
-	@NotBlank(message = "commontext.error.require")
+	@NotBlank(message = "common.text.error.require")
 	@Size(max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String releaseYearStr;

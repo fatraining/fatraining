@@ -25,10 +25,11 @@
 	<!-- 新規・削除ボタン -->
 	<div style="position: relative; left: 30px;">
 		<form class="form-horizontal" id="deleteCompForm" method="get"
-			action="/gameMiura/deletecomp" th:object="${gameMiuraSearchFrom}">
+			action="/gameMiura/deletecomp"
+			th:object="${gameMiuraSearchForm}">
 			<div class="form-group">
 				<div class="col-sm-8">
-					<input type="hidden" name="idDelete" th:value="1" />
+					<input type="hidden" name="isDelete" th:value="1" />
 				</div>
 			</div>
 		</form>

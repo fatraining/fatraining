@@ -17,7 +17,7 @@ public class GameMiuraSearchForm {
 	private Integer id;
 
 	/** ゲームタイトル */
-	@Size(max = 256, message = "game.text.errorcountover")
+	@Size(max = 256, message = "game.text.error.countover")
 	private String gameTitle;
 
 	/** ジャンルID */

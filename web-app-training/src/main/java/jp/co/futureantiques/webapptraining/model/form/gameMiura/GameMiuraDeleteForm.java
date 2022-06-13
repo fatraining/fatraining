@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class GameMiuraDeleteForm {
 
-	//** 削除ID */
+	/** 削除ID */
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
 }

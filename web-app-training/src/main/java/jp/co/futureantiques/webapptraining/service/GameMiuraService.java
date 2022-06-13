@@ -42,7 +42,7 @@ public interface GameMiuraService {
 	List<GameMainMiura> getListGameMainMiura(final GameMiuraSearchForm form);
 
 	/**
-	 * 検索結果をもとにGameMainMiuraのレコードリストを取得する
+	 * 検索結果をもとにGameMainMiuraのレコードリストを取得する(paging)
 	 *
 	 * @param GameMiuraSearchForm
 	 * @param Pageable pageable

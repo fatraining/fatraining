@@ -54,7 +54,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="active" th:each="game : ${gameMainMiuraList}">
+						<tr th:each="game : ${gameMainMiuraList}">
 							<td><label> <input type="checkbox"
 									style="margin-left: 50%" th:field="*{deleteIds}"
 									th:value="${game.id}" />

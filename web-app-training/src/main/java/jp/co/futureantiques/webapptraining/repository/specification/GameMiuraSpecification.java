@@ -36,10 +36,10 @@ public class GameMiuraSpecification {
 				// 検索条件
 				Predicate condition = null;
 
-				// 削除フラグON用が１かどうか判定
+				// 削除フラグON用が1かどうか判定
 				if (form.getIsDelete() == 1) {
 
-					// 削除フラグ＝１を検索条件にする
+					// 削除フラグ＝1を検索条件にする
 					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
 				}
 

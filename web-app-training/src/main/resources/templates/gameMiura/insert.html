@@ -18,8 +18,8 @@
 	<div class="container">
 		<div class="page-header">
 			<h4>
-				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
-				<small th:text="#{login.text.version}">ver β</small>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
+					th:text="#{login.text.version}">ver β</small>
 			</h4>
 		</div>
 		<div
@@ -35,8 +35,8 @@
 				class="form-horizontal">
 				<div class="form-group">
 					<label for="name" class="control-label"
-						th:text="#{game.text.input.title.require}"> Title(必須):</label>
-						<input type="text" th:field="*{gameTitle}" class="form-control"
+						th:text="#{game.text.input.title.require}"> Title(必須):</label> <input
+						type="text" th:field="*{gameTitle}" class="form-control"
 						th:placeholder="#{game.text.title}" />
 					<p class="err alert-danger"
 						th:each="err : ${#fields.errors('gameTitle')}"
@@ -67,6 +67,10 @@
 						<input type="text" th:field="*{releaseYearStr}"
 						class="form-control" id="inputReleaseYear"
 						th:placeholder="#{game.text.releaseyear}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{game.text.releaseyear})}"></p>
+
 
 
 				</div>
