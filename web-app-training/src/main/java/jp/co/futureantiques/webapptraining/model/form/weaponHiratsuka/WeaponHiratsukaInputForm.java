@@ -3,6 +3,7 @@ package jp.co.futureantiques.webapptraining.model.form.weaponHiratsuka;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -24,17 +25,19 @@ public class WeaponHiratsukaInputForm {
 
 	/** 武器名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 255, message ="Weapon1.text.error.name")
 	private String weaponname;
 
 	/** 武器タイプID */
+	@Min (value=1,message = "Weapon1.text.error.weapontype")
 	private Integer weapontypeId;
 
 	/** 射撃方式ID */
+	@Min (value=1,message = "Weapon1.text.error.shottype")
 	private Integer shottypeId;
 
 	/** コスト */
-	@Size(min = 0, max = 5, message = "Weapon1.text.error.cost")
+	@Size(min = 1, max = 5, message = "Weapon1.text.error.cost")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String costStr;
 
@@ -54,7 +57,7 @@ public class WeaponHiratsukaInputForm {
 	private String legdamageStr;
 
 	/** 連射速度 */
-	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9].[0-9]{0,3})?$", message = "Weapon1.text.error.rate")
+	@Pattern(regexp = "^([+-]?0|[+-]?[0-9]?[0-9]?(\\.[0-9][0-9]?[1-9]?)?)?$", message = "Weapon1.text.error.rate")
 	private String rateStr;
 
 	/** 更新日時（排他制御用） */

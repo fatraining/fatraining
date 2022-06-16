@@ -50,6 +50,10 @@
 							th:selected="${weapontype.id == weaponHiratsukaInputForm.weapontypeId}">pulldown
 						</option>
 					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('weapontypeId')}"
+						th:text="#{${err}(#{Weapon1.text.weapontype})}">
+					</p>
 				</div>
 
 				<!-- 射撃方式入力 -->
@@ -63,6 +67,10 @@
 							th:selected="${shottype.id == weaponHiratsukaInputForm.shottypeId}">pulldown
 						</option>
 					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('shottypeId')}"
+						th:text="#{${err}(#{Weapon1.text.shottype})}">
+					</p>
 				</div>
 
 				<!-- コスト入力 -->
