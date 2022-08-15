@@ -15,7 +15,7 @@ import lombok.Data;
 
 /**
  * Genreテーブルと対応するEntityクラス
- *
+ * testcomment
  * @author future
  */
 @Data
