@@ -1,0 +1,215 @@
+@CHARSET "UTF-8";
+
+body {
+	background-image: url("/legendTanamachi/背景.jpg");
+	background-size: cover;
+	background-position: 0px 65px; background-color : rgba( 255, 255, 255,
+	0.8);
+	background-blend-mode: lighten;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+div.container {
+	max-width: 95%;
+	width: 95%;
+	margin: auto;
+}
+
+div.search-menu {
+	margin-top: 15px;
+}
+
+@media ( min-width : 980px) {
+	div.search-menu {
+		height: 100vh;
+	}
+}
+
+div.search-menu .btn-group {
+	margin-top: 30px;
+}
+
+h1, .h1 {
+	font-size: 36px;
+}
+
+#resultTable {
+	margin-top: 20px;
+}
+
+#resultTable .center {
+	text-align: center;
+}
+
+#resultTable th.per-12 {
+	width: 12%;
+}
+
+#resultTable th.per-7 {
+	width: 7%;
+}
+
+#resultTable th.per-16 {
+	width: 16%;
+}
+
+#resultTable th.per-46 {
+	width: 46%;
+}
+
+.btn-group-justified>.btn, .btn-group-justified>.btn-group {
+	width: 32%;
+}
+
+.customUpload .file-upload {
+	display: none;
+}
+
+.customUpload {
+	margin: 10px 0 20px;
+}
+
+.page-header {
+	margin: 0;
+	padding: 20px;
+	border-bottom: 1px solid #666;
+	border-color: #e5e5e5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #FFF;
+	z-index: 1;
+	height: fit-content;
+	display: flex;
+	justify-content: space-between;
+}
+
+.page-header>h4 {
+	width: fit-content;
+	height: 30px;
+	line-height: 30px;
+	margin: 0;
+}
+
+.page-header>div {
+	display: flex;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	justify-content: space-around;
+}
+
+div.a1>a {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	position: relative;
+	text-align: center;
+}
+
+div.a1>a::before, div.a1>a::after {
+	position: absolute;
+	display: block;
+	box-sizing: border-box;
+	content: "";
+	opacity: 0;
+}
+
+div.a1>a::before {
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 100%;
+	border-top: 1px solid #337ab7;
+	border-bottom: 1px solid #337ab7;
+	transition: all 0.3s;
+}
+
+div.a1>a::after {
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 0;
+	border-left: 1px solid #337ab7;
+	border-right: 1px solid #337ab7;
+	transition: all 0.3s;
+}
+
+div.a1>a:hover::before {
+	left: 0;
+	width: 100%;
+	opacity: 1;
+}
+
+div.a1>a:hover::after {
+	top: 0;
+	height: 100%;
+	opacity: 1;
+}
+
+.sub-header {
+	margin: 81px auto 0px;
+	padding-top: 10px;
+	width: 90%;
+	font-size: 34px;
+	line-height: 40px;
+}
+
+.sub-header p {
+	font-size: 20px;
+	float: right;
+}
+
+.sub-header a {
+	font-size: 15px;
+	margin: 0 20px;
+	float: right;
+}
+
+.panel-half {
+	width: 48%;
+	float: left;
+	margin: 3px 10px;
+}
+
+.panel-clear {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 25% 25%;
+	font-size: 50px;
+	background-color: #000;
+	opacity: 0.4;
+	color: #FFF;
+	text-align: center;
+	z-index: 1000;
+	display: none;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+label.data.center {
+	font-weight: normal;
+}
+
+#slider {
+	width: 700px;
+	height: 400px;
+	margin: 30px auto 80px;
+}
+
+div.slick-list {
+	border: 8px solid #fff;
+}
+
+#slider .slider img {
+	width: 700px;
+	height: 400px;
+	object-fit: cover;
+}

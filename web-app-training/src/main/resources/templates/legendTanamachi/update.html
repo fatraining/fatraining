@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修｜レジェンド更新</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/legendTanamachi.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+			<a th:href="@{/legendTanamachi}" th:text="#{common.text.back}">Back</a>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{legend.text.update}">レジェンド更新</h1>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="legendInputForm"
+				th:action="@{/legendTanamachi/update}"
+				th:object="${legendInputForm}" class="form-horizontal">
+				<input type="hidden" th:field="*{legendId}" />
+				<div class="form-group">
+					<label for="legendName" class="control-label"
+						th:text="#{legend.text.input.legendname.require}">
+						LegendName(*):</label> <input type="text" th:field="*{legendName}"
+						class="form-control" th:placeholder="#{legend.text.legendname}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('legendName')}"
+						th:text="#{${err}(#{legend.text.legendname})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="realName" class="control-label"
+						th:text="#{legend.text.input.realname}">RealName:</label> <input
+						type="text" th:field="*{realName}" class="form-control"
+						th:placeholder="#{legend.text.realname}" />
+				</div>
+				<div class="form-group">
+					<label for="age" class="control-label"
+						th:text="#{legend.text.input.age}">Age:</label> <input type="text"
+						th:field="*{age}" class="form-control"
+						th:placeholder="#{legend.text.age}" />
+				</div>
+
+				<div class="form-group">
+					<label for="from" class="control-label"
+						th:text="#{legend.text.input.from.require}">From:</label> <select
+						name="fromId" id="inputFrom" class="form-control select">
+						<option value=""></option>
+						<option th:each="from : ${fromTanamachiList}"
+							th:value="${from.id}" th:text="${from.from}"
+							th:selected="${from.id == legendInputForm.fromId}">pulldown</option>
+					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('fromId')}"
+						th:text="#{${err}(#{legend.text.from})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="class" class="control-label"
+						th:text="#{legend.text.input.class.require}">Class:</label> <select
+						name="classId" id="inputClass" class="form-control select">
+						<option value=""></option>
+						<option th:each="legendClass : ${classTanamachiList}"
+							th:value="${legendClass.id}"
+							th:text="${legendClass.class_of_legend}"
+							th:selected="${legendClass.id == legendInputForm.classId}">pulldown</option>
+					</select>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('classId')}"
+						th:text="#{${err}(#{legend.text.class})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="ultimateability" class="control-label"
+						th:text="#{legend.text.input.ultimateability}">UltimateAbility:</label>
+					<input type="text" th:field="*{ultimateAbility}"
+						class="form-control"
+						th:placeholder="#{legend.text.ultimateability}" />
+				</div>
+
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#legendInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
