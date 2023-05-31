@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|漫画追加</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/mangaKawada.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small
+					th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{manga.text.insert}">MangaInsert</h1>
+				<a th:href="@{/mangaKawada}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="mangaKawadaInputForm"
+				th:action="@{/mangaKawada/insert}"
+				th:object="${mangaKawadaInputForm}" class="form-horizontal">
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{manga.text.input.title.riquire}"> Title(*):</label> <input
+						type="text" th:field="*{mangaTitle}" class="form-control"
+						th:placeholder="#{manga.text.title}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('mangaTitle')}"
+						th:text="#{${err}(#{manga.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{manga.text.input.genre}"> Genre:</label> <select
+						name="genreId" id="inputGenre" class="form-control select">
+						<option th:each="genre : ${genreKawadaList}"
+							th:value="${genre.id}" th:text="${genre.genre}"
+							th:selected="${genre.id == mangaKawadaInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="anime" class="control-label"
+						th:text="#{manga.text.input.anime}"> Anime:</label> <select
+						name="animeId" id="inputAnime" class="form-control">
+						<option th:each="anime : ${animeKawadaList}"
+							th:value="${anime.id}" th:text="${anime.anime}"
+							th:selected="${anime.id == mangaKawadaInputForm.animeId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="situation" class="control-label"
+						th:text="#{manga.text.input.situation}"> Situation:</label> <select
+						name="situationId" id="inputSituation" class="form-control">
+						<option th:each="situation : ${situationKawadaList}"
+							th:value="${situation.id}" th:text="${situation.situation}"
+							th:selected="${situation.id == mangaKawadaInputForm.situationId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="serializationStart" class="control-label"
+						th:text="#{manga.text.input.serializationStart}">
+
+						SerializationStart(必須):</label> <input type="text"
+						th:field="*{serializationStartStr}" class="form-control"
+						id="inputserializationStart"
+						th:placeholder="#{manga.text.serializationStart}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('serializationStartStr')}"
+						th:text="#{${err}(#{manga.text.serializationStart})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{manga.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{manga.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#mangaKawadaInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
