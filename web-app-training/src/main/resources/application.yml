@@ -12,7 +12,7 @@ spring:
     basename:  i18n/templates, i18n/templates_moviesample,i18n/templates_resipe_ishikawa,i18n/template_drink_yoshimoto,
         i18n/templates_tokyo_takehara,i18n/template_perfume_anzai,i18n/template_penguin_kawamura,i18n/templates_triathlon_mori,i18n/template_dog_kanno
         ,i18n/templates_drama_ige,i18n/templates_player_kuramoto,i18n/template_nbaplayers_takahashi,i18n/templates_vtuber_umehara,i18n/template_anime_watanabe,i18n/template_game_miura,i18n/templates_weapon_hiratsuka
-        ,i18n/templates_legend_tanamachi,i18n/template_apex_hagiwara,i18n/template_monster_shirase
+        ,i18n/templates_legend_tanamachi,i18n/template_apex_hagiwara,i18n/template_monster_shirase,i18n/templates_manga_kawada
     
     
     
