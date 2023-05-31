@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Webアプリ研修|モンスター追加</title>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/monsterShirase.css}" />
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}"></a>
+				<small th:text="#{login.text.version}">ver γ</small>
+			</h4>
+		</div>
+
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{monster.text.insert}"></h1>
+				<a th:href="@{/monsterShirase}" th:text="#{common.text.back}"></a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="monsterShiraseInputForm"
+				th:action="@{/monsterShirase/insert}"
+				th:object="${monsterShiraseInputForm}" class="form-horizontal">
+
+				<!-- モンスター名 -->
+				<div class="form-group">
+					<label for="name" class="control-label" th:text="#{monster.text.input.name}"></label>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('name')}"
+						th:text="#{${err}(#{monster.text.name})}"></p>
+					<input type="text" th:field="*{name}" class="form-control" />
+				</div>
+
+				<!-- モンスター名（英語） -->
+				<div class="form-group">
+					<label for="nameEn" class="control-label" th:text="#{monster.text.input.nameEn}"></label>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('nameEn')}"
+						th:text="#{${err}(#{monster.text.nameEn})}">
+					</p>
+					<input type="text" th:field="*{nameEn}" class="form-control" />
+				</div>
+
+				<!-- 素材名 -->
+				<div class="form-group">
+					<label for="material" class="control-label" th:text="#{monster.text.input.material}"></label>
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('material')}"
+						th:text="#{${err}(#{monster.text.material})}">
+					</p>
+					<input type="text" th:field="*{material}" class="form-control" />
+				</div>
+
+				<!-- ジャンル -->
+				<div class="form-group">
+					<label for="genre" class="control-label" th:text="#{monster.text.input.genre}"></label>
+						<select name="genreId" id="inputGenre" class="form-control select">
+							<option th:each="genre : ${genreShiraseList}"
+								th:value="${genre.id}" th:text="${genre.genre}"
+								th:selected="${genre.id == monsterShiraseInputForm.genreId}">
+							</option>
+						</select>
+				</div>
+
+				<!-- 弱点属性 -->
+				<div class="form-group">
+					<label for="element" class="control-label" th:text="#{monster.text.input.element}"></label>
+						<select name="elementId" id="inputElement" class="form-control select">
+							<option th:each="element : ${elementShiraseList}"
+								th:value="${element.id}" th:text="${element.element}"
+								th:selected="${element.id == monsterShiraseInputForm.elementId}">
+							</option>
+						</select>
+				</div>
+
+				<!-- 初登場作品 -->
+				<div class="form-group">
+					<label for="title" class="control-label" th:text="#{monster.text.input.title}"></label>
+						<select name="titleId" id="inputTitle" class="form-control select">
+							<option th:each="title : ${titleShiraseList}"
+								th:value="${title.id}" th:text="${title.title}"
+								th:selected="${title.id == monsterShiraseInputForm.titleId}">
+							</option>
+						</select>
+				</div>
+
+				<!-- 登録・リセットボタン -->
+				<div class="col-sm-offset-3 col-xs-3 col-sm2">
+					<a class="btn btn-default center-block"
+						th:href="@{/monsterShirase/insert}"
+						th:text="#{common.text.reset}">
+					</a>
+				</div>
+				<div class="col-sm-offset-1 col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#monsterShiraseInputForm').submit()"
+						th:text="#{common.text.insert}">
+					</a>
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Webアプリ研修|モンスター検索</title>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/monsterShirase.css}" />
+</head>
+
+<body>
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+			<small th:text="#{login.text.version}">ver γ</small>
+		</h4>
+	</div>
+
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<h1 align="center" th:text="#{monster.text.search}">モンスター検索</h1>
+	</div>
+
+	<!--新規・削除ボタン  -->
+	<div style="position: relative; left: 30px">
+		<form class="form-horizontal" id="deleteCompForm" method="get"
+			action="/monsterShirase/deletecomp" th:object="${monsterShiraseSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1"/>
+				</div>
+			</div>
+		</form>
+
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning" th:href="@{/monsterShirase/insert}" th:text="#{common.text.new}"></a>
+				<a class="btn btn-danger" onclick="$('#deleteCompForm').submit()" th:text="#{common.text.unnecessary}"></a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(monsterShiraseSearchForm.genreId != null or
+						monsterShiraseSearchForm.titleId != null)
+						and monsterList == null}"
+					th:text="#{common.text.info.search}">
+				</div>
+
+				<!-- DB操作後 -->
+				<div class="alert alert-info text-center" role="alert" th:if="${param.result != null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<form class="form-horizontal" id="searchForm" method="post"
+			action="/monsterShirase/search" th:object="${monsterShiraseSearchForm}">
+
+			<!-- モンスター名検索 -->
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label" th:text="#{monster.text.input.name}"></label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{name}" class="form-control" id="inputName"/>
+				</div>
+			</div>
+
+			<!-- 素材名検索 -->
+			<div class="form-group">
+				<label for="material" class="col-sm-2 control-label" th:text="#{monster.text.input.material}"></label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{material}" class="form-control" id="inputMaterial"/>
+				</div>
+			</div>
+
+			<!-- ジャンル検索 -->
+			<div class="form-group">
+				<label for="genre" class="col-sm-2 control-label" th:text="#{monster.text.input.genre}"></label>
+				<div class="col-sm-8">
+					<select id="inputGenre" name="genreId" class="form-control select">
+						<option th:each="genre : ${genreShiraseList}" th:value="${genre.id}" th:text="${genre.genre}"
+							th:selected="${genre.id == monsterShiraseSearchForm.genreId}">
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 初登場作品検索 -->
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label" th:text="#{monster.text.input.title}"></label>
+				<div class="col-sm-8">
+					<select id="inputTitle" name="titleId" class="form-control select">
+						<option th:each="title : ${titleShiraseList}" th:value="${title.id}" th:text="${title.title}"
+							th:selected="${title.id == monsterShiraseSearchForm.titleId}">
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 検索・リセットボタン -->
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-default center-block"
+						th:href="@{/monsterShirase}" th:text="#{common.text.reset}">
+					</a>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block" onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">
+					</a>
+				</div>
+			</div>
+
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${monsterList != null}">
+			<table id="resultTable"
+				class="table table-borderd table-striped">
+				<thead>
+					<tr>
+						<th class="per-29 center" th:text="#{monster.text.name}">モンスター名</th>
+						<th class="per-29 center" th:text="#{monster.text.nameEn}">モンスター名（英語）</th>
+						<th class="per-20 center" th:text="#{monster.text.material}">素材名</th>
+						<th class="per-20 center" th:text="#{monster.text.genre}">ジャンル</th>
+						<th class="per-12 center" th:text="#{monster.text.element}">弱点属性</th>
+						<th class="per-20 center" th:text="#{monster.text.title}">初登場作品</th>
+						<th class="per-7 center" th:text="#{common.text.update}">更新</th>
+						<th class="per-7 center" th:text="#{common.text.delete}">削除</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="monster : ${monsterList}">
+						<td class="data center" th:text="${monster.name}">
+						</td>
+						<td class="data center">
+							<label th:if="${monster.nameEn != null}" th:text="${monster.nameEn}" class="data center"></label>
+						</td>
+						<td class="data center">
+							<label th:if="${monster.material != null}" th:text="${monster.material}" class="data center"></label>
+						</td>
+						<td class="data center">
+							<label th:if="${monster.genreShirase != null}" th:text="${monster.genreShirase.genre}" class="data center"></label>
+						</td>
+						<td class="data center">
+							<label th:if="${monster.elementShirase != null}"
+								th:text="${monster.elementShirase.element}" class="data center">
+							</label>
+						</td>
+						<td class="data center">
+							<label th:if="${monster.titleShirase != null}"
+								th:text="${monster.titleShirase.title}" class="data center">
+							</label>
+						</td>
+						<td class="data center">
+							<a class="btn btn-success" th:href="@{/monsterShirase/update(id=${monster.id})}"
+								th:text="#{common.text.update}">
+							</a>
+						</td>
+						<td class="data center">
+							<a class="btn btn-danger"
+								style="margin-left: 5%" data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${monster.id},data-name=${monster.name}">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<div th:if="${page != null}">
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←先頭</span>
+						<a  th:if="${not page.first}"
+							onclick="$('#pageForm0').submit()"
+							th:text="#{common.text.paging.lead}">←先頭
+						</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
+						th:class="(${i}==${page.number})? 'active' : ''"
+						style="display: inline">
+						<form th:id="'pageForm'+${i}" method="post"
+							th:action="@{${url}(page=${i})}"
+							th:object="${monsterShiraseSearchForm}" style="display: inline">
+							<input type="hidden" th:field="*{name}"/>
+							<input type="hidden" th:field="*{genreId}"/>
+							<input type="hidden" th:field="*{material}"/>
+							<input type="hidden" th:field="*{titleId}"/>
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'>1</span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display: inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">末尾→</span>
+						<a  th:if="${not page.last}"
+							th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+							th:text="#{common.text.paging.end}">末尾→
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id"/>
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel" th:text="#{monster.text.delete}"></h4>
+					</div>
+
+					<div class="modal-boby">
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<p class="lead">
+									<span id="deleteName"></span>
+								</p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger text-center" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{menu.text.monster})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<a class="btn btn-default" th:text="#{common.text.cansel}" data-dismiss="modal">キャンセル</a>
+						<a class="btn btn-danger"
+							onclick="$('#deleteForm').submit()" th:text="#{common.text.delete}">削除
+						</a>
+					</div>
+
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal', function(event) {
+			var botton = $(event.relatedTarget);
+			var id = botton.data('id');
+			var name = botton.data('name');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value", id);
+			modal.find('#deleteName').text(name);
+		});
+	</script>
+</body>
+</html>
