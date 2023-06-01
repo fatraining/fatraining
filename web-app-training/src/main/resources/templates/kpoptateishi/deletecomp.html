@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修 | 楽曲完全削除</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/kpopTateishi.css}" />
+<body>
+	<section id="body">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
+		</h4>
+	<!-- 楽曲サイトのアイコンとリンク先  target="_blank"で新しいタブで開くようにしている-->
+		<h5>
+		楽曲サイト　
+		<a href="https://www.youtube.com/" target="_blank"><img class="image" th:src="@{/kpopImageTateishi/YouTube.png}" width="35"></img> Youtube</a>　
+		<a href="https://www.spotify.com/jp/premium/" target="_blank"><img class="image" th:src="@{/kpopImageTateishi/Spotify.png}" width="35"></img> Spotify</a>　
+		<a href="https://www.apple.com/jp/apple-music/" target="_blank"><img class="image" th:src="@{/kpopImageTateishi/AppleMusic.jpg}" width="30"></img> Apple Music</a>　
+		<a href="https://music.line.me/about/" target="_blank"><img class="image" th:src="@{/kpopImageTateishi/LINEMUSIC.png}" width="30"></img> LINE MUSIC</a>
+		</h5>
+		</div>
+
+		<div class="sub-header">
+			<h1 align="center" th:text="#{music.text.delete}">MusicDelete</h1>
+			<a th:href="@{/kpoptateishi}" th:text="#{common.text.back}">Back</a>
+		</div>
+
+		<!-- 削除対象データ -->
+		<form class="form-horizontal" id="deleteForm" action="/kpoptateishi/deletecomp"
+			th:object="${kpopTateishiDeleteForm}" method="post">
+
+			<!-- kpopMainListが空でない場合 -->
+			<div th:if="${kpopMainList != null}">
+				<h3 th:text="#{common.text.info.delete.confirm}">
+				選択したデータを完全に削除します
+				</h3>
+				<h4 th:each="err : ${#fields.errors('deleteIds')}" th:text="#{${err}}"
+					class="err alert-danger">
+					error message
+					</h4>
+			</div>
+
+			<!-- kpopMainListが空の場合 -->
+			<div th:if="${kpopMainList == null}">
+				<h3 th:text="#{common.text.info.no.delete}">
+				削除するデータがありません
+				</h3>
+			</div>
+			<div th:if="${kpopMainList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+				<table id="resultTable" class="table table-borderd table-striped table-hover">
+					<thead>
+						<tr>
+							<th>
+							<input type="checkbox" id="allCheck"/>
+							</th>
+							<th class="per-19 center" th:text="#{music.text.title}">
+								Title
+							</th>
+							<th class="per-12 center" th:text="#{music.text.idol}">
+								Idol
+							</th>
+							<th class="per-17 center" th:text="#{music.text.office}">
+								Office
+							</th>
+							<th class="per-16 center" th:text="#{music.text.year.and.time}">
+								ReleasYear/MusicTime
+							</th>
+							<th class="per-40 center" th:text="#{music.text.mvUrl}">
+								MvUrl
+							</th>
+
+							<!-- 復元機能用 -->
+							<th class="per-7 center" th:text="#{common.text.restore}">
+								Restore
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="music : ${kpopMainList}">
+							<td>
+								<label>
+									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"
+										th:value="${music.id}"/>
+								</label>
+							</td>
+							<td class="data center" th:text="${music.musicTitle}">TT</td>
+							<td class="data center">
+								<label th:if="${music.idol != null}" th:text="${music.idol.idol}" class="data center">TWICE</label>
+							</td>
+							<td class="data center">
+								<label th:if="${music.office != null}" th:text="${music.office.office}" class="data center">JYP</label>
+							</td>
+							<td class="data center">
+								<label th:if="${music.musicTime != null}" th:text="${music.releaseYear}+'年/'+${music.musicTime}+'秒'" class="data center">2016年/254秒</label>
+								<label th:if="${music.musicTime == null}" th:text="${music.releaseYear}+'年'" class="data center">2016年/254秒</label>
+							</td>
+							<td class="data center" th:text="${music.mvUrl}">TT</td>
+
+							<!-- 削除復元機能用ボタン -->
+							<td class="data center">
+								<a class="btn btn-anime btn-color-yellow"
+									style="margin-left: 5%" data-toggle="modal"
+									data-target="#restoreModal" th:text="#{common.text.restore}"
+									th:attr="data-id=${music.id}, data-title=${music.musicTitle}">
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<a class="btn btn-anime btn-color-red btn-wide2" data-toggle="modal" data-target="#deleteAlertModal"
+						th:text="#{common.text.delete}" >
+						Delete
+					</a>
+				</div>
+			</div>
+		</form>
+
+						<!-- 削除確認用モーダル -->
+						<div class="modal fade" id="deleteAlertModal" tabindex="-1" role="dialog"
+			aria-labelledby="deleteAlertModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form class="form-horizontal" id="deleteForm" th:method="post" th:action="@{deletecomp}">
+					<div class="modal-content">
+						<input type="hidden" id="deleteId" name="id" />
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="deleteAlertModalLabel" th:text="#{music.text.deletecomp}">
+								KpopDeletecomp
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="alert alert-danger" role="alert">
+										<span class="glyphicon glyphicon-exclamation-sing" aria-hidden="true"></span>
+										<span th:text="#{music.text.deleteWarning}"></span>
+					                </div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"
+								th:text="#{common.text.cansel}">
+								Cansel
+							</button>
+							<a class="btn btn-danger" onclick="$('#deleteForm').submit()" th:text="#{common.text.delete}">
+								Delete
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- 削除確認モーダル用 終了 -->
+
+		<!-- 削除復元機能モーダル -->
+		<div class="modal fade" id="restoreModal" tabindex="-1" role="dialog"
+			aria-labelledby="restoreModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form class="form-horizontal" id="restoreForm" th:method="get" th:action="@{restore}">
+					<div class="modal-content">
+						<input type="hidden" id="restoreId" name="id" />
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="restoreModalLabel" th:text="#{music.text.restoreTitle}">
+								RestoreTitle
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<p class="lead">
+										<span id="restoreTitle">
+											KpopTitle
+										</span>
+									</p>
+								</div>
+							</div>
+								<div class="row">
+								<div class="col-sm-12">
+									<div class="alert alert-danger" role="alert">
+										<span class="glyphicon glyphicon-exclamation-sing" aria-hidden="true">
+										</span>
+										<span th:text="#{music.text.restoreMessage}">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<a class="btn btn-default"
+								th:text="#{common.text.cansel}"
+								data-dismiss="modal">
+								Cancel
+							</a>
+							<a class="btn btn-danger"
+								th:text="#{common.text.restore}" onclick="$('#restoreForm').submit()">
+								Restore
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- 削除復元モーダル終了 -->
+	</section>
+
+	<!-- javascript読み込み -->
+	<script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+	<script>
+		$('#allCheck').on('change', function(){
+			$('input[name=deleteIds]').prop('checked', this.checked);
+		});
+		$(function(){
+			$('#body').hide().fadeIn('slow');
+		});
+	</script>
+
+	<!-- 削除確認モーダル用スクリプト -->
+	<script>
+		$('#deleteAlertModal').on('show.bs.modal',function(event){
+			var button = $(event.relatedTarget);
+			var musicId = button.data('id');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value",id);
+		});
+	</script>
+
+	<!-- 削除復元モーダル用スクリプト -->
+	<script>
+		$('#restoreModal').on('show.bs.modal',function (event){
+			var button = $(event.relatedTarget);
+			var musicId = button.data('id');
+			var musicTitle = button.data('title');
+			var modal = $(this);
+			modal.find('#restoreId').attr("value",musicId);
+			modal.find('#restoreTitle').text(musicTitle);
+		});
+	</script>
+</body>
+</html>
