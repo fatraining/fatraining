@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|楽曲更新</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/gameMiura.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a> <small
+					th:text="#{login.text.version}">ver γ</small>
+			</h4>
+		</div>
+		<div
+			class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{music.text.update}">楽曲更新</h1>
+				<a th:href="@{/musicKaji}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="musicKajiInputForm"
+				th:action="@{/musicKaji/update}" th:object="${musicKajiInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<label for="name" class="control-label"
+						th:text="#{music.text.input.title.require}"> Title(*)</label> <input
+						type="text" th:field="*{musicTitle}" class="form-control"
+						th:placeholder="#{music.text.title}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('musicTitle')}"
+						th:text="#{${err}(#{music.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="unit" class="control-label"
+						th:text="#{music.text.input.unit}">Unit:</label> <select
+						name="unitId" id="inputUnit" class="form-control select">
+						<option th:each="unit : ${unitKajiList}" th:value="${unit.id}"
+							th:text="${unit.unit}"
+							th:selected="${unit.id == musicKajiInputForm.unitId}">pulldpwn</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="composer" class="control-label"
+						th:text="#{music.text.input.composer}">Composer:</label> <select
+						name="composerId" id="inputComposer" class="form-control select">
+						<option th:each="composer : ${composerKajiList}"
+							th:value="${composer.id}" th:text="${composer.name}"
+							th:selected="${composer.id == musicKajiInputForm.composerId}">pulldpwn</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{music.text.input.releaseyear}">ReleaseYear(*):</label>
+					<input type="text" th:field="*{releaseYearStr}"
+						class="form-control" id="inputReleaseYear"
+						th:placeholder="#{music.text.releaseyear}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('releaseYearStr')}"
+						th:text="#{${err}(#{music.text.releaseyear})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="musicTime" class="control-label"
+						th:text="#{music.text.input.musictime}"> RunTime:</label> <input
+						type="text" th:field="*{musicTimeStr}" class="form-control"
+						id="inputMusicTime" th:placeholder="#{music.text.musictime}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('musicTimeStr')}"
+						th:text="#{${err}(#{music.text.musictime})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{game.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{game.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#musicKajiInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
