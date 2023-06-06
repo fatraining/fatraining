@@ -121,7 +121,7 @@ public class MangaKawadaController {
 	}
 
 	/**
-	 * MovieMainテーブルにデータを登録して検索画面に遷移する
+	 * MangaMainKawadaテーブルにデータを登録して検索画面に遷移する
 	 *
 	 * @param MangaKawadaInputForm form
 	 * @param BindingResult bindingResult

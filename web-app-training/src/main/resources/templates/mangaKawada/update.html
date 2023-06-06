@@ -82,6 +82,9 @@
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{manga.text.comment}"></textarea>
+						<p class="err alert-danger"
+						th:each="err : ${#fields.errors('comment')}"
+						th:text="#{${err}(#{manga.text.comment})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"

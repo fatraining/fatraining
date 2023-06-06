@@ -23,9 +23,10 @@ public class MangaKawadaInputForm {
 	/** ID */
 	private int id;
 
+	//@Size message修正
 	/** 漫画タイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256, message = "magazine.text.error.invalid.name")
 	private String mangaTitle;
 
 	/** ジャンルID */
@@ -43,8 +44,9 @@ public class MangaKawadaInputForm {
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String serializationStartStr;
 
+	//@Size message修正
 	/** コメント */
-	@Size(max = 256)
+	@Size(max = 256,message = "magazine.text.error.invalid.name")
 	private String comment;
 
 	/** 更新日時（排他制御用） */
