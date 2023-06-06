@@ -26,7 +26,7 @@ public class ApexInputForm {
 
 	/** 武器名 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 255,message = "magazine.text.error.invalid.name")
 	private String name;
 
 	/** 武器種ID */
@@ -44,6 +44,7 @@ public class ApexInputForm {
 	/** DPS */
 	@NotBlank(message = "common.text.error.require")
 	@Size(min = 0, max = 5, message = "common.text.error.size.max.five")
+	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String dpsStr;
 
 	/** 更新日時(排他制御用) */
