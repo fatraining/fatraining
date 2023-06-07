@@ -29,7 +29,6 @@ public class MonsterShiraseInputForm {
 	private String name;
 
 	/** モンスター名（英語）*/
-//	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256, message = "monster.text.error.invalid.name")
 	private String nameEn;
 
@@ -102,35 +101,31 @@ public class MonsterShiraseInputForm {
 		monsterMainShirase.setNameEn(this.nameEn);
 		monsterMainShirase.setMaterial(this.material);
 
+		// モンスター名（英語）が入力されていなかった場合
 		if (this.nameEn.isEmpty()) {
-			// ジャンルが入力されていなかった場合
 			monsterMainShirase.setGenreId(null);
 		} else {
-			// ジャンルが入力されていた場合
 			monsterMainShirase.setGenreId(this.genreId);
 		}
 
+		// ジャンルが入力されていなかった場合
 		if (this.genreId == CommonConst.NOT_ENTERD) {
-			// ジャンルが入力されていなかった場合
 			monsterMainShirase.setGenreId(null);
 		} else {
-			// ジャンルが入力されていた場合
 			monsterMainShirase.setGenreId(this.genreId);
 		}
 
+		// 弱点属性が入力されていなかった場合
 		if (this.elementId == CommonConst.NOT_ENTERD) {
-			// 弱点属性が入力されていなかった場合
 			monsterMainShirase.setElementId(null);
 		} else {
-			// 弱点属性が入力されていた場合
 			monsterMainShirase.setElementId(this.elementId);
 		}
 
+		// 初登場作品が入力されていなかった場合
 		if (this.titleId == CommonConst.NOT_ENTERD) {
-			// 初登場作品が入力されていなかった場合
 			monsterMainShirase.setTitleId(null);
 		} else {
-			// 初登場作品が入力されていた場合
 			monsterMainShirase.setTitleId(this.titleId);
 		}
 		monsterMainShirase.setDelFlg(0);

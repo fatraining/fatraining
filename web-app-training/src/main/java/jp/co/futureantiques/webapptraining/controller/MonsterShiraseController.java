@@ -99,11 +99,11 @@ public class MonsterShiraseController {
 	public String searchMonster(final MonsterShiraseSearchForm monsterShiraseSearchForm, final Model model,
 			final @PageableDefault(page = 0, value = 10) Pageable pageable) {
 
-		/** 入力された検索条件を元にレコードを取得する */
+		// 入力された検索条件を元にレコードを取得する
 		final Page<MonsterMainShirase> monsterList = monsterShiraseService.getPageMonsterShirase(monsterShiraseSearchForm, pageable);
 		if (monsterList.getTotalElements() != 0) {
 
-			/** 検索結果がある場合、Modelに結果をセットする */
+			// 検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", monsterList);
 			model.addAttribute("monsterList", monsterList.getContent());
 			model.addAttribute("url", "search");
@@ -133,8 +133,8 @@ public class MonsterShiraseController {
 	public String insertMonster(@ModelAttribute @Validated
 			final MonsterShiraseInputForm monsterShiraseInputForm, final BindingResult bindingResult) {
 
+		// 入力エラーがある場合自画面に戻る
 		if (bindingResult.hasFieldErrors()) {
-			// 入力エラーがある場合自画面に戻る
 			return "monsterShirase/insert";
 		}
 
@@ -154,10 +154,10 @@ public class MonsterShiraseController {
 	public String showUpdateMonster(@RequestParam(name = "id") final long id,
 			@ModelAttribute final MonsterShiraseInputForm monsterShiraseInputForm) {
 
-		//IDをキーにMonsterMainテーブルを検索
+		// IDをキーにMonsterMainテーブルを検索
 		MonsterMainShirase monsterMainShirase = monsterShiraseService.getMonster(id);
 
-		//フォームにレコードの値をセットする
+		// フォームにレコードの値をセットする
 		monsterShiraseInputForm.initWithMonsterMainShirase(monsterMainShirase);
 		return "monsterShirase/update";
 	}
@@ -173,19 +173,18 @@ public class MonsterShiraseController {
 	public String updateMonsterShirase(@Validated
 			final MonsterShiraseInputForm monsterShiraseInputForm, final BindingResult bindingResult) {
 
+		// 入力エラーがある場合自画面に遷移
 		if (bindingResult.hasErrors()) {
-			//入力エラーがある場合自画面に遷移
 			return "monsterShirase/update";
 		}
 
-		//データを更新する
+		// データを更新する
 		MonsterMainShirase monsterMainShirase = monsterShiraseService.updateMonster(monsterShiraseInputForm);
 
+		// 更新失敗の場合、検索画面にてメッセージ表示
 		if (monsterMainShirase == null) {
-			//	更新失敗の場合、検索画面にてメッセージ表示
 			return "redirect:/monsterShirase?result=updatefailed";
 		}
-
 		return "redirect:/monsterShirase?result=update&id=" + monsterMainShirase.getId();
 	}
 
@@ -198,7 +197,7 @@ public class MonsterShiraseController {
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteMonster(@RequestParam(name = "id") final long id) {
 
-		//IDをキーにレコードを論理削除する
+		// IDをキーにレコードを論理削除する
 		monsterShiraseService.deleteMonsterById(id);
 		return "redirect:/monsterShirase?result=delete&id=" + id;
 	}
@@ -215,10 +214,10 @@ public class MonsterShiraseController {
 	public String showDeleteCompMonster(final MonsterShiraseSearchForm monsterShiraseSearchForm,
 			@ModelAttribute final MonsterShiraseDeleteForm monsterShiraseDeleteForm, final Model model) {
 
-		//MonsterMainShiraseテーブルから削除フラグが1のレコードを検索する
+		// MonsterMainShiraseテーブルから削除フラグが1のレコードを検索する
 		final List<MonsterMainShirase> monsterList = monsterShiraseService.getListMonsterShirase(monsterShiraseSearchForm);
 
-		//Modelに検索結果を格納
+		// Modelに検索結果を格納
 		model.addAttribute(monsterList);
 		return "monsterShirase/deletecomp";
 	}
@@ -235,22 +234,20 @@ public class MonsterShiraseController {
 	public String deleteCompMonster(@Validated final MonsterShiraseDeleteForm monsterShiraseDeleteForm,
 			final BindingResult bindingResult, final Model model) {
 
+		// 入力値エラーの場合、再検索して自画面に戻る
 		if (bindingResult.hasErrors()) {
-			//入力値エラーの場合、再検索して自画面に戻る
 			MonsterShiraseSearchForm monsterShiraseSearchForm = new MonsterShiraseSearchForm();
 			monsterShiraseSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-
 			final List<MonsterMainShirase> monsterList = monsterShiraseService.getListMonsterShirase(monsterShiraseSearchForm);
 
-			//Modelに検索結果を格納
+			// Modelに検索結果を格納
 			model.addAttribute(monsterList);
 			return "monsterShirase/deletecomp";
 		}
 
-		//データを物理削除する
+		// データを物理削除する
 		monsterShiraseService.deleteMonsterComp(monsterShiraseDeleteForm.getDeleteIds());
 		return "redirect:/monsterShirase?result=deletecomp";
 	}
-
 
 }

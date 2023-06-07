@@ -138,7 +138,7 @@ public class MonsterShiraseServiceImpl implements MonsterShiraseService {
 		MonsterMainShirase monsterMainShirase = monsterMainShiraseRepository.findOne(id);
 		if (monsterMainShirase != null) {
 
-			//更新対象のレコードが存在する場所、削除フラグを1にする。
+			//更新対象のレコードが存在する場合、削除フラグを1にする。
 			monsterMainShiraseRepository.delete(id);
 		}
 	}
