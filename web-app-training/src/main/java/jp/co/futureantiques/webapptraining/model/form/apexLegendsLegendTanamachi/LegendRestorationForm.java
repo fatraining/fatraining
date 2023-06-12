@@ -12,10 +12,9 @@ import lombok.Data;
  * @author future
  */
 @Data
-public class LegendDeleteForm {
+public class LegendRestorationForm {
 
 	/** 削除ID */
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
-
 }

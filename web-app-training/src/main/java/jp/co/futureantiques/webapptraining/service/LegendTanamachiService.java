@@ -80,10 +80,19 @@ public interface LegendTanamachiService {
 	void deleteLegendById(final long legendId);
 
 	/**
+	 * LegendMainTanamachiのレコードの削除フラグを0にする
+	 *
+	 * @param ArrayList<Long> ids
+	 * @return
+	 */
+	List<Long> restoreLegend(ArrayList<Long> ids);
+
+	/**
 	 * LegendMainTanamachiのレコードを物理削除する
 	 *
 	 * @param ArrayList<Long> ids
+	 * @return
 	 */
-	void deleteLegendComp(ArrayList<Long> ids);
+	boolean deleteLegendComp(ArrayList<Long> ids);
 
 }

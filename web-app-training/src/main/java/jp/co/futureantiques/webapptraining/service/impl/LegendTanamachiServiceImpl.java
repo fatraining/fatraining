@@ -126,10 +126,58 @@ public class LegendTanamachiServiceImpl implements LegendTanamachiService {
 	}
 
 	@Override
-	public void deleteLegendComp(ArrayList<Long> ids) {
+	public List<Long> restoreLegend(ArrayList<Long> ids) {
+		//復元失敗レコードのidを格納するリスト
+		List<Long> failedIds = new ArrayList<>();
 
-		// 対象のレコードを削除する
-		legendMainTanamachiRepository.deleteComp(ids);
+		//idをもとにレコードを取得する
+		List<LegendMainTanamachi> legendMainTanamachis = legendMainTanamachiRepository.findAll(ids);
+
+		//レコードの削除フラグが１のとき復元
+		for (LegendMainTanamachi legendMainTanamachi : legendMainTanamachis) {
+			if (legendMainTanamachi.getDelFlg() == 1) {
+
+				// 対象の論理削除済みレコードを復元する
+				legendMainTanamachiRepository.restore(ids);
+			} else {
+
+				//復元不可のレコードのIDを返す
+				failedIds.add(legendMainTanamachi.getId());
+			}
+		}
+
+		//復元に失敗したレコードのidリストを返す
+		return failedIds;
+
+	}
+
+	@Override
+	public boolean deleteLegendComp(ArrayList<Long> ids) {
+		//物理削除成功・失敗の指標
+		boolean found = false;
+
+		//取り出したレコードのidを格納する用のリスト
+		ArrayList<Long> hitIds = new ArrayList<>();
+
+		//削除対象のレコードを取得する
+		List<LegendMainTanamachi> legendMainTanamachis = legendMainTanamachiRepository.findAll(ids);
+
+		//削除対象のレコードが存在するとき
+		if (!legendMainTanamachis.isEmpty()) {
+
+			//レコードを一つずつ取り出し、idをhitIdsに格納
+			for (LegendMainTanamachi legendMainTanamachi : legendMainTanamachis) {
+
+				hitIds.add(legendMainTanamachi.getId());
+			}
+
+			//取得できたレコードを削除
+			legendMainTanamachiRepository.deleteComp(hitIds);
+
+			found = true;
+		}
+
+		return found;
 	}
 
 }

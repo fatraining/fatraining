@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 import jp.co.futureantiques.webapptraining.model.apexLegendsLegendTanamachi.LegendMainTanamachi;
 import lombok.Data;
@@ -28,9 +29,11 @@ public class LegendInputForm {
 	private String legendName;
 
 	/** 本名 */
+	@Size(max = 256, message = "legend.text.error.invalid.name")
 	private String realName;
 
 	/** 年齢 */
+	@Range(min = 0, max = 999, message = "legend.text.error.invalid.number")
 	private Integer age;
 
 	/** 出身地ID */

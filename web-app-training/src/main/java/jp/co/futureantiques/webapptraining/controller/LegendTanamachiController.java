@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.futureantiques.webapptraining.constant.CommonConst;
 import jp.co.futureantiques.webapptraining.model.apexLegendsLegendTanamachi.ClassTanamachi;
@@ -20,6 +21,7 @@ import jp.co.futureantiques.webapptraining.model.apexLegendsLegendTanamachi.From
 import jp.co.futureantiques.webapptraining.model.apexLegendsLegendTanamachi.LegendMainTanamachi;
 import jp.co.futureantiques.webapptraining.model.form.apexLegendsLegendTanamachi.LegendDeleteForm;
 import jp.co.futureantiques.webapptraining.model.form.apexLegendsLegendTanamachi.LegendInputForm;
+import jp.co.futureantiques.webapptraining.model.form.apexLegendsLegendTanamachi.LegendRestorationForm;
 import jp.co.futureantiques.webapptraining.model.form.apexLegendsLegendTanamachi.LegendSearchForm;
 import jp.co.futureantiques.webapptraining.service.LegendTanamachiService;
 
@@ -194,7 +196,68 @@ public class LegendTanamachiController {
 		return "redirect:/legendTanamachi?result=delete&legendId=" + id;
 	}
 
-	/** 完全削除画面に遷移する
+	/**
+	 * 復元画面に遷移する
+	 *
+	 * @param LegendSearchForm legendSearchForm
+	 * @param LegendRestorationForm legendRestrationForm
+	 * @param Model model
+	 * @return 復元画面のパス
+	 */
+	@RequestMapping(value = "restoration", method = RequestMethod.GET)
+	public String showRestorationLegend(final LegendSearchForm form,
+			@ModelAttribute final LegendRestorationForm legendRestorationForm, final Model model) {
+
+		//LegendMainTanamachiテーブルから削除フラグが１のレコードを検索する
+		final List<LegendMainTanamachi> legendList = legendTanamachiService.getListLegend(form);
+
+		//Modelに検索結果を格納する
+		model.addAttribute(legendList);
+		return "legendTanamachi/restoration";
+	}
+
+	/**
+	 *LegendMainTanamachiテーブルのレコードの削除フラグを0に更新して検索画面に遷移する
+	 *
+	 *@param LegendRestorationForm legendRestorationForm
+	 *@param BindingResult bindingResult
+	 *@param Model model
+	 *@param RedirectAttributes redirectAttributes
+	 *@return 入力エラーがある場合復元画面、ない場合検索画面のパス
+	 */
+	@RequestMapping(value = "restoration", method = RequestMethod.POST)
+	public String restorationLegend(@Validated LegendRestorationForm form, final BindingResult bindingResult,
+			final Model model, final RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasFieldErrors()) {
+
+			// 入力エラーがある場合、再検索して自画面に戻る
+			LegendSearchForm legendSearchForm = new LegendSearchForm();
+			legendSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
+			final List<LegendMainTanamachi> legendList = legendTanamachiService.getListLegend(legendSearchForm);
+
+			// Modelに検索結果を格納する
+			model.addAttribute(legendList);
+			return "legendTanamachi/restoration";
+		}
+
+		// IDをキーにレコードの削除フラグを0に更新する
+		List<Long> failedIds = legendTanamachiService.restoreLegend(form.getDeleteIds());
+
+		//復元成功時、失敗時
+		if (failedIds.isEmpty()) {
+
+			//検索画面に遷移し、復元完了メッセージ
+			return "redirect:/legendTanamachi?result=restoration";
+		} else {
+
+			//フラッシュスコープにidリストを格納し、検索画面に遷移しリダイレクト
+			redirectAttributes.addFlashAttribute("failedIds", failedIds);
+			return "redirect:/legendTanamachi?result=restorationfailed";
+		}
+	}
+
+	/**
+	 * 完全削除画面に遷移する
 	 *
 	 *  @param LegendSearchForm legendSearchForm
 	 *  @param LegendDeleteForm legendDeleteForm
@@ -210,13 +273,14 @@ public class LegendTanamachiController {
 
 		//Modelに検索結果を格納する
 		model.addAttribute(legendList);
+
 		return "legendTanamachi/deletecomp";
 	}
 
 	/**
-	 * MovieMainテーブルのデータを完全削除して検索画面に遷移する
+	 * LegendMainTanamachiテーブルのデータを完全削除して検索画面に遷移する
 	 *
-	 * @param MovieSampleDeleteForm form
+	 * @param LegendDeleteForm form
 	 * @param BindingResult bindingResult
 	 * @param Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
@@ -237,7 +301,18 @@ public class LegendTanamachiController {
 		}
 
 		// データを完全削除する
-		legendTanamachiService.deleteLegendComp(form.getDeleteIds());
-		return "redirect:/legendTanamachi?result=deletecomp";
+		boolean found = legendTanamachiService.deleteLegendComp(form.getDeleteIds());
+
+		//物理削除成功or失敗
+		if (found) {
+
+			//物理削除成功時
+			return "redirect:/legendTanamachi?result=deletecomp";
+		} else {
+
+			//物理削除失敗時
+			return "redirect:/legendTanamachi?result=deletecompfailed";
+		}
+
 	}
 }

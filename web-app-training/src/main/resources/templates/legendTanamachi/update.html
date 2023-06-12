@@ -49,12 +49,18 @@
 						th:text="#{legend.text.input.realname}">RealName:</label> <input
 						type="text" th:field="*{realName}" class="form-control"
 						th:placeholder="#{legend.text.realname}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('realName')}"
+						th:text="#{${err}(#{legend.text.realname})}"></p>
 				</div>
 				<div class="form-group">
 					<label for="age" class="control-label"
 						th:text="#{legend.text.input.age}">Age:</label> <input type="text"
 						th:field="*{age}" class="form-control"
 						th:placeholder="#{legend.text.age}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('age')}"
+						th:text="#{${err}(#{legend.text.age})}"></p>
 				</div>
 
 				<div class="form-group">
@@ -92,6 +98,9 @@
 					<input type="text" th:field="*{ultimateAbility}"
 						class="form-control"
 						th:placeholder="#{legend.text.ultimateability}" />
+					<p class="err alert-danger"
+						th:each="err : ${#fields.errors('ultimateAbility')}"
+						th:text="#{${err}(#{legend.text.ultimateability})}"></p>
 				</div>
 
 				<div class="col-xs-3 col-sm-2">

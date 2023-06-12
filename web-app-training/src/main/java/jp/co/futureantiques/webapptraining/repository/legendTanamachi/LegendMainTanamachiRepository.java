@@ -30,6 +30,16 @@ public interface LegendMainTanamachiRepository
 	void delete(@Param("id") final long id);
 
 	/**
+	 * 対象レコードの削除フラグを0にする
+	 *
+	 * @param ArrayList<Long> ids
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE LegendMainTanamachi SET delFlg = 0 WHERE id IN(:ids)")
+	void restore(@Param("ids") final ArrayList<Long> ids);
+
+	/**
 	 * 対象のレコードを削除する
 	 *
 	 * @param ArrayList<Long> ids

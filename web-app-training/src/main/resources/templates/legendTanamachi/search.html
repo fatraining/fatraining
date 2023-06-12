@@ -51,7 +51,7 @@
 		</ul>
 	</div>
 
-	<!-- 新規・削除ボタン -->
+	<!-- 新規・削除・復元ボタン -->
 	<div style="position: relative; left: 30px">
 		<form class="form-horizontal" id="deleteCompForm" method="get"
 			action="/legendTanamachi/deletecomp" th:object="${legendSearchForm}">
@@ -61,11 +61,21 @@
 				</div>
 			</div>
 		</form>
+		<form class="form-horizontal" id="restorationForm" method="get"
+			action="/legendTanamachi/restoration" th:object="${legendSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1" />
+				</div>
+			</div>
+		</form>
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/legendTanamachi/insert}"
-					th:text="#{common.text.new}">New </a> <a class="btn btn-danger"
-					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.new}">New </a> <a class="btn btn-success"
+					onclick="$('#restorationForm').submit()"
+					th:text="#{legend.text.restoration}">Restoration </a> <a
+					class="btn btn-danger" onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">Unnecessary </a>
 			</div>
 		</div>
@@ -79,9 +89,9 @@
 				<!-- 検索結果なし -->
 				<div class="alert alert-info text-center" role="alert"
 					th:if="${(legendSearchForm.legendName != null or
-				legendSearchForm.fromId != null or
-				legendSearchForm.classId != null) and
-				legendList == null}"
+        legendSearchForm.fromId != null or
+        legendSearchForm.classId != null) and
+        legendList == null}"
 					th:text="#{common.text.info.search}">No Result</div>
 
 				<!-- DB操作後 -->
@@ -97,14 +107,29 @@
 						<p th:case="delete"
 							th:text="#{common.text.info.delete} + ':ID=' + ${param.legendId[0]}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						<p th:case="deletecompfailed"
+							th:text="#{legend.text.info.deletecomp.failed}"></p>
+						<p th:case="restoration" th:text="#{legend.text.info.restoration}"></p>
+						<th:block th:case="restorationfailed">
+							<th:block th:each="id, iterStat :  ${failedIds}">
+								<th:block th:if="${iterStat.first}">
+									<p th:text="#{legend.text.info.restoration.failed}"></p>
+									<span th:text="':ID='"></span>
+								</th:block>
+								<span th:text="${id}"></span>
+								<span th:unless="${iterStat.last}">、 </span>
+							</th:block>
+						</th:block>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- 検索条件 -->
-		<form class="form-horizontal" id="searchForm" method="post"
-			action="/legendTanamachi/search" th:object="${legendSearchForm}">
+		<form class="
+              form-horizontal" id="searchForm"
+			method="post" action="/legendTanamachi/search"
+			th:object="${legendSearchForm}">
 			<div class="form-group">
 				<label for="legendName" class="col-sm-2 control-label"
 					th:text="#{legend.text.input.legendname}">LegendName:</label>
@@ -143,8 +168,9 @@
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
 					<a class="btn btn-primary center-block"
-						onclick="$('#searchForm').submit()"
-						th:text="#{common.text.search}">Search</a>
+						onclick="$('
+                #searchForm').submit()"
+						th:text="#{common.text.search}"> Search</a>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-warning center-block"
@@ -171,15 +197,18 @@
 				</thead>
 				<tbody>
 					<tr th:each="legend : ${legendList}">
-						<td class="data center" th:text="${legend.legendName}">アッシュ</td>
+						<td class="data center"><label th:text="${legend.legendName}"
+							class="data center">アッシュ</label></td>
 						<td class="data center"><label
 							th:if="${legend.realName != null}" th:text="${legend.realName}"
 							class="data center">アシュレイ・リード博士</label></td>
 						<td class="data center"><label th:if="${legend.age != null}"
 							th:text="${legend.age}" class="data center">122</label></td>
-						<td class="data center" th:text="${legend.fromTanamachi.from}">なし</td>
-						<td class="data center"
-							th:text="${legend.classTanamachi.class_of_legend}">アサルト</td>
+						<td class="data center"><label
+							th:text="${legend.fromTanamachi.from}" class="data center">なし</label></td>
+						<td class="data center"><label
+							th:text="${legend.classTanamachi.class_of_legend}"
+							class="data center">アサルト</label></td>
 						<td class="data center"><label
 							th:if="${legend.ultimateAbility != null}"
 							th:text="${legend.ultimateAbility}" class="data center">フェーズティア</label>
@@ -251,7 +280,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<p class="lead">
-									<span id="deleteName">Legend Name</span>
+									<label id="deleteName">Legend Name</label>
 								</p>
 							</div>
 						</div>
@@ -285,23 +314,23 @@
 		th:src="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js}"></script>
 
 	<script>
-		//削除モーダル
-		$('#deleteModal').on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget);
-			var legendId = button.data('id');
-			var legendName = button.data('name');
-			var modal = $(this);
-			modal.find('#deleteId').attr("value", legendId);
-			modal.find('#deleteName').text(legendName);
-		});
+        //削除モーダル
+        $('#deleteModal').on('show.bs.modal', function(event) {
+          var button = $(event.relatedTarget);
+          var legendId = button.data('id');
+          var legendName = button.data('name');
+          var modal = $(this);
+          modal.find('#deleteId').attr("value", legendId);
+          modal.find('#deleteName').text(legendName);
+        });
 
-		//カルーセル
-		$('.slider').slick({
-			autoplay : true,
-			autoplaySpeed : 4000,
-			dots : true,
-			fade : true,
-		});
-	</script>
+        //カルーセル
+        $('.slider').slick({
+          autoplay : true,
+          autoplaySpeed : 4000,
+          dots : true,
+          fade : true,
+        });
+      </script>
 </body>
 </html>

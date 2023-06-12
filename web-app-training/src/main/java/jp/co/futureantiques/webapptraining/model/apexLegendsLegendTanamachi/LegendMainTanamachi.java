@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
 
@@ -41,6 +42,7 @@ public class LegendMainTanamachi {
 
 	/** 年齢 */
 	@Column(name = "age")
+	@Range(min = 0, max = 999)
 	private Integer age;
 
 	/** 出身地ID */
