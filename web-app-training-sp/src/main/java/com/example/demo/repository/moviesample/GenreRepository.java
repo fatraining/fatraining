@@ -9,5 +9,5 @@ import com.example.demo.model.moviesample.Genre;
  *
  * @author future
  */
-public interface GenreRepository extends JpaRepository<Genre, Long> {
+public interface GenreRepository extends JpaRepository<Genre, Integer> {
 }

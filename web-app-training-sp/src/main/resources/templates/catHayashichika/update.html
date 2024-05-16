@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|猫更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/libs/bootstrap/css/style.css}"/>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/catHayashichika.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+		</h4>
+		</div>
+	<div class="resultArea col-xs-12 col-sm-12 cok-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+		<div class="sub-header">
+			<h1 class="font1" align="center" th:text="#{cat.text.update}">猫更新</h1>
+			<a th:href="@{/catHayashichika}" th:text="#{common.text.back}">Back</a>	
+		</div>
+						
+		<!--入力欄-->
+		<form method="post" id="catHayashichikaInputForm"
+			th:action="@{/catHayashichika/update}" th:object="${catHayashichikaInputForm}"
+			class="form-horizontal">
+			<input type="hidden" th:field="*{id}"/>
+			<div class="form-group">
+				<label for="name" class="control-label"
+					th:text="#{cat.text.input.name.riquire}">Name(*):</label>
+				<input type="text" th:field="*{catName}" class="form-control"
+					th:placeholder="#{cat.text.name}" />
+				<p class="err alert-danger" th:each="err : ${#fields.errors('catName')}"
+					th:text="#{${err}(#{cat.text.name})}"></p>
+			</div>
+			<div class="form-group">
+				<label for="type" class="control-label"
+					th:text="#{cat.text.input.type}">Type:</label>
+				<select name="typeId" id="inoputType"
+					class="form-control select">
+					<option th:each="type : ${typeHayashichikaList}"
+							th:value="${type.id}"
+							th:text="${type.type}"
+							th:selected="${type.id == catHayashichikaInputForm.typeId}">pulldown</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="size" class="control-label"
+					th:text="#{cat.text.input.size}">Size:</label>
+				<select name="sizeId" id="inputSize"
+					class="form-control">
+					<option th:each="size : ${sizeHayashichikaList}"
+							th:value="${size.id}"
+							th:text="${size.size}"
+							th:selected="${size.id == catHayashichikaInputForm.sizeId}">pulldown</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="from" class="control-label"
+					th:text="#{cat.text.input.from}">From:</label>
+					<select name="fromId" id="inputFrom"
+						class="form-control">
+						<option th:each="from : ${fromHayashichikaList}"
+								th:value="${from.id}"
+								th:text="${from.from}"
+								th:selected="${from.id == catHayashichikaInputForm.fromId}">pulldown</option>
+					</select>
+			</div>
+			<div class="form-group">
+				<label for="point" class="control-label"
+					th:text="#{cat.text.input.point}">Point:</label>
+					<textarea th:field="*{point}" cols="" rows="5"
+						class="form-control" id="inputPoint"
+						th:placeholder="#{cat.text.point}"></textarea>
+			</div>
+			<div class="col-xs-3 col-sm-2">
+				<a class="btn btn-success center-block"
+					onclick="$('#catHayashichikaInputForm').submit()"
+					th:text="#{common.text.update}">Update</a>
+			</div>
+			<input type="hidden" th:field="*{updateDate}" />
+		</form>
+	</div>
+	</div>
+</body>
+</html>
