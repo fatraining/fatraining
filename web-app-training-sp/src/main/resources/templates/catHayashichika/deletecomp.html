@@ -25,6 +25,7 @@
 		<!--削除対象データ-->
 		<form class="form-horizontal" id="deleteForm" action="/catHayashichika/deletecomp"
 			th:object="${catHayashichikaDeleteForm}" method="post">
+			
 			<div th:if="${catMainHayashichikaList != null}">
 				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
 				<h4 th:each="err : ${#fields.errors('deleteIds')}" th:text="#{${err}}"
@@ -33,6 +34,7 @@
 			<div th:if="${catMainHayashichikaList== null}">
 				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
 			</div>
+			
 			<div th:if="${catMainHayashichikaList != null}" class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2">
 				<table id="resultTable" class="table table-borderd table-striped table-hover">
 					<thead>
@@ -63,7 +65,7 @@
 							<td class="data center">
 								<label th:if="${cat.fromHayashichika != nulll}" th:text="${cat.fromHayashichika.from}" class="data center">アメリカ</label>
 							</td>
-							<td class="data center" th:tex="${cat.point}">かわいい</td>
+							<td class="data center" th:text="${cat.point}">かわいい</td>
 						</tr>
 					</tbody>
 				</table>

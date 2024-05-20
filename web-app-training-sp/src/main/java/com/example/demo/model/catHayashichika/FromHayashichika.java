@@ -41,6 +41,6 @@ public class FromHayashichika {
 
 	/**外部キー設定:原産国ID*/
 	@OneToMany(targetEntity = CatMainHayashichika.class, mappedBy = "fromHayashichika")
-	private List<CatMainHayashichika> catMainHayashichikaList;
+	private List<CatMainHayashichika> catMainList;
 
 }

@@ -4,6 +4,23 @@ body{
 	background-image: url("img/catFoot.png");
 	background-repeat: no-repeat;
 }
+.search{
+	background-image: url("img/cat_down.png");
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.input{
+	background-image: url("img/cat_input.png");
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.update{
+	background-image: url("img/cat_update.png");
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
 @font-face{
 	font-family: 'checkPointFont';
 	src: url(cpfont_ote/cpfont_ote/CPFont.otf) format('opentype');
@@ -22,11 +39,14 @@ body{
 .font2{
 	font-family: 'geneipoppu',sans-serif;
 }
-.img-cat1{
+h1:before{
+	content: url("img/cat_hand2.png");
+	margin-left: 20px;
+}
+h1:after{
 
-	background-image: url("img/猫の無料アイコン1.png");
-	text-align: left;
-
+	content: url("img/cat_hand1.png");
+	margin-right: 20px;
 }
 .btn-case{
 	color: #fff;
@@ -72,7 +92,8 @@ body{
 	height: 16px;
 } 
 .alert-cat {
-  color: #7e6f58;
+  color: #cbba9f;
   background-color: #fcf8f3;
   border-color: #e2bb7e;
 }
+

@@ -9,12 +9,13 @@
 <link/>
 </head>
 <body>
+	<div class="search">
 	<div class="page-header ">
 		<h4>
 			<a th:href="@{/}" th:text="#{login.text.app}">研修アプリ</a><small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
-	<div class="sub-header font2">
+	<div class="sub-header ">
 		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
 		<h1 class="font1" align="center" th:text="#{cat.text.search}">CatSearch</h1>
 	
@@ -280,5 +281,6 @@
 			modal.find('#deleteName').text(catName);
 			});
 			</script>
+	</div>
 </body>
 </html>

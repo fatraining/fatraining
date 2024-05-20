@@ -128,8 +128,8 @@ public class CatHayashichikaController {
 			return "catHayashichika/insert";
 		}
 		//データを登録する
-		final CatMainHayashichika catMainHayashichika=catHayashichikaService.insertCat(form);
-		return "redirect:/catHayashichika?result=insert&id="+catMainHayashichika.getId();
+		final CatMainHayashichika catMain=catHayashichikaService.insertCat(form);
+		return "redirect:/catHayashichika?result=insert&id="+catMain.getId();
 	}
 	
 	/**
@@ -144,10 +144,10 @@ public class CatHayashichikaController {
 			@ModelAttribute final CatHayashichikaInputForm catHayashichikaInputForm) {
 		
 		//IDをキーにCatMainテーブルを検索する
-		CatMainHayashichika catMainHayashichika=catHayashichikaService.getCat(id);
+		CatMainHayashichika catMain=catHayashichikaService.getCat(id);
 		
 		//フォームにレコードの値をセットする
-		catHayashichikaInputForm.initWithCatMain(catMainHayashichika);
+		catHayashichikaInputForm.initWithCatMain(catMain);
 		return "catHayashichika/update";
 	}
 	
@@ -164,12 +164,12 @@ public class CatHayashichikaController {
 			return "catHayashichika/update";
 		}
 		//データを更新する
-		CatMainHayashichika catMainHayashichika=catHayashichikaService.updateCat(form);
-		if(catMainHayashichika==null) {
+		CatMainHayashichika catMain=catHayashichikaService.updateCat(form);
+		if(catMain==null) {
 			//更新が失敗した場合、検索画面にメッセージを表示する。
 			return "redirect:/catHayashichika?result=updatefailed";
 		}
-		return "redirect:/catHayashichika?result=update&id="+catMainHayashichika.getId();
+		return "redirect:/catHayashichika?result=update&id="+catMain.getId();
 	}
 	
 	/**

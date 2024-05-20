@@ -19,7 +19,7 @@ import jakarta.transaction.Transactional;
 public interface CatMainRepository extends JpaRepository<CatMainHayashichika, Long>, JpaSpecificationExecutor<CatMainHayashichika> {
 
 	/**
-	 * 対象のレコードの削除フラグを１にする
+	 * 対象のレコードフラグを１にする
 	 * @param long id
 	 */
 	@Transactional

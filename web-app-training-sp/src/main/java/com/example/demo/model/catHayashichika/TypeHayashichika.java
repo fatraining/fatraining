@@ -43,6 +43,6 @@ public class TypeHayashichika {
 	/**外部キー設定:毛種ID*/
 	@OneToMany(targetEntity = CatMainHayashichika.class, mappedBy = "typeHayashichika")
 	//@JoinColumn(name = "id", referencedColumnName = "type_id")
-	private List<CatMainHayashichika> catMainHayashichikaList;
+	private List<CatMainHayashichika> catMainList;
 
 }

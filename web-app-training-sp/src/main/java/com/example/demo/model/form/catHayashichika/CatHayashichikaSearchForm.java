@@ -31,7 +31,7 @@ public class CatHayashichikaSearchForm {
 
 	/**
 	 * 各フィールドに値を設定する
-	 * @param catMainHayashichika
+	 * @param catMain
 	 */
 	public void setValues(CatMainHayashichika catMain) {
 		this.setId((int) catMain.getId());

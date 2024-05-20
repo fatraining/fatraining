@@ -23,7 +23,7 @@ public class CatHayashichikaSpecification {
 	 * 検索条件の実装
 	 * 
 	 * @param CatHayashichikaSearchForm form
-	 * @return CatMainHayashichikaのSpecification
+	 * @return CatMainのSpecification
 	 */
 	public static Specification<CatMainHayashichika> generateCatSpecification(final CatHayashichikaSearchForm form) {
 		return new Specification<CatMainHayashichika>() {

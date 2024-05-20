@@ -43,6 +43,6 @@ public class SizeHayashichika {
 
 	/**外部キー設定：体型ID*/
 	@OneToMany(targetEntity = CatMainHayashichika.class, mappedBy = "sizeHayashichika")
-	private List<CatMainHayashichika> catMainHayashichikaList;
+	private List<CatMainHayashichika> catMainList;
 
 }
