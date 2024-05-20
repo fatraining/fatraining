@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|書籍追加</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="sub-header">
+			<a class="pull-right" th:href="@{/booknakano}" th:text="#{common.text.back}">Back</a><br />
+			<h1 align="center" th:text="#{book.text.insert}">BookInsert</h1>
+		</div>
+
+		<div class="resultArea col-sm-offset-2 col-sm-8">
+
+			<!-- 入力欄 -->
+			<form method="post" id="bookNakanoInputForm"
+				th:action="@{/booknakano/insert}" th:object="${bookNakanoInputForm}"
+				class="form-horizontal">
+				<div class="form-group">
+					<label for="title" class="control-label"
+						th:text="#{book.text.input.title.riquire}"> Title(*):</label>
+					<input type="text" th:field="*{bookTitle}" class="form-control" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('bookTitle')}"
+						th:text="#{${err}(#{book.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="author" class="control-label"
+						th:text="#{book.text.input.author}">Author:</label>
+					<select name="authorId" id="inputAuthor"
+						class="form-control select">
+						<option th:each="author : ${authorNakanoList}"
+								th:value="${author.id}"
+								th:text="${author.name}"
+								th:selected="${author.id == bookNakanoInputForm.authorId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="classification" class="control-label"
+						th:text="#{book.text.input.classification.riquire}">Classification(*):</label>
+					<select name="classificationId" id="inputClassification"
+						class="form-control select">
+						<option th:each="classification : ${classificationNakanoList}"
+								th:value="${classification.id}"
+								th:text="${classification.name}"
+								th:selected="${classification.id == bookNakanoInputForm.classificationId}">pulldown</option>
+					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('classificationId')}"
+							th:text="#{${err}(#{book.text.classification})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="characterOrthography" class="control-label"
+						th:text="#{book.text.input.characterOrthography}">CharacterOrthography:</label>
+					<select name="characterOrthographyId" id="inputCharacterOrthography"
+						class="form-control select">
+						<option th:each="characterOrthography : ${characterOrthographyNakanoList}"
+								th:value="${characterOrthography.id}"
+								th:text="${characterOrthography.name}"
+								th:selected="${characterOrthography.id == bookNakanoInputForm.characterOrthographyId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="firstAppearance" class="control-label"
+						th:text="#{book.text.input.firstAppearance}">FirstAppearance:</label>
+					<textarea th:field="*{firstAppearance}" cols="" rows="5"
+						class="form-control" id="inputFirstAppearance"></textarea>
+				</div>
+				<div class="col-xs-3">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#bookNakanoInputForm').submit()"
+                       th:text="#{common.text.insert}">Insert</a>
+                </div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
