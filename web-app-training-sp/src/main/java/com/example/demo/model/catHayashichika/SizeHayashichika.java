@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
- *Sizeテーブルと対応するEntityクラス
+ *SizeHayshichikaテーブルと対応するEntityクラス
  *@author future 
  */
 @Data

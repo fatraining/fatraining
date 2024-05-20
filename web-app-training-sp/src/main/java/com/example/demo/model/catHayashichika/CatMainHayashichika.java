@@ -14,12 +14,12 @@ import lombok.Data;
 
 /**
  *CatMainHayashichikaテーブルと対応するEntity
- *
  * @author future
  */
 @Data
 @Entity
 public class CatMainHayashichika {
+	
 	/**猫ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,7 +64,7 @@ public class CatMainHayashichika {
 	private TypeHayashichika typeHayashichika;
 
 	/**外部キー設定:体型*/
-	@ManyToOne(targetEntity =SizeHayashichika.class)
+	@ManyToOne(targetEntity = SizeHayashichika.class)
 	@JoinColumn(name = "size_id", insertable = false, updatable = false)
 	private SizeHayashichika sizeHayashichika;
 

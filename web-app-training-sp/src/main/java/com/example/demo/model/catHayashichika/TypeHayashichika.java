@@ -11,12 +11,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Typeテーブルと対応するEntityクラス
+ * TypeHayashichikaテーブルと対応するEntityクラス
  * @author future
  */
 @Data
 @Entity
 public class TypeHayashichika {
+	
 	/**毛種ID*/
 	@Id
 	@GeneratedValue

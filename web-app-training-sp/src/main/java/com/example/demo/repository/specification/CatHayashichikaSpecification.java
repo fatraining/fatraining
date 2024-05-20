@@ -14,16 +14,17 @@ import jakarta.persistence.criteria.Root;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * CatMainの検索条件を生成するクラス
+ * CatMainHayashichikaの検索条件を生成するクラス
  * @author future
  */
+
 public class CatHayashichikaSpecification {
 
 	/**
 	 * 検索条件の実装
 	 * 
 	 * @param CatHayashichikaSearchForm form
-	 * @return CatMainのSpecification
+	 * @return CatMainHayashichikaのSpecification
 	 */
 	public static Specification<CatMainHayashichika> generateCatSpecification(final CatHayashichikaSearchForm form) {
 		return new Specification<CatMainHayashichika>() {
@@ -39,6 +40,7 @@ public class CatHayashichikaSpecification {
 					//削除フラグ=1を検索条件にする
 					return cb.equal(root.get("delFlag"), CommonConst.DELETE_FLG_ON);
 				}
+				
 				//条件が入力されている場合条件追加
 				if (form.getId() != null) {
 
@@ -95,6 +97,7 @@ public class CatHayashichikaSpecification {
 					//既に条件がある場合ANDで結合する
 					condition = cb.and(condition, newCondition);
 				} else {
+					
 					//条件がまだない場合先頭の条件になる
 					condition = newCondition;
 				}

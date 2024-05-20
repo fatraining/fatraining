@@ -13,7 +13,7 @@ import com.example.demo.model.catHayashichika.CatMainHayashichika;
 import jakarta.transaction.Transactional;
 
 /**
- * CatMainのリポジトリインターフェース
+ * CatMainHayashichikaのリポジトリインターフェース
  * @author future
  */
 public interface CatMainRepository extends JpaRepository<CatMainHayashichika, Long>, JpaSpecificationExecutor<CatMainHayashichika> {

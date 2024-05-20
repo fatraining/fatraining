@@ -23,41 +23,39 @@ public interface CatHayashichikaService {
 	/**
 	 * 毛種エンティティのリストを取得する
 	 * 
-	 * @return TypeHayashichikaEntityのリスト
+	 * @return TypeHayashichikaのリスト
 	 */
 	List<TypeHayashichika> getListTypeHayashichika();
 
 	/**
 	 * 体型エンティティのリストを取得する
-	 * @return CatSizeEntityのリスト
+	 * @return SizeHayashichikaのリスト
 	 */
 	List<SizeHayashichika> getListSizeHayashichika();
 
 	/**
 	 * 原産国エンティティのリストを取得する
-	 * @return CatFromEntityのリスト
+	 * @return FromHayashichikaのリスト
 	 */
 	List<FromHayashichika> getListFromHayashichika();
 
 	/**
-	 * 検索条件を元にCatMainのレコードリストを取得する(Paging)
-	 * 
+	 * 検索条件を元にCatMainHayashichikaのレコードリストを取得する(Paging)
 	 * @param CatHayashichikaForm form
-	 * @return CatMainのリスト
+	 * @return CatMainHayashichikaのリスト
 	 */
 	Page<CatMainHayashichika> getPageCat(final CatHayashichikaSearchForm form, Pageable pageable);
 
 	/**検索条件を元にCatMainのレコードを取得する
 	 * @param CatHayashichikaSearchForm form
-	 * @return CatMainのリスト
+	 * @return CatMainHayashichikaのリスト
 	 */
 	List<CatMainHayashichika> getListCat(final CatHayashichikaSearchForm form);
 
 	/**
-	 * IDをキーにCatMainのレコードを取得する
-	 * 
+	 * IDをキーにCatMainのレコードを取得する 
 	 * @param long id
-	 * @return CatMainのレコード
+	 * @return CatMainHayashichikaのレコード
 	 */
 	CatMainHayashichika getCat(final long id);
 
@@ -71,18 +69,18 @@ public interface CatHayashichikaService {
 	/**
 	 * CatMainのレコードを更新する
 	 *@param CatHayashichikaInputForm form
-	 *@return CatMain
+	 *@return CatMainHayashichika
 	 */
 	CatMainHayashichika updateCat(final CatHayashichikaInputForm form);
 
 	/**
-	 * CatMainのレコードを倫理削除する
+	 * CatMainHayashichikaのレコードを倫理削除する
 	 * @param long id
 	 */
 	void deleteCatById(final long id);
 
 	/**
-	 * CatMainのレコードを物理削除する
+	 * CatMainHayashichikaのレコードを物理削除する
 	 *@param ArrayList<Long> ids
 	 */
 	void deleteCatComp(final ArrayList<Long> ids);

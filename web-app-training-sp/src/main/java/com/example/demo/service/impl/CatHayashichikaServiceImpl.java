@@ -22,30 +22,30 @@ import com.example.demo.repository.specification.CatHayashichikaSpecification;
 import com.example.demo.service.CatHayashichikaService;
 
 /**
- * CatHayashichikaのサービス実装クラス
+ * CatHayashichikaHayashichikaのサービス実装クラス
  * @author future
  */
 @Service
 public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 
-	/** CatMainのリポジトリ*/
+	/** CatMainHayashichikaのリポジトリ*/
 	private final CatMainRepository catMainRepository;
 
 	/**TypeHayashichikaのリポジトリ*/
 	private final TypeHayashichikaRepository typeHayashichikaRepository;
 
-	/**CatSizeのリポジトリ*/
+	/**SizeHayashichikaのリポジトリ*/
 	private final SizeHayashichikaRepository sizeHayashichikaRepository;
 
-	/**CatFromのリポジトリ*/
+	/**FromHayashichikaのリポジトリ*/
 	private final FromHayashichikaRepository fromHayashichikaRepository;
 
 	/**
 	 * コンストラクタ
 	 * @param CatMainRepository catMainRepository
 	 * @param TypeHayashichikaRepository typeHayashichikaRepository
-	 * @param CatSizeRepository catSizeRepository
-	 * @param CatFromRepository catFromRepository
+	 * @param SizeHayashichikaRepository sizeHayashichikaRepository
+	 * @param FromHayashichikaRepository fromHayashichikaRepository
 	 */
 	public CatHayashichikaServiceImpl(CatMainRepository catMainRepository, TypeHayashichikaRepository typeHayashichikaRepository,
 			SizeHayashichikaRepository sizeHayashichikaRepository, FromHayashichikaRepository fromHayashichikaRepository ) {
@@ -57,18 +57,21 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 
 	@Override
 	public List<TypeHayashichika> getListTypeHayashichika() {
+		
 		//typeHayashichikaテーブルのレコードをID順に取得する
 		return typeHayashichikaRepository.findAll();
 	}
 
 	@Override
 	public List<SizeHayashichika> getListSizeHayashichika() {
+		
 		//CatSizeのテーブルのレコードをID順に取得する
 		return sizeHayashichikaRepository.findAll();
 	}
 
 	@Override
 	public List<FromHayashichika> getListFromHayashichika() {
+		
 		//CatFromテーブルのレコードをID順に取得する
 		return fromHayashichikaRepository.findAll();
 	}
@@ -97,6 +100,7 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 
 	@Override
 	public CatMainHayashichika insertCat(final CatHayashichikaInputForm form) {
+
 		//CatMainテーブルに新規でデータを登録する
 		final CatMainHayashichika catMain = form.convertToCatMainForInsert();
 		return catMainRepository.saveAndFlush(catMain);

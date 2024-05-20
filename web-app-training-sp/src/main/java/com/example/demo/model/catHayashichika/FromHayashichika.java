@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 /**
- *Fromテーブルと対応するEntityクラス
+ *FromHayashichikaテーブルと対応するEntityクラス
  *@author future 
  */
 @Data
