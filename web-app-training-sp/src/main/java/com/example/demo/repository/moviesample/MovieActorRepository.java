@@ -9,5 +9,5 @@ import com.example.demo.model.moviesample.MovieActor;
  *
  * @author future
  */
-public interface MovieActorRepository extends JpaRepository<MovieActor, Long> {
+public interface MovieActorRepository extends JpaRepository<MovieActor, Integer> {
 }
