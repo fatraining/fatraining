@@ -115,5 +115,6 @@ public class CatHayashichikaInputForm {
 		catMain.setDelFlag("0");
 		return catMain;
 	}
+	
 
 }

@@ -2,25 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Webアプリ研修|猫検索</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/libs/bootstrap/css/style.css}"/>
-<link/>
+<link rel="stylesheet" type="text/css" th:href="@{/libs/catHayashichika/style.css}"/>
+
 </head>
+
 <body>
 	<div class="search">
 	<div class="page-header ">
 		<h4>
-			<a th:href="@{/}" th:text="#{login.text.app}">研修アプリ</a><small th:text="#{login.text.version}">ver β</small>
+			<a style="font-weight: bold;" th:href="@{/}" th:text="#{login.text.app}">研修アプリ</a><small th:text="#{login.text.version}">ver β</small>
 		</h4>
 	</div>
 	<div class="sub-header ">
-		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
+		<a style="font-weight: bold;" th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br/>
 		<h1 class="font1" align="center" th:text="#{cat.text.search}">CatSearch</h1>
 	
 	</div>
-	
+
 	<!--新規・削除ボタン-->
 	<div style="position:relative; left: 30px;">
 		<form class="form-horizontal" id="deleteCompForm"
@@ -43,6 +45,7 @@
 					onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData
 				</a>
+
 			</div>
 		</div>
 	</div>
@@ -71,6 +74,7 @@
 					<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
 					<p th:case="delete" th:text="#{common.text.info.delete}+':ID='+${param.id[0]}"></p>
 					<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+					<p th:case="revoke" th:text="#{common.text.info.revoke}"></p>
 				</div>
 			</div>
 		</div>
@@ -253,7 +257,7 @@
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default"
-							th:text="#{common.text.cansel}"
+							th:text="#{common.text.cancel}"
 							data-dismiss="modal">Cancel
 						</a>
 						<a class="btn btn-danger" onclick="$('#deleteForm').submit()"

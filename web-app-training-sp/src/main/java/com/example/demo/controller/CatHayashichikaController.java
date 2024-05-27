@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.constant.CommonConst;
 import com.example.demo.model.catHayashichika.CatMainHayashichika;
 import com.example.demo.model.catHayashichika.FromHayashichika;
 import com.example.demo.model.catHayashichika.SizeHayashichika;
@@ -40,7 +40,7 @@ public class CatHayashichikaController {
 	 * コンストラクタ
 	 * @param CatHayashichikaService catHayashichikaService
 	 */
-	
+
 	public CatHayashichikaController(final CatHayashichikaService catHayashichikaService) {
 		this.catHayashichikaService = catHayashichikaService;
 	}
@@ -49,7 +49,7 @@ public class CatHayashichikaController {
 	 * 毛種のエンティティリストを取得する
 	 * @return TypeHayashichikaのリスト
 	 */
-	
+
 	@ModelAttribute
 	public List<TypeHayashichika> getListTypeHayashichika() {
 		return catHayashichikaService.getListTypeHayashichika();
@@ -59,7 +59,7 @@ public class CatHayashichikaController {
 	 * 体型のエンティティリストを取得する
 	 * @return SizeHayashichikaのリスト
 	 */
-	
+
 	@ModelAttribute
 	public List<SizeHayashichika> getListsiSizeHayashichika() {
 		return catHayashichikaService.getListSizeHayashichika();
@@ -69,7 +69,7 @@ public class CatHayashichikaController {
 	 * 原産国のエンティティリストを取得する
 	 * @return fromHayashichikaEntityのリスト
 	 */
-	
+
 	@ModelAttribute
 	public List<FromHayashichika> getListFromHayashichika() {
 		return catHayashichikaService.getListFromHayashichika();
@@ -80,7 +80,7 @@ public class CatHayashichikaController {
 	 * @param CatHayashichikaSearchForm catHayashichikaSearchForm
 	 * @return 検索画面のパス
 	 */
-	
+
 	@GetMapping(value = "")
 	public String showSearchCat(@ModelAttribute final CatHayashichikaSearchForm catHayashichikaSearchForm) {
 		return "catHayashichika/search";
@@ -93,14 +93,14 @@ public class CatHayashichikaController {
 	 * @param Pageble pageble
 	 * @return 検索画面のパス
 	 */
-	
+
 	@PostMapping(value = "search")
 	public String searchCat(final CatHayashichikaSearchForm form, final Model model, final Pageable pageable) {
 
 		//入力された検索条件を元にレコードを取得する
 		final Page<CatMainHayashichika> catList = catHayashichikaService.getPageCat(form, pageable);
 		if (catList.getTotalElements() != 0) {
-			
+
 			//検索結果がある場合、Modelに結果をセットする
 			model.addAttribute("page", catList);
 			model.addAttribute("catList", catList.getContent());
@@ -114,7 +114,7 @@ public class CatHayashichikaController {
 	 * @param CatHayashichikaInputForm catHayashichikaInputForm
 	 * @return 追加画面のパス
 	 */
-	
+
 	@GetMapping(value = "insert")
 	public String showInsertCat(@ModelAttribute final CatHayashichikaInputForm catHayashichikaInputForm) {
 		return "catHayashichika/insert";
@@ -126,7 +126,7 @@ public class CatHayashichikaController {
 	 * @param BindingResult bindingResult
 	 * @return 入力エラーがある場合追加画面、ない場合検索画面のパス
 	 */
-	
+
 	@PostMapping(value = "insert")
 	public String insertCat(@ModelAttribute @Validated final CatHayashichikaInputForm form,
 			final BindingResult bindingResult) {
@@ -135,7 +135,7 @@ public class CatHayashichikaController {
 			//入力エラーがある場合自画面に戻る
 			return "catHayashichika/insert";
 		}
-		
+
 		//データを登録する
 		final CatMainHayashichika catMain = catHayashichikaService.insertCat(form);
 		return "redirect:/catHayashichika?result=insert&id=" + catMain.getId();
@@ -147,7 +147,7 @@ public class CatHayashichikaController {
 	 * @param CatHayashichikaInputForm catHayashichikaInputForm
 	 * @return 更新画面のパス
 	 */
-	
+
 	@GetMapping(value = "update")
 	public String showUpdateCat(@RequestParam(name = "id") final long id,
 			@ModelAttribute final CatHayashichikaInputForm catHayashichikaInputForm) {
@@ -164,24 +164,32 @@ public class CatHayashichikaController {
 	 * CatMainHayashichikaテーブルのデータを更新して検索画面に遷移する
 	 * @param CatHayashichikaInputForm form
 	 * @param BindingResult bindingResult
-	 * @return 入力エラーがある場合更新画面、ない場合検索画面のパス
+	 * @return 入力エラーがある場合更新画面、更新途中にデータを削除された場合検索画面のパス、ない場合検索画面のパス
 	 */
-	
+
 	@PostMapping(value = "update")
 	public String updateCat(@Validated final CatHayashichikaInputForm form, final BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
 			//入力エラーがある場合自画面に戻る
 			return "catHayashichika/update";
 		}
-		
-		//データを更新する
-		CatMainHayashichika catMain = catHayashichikaService.updateCat(form);
-		if (catMain == null) {
-			
-		//更新が失敗した場合、検索画面にメッセージを表示する。
+
+		//更新途中でデータが削除された場合、検索画面にメッセージを表示する
+		try {
+			//データを更新する
+
+			CatMainHayashichika catMain = catHayashichikaService.updateCat(form);
+			if (catMain == null) {
+
+				//更新が失敗した場合、検索画面にメッセージを表示する。
+				return "redirect:/catHayashichika?result=updatefailed";
+			}
+			return "redirect:/catHayashichika?result=update&id=" + catMain.getId();
+
+			//例外の内容が正しければ検索画面にメッセージを表示する
+		} catch (NoSuchElementException e) {
 			return "redirect:/catHayashichika?result=updatefailed";
 		}
-		return "redirect:/catHayashichika?result=update&id=" + catMain.getId();
 	}
 
 	/**
@@ -189,7 +197,7 @@ public class CatHayashichikaController {
 	 * @param long id
 	 * @return 検索画面のパス
 	 */
-	
+
 	@GetMapping("delete")
 	public String deleteCat(@RequestParam(name = "id") final long id) {
 		//IDをキーにレコードを倫理削除する
@@ -199,13 +207,13 @@ public class CatHayashichikaController {
 
 	/**
 	 * 完全削除画面に遷移する
- 	 * @param CatHayashichikaSearchForm form
+	 * @param CatHayashichikaSearchForm form
 	 * @param CatHayashichikaDeleteForm catHayashichikaDeleteForm
 	 * @param Model model
 	 * @ret
 	 * urn 完全削除画面のパス
 	 */
-	
+
 	@GetMapping(value = "deletecomp")
 	public String showDeleteCompCat(final CatHayashichikaSearchForm form,
 			@ModelAttribute final CatHayashichikaDeleteForm catHayashichikaDeleteForm, final Model model) {
@@ -225,24 +233,41 @@ public class CatHayashichikaController {
 	 * @param Model model
 	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
 	 */
-	
 	@PostMapping(value = "deletecomp")
 	public String deleteCompCat(@Validated final CatHayashichikaDeleteForm form, final BindingResult bindingResult,
 			final Model model) {
 		if (bindingResult.hasFieldErrors()) {
 
-			//入力エラーがある場合、再検索して自画面に戻る
-			CatHayashichikaSearchForm catHayashichikaSearchForm = new CatHayashichikaSearchForm();
-			catHayashichikaSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
-			final List<CatMainHayashichika> catList = catHayashichikaService.getListCat(catHayashichikaSearchForm);
-
-			//Modelに検索結果を格納する
-			model.addAttribute(catList);
+			//エラーがある場合自画面に戻る
+			catHayashichikaService.erroCat(form, model);
 			return "catHayashichika/deletecomp";
 		}
-		
+
 		//データを完全削除する
 		catHayashichikaService.deleteCatComp(form.getDeleteIds());
 		return "redirect:/catHayashichika?result=deletecomp";
 	}
+
+	/**
+	 * CatMainHayashichikaのテーブルデータを復元して検索画面に遷移する
+	 * @param CatHayashichikaDeleteForm form
+	 * @param BindingResult bindingResult
+	 * @param Model model
+	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
+	 */
+	@PostMapping(value = "revoke")
+	public String revokeCat(@Validated final CatHayashichikaDeleteForm form, final BindingResult bindingResult,
+			final Model model) {
+		if (bindingResult.hasErrors()) {
+
+			//エラーがある場合自画面に戻る
+			catHayashichikaService.erroCat(form, model);
+			return "catHayashichika/deletecomp";
+		}
+
+		//データを復元する
+		catHayashichikaService.revokeCatById(form.getDeleteIds());
+		return "redirect:/catHayashichika?result=revoke";
+	}
+
 }

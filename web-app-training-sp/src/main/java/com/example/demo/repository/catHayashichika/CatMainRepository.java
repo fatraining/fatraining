@@ -16,10 +16,11 @@ import jakarta.transaction.Transactional;
  * CatMainHayashichikaのリポジトリインターフェース
  * @author future
  */
-public interface CatMainRepository extends JpaRepository<CatMainHayashichika, Long>, JpaSpecificationExecutor<CatMainHayashichika> {
+public interface CatMainRepository
+		extends JpaRepository<CatMainHayashichika, Long>, JpaSpecificationExecutor<CatMainHayashichika> {
 
 	/**
-	 * 対象のレコードフラグを１にする
+	 * 対象のレコードの削除フラグを１にする
 	 * @param long id
 	 */
 	@Transactional
@@ -28,12 +29,21 @@ public interface CatMainRepository extends JpaRepository<CatMainHayashichika, Lo
 	void delete(@Param("id") final long id);
 
 	/**
+	 * 対象のレコードの削除フラグを0にする
+	 * @param long id
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE CatMainHayashichika SET delFlag='0' WHERE id IN(:ids)")
+	void revoke(@Param("ids") final ArrayList<Long> ids);
+
+	/**
 	 * 対象のレコードを削除する
 	 * @param ArrayList<Long> ids
 	 */
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM CatMainHayashichika WHERE id IN(:ids)")
-	void deletecomp(@Param("ids") final ArrayList<Long> ids);
-
+	void deleteComp(@Param("ids") final ArrayList<Long> ids);
+	
 }

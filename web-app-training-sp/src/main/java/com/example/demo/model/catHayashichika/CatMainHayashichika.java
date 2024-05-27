@@ -45,6 +45,7 @@ public class CatMainHayashichika {
 	@Column(name = "point")
 	@Size(max = 255)
 	private String point;
+	
 
 	/**削除フラグ*/
 	@Column(name = "del_flag")

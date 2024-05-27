@@ -10,8 +10,9 @@ import lombok.Data;
  * @author future
  */
 @Data
-public class CatHayashichikaDeleteForm { 
+public class CatHayashichikaDeleteForm {
 	/** 削除ID */
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
+
 }

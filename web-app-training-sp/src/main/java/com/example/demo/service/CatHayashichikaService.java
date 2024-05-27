@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.ui.Model;
 
 import com.example.demo.model.catHayashichika.CatMainHayashichika;
 import com.example.demo.model.catHayashichika.FromHayashichika;
 import com.example.demo.model.catHayashichika.SizeHayashichika;
 import com.example.demo.model.catHayashichika.TypeHayashichika;
+import com.example.demo.model.form.catHayashichika.CatHayashichikaDeleteForm;
 import com.example.demo.model.form.catHayashichika.CatHayashichikaInputForm;
 import com.example.demo.model.form.catHayashichika.CatHayashichikaSearchForm;
 
@@ -46,14 +48,14 @@ public interface CatHayashichikaService {
 	 */
 	Page<CatMainHayashichika> getPageCat(final CatHayashichikaSearchForm form, Pageable pageable);
 
-	/**検索条件を元にCatMainのレコードを取得する
+	/**検索条件を元にCatMainHayashichikaのレコードを取得する
 	 * @param CatHayashichikaSearchForm form
 	 * @return CatMainHayashichikaのリスト
 	 */
 	List<CatMainHayashichika> getListCat(final CatHayashichikaSearchForm form);
 
 	/**
-	 * IDをキーにCatMainのレコードを取得する 
+	 * IDをキーにCatMainHayashichikaのレコードを取得する 
 	 * @param long id
 	 * @return CatMainHayashichikaのレコード
 	 */
@@ -80,9 +82,21 @@ public interface CatHayashichikaService {
 	void deleteCatById(final long id);
 
 	/**
+	 * CatMainHayashichikaの論理削除したレコードを取り消す
+	 * @pram ArrayList<Long> ids
+	 */
+	void revokeCatById(final ArrayList<Long> ids);
+
+	/**
 	 * CatMainHayashichikaのレコードを物理削除する
 	 *@param ArrayList<Long> ids
 	 */
 	void deleteCatComp(final ArrayList<Long> ids);
+
+	/**
+	 * チェックボックスが未記入の場合エラーを表示
+	 * @param ArrayList<Long> ids
+	 */
+	void erroCat(final CatHayashichikaDeleteForm form, final Model model);
 
 }

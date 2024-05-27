@@ -7,11 +7,14 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import com.example.demo.constant.CommonConst;
 import com.example.demo.model.catHayashichika.CatMainHayashichika;
 import com.example.demo.model.catHayashichika.FromHayashichika;
 import com.example.demo.model.catHayashichika.SizeHayashichika;
 import com.example.demo.model.catHayashichika.TypeHayashichika;
+import com.example.demo.model.form.catHayashichika.CatHayashichikaDeleteForm;
 import com.example.demo.model.form.catHayashichika.CatHayashichikaInputForm;
 import com.example.demo.model.form.catHayashichika.CatHayashichikaSearchForm;
 import com.example.demo.repository.catHayashichika.CatMainRepository;
@@ -47,31 +50,33 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 	 * @param SizeHayashichikaRepository sizeHayashichikaRepository
 	 * @param FromHayashichikaRepository fromHayashichikaRepository
 	 */
-	public CatHayashichikaServiceImpl(CatMainRepository catMainRepository, TypeHayashichikaRepository typeHayashichikaRepository,
-			SizeHayashichikaRepository sizeHayashichikaRepository, FromHayashichikaRepository fromHayashichikaRepository ) {
+	public CatHayashichikaServiceImpl(CatMainRepository catMainRepository,
+			TypeHayashichikaRepository typeHayashichikaRepository,
+			SizeHayashichikaRepository sizeHayashichikaRepository,
+			FromHayashichikaRepository fromHayashichikaRepository) {
 		this.catMainRepository = catMainRepository;
-		this.typeHayashichikaRepository=typeHayashichikaRepository;
-		this.sizeHayashichikaRepository=sizeHayashichikaRepository;
-		this.fromHayashichikaRepository=fromHayashichikaRepository;
+		this.typeHayashichikaRepository = typeHayashichikaRepository;
+		this.sizeHayashichikaRepository = sizeHayashichikaRepository;
+		this.fromHayashichikaRepository = fromHayashichikaRepository;
 	}
 
 	@Override
 	public List<TypeHayashichika> getListTypeHayashichika() {
-		
+
 		//typeHayashichikaテーブルのレコードをID順に取得する
 		return typeHayashichikaRepository.findAll();
 	}
 
 	@Override
 	public List<SizeHayashichika> getListSizeHayashichika() {
-		
+
 		//CatSizeのテーブルのレコードをID順に取得する
 		return sizeHayashichikaRepository.findAll();
 	}
 
 	@Override
 	public List<FromHayashichika> getListFromHayashichika() {
-		
+
 		//CatFromテーブルのレコードをID順に取得する
 		return fromHayashichikaRepository.findAll();
 	}
@@ -113,6 +118,7 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 		Optional<CatMainHayashichika> catMainOp = catMainRepository.findById((long) form.getId());
 
 		CatMainHayashichika catMain = catMainOp.get();
+
 		if (catMain != null) {
 
 			//更新対象のレコードが存在する場合は排他チェック
@@ -122,6 +128,8 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 				catMain = form.convertToCatMainForUpdate(catMain);
 				return catMainRepository.saveAndFlush(catMain);
 			}
+			//		} else {
+			//			return null;
 		}
 		return null;
 	}
@@ -140,11 +148,30 @@ public class CatHayashichikaServiceImpl implements CatHayashichikaService {
 	}
 
 	@Override
+	public void revokeCatById(final ArrayList<Long> ids) {
+
+		//対象のレコードを復元する
+		catMainRepository.revoke(ids);
+	}
+
+	@Override
 	public void deleteCatComp(final ArrayList<Long> ids) {
 
 		//対象のレコードを削除する
-		catMainRepository.deletecomp(ids);
+		catMainRepository.deleteComp(ids);
 	}
 
+	@Override
+	public void erroCat(final CatHayashichikaDeleteForm form, final Model model) {
+
+		//再検索して自画面に戻る
+		CatHayashichikaSearchForm catHayashichikaSearchForm = new CatHayashichikaSearchForm();
+		catHayashichikaSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
+		final List<CatMainHayashichika> cataMain = catMainRepository
+				.findAll(CatHayashichikaSpecification.generateCatSpecification(catHayashichikaSearchForm));
+
+		//Modelに検索結果を格納する
+		model.addAttribute(cataMain);
+	}
 
 }
