@@ -26,7 +26,7 @@ public class GameTohoSpecification {
 	 * @param GameTohoSearchForm form
 	 * @return GameMainTohoのSpecification
 	 */
-	
+
 	public static Specification<GameMainToho> generateGameTohoSpecification(final GameTohoSearchForm form) {
 		return new Specification<GameMainToho>() {
 			@Override

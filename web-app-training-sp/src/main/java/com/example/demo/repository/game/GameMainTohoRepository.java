@@ -16,7 +16,8 @@ import com.example.demo.model.game.GameMainToho;
  *
  * @author future
  */
-public interface GameMainTohoRepository extends JpaRepository<GameMainToho, Long>, JpaSpecificationExecutor<GameMainToho> {
+public interface GameMainTohoRepository
+		extends JpaRepository<GameMainToho, Long>, JpaSpecificationExecutor<GameMainToho> {
 
 	/**
 	 * 対象のレコードの削除フラグを1にする

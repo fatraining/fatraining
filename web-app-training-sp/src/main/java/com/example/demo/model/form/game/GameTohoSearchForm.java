@@ -1,4 +1,4 @@
- package com.example.demo.model.form.game;
+package com.example.demo.model.form.game;
 
 import com.example.demo.model.game.GameMainToho;
 
@@ -15,19 +15,19 @@ public class GameTohoSearchForm {
 
 	/** id */
 	private Integer id;
-	
+
 	/** ゲーム名*/
 	private String gameTitle;
-	
+
 	/** ジャンルID */
 	private Integer genreId;
-	
+
 	/** 評価ID */
 	private Integer evaluationId;
-	
+
 	/** 削除フラグON用 */
 	private int isDelete;
-	
+
 	/**
 	 * 各フィールドに値を設定する
 	 * @param GameMainToho

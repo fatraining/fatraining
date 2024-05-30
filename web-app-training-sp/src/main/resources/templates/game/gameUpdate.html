@@ -40,7 +40,7 @@
 						th:text="#{game.text.input.genre}">ジャンル:</label>
 					<select name="genreId" id="inputGenre"
 						class="form-control select">
-						<option th:each="genre : ${genreTohoList}"s
+						<option th:each="genre : ${genreTohoList}"
 								th:value="${genre.id}"
 								th:text="${genre.genre}"
 								th:selected="${genre.id == gameTohoInputForm.genreId}">pulldown</option>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="form-group">
 					<label for="company" class="control-label"
-						th:text="#{game.text.input.company}"> RunTime:</label>
+						th:text="#{game.text.input.company}"> company:</label>
 					<input type="text" th:field="*{company}" class="form-control" id="inputCompany"
 						th:placeholder="#{game.text.company}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('company')}"

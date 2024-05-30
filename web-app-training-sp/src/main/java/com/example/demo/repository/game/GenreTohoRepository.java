@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.game.GenreToho;
 
 /**
- * Genreリポジトリのインターフェース
+ * GenreTohoリポジトリのインターフェース
  *
  * @author future
  */
 
-public interface GenreTohoRepository extends JpaRepository<GenreToho, Integer>{
+public interface GenreTohoRepository extends JpaRepository<GenreToho, Integer> {
 
 }

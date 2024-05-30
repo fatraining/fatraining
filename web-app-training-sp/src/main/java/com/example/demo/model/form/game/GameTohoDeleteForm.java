@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 映画削除画面のFormクラス
+ * ゲーム削除画面のFormクラス
  *
  * @author future
  */
@@ -17,5 +17,4 @@ public class GameTohoDeleteForm {
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;
 
-	}
-
+}

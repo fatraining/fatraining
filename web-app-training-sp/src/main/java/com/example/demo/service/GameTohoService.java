@@ -13,7 +13,7 @@ import com.example.demo.model.game.GameMainToho;
 import com.example.demo.model.game.GenreToho;
 
 /**
- * MovieSampleのサービスインターフェース
+ * Gameのサービスインターフェース
  *
  * @author future
  */

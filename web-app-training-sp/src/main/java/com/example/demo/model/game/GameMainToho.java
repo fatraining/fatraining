@@ -66,12 +66,12 @@ public class GameMainToho {
 
 	/** 外部キー設定：ジャンル */
 	@ManyToOne(targetEntity = GenreToho.class)
-	@JoinColumn(name = "genre_id", insertable=false, updatable=false)
+	@JoinColumn(name = "genre_id", insertable = false, updatable = false)
 	private GenreToho genreToho;
 
 	/** 外部キー設定：評価 */
 	@ManyToOne(targetEntity = GameEvaluationToho.class)
 	//@JoinColumn(name = "evaluation_id", referencedColumnName = "id", insertable = false, updatable = false)
-	@JoinColumn(name = "evaluation_id", insertable=false, updatable=false)
+	@JoinColumn(name = "evaluation_id", insertable = false, updatable = false)
 	private GameEvaluationToho gameEvaluationToho;
 }

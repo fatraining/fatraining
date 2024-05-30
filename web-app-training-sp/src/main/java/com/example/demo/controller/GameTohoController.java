@@ -23,12 +23,8 @@ import com.example.demo.model.game.GameMainToho;
 import com.example.demo.model.game.GenreToho;
 import com.example.demo.service.GameTohoService;
 
-
-
-
-
 /**
- * GameSampleのコントローラークラス
+ * Gameのコントローラークラス
  *
  * @author future
  */
@@ -36,7 +32,7 @@ import com.example.demo.service.GameTohoService;
 @RequestMapping(value = "/game")
 
 public class GameTohoController {
-	/** 映画のサービス */
+	/** ゲームのサービス */
 	private final GameTohoService gameTohoService;
 
 	/**
@@ -101,7 +97,7 @@ public class GameTohoController {
 		}
 		return "game/gameSearch";
 	}
-	
+
 	/**
 	 * 追加画面に遷移する
 	 *
@@ -145,7 +141,7 @@ public class GameTohoController {
 	public String showUpdateGame(@RequestParam(name = "id") final long id,
 			@ModelAttribute final GameTohoInputForm gameTohoInputForm) {
 
-		// IDをキーにGameMainテーブルを検索する
+		// IDをキーにGameMainTohoテーブルを検索する
 		GameMainToho gameMainToho = gameTohoService.getGame(id);
 
 		// フォームにレコードの値をセットする

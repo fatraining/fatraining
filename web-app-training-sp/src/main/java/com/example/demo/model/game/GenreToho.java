@@ -9,8 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
 /**
- * Genreテーブルと対応するEntityクラス
+ * GenreTohoテーブルと対応するEntityクラス
  * 
  * @author future
  */

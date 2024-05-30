@@ -20,8 +20,6 @@ import com.example.demo.repository.game.GenreTohoRepository;
 import com.example.demo.repository.specification.GameTohoSpecification;
 import com.example.demo.service.GameTohoService;
 
-
-
 /**
  * Gameのサービス実装クラス
  *
@@ -29,11 +27,11 @@ import com.example.demo.service.GameTohoService;
  */
 
 @Service
-public class GameTohoServiceImpl implements GameTohoService{
+public class GameTohoServiceImpl implements GameTohoService {
 	/** GameMainTohoリポジトリ */
 	private final GameMainTohoRepository gameMainTohoRepository;
 
-	/** Genreリポジトリ */
+	/** GenreTohoリポジトリ */
 	private final GenreTohoRepository genreTohoRepository;
 
 	/** GameEvaluationTohoリポジトリ */
@@ -56,13 +54,14 @@ public class GameTohoServiceImpl implements GameTohoService{
 	@Override
 	public List<GenreToho> getListGenreToho() {
 
-		// GenreテーブルのレコードをID順に取得する TO:DO
+		// GenreTohoテーブルのレコードをID順に取得する TO:DO
 		return genreTohoRepository.findAll();
 	}
+
 	@Override
 	public List<GameEvaluationToho> getListGameEvaluationToho() {
 
-		// EvaluationテーブルのレコードをID順に取得するTO:DO
+		// gameEvaluationTohoテーブルのレコードをID順に取得するTO:DO
 		return gameEvaluationTohoRepository.findAll();
 	}
 
@@ -101,7 +100,7 @@ public class GameTohoServiceImpl implements GameTohoService{
 
 		// 更新対象のレコードを取得する
 		Optional<GameMainToho> gameMainTohoOp = gameMainTohoRepository.findById((long) form.getId());
-		
+
 		GameMainToho gameMainToho = gameMainTohoOp.get();
 		if (gameMainToho != null) {
 
@@ -134,5 +133,5 @@ public class GameTohoServiceImpl implements GameTohoService{
 
 		// 対象のレコードを削除する
 		gameMainTohoRepository.gameDeleteComp(ids);
-	}	
+	}
 }

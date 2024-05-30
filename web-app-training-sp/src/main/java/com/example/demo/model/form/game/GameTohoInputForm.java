@@ -11,7 +11,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-
 /**
  *ゲーム登録・更新画面用のFormクラス
  *
@@ -37,12 +36,12 @@ public class GameTohoInputForm {
 
 	/** 最大人数 */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max =256 , message = "common.text.error.size.max.four")
+	@Size(max = 256, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String subject;
 
 	/** 制作会社 */
-	@Size(max =256)
+	@Size(max = 256)
 	private String company;
 
 	/** コメント */
@@ -103,20 +102,20 @@ public class GameTohoInputForm {
 	 */
 	private GameMainToho convertToGameMainToho(GameMainToho gameMainToho) {
 		gameMainToho.setGameTitle(this.gameTitle);
-		if(this.genreId == CommonConst.NOT_ENTERD) {
+		if (this.genreId == CommonConst.NOT_ENTERD) {
 
 			// ジャンルが入力されていなかった場合
 			gameMainToho.setGenreId(null);
-		}else {
+		} else {
 
 			// ジャンルが入力されていた場合
 			gameMainToho.setGenreId(this.genreId);
 		}
-		if(this.evaluationId == CommonConst.NOT_ENTERD) {
+		if (this.evaluationId == CommonConst.NOT_ENTERD) {
 
 			// 評価が入力されていなかった場合
 			gameMainToho.setEvaluationId(null);
-		}else {
+		} else {
 
 			// 評価が入力されていた場合
 			gameMainToho.setEvaluationId(this.evaluationId);

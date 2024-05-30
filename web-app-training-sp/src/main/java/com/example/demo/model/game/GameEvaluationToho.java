@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * MovieActorテーブルと対応するEntity
+ * GameEvaluationTohoテーブルと対応するEntity
  *
  * @author future
  */
@@ -44,7 +44,7 @@ public class GameEvaluationToho {
 	private String updateDate;
 
 	/** 外部キー設定：評価ID */
-	
+
 	@OneToMany(targetEntity = GameMainToho.class, mappedBy = "gameEvaluationToho")
 	//@JoinColumn(name = "id", referencedColumnName = "evaluation_id")
 	private List<GameMainToho> gameMainTohoList;
