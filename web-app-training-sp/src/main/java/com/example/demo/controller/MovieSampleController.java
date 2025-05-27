@@ -68,7 +68,7 @@ public class MovieSampleController {
 	 * 検索画面に遷移する
 	 *
 	 * @param MovieSampleSearchForm movieSampleSearchForm
-	 * @return 検索画面のパス
+	 * @return 検索画面のパスtest
 	 */
 	@GetMapping(value = "")
 	public String showSearchMovie(@ModelAttribute final MovieSampleSearchForm movieSampleSearchForm) {
