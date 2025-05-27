@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|野菜更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/vegetabletahara.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{vegetable.text.update}">野菜更新</h1>
+				<a th:href="@{/vegetabletahara}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="vegetableTaharaInputForm"
+				th:action="@{/vegetabletahara/update}" th:object="${vegetableTaharaInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group"><!-- 野菜の名前 -->
+					<label for="name" class="control-label"
+						th:text="#{vegetable.text.input.name.riquire}"> Name(*):</label>
+					<input type="text" th:field="*{vegetableName}" class="form-control"
+						th:placeholder="#{vegetable.text.name}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('vegetableName')}"
+						th:text="#{${err}(#{vegetable.text.name})}"></p>
+				</div>
+				<div class="form-group"><!-- カテゴリー -->
+					<label for="category" class="control-label"
+						th:text="#{vegetable.text.input.category}">Category(*):</label>
+					<select name="categoryId" id="inputCategory"
+						class="form-control select">
+						<option th:each="category : ${categoryTaharaList}"
+								th:value="${category.id}"
+								th:text="${category.category}"
+								th:selected="${category.id == vegetableTaharaInputForm.categoryId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group"><!-- 原産地 -->
+					<label for="originPlace" class="control-label"
+						th:text="#{vegetable.text.input.originPlace}">OriginPlace:</label>
+					<input type="text" th:field="*{originPlace}" class="form-control" id="inputOriginPlace"
+						th:placeholder="#{vegetable.text.originPlace}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('originPlace')}"
+						th:text="#{${err}(#{vegetable.text.originPlace})}"></p>
+				</div>
+				<div class="form-group"><!-- 国内生産量 -->
+					<label for="productionVolume" class="control-label"
+						th:text="#{vegetable.text.input.productionVolume}"> ProductionVolume:</label>
+					<input type="text" th:field="*{productionVolume}" class="form-control" id="inputProductionVolume"
+						th:placeholder="#{vegetable.text.productionVolume}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('productionVolume')}"
+						th:text="#{${err}(#{vegetable.text.productionVolume})}"></p>
+				</div>
+				<div class="form-group"><!-- 国内最大生産地 -->
+					<label for="area" class="control-label"
+						th:text="#{vegetable.text.input.area}">Area(*):</label>
+					<select name="areaId" id="inputArea"
+						class="form-control">
+						<option th:each="area : ${areaTaharaList}"
+								th:value="${area.id}"
+								th:text="${area.name}"
+								th:selected="${area.id == vegetableTaharaInputForm.areaId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group"><!-- おすすめの食べ方 -->
+					<label for="recommend" class="control-label"
+						th:text="#{vegetable.text.input.recommend}"> Recommend:</label>
+					<textarea th:field="*{recommend}" cols="" rows="5"
+						class="form-control" id="inputRecommend"
+						th:placeholder="#{vegetable.text.recommend}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block"
+						onclick="$('#vegetableTaharaInputForm').submit()"
+						th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>
