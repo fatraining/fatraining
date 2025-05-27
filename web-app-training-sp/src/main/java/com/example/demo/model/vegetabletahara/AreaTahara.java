@@ -19,30 +19,31 @@ import lombok.Data;
 @Data
 @Entity
 public class AreaTahara {
-    /*国内最大生産地ID*/
+	
+    /**国内最大生産地ID*/
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 	
-	/*地名*/
+	/**地名*/
 	@Column(name = "name")
 	@Size(max = 100)
 	private String name;
 	
-	/*削除フラグ*/
+	/**削除フラグ*/
 	@Column(name ="del_flg")
 	private int delFlg;
 	
-	/*入力日時*/
+	/**入力日時*/
 	@Column(name ="create_date")
 	private String createDate;
 	
-	/*更新日時*/
+	/**更新日時*/
 	@Column(name ="update_date")
 	private String updateDate;
 	
-	/*外部キー設定：国内最大生産地ID*/
+	/**外部キー設定：国内最大生産地ID*/
 	@OneToMany(targetEntity = VegetableMainTahara.class, mappedBy = "area")
 	private List<VegetableMainTahara> vegetableMainTaharaList;
 }

@@ -27,7 +27,7 @@ public class VegetableTaharaSpecification {
 	  * @return VegetableMainTaharaのSpecification
 	  */
 	public static Specification<VegetableMainTahara> generateVegetableSpecification(final VegetableTaharaSearchForm form){
-		       //↓これどういうこと？
+		       //↓Repositoryの補助。動的に変わるSQL文を、if文を駆使してJavaで記述している
 		return new Specification<VegetableMainTahara>() {
 			@Override
 			public Predicate toPredicate(Root<VegetableMainTahara> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -38,20 +38,20 @@ public class VegetableTaharaSpecification {
 				//削除フラグON用が1かどうか判定
 				if(form.getIsDelete() == 1) {
 					
-					//削除フラグ＝1を検索条件にする
+					//削除フラグ＝1を検索条件にする where del_flg = 1
 					return cb.equal(root.get("delFlg"), CommonConst.DELETE_FLG_ON);
 				}
 				
 				//条件が入力されている場合、条件追加
 				if(form.getId() != null) {
 					
-					//IDを条件に追加
+					//IDを条件に追加 id = [入力されたid]
 					Predicate newCondition = cb.equal(root.get("id"), form.getId());
 					condition = getPredicate(cb, condition, newCondition);
 				}
 				if(!StringUtils.isEmpty(form.getVegetableName())) {
 					
-					//野菜の名前を条件に追加
+					//野菜の名前を条件に追加 like vegetableName %[入力された野菜名]%
 					form.setVegetableName(form.getVegetableName().trim());
 					Predicate newCondition = cb.like(root.get("vegetableName"), "%" + form.getVegetableName() + "%");
 					condition = getPredicate(cb, condition, newCondition);

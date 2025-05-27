@@ -15,7 +15,7 @@ import com.example.demo.model.vegetabletahara.VegetableMainTahara;
  * VegetableMainTaharaリポジトリのインターフェース
  *
  * @author future
- */                                              //↓よく使われるSQL文を自動的に使うメソッド？
+ */                                              //↓よく使われるSQL文を自動的に使うメソッド
 public interface VegetableMainRepository extends JpaRepository<VegetableMainTahara, Long>, JpaSpecificationExecutor<VegetableMainTahara>{
 	//このインターフェースには、JpaRepositoryで対応していない（よく使われないような、複雑な）SQLを書く
 	/**
@@ -27,7 +27,7 @@ public interface VegetableMainRepository extends JpaRepository<VegetableMainTaha
 	@Modifying  //「更新・削除・挿入」するためのqueryを実行するために必要なもの
 	@Query("UPDATE VegetableMainTahara SET delFlg = 1 WHERE id = :id")
 	void delete(@Param("id") final long id);
-	//
+	//query文中のクライアント側のデータを指定している
 
 	/**
 	 * 対象のレコードを削除する
@@ -42,3 +42,6 @@ public interface VegetableMainRepository extends JpaRepository<VegetableMainTaha
 //トランザクション処理：プログラムからデータベースに送信する1つ以上のSQL要求を、1つのグループとして扱う処理
 //トランザクション制御：トランザクション処理の実行時、複数あるSQLファイルがすべて成功した場合に処理結果を確定（コミット）し、
 //　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　途中で失敗した場合に実行前の状態に戻す（ロールバック）する動き
+
+//なお、検索条件によってWHERE句が動的に変わるので、このRepositoryクラスだけでは対応できない。
+//よって、動的に変わる検索条件に対応してWHERE句以降をjavaで記述するSpecificationクラスを作って、このRepositoryクラスを補助する。

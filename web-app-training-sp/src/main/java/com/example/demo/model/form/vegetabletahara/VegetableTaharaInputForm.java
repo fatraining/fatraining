@@ -95,7 +95,6 @@ public class VegetableTaharaInputForm {
 	 */
 	private VegetableMainTahara convertToVegetableMainTahara(VegetableMainTahara vegetableMainTahara) {
 		vegetableMainTahara.setVegetableName(this.vegetableName);
-		
 		if(this.categoryId == CommonConst.NOT_ENTERD) {
 			// カテゴリーが入力されていなかった場合
 			vegetableMainTahara.setCategoryId(null);
@@ -103,23 +102,20 @@ public class VegetableTaharaInputForm {
 			// カテゴリーが入力されていた場合
 			vegetableMainTahara.setCategoryId(this.categoryId);
 		}
-		
 		vegetableMainTahara.setOriginPlace(this.originPlace);
-	
 		vegetableMainTahara.setProductionVolume(this.productionVolume);
 		
 		if(this.areaId == CommonConst.NOT_ENTERD) {
+			
 			// 国内最大生産地が入力されていなかった場合
 			vegetableMainTahara.setAreaId(null);
 		}else {
+			
 			// 国内最大生産地が入力されていた場合
 			vegetableMainTahara.setAreaId(this.areaId);
 		}
-		
 		vegetableMainTahara.setRecommend(this.recommend);
-		
 		vegetableMainTahara.setDelFlg(0);
-		
 		return vegetableMainTahara;
 	}
 }
