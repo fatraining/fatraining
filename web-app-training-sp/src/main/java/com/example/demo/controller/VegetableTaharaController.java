@@ -23,23 +23,23 @@ import com.example.demo.model.vegetabletahara.CategoryTahara;
 import com.example.demo.model.vegetabletahara.VegetableMainTahara;
 import com.example.demo.service.VegetableTaharaService;
 
-/*
+/**
  * VegetableTaharaのコントローラークラス
  * 
  * 　↓は、作成者名を指定
  * @author future
  * */
  @Controller
-                        //「vegetabletahara」を参照
+                          //「vegetabletahara」を参照
  @RequestMapping(value = "/vegetabletahara")
 public class VegetableTaharaController {
 	 
-	 /*
+	 /**
 	  * 使用するサービスの実装？（野菜のサービス）
 	  * */
 	 private final VegetableTaharaService vegetableTaharaService;
 	 
-	 /*
+	 /**
 	  * コンストラクタ
 	  * 
 	  * @param VegetableTaharaService vegetableTaharaService
@@ -48,7 +48,7 @@ public class VegetableTaharaController {
 		 this.vegetableTaharaService = vegetableTaharaService;
 	 }
 	 
-	 /*
+	 /**
 	  * カテゴリーエンティティのリストを取得
 	  * 
 	  * @return CategoryEntityのリスト
@@ -60,7 +60,7 @@ public class VegetableTaharaController {
 		 return vegetableTaharaService.getListCategory();
 	 }
 	 
-	 /*
+	 /**
 	  * 国内最大生産地エンティティのリストを取得
 	  * 
 	  * @return AreaEntityのリスト
@@ -69,7 +69,6 @@ public class VegetableTaharaController {
 	 public List<AreaTahara> getListArea(){
 		 return vegetableTaharaService.getListArea();		 
 	 }
-
 	 
 //以下、検索機能	 
 	 /**
@@ -107,9 +106,8 @@ public class VegetableTaharaController {
 			return "vegetabletahara/search";
 		}
 	
-	 
 //以下、追加機能 
-	 /*
+	 /**
 	  * 追加画面に遷移
 	  * 
 	  * @param VegetableTaharaInputForm vegetableTaharaInputForm
@@ -117,11 +115,10 @@ public class VegetableTaharaController {
 	  * */
 	 @GetMapping(value = "insert")
 	 public String showInsertVegetable(@ModelAttribute final VegetableTaharaInputForm vegetableTaharaInputForm) {
-		 VegetableTaharaInputForm check1 = vegetableTaharaInputForm;
 		 return "vegetabletahara/insert";
 	 }
 	 
-	 /*
+	 /**
 	  * VegetableMainTaharaテーブルにデータを登録して検索画面に遷移する
 	  * 
 	  * @param VegetableTaharaInputForm form
@@ -135,14 +132,14 @@ public class VegetableTaharaController {
 			 //入力エラーがある場合、自画面に戻る
 			 return "vegetabletahara/insert";
 		 }
+		 
 		 //データを登録
 		 final VegetableMainTahara vegetableMainTahara = vegetableTaharaService.insertVegetable(form);
 		 return "redirect:/vegetabletahara?result=insert&id=" + vegetableMainTahara.getId();
 	 }
-
 	 
 //以下、更新機能
-	 /*
+	 /**
 	  * 更新画面に遷移
 	  * 
 	  * @param long id
@@ -158,11 +155,10 @@ public class VegetableTaharaController {
 		 
 		 //フォームにレコードの値をセット
 		 vegetableTaharaInputForm.initWithVegetableMainTahara(vegetableMainTahara);
-		 
 		 return "vegetabletahara/update";
 	 }
 	 
-	 /*
+	 /**
 	  * VegetableMainTaharaテーブルのデータを更新して検索画面に遷移
 	  * 
 	  * @param VegetableTaharaInputForm form
@@ -189,24 +185,23 @@ public class VegetableTaharaController {
 		 return "redirect:/vegetabletahara?result=update&id=" + vegetableMainTahara.getId();
 		                                           //なお、↑の＝がなければ、値の代入がなされず、HTML側で参照ができないのでエラーが発生する
 	 }
-
 	 
 //以下、削除機能
-	 /*
-	  * MovieMainテーブルのレコードを論理削除(ユーザーには消したように見える状態)して検索画面に遷移する
+	 /**
+	  * VegetableMainTaharaテーブルのレコードを論理削除(ユーザーには消したように見える状態)して検索画面に遷移する
 	  * 
 	  * @param long id
 	  * @return 検索画面のパス
 	  * */
-	 @GetMapping("delete")                   //↓これは何?
-	 public String deleteMovie(@RequestParam(name = "id") final long id) {
+	 @GetMapping("delete")                   //「long id = request.getParameter("id")」の意
+	 public String deleteVegetable(@RequestParam(name = "id") final long id) {
 		 
 		 //IDをキーにレコードを論理削除する
 		 vegetableTaharaService.deleteVegetableTaharaById(id);
 		 return "redirect:/vegetabletahara?result=delete&id=" + id;
 	 }
 	 
-	 /*
+	 /**
 	  * 完全削除(DBからも完全に消去する)画面に遷移
 	  * 
 	  * @param VegetableTaharaSearchForm form
@@ -226,7 +221,7 @@ public class VegetableTaharaController {
 		 return "vegetabletahara/deletecomp";
 	 }
 	 
-	 /*
+	 /**
 	  * VegetableMainテーブルのデータを完全削除して検索画面に遷移
 	  * 
 	  * @param VegetableTaharaDeleteForm form

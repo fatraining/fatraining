@@ -157,13 +157,15 @@
 						</td>
 						<td class="data center" th:text="${vegetable.recommend}"></td>
 						
-						<td class="data"><!-- 更新画面へ遷移 -->
+						<!-- 更新画面へ遷移 -->
+						<td class="data">
 							<a class="btn btn-success"
 								th:href="@{/vegetabletahara/update(id=${vegetable.id})}"
 								th:text="#{common.text.update}">Update</a>
 						</td>
 						
-						<td class="data center"><!-- 削除モーダルの表示 -->
+						<!-- 削除モーダルの表示 -->
+						<td class="data center">
 							<a class="btn btn-danger" style="margin-left: 5%"
 								data-toggle="modal" data-target="#deleteModal"
 								th:text="#{common.text.delete}"
