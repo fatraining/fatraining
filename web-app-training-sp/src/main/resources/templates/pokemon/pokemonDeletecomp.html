@@ -58,12 +58,12 @@
 								<!--type1とtype2がnull-->
 							<label th:if="${pokemon.type1 == null && pokemon.type2 == null}"
 							th:text="'/'"
-							class="data center">/ </label>
+							class="data center">/</label>
 							
 							<!--type1がnullかつtype2に値がある-->
 							<label th:if="${pokemon.type1 == null && pokemon.type2 != null}"
 								th:text="${pokemon.type2.type2Variation}"
-								class="data center">/いわ</label>
+								class="data center">*/いわ</label>
 							
 							<!--type1に値があるかつtype2がnull-->
 							<label th:if="${pokemon.type1 != null && pokemon.type2 == null}"

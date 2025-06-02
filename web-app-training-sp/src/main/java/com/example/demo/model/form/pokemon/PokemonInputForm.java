@@ -23,6 +23,7 @@ public class PokemonInputForm {
 	private int pokemonId;
 
 	/** ポケモン名 */
+	
 	//↓空白のときエラー({}は必須です)
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
@@ -38,8 +39,8 @@ public class PokemonInputForm {
 	private Integer appearanceId;
 
 	/** 図鑑No. */
-	//入力チェックを行うためにStringも入力をできるようにしておく
-	//(後で弾かれる)
+	
+	//入力チェックを行うためにStringも入力をできるようにしておく(後で弾かれる)
 	@Size(min = 0, max = 4, message = "common.text.error.size.max.four")
 	@Pattern(regexp = "^([+-]?0|[+-]?[1-9][0-9]*)?$", message = "common.text.error.numeric")
 	private String encyclopediaId;
@@ -72,7 +73,7 @@ public class PokemonInputForm {
 	 *
 	 * @return PokemonMain
 	 */
-
+	
 	//`convertToString()`オブジェクトを文字列に変換
 	public PokemonMainSatoyoshi convertToPokemonMainForInsert() {
 		PokemonMainSatoyoshi pokemonMain = new PokemonMainSatoyoshi();
@@ -112,6 +113,7 @@ public class PokemonInputForm {
 			// タイプ1が入力されていた場合
 			pokemonMain.setType1Id(this.type1Id);
 		}
+		
 		if (this.type2Id == CommonConst.NOT_ENTERD) {
 
 			// タイプ2が入力されていなかった場合
@@ -131,8 +133,10 @@ public class PokemonInputForm {
 			//初登場シリーズが入力されていた場合
 			pokemonMain.setAppearanceId(this.appearanceId);
 		}
+		
 			// 図鑑No.が入力されていた場合
 		if (!this.encyclopediaId.isEmpty()) {
+			
 			//入力値(文字列)を整数にして返す
 			pokemonMain.setEncyclopediaId(Integer.parseInt(this.encyclopediaId));
 		} else {

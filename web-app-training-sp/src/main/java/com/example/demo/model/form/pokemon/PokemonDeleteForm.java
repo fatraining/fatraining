@@ -11,10 +11,10 @@ import lombok.Data;
  * @author satoyoshi
  */
 @Data
-
 public class PokemonDeleteForm {
 
 	/** 削除ID */
+	
 	//↓チェックボックスにチェックがないとエラー(チェックを入れてください)
 	@Size(min = 1, message = "common.text.error.require.check")
 	private ArrayList<Long> deleteIds;

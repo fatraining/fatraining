@@ -19,12 +19,10 @@ import lombok.Data;
  */
 @Data
 @Entity
-//大文字 = "_"と認識→テーブル名に合わせる
 public class PokemonMainSatoyoshi {
 
 	/** ポケモンID */
 	@Id
-	//↓主キーの生成、マッピング  MySQLの場合カラムの属性にAUTO_INCREMENTを指定する必要がある
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long pokemonId;
 

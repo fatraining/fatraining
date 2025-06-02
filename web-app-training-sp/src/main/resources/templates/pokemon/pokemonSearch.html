@@ -36,6 +36,7 @@
 		<div class="form-group">
 			<div class="">
 				<a class="btn btn-warning" th:href="@{/pokemon/pokemonInsert}" th:text="#{common.text.new}">New
+					
 				</a>			<!--onclick="" **  .submit() → 作製したボタンを押して実行-->
 				<a class="btn btn-danger" onclick="$('#deleteCompForm').submit()"
 					th:text="#{common.text.unnecessary}">UnnecessaryData
@@ -58,9 +59,9 @@
 				</div>
 
 				<!-- DB操作後 -->
+				<!--Controllerからのredirectを受け取る-->
 				<div class="alert alert-info text-center" role="alert" th:if="${param.result != null}">
 					<div th:switch="${param.result[0]}">
-									<!--Controllerからのredirectを受け取る-->
 						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.pokemonId[0]}"></p>
 						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
 						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
@@ -74,7 +75,6 @@
 		<!-- 検索条件 -->
 		<form class="form-horizontal" id="searchForm" method="post" action="/pokemon/pokemonSearch"
 			th:object="${pokemonSearchForm}">
-			<!-- ↑ pokemonSeachFormにdbの値が格納されているはず...-->
 			<div class="form-group">
 				<label for="pokemonName" class="col-sm-2 control-label"
 					th:text="#{pokemon.text.input.title}">Pokemon:</label>
@@ -87,6 +87,7 @@
 				<label for="type1" class="control-label col-sm-2" th:text="#{pokemon.text.input.type1}">Type1:</label>
 				<div class="col-sm-8">
 					<select id="inputType1" name="type1Id" class="form-control select">
+						
 						<!--(th:each)for文でListから値を取り出す感じ               type1の主キー             ボックスに表示する要素-->
 						<option th:each="type1 : ${type1SatoyoshiList}" th:value="${type1.type1Id}" th:text="${type1.type1Variation}"
 							th:selected="${type1.type1Id == pokemonSearchForm.type1Id}">pulldown
@@ -148,8 +149,8 @@
 					<tr th:each="pokemon : ${pokemonList}">
 						<td class="data center" th:text="${pokemon.pokemonName}">ピカチュウ</td>
 						<td class="data center">
-							<!--modelで指定した外部キーで呼び出し-->
 							
+							<!--modelで指定した外部キーで呼び出し-->
 							<!--type1とtype2がnull-->
 							<label th:if="${pokemon.type1 == null && pokemon.type2 == null}"
 							th:text="'/'"
@@ -290,6 +291,7 @@
 			modal.find('#deleteTitle').text(pokemonName);
 		});
 	</script>
+	
 	<!-- 194行目を参照してidとtitleにpokemonIdとpokemonNameを入れる -->
 </body>
 

@@ -44,7 +44,6 @@ public class AppearanceSatoyoshi {
 	private String updateDate;
 
 	/** 外部キー設定：初登場シリーズID */
-	
 	@OneToMany(targetEntity = PokemonMainSatoyoshi.class, mappedBy = "appearance")
 	//@JoinColumn(name = "series_id", referencedColumnName = "appearance_id")
 	private List<PokemonMainSatoyoshi> PokemonMainList;
