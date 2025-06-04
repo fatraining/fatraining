@@ -22,7 +22,7 @@ public class VegetableMainTahara {
 	/**野菜ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	/**野菜の名前*/
 	@Column(name = "vegetable_name")

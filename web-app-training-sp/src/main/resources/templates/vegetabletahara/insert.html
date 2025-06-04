@@ -32,7 +32,7 @@
 					<input type="text" th:field="*{vegetableName}" class="form-control"
 						th:placeholder="#{vegetable.text.name}"/>
 					<p class="err alert-danger" th:each="err : ${#fields.errors('vegetableName')}"
-						th:text="#{${err}(#{vegetable.text.name})}"></p>
+						th:text="#{${err}(#{vegetable.text.name})}"></p><!-- おそらくこの<p></p>が、入力されていなかった時の処理(フォームの@NotBlankとセットで) -->
 				</div>
 				<div class="form-group"><!-- カテゴリー -->
 					<label for="category" class="control-label"
@@ -44,7 +44,17 @@
 								th:text="${category.category}"
 								th:selected="${category.id == vegetableTaharaInputForm.categoryId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('categoryId')}"
+						th:text="#{${err}(#{vegetable.text.category})}"></p>
 				</div>			
+				<div class="form-group"><!-- 原産地 -->
+					<label for="originPlace" class="control-label"
+						th:text="#{vegetable.text.input.originPlace}"> OriginPlace:</label>
+					<input type="text" th:field="*{originPlace}" class="form-control" id="inputOriginPlace"
+						th:placeholder="#{vegetable.text.originPlace}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('originPlace')}"
+						th:text="#{${err}(#{vegetable.text.originPlace})}"></p>
+				</div>
 				<div class="form-group"><!-- 国内生産量(R2) -->
 					<label for="productionVolume" class="control-label"
 						th:text="#{vegetable.text.input.productionVolume}"> ProductionVolume:</label>
@@ -52,14 +62,6 @@
 						th:placeholder="#{vegetable.text.productionVolume}" />
 					<p class="err alert-danger" th:each="err : ${#fields.errors('productionVolume')}"
 						th:text="#{${err}(#{vegetable.text.productionVolume})}"></p>
-				</div>
-				<div class="form-group"><!-- 原産地 -->
-					<label for="originPlace" class="control-label"
-						th:text="#{vegetable.text.input.originPlace}"> OriginPlace:</label>
-					<input type="text" th:field="*{originPlace}" class="form-control" id="inputOriginPlace"
-						th:placeholder="#{vegetable.text.originPlace}" />
-					<p class="err alert-danger" th:each="err : ${#fields.errors('OriginPlace')}"
-						th:text="#{${err}(#{vegetable.text.originPlace})}"></p>
 				</div>
 				<div class="form-group"><!-- 国内最大生産地(R4) -->
 					<label for="area" class="control-label"
@@ -71,6 +73,8 @@
 								th:text="${area.name}"
 								th:selected="${area.id == vegetableTaharaInputForm.areaId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('areaId')}"
+						th:text="#{${err}(#{vegetable.text.area})}"></p>
 				</div>
 				<div class="form-group"><!-- おすすめの食べ方 -->
 					<label for="recommend" class="control-label"
@@ -78,6 +82,8 @@
 					<textarea th:field="*{recommend}" cols="" rows="5"
 						class="form-control" id="inputRecommend"
 						th:placeholder="#{vegetable.text.recommend}"></textarea>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('recommend')}"
+						th:text="#{${err}(#{vegetable.text.recommend})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
                     <a class="btn btn-success center-block"

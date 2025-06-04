@@ -45,6 +45,8 @@
 								th:text="${category.category}"
 								th:selected="${category.id == vegetableTaharaInputForm.categoryId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('categoryId')}"
+						th:text="#{${err}(#{vegetable.text.category})}"></p>
 				</div>
 				<div class="form-group"><!-- 原産地 -->
 					<label for="originPlace" class="control-label"
@@ -72,6 +74,8 @@
 								th:text="${area.name}"
 								th:selected="${area.id == vegetableTaharaInputForm.areaId}">pulldown</option>
 					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('areaId')}"
+						th:text="#{${err}(#{vegetable.text.area})}"></p>
 				</div>
 				<div class="form-group"><!-- おすすめの食べ方 -->
 					<label for="recommend" class="control-label"
@@ -79,6 +83,8 @@
 					<textarea th:field="*{recommend}" cols="" rows="5"
 						class="form-control" id="inputRecommend"
 						th:placeholder="#{vegetable.text.recommend}"></textarea>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('recommend')}"
+						th:text="#{${err}(#{vegetable.text.recommend})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<a class="btn btn-success center-block"

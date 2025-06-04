@@ -179,7 +179,7 @@ public class VegetableTaharaController {
 		 if(vegetableMainTahara == null) {
 			 
 			 //更新が失敗した場合、検索画面にメッセージを表示
-			 return "redirect:/vegetabletahara?result=updatefaield";
+			 return "redirect:/vegetabletahara?result=updatefailed";
 		 }
 		         //↓で、直接URLに飛ぶ    ↓この?以降がパラメータであり、「result」はいわゆる変数名である。また、=以降の「update」は「value値」である
 		 return "redirect:/vegetabletahara?result=update&id=" + vegetableMainTahara.getId();

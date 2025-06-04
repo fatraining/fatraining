@@ -143,8 +143,7 @@
 					<tr th:each="vegetable : ${vegetableList}"><!-- ←ここで拡張for文をやっている -->
 						<td class="data center" th:text="${vegetable.vegetableName}"></td>
 						<td class="data center">
-							<label th:if="${vegetable.category != null}"  th:text="${vegetable.category.category}" class="data center">アクション</label>
-							<!--<label  th:text="test" class="data center">アクション</label>-->
+							<label th:if="${vegetable.category != null}"  th:text="${vegetable.category.category}" class="data center"></label>
 						</td>
 						<td class="data center">
 							<label th:if="${vegetable.originPlace != null}"  th:text="${vegetable.originPlace}"
@@ -176,10 +175,10 @@
 				</tbody>
 			</table>
 		</section>
-        <!-- ページング用 -->
+        <!-- ページング用 --><!--一番下のページ番号のこと。クリックすると、検索結果一覧の次のページが表示される-->
 		<div th:fragment='paginationbar'>
 			<div th:if="${page != null}">
-				<ul>
+				<ul>              <!-- 「条件 ? 値１ : 値２」の形。「？」も「:」もJavaScriptにおける条件演算子 -->
 					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
 						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
 						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
@@ -205,6 +204,10 @@
 				</ul>
 			</div>
 	    </div>
+	    <!--ページングとは、「Webサイト上のコンテンツが縦長になるなど、中身が把握しづらいときに複数ページに分割して移動できるようにした機能」のこと
+	    　　　→今回のように、検索結果一覧やカテゴリ一覧など、数が多いリストを表示する際によく使わる。
+	    　　ページングの形は、ページ番号を横に並べたものが一般的で、ページ番号とともに「次のページ」「前のページ」といった別のリンクを用意する場合が多い
+	    　　　→リスト形式のコンテンツ以外に、ニュース記事などの長い文章のコンテンツを分割するときにも活用される-->
 	</div>
 
 	<!-- 削除モーダル -->
