@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Size;
+
 import lombok.Data;
 
 /**
@@ -22,7 +23,7 @@ public class VegetableMainTahara {
 	/**野菜ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	/**野菜の名前*/
 	@Column(name = "vegetable_name")
