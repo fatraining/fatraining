@@ -6,10 +6,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.example.demo.model.MunicipalityIkebe;
-import com.example.demo.model.MunicipalityPopulationIkebeMain;
-import com.example.demo.model.PopulationIkebe;
-import com.example.demo.model.form.MunicipalityPopulationSearchForm;
+import com.example.demo.model.form.municipalityPopulationIkebe.MunicipalityPopulationInputForm;
+import com.example.demo.model.form.municipalityPopulationIkebe.MunicipalityPopulationSearchForm;
+import com.example.demo.model.municipalityPopulationIkebe.MunicipalityIkebe;
+import com.example.demo.model.municipalityPopulationIkebe.MunicipalityPopulationIkebeMain;
+import com.example.demo.model.municipalityPopulationIkebe.PopulationIkebe;
 
 /**
  * MunicipalityPopulationIkebeのサービスインターフェース
@@ -55,6 +56,23 @@ public interface MunicipalityPopulationService {
 	 * @return MunicipalityPopulationIkebeMainのレコード
 	 */
 	MunicipalityPopulationIkebeMain getMunicipalityIkebe(final long id);
+	
+	/**
+	 * MunicipalityPopulationIkebeMainにレコードを新規登録する
+	 * 
+	 * @Param MunicipalityPopulationInputForm Form
+	 * @return MunicipalityPopulationIkebeMain
+	 */
+	MunicipalityPopulationIkebeMain insertMunicipalityPopulation(final MunicipalityPopulationInputForm form);
+	
+	/**
+	 * MunicipalityPopulationIkebeMainのレコードを更新する
+	 *
+	 * @param MunicipalityPopulationInputForm form
+	 * @return MunicipalityPopulationIkebeMain
+	 */
+	MunicipalityPopulationIkebeMain updateMunicipalityPopulation(final MunicipalityPopulationInputForm form);
+
 
 	/**
 	 * MunicipalityPopulationIkebeMainのレコードを論理削除する

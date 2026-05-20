@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.municipalityPopulationIkebe;
 
 import java.util.List;
 
@@ -24,11 +24,11 @@ public class PopulationIkebe {
 	/** 総人口ID */
 	@Id
 	@GeneratedValue
-	@Column(name = "popullation_id")
+	@Column(name = "population_id")
 	private int population_id;
 
 	/** 総人口カテゴリー */
-	@Column(name = "populaltion_category")
+	@Column(name = "population_category")
 	@Size(max = 20)
 	private String populationCategory;
 

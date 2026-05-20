@@ -10,8 +10,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.thymeleaf.util.StringUtils;
 
 import com.example.demo.constant.CommonConst;
-import com.example.demo.model.MunicipalityPopulationIkebeMain;
-import com.example.demo.model.form.MunicipalityPopulationSearchForm;
+import com.example.demo.model.form.municipalityPopulationIkebe.MunicipalityPopulationSearchForm;
+import com.example.demo.model.municipalityPopulationIkebe.MunicipalityPopulationIkebeMain;
 
 
 /**

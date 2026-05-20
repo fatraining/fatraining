@@ -2,18 +2,20 @@ package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.MunicipalityIkebe;
-import com.example.demo.model.MunicipalityPopulationIkebeMain;
-import com.example.demo.model.PopulationIkebe;
-import com.example.demo.model.form.MunicipalityPopulationSearchForm;
-import com.example.demo.repository.MunicipalityIkebeRepository;
-import com.example.demo.repository.MunicipalityPopulationIkebeMainRepository;
-import com.example.demo.repository.PopulationIkebeRepository;
+import com.example.demo.model.form.municipalityPopulationIkebe.MunicipalityPopulationInputForm;
+import com.example.demo.model.form.municipalityPopulationIkebe.MunicipalityPopulationSearchForm;
+import com.example.demo.model.municipalityPopulationIkebe.MunicipalityIkebe;
+import com.example.demo.model.municipalityPopulationIkebe.MunicipalityPopulationIkebeMain;
+import com.example.demo.model.municipalityPopulationIkebe.PopulationIkebe;
+import com.example.demo.repository.municipalityPopulationIkebe.MunicipalityIkebeRepository;
+import com.example.demo.repository.municipalityPopulationIkebe.MunicipalityPopulationIkebeMainRepository;
+import com.example.demo.repository.municipalityPopulationIkebe.PopulationIkebeRepository;
 import com.example.demo.repository.specification.MunicipalityPopulationSpecification;
 import com.example.demo.service.MunicipalityPopulationService;
 
@@ -92,15 +94,47 @@ public class MunicipalityPopulationServiceImpl implements MunicipalityPopulation
 	}
 
 	@Override
+	public MunicipalityPopulationIkebeMain insertMunicipalityPopulation(final MunicipalityPopulationInputForm form) {
+
+		// MunicipalityPopulationIkebeMainテーブルに新規でデータを登録する
+		final MunicipalityPopulationIkebeMain municipalityPopulationIkebeMain = form
+				.convertToMunicipalityPopulationIkebeMainForInsert();
+		return municipalityPopulationIkebeMainRepository.saveAndFlush(municipalityPopulationIkebeMain);
+	}
+
+	@Override
+	public MunicipalityPopulationIkebeMain updateMunicipalityPopulation(
+			final MunicipalityPopulationInputForm form) {
+
+		// 更新対象のレコードを取得する
+		Optional<MunicipalityPopulationIkebeMain> municipalityPopulationIkebeMainOp = municipalityPopulationIkebeMainRepository
+				.findById((long) form.getId());
+
+		MunicipalityPopulationIkebeMain municipalityPopulationIkebeMain = municipalityPopulationIkebeMainOp.get();
+		if (municipalityPopulationIkebeMain != null) {
+
+			// 更新対象のレコードが存在する場合排他チェック
+			if (form.getUpdateDate().equals(String.valueOf(municipalityPopulationIkebeMain.getUpdateDate()))) {
+
+				// チェックOKの場合、更新
+				municipalityPopulationIkebeMain = form
+						.convertToMunicipalityPopulationIkebeMainForUpdate(municipalityPopulationIkebeMain);
+				return municipalityPopulationIkebeMainRepository.saveAndFlush(municipalityPopulationIkebeMain);
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public void deleteMunicipalityPopulationIkebeById(long id) {
 		// TODO 自動生成されたメソッド・スタブ
-		
+
 	}
 
 	@Override
 	public void deleteMunicipaalityPopulationIkebeComp(ArrayList<Long> ids) {
 		// TODO 自動生成されたメソッド・スタブ
-		
+
 	}
 
 }

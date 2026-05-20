@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Webアプリ研修|市区町村追加</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/municipalityPopulation.css}" />
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver
+					β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{municipalityPopulation.text.insert}">MunicipalityPopulationInsert</h1>
+				<a th:href="@{/municipalityPopulation}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="municipalityPopulationInputForm" th:action="@{/municipalityPopulation/insert}"
+				th:object="${municipalityPopulationInputForm}" class="form-horizontal">
+				<div class="form-group">
+					<label for="manicipality" class="control-label"
+						th:text="#{municipalityPopulation.text.input.municipality.riquire}">
+						municipality(*):</label>
+					<input type="text" th:field="*{municipality}" class="form-control"
+						th:placeholder="#{municipalityPopulation.text.municipality}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('municipality')}"
+						th:text="#{${err}(#{municipalityPopulation.text.municipality})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="municipalityCategory" class="control-label"
+						th:text="#{municipalityPopulation.text.input.municipalityCategory}">
+						municipalityCategory:</label>
+					<select name="municipalityId" id="inputMunicipality" class="form-control select">
+						<option th:each="municipality : ${municipalityList}" th:value="${municipality.municipalityId}"
+							th:text="${municipality.municipalityCategory}"
+							th:selected="${municipality.municipalityId == municipalityPopulationInputForm.municipalityId}">
+							pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="populationCategory" class="control-label"
+						th:text="#{municipalityPopulation.text.input.populationCategory}"> populationCategory:</label>
+					<select name="populationId" id="inputPopulation" class="form-control">
+						<option th:each="population : ${populationList}" th:value="${population.populationId}"
+							th:text="${population.populationCategory}"
+							th:selected="${population.id == municipalityPopulationInputForm.populationId}">pulldown
+						</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="population" class="control-label" th:text="#{municipality.text.input.population}">
+						population:</label>
+					<textarea th:field="*{population}" cols="" rows="9" class="form-control" id="inputPopulation"
+						th:placeholder="#{municipalityPopulation.text.population}"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="elderlyPopulation" class="control-label"
+						th:text="#{municipalityPopulation.text.input.elderlyPopulation}">
+						elderlyPopulation:</label>
+					<textarea th:field="*{elderlyPopulation}" cols="" rows="7" class="form-control"
+						id="inputElderlyPopulation"
+						th:placeholder="#{municipalityPopulation.text.elderlyPopulation}"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="aginglate" class="control-label"
+						th:text="#{municipalityPopulation.text.input.aginglate}">
+						aginglate:</label>
+					<textarea th:field="*{aginglate}" cols="" rows="6" class="form-control" id="inputAginglate"
+						th:placeholder="#{municipalityPopulation.text.aginglate}"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="populationDensity" class="control-label"
+						th:text="#{municipality.text.input.populationDencity}">
+						populationDensity:</label>
+					<textarea th:field="*{populationDensity}" cols="" rows="10" class="form-control"
+						id="inputPopulationDensity"
+						th:placeholder="#{municipalityPopulation.text.populationDensity}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block" onclick="$('#municipalityPopulationInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
