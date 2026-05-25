@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Webアプリ研修 | アナログゲーム完全削除</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/analog.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="sub-header">
+			<h1 align="center" th:text="#{analog.text.delete}">AnalogDelete</h1>
+			<a th:href="@{/analog}" th:text="#{common.text.back}">Back</a>
+		</div>
+
+		<!-- 削除対象データ -->
+		<form class="form-horizontal" id="deleteForm" action="/analog/deletecomp" th:object="${analogNoguchiDeleteForm}"
+			  method="post">
+			<div th:if="${analogList != null}">
+				<h3 th:text="#{common.text.info.delete.confirm}">選択したデータを完全に削除します</h3>
+				<h4 th:each="err : ${#fields.errors('deleteIds')}" th:text="#{${err}}" class="err alert-danger">error
+					message</h4>
+			</div>
+			<div th:if="${analogList == null}">
+				<h3 th:text="#{common.text.info.no.delete}">削除するデータがありません</h3>
+			</div>
+			<div th:if="${analogList != null}"
+				 class="resultArea col-xs-18 col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+				<table id="resultTable" class="table table-borderd table-striped table-hover">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="allCheck" /></th>
+
+							<th class="per-12 center" th:text="#{analog.text.title}">Title</th>
+							<th class="per-12 center" style="width: 130px;" 
+							    th:text="#{analog.text.type}">Type</th>
+							<th class="per-12 center" th:text="#{analog.text.targetYears}">TargetYears</th>
+							<th class="per-12 center" style="width: 170px;" 
+							    th:utext="#{analog.text.genre1.and.genre2}">Genre1/Genre2</th>
+							<th class="per-12 center" style="width: 100px;"
+								th:utext="#{analog.text.playPerson.and.playTime}">PlayPerson/PlayTime</th>
+							<th class="per-12 center" th:text="#{analog.text.content}">Content</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="analog : ${analogList}">
+
+							<td>
+								<label>
+									<input type="checkbox" style="margin-left: 50%" th:field="*{deleteIds}"
+										   th:value="${analog.id}" />
+								</label>
+							</td>
+
+							<!-- ゲーム名 -->
+							<td class="data center" th:text="${analog.analogTitle}">Title</td>
+
+							<!-- 種類 -->
+							<td class="data center">
+								<label th:if="${analog.type !=null}" th:text="${analog.type.type}"
+									   class="data center">Type</label>
+							</td>
+
+							<!-- 対象年齢（メインテーブルの値） -->
+							<td class="data center">
+								<label th:if="${analog.targetYears !=null}" th:text="${analog.targetYears}"
+									   class="data center">10</label>
+							</td>
+
+
+							<!-- ジャンル1 / ジャンル2 -->
+							<td class="data center">
+								<span th:text="${analog.genre1.genre}"></span>
+								<span th:if="${analog.genre2 != null and analog.genre2.genre != null and !#strings.isEmpty(analog.genre2.genre)}">
+									<br />/ <span th:text="${analog.genre2.genre}"></span>
+								</span>
+							</td>
+
+							<!-- プレイ人数 / プレイ時間 -->
+							<td class="data center">
+								<span th:text="${analog.playPerson}"></span>
+								<span th:if="${analog.playTime != null}"><br />/</span>
+								<span th:text="${analog.playTime != null ? analog.playTime : ''}"></span>
+							</td>
+
+							<!-- 内容 -->
+							<td class="data center" th:text="${analog.content}">Content</td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<a class="btn btn-danger center-block" onclick="$('#deleteForm').submit()"
+						th:text="#{common.text.delete}">
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+	<script>
+		$('#allCheck').on('change', function () {
+			$('input[name=deleteIds]').prop('checked', this.checked);
+		});
+	</script>
+</body>
+
+</html>

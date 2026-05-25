@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Webアプリ研修|アナログゲーム追加</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/analog.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
+				<small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{analog.text.insert}">AnalogInsert</h1>
+				<a th:href="@{/analog}" th:text="#{common.text.back}">Back</a>
+			</div>
+
+			<!-- 入力欄 -->
+			<form method="post" id="analogNoguchiInputForm" th:action="@{/analog/insert}"
+				  th:object="${analogNoguchiInputForm}" class="form-horizontal">
+
+				<div class="form-group">
+					<label for="name" class="control-label" 
+					th:text="#{analog.text.input.title.riquire}">Title(*):</label>
+					<input type="text" th:field="*{analogTitle}" class="form-control"
+						   th:placeholder="#{analog.text.title}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('analogTitle')}"
+						th:text="#{${err}(#{analog.text.title})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="type" class="control-label" 
+					       th:text="#{analog.text.input.type.riquire}">Type:</label>
+
+					<select name="typeId" id="inputType" class="form-control select">
+						<option value="">-- 選択してください --</option>
+						<option th:each="type : ${typeList}"
+							    th:if="${type.type != null and !#strings.isEmpty(type.type)}" 
+								th:value="${type.id}"
+							    th:text="${type.type}" 
+								th:selected="${type.id == analogNoguchiInputForm.typeId}">pulldown
+						</option>
+					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('typeId')}"
+						th:text="#{${err}(#{analog.text.type})}"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="targetYears" class="control-label"
+						   th:text="#{analog.text.input.targetYears.riquire}">TargetYears:</label>
+
+					<select name="targetYears" id="inputTargetYearsr" class="form-control select">
+						<option value="">-- 選択してください --</option>
+						<option th:each="years : ${targetYearsList}" 
+						        th:value="${years}" 
+								th:text="${years}"
+							    th:selected="${years == analogNoguchiInputForm.targetYears}">
+						</option>
+					</select>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('targetYears')}"
+						th:text="#{${err}(#{analog.text.targetYears})}"></p>
+
+				</div>
+
+				<div class="form-group">
+					<label for="genre1" class="control-label" 
+					       th:text="#{analog.text.input.genre1}">Genre1:</label>
+					<select name="genre1Id" id="inputGenre1" class="form-control select">
+						<option th:each="genre1 : ${genre1List}" 
+						        th:value="${genre1.id}" 
+								th:text="${genre1.genre}"
+							    th:selected="${genre1.id == analogNoguchiInputForm.genre1Id}">pulldown
+						</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="genre2" class="control-label" 
+					       th:text="#{analog.text.input.genre2}">Genre2:</label>
+					<select name="genre2Id" id="inputGenre2" class="form-control select">
+						<option th:each="genre2 : ${genre2List}" 
+						        th:value="${genre2.id}" 
+								th:text="${genre2.genre}"
+							    th:selected="${genre2.id == analogNoguchiInputForm.genre2Id}">pulldown
+						</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="playPerson" class="control-label"
+						   th:text="#{analog.text.input.playPerson}">PlayPerson:</label>
+					<input type="text" th:field="*{playPerson}" class="form-control" id="inputPlayPerson"
+						   th:placeholder="#{analog.text.playPerson}" />
+				</div>
+
+				<div class="form-group">
+					<label for="playTime" class="control-label"
+						   th:text="#{analog.text.input.playTime}">PlayTime:</label>
+					<input type="text" th:field="*{playTime}" class="form-control" id="inputPlayTime"
+						   th:placeholder="#{analog.text.playTime}" />
+
+				</div>
+
+				<div class="form-group">
+					<label for="content" class="control-label" 
+					       th:text="#{analog.text.input.content}"> Content:</label>
+					<textarea th:field="*{content}" cols="" rows="5" class="form-control" id="inputContent"
+						      th:placeholder="#{analog.text.content}"></textarea>
+				</div>
+
+				<div class="col-xs-3 col-sm-2">
+					<a class="btn btn-success center-block" onclick="$('#analogNoguchiInputForm').submit()"
+						th:text="#{common.text.insert}">Insert</a>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
