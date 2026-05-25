@@ -9,7 +9,6 @@ import lombok.Data;
  * 
  * @author future
  */
-
 @Data
 public class AnalogNoguchiSearchForm {
 
@@ -31,16 +30,12 @@ public class AnalogNoguchiSearchForm {
 	/**
 	 * 各フィールドに値を設定する
 	 * 
-	 * @param analogMain
+	 * @param analogMainNoguchi
 	 */
-
 	public void setValues(AnalogMainNoguchi analogMainNoguchi) {
-
 		this.setId((int) analogMainNoguchi.getId());
 		this.setAnalogTitle(analogMainNoguchi.getAnalogTitle());
 		this.setTypeId(analogMainNoguchi.getTypeId());
 		this.setTargetYears(analogMainNoguchi.getTargetYears());
-
 	}
-
 }

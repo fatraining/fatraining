@@ -9,7 +9,6 @@ import com.example.demo.model.analogNoguchi.Genre2Noguchi;
  *
  * @author future
  */
-
 public interface Genre2NoguchiRepository extends JpaRepository<Genre2Noguchi, Integer> {
 
 }

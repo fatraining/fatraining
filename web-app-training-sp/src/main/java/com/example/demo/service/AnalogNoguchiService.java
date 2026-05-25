@@ -15,33 +15,36 @@ import com.example.demo.model.form.analogNoguchi.AnalogNoguchiSearchForm;
 
 /**
  * Analogのサービスインターフェース 
- *@author future
+ * 
+ * @author future
  */
-
 public interface AnalogNoguchiService {
 
 	/**
 	 * 種類のエンティティのリストを取得する
+	 * 
 	 * @return TypeEntityのリスト
 	 */
 	List<TypeNoguchi> getListType();
 
 	/**
 	 * ジャンル1のエンティティのリストを取得する
+	 * 
 	 * @return Genre1Entityのリスト
 	 */
 	List<Genre1Noguchi> getListGenre1();
 
 	/**
 	 * ジャンル2のエンティティのリストを取得する
+	 * 
 	 * @return Genre2Entityのリスト
 	 */
 	List<Genre2Noguchi> getListGenre2();
 	
 	/**
-	 * 新たに作成
 	 * メインテーブルの対象年齢を一覧化する
 	 * 
+	 * @return メインテーブルのTargetYearsのリスト
 	 */
 	List<Integer> getTargetYearsList();
 
@@ -63,7 +66,7 @@ public interface AnalogNoguchiService {
 	List<AnalogMainNoguchi> getListAnalog(final AnalogNoguchiSearchForm form);
 
 	/**
-	 * IDをキーにAnalogMainのレコードを取得する。
+	 * IDをキーにAnalogMainのレコードを取得する
 	 * 
 	 * @param long id
 	 * @return AnalogMainのレコード
@@ -74,7 +77,7 @@ public interface AnalogNoguchiService {
 	 * AnalogMainにレコードを新規登録する
 	 * 
 	 * @param AnalogNoguchiInputForm form
-	 * @return AnalogMain
+	 * @return AnalogMainNoguchi
 	 */
 	AnalogMainNoguchi insertAnalog(final AnalogNoguchiInputForm form);
 
@@ -82,12 +85,13 @@ public interface AnalogNoguchiService {
 	 * AnalogMainのレコードを更新する
 	 * 
 	 * @param AnalogNoguchiInputForm form
-	 * @return AnalogMain
+	 * @return AnalogMainNoguchi
 	 */
 	AnalogMainNoguchi updateAnalog(final AnalogNoguchiInputForm form);
 
 	/**
 	 * AnalogMainのレコードを論理削除する
+	 * 
 	 * @param long id
 	 */
 	void deleteAnalogById(final long id);
@@ -98,5 +102,4 @@ public interface AnalogNoguchiService {
 	 * @param ArrayList<Long> ids
 	 */
 	void deleteAnalogComp(final ArrayList<Long> ids);
-
 }

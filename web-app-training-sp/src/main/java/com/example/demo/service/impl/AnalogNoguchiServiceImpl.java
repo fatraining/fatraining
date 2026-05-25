@@ -27,20 +27,19 @@ import com.example.demo.service.AnalogNoguchiService;
  * 
  * @author future
  */
-
 @Service
 public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 
-	/**AnalogMainリポジトリ	 */
+	/** AnalogMainリポジトリ */
 	private final AnalogMainNoguchiRepository analogMainNoguchiRepository;
 
-	/**Typeリポジトリ	 */
+	/** Typeリポジトリ */
 	private final TypeNoguchiRepository typeNoguchiRepository;
 
-	/**Genre1リポジトリ	 */
+	/** Genre1リポジトリ */
 	private final Genre1NoguchiRepository genre1NoguchiRepository;
 
-	/**Genre2リポジトリ	 */
+	/** Genre2リポジトリ */
 	private final Genre2NoguchiRepository genre2NoguchiRepository;
 
 	/**
@@ -51,16 +50,13 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 	 * @param Genre1NoguchiRepository genre1NoguchiRepository
 	 * @param Genre2NoguchiRepository genre2NoguchiRepository
 	 */
-
 	public AnalogNoguchiServiceImpl(AnalogMainNoguchiRepository analogMainNoguchiRepository,
 			TypeNoguchiRepository typeNoguchiRepository, Genre1NoguchiRepository genre1NoguchiRepository,
 			Genre2NoguchiRepository genre2NoguchiRepository) {
-
 		this.analogMainNoguchiRepository = analogMainNoguchiRepository;
 		this.typeNoguchiRepository = typeNoguchiRepository;
 		this.genre1NoguchiRepository = genre1NoguchiRepository;
 		this.genre2NoguchiRepository = genre2NoguchiRepository;
-
 	}
 
 	@Override
@@ -68,7 +64,6 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 
 		//TypeテーブルのレコードをID順に取得する TO:DO
 		return typeNoguchiRepository.findAll();
-
 	}
 
 	@Override
@@ -76,7 +71,6 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 
 		//Genre1テーブルのレコードをID順に取得する TO:DO
 		return genre1NoguchiRepository.findAll();
-
 	}
 
 	@Override
@@ -84,15 +78,13 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 
 		//Genre2テーブルのレコードをID順に取得する TO:DO
 		return genre2NoguchiRepository.findAll();
-
 	}
 
-	//新たに作成
 	@Override
 	public List<Integer> getTargetYearsList() {
 
+		//対象年齢（昇順）を取得する TO:DO
 		return analogMainNoguchiRepository.findDistinctTargetYears();
-
 	}
 
 	@Override
@@ -101,7 +93,6 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 		//検索条件を生成し、AnalogMainテーブルのレコードを取得する
 		return analogMainNoguchiRepository.findAll(AnalogNoguchiSpecification.genereteAnalogSpecification(form),
 				pageable);
-
 	}
 
 	@Override
@@ -109,7 +100,6 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 
 		//検索条件を生成し、AnalogMainテーブルのレコードを取得する
 		return analogMainNoguchiRepository.findAll(AnalogNoguchiSpecification.genereteAnalogSpecification(form));
-
 	}
 
 	@Override
@@ -131,41 +121,44 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 	@Override
 	public AnalogMainNoguchi updateAnalog(final AnalogNoguchiInputForm form) {
 
-		// 更新対象のレコードを取得する
+		//更新対象のレコードを取得する
 		Optional<AnalogMainNoguchi> analogMainOp = analogMainNoguchiRepository.findById((long) form.getId());
-
 		AnalogMainNoguchi analogMainNoguchi = analogMainOp.get();
+		
 		if (analogMainNoguchi != null) {
 
-			// 更新対象のレコードが存在する場合、排他チェック
+			//更新対象のレコードが存在する場合、排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(analogMainNoguchi.getUpdateDate()))) {
 
-				// チェックOKの場合、更新
+			                                     	// チェックOKの場合、更新
 				analogMainNoguchi = form.convertToAnalogMainForUpdate(analogMainNoguchi);
 				return analogMainNoguchiRepository.saveAndFlush(analogMainNoguchi);
+				
 			}
 		}
+		
 		return null;
 	}
 
 	@Override
 	public void deleteAnalogById(final long id) {
 
-		// 更新対象のレコードを取得する
+		//更新対象のレコードを取得する
 		Optional<AnalogMainNoguchi> analogMainOp = analogMainNoguchiRepository.findById(id);
 		AnalogMainNoguchi analogMainNoguchi = analogMainOp.get();
+		
 		if (analogMainNoguchi != null) {
 
-			// 更新対象のレコードが存在する場合、削除フラグを1にする
+			//更新対象のレコードが存在する場合、削除フラグを1にする
 			analogMainNoguchiRepository.delete(id);
+			
 		}
 	}
 
 	@Override
 	public void deleteAnalogComp(final ArrayList<Long> ids) {
 
-		// 対象のレコードを削除する
+		//対象のレコードを削除する
 		analogMainNoguchiRepository.deleteComp(ids);
 	}
-
 }

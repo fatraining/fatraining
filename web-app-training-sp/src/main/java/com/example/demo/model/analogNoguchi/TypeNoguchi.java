@@ -17,7 +17,6 @@ import lombok.Data;
  * 
  * @author future
  */
-
 @Data
 @Entity
 @Table(name = "type_noguchi")
@@ -47,9 +46,7 @@ public class TypeNoguchi {
 	private String updateDate;
 
 	/** 外部キー設定：種類ID */
-
 	@OneToMany(targetEntity = AnalogMainNoguchi.class, mappedBy = "type")
 	//@JoinColumn(name = "id", referencedColumnName = "type_id")
 	private List<AnalogMainNoguchi> analogMainNoguchiList;
-
 }

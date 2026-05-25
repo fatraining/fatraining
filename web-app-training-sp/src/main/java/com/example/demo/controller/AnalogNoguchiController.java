@@ -29,37 +29,26 @@ import com.example.demo.service.AnalogNoguchiService;
  * 
  * @author future
  */
-
 @Controller
 @RequestMapping(value = "/analog")
 public class AnalogNoguchiController {
 
-	/**アナログゲームのサービス */
+	/** アナログゲームのサービス */
 	private final AnalogNoguchiService analogNoguchiService;
 
-	/**
-	 * コンストラクタ
-	 * 
-	 * 
-	 */
+	/** コンストラクタ */
 	public AnalogNoguchiController(final AnalogNoguchiService analogNoguchiService) {
-
 		this.analogNoguchiService = analogNoguchiService;
-
 	}
 
 	/**
 	 * 種類エンティティのリストを取得する
 	 * 
-	 * 
 	 * @return TypeEntityのリスト
 	 */
-
 	@ModelAttribute("typeList")
 	public List<TypeNoguchi> getListType() {
-
 		return analogNoguchiService.getListType();
-
 	}
 
 	/**
@@ -67,10 +56,8 @@ public class AnalogNoguchiController {
 	 * 
 	 * @return Genre1Entityのリスト
 	 */
-
 	@ModelAttribute("genre1List")
 	public List<Genre1Noguchi> getGenre1() {
-
 		return analogNoguchiService.getListGenre1();
 	}
 
@@ -79,17 +66,18 @@ public class AnalogNoguchiController {
 	 * 
 	 * @return Genre2Entityのリスト
 	 */
-
 	@ModelAttribute("genre2List")
 	public List<Genre2Noguchi> getGenre2() {
-
 		return analogNoguchiService.getListGenre2();
 	}
 
-	//新たに作成
+	/**
+	 * 対象年齢のリストを取得する
+	 * 
+	 * @return TargetYearsのリスト
+	 */
 	@ModelAttribute("targetYearsList")
 	public List<Integer> getTargetYearsList() {
-
 		return analogNoguchiService.getTargetYearsList();
 	}
 
@@ -99,12 +87,9 @@ public class AnalogNoguchiController {
 	 * @param AnalogNoguchiSearchForm analogNoguchiSearchForm
 	 * @return 検索画面のパスtest
 	 */
-
 	@GetMapping(value = "")
 	public String showSearchAnalog(@ModelAttribute final AnalogNoguchiSearchForm analogNoguchiSearchForm) {
-
 		return "analog/search";
-
 	}
 
 	/**
@@ -115,7 +100,6 @@ public class AnalogNoguchiController {
 	 * @param Pageble pageble
 	 * @return 検索画面のパス
 	 */
-
 	@PostMapping(value = "search")
 	public String searchAnalog(final AnalogNoguchiSearchForm form, final Model model, final Pageable pageable) {
 
@@ -128,11 +112,9 @@ public class AnalogNoguchiController {
 			model.addAttribute("page", analogList);
 			model.addAttribute("analogList", analogList.getContent());
 			model.addAttribute("url", "search");
-
 		}
 
 		return "analog/search";
-
 	}
 
 	/**
@@ -141,12 +123,9 @@ public class AnalogNoguchiController {
 	 * @param AnalogNoguchiInputForm analogNoguchiInputForm
 	 * @return 追加画面のパス
 	 */
-
 	@GetMapping(value = "insert")
 	public String showInsertAnalog(@ModelAttribute final AnalogNoguchiInputForm analogNoguchiInputForm) {
-
 		return "analog/insert";
-
 	}
 
 	/**
@@ -157,7 +136,6 @@ public class AnalogNoguchiController {
 	 * @return 入力エラーがある場合、追加画面に
 	 *          ない場合、検索画面にパス
 	 */
-
 	@PostMapping(value = "insert")
 	public String insertAnalog(@ModelAttribute @Validated final AnalogNoguchiInputForm form,
 			final BindingResult bindingResult) {
@@ -170,9 +148,7 @@ public class AnalogNoguchiController {
 
 		//データを登録する
 		final AnalogMainNoguchi analogMainNoguchi = analogNoguchiService.insertAnalog(form);
-
 		return "redirect:/analog?result=insert&id=" + analogMainNoguchi.getId();
-
 	}
 
 	/**
@@ -182,7 +158,6 @@ public class AnalogNoguchiController {
 	 * @param AnalogNoguchiInputForm analogNoguchiInputForm
 	 * @return 更新画面のパス
 	 */
-
 	@GetMapping(value = "update")
 	public String showUpdateAnalog(@RequestParam(name = "id") final long id,
 			@ModelAttribute final AnalogNoguchiInputForm analogNoguchiInputForm) {
@@ -192,9 +167,7 @@ public class AnalogNoguchiController {
 
 		//フォームにレコードの値をセットする
 		analogNoguchiInputForm.initWithAnalogMainNoguchi(analogMainNoguchi);
-
 		return "analog/update";
-
 	}
 
 	/**
@@ -205,7 +178,6 @@ public class AnalogNoguchiController {
 	 * @return 入力エラーがある場合、更新画面に
 	 *          ない場合、検索画面のパス
 	 */
-
 	@PostMapping(value = "update")
 	public String updateAnalog(@Validated final AnalogNoguchiInputForm form, final BindingResult bindingResult) {
 
@@ -213,7 +185,6 @@ public class AnalogNoguchiController {
 
 			//入力エラーがある場合、自画面に戻る
 			return "analog/update";
-
 		}
 
 		//データを更新する
@@ -223,11 +194,9 @@ public class AnalogNoguchiController {
 
 			//更新が失敗した場合、検索画面にメッセージを表示する
 			return "redirect:/analog?result=updatefailed";
-
 		}
 
 		return "redirect:/analog?result=update&id=" + analogMainNoguchi.getId();
-
 	}
 
 	/**
@@ -236,15 +205,12 @@ public class AnalogNoguchiController {
 	 * @param long id
 	 * @return 検索画面のパス
 	 */
-
 	@GetMapping("delete")
 	public String deleteAnalog(@RequestParam(name = "id") final long id) {
 
 		//IDをキーにレコードを論理削除する
 		analogNoguchiService.deleteAnalogById(id);
-
 		return "redirect:/analog?result=delete&id=" + id;
-
 	}
 
 	/**
@@ -255,7 +221,6 @@ public class AnalogNoguchiController {
 	 * @param Model model
 	 * @return 完全削除画面のパス
 	 */
-
 	@GetMapping(value = "deletecomp")
 	public String showDeleteCompAnalog(final AnalogNoguchiSearchForm form,
 			@ModelAttribute final AnalogNoguchiDeleteForm analogNoguchiDeleteForm, final Model model) {
@@ -265,9 +230,7 @@ public class AnalogNoguchiController {
 
 		//Modelに検索結果を格納する
 		model.addAttribute("analogList", analogList);
-
 		return "analog/deletecomp";
-
 	}
 
 	/**
@@ -275,11 +238,10 @@ public class AnalogNoguchiController {
 	 * 
 	 * @param AnalogNoguchiDeleteForm form
 	 * @param BindingResult bindingResult
-	 * @paramModel model
+	 * @param Model model
 	 * @return 入力エラーがある場合、完全削除画面に
 	 *          ない場合、検索画面のパス
 	 */
-
 	@PostMapping(value = "deletecomp")
 	public String deleteCompAnalog(@Validated final AnalogNoguchiDeleteForm form, final BindingResult bindingResult,
 			final Model model) {
@@ -293,16 +255,11 @@ public class AnalogNoguchiController {
 
 			//Modelに検索結果を格納する
 			model.addAllAttributes(analogList);
-
 			return "analog/deletecomp";
-
 		}
 
 		//データを完全に削除する
 		analogNoguchiService.deleteAnalogComp(form.getDeleteIds());
-
 		return "redirect:/analog?result=deletecomp";
-
 	}
-
 }

@@ -19,63 +19,62 @@ import lombok.Data;
  * 
  * @author future
  */
-
 @Data
 @Entity
 @Table(name = "analog_main_noguchi")
 public class AnalogMainNoguchi {
 
-	/**ゲームID	 */
+	/** ゲームID */
 	@Id
 	//主キー値を生成
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
 
-	/**ゲーム名	 */
+	/** ゲーム名 */
 	@Column(name = "analog_title")
 	@Size(max = 256)
 	private String analogTitle;
 
-	/**種類ID */
+	/** 種類ID */
 	@Column(name = "type_id")
 	private Integer typeId;
 
-	/**対象年齢	 */
+	/** 対象年齢 */
 	@Column(name = "target_years")
 	private Integer targetYears;
 
-	/**ジャンル1 ID	 */
+	/** ジャンル1 ID */
 	@Column(name = "genre1_id")
 	private Integer genre1Id;
 
-	/**ジャンル2 ID	 */
+	/** ジャンル2 ID */
 	@Column(name = "genre2_id")
 	private Integer genre2Id;
 
-	/**プレイ人数 */
+	/** プレイ人数 */
 	@Column(name = "play_person")
 	@Size(max = 256)
 	private String playPerson;
 
-	/**プレイ時間 */
+	/** プレイ時間 */
 	@Column(name = "play_time")
 	@Size(max = 256)
 	private String playTime;
 
-	/**内容	 */
+	/** 内容 */
 	@Column(name = "content")
 	private String content;
 
-	/**削除フラグ */
+	/** 削除フラグ */
 	@Column(name = "del_flg")
 	private String delFlg;
 
-	/**登録日時	 */
+	/** 登録日時 */
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	/**更新日時  */
+	/** 更新日時 */
 	@Column(name = "update_date")
 	private Timestamp updateDate;
 
@@ -94,5 +93,4 @@ public class AnalogMainNoguchi {
 	@ManyToOne(targetEntity = Genre2Noguchi.class)
 	@JoinColumn(name = "genre2_id", insertable = false, updatable = false)
 	private Genre2Noguchi genre2;
-
 }

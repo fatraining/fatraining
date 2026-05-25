@@ -17,11 +17,14 @@ import com.example.demo.model.analogNoguchi.AnalogMainNoguchi;
  *
  * @author future
  */
-
 public interface AnalogMainNoguchiRepository
 		extends JpaRepository<AnalogMainNoguchi, Long>, JpaSpecificationExecutor<AnalogMainNoguchi> {
 
-	//新たに作成
+	/**
+	 * メインテーブルから削除フラグが 0 のレコードの対象年齢（targetYears）を重複なしで取得する。
+	 *  
+	 * @return 対象年齢の一覧
+	 */
 	@Query("SELECT DISTINCT a.targetYears FROM AnalogMainNoguchi a WHERE a.delFlg='0' ORDER BY a.targetYears")
 	List<Integer> findDistinctTargetYears();
 
@@ -44,5 +47,4 @@ public interface AnalogMainNoguchiRepository
 	@Modifying
 	@Query("DELETE FROM AnalogMainNoguchi WHERE id IN(:ids)")
 	void deleteComp(@Param("ids") final ArrayList<Long> ids);
-
 }

@@ -26,7 +26,6 @@ public class AnalogNoguchiSpecification {
 	 * @param AnalogMainNoguchiSearchFrom form
 	 * @return AnalogMainのSpecification
 	 */
-
 	public static Specification<AnalogMainNoguchi> genereteAnalogSpecification(final AnalogNoguchiSearchForm form) {
 		return new Specification<AnalogMainNoguchi>() {
 
@@ -45,7 +44,6 @@ public class AnalogNoguchiSpecification {
 				}
 
 				//条件が入力されている場合、条件追加
-
 				if (form.getId() != null) {
 
 					//IDを条件に追加
@@ -79,11 +77,10 @@ public class AnalogNoguchiSpecification {
 
 				}
 
-				// 削除フラグを条件に追加
+				//削除フラグを条件に追加
 				Predicate newCondition = cd.equal(root.get("delFlg"), CommonConst.DELETE_FLG_OFF);
 				condition = getPredicate(cd, condition, newCondition);
 				return condition;
-
 			}
 
 			private Predicate getPredicate(CriteriaBuilder cd, Predicate condition, @NotNull Predicate newCondition) {
@@ -104,5 +101,4 @@ public class AnalogNoguchiSpecification {
 			}
 		};
 	}
-
 }

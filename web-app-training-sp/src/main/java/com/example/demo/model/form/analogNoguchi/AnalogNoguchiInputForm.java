@@ -17,53 +17,51 @@ import lombok.Data;
  * 
  * @author future
  */
-
 @Data
 public class AnalogNoguchiInputForm {
 
-	/**ID */
+	/** ID */
 	private Long id;
 
-	/**ゲーム名 */
-
+	/** ゲーム名 */
 	//↓空白のときエラー({}は必須です)
 	@NotBlank(message = "common.text.error.require")
 	@Size(max = 256)
 	private String analogTitle;
 
-	/**種類ID */
+	/** 種類ID */
 	@NotNull(message = "common.text.error.require")
 	private Integer typeId;
 
-	/**対象年齢 */
+	/** 対象年齢 */
 	@NotNull(message = "common.text.error.require")
 	private Integer targetYears;
 
-	/**ジャンル1 */
+	/** ジャンル1 */
 	private Integer genre1Id;
 
-	/**ジャンル2 */
+	/** ジャンル2 */
 	private Integer genre2Id;
 
-	/**プレイ人数 */
+	/** プレイ人数 */
 	@Size(max = 256)
 	private String playPerson;
 
-	/**プレイ時間 */
+	/** プレイ時間 */
 	@Size(max = 256)
 	private String playTime;
 
-	/**内容 */
+	/** 内容 */
 	@Size(max = 256)
 	private String content;
 
 	/** 更新日時（排他制御用） */
 	private String updateDate;
-
+	
 	/**
 	 * フィールドにエンティティの中身を入れる
-	 *
-	 * @param analogMain
+	 * 
+	 * @param analogMainNoguchi
 	 */
 	public void initWithAnalogMainNoguchi(AnalogMainNoguchi analogMainNoguchi) {
 		this.setId(analogMainNoguchi.getId());
@@ -81,7 +79,7 @@ public class AnalogNoguchiInputForm {
 	/**
 	 * AnalogMainエンティティに登録値を入れる
 	 *
-	 * @return AnalogMain
+	 * @return AnalogMainNoguchi
 	 */
 	public AnalogMainNoguchi convertToAnalogMainForInsert() {
 		AnalogMainNoguchi analogMainNoguchi = new AnalogMainNoguchi();
@@ -95,7 +93,7 @@ public class AnalogNoguchiInputForm {
 	 * AnalogMainエンティティに更新値を入れる
 	 *
 	 * @param AnalogMainNoguchi analogMainNoguchi
-	 * @return AnalogMain
+	 * @return AnalogMainNoguchi
 	 */
 	public AnalogMainNoguchi convertToAnalogMainForUpdate(AnalogMainNoguchi analogMainNoguchi) {
 		analogMainNoguchi = convertToAnalogMain(analogMainNoguchi);
@@ -106,8 +104,8 @@ public class AnalogNoguchiInputForm {
 	/**
 	 * AnalogMainエンティティに入力値を入れる
 	 *
-	 * @param AnalogMain analogMain
-	 * @return AnalogMain
+	 * @param AnalogMainNoguchi analogMainNoguchi
+	 * @return AnalogMainNoguchi
 	 */
 	private AnalogMainNoguchi convertToAnalogMain(AnalogMainNoguchi analogMainNoguchi) {
 
@@ -116,72 +114,72 @@ public class AnalogNoguchiInputForm {
 		//CommonConst 別ファイルで指定 定数
 		if (this.typeId == CommonConst.NOT_ENTERD) {
 
-			// 種類が入力されていなかった場合
+			//種類が入力されていなかった場合
 			analogMainNoguchi.setTypeId(null);
 
 		} else {
 
-			// 種類が入力されていた場合
+			//種類が入力されていた場合
 			analogMainNoguchi.setTypeId(this.typeId);
 
 		}
 
 		if (this.targetYears == CommonConst.NOT_ENTERD) {
 
-			// 対象年齢が入力されていなかった場合
+			//対象年齢が入力されていなかった場合
 			analogMainNoguchi.setTargetYears(null);
 
 		} else {
 
-			// 対象年齢が入力されていた場合
+			//対象年齢が入力されていた場合
 			analogMainNoguchi.setTargetYears(this.targetYears);
 
 		}
 
 		if (this.genre1Id != null) {
 
-			// ジャンル1が入力されていた場合
+			//ジャンル1が入力されていた場合
 			analogMainNoguchi.setGenre1Id(this.genre1Id);
 
 		} else {
 
-			// ジャンル1が入力されていなかった場合
+			//ジャンル1が入力されていなかった場合
 			analogMainNoguchi.setGenre1Id(null);
 
 		}
 
 		if (this.genre2Id != null) {
 
-			// ジャンル2が入力されていた場合
+			//ジャンル2が入力されていた場合
 			analogMainNoguchi.setGenre2Id(this.genre2Id);
 
 		} else {
 
-			// ジャンル2が入力されていなかった場合
+			//ジャンル2が入力されていなかった場合
 			analogMainNoguchi.setGenre2Id(null);
 
 		}
 
 		if (!this.playPerson.isEmpty()) {
 
-			// プレイ人数が入力されていた場合
+			//プレイ人数が入力されていた場合
 			analogMainNoguchi.setPlayPerson(this.playPerson);
 
 		} else {
 
-			// プレイ人数が入力されていなかった場合
+			//プレイ人数が入力されていなかった場合
 			analogMainNoguchi.setPlayPerson(null);
 
 		}
 
 		if (!this.playTime.isEmpty()) {
 
-			// プレイ時間が入力されていた場合
+			//プレイ時間が入力されていた場合
 			analogMainNoguchi.setPlayTime(this.playTime);
 
 		} else {
 
-			// プレイ時間が入力されていなかった場合
+			//プレイ時間が入力されていなかった場合
 			analogMainNoguchi.setPlayTime(null);
 
 		}
@@ -189,7 +187,5 @@ public class AnalogNoguchiInputForm {
 		analogMainNoguchi.setContent(this.content);
 		analogMainNoguchi.setDelFlg("0");
 		return analogMainNoguchi;
-
 	}
-
 }
