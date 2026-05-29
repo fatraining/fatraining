@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修|ゼルダの伝説更新</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/zeldaIkeda.css}" />
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h4>
+				<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+			</h4>
+		</div>
+		<div class="resultArea col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+			<div class="sub-header">
+				<h1 align="center" th:text="#{zelda.text.update}">ゼルダの伝説更新</h1>
+				<a th:href="@{/zeldaIkeda}" th:text="#{common.text.back}">Back</a>
+			</div>
+			
+			<!--入力欄-->
+			<form method="post" id="zeldaInputForm"
+				th:action="@{/zeldaIkeda/update}" th:object="${zeldaInputForm}"
+				class="form-horizontal">
+				<input type="hidden" th:field="*{zeldaId}"/>
+				<div class="form-group">
+					<label for="title" class="control-label"
+						th:text="#{zelda.text.input.title.require}">Title(*):</label>
+					<input type="text" th:field="*{zeldaTitle}" class="form-control"
+						th:placeholder="#{zelda.text.title}"/>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('zeldaTitle')}"
+						th:text="#{${err}(#{zelda.text.title})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="genre" class="control-label"
+						th:text="#{zelda.text.input.genre}"> Genre:</label>
+					<select name="genreId" id="inputGenre"
+						class="form-control select">
+						<option th:each="genre : ${genreIkedaList}"
+								th:value="${genre.id}"
+								th:text="${genre.genre}"
+								th:selected="${genre.id == zeldaInputForm.genreId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="timeSeries" class="control-label"
+						th:text="#{zelda.text.input.timeSeries}"> TimeSeries:</label>
+					<select name="TimeSeriesId" id="inputTimeSeries"
+						class="form-control">
+						<option th:each="timeSeries : ${timeSeriesIkedaList}"
+								th:value="${timeSeries.id}"
+								th:text="${timeSeries.timeSeries}"
+								th:selected="${timeSeries.id == zeldaInputForm.timeSeriesId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="compatibleModel" class="control-label"
+						th:text="#{zelda.text.input.compatibleModel}"> CompatibleMdel:</label>
+					<select name="compatibleModelId" id="inputCompatibleModel"
+						class="form-control">
+						<option th:each="compatibleModel : ${compatibleModelIkedaList}"
+								th:value="${compatibleModel.id}"
+								th:text="${compatibleModel.compatibleModel}"
+								th:selected="${compatibleModel.id == zeldaInputForm.compatibleModelId}">pulldown</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="releaseYear" class="control-label"
+						th:text="#{zelda.text.input.releaseYear.require}"> ReleaseYear(*):</label>
+					<input type="text" th:field="*{releaseYear}" class="form-control"
+						th:placeholder="#{zelda.text.releaseYear}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('releaseYear')}"
+						th:text="#{${err}(#{zelda.text.releaseYear})}"></p>
+				</div>
+				<div class="form-group">
+					<label for="comment" class="control-label"
+						th:text="#{zelda.text.input.comment}"> Comment:</label>
+					<textarea th:field="*{comment}" cols="" rows="5"
+						class="form-control" id="inputComment"
+						th:placeholder="#{zelda.text.comment}"></textarea>
+				</div>
+				<div class="col-xs-3 col-sm-2">
+                    <a class="btn btn-success center-block"
+                       onclick="$('#zeldaInputForm').submit()"
+                       th:text="#{common.text.update}">Update</a>
+				</div>
+				<input type="hidden" th:field="*{updateDate}" />
+			</form>
+		</div>
+</div>
+
+</body>
+</html>
