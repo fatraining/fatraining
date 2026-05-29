@@ -26,7 +26,7 @@ public class AnalogNoguchiInputForm {
 	/** ゲーム名 */
 	//↓空白のときエラー({}は必須です)
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 256)
+	@Size(max = 256, message = "common.text.error.size.max")
 	private String analogTitle;
 
 	/** 種類ID */
@@ -44,20 +44,20 @@ public class AnalogNoguchiInputForm {
 	private Integer genre2Id;
 
 	/** プレイ人数 */
-	@Size(max = 256)
+	@Size(max = 256, message = "common.text.error.size.max")
 	private String playPerson;
 
 	/** プレイ時間 */
-	@Size(max = 256)
+	@Size(max = 256, message = "common.text.error.size.max")
 	private String playTime;
 
 	/** 内容 */
-	@Size(max = 256)
+	@Size(max = 256, message = "common.text.error.size.max")
 	private String content;
 
 	/** 更新日時（排他制御用） */
 	private String updateDate;
-	
+
 	/**
 	 * フィールドにエンティティの中身を入れる
 	 * 

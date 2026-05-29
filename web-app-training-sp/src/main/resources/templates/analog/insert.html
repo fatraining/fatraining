@@ -103,6 +103,8 @@
 						   th:text="#{analog.text.input.playPerson}">PlayPerson:</label>
 					<input type="text" th:field="*{playPerson}" class="form-control" id="inputPlayPerson"
 						   th:placeholder="#{analog.text.playPerson}" />
+					<p class="err alert-danger" th:each="err : ${#fields.errors('playPerson')}"
+						th:text="#{${err}(#{analog.text.playPerson})}"></p>
 				</div>
 
 				<div class="form-group">
@@ -110,7 +112,8 @@
 						   th:text="#{analog.text.input.playTime}">PlayTime:</label>
 					<input type="text" th:field="*{playTime}" class="form-control" id="inputPlayTime"
 						   th:placeholder="#{analog.text.playTime}" />
-
+					<p class="err alert-danger" th:each="err : ${#fields.errors('playTime')}"
+					    th:text="#{${err}(#{analog.text.playTime})}"></p>
 				</div>
 
 				<div class="form-group">
@@ -118,6 +121,8 @@
 					       th:text="#{analog.text.input.content}"> Content:</label>
 					<textarea th:field="*{content}" cols="" rows="5" class="form-control" id="inputContent"
 						      th:placeholder="#{analog.text.content}"></textarea>
+				    <p class="err alert-danger" th:each="err : ${#fields.errors('content')}"
+						th:text="#{${err}(#{analog.text.content})}"></p>
 				</div>
 
 				<div class="col-xs-3 col-sm-2">

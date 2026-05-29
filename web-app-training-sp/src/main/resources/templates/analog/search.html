@@ -103,7 +103,7 @@
 
 			<div class="form-group">
 				<label for="targetYears" class="control-label col-sm-2"
-					th:text="#{analog.text.input.targetYears}">TargetYears:</label>
+					th:utext="#{analog.text.input.targetYears}">TargetYears:</label>
 
 				<div class="col-sm-8">
 					<select id="inputTargetYears" name="targetYears" class="form-control select">
@@ -165,17 +165,33 @@
 
 						<!-- ジャンル1 / ジャンル2 -->
 						<td class="data center">
-							<span th:text="${analog.genre1.genre}"></span>
+							<!-- genre1 がある場合 -->
+							<span th:if="${analog.genre1 != null and analog.genre1.genre != null and !#strings.isEmpty(analog.genre1.genre)}"
+								  th:text="${analog.genre1.genre}">
+						    </span>
+							
+							<!-- genre2 がある場合 -->
 							<span th:if="${analog.genre2 != null and analog.genre2.genre != null and !#strings.isEmpty(analog.genre2.genre)}">
-								<br />/ <span th:text="${analog.genre2.genre}"></span>
+							    <span th:if="${analog.genre1 != null and analog.genre1.genre != null and !#strings.isEmpty(analog.genre1.genre)}">
+							        <br/>/
+							    </span>
+							    <span th:text="${analog.genre2.genre}"></span>
 							</span>
 						</td>
 
 						<!-- プレイ人数 / プレイ時間 -->
 						<td class="data center">
-							<span th:text="${analog.playPerson}"></span>
-							<span th:if="${analog.playTime != null}"><br />/</span>
-							<span th:text="${analog.playTime != null ? analog.playTime : ''}"></span>
+							<!-- playPerson がある場合 -->
+							<span th:if="${analog.playPerson != null and !#strings.isEmpty(analog.playPerson)}"
+							      th:text="${analog.playPerson}">
+							</span>
+							<!-- playTime がある場合 -->
+							<span th:if="${analog.playTime != null and !#strings.isEmpty(analog.playTime)}">
+							    <span th:if="${analog.playPerson != null and !#strings.isEmpty(analog.playPerson)}">
+									<br/>/
+								</span>
+								<span th:text="${analog.playTime}"></span>
+							</span>
 						</td>
 
 						<!-- 内容 -->

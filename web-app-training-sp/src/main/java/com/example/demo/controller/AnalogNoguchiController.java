@@ -229,7 +229,7 @@ public class AnalogNoguchiController {
 		final List<AnalogMainNoguchi> analogList = analogNoguchiService.getListAnalog(form);
 
 		//Modelに検索結果を格納する
-		model.addAttribute("analogList", analogList);
+		model.addAttribute(analogList);
 		return "analog/deletecomp";
 	}
 
@@ -254,7 +254,7 @@ public class AnalogNoguchiController {
 			final List<AnalogMainNoguchi> analogList = analogNoguchiService.getListAnalog(analogNoguchiSearchForm);
 
 			//Modelに検索結果を格納する
-			model.addAllAttributes(analogList);
+			model.addAttribute(analogList);
 			return "analog/deletecomp";
 		}
 

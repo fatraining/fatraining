@@ -73,7 +73,7 @@
 
 				<div class="form-group">
 					<label for="genre1" class="control-label" 
-					       th:text="#{analog.text.input.genre1}">Type:</label>
+					       th:text="#{analog.text.input.genre1}">Genre1:</label>
 					<select name="genre1Id" id="inputGenre1" class="form-control select">
 						<option th:each="genre1 : ${genre1List}" th:value="${genre1.id}" th:text="${genre1.genre}"
 							th:selected="${genre1.id == analogNoguchiInputForm.genre1Id}">pulldown
@@ -83,7 +83,7 @@
 
 				<div class="form-group">
 					<label for="genre2" class="control-label" 
-					       th:text="#{analog.text.input.genre2}">Type:</label>
+					       th:text="#{analog.text.input.genre2}">Genre2:</label>
 					<select name="genre2Id" id="inputGenre2" class="form-control select">
 						<option th:each="genre2 : ${genre2List}" th:value="${genre2.id}" th:text="${genre2.genre}"
 							th:selected="${genre2.id == analogNoguchiInputForm.genre2Id}">pulldown
@@ -113,6 +113,8 @@
 					<label for="content" class="control-label" th:text="#{analog.text.input.content}"> Content:</label>
 					<textarea th:field="*{content}" cols="" rows="5" class="form-control" id="inputContent"
 						      th:placeholder="#{analog.text.content}"></textarea>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('content')}"
+						th:text="#{${err}(#{analog.text.content})}"></p>
 				</div>
 
 				<div class="col-xs-3 col-sm-2">
