@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Webアプリ研修❘ゼルダ検索</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/zeldaIkeda.css}" />
+</head>
+<body>
+	<div class="search">
+	<div class="page-header">
+		<h4>
+			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a><small th:text="#{login.text.version}">ver β</small>
+		</h4>
+	</div>
+	<div class="sub-header">
+		<a th:href="@{/menu}" th:text="#{common.text.back}">Back</a><br />
+		<h1 align="center" th:text="#{zelda.text.search}">ZeldaSearch</h1>
+	</div>
+
+	<!-- 新規・削除ボタン -->
+	<div style="position: relative; left: 30px;">
+		<form class="form-horizontal" id="deleteCompForm"
+			method="get" action="/zeldaIkeda/deletecomp"
+			th:object="${zeldaSearchForm}">
+			<div class="form-group">
+				<div class="col-sm-8">
+					<input type="hidden" name="isDelete" th:value="1"/>
+				</div>
+			</div>
+		</form>
+					
+		<div class="form-group">
+			<div class="">
+				<a class="btn btn-warning"
+					th:href="@{/zeldaIkeda/insert}"
+					th:text="#{common.text.new}" >New
+				</a>
+				<a class="btn btn-danger"
+					onclick="$('#deleteCompForm').submit()"
+					th:text="#{common.text.unnecessary}">UnnecessaryData
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<!-- メッセージ -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-7">
+
+				<!-- 検索結果なし -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${(zeldaSearchForm.zeldaTitle != null or
+							zeldaSearchForm.genreId != null or
+							zeldaSearchForm.timeSeriesId != null or
+							zeldaSearchForm.compatibleModelId != null) and
+							zeldaList == null}"
+					th:text="#{common.text.info.search}">No Result
+				</div>
+
+				<!-- DB操後 -->
+				<div class="alert alert-info text-center" role="alert"
+					th:if="${param.result !=null}">
+					<div th:switch="${param.result[0]}">
+						<p th:case="insert" th:text="#{common.text.info.insert} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="update" th:text="#{common.text.info.update} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
+						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
+						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						<p th:case="revoke" th:text="#{common.text.info.revoke}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 検索条件 -->
+		<form class="form-horizontal" id="searchForm"
+			method="post" action="/zeldaIkeda/search"
+			th:object="${zeldaSearchForm}">
+			<div class="form-group">
+				<label for="zeldaTitle" class="col-sm-2 control-label" th:text="#{zelda.text.input.title}">Title:</label>
+				<div class="col-sm-8">
+					<input type="text" th:field="*{zeldaTitle}" class="form-control"
+						id="inputZeldaTitle" th:placeholder="#{zelda.text.search.info}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="genre" class="control-label col-sm-2" th:text="#{zelda.text.input.genre}">Genre:</label>
+				<div class="col-sm-8">
+					<select id="inputGenre" name="genreId" class="form-control select">
+						<option th:each="genre : ${genreIkedaList}"
+							th:value="${genre.id}"
+							th:text="${genre.genre}" 
+							th:selected="${genre.id == zeldaSearchForm.genreId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+			<label for="timeSeries" class="control-label col-sm-2" th:text="#{zelda.text.input.timeSeries}">TimeSeries:</label>
+				<div class="col-sm-8">
+					<select id="inputTimeSeries" name="timeSeriesId" class="form-control select">
+						<option th:each="timeSeries : ${timeSeriesIkedaList}"
+							th:value="${timeSeries.id}"
+							th:text="${timeSeries.timeSeries}"
+							th:selected="${timeSeries.id == zeldaSearchForm.timeSeriesId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+			<label for="compatibleModel" class="control-label col-sm-2" th:text="#{zelda.text.input.compatibleModel}">CompatibleModel:</label>
+				<div class="col-sm-8">
+					<select id="inputCompatibleModel" name="compatibleModelId" class="form-control select">
+						<option th:each="compatibleModel : ${compatibleModelIkedaList}"
+							th:value="${compatibleModel.id}"
+							th:text="${compatibleModel.compatibleModel}"
+							th:selected="${compatibleModel.id == zeldaSearchForm.compatibleModelId}">pulldown
+						</option>
+					</select>
+				</div>
+			</div>
+							
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-xs-3 col-sm-2">
+					<a class="btn btn-primary center-block btn-case"
+						onclick="$('#searchForm').submit()"
+						th:text="#{common.text.search}">Search
+					</a>
+				</div>
+			    <div class="col-xs-3 col-sm-2">
+				 	<a class="btn btn-warning center-block btn-case"
+						th:href="@{/zeldaIkeda}"
+						th:text="#{common.text.reset}">Reset
+					</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- 検索結果の表示 -->
+		<section id="resultArea" th:if="${zeldaList != null}">
+			<table id="resultTable" class="table table-borderd table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="per-12 center" style="width:174px;" th:text="#{zelda.text.title}">Title</th>
+						<th class="per-12 center" style="width:105px" th:text="#{zelda.text.genre}">Genre</th>
+						<th class="per-12 center" style="width:164px" th:text="#{zelda.text.timeSeries}">TimeSeries</th>
+						<th class="per-12 center" style="width:155px" th:text="#{zelda.text.compatibleModel}">CompatibleModel</th>
+						<th class="per-45 center" style="width:58px" th:text="#{zelda.text.releaseYear}">ReleaseYear</th>
+						<th class="per-45 center" style="width:218px" th:text="#{zelda.text.comment}">Comment</th>
+						<th class="per-7 center" style="width:1px" th:text="#{common.text.update}">Update</th>
+						<th class="per-7 center" style="width:1px" th:text="#{common.text.delete}">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="zelda : ${zeldaList}">
+						<td class="data center" th:text="${zelda.zeldaTitle}">スカイウォードソード</td>
+						<td class="data center">
+							<label th:if="${zelda.genre != null}" th:text="${zelda.genre.genre}"
+									class="data center">2D見下ろし型・謎解き</label>
+						</td>
+						<td class="data center">
+							<label th:if="${zelda.timeSeries != null}" th:text="${zelda.timeSeries.timeSeries}"
+									class="data center">天地創造</label>
+						</td>
+						<td class="data center">
+							<label th:if="${zelda.compatibleModel !=null}" th:text="${zelda.compatibleModel.compatibleModel}"
+									class="data center">Wii</label>
+						</td>
+						<td class="data center" th:text="${zelda.releaseYear}">2011</td>
+						<td class="data center" th:text="${zelda.comment}">全ゼルダシリーズの原点。</td>
+									
+						<td class="data center">
+							<a class="btn btn-case btn-success" style="margin: 5%"
+								th:href="@{/zeldaIkeda/update(id=${zelda.zeldaId})}"
+								th:text="#{common.text.update}">Update</a>
+						</td>
+						<td class="data center">
+							<a class="btn btn-case btn-danger" style="margin: 5%"
+								data-toggle="modal" data-target="#deleteModal"
+								th:text="#{common.text.delete}"
+								th:attr="data-id=${zelda.zeldaId},data-title=${zelda.zeldaTitle}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- ページング用 -->
+		<div th:fragment='paginationbar'>
+			<div th:if="${page != null}">
+				<ul>
+					<li th:class="${page.first} ? 'disabled':''" style="display :inline">
+						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
+						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+							th:text="#{common.text.paging.lead}">←lead</a>
+					</li>
+					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+						<form th:id="'pageForm'+${i}" method="post" th:action="@{${url}(page=${i})}"
+							th:object="${zeldaSearchForm}" style="display:inline" >
+							<input type="hidden" th:field="*{zeldaTitle}"/>
+							<input type="hidden" th:field="*{genreId}"/>
+							<input type="hidden" th:field="*{timeSeriesId}"/>
+							<input type="hidden" th:field="*{compatibleModelId}"/>
+						</form>
+						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+							<span th:text='${i+1}'></span>
+						</a>
+					</li>
+					<li th:class="${page.last} ? 'disabled':''" style="display:inline">
+						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end→</span>
+						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+							th:text="#{common.text.paging.end}">end→</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 削除モーダル -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+		<div class="modal-dialog" role="document">
+			<form class="form-horizontal" id="deleteForm" th:method="get" th:action="@{delete}">
+				<div class="modal-content">
+					<input type="hidden" id="deleteId" name="id">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel"
+							th:text="#{zelda.text.delete}">ZeldaDelete</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="lead">
+									<span id="deleteTitle">Zelda Title</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="alert alert-danger" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									<span th:text="#{common.text.warn.delete(#{zelda.text.title})}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default"
+							th:text="#{common.text.cansel}"
+							data-dismiss="modal">Cancel
+						</a>
+						<a class="btn btn-danger" onclick="$('#deleteForm').submit()"
+							th:text="#{common.text.delete}">Delete
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="bogoCount" class="panel-clear"></div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script th:src="@{/libs/jquery/jquery.js}"></script>
+	<script th:src="@{/libs/bootstrap/js/bootstrap.js}"></script>
+
+	<!-- 削除モーダル用スクリプト -->
+	<script>
+		$('#deleteModal').on('show.bs.modal',function(event) {
+			var buttun=$(event.relatedTarget);
+			var zeldaId = buttun.data('id');
+			var zeldaTitle = buttun.data('title');
+			var modal = $(this);
+			modal.find('#deleteId').attr("value",zeldaId);
+			modal.find('#deleteTitle').text(zeldaTitle);
+		});
+	</script>
+	</div>
+</body>
+</html>
