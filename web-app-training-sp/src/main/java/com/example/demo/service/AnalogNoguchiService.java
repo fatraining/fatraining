@@ -40,7 +40,7 @@ public interface AnalogNoguchiService {
 	 * @return Genre2Entityのリスト
 	 */
 	List<Genre2Noguchi> getListGenre2();
-	
+
 	/**
 	 * メインテーブルの対象年齢を一覧化する
 	 * 
@@ -88,6 +88,13 @@ public interface AnalogNoguchiService {
 	 * @return AnalogMainNoguchi
 	 */
 	AnalogMainNoguchi updateAnalog(final AnalogNoguchiInputForm form);
+
+	/**
+	 * AnalogMainの論理削除したレコードを取り消す
+	 * 
+	 * @param List<Long> ids
+	 */
+	void restoreAnalogById(final List<Long> ids);
 
 	/**
 	 * AnalogMainのレコードを論理削除する

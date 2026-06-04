@@ -262,4 +262,33 @@ public class AnalogNoguchiController {
 		analogNoguchiService.deleteAnalogComp(form.getDeleteIds());
 		return "redirect:/analog?result=deletecomp";
 	}
+	
+	/**
+	 * AnalogMainのテーブルデータを復元して検索画面に遷移する
+	 * 
+	 * @param AnalogNoguchiDeleteForm form
+	 * @param BindingResult bindingResult
+	 * @param Model model
+	 * @return 入力エラーがある場合完全削除画面、ない場合検索画面のパス
+	 */
+	@PostMapping(value = "restore")
+	public String restoreAnalog(@Validated final AnalogNoguchiDeleteForm form, final BindingResult bindingResult,
+			final Model model) {
+		if (form.getDeleteIds() == null || form.getDeleteIds().isEmpty()) {
+
+			//入力エラーがある場合、再検索して自画面に戻る
+			AnalogNoguchiSearchForm analogNoguchiSearchForm = new AnalogNoguchiSearchForm();
+			analogNoguchiSearchForm.setIsDelete(CommonConst.DELETE_FLG_ON);
+			final List<AnalogMainNoguchi> analogList = analogNoguchiService.getListAnalog(analogNoguchiSearchForm);
+
+			//Modelに検索結果を格納する
+			model.addAttribute(analogList);
+			return "analog/deletecomp";
+		}
+
+		//データを復元する
+		analogNoguchiService.restoreAnalogById(form.getDeleteIds());
+		return "redirect:/analog?result=restore";
+	}
+
 }

@@ -124,19 +124,19 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 		//更新対象のレコードを取得する
 		Optional<AnalogMainNoguchi> analogMainOp = analogMainNoguchiRepository.findById((long) form.getId());
 		AnalogMainNoguchi analogMainNoguchi = analogMainOp.get();
-		
+
 		if (analogMainNoguchi != null) {
 
 			//更新対象のレコードが存在する場合、排他チェック
 			if (form.getUpdateDate().equals(String.valueOf(analogMainNoguchi.getUpdateDate()))) {
 
-			                                     	// チェックOKの場合、更新
+				// チェックOKの場合、更新
 				analogMainNoguchi = form.convertToAnalogMainForUpdate(analogMainNoguchi);
 				return analogMainNoguchiRepository.saveAndFlush(analogMainNoguchi);
-				
+
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -146,13 +146,21 @@ public class AnalogNoguchiServiceImpl implements AnalogNoguchiService {
 		//更新対象のレコードを取得する
 		Optional<AnalogMainNoguchi> analogMainOp = analogMainNoguchiRepository.findById(id);
 		AnalogMainNoguchi analogMainNoguchi = analogMainOp.get();
-		
+
 		if (analogMainNoguchi != null) {
 
 			//更新対象のレコードが存在する場合、削除フラグを1にする
 			analogMainNoguchiRepository.delete(id);
-			
+
 		}
+	}
+
+	@Override
+	public void restoreAnalogById(final List<Long> ids) {
+
+		//対象のレコードを復元する
+		analogMainNoguchiRepository.restore(ids);
+
 	}
 
 	@Override

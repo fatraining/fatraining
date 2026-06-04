@@ -66,6 +66,7 @@
 						<p th:case="updatefailed" th:text="#{common.text.info.update.failed}"></p>
 						<p th:case="delete" th:text="#{common.text.info.delete} + ':ID=' + ${param.id[0]}"></p>
 						<p th:case="deletecomp" th:text="#{common.text.info.deletecomp}"></p>
+						<p th:case="restore" th:text="#{common.text.info.restore}"></p>
 					</div>
 				</div>
 			</div>
@@ -132,7 +133,10 @@
 				</div>
 			</div>
 		</form>
-
+		
+		<!-- ページング用 -->
+		<div th:replace="::paginationbar"></div>
+		
 		<!-- 検索結果の表示-->
 		<section id="resultArea" th:if="${analogList != null}">
 			<table id="resultTable" class="table table-borderd table-striped table-hover">

@@ -39,6 +39,15 @@ public interface AnalogMainNoguchiRepository
 	void delete(@Param("id") final long id);
 
 	/**
+	 * 対象のレコードの削除フラグを0にする
+	 * @param long id
+	 */
+	@Transactional
+	@Modifying
+	@Query("UPDATE AnalogMainNoguchi SET delFlg='0' WHERE id IN(:ids)")
+	void restore(@Param("ids") final List<Long> ids);
+
+	/**
 	 * 対象レコードを削除する
 	 * 
 	 * @param ArrayList<Long> ids

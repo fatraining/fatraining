@@ -3,6 +3,8 @@ package com.example.demo.model.form.analogNoguchi;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,6 +37,8 @@ public class AnalogNoguchiInputForm {
 
 	/** 対象年齢 */
 	@NotNull(message = "common.text.error.require")
+	@Min(value=1,message="common.text.error.min")
+	@Max(value = 100, message = "common.text.error.size.max.two")
 	private Integer targetYears;
 
 	/** ジャンル1 */
