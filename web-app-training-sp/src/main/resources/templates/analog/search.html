@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	<div class="container">
 	<div class="page-header">
 		<h4>
 			<a th:href="@{/}" th:text="#{login.text.app}">研修Webアプリ</a>
@@ -142,14 +143,14 @@
 			<table id="resultTable" class="table table-borderd table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="per-12 center" th:text="#{analog.text.title}">Title</th>
+						<th class="per-12 center" style="width: 130px;" th:text="#{analog.text.title}">Title</th>
 						<th class="per-12 center" style="width: 130px;" th:text="#{analog.text.type}">Type</th>
 						<th class="per-12 center" th:text="#{analog.text.targetYears}">TargetYears</th>
 						<th class="per-12 center" style="width: 170px;" th:utext="#{analog.text.genre1.and.genre2}">
 							Genre1/Genre2</th>
 						<th class="per-12 center" style="width: 100px;"
 							th:utext="#{analog.text.playPerson.and.playTime}">PlayPerson/PlayTime</th>
-						<th class="per-12 center" th:text="#{analog.text.content}">Content</th>
+						<th class="per-12 center" style="width: 400px;"th:text="#{analog.text.content}">Content</th>
 						<th class="per-12 center" style="width: 80px;" th:utext="#{analog.text.update1}">Update</th>
 						<th class="per-12 center" style="width: 80px;" th:utext="#{analog.text.delete1}">Delete</th>
 					</tr>
@@ -231,7 +232,7 @@
 				<ul>
 					<li th:class="${page.first} ? 'disabled':''" style="display:inline">
 						<span th:if="${page.first}" th:text="#{common.text.paging.lead}">←lead</span>
-						<a th:if="${not page.first}" onclick="$('#pageForm0').submit()"
+						<a href="#" th:if="${not page.first}" onclick="$('#pageForm0').submit()"
 							th:text="#{common.text.paging.lead}">←lead</a>
 					</li>
 					<li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}'
@@ -243,18 +244,19 @@
 							<input type="hidden" th:field="*{targetYears}" />
 						</form>
 						<span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
-						<a th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
+						<a href="#" th:if='${i}!=${page.number}' th:onclick="'$(\'#pageForm'+${i}+'\').submit()'">
 							<span th:text='${i+1}'>1</span>
 						</a>
 					</li>
 					<li th:class="${page.last} ? 'disabled':''" style="display:inline">
 						<span th:if="${page.last}" th:text="#{common.text.paging.end}">end➝</span>
-						<a th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
+						<a href="#" th:if="${not page.last}" th:onclick="'$(\'#pageForm'+(${page.totalPages}-1)+'\').submit()'"
 							th:text="#{common.text.paging.end}">end➝</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<!-- 削除モーダル -->
