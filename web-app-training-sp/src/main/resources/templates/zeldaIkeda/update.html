@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Webアプリ研修|ゼルダの伝説更新</title>
+<title>Webアプリ研修|検索データ更新</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -82,6 +82,8 @@
 					<textarea th:field="*{comment}" cols="" rows="5"
 						class="form-control" id="inputComment"
 						th:placeholder="#{zelda.text.comment}"></textarea>
+					<p class="err alert-danger" th:each="err : ${#fields.errors('comment')}"
+						th:text="#{${err}(#{zelda.text.comment})}"></p>
 				</div>
 				<div class="col-xs-3 col-sm-2">
                     <a class="btn btn-success center-block"
@@ -91,7 +93,6 @@
 				<input type="hidden" th:field="*{updateDate}" />
 			</form>
 		</div>
-</div>
-
+	</div>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class ZeldaInputForm {
 
 	/** ゼルダタイトル */
 	@NotBlank(message = "common.text.error.require")
-	@Size(max = 255)
+	@Size(max = 255, message = "common.text.error.over")
 	private String zeldaTitle;
 
 	/** ジャンルID */
@@ -41,7 +41,7 @@ public class ZeldaInputForm {
 	private String releaseYear;
 
 	/** コメント */
-	@Size(max = 255)
+	@Size(max = 255, message = "common.text.error.over")
 	private String comment;
 
 	/** 更新日時（排他制御用）*/
