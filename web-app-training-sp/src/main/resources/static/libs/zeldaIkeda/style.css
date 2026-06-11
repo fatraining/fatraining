@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/*波紋の背景*/
+
+.bg_pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffe9a7;
+  opacity: 0.4;
+  z-index: -1;
+}
+.Wavy {
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffe9a7 20px ), repeating-linear-gradient( #6bff6b, #ffc107 );
+}
+
+h1 {
+  font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}

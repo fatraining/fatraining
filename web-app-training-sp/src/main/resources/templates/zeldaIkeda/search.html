@@ -6,8 +6,12 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/spring_training.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/zeldaIkeda.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/libs/zeldaIkeda/style.css}" />
 </head>
 <body>
+	<!-- 波紋の背景 -->
+	<div class="bg_pattern Wavy"></div>
+	
 	<div class="container">
 		<div class="page-header">
 			<h4>
@@ -187,7 +191,8 @@
 					</thead>
 					<tbody>
 						<tr th:each="zelda : ${zeldaList}">
-							<td class="data center" th:text="${zelda.zeldaTitle}">スカイウォードソード</td>
+							<td class="data center">
+								<label th:text="${zelda.zeldaTitle}">スカイウォードソード</label></td>
 							<td class="data center">
 								<label th:if="${zelda.genre != null}" th:text="${zelda.genre.genre}"
 										class="data center">2D見下ろし型・謎解き</label>
@@ -200,8 +205,10 @@
 								<label th:if="${zelda.compatibleModel !=null}" th:text="${zelda.compatibleModel.compatibleModel}"
 										class="data center">Wii</label>
 							</td>
-							<td class="data center" th:text="${zelda.releaseYear}">2011</td>
-							<td class="data center" th:text="${zelda.comment}">全ゼルダシリーズの原点。</td>
+							<td class="data center">
+								<label th:text="${zelda.releaseYear}">2011</label></td>
+							<td class="data center">
+								<label th:text="${zelda.comment}">全ゼルダシリーズの原点。</label></td>
 										
 							<td class="data center">
 								<a class="btn btn-case btn-success" style="margin: 5%"
